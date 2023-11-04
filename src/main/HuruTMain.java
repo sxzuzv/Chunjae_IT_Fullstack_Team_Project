@@ -44,7 +44,7 @@ public class HuruTMain {
     
     
     public static void main(String[] args) {
-        // 메인 메소드. 프로그램을 시작하기 위해 이 메인 메소드를 실행시켜야 한다.\
+        // 메인 메소드. 프로그램을 시작하기 위해 이 메인 메소드를 실행시켜야 한다.
 
         // 사용할 실행 코드를 작성하기
 
