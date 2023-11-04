@@ -2,7 +2,7 @@ package dao;
 
 import java.time.LocalDateTime;
 
-public class ReviewDAO {
+public class ReviewDAO_jh {
 
     private int reviewIdx;
     private int classId;

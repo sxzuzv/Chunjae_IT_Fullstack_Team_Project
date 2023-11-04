@@ -1,12 +1,12 @@
 package repository.mapper;
 
-import dao.StudentDAO;
+import dao.StudentDAO_jh;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
 @Mapper
-public interface StudentMapper {
+public interface StudentMapper_jh {
 
-    List<StudentDAO> getAllStudent();
+    List<StudentDAO_jh> getAllStudent();
 }

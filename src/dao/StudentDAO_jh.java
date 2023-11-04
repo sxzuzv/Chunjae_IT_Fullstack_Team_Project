@@ -2,7 +2,7 @@ package dao;
 
 import java.time.LocalDateTime;
 
-public class StudentDAO {
+public class StudentDAO_jh {
 
     private int studentIdx;
     private String studentEmail;

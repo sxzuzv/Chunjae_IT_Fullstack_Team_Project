@@ -1,13 +1,5 @@
 package main;
 
-import service.StudentClassService;
-import service.StudentService;
-
-import java.io.BufferedReader;
-import java.util.Map;
-import java.util.Scanner;
-import java.util.Set;
-
 public class HuruTMain {
     
     // 필요한 서비스를 멤버로 받아오기

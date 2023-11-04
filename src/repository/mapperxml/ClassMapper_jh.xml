@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="repository.mapper.ClassMapper">
+<mapper namespace="repository.mapper.ClassMapper_jh">
     <select id="getTotalTimePerClass" parameterType="java.util.List" resultType="java.util.Map">
         select class_idx, seconds
         from classes

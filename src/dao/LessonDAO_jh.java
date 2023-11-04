@@ -1,6 +1,6 @@
 package dao;
 
-public class LessonDAO {
+public class LessonDAO_jh {
 
     private int lessonIdx;
     private String lessonName;

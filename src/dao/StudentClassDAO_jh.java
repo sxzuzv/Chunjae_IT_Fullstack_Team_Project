@@ -1,6 +1,6 @@
 package dao;
 
-public class StudentClassDAO {
+public class StudentClassDAO_jh {
 
     private int studentClassIdx;
     private int studentId;
