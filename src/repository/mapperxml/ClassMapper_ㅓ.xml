@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="repository.mapper.ClassMapper">
+    <select id="getTotalTimePerClass" parameterType="java.util.List" resultType="java.util.Map">
+        select class_idx, seconds
+        from classes
+        where class_idx in
+        <foreach collection="classIdxList" item="item" index="index" separator="," open="(" close=")">
+            ${item}
+        </foreach>
+    </select>
+
+    <select id="getTeacherNamePerClass" parameterType="java.util.List" resultType="java.util.Map">
+        select teacher_name, class_idx
+        from teachers t inner join classes c on t.teacher_idx = c.teacher_id
+        where class_idx in
+        <foreach collection="allMyClassIdxList" item="item" index="index" separator="," open="(" close=")">
+            ${item}
+        </foreach>
+    </select>
+
+    <select id="getClassName" parameterType="java.util.List" resultType="java.util.Map">
+        select class_idx, class_name
+        from classes
+        where class_idx in
+        <foreach collection="allMyClassIdxList" item="item" index="index" separator="," open="(" close=")">
+            ${item}
+        </foreach>
+    </select>
+</mapper>
