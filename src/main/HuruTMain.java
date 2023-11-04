@@ -1,6 +1,7 @@
 package main;
 
 import service.StudentService;
+import java.util.Scanner;
 
 public class HuruTMain {
     
