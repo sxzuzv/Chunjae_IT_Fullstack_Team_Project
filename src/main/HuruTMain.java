@@ -3,7 +3,11 @@ package main;
 import service.LessonService_jh;
 import service.StudentClassService_jh;
 import service.StudentLessonService_jh;
+import thread.Player;
+import thread.PlayerController;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.util.*;
 
 public class HuruTMain {
@@ -154,9 +158,30 @@ public class HuruTMain {
 
         int studentStudyTime = (Integer) lessonIdxInformationForSpecificClassIdxKeyMap
                                                 .get(userInputLessonIdx).get("studentStudyTime");
+        int totalLessonTime = (Integer) lessonIdxInformationForSpecificClassIdxKeyMap
+                                                .get(userInputLessonIdx).get("lessonTotalSeconds");
         if (studentStudyTime >= 1) {
             // 1초이상 수강한 경우
             System.out.println("이전에 학습한 기록이 있어 이어서 시작합니다.\n");
+            System.out.println("학습 시작!");
+            BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+            System.out.println("****************************************");
+            System.out.println("             플레이어 메뉴");
+            System.out.println("[학습중지: 1번, 뒤로가기: 2번, 앞으로가기: 3번]");
+            Player player = new Player(studentStudyTime, totalLessonTime,
+                    userInputLessonIdx);
+            PlayerController playerController = new PlayerController(player);
+            playerController.start();
+            try {
+                player.startPlay();
+                System.out.println("학습 완료.");
+            } catch (Exception e) {
+                System.out.println("학습 일시 중지.");
+                System.out.println("총 학습 시간: " + player.getStudentPlayTime() +"초");
+            } finally {
+                playerController.interrupt();
+                // int studentTotalStudyTime =
+            }
         } else {
             // 1초미만 수강(수강 안 한)경우
             System.out.println("이전에 학습한 기록이 없기 때문에 처음부터 시작합니다.\n");
