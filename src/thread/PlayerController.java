@@ -3,7 +3,6 @@ package thread;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.concurrent.Callable;
 
 public class PlayerController extends Thread {
 
@@ -46,10 +45,10 @@ public class PlayerController extends Thread {
                 emptyBuffer(reader);
                 continue outerWhile;
             } catch (InterruptedException ie) {
-                System.out.println("강의 플레이어 콘트롤러 종료.");
+                System.out.println("강의 플레이어 종료.");
                 return;
             } catch (Exception e) {
-                System.out.println("콘트롤로 예외 발생, reloading in progress.");
+                System.out.println("플레이어 입력 스트림 예외 발생! reloading in progress...");
                 emptyBuffer(reader);
             }
         } // outer while
@@ -61,7 +60,7 @@ public class PlayerController extends Thread {
                 reader.readLine();
             }
         } catch (Exception e) {
-            System.out.println("BufferedREader empty() 중 예외 발생.");
+            //System.out.println("BufferedREader empty() 중 예외 발생.");
         }
     }
 }

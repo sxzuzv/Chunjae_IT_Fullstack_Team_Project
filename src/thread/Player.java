@@ -18,13 +18,15 @@ public class Player {
     public int getStudentPlayTime() {
         if (studentPlayTime > totalLessonTime) {
             return totalLessonTime;
+        } else if (studentPlayTime < 0) {
+            return 0;
         } else {
             return studentPlayTime;
         }
     }
 
     public boolean isFinished() {
-        if (totalLessonTime <= studentPlayTime) {
+        if (totalLessonTime <= getStudentPlayTime()) {
             return true;
         } else {
             return false;
@@ -37,7 +39,6 @@ public class Player {
             while (studentPlayTime <= totalLessonTime) {
                 System.out.printf("[학습번호 %d번 시청 중입니다... 진행상황: %d초 / %d초]\n", lessonIdx, studentPlayTime, totalLessonTime);
                 Thread.sleep(1500); // 1.5초동안 스레드 sleep...
-//                studentPlayTime += 5;
                 goFront();
             }
             return getStudentPlayTime();
@@ -66,10 +67,6 @@ public class Player {
     }
 
     public synchronized void goFront() {
-        if (studentPlayTime + 5 > totalLessonTime) {
-            studentPlayTime = totalLessonTime;
-        } else {
-            studentPlayTime += 5;
-        }
+        studentPlayTime += 5;
     }
 }
