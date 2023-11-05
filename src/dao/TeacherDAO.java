@@ -11,4 +11,10 @@ public class TeacherDAO {
     private LocalDateTime teacherJoined;
     private int teacherPoints;
     private int classCnt;
+
+    public TeacherDAO(String teacherEmail, String teacherPassword, String teacherName) {
+        this.teacherEmail = teacherEmail;
+        this.teacherName = teacherName;
+        this.teacherPassword = teacherPassword;
+    }
 }
