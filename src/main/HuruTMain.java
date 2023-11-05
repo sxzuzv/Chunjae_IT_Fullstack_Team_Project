@@ -32,8 +32,8 @@ public class HuruTMain {
 
     
     // jh
-    public static int studentIdx_jh = 1;
-    public static String studentNickName_jh = "test";
+    public static int studentIdx_jh = 3;
+    public static String studentNickName_jh = "user3";
     public static StudentClassService_jh studentClassService_jh = new StudentClassService_jh();
     public static LessonService_jh lessonService_jh = new LessonService_jh();
     private static StudentLessonService_jh studentLessonService_jh = new StudentLessonService_jh();
@@ -95,19 +95,74 @@ public class HuruTMain {
 
         // classIdx에 해당되는 모든 클래스 가져오기
         List<Integer> lessonIdxList = lessonService_jh.getAllLessonIdxListByClassIdx(classIdx);
-        List<Map<String, Object>> printMap = studentLessonService_jh.getStudentTakingLessonInformationForPrint(studentIdx_jh, lessonIdxList);
-        System.out.printf("%4s | %10s | %10s | %7s | %6s\n", "번호", "학습이름", "총길이(초)", "학습시간", "학습율(%)");
+        List<Map<String, Object>> printMap = studentLessonService_jh // 사용자가 한 번이라도 수강한 이력이 있는 레슨 정보 가져오기
+                        .getStudentCurrentlyTakingLessonInformationForPrint(studentIdx_jh, lessonIdxList);
+
+
+        List<Integer> currentlyTakingLessonIdxList = new ArrayList<>();
+        printMap.forEach(e -> currentlyTakingLessonIdxList.add((Integer) e.get("lesson_idx")));
+
+        List<Map<String, Object>> notCurrentlyTakingLessonIdxInformation = // 사용자가 아직 한 번도 수강하지 않은 레슨 정보 가져오기
+                lessonService_jh.getStudentNotCurrentlyTakingLessonIdxInformation(classIdx,
+                                                                    currentlyTakingLessonIdxList);
+
+        for (Map<String, Object> temp : notCurrentlyTakingLessonIdxInformation) {
+            temp.put("student_study_time", 0);
+        }
+
+        printMap.addAll(notCurrentlyTakingLessonIdxInformation);
+        printMap.sort((a, b) -> ((Integer) a.get("lesson_idx")) - ((Integer) b.get("lesson_idx")));
+
+        Map<Integer, Map<String, Object>> lessonIdxInformationForSpecificClassIdxKeyMap = new HashMap<>();
+        System.out.printf("%6s | %14s | %12s | %9s | %8s\n", "학습번호", "학습이름", "총길이(초)", "학습시간(초)", "학습율(%)");
         for (Map<String, Object> map : printMap) {
+            Map<String, Object> info = new HashMap<>();
             int lessonIdx = (Integer) map.get("lesson_idx");
             String lessonName = (String) map.get("lesson_name");
             int lessonTotalSeconds = (Integer) map.get("lesson_total_second");
             int studentStudyTime = (Integer) map.get("student_study_time");
 
-            System.out.printf("%4d | %10s | %10d | %7d | %6.2f\n", lessonIdx, lessonName, lessonTotalSeconds, studentStudyTime, (((double)studentStudyTime / lessonTotalSeconds) * 100));
+            info.put("lessonName", lessonName);
+            info.put("lessonTotalSeconds", lessonTotalSeconds);
+            info.put("studentStudyTime", studentStudyTime);
+            lessonIdxInformationForSpecificClassIdxKeyMap.put(lessonIdx, info);
+
+            System.out.printf("%6d | %15s | %14d | %10d | %10.2f\n", lessonIdx, lessonName, lessonTotalSeconds,
+                                            studentStudyTime, (((double)studentStudyTime / lessonTotalSeconds) * 100));
         }
         System.out.println("****************************************");
+
+        System.out.println("이용할 메뉴를 선택해주세요:");
+        System.out.printf("%10s | %10s | %10s | %10s", "1.학습시작", "강의평 하러가기", "질의응답 하러가기", "4.이전페이지\n");
+        System.out.printf("메뉴 선택: ");
+        int menu = Integer.parseInt(scanner.nextLine().trim());
+        System.out.println();
+        switch (menu) {
+            case 1: // 학생메인메뉴_나의교실_수업듣기_학습시작
+                studentMainMenuMyClassTakeLesson(classIdx,
+                        lessonIdxInformationForSpecificClassIdxKeyMap);
+                break;
+        }
     }
-    
+
+    private static void studentMainMenuMyClassTakeLesson(int classIdx,
+                                    Map<Integer, Map<String, Object>> lessonIdxInformationForSpecificClassIdxKeyMap) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("학습을 시작할 '학습번호'를 입력해주세요.");
+        System.out.printf("학습 번호: ");
+        int userInputLessonIdx = Integer.parseInt(scanner.nextLine().trim());
+
+        int studentStudyTime = (Integer) lessonIdxInformationForSpecificClassIdxKeyMap
+                                                .get(userInputLessonIdx).get("studentStudyTime");
+        if (studentStudyTime >= 1) {
+            // 1초이상 수강한 경우
+            System.out.println("이전에 학습한 기록이 있어 이어서 시작합니다.\n");
+        } else {
+            // 1초미만 수강(수강 안 한)경우
+            System.out.println("이전에 학습한 기록이 없기 때문에 처음부터 시작합니다.\n");
+        }
+    }
+
     // sz
 
     

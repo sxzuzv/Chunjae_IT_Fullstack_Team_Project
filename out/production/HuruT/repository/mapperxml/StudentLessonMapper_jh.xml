@@ -13,11 +13,11 @@
         </foreach>
     </select>
 
-    <select id="getStudentTakingLessonInformationForPrint" resultType="java.util.Map">
+    <select id="getStudentCurrentlyTakingLessonInformationForPrint" resultType="java.util.Map">
         select l.lesson_idx, l.lesson_name, l.lessons_seconds as lesson_total_second, sl.lesson_seconds as student_study_time
-        from lessons l left outer join student_lesson sl
+        from lessons l inner join student_lesson sl
         on l.lesson_idx = sl.lesson_id
-        where student_id = #{studentIdx} and sl.lesson_id in
+        where sl.student_id = #{studentIdx} and lesson_id in
         <foreach collection="lessonIdxList" item="item" index="index" separator="," open="(" close=")">
             ${item}
         </foreach>
