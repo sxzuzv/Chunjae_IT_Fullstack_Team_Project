@@ -126,13 +126,11 @@ public class HuruTMain {
                     continue outerWhile;
                 }
             }
-            /*int classIdx = Integer.parseInt(scanner.nextLine().trim());
-            studentMainMenuMyClassRoomTakeClass_jh(classIdx, classTakingMap.get(classIdx));*/
         }
     }
 
     public static void studentMainMenuMyClassRoomTakeClass_jh(int classIdx, Map<String, Object> classInformation) {
-        while (true) {
+        outerWhile: while (true) {
             Scanner scanner = new Scanner(System.in);
             System.out.println("\n****************************************");
             System.out.printf("[%s 학생의 '%s'의 학습 리스트]\n", studentNickName_jh, (String) classInformation.get("className"));
@@ -200,6 +198,7 @@ public class HuruTMain {
                     case 4:
                         return;
                 }
+                continue outerWhile;
             }
         }
     }
@@ -238,73 +237,71 @@ public class HuruTMain {
             int tempStudentStudyTime = originalStudentStudyTime;
 
             outerWhile: while (true) {
-                if (tempStudentStudyTime >= 1) {
-                    // 1초이상 수강한 경우
+                if (tempStudentStudyTime > 0) {
                     System.out.println("\n이전에 학습한 기록이 있어 이어서 시작합니다.");
-                    System.out.println("학습 시작!");
-                    BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-                    System.out.println("+---------------------------------------------------+");
-                    System.out.println("|                   플레이어 메뉴                     |");
-                    System.out.println("| 1번:학습일시정지, 2번:뒤로 5초 이동 3번:앞으로 10초 이동  |");
-                    System.out.println("+---------------------------------------------------+");
-                    Player player = new Player(tempStudentStudyTime, totalLessonTime,
-                            userInputLessonIdx);
-                    PlayerController playerController = new PlayerController(player);
-                    playerController.start();
-                    try {
-                        player.startPlay();
-                        System.out.println("+---------------------------+");
-                        System.out.println("|    학습 진행율 100% 완료     |");
-                    } catch (Exception e) {
-                        System.out.println("+---------------------------+");
-                        System.out.println("|   학습이 일시 중지되었습니다   |");
-                    } finally {
-                        playerController.interrupt();
-                        System.out.println("|    총 학습 시간: " + player.getStudentPlayTime() + "초     |");
-                        System.out.println("+---------------------------+");
-                        System.out.println("다음 메뉴 중 하나를 선택해주세요.");
-                        while (true) {
-                            System.out.printf("%s | %s | %s | %s\n", "1.이어듣기(계속진행)", "2.처음부터 재시작",
-                                    "3.현재 시청 기록을 저장 후 '학습리스트'로 이동", "4.시청 기록을 저장하지 않고 '학습리스트'로 이동'");
-                            System.out.print("메뉴 선택: ");
-                            String userInputRepeatStr = scanner.nextLine().trim();
-                            int userInputRepeatInt;
-                            if (userInputRepeatStr == null || userInputRepeatStr.equals("")) {
-                                System.out.println("잘못 입력하셨습니다. 다시 입력해주세요.");
-                                continue;
-                            }
-                            try {
-                                userInputRepeatInt = Integer.parseInt(userInputRepeatStr);
-                            } catch (Exception e) {
-                                System.out.println("잘못 입력하셨습니다. 다시 입력해주세요.");
-                                continue;
-                            }
-                            if (userInputRepeatInt > 4) {
-                                System.out.println("잘못 입력하셨습니다. 다시 입력해주세요.");
-                                continue;
-                            }
-                            switch (userInputRepeatInt) {
-                                case 1:
-                                    tempStudentStudyTime = player.getStudentPlayTime();
-                                    continue outerWhile;
-                                case 2:
-                                    tempStudentStudyTime = 0;
-                                    continue outerWhile;
-                                case 3:
-                                    // DB 저장코드
-                                    break;
-                                case 4:
-                                    return;
-                            }
-                        }
-                    }
                 } else {
-                    // 1초미만 수강(수강 안 한)경우
-                    System.out.println("처음부터 시작합니다.\n");
+                    System.out.println("처음부터 시작합니다.");
                 }
-            } // outer while
-        }
-    }
+                System.out.println("학습 시작!");
+                System.out.println("+---------------------------------------------------+");
+                System.out.println("|                   플레이어 메뉴                      |");
+                System.out.println("| 1번:학습일시정지, 2번:뒤로 5초 이동 3번:앞으로 10초 이동  |");
+                System.out.println("+---------------------------------------------------+");
+                Player player = new Player(tempStudentStudyTime, totalLessonTime,
+                        userInputLessonIdx);
+                PlayerController playerController = new PlayerController(player);
+                playerController.start();
+                try {
+                    player.startPlay();
+                    System.out.println("+---------------------------+");
+                    System.out.println("|    학습 진행율 100% 완료     |");
+                } catch (Exception e) {
+                    System.out.println("+---------------------------+");
+                    System.out.println("|   학습이 일시 중지되었습니다   |");
+                } finally {
+                    playerController.interrupt();
+                    System.out.println("|    총 학습 시간: " + player.getStudentPlayTime() + "초     |");
+                    System.out.println("+---------------------------+");
+                    System.out.println("다음 메뉴 중 하나를 선택해주세요.");
+
+                    innerWhile: while (true) {
+                        System.out.printf("%s | %s | %s | %s\n", "1.이어듣기(계속진행)", "2.처음부터 재시작",
+                                "3.현재 시청 기록을 저장 후 '학습리스트'로 이동", "4.시청 기록을 저장하지 않고 '학습리스트'로 이동");
+                        System.out.print("메뉴 선택: ");
+                        String userInputRepeatStr = scanner.nextLine().trim();
+                        int userInputRepeatInt;
+                        if (userInputRepeatStr == null || userInputRepeatStr.equals("")) {
+                            System.out.println("잘못 입력하셨습니다. 다시 입력해주세요.");
+                            continue;
+                        }
+                        try {
+                            userInputRepeatInt = Integer.parseInt(userInputRepeatStr);
+                        } catch (Exception e) {
+                            System.out.println("잘못 입력하셨습니다. 다시 입력해주세요.");
+                            continue;
+                        }
+                        if (userInputRepeatInt > 4) {
+                            System.out.println("잘못 입력하셨습니다. 다시 입력해주세요.");
+                            continue;
+                        }
+                        switch (userInputRepeatInt) {
+                            case 1:
+                                tempStudentStudyTime = player.getStudentPlayTime();
+                                continue outerWhile;
+                            case 2:
+                                tempStudentStudyTime = 0;
+                                continue outerWhile;
+                            case 3:
+                                // DB 저장코드
+                                break;
+                            case 4: // 시청 기록을 저장하지 않고 '학습리스트(이전)'으로 이동.
+                                return;
+                        }
+                    } // innerWhile ends
+                } // try-catch-finally ends
+            } // outer while ends
+        } // outermost while ends
+    } // method ends
 
     // sz
 
