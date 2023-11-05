@@ -45,7 +45,7 @@ public class PlayerController extends Thread {
                 emptyBuffer(reader);
                 continue outerWhile;
             } catch (InterruptedException ie) {
-                System.out.println("강의 플레이어 종료.");
+                //System.out.println("|    강의 플레이어 종료     |");
                 return;
             } catch (Exception e) {
                 System.out.println("플레이어 입력 스트림 예외 발생! reloading in progress...");

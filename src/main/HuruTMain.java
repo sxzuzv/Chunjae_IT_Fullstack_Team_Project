@@ -209,15 +209,32 @@ public class HuruTMain {
         // lessonIdxInformationForSpecificClassIdxKeyMap -> 한 개의 classIdx에 대해서 그 수업에 포함된 학습에 대한
         // 학습의 정보들이 map의 key값으로 저장되어 있다.
         outermostWhile: while (true) {
+            System.out.println("\n****************************************");
             Scanner scanner = new Scanner(System.in);
             System.out.println("학습을 시작할 '학습번호'를 입력해주세요.");
             System.out.printf("학습 번호: ");
-            int userInputLessonIdx = Integer.parseInt(scanner.nextLine().trim());
+
+            int userInputLessonIdx;
+            while (true) {
+                try {
+                    userInputLessonIdx = Integer.parseInt(scanner.nextLine().trim());
+                    if (lessonIdxInformationForSpecificClassIdxKeyMap.containsKey(userInputLessonIdx) == false) {
+                        System.out.println("현재 '수업'에서 시청할 수 없는 '학습'입니다. 올바른 '학습번호'를 입력해주세요.");
+                        continue;
+                    }
+                } catch (Exception e) {
+                    System.out.println("숫자만 입력할 수 있습니다. '학습번호'를 다시 입력해주세요.");
+                    continue;
+                }
+                break;
+            }
 
             int originalStudentStudyTime = (Integer) lessonIdxInformationForSpecificClassIdxKeyMap
                     .get(userInputLessonIdx).get("studentStudyTime");
+            // originalStudentStudyTime: 현 시점 DB에 저장되어 있는 학생의 마지막 학습 시청 시간.
             int totalLessonTime = (Integer) lessonIdxInformationForSpecificClassIdxKeyMap
                     .get(userInputLessonIdx).get("lessonTotalSeconds");
+
             int tempStudentStudyTime = originalStudentStudyTime;
 
             outerWhile: while (true) {
@@ -226,27 +243,30 @@ public class HuruTMain {
                     System.out.println("\n이전에 학습한 기록이 있어 이어서 시작합니다.");
                     System.out.println("학습 시작!");
                     BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-                    System.out.println("****************************************");
-                    System.out.println("               플레이어 메뉴");
-                    System.out.println("[학습중지: 1번, 뒤로가기: 2번, 앞으로가기: 3번]");
-                    System.out.println("****************************************");
+                    System.out.println("+---------------------------------------------------+");
+                    System.out.println("|                   플레이어 메뉴                     |");
+                    System.out.println("| 1번:학습일시정지, 2번:뒤로 5초 이동 3번:앞으로 10초 이동  |");
+                    System.out.println("+---------------------------------------------------+");
                     Player player = new Player(tempStudentStudyTime, totalLessonTime,
                             userInputLessonIdx);
                     PlayerController playerController = new PlayerController(player);
                     playerController.start();
                     try {
                         player.startPlay();
-                        System.out.println("학습 진행율 100% 완료.");
+                        System.out.println("+---------------------------+");
+                        System.out.println("|    학습 진행율 100% 완료     |");
                     } catch (Exception e) {
-                        System.out.println("학습 일시 중지.");
+                        System.out.println("+---------------------------+");
+                        System.out.println("|   학습이 일시 중지되었습니다   |");
                     } finally {
                         playerController.interrupt();
-                        System.out.println("총 학습 시간: " + player.getStudentPlayTime() + "초");
-//                    tempStudentStudyTime = player.getStudentPlayTime();
+                        System.out.println("|    총 학습 시간: " + player.getStudentPlayTime() + "초     |");
+                        System.out.println("+---------------------------+");
                         System.out.println("다음 메뉴 중 하나를 선택해주세요.");
                         while (true) {
                             System.out.printf("%s | %s | %s | %s\n", "1.이어듣기(계속진행)", "2.처음부터 재시작",
-                                    "3.현재 시청 기록을 저장 후 나가기", "4.시청 기록을 저장하지 않고 이전으로 이동");
+                                    "3.현재 시청 기록을 저장 후 '학습리스트'로 이동", "4.시청 기록을 저장하지 않고 '학습리스트'로 이동'");
+                            System.out.print("메뉴 선택: ");
                             String userInputRepeatStr = scanner.nextLine().trim();
                             int userInputRepeatInt;
                             if (userInputRepeatStr == null || userInputRepeatStr.equals("")) {
@@ -284,33 +304,6 @@ public class HuruTMain {
                 }
             } // outer while
         }
-        /*if (studentStudyTime >= 1) {
-            // 1초이상 수강한 경우
-            System.out.println("\n이전에 학습한 기록이 있어 이어서 시작합니다.");
-            System.out.println("학습 시작!");
-            BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-            System.out.println("****************************************");
-            System.out.println("               플레이어 메뉴");
-            System.out.println("[학습중지: 1번, 뒤로가기: 2번, 앞으로가기: 3번]");
-            System.out.println("****************************************");
-            Player player = new Player(studentStudyTime, totalLessonTime,
-                    userInputLessonIdx);
-            PlayerController playerController = new PlayerController(player);
-            playerController.start();
-            try {
-                player.startPlay();
-                System.out.println("학습 완료.");
-            } catch (Exception e) {
-                System.out.println("학습 일시 중지.");
-                System.out.println("총 학습 시간: " + player.getStudentPlayTime() +"초");
-            } finally {
-                playerController.interrupt();
-                // int studentTotalStudyTime =
-            }
-        } else {
-            // 1초미만 수강(수강 안 한)경우
-            System.out.println("이전에 학습한 기록이 없기 때문에 처음부터 시작합니다.\n");
-        }*/
     }
 
     // sz
