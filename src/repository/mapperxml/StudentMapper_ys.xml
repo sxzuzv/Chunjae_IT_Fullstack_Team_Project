@@ -19,4 +19,9 @@
         FROM students
         WHERE student_email= #{studentEmail}
     </select>
+    <select id="studentNicknameDuplicationCheck" resultType="int" parameterType="String">
+        SELECT count(*)
+        FROM students
+        WHERE student_nickname= #{studentNickname}
+    </select>
 </mapper>

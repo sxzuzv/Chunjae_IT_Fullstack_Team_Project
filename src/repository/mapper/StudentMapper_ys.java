@@ -13,5 +13,5 @@ public interface StudentMapper_ys {
     int studentLogin(@Param("studentEmail") String studentEmail,
                      @Param("studentPassword")String studentPassword);
     int studentEmailDuplicationCheck(String studentEmail);
-
+    int studentNicknameDuplicationCheck(String studentNickname);
 }

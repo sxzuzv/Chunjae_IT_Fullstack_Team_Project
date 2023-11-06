@@ -30,20 +30,31 @@ public class SignUpService_ys {
         sqlSession.commit();
     }
 
+    // 학생 아이디 중복 확인
     public int studentEmailDuplicationCheck(String studentEmail) {
         SqlSession sqlSession = MyBatisMapperFactory.getSqlSession();
         StudentMapper_ys mapper = sqlSession.getMapper(StudentMapper_ys.class);
-        int studentEmailDuplicationCheckDAO = mapper.studentEmailDuplicationCheck(studentEmail);
+        int studentEmailDuplicationCheck = mapper.studentEmailDuplicationCheck(studentEmail);
 
-        return studentEmailDuplicationCheckDAO;
+        return studentEmailDuplicationCheck;
     }
 
+    // 학생 닉네임 중복 확인
+    public int studentNicknameDuplicationCheck(String studentNickname) {
+        SqlSession sqlSession = MyBatisMapperFactory.getSqlSession();
+        StudentMapper_ys mapper = sqlSession.getMapper(StudentMapper_ys.class);
+        int studentNicknameDuplicationCheck = mapper.studentNicknameDuplicationCheck(studentNickname);
+
+        return studentNicknameDuplicationCheck;
+    }
+
+    // 선생님 아이디 중복 확인
     public int teacherEmailDuplicationCheck(String teacherEmail) {
         SqlSession sqlSession = MyBatisMapperFactory.getSqlSession();
         TeacherMapper_ys mapper = sqlSession.getMapper(TeacherMapper_ys.class);
-        int teacherEmailDuplicationCheckDAO = mapper.teacherEmailDuplicationCheck(teacherEmail);
+        int teacherEmailDuplicationCheck = mapper.teacherEmailDuplicationCheck(teacherEmail);
 
-        return teacherEmailDuplicationCheckDAO;
+        return teacherEmailDuplicationCheck;
     }
 }
 
