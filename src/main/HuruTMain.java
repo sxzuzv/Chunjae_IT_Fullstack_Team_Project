@@ -6,8 +6,6 @@ import service.StudentLessonService_jh;
 import thread.Player;
 import thread.PlayerController;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
 import java.util.*;
 
 public class HuruTMain {
@@ -36,32 +34,14 @@ public class HuruTMain {
 
     
     // jh
-    public static int studentIdx_jh = 3;
-    public static String studentNickName_jh = "user3";
+    public static int studentIdx_jh = 2;
+    public static String studentNickName_jh = "user2";
     public static StudentClassService_jh studentClassService_jh = new StudentClassService_jh();
     public static LessonService_jh lessonService_jh = new LessonService_jh();
     private static StudentLessonService_jh studentLessonService_jh = new StudentLessonService_jh();
 
-    public static void studentMainMenu_jh() {
-        /*Scanner scanner = new Scanner(System.in);
-        System.out.println("****************************************");
-        System.out.printf("%s 학생 반갑습니다!\n", studentNickName_jh);
-        System.out.println("****************************************");
-        System.out.println();
-        System.out.println("이용할 메뉴를 선택해 주세요.");
-        System.out.printf("1.나의교실 | 2.수업찾기 | 3.장바구니 | 4.마이페이지 | 5.로그아웃 >> ");
-        int input = Integer.parseInt(scanner.nextLine().trim());
-        switch (input) {
-            case 1:
-                studentMainMenuMyClass_jh();
-                break;
-        }*/
-    }
-
-    public static void studentMainMenuMyClass_jh() {
-
-        while (true) {
-
+    public static void studentMainMenu_MyClass_jh() {
+        outerWhile: while (true) {
             Scanner scanner = new Scanner(System.in);
             Map<Integer, Map<String, Object>> classTakingMap = studentClassService_jh.printListForStudentMainMenuMyClass(1);
             List<Integer> classIdxList = new ArrayList<>(classTakingMap.keySet());
@@ -79,19 +59,33 @@ public class HuruTMain {
             }
             System.out.println("----------------------------------------");
             System.out.println("이용할 메뉴를 선택해주세요:");
-            System.out.printf("1.수업듣기 | 2.이전 단계로 이동 >> ");
-            int menu = Integer.parseInt(scanner.nextLine().trim());
+            System.out.printf("1.수업듣기\n이전 단계로 돌아가려면 단어 'exit'을 입력해주세요. >> ");
+            int menu;
+            innerWhile: while (true) {
+                String userInputStr = scanner.nextLine().trim();
+                if (userInputStr == null || userInputStr.equals("")) {
+                    System.out.println("잘못 입력하셨습니다. 다시 입력해 주세요.");
+                    continue;
+                }
+                if (userInputStr.equals("exit")) {
+                    return;
+                }
+                try {
+                    menu = Integer.parseInt(userInputStr);
+                } catch (Exception e) {
+                    System.out.println("잘못 입력하셨습니다. 다시 입력해 주세요.");
+                    continue;
+                }
+                break;
+            } // innerWhile ends
             System.out.println("****************************************");
             switch (menu) {
                 case 1:
                     classIdxSelectionMenu_jh(classTakingMap, takingClassIdxSet);
                     break;
-                case 2:
-                    return;
-            }
-
-        }
-    }
+            } // switch ends
+        } // outerWhile ends
+    } // method ends
 
     public static void classIdxSelectionMenu_jh(Map<Integer, Map<String, Object>> classTakingMap,
                                                 Set<Integer> takingClassIdxSet) {
@@ -121,7 +115,7 @@ public class HuruTMain {
                     System.out.println("현재 수강중인 수업이 아닙니다. 다시 입력해주세요.");
                 } else {
                     System.out.println("****************************************");
-                    studentMainMenuMyClassRoomTakeClass_jh(userInputInteger,
+                    studentMainMenu_MyClassRoom_TakeClass_jh(userInputInteger,
                             classTakingMap.get(userInputInteger));
                     continue outerWhile;
                 }
@@ -129,7 +123,7 @@ public class HuruTMain {
         }
     }
 
-    public static void studentMainMenuMyClassRoomTakeClass_jh(int classIdx, Map<String, Object> classInformation) {
+    public static void studentMainMenu_MyClassRoom_TakeClass_jh(int classIdx, Map<String, Object> classInformation) {
         outerWhile: while (true) {
             Scanner scanner = new Scanner(System.in);
             System.out.println("\n****************************************");
@@ -174,7 +168,7 @@ public class HuruTMain {
             }
             System.out.println("--------------------------------------------------");
             System.out.println("이용할 메뉴를 선택해주세요:");
-            System.out.printf("%10s | %10s | %10s | %10s", "1.학습시작", "2.강의평 하러가기", "3.질의응답 하러가기", "4.이전페이지\n");
+            System.out.printf("%15s | %10s | %10s | %10s", "1.'학습번호'를 입력해서 학습시작", "2.강의평 하러가기", "3.질의응답 하러가기", "4.이전페이지\n");
             System.out.printf("메뉴 선택: ");
             while (true) {
                 String userInputString = scanner.nextLine().trim();
@@ -192,7 +186,7 @@ public class HuruTMain {
                 switch (menu) {
                     case 1: // 학생메인메뉴_나의교실_수업듣기_학습시작
                         System.out.println("****************************************");
-                        studentMainMenuMyClassTakeLesson(classIdx,
+                        studentMainMenu_MyClassRoom_TakeClass_StartLesson_jh(classIdx,
                                 lessonIdxInformationForSpecificClassIdxKeyMap);
                         break;
                     case 4:
@@ -203,8 +197,8 @@ public class HuruTMain {
         }
     }
 
-    private static void studentMainMenuMyClassTakeLesson(int classIdx,
-                                    Map<Integer, Map<String, Object>> lessonIdxInformationForSpecificClassIdxKeyMap) {
+    private static void studentMainMenu_MyClassRoom_TakeClass_StartLesson_jh(int classIdx,
+                                                                             Map<Integer, Map<String, Object>> lessonIdxInformationForSpecificClassIdxKeyMap) {
         // lessonIdxInformationForSpecificClassIdxKeyMap -> 한 개의 classIdx에 대해서 그 수업에 포함된 학습에 대한
         // 학습의 정보들이 map의 key값으로 저장되어 있다.
         outermostWhile: while (true) {
@@ -244,8 +238,8 @@ public class HuruTMain {
                 }
                 System.out.println("학습 시작!");
                 System.out.println("+---------------------------------------------------+");
-                System.out.println("|                   플레이어 메뉴                      |");
-                System.out.println("| 1번:학습일시정지, 2번:뒤로 5초 이동 3번:앞으로 10초 이동  |");
+                System.out.println("|                   플레이어 메뉴                     |");
+                System.out.println("| 1번.학습일시정지 | 2번.뒤로5초이동 | 3번.앞으로10초이동  |");
                 System.out.println("+---------------------------------------------------+");
                 Player player = new Player(tempStudentStudyTime, totalLessonTime,
                         userInputLessonIdx);
@@ -335,7 +329,7 @@ public class HuruTMain {
             int input = Integer.parseInt(scanner_jh.nextLine().trim());
             switch (input) {
                 case 1:
-                    studentMainMenuMyClass_jh();
+                    studentMainMenu_MyClass_jh();
                     break;
             }
         }

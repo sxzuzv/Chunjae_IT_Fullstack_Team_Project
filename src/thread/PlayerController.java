@@ -15,16 +15,15 @@ public class PlayerController extends Thread {
     @Override
     public void run() {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-
-        outerWhile: while (true) {
+        while (true) {
             try {
                 while (reader.ready() == false) {
                     Thread.sleep(1);
-                } // while
+                } // inner while
                 String userInputString = reader.readLine().trim();
                 if (userInputString == null && userInputString.equals("")) {
                     emptyBuffer(reader);
-                    continue outerWhile;
+                    continue;
                 }
                 int menu = Integer.parseInt(userInputString);
                 if (menu == 1) {
@@ -41,14 +40,14 @@ public class PlayerController extends Thread {
                     emptyBuffer(reader);
                 }
             } catch (IOException io) {
-                System.out.println("io 예외 발생.");
+                System.out.println("io 예외 발생...");
                 emptyBuffer(reader);
-                continue outerWhile;
+                continue;
             } catch (InterruptedException ie) {
                 //System.out.println("|    강의 플레이어 종료     |");
                 return;
             } catch (Exception e) {
-                System.out.println("플레이어 입력 스트림 예외 발생! reloading in progress...");
+                System.out.println("다시 입력해주세요...");
                 emptyBuffer(reader);
             }
         } // outer while
