@@ -27,6 +27,6 @@
     <select id="getLoginStudent" resultType="dao.StudentDAO" parameterType="String">
         select *
         from students
-        where student_email = #{studentEmail};
+        where student_email = #{studentEmail}
     </select>
 </mapper>

@@ -1,5 +1,7 @@
 package main;
 
+import dao.StudentDAO;
+import dao.TeacherDAO;
 import service.LoginService_ys;
 import service.SignUpService_ys;
 
@@ -7,6 +9,8 @@ import javax.swing.text.Style;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -47,9 +51,12 @@ public class HuruTMain_ys {
 
     
     // ys
-    
+
+    // 로그인한 회원 정보 값의 변수
     public static int loginStudentIdx; // 로그인한 학생의 idx값
-    public static String loginStudentNickName; // 로그인한 학생의 학생의 닉네임
+    public static String loginStudentNickName; // 로그인한 학생의 닉네임
+    public static int loginTeacherIdx; // 로그인한 선생님의 idx값
+    public static String loginTeacherName; // 로그인한 선생님의 이름
     
 
     // 학생/선생님 회원종류 선택화면
@@ -105,6 +112,13 @@ public class HuruTMain_ys {
         if (studentLogin == 1) {
             System.out.println("로그인 성공");
 
+            // 로그인 한 학생 정보를 loginStudentValue에 저장
+            StudentDAO loginStudentValue = loginService_ys.getLoginStudent(studentEmail);
+            // 로그인 정보를 넘겨줄 변수에 저장
+            loginStudentIdx = loginStudentValue.getStudentIdx();
+            loginStudentNickName = loginStudentValue.getStudentNickname();
+
+
             /*
              * 학생 메인 페이지로 이동 메소드 추가
              * */
@@ -131,6 +145,14 @@ public class HuruTMain_ys {
         // DB에 존재하면 로그인 성공
         if (teacherLogin == 1) {
         System.out.println("로그인 성공");
+
+            // 로그인 한 선생님 정보를 loginStudentValue에 저장
+            TeacherDAO loginTeacherValue = loginService_ys.getLoginTeacher(teacherEmail);
+            // 로그인 정보를 넘겨줄 변수에 저장
+            loginTeacherIdx = loginTeacherValue.getTeacherIdx();
+            loginTeacherName = loginTeacherValue.getTeacherName();
+
+
         /*
         *  선생님 메인 페이지로 이동 메소드 추가
         * */

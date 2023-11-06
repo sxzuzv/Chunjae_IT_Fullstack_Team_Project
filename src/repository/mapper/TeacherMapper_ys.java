@@ -10,4 +10,5 @@ public interface TeacherMapper_ys {
     int teacherLogin(@Param("teacherEmail") String teacherEmail,
                      @Param("teacherPassword")String teacherPassword);
     int teacherEmailDuplicationCheck(String teacherEmail);
+    TeacherDAO getLoginTeacher(String teacherEmail);
 }

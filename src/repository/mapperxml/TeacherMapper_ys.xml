@@ -17,4 +17,9 @@
         FROM teachers
         WHERE teacher_email= #{teacherEmail}
     </select>
+    <select id="getLoginTeacher" resultType="dao.TeacherDAO" parameterType="String">
+        select *
+        from teachers
+        where teacher_email = #{teacherEmail}
+    </select>
 </mapper>
