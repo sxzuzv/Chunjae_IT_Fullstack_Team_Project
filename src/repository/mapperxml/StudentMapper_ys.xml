@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="repository.mapper.StudentMapper_ys">
+
+    <!--  id=메소드명, parameterType=매개변수(없으면 생략), resultType=리턴값  -->
+    <insert id="studentSignUp" parameterType="dao.StudentDAO">
+        INSERT INTO students (student_email, student_password, student_nickname)
+        VALUES (#{studentEmail}, #{studentPassword}, #{studentNickname})
+    </insert>
+    <select id="studentLogin" resultType="int" parameterType="map">
+        SELECT count(*)
+        FROM students
+        WHERE student_email= #{studentEmail} AND student_password = #{studentPassword}
+    </select>
+    <select id="studentEmailDuplicationCheck" resultType="int" parameterType="dao.StudentDAO">
+        SELECT count(*)
+        FROM students
+        WHERE student_email= #{studentEmail}
+    </select>
+    <select id="studentNicknameDuplicationCheck" resultType="int" parameterType="String">
+        SELECT count(*)
+        FROM students
+        WHERE student_nickname= #{studentNickname}
+    </select>
+    <select id="getLoginStudent" resultType="dao.StudentDAO" parameterType="String">
+        select *
+        from students
+        where student_email = #{studentEmail}
+    </select>
+</mapper>

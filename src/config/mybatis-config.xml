@@ -32,7 +32,8 @@
             
             
             <!-- ys -->
-            
+        <mapper resource="repository/mapperxml/StudentMapper_ys.xml" />
+        <mapper resource="repository/mapperxml/TeacherMapper_ys.xml" />
             
             <!-- he -->
 

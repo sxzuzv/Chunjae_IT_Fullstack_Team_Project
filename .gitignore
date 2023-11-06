@@ -1,18 +1,36 @@
 # Created by https://www.toptal.com/developers/gitignore/api/java,windows,macos,intellij
 # Edit at https://www.toptal.com/developers/gitignore?templates=java,windows,macos,intellij
+<<<<<<< HEAD
 ### Intellij ###
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio, WebStorm and Rider
 # Reference: https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
+=======
+
+### Intellij ###
+# Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio, WebStorm and Rider
+# Reference: https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
+
+>>>>>>> feature/login
 # User-specific stuff
 .idea/**/workspace.xml
 .idea/**/tasks.xml
 .idea/**/usage.statistics.xml
 .idea/**/dictionaries
 .idea/**/shelf
+<<<<<<< HEAD
 # AWS User-specific
 .idea/**/aws.xml
 # Generated files
 .idea/**/contentModel.xml
+=======
+
+# AWS User-specific
+.idea/**/aws.xml
+
+# Generated files
+.idea/**/contentModel.xml
+
+>>>>>>> feature/login
 # Sensitive or high-churn files
 .idea/**/dataSources/
 .idea/**/dataSources.ids
@@ -21,9 +39,17 @@
 .idea/**/dynamic.xml
 .idea/**/uiDesigner.xml
 .idea/**/dbnavigator.xml
+<<<<<<< HEAD
 # Gradle
 .idea/**/gradle.xml
 .idea/**/libraries
+=======
+
+# Gradle
+.idea/**/gradle.xml
+.idea/**/libraries
+
+>>>>>>> feature/login
 # Gradle and Maven with auto-import
 # When using Gradle or Maven with auto-import, you should exclude module files,
 # since they will be recreated, and may cause churn.  Uncomment if using
@@ -36,6 +62,7 @@
 # .idea/modules
 # *.iml
 # *.ipr
+<<<<<<< HEAD
 # CMake
 cmake-build-*/
 # Mongo Explorer plugin
@@ -52,32 +79,85 @@ atlassian-ide-plugin.xml
 .idea/replstate.xml
 # SonarLint plugin
 .idea/sonarlint/
+=======
+
+# CMake
+cmake-build-*/
+
+# Mongo Explorer plugin
+.idea/**/mongoSettings.xml
+
+# File-based project format
+*.iws
+
+# IntelliJ
+out/
+
+# mpeltonen/sbt-idea plugin
+.idea_modules/
+
+# JIRA plugin
+atlassian-ide-plugin.xml
+
+# Cursive Clojure plugin
+.idea/replstate.xml
+
+# SonarLint plugin
+.idea/sonarlint/
+
+>>>>>>> feature/login
 # Crashlytics plugin (for Android Studio and IntelliJ)
 com_crashlytics_export_strings.xml
 crashlytics.properties
 crashlytics-build.properties
 fabric.properties
+<<<<<<< HEAD
 # Editor-based Rest Client
 .idea/httpRequests
 # Android studio 3.1+ serialized cache file
 .idea/caches/build_file_checksums.ser
 ### Intellij Patch ###
 # Comment Reason: https://github.com/joeblau/gitignore.io/issues/186#issuecomment-215987721
+=======
+
+# Editor-based Rest Client
+.idea/httpRequests
+
+# Android studio 3.1+ serialized cache file
+.idea/caches/build_file_checksums.ser
+
+### Intellij Patch ###
+# Comment Reason: https://github.com/joeblau/gitignore.io/issues/186#issuecomment-215987721
+
+>>>>>>> feature/login
 # *.iml
 # modules.xml
 # .idea/misc.xml
 # *.ipr
+<<<<<<< HEAD
 # Sonarlint plugin
 # https://plugins.jetbrains.com/plugin/7973-sonarlint
 .idea/**/sonarlint/
 # SonarQube Plugin
 # https://plugins.jetbrains.com/plugin/7238-sonarqube-community-plugin
 .idea/**/sonarIssues.xml
+=======
+
+# Sonarlint plugin
+# https://plugins.jetbrains.com/plugin/7973-sonarlint
+.idea/**/sonarlint/
+
+# SonarQube Plugin
+# https://plugins.jetbrains.com/plugin/7238-sonarqube-community-plugin
+.idea/**/sonarIssues.xml
+
+>>>>>>> feature/login
 # Markdown Navigator plugin
 # https://plugins.jetbrains.com/plugin/7896-markdown-navigator-enhanced
 .idea/**/markdown-navigator.xml
 .idea/**/markdown-navigator-enh.xml
 .idea/**/markdown-navigator/
+<<<<<<< HEAD
 # Cache file creation bug
 # See https://youtrack.jetbrains.com/issue/JBR-2257
 .idea/$CACHE_FILE$
@@ -96,6 +176,34 @@ fabric.properties
 *.ctxt
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
+=======
+
+# Cache file creation bug
+# See https://youtrack.jetbrains.com/issue/JBR-2257
+.idea/$CACHE_FILE$
+
+# CodeStream plugin
+# https://plugins.jetbrains.com/plugin/12206-codestream
+.idea/codestream.xml
+
+# Azure Toolkit for IntelliJ plugin
+# https://plugins.jetbrains.com/plugin/8053-azure-toolkit-for-intellij
+.idea/**/azureSettings.xml
+
+### Java ###
+# Compiled class file
+*.class
+
+# Log file
+*.log
+
+# BlueJ files
+*.ctxt
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+>>>>>>> feature/login
 # Package Files #
 *.jar
 *.war
@@ -104,18 +212,37 @@ fabric.properties
 *.zip
 *.tar.gz
 *.rar
+<<<<<<< HEAD
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 replay_pid*
+=======
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+replay_pid*
+
+>>>>>>> feature/login
 ### macOS ###
 # General
 .DS_Store
 .AppleDouble
 .LSOverride
+<<<<<<< HEAD
 # Icon must end with two \r
 Icon
 # Thumbnails
 ._*
+=======
+
+# Icon must end with two \r
+Icon
+
+
+# Thumbnails
+._*
+
+>>>>>>> feature/login
 # Files that might appear in the root of a volume
 .DocumentRevisions-V100
 .fseventsd
@@ -124,33 +251,65 @@ Icon
 .Trashes
 .VolumeIcon.icns
 .com.apple.timemachine.donotpresent
+<<<<<<< HEAD
+=======
+
+>>>>>>> feature/login
 # Directories potentially created on remote AFP share
 .AppleDB
 .AppleDesktop
 Network Trash Folder
 Temporary Items
 .apdisk
+<<<<<<< HEAD
 ### macOS Patch ###
 # iCloud generated files
 *.icloud
+=======
+
+### macOS Patch ###
+# iCloud generated files
+*.icloud
+
+>>>>>>> feature/login
 ### Windows ###
 # Windows thumbnail cache files
 Thumbs.db
 Thumbs.db:encryptable
 ehthumbs.db
 ehthumbs_vista.db
+<<<<<<< HEAD
 # Dump file
 *.stackdump
 # Folder config file
 [Dd]esktop.ini
 # Recycle Bin used on file shares
 $RECYCLE.BIN/
+=======
+
+# Dump file
+*.stackdump
+
+# Folder config file
+[Dd]esktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+>>>>>>> feature/login
 # Windows Installer files
 *.cab
 *.msi
 *.msix
 *.msm
 *.msp
+<<<<<<< HEAD
 # Windows shortcuts
 *.lnk
+=======
+
+# Windows shortcuts
+*.lnk
+
+>>>>>>> feature/login
 # End of https://www.toptal.com/developers/gitignore/api/java,windows,macos,intellij
