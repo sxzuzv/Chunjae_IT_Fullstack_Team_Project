@@ -47,6 +47,10 @@ public class HuruTMain_ys {
 
     
     // ys
+    
+    public static int loginStudentIdx; // 로그인한 학생의 idx값
+    public static String loginStudentNickName; // 로그인한 학생의 학생의 닉네임
+    
 
     // 학생/선생님 회원종류 선택화면
     public static void checkUserView() {

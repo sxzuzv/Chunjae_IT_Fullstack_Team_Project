@@ -24,4 +24,9 @@
         FROM students
         WHERE student_nickname= #{studentNickname}
     </select>
+    <select id="getLoginStudent" resultType="dao.StudentDAO" parameterType="String">
+        select *
+        from students
+        where student_email = #{studentEmail};
+    </select>
 </mapper>
