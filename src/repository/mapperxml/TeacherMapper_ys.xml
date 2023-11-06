@@ -3,21 +3,21 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="repository.mapper.TeacherMapper_ys">
-    <insert id="teacherSignUp" parameterType="dao.TeacherDAO">
+    <insert id="teacherSignUp" parameterType="dto.TeacherDTO_ys">
         INSERT INTO teachers (teacher_email, teacher_password, teacher_name)
         VALUES (#{teacherEmail}, #{teacherPassword}, #{teacherName})
     </insert>
     <select id="teacherLogin" parameterType="map" resultType="int">
         SELECT count(*)
         FROM teachers
-        WHERE teacher_email=#{teacherEmail} AND teacher_password=#{teacherPassword}
+        WHERE teacher_email = #{teacherEmail} AND teacher_password = #{teacherPassword}
     </select>
-    <select id="teacherEmailDuplicationCheck" resultType="int" parameterType="dao.TeacherDAO">
+    <select id="teacherEmailDuplicationCheck" resultType="int" parameterType="String">
         SELECT count(*)
         FROM teachers
         WHERE teacher_email= #{teacherEmail}
     </select>
-    <select id="getLoginTeacher" resultType="dao.TeacherDAO" parameterType="String">
+    <select id="getLoginTeacher" resultType="dto.TeacherDTO_ys" parameterType="String">
         select *
         from teachers
         where teacher_email = #{teacherEmail}

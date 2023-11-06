@@ -94,7 +94,7 @@ public class HuruTMain {
         // 로그인 화면
         loginView();
         // 사용자 입력값
-        System.out.print("아이디(이메일형식): ");
+        System.out.print("아이디: ");
         String studentEmail = br.readLine();
         System.out.print("비밀번호: ");
         String studentPassword = br.readLine();
@@ -114,7 +114,7 @@ public class HuruTMain {
 
             // 학생 메인메뉴 나의교실로 이동
             System.out.println("****************************************");
-            System.out.printf("%s 학생 반갑습니다!\n", loginStudentNickName);
+            System.out.printf("'%s' 학생 반갑습니다!\n", loginStudentNickName);
             System.out.println("****************************************");
             while (true) {
                 System.out.println();
@@ -141,7 +141,7 @@ public class HuruTMain {
         // 로그인 화면 출력
         loginView();
         // 사용자 입력값
-        System.out.print("아이디(이메일형식): ");
+        System.out.print("아이디: ");
         String teacherEmail = br.readLine();
         System.out.print("비밀번호: ");
         String teacherPassword = br.readLine();
@@ -176,29 +176,40 @@ public class HuruTMain {
         // 회원가입 화면 출력
         signUpView();
         // 사용자 입력값
-        System.out.print("아이디(이메일형식): ");
-        String studentEmail = br.readLine();
-        // 아이디 중복 확인. 중복 시 회원가입 재실행
-        if(signUpService_ys.studentEmailDuplicationCheck(studentEmail) == 1) {
-            System.out.println("동일한 아이디가 존재합니다.");
-            studentSignUp(); // 회원가입 재실행
+        String studentEmail;
+        while (true) {
+            System.out.print("아이디: ");
+            studentEmail = br.readLine();
+            // 아이디 중복 확인. 중복 시 회원가입 재실행
+            if (signUpService_ys.studentEmailDuplicationCheck(studentEmail) == 1) {
+                System.out.println("동일한 아이디가 존재합니다.");
+            } else {
+                break;
+            }
         }
-        System.out.print("비밀번호: ");
-        String studentPassword = br.readLine();
-        System.out.print("비밀번호확인: ");
-        String studentPassword2 = br.readLine();
-        // 비밀번호 확인 검사. 틀렸을 때 회원가입 재실행
-        if(!Objects.equals(studentPassword, studentPassword2)) {
-            System.out.println("비밀번호 확인이 틀렸습니다.");
-            studentSignUp(); // 회원가입 재실행
+        String studentPassword;
+        while (true) {
+            System.out.print("비밀번호: ");
+            studentPassword = br.readLine();
+            System.out.print("비밀번호확인: ");
+            String studentPassword2 = br.readLine();
+            // 비밀번호 확인 검사. 틀렸을 때 회원가입 재실행
+            if (!Objects.equals(studentPassword, studentPassword2)) {
+                System.out.println("비밀번호 확인이 틀렸습니다.");
+            } else {
+                break;
+            }
         }
-        System.out.print("닉네임: ");
-        String studentNickname = br.readLine();
-        if(signUpService_ys.studentNicknameDuplicationCheck(studentNickname) == 1) {
-            System.out.println("동일한 닉네임이 존재합니다.");
-            studentSignUp(); // 회원가입 재실행
+        String studentNickname;
+        while (true) {
+            System.out.print("닉네임: ");
+            studentNickname = br.readLine();
+            if (signUpService_ys.studentNicknameDuplicationCheck(studentNickname) == 1) {
+                System.out.println("동일한 닉네임이 존재합니다.");
+            } else {
+                break;
+            }
         }
-
         // DB에 회원정보 등록
         signUpService_ys.studentSignUp(studentEmail, studentPassword, studentNickname);
         System.out.println("회원가입에 성공하였습니다.");
@@ -210,27 +221,35 @@ public class HuruTMain {
         // 회원가입 화면 출력
         signUpView();
         // 사용자 입력값
-        System.out.print("아이디(이메일형식): ");
-        String teacherEmail = br.readLine();
-        // 아이디 중복 확인. 중복 시 회원가입 재실행
-        if(signUpService_ys.teacherEmailDuplicationCheck(teacherEmail) == 1) {
-            System.out.println("동일한 아이디가 존재합니다.");
-            teacherSignUp(); // 회원가입 재실행
+        String teacherEmail;
+        while (true) {
+            System.out.print("아이디: ");
+            teacherEmail = br.readLine();
+            // 아이디 중복 확인. 중복 시 회원가입 재실행
+            if (signUpService_ys.teacherEmailDuplicationCheck(teacherEmail) == 1) {
+                System.out.println("동일한 아이디가 존재합니다."); // 회원가입 재실행
+            } else {
+                break;
+            }
         }
-        System.out.print("비밀번호: ");
-        String teacherPassword = br.readLine();
-        System.out.print("비밀번호확인: ");
-        String teacherPassword2 = br.readLine();
-        // 비밀번호 확인 검사. 틀렸을 때 회원가입 재실행
-        if(!Objects.equals(teacherPassword, teacherPassword2)) {
-            System.out.println("비밀번호 확인이 틀렸습니다.");
-            teacherSignUp(); // 회원가입 재실행
+        String teacherPassword;
+        while (true) {
+            System.out.print("비밀번호: ");
+            teacherPassword = br.readLine();
+            System.out.print("비밀번호 확인: ");
+            String teacherPassword2 = br.readLine();
+            // 비밀번호 확인 검사. 틀렸을 때 회원가입 재실행
+            if (!Objects.equals(teacherPassword, teacherPassword2)) {
+                System.out.println("비밀번호 확인이 틀렸습니다.");
+            } else {
+                break;
+            }
         }
         System.out.print("성함: ");
         String teacherName = br.readLine();
 
         // DB에 회원정보 등록
-        signUpService_ys.studentSignUp(teacherEmail, teacherPassword, teacherName);
+        signUpService_ys.teacherSignUp(teacherEmail, teacherPassword, teacherName);
         System.out.println("회원가입에 성공하였습니다.");
     }
     // ---------------------------------------------------------------
