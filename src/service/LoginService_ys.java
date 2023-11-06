@@ -1,14 +1,11 @@
 package service;
 
-import dao.StudentDAO;
-import dao.TeacherDAO;
+import dto.StudentDTO_ys;
+import dto.TeacherDTO_ys;
 import factory.MyBatisMapperFactory;
 import org.apache.ibatis.session.SqlSession;
 import repository.mapper.StudentMapper_ys;
 import repository.mapper.TeacherMapper_ys;
-
-import java.util.HashMap;
-import java.util.List;
 
 public class LoginService_ys {
     public int studentLogin(String studentEmail, String studentPassword){
@@ -28,20 +25,20 @@ public class LoginService_ys {
     }
 
     // 로그인한 학생 회원의 정보 갖고 오기
-    public StudentDAO getLoginStudent(String studentEmail) {
+    public StudentDTO_ys getLoginStudent(String studentEmail) {
         SqlSession sqlSession = MyBatisMapperFactory.getSqlSession();
         StudentMapper_ys mapper = sqlSession.getMapper(StudentMapper_ys.class);
-        StudentDAO studentDAO = mapper.getLoginStudent(studentEmail);
+        StudentDTO_ys studentDTO = mapper.getLoginStudent(studentEmail);
 
-        return studentDAO;
+        return studentDTO;
     }
 
-    public TeacherDAO getLoginTeacher(String teacherEmail) {
+    public TeacherDTO_ys getLoginTeacher(String teacherEmail) {
         SqlSession sqlSession = MyBatisMapperFactory.getSqlSession();
         TeacherMapper_ys mapper = sqlSession.getMapper(TeacherMapper_ys.class);
-        TeacherDAO teacherDAO = mapper.getLoginTeacher(teacherEmail);
+        TeacherDTO_ys teacherDTO = mapper.getLoginTeacher(teacherEmail);
 
-        return teacherDAO;
+        return teacherDTO;
     }
 }
 

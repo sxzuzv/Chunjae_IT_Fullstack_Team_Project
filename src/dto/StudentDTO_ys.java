@@ -1,8 +1,8 @@
-package dao;
+package dto;
 
 import java.time.LocalDateTime;
 
-public class StudentDAO_jh {
+public class StudentDTO_ys {
 
     private int studentIdx;
     private String studentEmail;
@@ -11,18 +11,18 @@ public class StudentDAO_jh {
     private LocalDateTime studentJoined;
     private int studentPoints;
 
-    public StudentDAO(String studentEmail, String studentPassword, String studentNickname) {
+    public StudentDTO_ys(String studentEmail, String studentPassword, String studentNickname) {
         this.studentEmail = studentEmail;
         this.studentPassword = studentPassword;
         this.studentNickname = studentNickname;
     }
 
-    public StudentDAO(String studentEmail, String studentPassword) {
+    public StudentDTO_ys(String studentEmail, String studentPassword) {
         this.studentEmail = studentEmail;
         this.studentPassword = studentPassword;
     }
 
-    public StudentDAO() {
+    public StudentDTO_ys() {
     }
 
     public int getStudentIdx() {

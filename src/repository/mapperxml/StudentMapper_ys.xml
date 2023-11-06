@@ -5,7 +5,7 @@
 <mapper namespace="repository.mapper.StudentMapper_ys">
 
     <!--  id=메소드명, parameterType=매개변수(없으면 생략), resultType=리턴값  -->
-    <insert id="studentSignUp" parameterType="dao.StudentDAO">
+    <insert id="studentSignUp" parameterType="dto.StudentDTO_ys">
         INSERT INTO students (student_email, student_password, student_nickname)
         VALUES (#{studentEmail}, #{studentPassword}, #{studentNickname})
     </insert>
@@ -14,7 +14,7 @@
         FROM students
         WHERE student_email= #{studentEmail} AND student_password = #{studentPassword}
     </select>
-    <select id="studentEmailDuplicationCheck" resultType="int" parameterType="dao.StudentDAO">
+    <select id="studentEmailDuplicationCheck" resultType="int" parameterType="dto.StudentDTO_ys">
         SELECT count(*)
         FROM students
         WHERE student_email= #{studentEmail}
@@ -24,7 +24,7 @@
         FROM students
         WHERE student_nickname= #{studentNickname}
     </select>
-    <select id="getLoginStudent" resultType="dao.StudentDAO" parameterType="String">
+    <select id="getLoginStudent" resultType="dto.StudentDTO_ys" parameterType="String">
         select *
         from students
         where student_email = #{studentEmail}

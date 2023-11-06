@@ -1,7 +1,7 @@
 package service;
 
-import dao.StudentDAO;
-import dao.TeacherDAO;
+import dto.StudentDTO_ys;
+import dto.TeacherDTO_ys;
 import factory.MyBatisMapperFactory;
 import org.apache.ibatis.session.SqlSession;
 import repository.mapper.StudentMapper_ys;
@@ -14,8 +14,8 @@ public class SignUpService_ys {
     public void studentSignUp(String studentEmail, String studentPassword, String studentNickname) {
         SqlSession sqlSession = MyBatisMapperFactory.getSqlSession();
         StudentMapper_ys mapper = sqlSession.getMapper(StudentMapper_ys.class);
-        StudentDAO studentDAO = new StudentDAO(studentEmail, studentPassword, studentNickname);
-        mapper.studentSignUp(studentDAO);
+        StudentDTO_ys studentDTO = new StudentDTO_ys(studentEmail, studentPassword, studentNickname);
+        mapper.studentSignUp(studentDTO);
 
         sqlSession.commit();
     }
@@ -24,8 +24,8 @@ public class SignUpService_ys {
     public void teacherSignUp(String teacherEmail, String teacherPassword, String teacherName) {
         SqlSession sqlSession = MyBatisMapperFactory.getSqlSession();
         TeacherMapper_ys mapper = sqlSession.getMapper(TeacherMapper_ys.class);
-        TeacherDAO teacherDAO = new TeacherDAO(teacherEmail, teacherPassword, teacherName);
-        mapper.teacherSignUp(teacherDAO);
+        TeacherDTO_ys teacherDTO = new TeacherDTO_ys(teacherEmail, teacherPassword, teacherName);
+        mapper.teacherSignUp(teacherDTO);
 
         sqlSession.commit();
     }

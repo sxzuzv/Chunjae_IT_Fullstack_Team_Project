@@ -1,11 +1,14 @@
 package main;
 
-import service.LessonService_jh;
-import service.StudentClassService_jh;
-import service.StudentLessonService_jh;
+import dto.StudentDTO_ys;
+import dto.TeacherDTO_ys;
+import service.*;
 import thread.Player;
 import thread.PlayerController;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.*;
 
 public class HuruTMain {
@@ -13,6 +16,16 @@ public class HuruTMain {
     // 필요한 서비스를 멤버로 받아오기
 
     // jy
+    // 회원가입 서비스 객체
+    static SignUpService_ys signUpService_ys = new SignUpService_ys();
+    // 로그인 서비스 객체
+    static LoginService_ys loginService_ys = new LoginService_ys();
+    // 입력 스트림
+    static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    // --------------------------------------------------------------
+    public static StudentClassService_jh studentClassService_jh = new StudentClassService_jh();
+    public static LessonService_jh lessonService_jh = new LessonService_jh();
+    public static StudentLessonService_jh studentLessonService_jh = new StudentLessonService_jh();
 
     
     // jh
@@ -34,16 +47,200 @@ public class HuruTMain {
 
     
     // jh
-    public static int studentIdx_jh = 5;
-    public static String studentNickName_jh = "test5";
-    public static StudentClassService_jh studentClassService_jh = new StudentClassService_jh();
-    public static LessonService_jh lessonService_jh = new LessonService_jh();
-    private static StudentLessonService_jh studentLessonService_jh = new StudentLessonService_jh();
+    // 로그인한 회원 정보 값의 변수
+    public static int loginStudentIdx; // 로그인한 학생의 idx값
+    public static String loginStudentNickName; // 로그인한 학생의 닉네임
+    public static int loginTeacherIdx; // 로그인한 선생님의 idx값
+    public static String loginTeacherName; // 로그인한 선생님의 이름
 
-    public static void studentMainMenu_MyClass_jh() {
+    // 학생/선생님 회원종류 선택화면
+    public static void checkUserView() {
+        System.out.println();
+        System.out.println("*****************************************");
+        System.out.println("          회원 종류를 입력 해주세요.");
+        System.out.println("*****************************************");
+        System.out.println("1.학생 2.선생님");
+
+    }
+
+    // 첫 시작화면
+    public static void startView() {
+        System.out.println();
+        System.out.println("*****************************************");
+        System.out.println("        후루티에 오신 것을 환영합니다");
+        System.out.println("*****************************************");
+        System.out.println("1.로그인 2.회원가입 3.프로그램 종료");
+    }
+
+    // 로그인 입력화면
+    public static void loginView() {
+        System.out.println();
+        System.out.println("*****************************************");
+        System.out.println("        아이디와 비밀번호를 입력해주세요");
+        System.out.println("*****************************************");
+    }
+
+    // 회원가입 입력화면
+    public static void signUpView() {
+        System.out.println();
+        System.out.println("*****************************************");
+        System.out.println("            회원가입을 시작합니다.");
+        System.out.println("           아래 항목을 입력해주세요.");
+        System.out.println("*****************************************");
+    }
+
+    // 학생 로그인 기능
+    public static void studentLogin() throws Exception {
+        // 로그인 화면
+        loginView();
+        // 사용자 입력값
+        System.out.print("아이디(이메일형식): ");
+        String studentEmail = br.readLine();
+        System.out.print("비밀번호: ");
+        String studentPassword = br.readLine();
+
+        // DB에 id/pwd 정보가 있는지 확인 기능
+        int studentLogin = loginService_ys.studentLogin(studentEmail, studentPassword);
+
+        // DB에 존재하면 로그인 성공
+        if (studentLogin == 1) {
+            System.out.println("로그인 성공");
+
+            // 로그인 한 학생 정보를 loginStudentValue에 저장
+            StudentDTO_ys loginStudentValue = loginService_ys.getLoginStudent(studentEmail);
+            // 로그인 정보를 넘겨줄 변수에 저장
+            loginStudentIdx = loginStudentValue.getStudentIdx();
+            loginStudentNickName = loginStudentValue.getStudentNickname();
+
+            // 학생 메인메뉴 나의교실로 이동
+            System.out.println("****************************************");
+            System.out.printf("%s 학생 반갑습니다!\n", loginStudentNickName);
+            System.out.println("****************************************");
+            while (true) {
+                System.out.println();
+                System.out.println("이용할 메뉴를 선택해 주세요.");
+                System.out.printf("1.나의교실 | 2.수업찾기 | 3.장바구니 | 4.마이페이지 | 5.로그아웃 >> ");
+                emptyBuffer(br);
+                int input = Integer.parseInt(br.readLine().trim());
+                switch (input) {
+                    case 1:
+                        studentMainMenu_MyClass_jh();
+                        break;
+                    case 5:
+                        return;
+                }
+            }
+            // DB에 존재하지 않으면 로그인 실패
+        } else {
+            System.out.println("로그인 실패");
+            studentLogin();
+        }
+    }
+
+    public static void teacherLogin() throws Exception {
+        // 로그인 화면 출력
+        loginView();
+        // 사용자 입력값
+        System.out.print("아이디(이메일형식): ");
+        String teacherEmail = br.readLine();
+        System.out.print("비밀번호: ");
+        String teacherPassword = br.readLine();
+
+        // DB에 id/pwd 정보가 있는지 확인 기능
+        int teacherLogin = loginService_ys.teacherLogin(teacherEmail, teacherPassword);
+
+        // DB에 존재하면 로그인 성공
+        if (teacherLogin == 1) {
+            System.out.println("로그인 성공");
+
+            // 로그인 한 선생님 정보를 loginStudentValue에 저장
+            TeacherDTO_ys loginTeacherValue = loginService_ys.getLoginTeacher(teacherEmail);
+            // 로그인 정보를 넘겨줄 변수에 저장
+            loginTeacherIdx = loginTeacherValue.getTeacherIdx();
+            loginTeacherName = loginTeacherValue.getTeacherName();
+
+            /*
+             *  선생님 메인 페이지로 이동 메소드 추가
+             * */
+
+
+        } else { // DB에 존재하지 않으면 로그인 실패
+            System.out.println("로그인 실패");
+            teacherLogin();
+        }
+    }
+
+    // 학생 회원가입 기능
+    public static void studentSignUp() throws Exception {
+        emptyBuffer(br);
+        // 회원가입 화면 출력
+        signUpView();
+        // 사용자 입력값
+        System.out.print("아이디(이메일형식): ");
+        String studentEmail = br.readLine();
+        // 아이디 중복 확인. 중복 시 회원가입 재실행
+        if(signUpService_ys.studentEmailDuplicationCheck(studentEmail) == 1) {
+            System.out.println("동일한 아이디가 존재합니다.");
+            studentSignUp(); // 회원가입 재실행
+        }
+        System.out.print("비밀번호: ");
+        String studentPassword = br.readLine();
+        System.out.print("비밀번호확인: ");
+        String studentPassword2 = br.readLine();
+        // 비밀번호 확인 검사. 틀렸을 때 회원가입 재실행
+        if(!Objects.equals(studentPassword, studentPassword2)) {
+            System.out.println("비밀번호 확인이 틀렸습니다.");
+            studentSignUp(); // 회원가입 재실행
+        }
+        System.out.print("닉네임: ");
+        String studentNickname = br.readLine();
+        if(signUpService_ys.studentNicknameDuplicationCheck(studentNickname) == 1) {
+            System.out.println("동일한 닉네임이 존재합니다.");
+            studentSignUp(); // 회원가입 재실행
+        }
+
+        // DB에 회원정보 등록
+        signUpService_ys.studentSignUp(studentEmail, studentPassword, studentNickname);
+        System.out.println("회원가입에 성공하였습니다.");
+    }
+
+    // 선생님 회원가입 기능
+    public static void teacherSignUp() throws Exception {
+        emptyBuffer(br);
+        // 회원가입 화면 출력
+        signUpView();
+        // 사용자 입력값
+        System.out.print("아이디(이메일형식): ");
+        String teacherEmail = br.readLine();
+        // 아이디 중복 확인. 중복 시 회원가입 재실행
+        if(signUpService_ys.teacherEmailDuplicationCheck(teacherEmail) == 1) {
+            System.out.println("동일한 아이디가 존재합니다.");
+            teacherSignUp(); // 회원가입 재실행
+        }
+        System.out.print("비밀번호: ");
+        String teacherPassword = br.readLine();
+        System.out.print("비밀번호확인: ");
+        String teacherPassword2 = br.readLine();
+        // 비밀번호 확인 검사. 틀렸을 때 회원가입 재실행
+        if(!Objects.equals(teacherPassword, teacherPassword2)) {
+            System.out.println("비밀번호 확인이 틀렸습니다.");
+            teacherSignUp(); // 회원가입 재실행
+        }
+        System.out.print("성함: ");
+        String teacherName = br.readLine();
+
+        // DB에 회원정보 등록
+        signUpService_ys.studentSignUp(teacherEmail, teacherPassword, teacherName);
+        System.out.println("회원가입에 성공하였습니다.");
+    }
+    // ---------------------------------------------------------------
+
+    public static void studentMainMenu_MyClass_jh() throws Exception {
+        emptyBuffer(br);
         outerWhile: while (true) {
-            Scanner scanner = new Scanner(System.in);
-            Map<Integer, Map<String, Object>> classTakingMap = studentClassService_jh.printListForStudentMainMenuMyClass(studentIdx_jh);
+            //Scanner scanner = new Scanner(System.in);
+            Map<Integer, Map<String, Object>> classTakingMap = studentClassService_jh
+                    .printListForStudentMainMenuMyClass(loginStudentIdx);
 
             if (classTakingMap == null) {
                 // 학생이 아직 아무 수업도 신청하지 않아서 보여줄 수업 리스트가 없을 경우..
@@ -54,7 +251,7 @@ public class HuruTMain {
             List<Integer> classIdxList = new ArrayList<>(classTakingMap.keySet());
             Collections.sort(classIdxList);
             System.out.println("****************************************");
-            System.out.printf("[%s 학생의 수업 리스트]\n", studentNickName_jh);
+            System.out.printf("[%s 학생의 수업 리스트]\n", loginStudentNickName);
             System.out.printf("%-5s | %-10s | %-3s | %-8s\n", "수업번호", "수업제목", "선생님", "진도율(%)");
             Set<Integer> takingClassIdxSet = new HashSet<>();
             for (Integer classIdx : classIdxList) {
@@ -69,7 +266,7 @@ public class HuruTMain {
             System.out.printf("1.수업듣기\n이전 단계로 돌아가려면 단어 'exit'을 입력해주세요. >> ");
             int menu;
             innerWhile: while (true) {
-                String userInputStr = scanner.nextLine().trim();
+                String userInputStr = br.readLine().trim();
                 if (userInputStr == null || userInputStr.equals("")) {
                     System.out.println("잘못 입력하셨습니다. 다시 입력해 주세요.");
                     continue;
@@ -96,15 +293,15 @@ public class HuruTMain {
     } // method ends
 
     public static void classIdxSelectionMenu_jh(Map<Integer, Map<String, Object>> classTakingMap,
-                                                Set<Integer> takingClassIdxSet) {
+                                                Set<Integer> takingClassIdxSet) throws Exception {
         outerWhile: while (true) {
-            Scanner scanner = new Scanner(System.in);
+            emptyBuffer(br);
+            //Scanner scanner = new Scanner(System.in);
             System.out.println("\n****************************************");
             System.out.println("이어서 수강할 '수업번호'를 입력해주세요.\n이전 단계로 돌아가려면 단어 'exit'을 입력해주세요.");
-
             System.out.printf("수업번호? : ");
             while (true) {
-                String userInputString = scanner.nextLine();
+                String userInputString = br.readLine().trim();
                 if (userInputString == null || userInputString.equals("")) {
                     System.out.println("잘못 입력하셨습니다. 다시 입력해주세요.");
                     continue;
@@ -131,22 +328,27 @@ public class HuruTMain {
         }
     }
 
-    public static void studentMainMenu_MyClassRoom_TakeClass_jh(int classIdx, Map<String, Object> classInformation) {
+    public static void studentMainMenu_MyClassRoom_TakeClass_jh(int classIdx, Map<String, Object> classInformation)
+                                                                                                    throws Exception {
         outerWhile: while (true) {
-            Scanner scanner = new Scanner(System.in);
+            emptyBuffer(br);
+            //Scanner scanner = new Scanner(System.in);
             System.out.println("\n****************************************");
-            System.out.printf("[수업번호: '%d번', 수업이름: '%s'의 학습 리스트]\n", classIdx, (String) classInformation.get("className"));
+            System.out.printf("[수업번호: '%d번', 수업이름: '%s'의 학습 리스트]\n", classIdx,
+                                                                            (String) classInformation.get("className"));
 
             // classIdx에 해당되는 모든 클래스 가져오기
             List<Integer> lessonIdxList = lessonService_jh.getAllLessonIdxListByClassIdx(classIdx);
-            List<Map<String, Object>> printMap = studentLessonService_jh // 사용자가 한 번이라도 수강한 이력이 있는 레슨 정보 가져오기
-                    .getStudentCurrentlyTakingLessonInformationForPrint(studentIdx_jh, lessonIdxList);
 
+            // 사용자가 한 번이라도 수강한 이력이 있는 레슨 정보 가져오기
+            List<Map<String, Object>> printMap = studentLessonService_jh
+                    .getStudentCurrentlyTakingLessonInformationForPrint(loginStudentIdx, lessonIdxList);
 
             List<Integer> currentlyTakingLessonIdxList = new ArrayList<>();
             printMap.forEach(e -> currentlyTakingLessonIdxList.add((Integer) e.get("lesson_idx")));
 
-            List<Map<String, Object>> notCurrentlyTakingLessonIdxInformation = // 사용자가 아직 한 번도 수강하지 않은 레슨 정보 가져오기
+            // 사용자가 아직 한 번도 수강하지 않은 레슨 정보 가져오기
+            List<Map<String, Object>> notCurrentlyTakingLessonIdxInformation =
                     lessonService_jh.getStudentNotCurrentlyTakingLessonIdxInformation(classIdx,
                             currentlyTakingLessonIdxList);
 
@@ -165,7 +367,6 @@ public class HuruTMain {
                 String lessonName = (String) map.get("lesson_name");
                 int lessonTotalSeconds = (Integer) map.get("lesson_total_second");
                 int studentStudyTime = (Integer) map.get("student_study_time");
-
                 info.put("lessonName", lessonName);
                 info.put("lessonTotalSeconds", lessonTotalSeconds);
                 info.put("studentStudyTime", studentStudyTime);
@@ -179,7 +380,7 @@ public class HuruTMain {
             System.out.printf("%15s | %10s | %10s | %7s", "1.학습페이지로 이동하기", "2.강의평 하러가기", "3.질의응답 하러가기", "4.이전페이지\n");
             System.out.printf("메뉴 선택: ");
             while (true) {
-                String userInputString = scanner.nextLine().trim();
+                String userInputString = br.readLine().trim();
                 int menu;
                 try {
                     menu = Integer.parseInt(userInputString);
@@ -206,19 +407,21 @@ public class HuruTMain {
     }
 
     private static void studentMainMenu_MyClassRoom_TakeClass_StartLesson_jh(int classIdx,
-                                                                             Map<Integer, Map<String, Object>> lessonIdxInformationForSpecificClassIdxKeyMap) {
+                                 Map<Integer, Map<String, Object>> lessonIdxInformationForSpecificClassIdxKeyMap)
+                                                                                                throws Exception {
         // lessonIdxInformationForSpecificClassIdxKeyMap -> 한 개의 classIdx에 대해서 그 수업에 포함된 학습에 대한
         // 학습의 정보들이 map의 key값으로 저장되어 있다.
         outermostWhile: while (true) {
+            emptyBuffer(br);
             System.out.println("\n****************************************");
-            Scanner scanner = new Scanner(System.in);
+            //Scanner scanner = new Scanner(System.in);
             System.out.println("학습을 시작할 '학습번호'를 입력해주세요.");
             System.out.printf("학습 번호: ");
 
             int userInputLessonIdx;
             while (true) {
                 try {
-                    userInputLessonIdx = Integer.parseInt(scanner.nextLine().trim());
+                    userInputLessonIdx = Integer.parseInt(br.readLine().trim());
                     if (lessonIdxInformationForSpecificClassIdxKeyMap.containsKey(userInputLessonIdx) == false) {
                         System.out.println("현재 '수업'에서 시청할 수 없는 '학습'입니다. 올바른 '학습번호'를 입력해주세요.");
                         continue;
@@ -270,7 +473,7 @@ public class HuruTMain {
                         System.out.printf("%s | %s | %s | %s\n", "1.이어듣기(계속진행)", "2.처음부터 재시작",
                                 "3.현재 시청 기록을 저장 후 '학습리스트'로 이동", "4.시청 기록을 저장하지 않고 '학습리스트'로 이동");
                         System.out.print("메뉴 선택: ");
-                        String userInputRepeatStr = scanner.nextLine().trim();
+                        String userInputRepeatStr = br.readLine().trim();
                         int userInputRepeatInt;
                         if (userInputRepeatStr == null || userInputRepeatStr.equals("")) {
                             System.out.println("잘못 입력하셨습니다. 다시 입력해주세요.");
@@ -296,7 +499,7 @@ public class HuruTMain {
                             case 3:
                                 // DB 저장코드
                                 tempStudentStudyTime = player.getStudentPlayTime();
-                                boolean result = studentLessonService_jh.saveStudentLessonProgressUpdate(studentIdx_jh,
+                                boolean result = studentLessonService_jh.saveStudentLessonProgressUpdate(loginStudentIdx,
                                         userInputLessonIdx, tempStudentStudyTime);
                                 if (result) {
                                     System.out.println("학습 기록이 저장되었습니다.");
@@ -313,6 +516,16 @@ public class HuruTMain {
         } // outermost while ends
     } // method ends
 
+    private static void emptyBuffer(BufferedReader reader) {
+        try {
+            if (reader.ready()) {
+                reader.ready();
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     // sz
 
     
@@ -325,7 +538,7 @@ public class HuruTMain {
 
     
     
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         // 메인 메소드. 프로그램을 시작하기 위해 이 메인 메소드를 실행시켜야 한다.
 
         // 사용할 실행 코드를 작성하기
@@ -334,19 +547,61 @@ public class HuruTMain {
 
 
         // jh
-        Scanner scanner_jh = new Scanner(System.in);
-        System.out.println("****************************************");
-        System.out.printf("%s 학생 반갑습니다!\n", studentNickName_jh);
-        System.out.println("****************************************");
-        while (true) {
-            System.out.println();
-            System.out.println("이용할 메뉴를 선택해 주세요.");
-            System.out.printf("1.나의교실 | 2.수업찾기 | 3.장바구니 | 4.마이페이지 | 5.로그아웃 >> ");
-            int input = Integer.parseInt(scanner_jh.nextLine().trim());
-            switch (input) {
+
+        // 프로그램 시작 변수
+        boolean start = true;
+        while (start) {
+            // 시작 화면 출력
+            startView();
+            int inputByStartView = Integer.parseInt(br.readLine());
+            switch (inputByStartView) {
+                // 1.로그인
                 case 1:
-                    studentMainMenu_MyClass_jh();
+                    // 회원 종류 선택 화면
+                    checkUserView();
+                    // 사용자 입력 변수 선언
+                    int inputByCheckUserView = Integer.parseInt(br.readLine());
+
+                    // 1.학생 로그인
+                    if (inputByCheckUserView == 1) {
+                        studentLogin();
+                        // 2.선생님 로그인
+                    } else if (inputByCheckUserView == 2) {
+                        teacherLogin();
+                        // 잘못된 입력
+                    } else {
+                        System.out.println("잘못 입력하셨습니다.");
+                    }
+                    break; // 수정필요: while()문 이동 -> case1 으로 이동
+
+                // 2. 회원가입
+                case 2:
+                    // 회원 종류 선택 화면
+                    checkUserView();
+                    // 사용자 입력 변수 선언
+                    int inputByCheckUserView2 = Integer.parseInt(br.readLine());
+
+                    // 1.학생 회원가입
+                    if (inputByCheckUserView2 == 1) {
+                        studentSignUp();
+                        // 2.선생님 회원가입
+                    } else if (inputByCheckUserView2 == 2) {
+                        teacherSignUp();
+                        // 잘못된 입력
+                    } else {
+                        System.out.println("잘못 입력하셨습니다.");
+                    }
+                    break; // 수정필요: while()문 이동 -> case1 으로 이동
+
+                // 3.프로그램 종료
+                case 3:
+                    System.out.println("프로그램을 종료합니다.");
+                    start = false;
                     break;
+                // 잘못된 입력
+                default:
+                    System.out.println("잘못 입력하셨습니다.");
+                    System.out.println("메뉴를 다시 입력해 주세요.");
             }
         }
         // sz
@@ -356,6 +611,7 @@ public class HuruTMain {
 
 
         // he
+
 
 
         

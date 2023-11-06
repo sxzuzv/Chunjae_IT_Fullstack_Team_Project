@@ -9,19 +9,26 @@ import java.util.Map;
 
 public class LessonService_jh {
 
-    public List<Integer> getAllLessonIdxListByClassIdx(int classIdx) {
-        SqlSession sqlSession = MyBatisMapperFactory.getSqlSession();
-        LessonMapper_jh lessonMapper_jh = sqlSession.getMapper(LessonMapper_jh.class);
+    private SqlSession sqlSession;
+    private LessonMapper_jh lessonMapper;
 
-        List<Integer> allLessonIdxByClassIdx = lessonMapper_jh.getAllLessonIdxByClassIdx(classIdx);
+    public List<Integer> getAllLessonIdxListByClassIdx(int classIdx) {
+        sqlSession = MyBatisMapperFactory.getSqlSession();
+        lessonMapper = sqlSession.getMapper(LessonMapper_jh.class);
+
+        List<Integer> allLessonIdxByClassIdx = lessonMapper.getAllLessonIdxByClassIdx(classIdx);
+        sqlSession.close();
         return allLessonIdxByClassIdx;
     }
 
     public List<Map<String, Object>> getStudentNotCurrentlyTakingLessonIdxInformation(int classIdx,
                                                                           List<Integer> currentlyTakingLessonIdxList) {
-        SqlSession sqlSession = MyBatisMapperFactory.getSqlSession();
-        LessonMapper_jh lessonMapper_jh = sqlSession.getMapper(LessonMapper_jh.class);
+        sqlSession = MyBatisMapperFactory.getSqlSession();
+        lessonMapper = sqlSession.getMapper(LessonMapper_jh.class);
 
-        return lessonMapper_jh.getStudentNotCurrentlyTakingLessonIdxInformation(classIdx, currentlyTakingLessonIdxList);
+        List<Map<String, Object>> result =
+                lessonMapper.getStudentNotCurrentlyTakingLessonIdxInformation(classIdx, currentlyTakingLessonIdxList);
+        sqlSession.close();
+        return result;
     }
 }

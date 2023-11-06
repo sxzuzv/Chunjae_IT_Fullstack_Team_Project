@@ -23,7 +23,7 @@
         </foreach>
     </select>
 
-    <select id="getStudentLessonInformation" resultType="dao.StudentLessonDAO_jh">
+    <select id="getStudentLessonInformation" resultType="dto.StudentLessonDTO_jh">
         select *
         from student_lesson
         where student_id = #{studentIdx} and lesson_id = #{lessonIdx}

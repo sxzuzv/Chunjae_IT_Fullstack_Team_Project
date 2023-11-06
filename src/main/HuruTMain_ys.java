@@ -1,18 +1,13 @@
 package main;
 
-import dao.StudentDAO;
-import dao.TeacherDAO;
+import dto.StudentDTO_ys;
+import dto.TeacherDTO_ys;
 import service.LoginService_ys;
 import service.SignUpService_ys;
 
-import javax.swing.text.Style;
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
-import java.util.Scanner;
 
 public class HuruTMain_ys {
     
@@ -113,7 +108,7 @@ public class HuruTMain_ys {
             System.out.println("로그인 성공");
 
             // 로그인 한 학생 정보를 loginStudentValue에 저장
-            StudentDAO loginStudentValue = loginService_ys.getLoginStudent(studentEmail);
+            StudentDTO_ys loginStudentValue = loginService_ys.getLoginStudent(studentEmail);
             // 로그인 정보를 넘겨줄 변수에 저장
             loginStudentIdx = loginStudentValue.getStudentIdx();
             loginStudentNickName = loginStudentValue.getStudentNickname();
@@ -147,7 +142,7 @@ public class HuruTMain_ys {
         System.out.println("로그인 성공");
 
             // 로그인 한 선생님 정보를 loginStudentValue에 저장
-            TeacherDAO loginTeacherValue = loginService_ys.getLoginTeacher(teacherEmail);
+            TeacherDTO_ys loginTeacherValue = loginService_ys.getLoginTeacher(teacherEmail);
             // 로그인 정보를 넘겨줄 변수에 저장
             loginTeacherIdx = loginTeacherValue.getTeacherIdx();
             loginTeacherName = loginTeacherValue.getTeacherName();

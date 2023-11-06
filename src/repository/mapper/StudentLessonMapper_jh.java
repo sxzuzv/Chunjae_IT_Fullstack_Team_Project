@@ -1,6 +1,6 @@
 package repository.mapper;
 
-import dao.StudentLessonDAO_jh;
+import dto.StudentLessonDTO_jh;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -12,7 +12,7 @@ public interface StudentLessonMapper_jh {
 
     List<Map<String, Object>> getStudentCurrentlyTakingLessonInformationForPrint(@Param("studentIdx") int studentIdx,
                                                                  @Param("lessonIdxList") List<Integer> lessonIdxList);
-    StudentLessonDAO_jh getStudentLessonInformation(@Param("studentIdx") int studentIdx,
+    StudentLessonDTO_jh getStudentLessonInformation(@Param("studentIdx") int studentIdx,
                                                     @Param("lessonIdx") int lessonIdx);
 
     int updateStudentLessonProgressInformation(@Param("studentIdx") int studentIdx,
