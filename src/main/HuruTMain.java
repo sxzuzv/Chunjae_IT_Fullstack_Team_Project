@@ -43,12 +43,12 @@ public class HuruTMain {
     public static void studentMainMenu_MyClass_jh() {
         outerWhile: while (true) {
             Scanner scanner = new Scanner(System.in);
-            Map<Integer, Map<String, Object>> classTakingMap = studentClassService_jh.printListForStudentMainMenuMyClass(1);
+            Map<Integer, Map<String, Object>> classTakingMap = studentClassService_jh.printListForStudentMainMenuMyClass(studentIdx_jh);
             List<Integer> classIdxList = new ArrayList<>(classTakingMap.keySet());
             Collections.sort(classIdxList);
             System.out.println("****************************************");
             System.out.printf("[%s 학생의 수업 리스트]\n", studentNickName_jh);
-            System.out.printf("%-5s | %-10s | %-3s | %-8s\n", "수업번호", "수업제목", "선생님", "진도율%");
+            System.out.printf("%-5s | %-10s | %-3s | %-8s\n", "수업번호", "수업제목", "선생님", "진도율(%)");
             Set<Integer> takingClassIdxSet = new HashSet<>();
             for (Integer classIdx : classIdxList) {
                 String className = (String) classTakingMap.get(classIdx).get("className");
@@ -72,6 +72,7 @@ public class HuruTMain {
                 }
                 try {
                     menu = Integer.parseInt(userInputStr);
+                    if (menu != 1) throw new Exception();
                 } catch (Exception e) {
                     System.out.println("잘못 입력하셨습니다. 다시 입력해 주세요.");
                     continue;
@@ -127,7 +128,7 @@ public class HuruTMain {
         outerWhile: while (true) {
             Scanner scanner = new Scanner(System.in);
             System.out.println("\n****************************************");
-            System.out.printf("[%s 학생의 '%s'의 학습 리스트]\n", studentNickName_jh, (String) classInformation.get("className"));
+            System.out.printf("[수업번호: '%d번', 수업이름: '%s'의 학습 리스트]\n", classIdx, (String) classInformation.get("className"));
 
             // classIdx에 해당되는 모든 클래스 가져오기
             List<Integer> lessonIdxList = lessonService_jh.getAllLessonIdxListByClassIdx(classIdx);
@@ -168,7 +169,7 @@ public class HuruTMain {
             }
             System.out.println("--------------------------------------------------");
             System.out.println("이용할 메뉴를 선택해주세요:");
-            System.out.printf("%15s | %10s | %10s | %10s", "1.'학습번호'를 입력해서 학습시작", "2.강의평 하러가기", "3.질의응답 하러가기", "4.이전페이지\n");
+            System.out.printf("%15s | %10s | %10s | %7s", "1.학습페이지로 이동하기", "2.강의평 하러가기", "3.질의응답 하러가기", "4.이전페이지\n");
             System.out.printf("메뉴 선택: ");
             while (true) {
                 String userInputString = scanner.nextLine().trim();
@@ -287,7 +288,15 @@ public class HuruTMain {
                                 continue outerWhile;
                             case 3:
                                 // DB 저장코드
-                                break;
+                                tempStudentStudyTime = player.getStudentPlayTime();
+                                boolean result = studentLessonService_jh.saveStudentLessonProgressUpdate(studentIdx_jh,
+                                        userInputLessonIdx, tempStudentStudyTime);
+                                if (result) {
+                                    System.out.println("학습 기록이 저장되었습니다.");
+                                } else {
+                                    System.out.println("학습 기록 저장하는 중 오류 발생...");
+                                }
+                                return;
                             case 4: // 시청 기록을 저장하지 않고 '학습리스트(이전)'으로 이동.
                                 return;
                         }

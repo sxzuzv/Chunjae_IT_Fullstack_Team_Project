@@ -22,4 +22,23 @@
             ${item}
         </foreach>
     </select>
+
+    <select id="getStudentLessonInformation" resultType="dao.StudentLessonDAO_jh">
+        select *
+        from student_lesson
+        where student_id = #{studentIdx} and lesson_id = #{lessonIdx}
+    </select>
+
+    <update id="updateStudentLessonProgressInformation">
+        update student_lesson
+        set lesson_seconds = #{studyTime}
+        where student_id = #{studentIdx}
+        and lesson_id = #{lessonIdx}
+    </update>
+
+    <insert id="insertStudentLessonProgressInformation">
+        insert
+        into student_lesson(student_id, lesson_id, lesson_seconds)
+        values(#{studentIdx}, #{lessonIdx}, #{studyTime})
+    </insert>
 </mapper>
