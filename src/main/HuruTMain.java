@@ -34,8 +34,8 @@ public class HuruTMain {
 
     
     // jh
-    public static int studentIdx_jh = 2;
-    public static String studentNickName_jh = "user2";
+    public static int studentIdx_jh = 5;
+    public static String studentNickName_jh = "test5";
     public static StudentClassService_jh studentClassService_jh = new StudentClassService_jh();
     public static LessonService_jh lessonService_jh = new LessonService_jh();
     private static StudentLessonService_jh studentLessonService_jh = new StudentLessonService_jh();
@@ -44,6 +44,13 @@ public class HuruTMain {
         outerWhile: while (true) {
             Scanner scanner = new Scanner(System.in);
             Map<Integer, Map<String, Object>> classTakingMap = studentClassService_jh.printListForStudentMainMenuMyClass(studentIdx_jh);
+
+            if (classTakingMap == null) {
+                // 학생이 아직 아무 수업도 신청하지 않아서 보여줄 수업 리스트가 없을 경우..
+                System.out.println("아직 신청한 수업 내용이 없습니다. 수업을 먼저 신청해주세요.");
+                return;
+            }
+
             List<Integer> classIdxList = new ArrayList<>(classTakingMap.keySet());
             Collections.sort(classIdxList);
             System.out.println("****************************************");

@@ -8,7 +8,7 @@ import java.util.Map;
 
 public interface StudentLessonMapper_jh {
 
-    int timeSpentPerClassByStudentIdx(Map<String, Object> param);
+    Integer timeSpentPerClassByStudentIdx(Map<String, Object> param);
 
     List<Map<String, Object>> getStudentCurrentlyTakingLessonInformationForPrint(@Param("studentIdx") int studentIdx,
                                                                  @Param("lessonIdxList") List<Integer> lessonIdxList);

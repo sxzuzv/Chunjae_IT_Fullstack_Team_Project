@@ -8,7 +8,7 @@ import java.util.Map;
 
 @Mapper
 public interface ClassMapper_jh {
-    List<Map<Integer, Integer>> getTotalTimePerClass(@Param("classIdxList") List<Integer> classIdxList);
+    List<Map<String, Integer>> getTotalTimePerClass(@Param("classIdxList") List<Integer> classIdxList);
 
     List<Map<String, Object>> getTeacherNamePerClass(@Param("allMyClassIdxList") List<Integer> allMyClassIdxList);
 

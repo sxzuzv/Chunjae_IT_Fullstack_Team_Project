@@ -12,9 +12,12 @@
     <select id="getStudentNotCurrentlyTakingLessonIdxInformation" parameterType="java.util.Map">
         select lesson_idx, lesson_name, lessons_seconds as lesson_total_second
         from lessons
-        where class_id = #{classIdx} and lesson_idx not in
+        where class_id = #{classIdx}
+        <if test="lessonIdxList!=null and lessonIdxList.size!=0">
+        and lesson_idx not in
         <foreach collection="lessonIdxList" index="index" item="item" open="(" separator="," close=")">
             #{item}
         </foreach>
+        </if>
     </select>
 </mapper>

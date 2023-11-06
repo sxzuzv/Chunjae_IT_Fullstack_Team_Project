@@ -21,14 +21,19 @@ public class StudentClassService_jh {
         StudentClassMapper_jh studentClassMapper_jh = sqlSession.getMapper(StudentClassMapper_jh.class);
         List<Integer> allMyClassIdxList = studentClassMapper_jh.getAllMyClass(studentIdx);
 
+        if (allMyClassIdxList.size() == 0) {
+            // 학생이 아직 수강하고 있는 강의가 아무것도 없을 경우
+            return null;
+        }
+
         Map<Integer, Map<String, Object>> resultMap = new HashMap<>();
         // allMyClassIdxList.forEach(e -> resultMap.put(e, new HashMap<>()));
 
         // 각 수업 당 총 시간
         ClassMapper_jh classMapper_jh = sqlSession.getMapper(ClassMapper_jh.class);
-        List<Map<Integer, Integer>> totalTimePerClassList = classMapper_jh.getTotalTimePerClass(allMyClassIdxList);
+        List<Map<String, Integer>> totalTimePerClassList = classMapper_jh.getTotalTimePerClass(allMyClassIdxList);
         Map<Integer, Integer> totalTimePerClassMap = new HashMap<>();
-        for (Map<Integer, Integer> integerIntegerMap : totalTimePerClassList) {
+        for (Map<String, Integer> integerIntegerMap : totalTimePerClassList) {
             int classIdx = integerIntegerMap.get("class_idx");
             int seconds = integerIntegerMap.get("seconds");
             totalTimePerClassMap.put(classIdx, seconds);
@@ -50,7 +55,10 @@ public class StudentClassService_jh {
             Map<String, Object> param = new HashMap<>();
             param.put("studentIdx", studentIdx);
             param.put("lessonIdList", lessonIdxListPerClassMap.get(classIdx));
-            int timeSpent = studentLessonMapper_jh.timeSpentPerClassByStudentIdx(param);
+            Integer timeSpent = studentLessonMapper_jh.timeSpentPerClassByStudentIdx(param);
+            if (timeSpent == null) {
+                timeSpent = 0;
+            }
             timeSpentByClassMap.put(classIdx, timeSpent);
         }
 
