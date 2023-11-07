@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="repository.mapper.LessonMapper_jh">
+    <select id="getAllLessonIdxByClassIdx" parameterType="int" resultType="int">
+        select lesson_idx
+        from lessons
+        where class_id = #{classIdx}
+    </select>
+
+    <select id="getStudentNotCurrentlyTakingLessonIdxInformation" parameterType="java.util.Map">
+        select lesson_idx, lesson_name, lessons_seconds as lesson_total_second
+        from lessons
+        where class_id = #{classIdx}
+        <if test="lessonIdxList!=null and lessonIdxList.size!=0">
+        and lesson_idx not in
+        <foreach collection="lessonIdxList" index="index" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+        </if>
+    </select>
+</mapper>

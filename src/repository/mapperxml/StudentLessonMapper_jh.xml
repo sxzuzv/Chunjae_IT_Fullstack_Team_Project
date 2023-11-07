@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="repository.mapper.StudentLessonMapper_jh">
+    <select id="timeSpentPerClassByStudentIdx" resultType="int" parameterType="java.util.Map">
+        select sum(lesson_seconds)
+        from student_lesson
+        where student_id = #{studentIdx}
+        and lesson_id in
+        <foreach collection="lessonIdList" item="item" index="index" separator="," open="(" close=")">
+            ${item}
+        </foreach>
+    </select>
+
+    <select id="getStudentCurrentlyTakingLessonInformationForPrint" resultType="java.util.Map">
+        select l.lesson_idx, l.lesson_name, l.lessons_seconds as lesson_total_second, sl.lesson_seconds as student_study_time
+        from lessons l inner join student_lesson sl
+        on l.lesson_idx = sl.lesson_id
+        where sl.student_id = #{studentIdx} and lesson_id in
+        <foreach collection="lessonIdxList" item="item" index="index" separator="," open="(" close=")">
+            ${item}
+        </foreach>
+    </select>
+
+    <select id="getStudentLessonInformation" resultType="dto.StudentLessonDTO_jh">
+        select *
+        from student_lesson
+        where student_id = #{studentIdx} and lesson_id = #{lessonIdx}
+    </select>
+
+    <update id="updateStudentLessonProgressInformation">
+        update student_lesson
+        set lesson_seconds = #{studyTime}
+        where student_id = #{studentIdx}
+        and lesson_id = #{lessonIdx}
+    </update>
+
+    <insert id="insertStudentLessonProgressInformation">
+        insert
+        into student_lesson(student_id, lesson_id, lesson_seconds)
+        values(#{studentIdx}, #{lessonIdx}, #{studyTime})
+    </insert>
+</mapper>
