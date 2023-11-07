@@ -19,6 +19,9 @@
     </environments>
     <mappers>
             <!-- jy -->
+        <mapper resource="repository/mapperxml/ClassMapper_jy.xml"/>
+        <mapper resource="repository/mapperxml/QuestionMapper_jy.xml"/>
+        <mapper resource="repository/mapperxml/LessonMapper_jy.xml"/>
 
             
             <!-- jh -->
@@ -29,6 +32,11 @@
         <mapper resource="repository/mapperxml/StudentLessonMapper_jh.xml" />
         <mapper resource="repository/mapperxml/StudentMapper_jh.xml" />
             <!-- sz -->
+
+        <mapper resource="repository/mapperxml/ClassMapper_sz.xml"/>
+        <mapper resource="repository/mapperxml/purchaseClassMapper_sz.xml"/>
+        <mapper resource="repository/mapperxml/TeacherMapper_sz.xml"/>
+        <mapper resource="repository/mapperxml/StudentClassMapper_sz.xml"/>
             
             
             <!-- ys -->
@@ -36,6 +44,7 @@
         <mapper resource="repository/mapperxml/TeacherMapper_ys.xml" />
             
             <!-- he -->
+        <mapper resource="repository/mapperxml/ReviewMapper_he.xml"/>
 
 
     </mappers>
