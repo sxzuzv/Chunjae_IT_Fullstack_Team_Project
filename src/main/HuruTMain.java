@@ -438,7 +438,7 @@ public class HuruTMain {
             while (true) {
                 System.out.println();
                 System.out.println("이용할 메뉴를 선택해 주세요.");
-                System.out.printf("1.나의교실 | 2.수업찾기 | 3.장바구니 | 4.마이페이지 | 5.로그아웃 >> ");
+                System.out.printf("1.나의교실 | 2.수업찾기 | 3.로그아웃 >> ");
                 emptyBuffer(br);
                 int input = Integer.parseInt(br.readLine().trim());
                 switch (input) {
@@ -449,8 +449,11 @@ public class HuruTMain {
                         // 신수진거
                         findClasses(loginStudentIdx);
                         break;
-                    case 5:
+                    case 3:
+                        System.out.println("로그아웃 되었습니다.");
                         return;
+                    default:
+                        System.out.println("잘못 입력하셨습니다.");
                 }
             }
             // DB에 존재하지 않으면 로그인 실패
