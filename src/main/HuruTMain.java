@@ -146,7 +146,7 @@ public class HuruTMain {
     public static void getClasses() throws Exception {
         System.out.println("**************************************************\n");
         System.out.println("[ "+teacherJy.getTeacherName()+" 선생님의 수업 리스트 ]");
-        System.out.printf("%3s \t | %17s \t | %10s \t | %5s \t | %6s \t | %5s\n", "수업 번호", "수업 제목", "총 수업 시간", "학습 개수", "가격", "난이도");
+        System.out.printf("%3s \t | %17s \t | %10s \t | %5s \t | %6s \t | %5s\n", "수업 번호", "수업 제목", "총 수업 시간", "  학습 개수 ", "가격", "난이도");
 
         // 담당 수업 리스트를 불러온다.
         ArrayList<Class_jy> classesList = classServiceJy.getClasses();
@@ -154,7 +154,7 @@ public class HuruTMain {
             // 수업 시간 단위 변경: 초 -> 분
             // DB에는 초 단위로 저장됨. 콘솔
             // 출력은 분, 시간 단위로 출력
-            int playtime = classJy.getSeconds() / 60;
+            int playtime = classJy.getSeconds();
             String playtimeStr = Integer.toString(playtime) + "분";
 
             if(playtime / 60 >= 1){  // 60분 이상 -> 시간 단위로 변경
