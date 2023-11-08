@@ -41,6 +41,15 @@ public class ClassDAO {
 
         String teacherName = teacherMapper_sz.teacherName(teacherId).getTeacherName();
 
+        int playtime = seconds/60;
+        String playtimeStr = Integer.toString(playtime)+"분";
+        if(playtime >= 60){
+            playtimeStr = Integer.toString(playtime/60)+"시간";
+            if(playtime % 60 > 0){
+                playtimeStr = playtimeStr.concat(" "+Integer.toString(playtime % 60) + "분");
+            }
+        }
+
         sqlSession.close();
 
         return "[수업 번호 " + classIdx +"]" +
@@ -49,7 +58,7 @@ public class ClassDAO {
                 " 수업 가격 : " + price + "원 |" +
                 " 수강 평점 : " + rating + "점 |" +
                 " 학습 개수 : " + lectureCnt + "개 |" +
-                " 총 수업 시간 : " + seconds + "초 |" +
+                " 총 수업 시간 : " + playtimeStr + " |" +
                 " 난이도 : " + difficulty;
     }
 }
