@@ -45,6 +45,7 @@
             
             <!-- he -->
         <mapper resource="repository/mapperxml/ReviewMapper_he.xml"/>
+        <mapper resource="repository/mapperxml/QuestionMapper_he.xml"/>
 
 
     </mappers>

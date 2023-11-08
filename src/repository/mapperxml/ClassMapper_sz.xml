@@ -8,6 +8,6 @@
     <!-- Mapper interface에 선언한 메서드의 리턴 타입과 동일해야 한다. (List<ClassDAO>) -->
     <select id="viewAllClass" resultType="dao.ClassDAO">
         select *
-        from classes;
+        from classes
     </select>
 </mapper>

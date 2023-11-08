@@ -41,6 +41,8 @@ public class ClassDAO {
 
         String teacherName = teacherMapper_sz.teacherName(teacherId).getTeacherName();
 
+        sqlSession.close();
+
         return "[수업 번호 " + classIdx +"]" +
                 " 수업명 : " + className + " |" +
                 " 선생님 : " + teacherName + " 선생님 |" +

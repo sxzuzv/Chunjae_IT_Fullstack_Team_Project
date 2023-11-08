@@ -8,6 +8,6 @@
     <select id="existClass" resultType="dao.StudentClassDAO">
         select class_id
         from student_class
-        where student_id = #{student_id};
+        where student_id = #{student_id}
     </select>
 </mapper>

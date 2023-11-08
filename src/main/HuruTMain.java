@@ -69,24 +69,24 @@ public class HuruTMain {
             System.out.println("=============================================================================================================================================");
             System.out.println();
 
-            System.out.print("듣고 싶은 수업을 선택해주세요. : ");
-            int classNum = scanner.nextInt();
+            System.out.printf("듣고 싶은 수업을 선택해주세요. : ");
+            int classNum = Integer.parseInt(scanner.nextLine());
             System.out.println();
 
             // existClass(student_id, class_id) : 학생이 입력한 수업 번호가 student_class 테이블에 존재하는지 판단 (반환 타입 boolean)
             exist = findClassessz.existClass(loginStudentIdx, classNum);
             if(exist) {
-                System.out.println("이미 구입한 수업이에요. 다른 수업을 선택해주세요!");
+                System.out.printf("이미 구입한 수업이에요. 다른 수업을 선택해주세요!");
                 System.out.println();
                 continue;
             }
 
-            System.out.print(classNum + "번 수업을 구입하시려면 'y'를 입력해주세요. : ");
-            String choice = scanner.next();
+            System.out.printf(classNum + "번 수업을 구입하시려면 'y'를 입력해주세요. : ");
+            String choice = scanner.nextLine();
 
             // 수업을 구매하는 메소드(purchaseClass(int studentIdx, int classNum)) 호출
             if(choice.equals("y")) {
-                findClassessz.purchaseClass(1, classNum);
+                findClassessz.purchaseClass(loginStudentIdx, classNum);
                 break;
             }
         }
@@ -427,6 +427,7 @@ public class HuruTMain {
                     case 2:
                         // 신수진거
                         findClasses(loginStudentIdx);
+                        break;
                     case 5:
                         return;
                 }
@@ -832,6 +833,10 @@ public class HuruTMain {
                         break;
                     case 2:
                         reviewService_he.addReview(loginStudentIdx, classIdx);
+                        break;
+                    case 3:
+                        QuestionService_he questionService_he = new QuestionService_he(loginStudentIdx, classIdx);
+                        questionService_he.questionMain();
                     case 4:
                         return;
                 }

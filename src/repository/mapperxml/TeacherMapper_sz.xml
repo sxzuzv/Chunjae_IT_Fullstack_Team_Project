@@ -7,6 +7,8 @@
     <!-- resultType = SQL 쿼리의 실행 결과를 매핑할 결과 타입을 의미한다. -->
     <!-- Mapper interface에 선언한 메서드의 리턴 타입과 동일해야 한다. (List<ClassDAO>) -->
     <select id="teacherName" resultType="dao.TeacherDAO">
-        select teacher_name from teachers where teacher_idx = #{teacher_idx}
+        select teacher_name
+        from teachers
+        where teacher_idx = #{teacher_idx}
     </select>
 </mapper>

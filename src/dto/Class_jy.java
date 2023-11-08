@@ -11,7 +11,7 @@ public class Class_jy {
     private int teacherId;
     private int price;
     private int studentCnt;
-    private double rating;
+    private Double rating;
     private int lectureCnt;
     private int seconds;
     private int difficulty;

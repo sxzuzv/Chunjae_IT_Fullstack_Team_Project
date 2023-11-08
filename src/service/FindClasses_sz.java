@@ -38,6 +38,7 @@ public class FindClasses_sz {
             int teacher_idx = a.getTeacherId();
             System.out.println(a.print(teacher_idx));
         }
+        sqlSession.close();
     }
 
     // 학생이 수업 번호를 입력할 시, student_class 테이블에 입력 정보를 INSERT한다.
@@ -48,9 +49,9 @@ public class FindClasses_sz {
         Map<String, Integer> param = new HashMap<>();
         param.put("student_id", studentIdx);
         param.put("class_id", classNum);
-        sqlSession.insert("repository.mapper.purchaseClassMapper_sz.purchaseClass", param);
+        sqlSession.insert("repository.mapper.PurchaseClassMapper_sz.purchaseClass", param);
         sqlSession.commit();
-
+        sqlSession.close();
         System.out.println(classNum + "번 수업을 구매하였습니다!");
     }
 
@@ -66,10 +67,11 @@ public class FindClasses_sz {
         for (StudentClassDAO a : existList) {
             if (classNum == a.getClassId()) {
                 exist = true;
+                sqlSession.close();
                 break;
             }
         }
-
+        sqlSession.close();
         return exist;
     }
 }
