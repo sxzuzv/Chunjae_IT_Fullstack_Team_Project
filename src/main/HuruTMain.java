@@ -43,7 +43,25 @@ public class HuruTMain {
 
 
     // jh
-    
+
+    public static String convertTime(int seconds) {
+        int hours = seconds / 3600;
+        int remainder = seconds - hours * 3600;
+        int mins = remainder / 60;
+        remainder = remainder - mins * 60;
+        int secs = remainder;
+        StringBuilder builder = new StringBuilder();
+        if (hours != 0) {
+            builder.append(hours + "시간 ");
+        }
+        if (mins != 0) {
+            builder.append(mins + "분 ");
+        }
+        if (secs != 0) {
+            builder.append(secs + "초");
+        }
+        return builder.toString();
+    }
     
     // sz
 
@@ -128,25 +146,27 @@ public class HuruTMain {
     public static void getClasses() throws Exception {
         System.out.println("**************************************************\n");
         System.out.println("[ "+teacherJy.getTeacherName()+" 선생님의 수업 리스트 ]");
-        System.out.printf("%-5s|%-17s | %10s | %5s | %6s | %-5s\n", "수업 번호", "수업 제목", "총 수업 시간", "학습 개수", "가격", "난이도");
+        System.out.printf("%3s \t | %17s \t | %10s \t | %5s \t | %6s \t | %5s\n", "수업 번호", "수업 제목", "총 수업 시간", "학습 개수", "가격", "난이도");
 
         // 담당 수업 리스트를 불러온다.
         ArrayList<Class_jy> classesList = classServiceJy.getClasses();
         for(Class_jy classJy: classesList){
             // 수업 시간 단위 변경: 초 -> 분
-            // DB에는 초 단위로 저장됨. 콘솔 출력은 분, 시간 단위로 출력
+            // DB에는 초 단위로 저장됨. 콘솔
+            // 출력은 분, 시간 단위로 출력
             int playtime = classJy.getSeconds() / 60;
             String playtimeStr = Integer.toString(playtime) + "분";
 
             if(playtime / 60 >= 1){  // 60분 이상 -> 시간 단위로 변경
-                playtimeStr = Integer.toString(playtime/60).concat("시간 ");
-                if(playtime%60 != 0)    playtimeStr = playtimeStr.concat(Integer.toString(playtime%60) + "분"); // 0분이면 분은 표시하지 않음
+                playtimeStr = /*Integer.toString(playtime/60).concat("시간 ");
+                if(playtime%60 != 0)    playtimeStr = playtimeStr.concat(Integer.toString(playtime%60) + "분");*/ // 0분이면 분은 표시하지 않음
+                convertTime(playtime);
             }
 
 
             // 난이도: 숫자 -> 한글
             String difficultyStr = (classJy.getDifficulty()==1) ? "쉬움" : ((classJy.getDifficulty()==2) ? "보통" : "어려움");
-            System.out.printf("%-8s %-17s %10s %10s %12s %-5s\n", classJy.getClassIdx(), classJy.getClassName(), playtimeStr,
+            System.out.printf("%8s \t | %17s \t | %13s \t | %8s \t | %6s \t | %5s\n", classJy.getClassIdx(), classJy.getClassName(), playtimeStr,
                     classJy.getLectureCnt(), classJy.getPrice(), difficultyStr);
         }
         System.out.println("\n**************************************************\n");
@@ -279,10 +299,11 @@ public class HuruTMain {
         ArrayList<Lesson_jy> lessonsList = lessonServiceJY.getLessons(inputByTeacherLessonManage_classIdx);
 
         // lessons 출력
-        System.out.println("학습번호 |        학습제목        | 학습시간(분)\n");
+        System.out.printf("%10s \t | %10s \t | %10s\n", "학습번호", "학습제목", "학습시간");
         for(Lesson_jy lesson: lessonsList){
-            int minutes = lesson.getLessonsSeconds()/60;
-            System.out.printf("%-7s %-23s %-3s분\n", lesson.getLessonIdx(), lesson.getLessonName(), minutes);
+            //int minutes = //lesson.getLessonsSeconds()/60;
+            String time = convertTime(lesson.getLessonsSeconds());
+            System.out.printf("%14s \t | %10s \t | %10s\n", lesson.getLessonIdx(), lesson.getLessonName(), time);
         }
         System.out.println("\n**************************************************\n");
     }
@@ -685,18 +706,18 @@ public class HuruTMain {
             Collections.sort(classIdxList);
             System.out.println("****************************************");
             System.out.printf("[%s 학생의 수업 리스트]\n", loginStudentNickName);
-            System.out.printf("%-5s | %-10s | %-3s | %-8s\n", "수업번호", "수업제목", "선생님", "진도율(%)");
+            System.out.printf("%5s \t | %10s \t | %3s \t | %8s\n", "수업번호", "수업제목", "선생님", "진도율(%)");
             Set<Integer> takingClassIdxSet = new HashSet<>();
             for (Integer classIdx : classIdxList) {
                 String className = (String) classTakingMap.get(classIdx).get("className");
                 String teacherName = (String) classTakingMap.get(classIdx).get("teacherName");
                 double status = (Double) classTakingMap.get(classIdx).get("status");
-                System.out.printf("%-7d | %-10s | %-3s | %-8.2f\n", classIdx, className, teacherName, status);
+                System.out.printf("%7d \t | %10s \t | %3s \t | %8.2f\n", classIdx, className, teacherName, status);
                 takingClassIdxSet.add(classIdx);
             }
             System.out.println("----------------------------------------");
             System.out.println("이용할 메뉴를 선택해주세요:");
-            System.out.printf("1.수업듣기\n이전 단계로 돌아가려면 단어 'exit'을 입력해주세요. >> ");
+            System.out.printf("1.수업듣기 <이전 단계로 돌아가려면 단어 'exit'을 입력해주세요.> : ");
             int menu;
             innerWhile: while (true) {
                 String userInputStr = br.readLine().trim();
@@ -793,7 +814,7 @@ public class HuruTMain {
             printMap.sort((a, b) -> ((Integer) a.get("lesson_idx")) - ((Integer) b.get("lesson_idx")));
 
             Map<Integer, Map<String, Object>> lessonIdxInformationForSpecificClassIdxKeyMap = new HashMap<>();
-            System.out.printf("%6s | %14s | %12s | %9s | %8s\n", "학습번호", "학습이름", "총길이(초)", "학습시간(초)", "학습율(%)");
+            System.out.printf("%16s \t | %18s \t | %18s \t | %18s \t | %18s\n", "학습번호", "학습이름", "총길이", "학습시간", "학습율(%)");
             for (Map<String, Object> map : printMap) {
                 Map<String, Object> info = new HashMap<>();
                 int lessonIdx = (Integer) map.get("lesson_idx");
@@ -805,8 +826,8 @@ public class HuruTMain {
                 info.put("studentStudyTime", studentStudyTime);
                 lessonIdxInformationForSpecificClassIdxKeyMap.put(lessonIdx, info);
 
-                System.out.printf("%6d | %15s | %14d | %10d | %10.2f\n", lessonIdx, lessonName, lessonTotalSeconds,
-                        studentStudyTime, (((double) studentStudyTime / lessonTotalSeconds) * 100));
+                System.out.printf("%20d \t | %20s \t | %20s \t | %20s \t | %20.2f\n", lessonIdx, lessonName, convertTime(lessonTotalSeconds),
+                        convertTime(studentStudyTime), (((double) studentStudyTime / lessonTotalSeconds) * 100));
             }
             System.out.println("--------------------------------------------------");
             System.out.println("이용할 메뉴를 선택해주세요:");
