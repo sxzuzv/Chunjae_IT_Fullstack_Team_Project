@@ -9,4 +9,10 @@
         values (#{classId},#{studentId},#{contents},#{rating})
     </insert>
 
+    <select id="alreadyInsertedReview">
+        select count(review_idx)
+        from reviews
+        where class_id = #{classIdx} and student_id = #{studentIdx}
+    </select>
+
 </mapper>

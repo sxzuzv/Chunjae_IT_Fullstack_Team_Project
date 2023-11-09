@@ -6,6 +6,7 @@ import lombok.ToString;
 import main.HuruTMain;
 import org.apache.ibatis.session.SqlSession;
 import repository.mapper.ClassMapper_sz;
+import repository.mapper.PurchaseClassMapper_sz;
 import repository.mapper.TeacherMapper_sz;
 import service.FindClasses_sz;
 
@@ -49,16 +50,25 @@ public class ClassDAO {
                 playtimeStr = playtimeStr.concat(" "+Integer.toString(playtime % 60) + "분");
             }
         }
-
+        PurchaseClassMapper_sz purchaseClassMapper = sqlSession.getMapper(PurchaseClassMapper_sz.class);
+        Double rate = purchaseClassMapper.getRatingByClassIdx(classIdx);
+        if (rate == null)
+            this.rating = 0.0;
+        else {
+            this.rating = Math.ceil(rate * 100) / 100.0;
+        }
         sqlSession.close();
 
-        return "[수업 번호 " + classIdx +"]" +
+        String result = String.format("%10d \t    | %20s \t | %15s \t | %17d \t    | %7.2f             \t | %10d \t | %15s \t | %10s",
+                classIdx, className, teacherName, price, this.rating, lectureCnt, HuruTMain.convertTime(seconds), difficulty);
+        return result;
+        /*return "[수업 번호 " + classIdx +"]" +
                 " 수업명 : " + className + " |" +
                 " 선생님 : " + teacherName + " 선생님 |" +
                 " 수업 가격 : " + price + "원 |" +
-                " 수강 평점 : " + rating + "점 |" +
+                " 수강 평점 : " + this.rating + "점 |" +
                 " 학습 개수 : " + lectureCnt + "개 |" +
                 " 총 수업 시간 : " + playtimeStr + " |" +
-                " 난이도 : " + difficulty;
+                " 난이도 : " + difficulty;*/
     }
 }
