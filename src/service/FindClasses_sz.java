@@ -11,6 +11,7 @@ import repository.mapper.PurchaseClassMapper_sz;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
 
 public class FindClasses_sz {
     // FindClasses 클래스 : 학생이 수업 리스트에서 원하는 수업을 결제한다.
@@ -39,6 +40,25 @@ public class FindClasses_sz {
             System.out.println(a.print(teacher_idx));
         }
         sqlSession.close();
+    }
+
+    public void showAllReviews() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("수강 후기를 볼 수업 번호를 입력해 주세요.");
+        System.out.printf("수업 번호 입력: ");
+        int classIdx = Integer.parseInt(scanner.nextLine().trim());
+        SqlSession sqlSession = MyBatisMapperFactory.getSqlSession();
+        PurchaseClassMapper_sz mapper = sqlSession.getMapper(PurchaseClassMapper_sz.class);
+        List<String> strings = mapper.showAllReviewsByClassIdx(classIdx);
+        if (strings.size() == 0) {
+            System.out.println("아직 작성된 수강 후기가 없어요!\n");
+        } else {
+            System.out.println("---------------수업 후기-------------------");
+            for (int i = 0; i < strings.size(); i++) {
+                System.out.println(strings.get(i));
+            }
+        }
+        System.out.println();
     }
 
     // 학생이 수업 번호를 입력할 시, student_class 테이블에 입력 정보를 INSERT한다.

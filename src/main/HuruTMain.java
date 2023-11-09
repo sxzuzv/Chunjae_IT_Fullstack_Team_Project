@@ -82,7 +82,7 @@ public class HuruTMain {
         boolean exist = false;
 
 
-        while(true) {
+        outerWhile: while(true) {
             System.out.println("<지금 들을 수 있는 수업 목록이에요!>");
             System.out.println("=============================================================================================================================================");
             System.out.printf("%10s \t | %20s \t | %15s \t | %20s \t | %12s(5점만점) \t | %8s \t | %10s \t | %10s\n",
@@ -92,26 +92,41 @@ public class HuruTMain {
             System.out.println("=============================================================================================================================================");
             System.out.println();
 
-            System.out.printf("듣고 싶은 수업을 선택해주세요. : ");
-            int classNum = Integer.parseInt(scanner.nextLine());
-            System.out.println();
+            while (true) {
+                System.out.println("메뉴를 선택하세요.");
+                System.out.println("1.수업평가보기 2.수업신청하기 3.이전으로");
+                int menu = Integer.parseInt(scanner.nextLine().trim());
+                switch (menu) {
+                    case 1:
+                        findClassessz.showAllReviews();
+                        continue outerWhile;
+                    case 2:
+                        System.out.printf("듣고 싶은 수업을 선택해주세요. : ");
+                        int classNum = Integer.parseInt(scanner.nextLine());
+                        System.out.println();
 
-            // existClass(student_id, class_id) : 학생이 입력한 수업 번호가 student_class 테이블에 존재하는지 판단 (반환 타입 boolean)
-            exist = findClassessz.existClass(loginStudentIdx, classNum);
-            if(exist) {
-                System.out.printf("이미 구입한 수업이에요. 다른 수업을 선택해주세요!");
-                System.out.println();
-                continue;
+                        // existClass(student_id, class_id) : 학생이 입력한 수업 번호가 student_class 테이블에 존재하는지 판단 (반환 타입 boolean)
+                        exist = findClassessz.existClass(loginStudentIdx, classNum);
+                        if(exist) {
+                            System.out.printf("이미 구입한 수업이에요. 다른 수업을 선택해주세요!");
+                            System.out.println();
+                            continue outerWhile;
+                        }
+
+                        System.out.printf(classNum + "번 수업을 구입하시려면 'y'를 입력해주세요. : ");
+                        String choice = scanner.nextLine();
+
+                        // 수업을 구매하는 메소드(purchaseClass(int studentIdx, int classNum)) 호출
+                        if(choice.equals("y")) {
+                            findClassessz.purchaseClass(loginStudentIdx, classNum);
+                            break;
+                        }
+                    case 3:
+                        return;
+                }
             }
 
-            System.out.printf(classNum + "번 수업을 구입하시려면 'y'를 입력해주세요. : ");
-            String choice = scanner.nextLine();
 
-            // 수업을 구매하는 메소드(purchaseClass(int studentIdx, int classNum)) 호출
-            if(choice.equals("y")) {
-                findClassessz.purchaseClass(loginStudentIdx, classNum);
-                break;
-            }
         }
     }
 

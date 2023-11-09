@@ -17,4 +17,10 @@
         where class_id = #{classIdx}
         group by class_id = #{classIdx}
     </select>
+
+    <select id="showAllReviewsByClassIdx">
+        select contents
+        from reviews
+        where class_id = #{classIdx}
+    </select>
 </mapper>
