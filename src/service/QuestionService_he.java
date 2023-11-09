@@ -97,11 +97,13 @@ public class QuestionService_he {
         ArrayList<QuestionDAO_he> myQuestionList = questionMapper_he.getQuestions(idxMap);
         System.out.println("*********************************************");
         System.out.println("본인이 해당 수업에 등록한 질문은 다음과 같습니다.");
-        for (QuestionDAO_he q : myQuestionList) {
+
+        for (int i = 0; i < myQuestionList.size(); i++) {
+            QuestionDAO_he q = myQuestionList.get(i);
             System.out.println();
-            System.out.println("질문번호: " + q.getQuestionIdx() + ", 제목: " + q.getTitle());
+            System.out.println("질문번호: " + q.getQuestionIdx() + "\n제목: " + q.getTitle());
             System.out.println(q.getContents());
-            System.out.println("작성일자 " + q.getQuestionDate());
+            System.out.println("작성일자 " + q.getQuestionDate().toString().replaceAll("T", " "));
         }
         System.out.println("*********************************************");
     }

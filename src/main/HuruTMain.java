@@ -60,6 +60,9 @@ public class HuruTMain {
         if (secs != 0) {
             builder.append(secs + "초");
         }
+        if (builder.toString().length() == 0) {
+            return "0초";
+        }
         return builder.toString();
     }
     
@@ -278,11 +281,11 @@ public class HuruTMain {
 
         // 질문 리스트 출력
         System.out.println("\n**************************************************\n");
-        System.out.println("       질문 제목        |          질문 내용        |    작성자   | 질문 작성일자"); // [리팩토링] 강의 이름이 들어가야 할 것 같음
+        System.out.printf("%20s \t| %20s \t | %20s \t | %20s\n","질문제목", "질문내용", "작성학생명", "작성일자"); // [리팩토링] 강의 이름이 들어가야 할 것 같음
         for(Question_jy question: questionsList){
             // 질문의 작성자 조회
             String writer = questionServiceJy.getWriter(question.getQuestionIdx());
-            System.out.printf("%-20s %-20s %-10s %-20s\n", question.getTitle(), question.getContents(), writer, question.getQuestionDateString());
+            System.out.printf("    %20s \t|     %20s \t | %20s \t | %20s\n", question.getTitle(), question.getContents(), writer, question.getQuestionDateString());
         }
 
         System.out.println("\n**************************************************\n");
@@ -423,7 +426,7 @@ public class HuruTMain {
 
         // DB에 존재하면 로그인 성공
         if (studentLogin == 1) {
-            System.out.println("로그인 성공");
+            System.out.println("로그인 성공!\n");
 
             // 로그인 한 학생 정보를 loginStudentValue에 저장
             StudentDTO_ys loginStudentValue = loginService_ys.getLoginStudent(studentEmail);
@@ -431,31 +434,35 @@ public class HuruTMain {
             loginStudentIdx = loginStudentValue.getStudentIdx();
             loginStudentNickName = loginStudentValue.getStudentNickname();
 
-            // 학생 메인메뉴 나의교실로 이동
-            System.out.println("****************************************");
-            System.out.printf("'%s' 학생 반갑습니다!\n", loginStudentNickName);
-            System.out.println("****************************************");
-            while (true) {
-                System.out.println();
-                System.out.println("이용할 메뉴를 선택해 주세요.");
-                System.out.printf("1.나의교실 | 2.수업찾기 | 3.로그아웃 >> ");
-                emptyBuffer(br);
-                int input = Integer.parseInt(br.readLine().trim());
-                switch (input) {
-                    case 1:
-                        studentMainMenu_MyClass_jh();
-                        break;
-                    case 2:
-                        // 신수진거
-                        findClasses(loginStudentIdx);
-                        break;
-                    case 3:
-                        System.out.println("로그아웃 되었습니다.");
-                        return;
-                    default:
-                        System.out.println("잘못 입력하셨습니다.");
+
+            outerWhile: while (true) {
+                // 학생 메인메뉴 나의교실로 이동
+                System.out.println("\n****************************************");
+                System.out.printf("          '%s' 학생 반갑습니다!\n", loginStudentNickName);
+                System.out.println("****************************************");
+                while (true) {
+                    System.out.println();
+                    System.out.println("이용할 메뉴를 선택해 주세요.");
+                    System.out.printf("1.나의교실 | 2.수업찾기 | 3.로그아웃 >> ");
+                    emptyBuffer(br);
+                    int input = Integer.parseInt(br.readLine().trim());
+                    switch (input) {
+                        case 1:
+                            studentMainMenu_MyClass_jh();
+                            continue outerWhile;
+                        case 2:
+                            // 신수진거
+                            findClasses(loginStudentIdx);
+                            continue outerWhile;
+                        case 3:
+                            System.out.println("로그아웃 되었습니다.");
+                            return;
+                        default:
+                            System.out.println("잘못 입력하셨습니다.");
+                    }
                 }
             }
+
             // DB에 존재하지 않으면 로그인 실패
         } else {
             System.out.println("로그인 실패");
@@ -477,7 +484,7 @@ public class HuruTMain {
 
         // DB에 존재하면 로그인 성공
         if (teacherLogin == 1) {
-            System.out.println("로그인 성공");
+            System.out.println("로그인 성공!\n");
 
             // 로그인 한 선생님 정보를 loginStudentValue에 저장
             TeacherDTO_ys loginTeacherValue = loginService_ys.getLoginTeacher(teacherEmail);
@@ -495,9 +502,9 @@ public class HuruTMain {
 
             // 선생님 로그인 후 welcome 화면
             // 1. 수업 관리 2. 학습 관리 3. 마이페이지 4. 로그아웃
-            System.out.println("**************************************************\n");
-            System.out.println(teacherJy.getTeacherName()+" 선생님 반갑습니다.\n");
-            System.out.println("**************************************************\n");
+            System.out.println("**************************************************");
+            System.out.println("     " + teacherJy.getTeacherName()+" 선생님 반갑습니다.");
+            System.out.println("**************************************************");
 
             // 수업 관련 서비스 객체
             classServiceJy = new ClassService_jy();
@@ -510,12 +517,12 @@ public class HuruTMain {
 
             while(logIn) {  // 로그아웃 되기 전까지 반복
                 // inputByTeacherInWelcome
-                System.out.println("**************************************************\n");
+                //System.out.println("**************************************************");
                 System.out.println("이용할 메뉴를 선택해 주세요.");
-                System.out.println("\n1. 수업 관리 2. 학습 관리 3. 로그아웃");
+                System.out.println("1. 수업 관리 2. 학습 관리 3. 로그아웃");
                 System.out.print("메뉴 : ");
                 int inputByTeacherInWelcome = Integer.parseInt(br.readLine());
-                System.out.println("**************************************************\n");
+                System.out.println("**************************************************");
 
                 switch (inputByTeacherInWelcome) {
                     // 1. 수업 관리
@@ -755,7 +762,7 @@ public class HuruTMain {
             emptyBuffer(br);
             //Scanner scanner = new Scanner(System.in);
             System.out.println("\n****************************************");
-            System.out.println("이어서 수강할 '수업번호'를 입력해주세요.\n이전 단계로 돌아가려면 단어 'exit'을 입력해주세요.");
+            System.out.println("이어서 수강할 '수업번호'를 입력해주세요. <이전 단계로 돌아가려면 단어 'exit'을 입력해주세요.>");
             System.out.printf("수업번호? : ");
             while (true) {
                 String userInputString = br.readLine().trim();
@@ -779,7 +786,7 @@ public class HuruTMain {
                     System.out.println("****************************************");
                     studentMainMenu_MyClassRoom_TakeClass_jh(userInputInteger,
                             classTakingMap.get(userInputInteger));
-                    continue outerWhile;
+                    return;
                 }
             }
         }
@@ -861,6 +868,7 @@ public class HuruTMain {
                     case 3:
                         QuestionService_he questionService_he = new QuestionService_he(loginStudentIdx, classIdx);
                         questionService_he.questionMain();
+                        continue outerWhile;
                     case 4:
                         return;
                 }
@@ -921,15 +929,15 @@ public class HuruTMain {
                 playerController.start();
                 try {
                     player.startPlay();
-                    System.out.println("+---------------------------+");
-                    System.out.println("|    학습 진행율 100% 완료     |");
+                    System.out.println("+---------------------------------------+");
+                    System.out.println("|        학습 진행율 100% 완료        |");
                 } catch (Exception e) {
-                    System.out.println("+---------------------------+");
-                    System.out.println("|   학습이 일시 중지되었습니다   |");
+                    System.out.println("+---------------------------------------+");
+                    System.out.println("|        학습이 일시 중지되었습니다         |");
                 } finally {
                     playerController.interrupt();
-                    System.out.println("|    총 학습 시간: " + player.getStudentPlayTime() + "초     |");
-                    System.out.println("+---------------------------+");
+                    System.out.printf("|     총 학습 시간: %15s      |\n", convertTime(player.getStudentPlayTime()));
+                    System.out.println("+---------------------------------------+");
                     System.out.println("다음 메뉴 중 하나를 선택해주세요.");
 
                     innerWhile: while (true) {

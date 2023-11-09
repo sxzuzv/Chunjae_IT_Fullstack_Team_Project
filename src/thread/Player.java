@@ -1,5 +1,7 @@
 package thread;
 
+import main.HuruTMain;
+
 import java.util.concurrent.Callable;
 import java.util.concurrent.FutureTask;
 
@@ -37,7 +39,8 @@ public class Player {
         @Override
         public Integer call() throws Exception {
             while (studentPlayTime <= totalLessonTime) {
-                System.out.printf("[학습번호 %d번 시청 중입니다... 진행상황: %d초 / %d초]\n", lessonIdx, studentPlayTime, totalLessonTime);
+                System.out.printf("[학습번호 %d번 시청 중입니다... 진행상황: %s / %s]\n", lessonIdx,
+                        HuruTMain.convertTime(studentPlayTime), HuruTMain.convertTime(totalLessonTime));
                 Thread.sleep(1500); // 1.5초동안 스레드 sleep...
                 goFront();
             }
