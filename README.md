@@ -274,7 +274,13 @@ insert into reviews(class_id, student_id, contents, rating) values(7, 1, "그저
 
 <br><br>
 
-## Description
+## 🍑 How to Run in IntelliJ
+1. File > Project Structure > Project Settings > Modules > Dependencies > + > 1. Add Jars에 [lombok.jar](lib), [mariadb-java-client-3.2.0.jav](lib), [mybatis-3.5.13.jar](lib) 파일을 추가한다.
+2. HuruTMain 실행
+
+<br><br>
+
+## 🍇 Description
 - ### 로그인/회원가능
   - 로그인 : DB에 등록된 회원정보가 일치하면 로그인된다. <br>
 ![teampj1_Login](https://github.com/Kang-YunSik/jsp_study/assets/145963623/674d41d1-fbd0-4963-b653-68e04544d880)
@@ -318,7 +324,3 @@ insert into reviews(class_id, student_id, contents, rating) values(7, 1, "그저
 
   - 질문에 답변하기 : 수업을 등록/수정/삭제 한다. <br>
 [질문에 답변달기 영상](http://#) <br>
-
-## 🍑 How to Run in IntelliJ
-1. File > Project Structure > Project Settings > Modules > Dependencies > + > 1. Add Jars에 [lombok.jar](lib), [mariadb-java-client-3.2.0.jav](lib), [mybatis-3.5.13.jar](lib) 파일을 추가한다.
-2. HuruTMain 실행
