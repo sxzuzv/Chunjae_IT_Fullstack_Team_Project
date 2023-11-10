@@ -41,7 +41,7 @@
 <br><br>
 
 ## 🍑 How to Run in IntelliJ
-1. File > Project Structure > Project Settings > Modules > Dependencies > + > 1. Add Jars에 [lombok.jar](lib), [mariadb-java-client-3.2.0.jav](lib), [mybatis-3.5.13.jar](lib) 파일을 추가한다.
+1. File > Project Structure > Project Settings > Modules > Dependencies > + > 1. Add Jars에 [lombok.jar](lib), [mariadb-java-client-3.2.0.jar](lib), [mybatis-3.5.13.jar](lib) 파일을 추가한다.
 2. HuruTMain 실행
 
 <br><br>
