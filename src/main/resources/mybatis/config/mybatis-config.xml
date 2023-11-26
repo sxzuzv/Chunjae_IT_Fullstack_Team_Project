@@ -18,7 +18,6 @@
         </environment>
     </environments>
     <mappers>
-        <mapper resource="mybatis/mapper/MVCBoardMapper.xml" />
         <mapper resource="mybatis/mapper/UserMapper.xml" />
         <mapper resource="mybatis/mapper/BoardMapper.xml" />
         <mapper resource="mybatis/mapper/CommentMapper.xml" />
