@@ -7,7 +7,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-
+//상품 DTO
 public class ProductDTO {
     private int prdId;
 
