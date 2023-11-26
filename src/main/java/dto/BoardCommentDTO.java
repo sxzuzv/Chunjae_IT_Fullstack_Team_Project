@@ -13,7 +13,6 @@ public class BoardCommentDTO {
     private int comId;
     private int parentId;
     private int comDepth;
-    private String comTitle;
     private String comContent;
     private String userId;
     private LocalDate regDate;

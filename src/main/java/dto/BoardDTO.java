@@ -10,7 +10,7 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @ToString
-public class BoardDto {
+public class BoardDTO {
     private int brdId;
 
     private String userId;

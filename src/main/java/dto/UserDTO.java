@@ -11,11 +11,15 @@ import java.time.LocalDate;
 @Setter
 @ToString
 public class UserDTO {
+    private int userIdx;
+
     private String userId;
 
     private String userPwd;
 
     private String userName;
+
+    private String user_nick;
 
     private String userEmail;
 
