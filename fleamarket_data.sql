@@ -84,14 +84,14 @@ INSERT INTO product(brd_id, price, deal_address, prd_type, buyer_id) VALUES(43, 
 INSERT INTO product(brd_id, price, deal_address, prd_type, buyer_id) VALUES(44, '10000', '경기 수원시', '일상용품', 'choi_ny');
 INSERT INTO product(brd_id, price, deal_address, prd_type, buyer_id) VALUES(45, '5000', '서울 강서구', '교구', 'choi_jy');
 INSERT INTO product(brd_id, price, deal_address, prd_type, buyer_id) VALUES(46, '30000', '서울 금천구', '교구', 'choi_yl');
-INSERT INTO product(brd_id, price, deal_address, prd_type, buyer_id) VALUES(47, '15000', '일상용품', 'choi_ma');
-INSERT INTO product(brd_id, price, deal_address, prd_type, buyer_id) VALUES(48, '25000', '교구', 'choi_gd');
-INSERT INTO product(brd_id, price, deal_address, prd_type, buyer_id) VALUES(49, '20000', '교구', 'choi_sz');
-INSERT INTO product(brd_id, price, deal_address, prd_type, buyer_id) VALUES(50, '3000', '일상용품', 'choi_jh');
-INSERT INTO product(brd_id, price, deal_address, prd_type, buyer_id) VALUES(51, '23000', '교구', 'choi_yj');
-INSERT INTO product(brd_id, price, deal_address, prd_type, buyer_id) VALUES(52, '20000', '교재', 'choi_gr');
+INSERT INTO product(brd_id, price, deal_address, prd_type, buyer_id) VALUES(47, '15000', '서울 강남구', '일상용품', 'choi_ma');
+INSERT INTO product(brd_id, price, deal_address, prd_type, buyer_id) VALUES(48, '25000', '서울 강북구', '교구', 'choi_gd');
+INSERT INTO product(brd_id, price, deal_address, prd_type, buyer_id) VALUES(49, '20000', '경기 화성시', '교구', 'choi_sz');
+INSERT INTO product(brd_id, price, deal_address, prd_type, buyer_id) VALUES(50, '3000', '경기 수원시', '일상용품', 'choi_jh');
+INSERT INTO product(brd_id, price, deal_address, prd_type, buyer_id) VALUES(51, '23000', '경기 성남시', '교구', 'choi_yj');
+INSERT INTO product(brd_id, price, deal_address, prd_type, buyer_id) VALUES(52, '20000', '서울 금천구', '교재', 'choi_gr');
 
--- board_comment 더미 데이터 (parent_id는 임의로 작성)
+-- board_comment 더미 데이터 (parent_id 임의 작성)
 INSERT INTO board_comment(parent_id, com_content, user_id) VALUES(10, '행복하세요 ^-^', 'choi_gr');
 INSERT INTO board_comment(parent_id, com_content, user_id) VALUES(11, '행복하세요 ^-^', 'choi_yj');
 INSERT INTO board_comment(parent_id, com_content, user_id) VALUES(12, '행복하세요 ^-^', 'choi_jh');

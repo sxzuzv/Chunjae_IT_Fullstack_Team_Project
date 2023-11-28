@@ -5,7 +5,7 @@
 </head>
 <body>
 <%
-    response.sendRedirect(request.getContextPath() + "/View/Main.jsp");
+    response.sendRedirect(request.getContextPath() + "/view/main/main.jsp");
 %>
 </body>
 </html>
