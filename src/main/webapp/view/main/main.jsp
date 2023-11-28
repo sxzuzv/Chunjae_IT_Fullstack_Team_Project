@@ -25,35 +25,62 @@
     <link href="../../css/headers.css" rel="stylesheet">
     <link href="../../css/carousel.css" rel="stylesheet">
     <link href="../../css/main.css" rel="stylesheet">
+    <link href="../../css/nav.css" rel="stylesheet">
+
 </head>
 <body>
 <header>
-    <nav class="py-2 bg-body-tertiary border-bottom fixed-top">
-        <div class="container d-flex flex-wrap">
-            <ul class="nav me-auto">
-                <div class="col-md-3 mb-2 mb-md-0">
-                    <a class="navbar-brand" href="/" class="d-inline-flex link-body-emphasis text-decoration-none">
-                        <svg class="bi" width="40" height="32" role="img" aria-label="Bootstrap" style="background-color: black;"><use xlink:href="#bootstrap"></use></svg>
-                        쌤마켓
-                    </a>
-                </div>
-            </ul>
-            <ul class="nav">
-                <li class="nav-item"><a href="#" class="nav-link link-body-emphasis px-2">Login</a></li>
-                <li class="nav-item"><a href="#" class="nav-link link-body-emphasis px-2">Sign up</a></li>
-            </ul>
-        </div>
-    </nav>
 
 
-    <nav class="d-flex justify-content-center py-3">
-        <ul class="nav nav-pills">
-            <li class="nav-item"><a href="#" class="nav-link">중고 거래</a></li>
-            <li class="nav-item"><a href="#" class="nav-link">선생님 요모조모</a></li>
-            <li class="nav-item"><a href="#" class="nav-link">내 상점</a></li>
-            <li class="nav-item"><a href="#" class="nav-link">고객지원</a></li>
-        </ul>
-    </nav>
+    <jsp:include page="../common/top.jsp"></jsp:include>
+    <div>
+        <nav class="d-flex justify-content-center py-3">
+            <ul class="nav nav-pills menu">
+                <li class="nav-item">
+                    <a href="#" class="nav-link">중고 거래</a>
+                    <ul class="submenu" id = "submenu01">
+                        <li><a href="#">submenu01</a></li>
+                        <li><a href="#">submenu02</a></li>
+                        <li><a href="#">submenu03</a></li>
+                        <li><a href="#">submenu04</a></li>
+                        <li><a href="#">submenu05</a></li>
+                        <li><a href="#">submenu06</a></li>
+                        <li><a href="#">submenu06</a></li>
+                        <li><a href="#">submenu06</a></li>
+                        <li><a href="#">submenu06</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">선생님 요모조모</a>
+                    <ul class="submenu" id = "submenu02">
+                        <li><a href="#">submenu01</a></li>
+                        <li><a href="#">submenu02</a></li>
+                        <li><a href="#">submenu03</a></li>
+                        <li><a href="#">submenu04</a></li>
+                        <li><a href="#">submenu05</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">내 상점</a>
+                    <ul class="submenu" id = "submenu03">
+                        <li><a href="#">submenu01</a></li>
+                        <li><a href="#">submenu02</a></li>
+                        <li><a href="#">submenu03</a></li>
+                        <li><a href="#">submenu04</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">고객지원</a>
+                    <ul class="submenu" id = "submenu04">
+                        <li><a href="#">submenu01</a></li>
+                        <li><a href="#">submenu02</a></li>
+                        <li><a href="#">submenu03</a></li>
+                        <li><a href="#">submenu04</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </div>
 
 </header>
 
