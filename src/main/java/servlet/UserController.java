@@ -113,10 +113,10 @@ public class UserController extends HttpServlet {
 			String userPW = request.getParameter("userPW");
 			
 			//password 암호화
-			String hashedPassword = sha256Hash(userPW);
+			//String hashedPassword = sha256Hash(userPW);
 			
 			// 로그인 처리
-			boolean isAuthenticated = userDao.authenticateUser(userID, hashedPassword);
+			boolean isAuthenticated = userDao.authenticateUser(userID, userPW);
 
 			if (isAuthenticated) {
 				// 로그인 성공

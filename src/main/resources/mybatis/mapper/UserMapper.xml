@@ -14,7 +14,6 @@
 
     <!--최영주-->
 
-
     <select id="authenticateUser" parameterType="map">
         select *
         from user

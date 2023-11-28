@@ -19,12 +19,12 @@
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/carousel/">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="../css/headers.css" rel="stylesheet">
-    <link href="../css/carousel.css" rel="stylesheet">
-    <link href="../css/main.css" rel="stylesheet">
+    <link href="../../css/headers.css" rel="stylesheet">
+    <link href="../../css/carousel.css" rel="stylesheet">
+    <link href="../../css/main.css" rel="stylesheet">
 </head>
 <body>
 <header>
@@ -249,7 +249,7 @@
                 <p>&copy; 2017–2023 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
             </footer>
 
-            <script src="../js/bootstrap.bundle.min.js"></script>
+            <script src="../../js/bootstrap.bundle.min.js"></script>
         </div>
     </div>
 </body>

@@ -24,7 +24,7 @@ public class UserDAO {
     public boolean authenticateUser(String userId, String userPwd) {
 
       Map<String, String> map = new HashMap<>();
-      map.put("user_id", Encrypt.getEncrypt(userId));
+      map.put("user_id", userId);
       map.put("user_pwd", userPwd);
       SqlSession sqlSession = MyBatisSessionFactory.getSqlSession();
       UserMapper mapper = sqlSession.getMapper(UserMapper.class);
