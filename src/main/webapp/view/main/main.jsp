@@ -28,32 +28,20 @@
 </head>
 <body>
 <header>
-    <nav class="py-2 bg-body-tertiary border-bottom fixed-top">
-        <div class="container d-flex flex-wrap">
-            <ul class="nav me-auto">
-                <div class="col-md-3 mb-2 mb-md-0">
-                    <a class="navbar-brand" href="/" class="d-inline-flex link-body-emphasis text-decoration-none">
-                        <svg class="bi" width="40" height="32" role="img" aria-label="Bootstrap" style="background-color: black;"><use xlink:href="#bootstrap"></use></svg>
-                        쌤마켓
-                    </a>
-                </div>
-            </ul>
-            <ul class="nav">
-                <li class="nav-item"><a href="#" class="nav-link link-body-emphasis px-2">Login</a></li>
-                <li class="nav-item"><a href="#" class="nav-link link-body-emphasis px-2">Sign up</a></li>
-            </ul>
-        </div>
-    </nav>
 
 
-    <nav class="d-flex justify-content-center py-3">
-        <ul class="nav nav-pills">
-            <li class="nav-item"><a href="#" class="nav-link">중고 거래</a></li>
-            <li class="nav-item"><a href="#" class="nav-link">선생님 요모조모</a></li>
-            <li class="nav-item"><a href="#" class="nav-link">내 상점</a></li>
-            <li class="nav-item"><a href="#" class="nav-link">고객지원</a></li>
-        </ul>
-    </nav>
+    <jsp:include page="../common/top.jsp"></jsp:include>
+    <div>
+        <nav class="d-flex justify-content-center py-3">
+            <ul class="nav nav-pills ">
+                <li class="nav-item"><a href="#" class="nav-link">중고 거래</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">선생님 요모조모</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">내 상점</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">고객지원</a></li>
+            </ul>
+        </nav>
+    </div>
+
 
 </header>
 
