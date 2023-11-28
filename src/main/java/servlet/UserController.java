@@ -47,32 +47,26 @@ public class UserController extends HttpServlet {
 
 		}else if("/main.do".equals(action)) {
 			nextPage = "/view/member/login.jsp";
-//		} else if (action.equals("/save.do")) {
-//			// 회원 가입
-//			String userID = request.getParameter("userID");
-//			String userPW = request.getParameter("userPW");
-//			String name = request.getParameter("name");
-//			String tel = request.getParameter("tel");
-//			String email = request.getParameter("email");
-//			String addr = request.getParameter("addr");
-//			String addr2 = request.getParameter("addr2");
-//
-//			//password 암호화
-//			String hashedPassword = sha256Hash(userPW);
-//
-//			//정보 세팅
-//			UserDTO user = new UserDTO();
-//			user.setUserId(userID);
-//			user.setUserPwd(hashedPassword);
-//			user.setUserEmail(email);
-//			user.setUserName(name);
-//			user.setUserAddr(addr);
-//			user.setUserDaddr(addr2);
-//			user.setUserCp(tel);
-//			//저장
-//			userDao.create(user);
-//
-//			nextPage = "/member/main.do";
+		}else if (action.equals("/save.do")) {
+            // 정보 세팅
+            UserDTO userDTO = new UserDTO();
+            userDTO.setUserId(request.getParameter("userID"));
+            userDTO.setUserPwd(request.getParameter("userPW"));
+            userDTO.setUserName(request.getParameter("name"));
+            userDTO.setUser_nick(request.getParameter("nickname"));
+            userDTO.setUserCp(request.getParameter("tel"));
+            userDTO.setUserEmail(request.getParameter("email"));
+            userDTO.setUserAddr(request.getParameter("addr"));
+            userDTO.setUserDaddr(request.getParameter("addr2"));
+            userDTO.setUserSchool(request.getParameter("userschool"));
+
+
+
+            // 저장
+            userDao.createUser(userDTO);
+
+            nextPage= "/member/main.do";
+        }
 //		} else if (action.equals("/update.do")) {
 //			// 회원정보수정
 //			String userPW = request.getParameter("userPW");

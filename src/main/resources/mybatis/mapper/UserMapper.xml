@@ -22,7 +22,11 @@
 
 
     <!--최재혁-->
-
+    <insert id="createUser" parameterType="dto.UserDTO">
+        INSERT
+        INTO user(user_id, user_nick, user_pwd, user_name, user_cp, user_email, user_addr, user_daddr, user_school)
+        VALUES(#{userId}, #{user_nick}, #{userPwd}, #{userName}, #{userCp}, #{userEmail}, #{userAddr}, #{userDaddr}, #{userSchool})
+    </insert>
 
 
 
