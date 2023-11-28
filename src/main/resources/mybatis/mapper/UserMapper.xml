@@ -15,10 +15,10 @@
     <!--최영주-->
 
 
-    <select id="selectView" parameterType="String" resultType="dto.UserDTO">
+    <select id="authenticateUser" parameterType="map">
         select *
         from user
-        where user_id = #{user_id}
+        where user_id = #{user_id} AND user_pwd = #{user_pwd}
     </select>
 
 

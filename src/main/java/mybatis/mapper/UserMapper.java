@@ -16,7 +16,7 @@ public interface UserMapper {
 
 
     //최영주
-
+    int authenticateUser(Map<String, String> map);
 
     //최재혁
 }
