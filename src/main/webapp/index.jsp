@@ -5,7 +5,7 @@
 </head>
 <body>
 <%
-    response.sendRedirect(request.getContextPath() + "/mvcboard/list.do");
+    response.sendRedirect(request.getContextPath() + "/View/Main.jsp");
 %>
 </body>
 </html>
