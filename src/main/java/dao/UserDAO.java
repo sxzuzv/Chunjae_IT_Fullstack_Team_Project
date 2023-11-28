@@ -1,6 +1,7 @@
 package dao;
 
 
+import dto.UserDTO;
 import mybatis.factory.MyBatisSessionFactory;
 import mybatis.mapper.UserMapper;
 import org.apache.ibatis.session.SqlSession;
@@ -37,4 +38,13 @@ public class UserDAO {
 
     }
     //최재혁
+    public boolean createUser(UserDTO userDTO) {
+
+        SqlSession sqlSession = MyBatisSessionFactory.getSqlSession();
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+        boolean result = mapper.createUser(userDTO);
+        sqlSession.commit();
+
+        return result;
+    }
 }
