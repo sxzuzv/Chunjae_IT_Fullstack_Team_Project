@@ -66,7 +66,7 @@ public class UserController extends HttpServlet {
             userDao.createUser(userDTO);
 
             nextPage= "/member/main.do";
-        }
+
 //		} else if (action.equals("/update.do")) {
 //			// 회원정보수정
 //			String userPW = request.getParameter("userPW");
