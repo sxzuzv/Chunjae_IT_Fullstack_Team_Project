@@ -72,4 +72,51 @@
 	</c:when>
 </c:choose>
 
+<div>
+	<nav class="d-flex justify-content-center py-3">
+		<ul class="nav nav-pills menu">
+			<li class="nav-item">
+				<a href="#" class="nav-link">중고 거래</a>
+				<ul class="submenu" id = "submenu01">
+					<li><a href="#">submenu01</a></li>
+					<li><a href="#">submenu02</a></li>
+					<li><a href="#">submenu03</a></li>
+					<li><a href="#">submenu04</a></li>
+					<li><a href="#">submenu05</a></li>
+					<li><a href="#">submenu06</a></li>
+					<li><a href="#">submenu06</a></li>
+					<li><a href="#">submenu06</a></li>
+					<li><a href="#">submenu06</a></li>
+				</ul>
+			</li>
+			<li class="nav-item">
+				<a href="#" class="nav-link">선생님 요모조모</a>
+				<ul class="submenu" id = "submenu02">
+					<li><a href="#">submenu01</a></li>
+					<li><a href="#">submenu02</a></li>
+					<li><a href="#">submenu03</a></li>
+					<li><a href="#">submenu04</a></li>
+					<li><a href="#">submenu05</a></li>
+				</ul>
+			</li>
+			<li class="nav-item">
+				<a href="#" class="nav-link">내 상점</a>
+				<ul class="submenu" id = "submenu03">
+					<li><a href="#">submenu01</a></li>
+					<li><a href="#">submenu02</a></li>
+					<li><a href="#">submenu03</a></li>
+					<li><a href="#">submenu04</a></li>
+				</ul>
+			</li>
+			<li class="nav-item">
+				<a href="#" class="nav-link">고객지원</a>
+				<ul class="submenu" id = "submenu04">
+					<li><a href="#">submenu01</a></li>
+					<li><a href="#">submenu02</a></li>
+					<li><a href="#">submenu03</a></li>
+					<li><a href="#">submenu04</a></li>
+				</ul>
+			</li>
+		</ul>
+	</nav>
 </div>
