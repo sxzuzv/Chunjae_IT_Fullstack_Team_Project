@@ -111,16 +111,27 @@ public class UserController extends HttpServlet {
 			
 			// 로그인 처리
 			boolean isAuthenticated = userDao.authenticateUser(userID, userPW);
-
+			String isStatus = userDao.authenticateStatus(userID);
 			if (isAuthenticated) {
-				// 로그인 성공
-				request.getSession().setAttribute("userId", userID);
-				//로그인 성공시 접속날짜 업데이트. sql에서 SYSDATE() 또는 now() 함수를 써도됨
-				Date utilDate = new Date();
-				java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());				
-			//	userDao.joinDateUpdate(userID, sqlDate);
+				if(isStatus.equals("pass")){
+					// 로그인 성공
+					request.getSession().setAttribute("userId", userID);
+					//로그인 성공시 접속날짜 업데이트. sql에서 SYSDATE() 또는 now() 함수를 써도됨
+					Date utilDate = new Date();
+					java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
+					//	userDao.joinDateUpdate(userID, sqlDate);
 
-				nextPage = "/main/main.do";
+					nextPage = "/main/main.do";
+				}else{// 로그인 실패
+					PrintWriter out = response.getWriter();
+					out.print("<script>"
+							+ "  alert('아직 승인이 완료되지 않았습니다.');"   // 알림창
+							+ " location.href='" + request.getContextPath() + "/member/main.do';"  // 로그인 페이지로 이동
+							+ "</script>");
+
+					return;
+
+				}
 
 			} else {
 				// 로그인 실패

@@ -22,21 +22,7 @@ public class UserDAO {
 
 
     //최영주
-    public boolean authenticateUser(String userId, String userPwd) {
 
-      Map<String, String> map = new HashMap<>();
-      map.put("user_id", userId);
-      map.put("user_pwd", userPwd);
-      SqlSession sqlSession = MyBatisSessionFactory.getSqlSession();
-      UserMapper mapper = sqlSession.getMapper(UserMapper.class);
-      int result = mapper.authenticateUser(map);
-      if (result == 1) {
-        return true;
-      } else {
-        return false;
-      }
-
-    }
     //최재혁
     public boolean createUser(UserDTO userDTO) {
 
@@ -47,4 +33,30 @@ public class UserDAO {
 
         return result;
     }
+
+    public boolean authenticateUser(String userId, String userPwd) {
+
+        Map<String, String> map = new HashMap<>();
+        map.put("user_id", userId);
+        map.put("user_pwd", userPwd);
+        SqlSession sqlSession = MyBatisSessionFactory.getSqlSession();
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+        int result = mapper.authenticateUser(map);
+        if (result == 1) {
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+
+    public String authenticateStatus(String userId){
+        SqlSession sqlSession = MyBatisSessionFactory.getSqlSession();
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+        String result = mapper.authenticateStatus(userId);
+        return result;
+
+    }
+
+
 }
