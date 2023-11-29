@@ -16,9 +16,11 @@ public interface UserMapper {
 
 
     //최영주
-    int authenticateUser(Map<String, String> map);
+
 
     //최재혁
     boolean createUser(UserDTO userDTO);
+    int authenticateUser(Map<String, String> map);
 
+    String authenticateStatus(String userId);
 }
