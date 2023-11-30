@@ -2,7 +2,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
-<html><title>로그인</title>
+<html><title>아이디 찾기</title>
 </html>
 <head>
 <meta charset="utf-8">
@@ -27,7 +27,7 @@
 <div class="wrapper fadeInDown">
     <div id="formContent">
         <!-- Tabs Titles -->
-        <h2 class="active">로그인</h2>
+        <h2 class="active">아이디 찾기</h2>
         <!-- Login Form -->
         <div>
         <form action="${contextPath}/member/idFind.do">
@@ -37,10 +37,10 @@
         </form>
         </div>
         <div>
-        <form action="${contextPath}/member/passChange.do">
-            <input type="text" id="userId" class="fadeIn second" name="userName" placeholder="아이디">
-            <input type="text" id="userEmail" class="fadeIn second" name="userName" placeholder="이메일">
-            <input type="password" id="userPw" class="fadeIn third" name="userCp" placeholder="전화번호" autocomplete="off">
+        <form action="${contextPath}/member/passFind.do">
+            <input type="text" id="userId" class="fadeIn second" name="userId" placeholder="아이디">
+            <input type="text" id="userEmail" class="fadeIn second" name="userEmail" placeholder="이메일">
+            <input type="text" id="userPw" class="fadeIn third" name="userCp" placeholder="전화번호" autocomplete="off">
             <input type="submit" class="fadeIn fourth" value="비밀번호변경">
         </form>
         </div>

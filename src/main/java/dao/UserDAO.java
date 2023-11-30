@@ -62,6 +62,35 @@ public class UserDAO {
 
     }
 
+    public boolean authenticateFindPass(String userId, String userEmail, String userCp) {
+
+        Map<String, String> map = new HashMap<>();
+        map.put("user_id", userId);
+        map.put("user_email", userEmail);
+        map.put("user_cp", userCp);
+        SqlSession sqlSession = MyBatisSessionFactory.getSqlSession();
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+        int result = mapper.authenticateFindPass(map);
+        if(result == 1 ){
+            return true;
+        }else{
+            return false;
+        }
+
+    }
+
+    public int updatePass(UserDTO userDTO) {
+        SqlSession sqlSession = MyBatisSessionFactory.getSqlSession();
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+        int result = mapper.updatePass(userDTO);
+        if (result == 1) {
+            sqlSession.commit();
+        } else {
+            System.out.println("업데이트중 오류 발생");
+        }
+        return result;
+    }
+
     public boolean idCheck(String userId) {
         SqlSession sqlSession = MyBatisSessionFactory.getSqlSession();
         UserMapper mapper = sqlSession.getMapper(UserMapper.class);
@@ -89,8 +118,6 @@ public class UserDAO {
         return result;
 
     }
-
-
 
 
 }

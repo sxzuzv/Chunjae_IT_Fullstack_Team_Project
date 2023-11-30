@@ -35,6 +35,19 @@
         where user_name = #{user_name} AND user_email = #{user_email}
     </select>
 
+    <select id="authenticateFindPass" parameterType="map">
+        select count (*)
+        from user
+        where user_id = #{user_id} AND user_email = #{user_email} AND user_cp = #{user_cp}
+    </select>
+
+    <update id="updatePass" parameterType="dto.UserDTO">
+        update user
+        set user_pwd = #{userPwd}
+        where user_id = #{userId}
+    </update>
+
+
     <select id="authenticateStatus" parameterType="String">
         select user_status
         from user

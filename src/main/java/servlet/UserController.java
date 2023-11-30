@@ -63,7 +63,7 @@ public class UserController extends HttpServlet {
 				//아이디가 일치하지 않을때
 				PrintWriter out = response.getWriter();
 				out.print("<script>"
-						+ "  alert('일치하는 아이디가 없습니다.');"   // 알림창
+						+ "  alert('일치하는 정보가 없습니다.');"   // 알림창
 						+ " location.href='" + request.getContextPath() + "/view/member/find.jsp';"  // 로그인 페이지로 이동
 						+ "</script>");
 
@@ -73,13 +73,51 @@ public class UserController extends HttpServlet {
 				nextPage = "/view/member/findcomplete.jsp";
 			}
 
-		}else if ("/passChange.do".equals(action)) {
-			//비밀번호변경
-			nextPage = "/view/member/change.jsp";
+		}else if ("/passFind.do".equals(action)) {
+			//비밀번호변경으로 넘어가기
+			String userId = request.getParameter("userId");
+			String userEmail = request.getParameter("userEmail");
+			String userCp= request.getParameter("userCp");
+
+			boolean authenticateId = userDao.authenticateFindPass(userId, userEmail, userCp);
+			if(authenticateId){
+				request.getSession().setAttribute("userId", userId);
+				nextPage = "/view/member/passChange.jsp";
+
+			}else{
+				PrintWriter out = response.getWriter();
+				out.print("<script>"
+						+ "  alert('일치하는 정보가 없습니다.');"   // 알림창
+						+ " location.href='" + request.getContextPath() + "/view/member/find.jsp';"  // 로그인 페이지로 이동
+						+ "</script>");
 
 
 
-		} else if (action.equals("/save.do")) {
+			}
+		} else if ("/passChange.do".equals(action)) {
+			UserDTO userDTO = new UserDTO();
+			userDTO.setUserId((String)request.getSession().getAttribute("userId"));
+			userDTO.setUserPwd(request.getParameter("userPW"));
+			int result = userDao.updatePass(userDTO);
+
+			if (result == 1) {
+				request.getSession().removeAttribute("userId");
+				PrintWriter out = response.getWriter();
+				out.print("<script>"
+						+ "  alert('비밀번호가 변경 되었습니다..');"   // 알림창
+						+ " location.href='" + request.getContextPath() + "/view/member/login.jsp';"  // 로그인 페이지로 이동
+						+ "</script>");
+			} else {
+				PrintWriter out = response.getWriter();
+				out.print("<script>"
+						+ "  alert('비밀번호가 변경에 실패했습니다. 다시 진행해 주세요');"   // 알림창
+						+ " location.href='" + request.getContextPath() + "/view/member/find.jsp';"  // 로그인 페이지로 이동
+						+ "</script>");
+
+			}
+
+
+			} else if (action.equals("/save.do")) {//회원가입
 			// 정보 세팅
 			UserDTO userDTO = new UserDTO();
 			userDTO.setUserId(request.getParameter("userID"));
