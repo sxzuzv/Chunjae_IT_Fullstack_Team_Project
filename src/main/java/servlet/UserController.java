@@ -39,33 +39,64 @@ public class UserController extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=UTF-8");
 		HttpSession session;
-		
+
 		String action = request.getPathInfo();
 
 		if (action == null) {
 			nextPage = "/view/member/login.jsp";
 
-		}else if("/main.do".equals(action)) {
+		}else if(action.equals("/find.do")){
+			nextPage = "/view/member/find.jsp";
+
+		}
+		else if ("/main.do".equals(action)) {
 			nextPage = "/view/member/login.jsp";
-		}else if (action.equals("/save.do")) {
-            // 정보 세팅
-            UserDTO userDTO = new UserDTO();
-            userDTO.setUserId(request.getParameter("userID"));
-            userDTO.setUserPwd(request.getParameter("userPW"));
-            userDTO.setUserName(request.getParameter("name"));
-            userDTO.setUser_nick(request.getParameter("nickname"));
-            userDTO.setUserCp(request.getParameter("tel"));
-            userDTO.setUserEmail(request.getParameter("email"));
-            userDTO.setUserAddr(request.getParameter("addr"));
-            userDTO.setUserDaddr(request.getParameter("addr2"));
-            userDTO.setUserSchool(request.getParameter("userschool"));
+
+
+		} else if ("/idFind.do".equals(action)) {
+			//아이디찾기
+			String userName = request.getParameter("userName");
+			String userEmail = request.getParameter("userEmail");
+			String userId = userDao.authenticateFind(userName,userEmail);
+			request.setAttribute("userId", userId);
+			if(userId == null){
+				//아이디가 일치하지 않을때
+				PrintWriter out = response.getWriter();
+				out.print("<script>"
+						+ "  alert('일치하는 아이디가 없습니다.');"   // 알림창
+						+ " location.href='" + request.getContextPath() + "/view/member/find.jsp';"  // 로그인 페이지로 이동
+						+ "</script>");
+
+			}else {
+
+
+				nextPage = "/view/member/findcomplete.jsp";
+			}
+
+		}else if ("/passChange.do".equals(action)) {
+			//비밀번호변경
+			nextPage = "/view/member/change.jsp";
 
 
 
-            // 저장
-            userDao.createUser(userDTO);
+		} else if (action.equals("/save.do")) {
+			// 정보 세팅
+			UserDTO userDTO = new UserDTO();
+			userDTO.setUserId(request.getParameter("userID"));
+			userDTO.setUserPwd(request.getParameter("userPW"));
+			userDTO.setUserName(request.getParameter("name"));
+			userDTO.setUser_nick(request.getParameter("nickname"));
+			userDTO.setUserCp(request.getParameter("tel"));
+			userDTO.setUserEmail(request.getParameter("email"));
+			userDTO.setUserAddr(request.getParameter("addr"));
+			userDTO.setUserDaddr(request.getParameter("addr2"));
+			userDTO.setUserSchool(request.getParameter("userschool"));
 
-            nextPage= "/member/main.do";
+
+			// 저장
+			userDao.createUser(userDTO);
+
+			nextPage = "/member/main.do";
 
 //		} else if (action.equals("/update.do")) {
 //			// 회원정보수정
@@ -97,7 +128,7 @@ public class UserController extends HttpServlet {
 //			user.setUserCp(tel);
 //
 //			userDao.update(user);
-			
+
 
 //			nextPage = "/main/main.do";
 		} else if (action.equals("/join.do")) {
@@ -105,16 +136,17 @@ public class UserController extends HttpServlet {
 		} else if ("/login.do".equals(action)) {
 			String userID = request.getParameter("userID");
 			String userPW = request.getParameter("userPW");
-			
+
 			//password 암호화
 			//String hashedPassword = sha256Hash(userPW);
-			
+
 			// 로그인 처리
 			boolean isAuthenticated = userDao.authenticateUser(userID, userPW);
 			String isStatus = userDao.authenticateStatus(userID);
+			String isAdmin = userDao.authenticateAdmin(userID);
 			if (isAuthenticated) {
-				if(isStatus.equals("pass")){
-					// 로그인 성공
+				if (isStatus.equals("pass")&&isAdmin.equals("E")) {
+					// 로그인 성공 가입승인된사람
 					request.getSession().setAttribute("userId", userID);
 					//로그인 성공시 접속날짜 업데이트. sql에서 SYSDATE() 또는 now() 함수를 써도됨
 					Date utilDate = new Date();
@@ -122,7 +154,16 @@ public class UserController extends HttpServlet {
 					//	userDao.joinDateUpdate(userID, sqlDate);
 
 					nextPage = "/main/main.do";
-				}else{// 로그인 실패
+				} else if (isStatus.equals("pass")&&isAdmin.equals("A")) {
+					//로그인 성공 관리자
+					request.getSession().setAttribute("userId", userID);
+					PrintWriter out = response.getWriter();
+					out.print("<script>"
+							+ "  alert('관리자로 로그인 합니다.');"   // 알림창
+							+ " location.href='" + request.getContextPath() + "/admin/admin.do';"  // 로그인 페이지로 이동
+							+ "</script>");
+
+				} else {// 로그인 실패
 					PrintWriter out = response.getWriter();
 					out.print("<script>"
 							+ "  alert('아직 승인이 완료되지 않았습니다.');"   // 알림창
@@ -135,27 +176,27 @@ public class UserController extends HttpServlet {
 
 			} else {
 				// 로그인 실패
-				PrintWriter out = response.getWriter();				
-				out.print("<script>" 
-				+ "  alert('아이디 또는 비밀번호가 올바르지 않습니다.');"   // 알림창 
-				+ " location.href='" + request.getContextPath() + "/member/main.do';"  // 로그인 페이지로 이동
-				+ "</script>");
+				PrintWriter out = response.getWriter();
+				out.print("<script>"
+						+ "  alert('아이디 또는 비밀번호가 올바르지 않습니다.');"   // 알림창
+						+ " location.href='" + request.getContextPath() + "/member/main.do';"  // 로그인 페이지로 이동
+						+ "</script>");
 
 				return;
 			}
-//		} //회원가입시 중복 아이디 체크
-//		else if ("/checkId.do".equals(action)) {
-//			PrintWriter out = response.getWriter();
-//
-//			String userId = request.getParameter("userId");
-//
-//			boolean checkID = userDao.idCheck(userId);
-//			if (checkID)
-//				out.print("fail");
-//			else
-//				out.print("success");
-//
-//			return;
+		} //회원가입시 중복 아이디 체크
+		else if ("/checkId.do".equals(action)) {
+			PrintWriter out = response.getWriter();
+
+			String userId = request.getParameter("userID");
+
+			boolean checkID = userDao.idCheck(userId);
+			if (checkID)
+				out.print("fail");
+			else
+				out.print("success");
+
+			return;
 //		}else if (action.equals("/updatefrom.do")) {
 //
 //			session = request.getSession();
@@ -164,19 +205,19 @@ public class UserController extends HttpServlet {
 //			UserDTO user= userDao.selectById(userId);
 //			request.setAttribute("user", user);
 //			nextPage = "/view/member/update.jsp";
-		}
-		//로그아웃
-		else if (action.equals("/logout.do")) {
-		    session = request.getSession(false); // 세션 객체 생성하지 않고 기존 세션을 가져옴
-		    if (session != null) {
-		        session.removeAttribute("userId"); // 세션에서 userId 속성 제거
-		        session.invalidate(); // 세션 무효화
-		    }
-		    nextPage = "/member/main.do";
+
+			//로그아웃
+		}else if (action.equals("/logout.do")) {
+			session = request.getSession(false); // 세션 객체 생성하지 않고 기존 세션을 가져옴
+			if (session != null) {
+				session.removeAttribute("userId"); // 세션에서 userId 속성 제거
+				session.invalidate(); // 세션 무효화
+			}
+			nextPage = "/member/main.do";
 		}else {
 			nextPage = "/view/member/login.jsp";
 		}
-		
+
 		RequestDispatcher dis = request.getRequestDispatcher(nextPage);
 		dis.forward(request, response);
 	}
@@ -188,25 +229,25 @@ public class UserController extends HttpServlet {
 
 
 	public static String sha256Hash(String input) {
-	    try {
-	        MessageDigest digest = MessageDigest.getInstance("SHA-256");
-	        byte[] hash = digest.digest(input.getBytes(StandardCharsets.UTF_8));
-	
-	        // 해시 값을 16진수 문자열로 변환
-	        StringBuilder hexString = new StringBuilder();
-	        for (byte b : hash) {
-	            String hex = Integer.toHexString(0xff & b);
-	            if (hex.length() == 1) {
-	                hexString.append('0');
-	            }
-	            hexString.append(hex);
-	        }
-	
-	        return hexString.toString();
-	    } catch (NoSuchAlgorithmException e) {
-	        e.printStackTrace();
-	        return null;
-	    }
+		try {
+			MessageDigest digest = MessageDigest.getInstance("SHA-256");
+			byte[] hash = digest.digest(input.getBytes(StandardCharsets.UTF_8));
+
+			// 해시 값을 16진수 문자열로 변환
+			StringBuilder hexString = new StringBuilder();
+			for (byte b : hash) {
+				String hex = Integer.toHexString(0xff & b);
+				if (hex.length() == 1) {
+					hexString.append('0');
+				}
+				hexString.append(hex);
+			}
+
+			return hexString.toString();
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 }
 

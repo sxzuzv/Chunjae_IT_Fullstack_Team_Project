@@ -29,11 +29,30 @@
         where user_id = #{user_id} AND user_pwd = #{user_pwd}
     </select>
 
+    <select id="authenticateFind" parameterType="map">
+        select user_id
+        from user
+        where user_name = #{user_name} AND user_email = #{user_email}
+    </select>
+
     <select id="authenticateStatus" parameterType="String">
         select user_status
         from user
         where user_id = #{userId}
     </select>
+
+    <select id="idCheck" parameterType="String">
+        select count (*)
+        from user
+        where user_id = #{userId}
+    </select>
+
+    <select id="authenticateAdmin" parameterType="String">
+        select user_grade
+        from user
+        where user_id = #{userId}
+    </select>
+
 
 
 
