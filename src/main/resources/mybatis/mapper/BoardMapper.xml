@@ -13,7 +13,111 @@
 
 
     <!--최영주-->
+    <select id="selectCount" parameterType="map" resultType="int">
+        <![CDATA[
+        SELECT count(*)
+        FROM board b
+        LEFT JOIN product p
+        ON b.brd_id = p.brd_id
+        WHERE b.cate_main = 1 AND b.brd_id > 0
+        ]]>
+        <if test="cateSub != null and !cateSub.equals('')">
+            AND b.cate_sub = #{cateSub}
+        </if>
+        <if test="searchWord != null and !searchWord.equals('')">
+            AND
+            <choose>
+                <when test="searchField == 'title'">
+                    title LIKE CONCAT('%', #{searchWord}, '%')
+                </when>
+                <otherwise>
+                    content LIKE CONCAT('%', #{searchWord}, '%')
+                </otherwise>
+            </choose>
+        </if>
+        order by b.brd_id desc
+    </select>
 
+    <insert id="insertWrite" parameterType="dto.BoardDTO">
+        INSERT
+        INTO board(title, content, ofile, sfile, cate_main, cate_sub)
+        VALUES(#{title}, #{content}, #{ofile}, #{sfile}, 1, #{cateSub})
+    </insert>
+    <insert id="insertWritePdt" parameterType="dto.BoardDTO">
+        INSERT
+        INTO product(price, status, deal_address, prd_type, brd_id)
+        SELECT #{price}, '거래중', #{dealAddress}, #{prdType}, brd_id
+            FROM board
+            ORDER BY brd_id
+            DESC LIMIT 1;
+    </insert>
+
+    <select id="selectListPage" parameterType="map" resultType="dto.BoardDTO">
+        <![CDATA[
+        SELECT b.*, p.*
+        FROM board b
+        LEFT JOIN product p
+        ON b.brd_id = p.brd_id
+        WHERE b.cate_main = 1 AND b.brd_id > 0
+        ]]>
+        <if test="cateSub != null and !cateSub.equals('')">
+            AND b.cate_sub = #{cateSub}
+        </if>
+        <if test="searchWord != null and !searchWord.equals('')">
+            AND
+            <choose>
+                <when test="searchField == 'title'">
+                    title LIKE CONCAT('%', #{searchWord}, '%')
+                </when>
+                <otherwise>
+                    content LIKE CONCAT('%', #{searchWord}, '%')
+                </otherwise>
+            </choose>
+        </if>
+        order by b.brd_id desc
+        LIMIT #{start}, 10
+    </select>
+
+    <select id="selectView" parameterType="String" resultType="dto.BoardDTO">
+        SELECT *
+        FROM board
+        WHERE brd_id = ${brdId}
+        <!--Expected one result (or null) to be returned by selectOne(), but found: 41
+           if nothing match, return null
+        -->
+    </select>
+
+    <update id="updateVisitCount" parameterType="String">
+        update board
+        set view_cnt = view_cnt + 1
+        where brd_id = #{brdId}
+        <!--        이 실행 결과로 인해서 실제 update된 row의 개수를 return-->
+    </update>
+
+    <update id="downCountPlus" parameterType="String">
+        update mvcboard
+        set downcount = downcount + 1
+        where idx = #{idx}
+    </update>
+
+    <select id="confirmPassword" parameterType="map">
+        select COUNT(*)
+        from mvcboard
+        where pass = #{pass} and idx = #{idx}
+    </select>
+
+    <delete id="deletePost">
+        delete
+        from mvcboard
+        where idx = #{idx}
+    </delete>
+
+    <update id="updatePost" parameterType="dto.BoardDTO">
+        update mvcboard
+        set title = #{title}, name = #{name},
+        content = #{content}, ofile = #{ofile}, sfile = #{sfile}
+        where idx = #{idx} and pass = #{pass}
+    </update>
 
 
     <!--최재혁-->

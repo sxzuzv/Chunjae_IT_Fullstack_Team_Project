@@ -29,27 +29,24 @@
     <div class="container">
         <h1 style="font-family: Namum">${catTargetName}</h1>
         <div style="border-bottom: 1px solid #bdbdbd42; margin:5px 20px 20px 20px"></div>
-        <form id="frmSearch" method="post" name="search">
-            <table class="pull-right">
+        <form method="get">
+            <table border="1" width="90%">
                 <tr>
-                    <td>
-                        <select class="form-control" name="searchId">
+                    <td align="center">
+                        <select name="searchField">
                             <option value="title">제목</option>
-                            <option value="user_id">작성자</option>
+                            <option value="content">내용</option>
                         </select>
-                    </td>
-                    <td><input type="text" class="form-control" placeholder="검색어 입력" name="searchText" maxlength="100"><input type="hidden" value="${katTargetNo}" name="katNo"></td>
-                    <td><button type="button" id="search" class="btn btn-white btn-dark">검색</button></td>
-                    <td>
-                        <%-- <a href="${contextPath}/board/Form.do?katNo=${katTargetNo}" class="btn btn-success pull-right" data-toggle="modal" data-target="#myModal">모달 열기</a> --%>
-                        <a href="#" data-toggle="modal" data-target="#myModal"  class="btn back-blue2 addbtn pull-right">글쓰기</a>
+                        <input type="text" name="searchWord" />
+                        <input type="submit" value="검색하기" />
                     </td>
                 </tr>
             </table>
         </form>
         <div id="baordList">
-            <jsp:include page="../board/list.jsp"></jsp:include>
+            <a href="${pageContext.request.contextPath}/view/board/list.do">게시판 목록 바로가기</a>
         </div>
+    </div>
 </main>
 <!-- Marketing messaging and featurettes
 ================================================== -->

@@ -10,7 +10,7 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @ToString
-public class BoardDTO {
+public class BoardDTO extends ProductDTO {
     private int brdId;
 
     private String userId;
