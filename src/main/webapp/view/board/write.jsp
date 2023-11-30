@@ -52,7 +52,7 @@
         </td>
     </tr>
     <tr>
-        <td>판매지역</td>
+        <td>판매희망 지역</td>
         <td>
             <input type="text" name="dealAddress" style="width:90%;" />
         </td>

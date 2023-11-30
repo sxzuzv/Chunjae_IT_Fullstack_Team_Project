@@ -85,5 +85,32 @@ public class BoardDAO {
     }
     sqlSession.close();
   }
+
+  public int updatePost(BoardDTO dto) {
+    SqlSession sqlSession = MyBatisSessionFactory.getSqlSession();
+    BoardMapper mapper = sqlSession.getMapper(BoardMapper.class);
+    int result = mapper.updatePost(dto);
+    if (result == 1) {
+      sqlSession.commit();
+    } else {
+      System.out.println("board update 중 오류 발생...");
+    }
+    sqlSession.commit();
+    return result;
+  }
+
+  public int deletePost(String idx) {
+    SqlSession sqlSession = MyBatisSessionFactory.getSqlSession();
+    BoardMapper mapper = sqlSession.getMapper(BoardMapper.class);
+    int result = mapper.deletePost(idx);
+    if (result == 1) {
+      sqlSession.commit();
+    } else {
+      System.out.println("board 삭제 중 오류 발생...");
+    }
+    return result;
+  }
+
+
     //최재혁
 }

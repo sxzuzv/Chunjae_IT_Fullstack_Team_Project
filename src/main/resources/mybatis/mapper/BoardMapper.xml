@@ -79,9 +79,11 @@
     </select>
 
     <select id="selectView" parameterType="String" resultType="dto.BoardDTO">
-        SELECT *
-        FROM board
-        WHERE brd_id = ${brdId}
+        SELECT b.*, p.*
+        FROM board b
+        LEFT JOIN product p
+        ON b.brd_id = p.brd_id
+        WHERE b.brd_id = ${brdId}
         <!--Expected one result (or null) to be returned by selectOne(), but found: 41
            if nothing match, return null
         -->
@@ -94,11 +96,6 @@
         <!--        이 실행 결과로 인해서 실제 update된 row의 개수를 return-->
     </update>
 
-    <update id="downCountPlus" parameterType="String">
-        update mvcboard
-        set downcount = downcount + 1
-        where idx = #{idx}
-    </update>
 
     <select id="confirmPassword" parameterType="map">
         select COUNT(*)
@@ -108,15 +105,17 @@
 
     <delete id="deletePost">
         delete
-        from mvcboard
-        where idx = #{idx}
+        from board
+        where brd_id = #{brdId}
     </delete>
 
     <update id="updatePost" parameterType="dto.BoardDTO">
-        update mvcboard
-        set title = #{title}, name = #{name},
-        content = #{content}, ofile = #{ofile}, sfile = #{sfile}
-        where idx = #{idx} and pass = #{pass}
+        update board
+        set
+        title = #{title}, content = #{content},
+        ofile = #{ofile}, sfile = #{sfile},
+        cate_sub = #{cateSub}
+        where brd_id = #{brdId}
     </update>
 
 

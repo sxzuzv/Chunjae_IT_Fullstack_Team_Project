@@ -59,7 +59,7 @@ public class WriteController extends HttpServlet {
         result = result * dao.insertWritePdt(dto);
 
         if (result == 1) {
-            response.sendRedirect(request.getContextPath() + "../view/board/list.do");
+            response.sendRedirect(request.getContextPath() + "../board/list.do");
         } else {
             System.out.println("글쓰기 실패");
             JSFunction.alertLocation(response, "글쓰기에 실패했습니다.", request.getContextPath() + "/board/write.do");

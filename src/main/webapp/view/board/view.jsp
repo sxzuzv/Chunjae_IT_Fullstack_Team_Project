@@ -18,6 +18,10 @@
 
     <!-- 게시글 정보 -->
     <tr>
+        <td>카테고리</td> <td>${ dto.cateSub }</td>
+        <td>상태</td> <td>${ dto.status }</td>
+    </tr>
+    <tr>
         <td>번호</td> <td>${ dto.brdId }</td>
         <td>작성자</td> <td>${ dto.userId }</td>
     </tr>
@@ -38,6 +42,13 @@
         	</c:if>
         </td>
     </tr>
+    <tr>
+        <td>지역</td> <td>${ dto.dealAddress }</td>
+    </tr>
+    <tr>
+        <td>가격</td> <td>${ dto.price }</td>
+    </tr>
+
 
     <!-- 첨부파일 -->
     <tr>
@@ -55,10 +66,10 @@
     <!-- 하단 메뉴(버튼) -->
     <tr>
         <td colspan="4" align="center">
-            <button type="button" onclick="location.href='../board/pass.do?mode=edit&brdId=${ param.brdId }';">
+            <button type="button" onclick="location.href='../board/edit.do?brdId=${ param.brdId }';">
                 수정하기
             </button>
-            <button type="button" onclick="location.href='../board/pass.do?mode=delete&brdId=${ param.brdId }';">
+            <button type="button" onclick="location.href='../board/edit.do?mode=delete&brdId=${ param.brdId }';">
                 삭제하기
             </button>
             <button type="button" onclick="location.href='../board/list.do';">

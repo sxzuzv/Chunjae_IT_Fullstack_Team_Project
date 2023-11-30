@@ -77,7 +77,7 @@
 	<nav class="d-flex justify-content-center py-3">
 		<ul class="nav nav-pills menu">
 			<li class="nav-item">
-				<a href="${contextPath}/board/list.do?cateSub=''" class="nav-link">중고 거래</a>
+				<a href="${contextPath}/board/list.do" class="nav-link">중고 거래</a>
 				<ul class="submenu" id = "submenu01">
 					<li><a href="${contextPath}/board/list.do?cateSub=1">교재</a></li>
 					<li><a href="${contextPath}/board/list.do?cateSub=2">교구</a></li>

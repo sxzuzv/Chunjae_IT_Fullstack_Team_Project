@@ -28,7 +28,6 @@ public interface BoardMapper {
 
     int updateVisitCount(String idx);
 
-    int downCountPlus(String idx);
 
     int confirmPassword(Map<String, String> map);
 
