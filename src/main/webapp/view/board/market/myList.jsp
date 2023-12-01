@@ -8,14 +8,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 		 pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <!doctype html>
-<html lang="en" data-bs-theme="auto">
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<title>중고게시판</title>
+	<title>내상점</title>
 
 	<!--헤더 공통 css -->
 	<link href="../../../css/bootstrap.min.css" rel="stylesheet">
@@ -29,30 +27,6 @@
 
 	<!-- 슬라이드 css-->
 	<link href="../../../css/carousel.css" rel="stylesheet">
-	<!-- jQuery CDN을 사용하는 경우 -->
-	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-	<script>
-		function redirectToUrl() {
-			var url = 'http://localhost:8090/market/list.do?cateSub=1';
-
-			// jQuery를 사용하여 AJAX로 페이지 이동
-			$.ajax({
-				type: 'GET',
-				url: url,
-				success: function () {
-					// 페이지 이동 성공 시 처리할 코드 작성
-					console.log('페이지 이동 성공');
-					// 여기에 추가 작업을 수행할 수 있습니다.
-				},
-				error: function () {
-					// 페이지 이동 실패 시 처리할 코드 작성
-					console.log('페이지 이동 실패');
-					// 여기에 추가 작업을 수행할 수 있습니다.
-				}
-			});
-		}
-
-	</script>
 
 </head>
 <body>
@@ -73,7 +47,7 @@
 						<option value="content">내용</option>
 					</select>
 					<input type="text" name="searchWord" />
-					<input type="hidden" name="cateSub" value=${ map.cateSub }/>
+					<input type="hidden" name="myStore" value=${ map.myStore }/>
 					<input type="submit" value="검색하기" />
 				</td>
 			</tr>
@@ -122,8 +96,6 @@
 			<td>
 				${ map.pagingImg }
 			</td>
-			<td width="100"><button type="button"
-									onclick="location.href='/market/write.do';">글쓰기</button></td>
 		</tr>
 	</table>
 </body>
