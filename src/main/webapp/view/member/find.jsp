@@ -16,6 +16,8 @@
 <link href="../../css/nav.css" rel="stylesheet">
 <link rel="stylesheet" href="../../css/find.css">
 
+    <link href="../../css/carousel.css" rel="stylesheet">
+
 
 </head>
 
