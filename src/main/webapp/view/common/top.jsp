@@ -42,7 +42,7 @@
 				</ul>
 				<ul class="nav">
 					<li class="nav-item"><a href="#" class="nav-link link-body-emphasis px-2">로그인</a></li>
-					<li class="nav-item"><a href="#" class="nav-link link-body-emphasis px-2">Sign up</a></li>
+					<li class="nav-item"><a href="#" class="nav-link link-body-emphasis px-2">회원가입</a></li>
 				</ul>
 			</div>
 		</nav>
