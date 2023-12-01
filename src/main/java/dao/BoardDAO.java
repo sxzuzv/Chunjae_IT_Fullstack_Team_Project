@@ -13,6 +13,7 @@ import java.util.Map;
 
 // categories, report 테이블의 경우 여기서 모두 접근
 public class BoardDAO {
+
     //신수진 신수진 ~
 
 
@@ -99,6 +100,19 @@ public class BoardDAO {
     return result;
   }
 
+  public int marketUpdatePostPdt(BoardDTO dto) {
+    SqlSession sqlSession = MyBatisSessionFactory.getSqlSession();
+    BoardMapper mapper = sqlSession.getMapper(BoardMapper.class);
+    int result = mapper.marketUpdatePostPdt(dto);
+    if (result == 1) {
+      sqlSession.commit();
+    } else {
+      System.out.println("board update 중 오류 발생...");
+    }
+    sqlSession.commit();
+    return result;
+  }
+
   public int deletePost(String brdId) {
     SqlSession sqlSession = MyBatisSessionFactory.getSqlSession();
     BoardMapper mapper = sqlSession.getMapper(BoardMapper.class);
@@ -123,9 +137,9 @@ public class BoardDAO {
     return result;
   }
 
-  public boolean confirmPassword(String pass, String brdId) {
+  public boolean confirmPassword(String userId, String brdId) {
     Map<String, String> map = new HashMap<>();
-    map.put("pass", Encrypt.getEncrypt(pass));
+    map.put("userId", userId);
     map.put("brdId", brdId);
     SqlSession sqlSession = MyBatisSessionFactory.getSqlSession();
     BoardMapper mapper = sqlSession.getMapper(BoardMapper.class);
@@ -138,5 +152,11 @@ public class BoardDAO {
   }
 
 
+
+    //최재혁
+
+
+
   //최재혁
 }
+

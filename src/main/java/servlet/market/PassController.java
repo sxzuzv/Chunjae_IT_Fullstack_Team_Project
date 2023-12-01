@@ -23,29 +23,26 @@ public class PassController extends HttpServlet {
         // 매개변수 저장
         String brdId = request.getParameter("brdId");
         String mode = request.getParameter("mode");
+        String userId = (String)request.getSession().getAttribute("userId");
+
+        boolean confirmed = false;
+        BoardDAO dao = new BoardDAO();
 
         // 비로그인시 튕겨냄
-        if(request.getSession().getAttribute("userId") == null) {
+        if( userId == null) {
             JSFunction.alertLocation(response,"로그인해 주세요","/main/main.do");
             return;
+        }else{ //로그인시 확인
+           dao = new BoardDAO();
+            confirmed = dao.confirmPassword(userId, brdId);
         }
 
-//        // 본인 글이 아닐시 불가 메시지
-//        if(request.getSession().getAttribute("userId") == null) {
-//            JSFunction.alertBack(response, "해당글에 접근 권한이 없습니다.");
-//            return;
-//        }
-        // 비밀번호 확인
-        BoardDAO dao = new BoardDAO();
-        boolean confirmed = true;
-                //dao.confirmPassword(pass, brdId);
+
         if (confirmed) {  // 비밀번호 일치
             if (mode.equals("edit")) {  // 수정 모드
-                HttpSession session = request.getSession();
                 response.sendRedirect("/market/edit.do?brdId=" + brdId);
             }
             else if (mode.equals("delete")) {  // 삭제 모드
-                dao = new BoardDAO();
                 BoardDTO dto = dao.marketSelectView(brdId);
                 int result = dao.deletePost(brdId);  // 게시물 삭제
                 result = result * dao.deletePdtPost(brdId);
@@ -58,7 +55,7 @@ public class PassController extends HttpServlet {
             }
         }
         else {  // 비밀번호 불일치
-            JSFunction.alertBack(response, "비밀번호 검증에 실패했습니다.");
+            JSFunction.alertBack(response, "해당글에 접근 권한이 없습니다.");
         }
     }
 
