@@ -2,7 +2,7 @@ package util;
 
 public class BoardPage {
     public static String pagingStr(int totalCount, int pageSize, int blockPage,
-                                   int pageNum, String searchField, String searchWord, String reqUrl) {
+                                   int pageNum, String searchField, String searchWord, String addOther, String reqUrl) {
         String pagingStr = "";
 
         // 단계 3 : 전체 페이지 수 계산
@@ -30,9 +30,9 @@ public class BoardPage {
                 pagingStr += "&nbsp;" + pageTemp + "&nbsp;";
             } else if(searchField != null){
                 pagingStr += "&nbsp;<a href='" + reqUrl + "?pageNum=" + pageTemp
-                        + "&searchField"+ "=" + searchField + "&searchWord"+ "=" + searchWord + "'>" + pageTemp + "</a>&nbsp;";
+                        + "&searchField"+ "=" + searchField + "&searchWord"+ "=" + searchWord + addOther + "'>" + pageTemp + "</a>&nbsp;";
             } else {
-                pagingStr += "&nbsp;<a href='" + reqUrl + "?pageNum=" + pageTemp
+                pagingStr += "&nbsp;<a href='" + reqUrl + "?pageNum=" + pageTemp + addOther
                         + "'>" + pageTemp + "</a>&nbsp;";
             }
             pageTemp++;
