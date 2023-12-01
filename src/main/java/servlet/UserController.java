@@ -198,7 +198,7 @@ public class UserController extends HttpServlet {
 					PrintWriter out = response.getWriter();
 					out.print("<script>"
 							+ "  alert('관리자로 로그인 합니다.');"   // 알림창
-							+ " location.href='" + request.getContextPath() + "/admin/admin.do';"  // 로그인 페이지로 이동
+							+ " location.href='" + request.getContextPath() + "/view/admin/admin_list.jsp';"  // 로그인 페이지로 이동
 							+ "</script>");
 
 				} else {// 로그인 실패
@@ -251,7 +251,7 @@ public class UserController extends HttpServlet {
 				session.removeAttribute("userId"); // 세션에서 userId 속성 제거
 				session.invalidate(); // 세션 무효화
 			}
-			nextPage = "/member/main.do";
+			nextPage = "/view/member/login.jsp";
 		}else {
 			nextPage = "/view/member/login.jsp";
 		}

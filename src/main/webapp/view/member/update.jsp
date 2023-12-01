@@ -11,6 +11,8 @@
 	response.setHeader("pragma","no-cache");
 %>
 
+
+
 <!doctype html>
 <html lang="ko">
 <head>
@@ -19,9 +21,14 @@
 <meta name="Keywords" content="">
 <meta name="Description" content="">
 <title>회원정보 수정</title>
-<link rel="stylesheet" href="../css/join.css" />
-	<link rel="stylesheet" href="../../css/bootstrap.css">
-	<link rel="stylesheet" href="../../css/sidebar.css">
+
+	<link rel="stylesheet" href="../../css/carousel.css">
+	<link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/carousel/">
+	<link href="../../css/bootstrap.min.css" rel="stylesheet"/>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+	<link href="../../css/main.css" rel="stylesheet"/>
+	<link href="../../css/nav.css" rel="stylesheet"/>
+	<link rel="stylesheet" href="../css/toggle.css"/>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script src="../../js/bootstrap.js"></script>
 	<script src="../../js/sidebar.js"></script>
@@ -75,12 +82,15 @@
 	}
 </script>
 </head>
+
 <body>
+<header>
+	<jsp:include page="../common/top.jsp"></jsp:include>
+</header>
 	<div id="viewport">
-		<jsp:include page="../common/sidebar.jsp"></jsp:include>
 		<!-- Content -->
 		<div id="content">
-			<jsp:include page="../common/top.jsp"></jsp:include>
+
 			<div class="main_back">
 				<div class="container">
 					<form name="updateForm" method="post" action="${contextPath}/member/update.do">

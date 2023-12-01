@@ -142,8 +142,5 @@ public class BoardDAO {
 
     //최재혁
 
-
-
-  //최재혁
 }
 
