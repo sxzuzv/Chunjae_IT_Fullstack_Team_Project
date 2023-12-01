@@ -31,6 +31,7 @@ public interface BoardMapper {
 
 
     int marketUpdatePost(BoardDTO dto);
+    int marketUpdatePostPdt(BoardDTO dto);
 
     int confirmPassword(Map<String, String> map);
 

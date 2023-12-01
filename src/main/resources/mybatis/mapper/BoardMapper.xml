@@ -13,6 +13,7 @@
 
 
     <!--최영주-->
+        <!-- market을 붙이지 않은 쿼리는 다른 board에서 재사용 가능해 보임 -->
     <select id="marketSelectCount" parameterType="map" resultType="int">
         <![CDATA[
         SELECT count(*)
@@ -40,8 +41,8 @@
 
     <insert id="marketInsertWrite" parameterType="dto.BoardDTO">
         INSERT
-        INTO board(title, content, ofile, sfile, cate_main, cate_sub)
-        VALUES(#{title}, #{content}, #{ofile}, #{sfile}, 1, #{cateSub})
+        INTO board(user_id, title, content, ofile, sfile, cate_main, cate_sub)
+        VALUES(#{userId}, #{title}, #{content}, #{ofile}, #{sfile}, 1, #{cateSub})
     </insert>
     <insert id="marketInsertWritePdt" parameterType="dto.BoardDTO">
         INSERT
@@ -100,7 +101,7 @@
     <select id="confirmPassword" parameterType="map">
         select COUNT(*)
         from board
-        where  = #{idx}
+        where brd_id = #{brdId} and user_id = #{userId}
     </select>
 
     <delete id="deletePost">
@@ -121,6 +122,18 @@
         title = #{title}, content = #{content},
         ofile = #{ofile}, sfile = #{sfile},
         cate_sub = #{cateSub}
+        where brd_id = #{brdId}
+    </update>
+
+    <update id="marketUpdatePostPdt" parameterType="dto.BoardDTO">
+        update product
+        set
+            price = #{price},
+            status = #{status},
+            deal_address = #{dealAddress}
+        <if test="buyerId != null and !buyerId.equals('')">
+            , buyer_id = #{buyerId}
+        </if>
         where brd_id = #{brdId}
     </update>
 
