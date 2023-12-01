@@ -42,6 +42,7 @@ public class WriteController extends HttpServlet {
         }
         BoardDTO dto = new BoardDTO();
 
+        dto.setUserId((String)request.getSession().getAttribute("userId"));
         dto.setTitle(request.getParameter("title"));
         dto.setContent(request.getParameter("content"));
         dto.setCateMain(1);
