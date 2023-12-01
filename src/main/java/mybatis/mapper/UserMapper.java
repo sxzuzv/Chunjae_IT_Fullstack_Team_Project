@@ -22,5 +22,16 @@ public interface UserMapper {
     boolean createUser(UserDTO userDTO);
     int authenticateUser(Map<String, String> map);
 
+    String authenticateFind(Map<String, String> map);
+
+    int authenticateFindPass(Map<String, String> map);
+
+    int idCheck(String userId);
+
+
     String authenticateStatus(String userId);
+
+    String authenticateAdmin(String userId);
+
+    int updatePass(UserDTO userDTO);
 }
