@@ -2,6 +2,7 @@
 		 pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <script>
@@ -76,17 +77,11 @@
 	<nav class="d-flex justify-content-center py-3">
 		<ul class="nav nav-pills menu">
 			<li class="nav-item">
-				<a href="#" class="nav-link">중고 거래</a>
+				<a href="${contextPath}/market/list.do" class="nav-link">중고 거래</a>
 				<ul class="submenu" id = "submenu01">
-					<li><a href="#">submenu01</a></li>
-					<li><a href="#">submenu02</a></li>
-					<li><a href="#">submenu03</a></li>
-					<li><a href="#">submenu04</a></li>
-					<li><a href="#">submenu05</a></li>
-					<li><a href="#">submenu06</a></li>
-					<li><a href="#">submenu06</a></li>
-					<li><a href="#">submenu06</a></li>
-					<li><a href="#">submenu06</a></li>
+					<li><a href="${contextPath}/market/list.do?cateSub=1">교재</a></li>
+					<li><a href="${contextPath}/market/list.do?cateSub=2">교구</a></li>
+					<li><a href="${contextPath}/market/list.do?cateSub=3">일상용품</a></li>
 				</ul>
 			</li>
 			<li class="nav-item">
