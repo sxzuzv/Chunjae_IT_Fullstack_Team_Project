@@ -25,7 +25,6 @@
 
     <link href="../../css/headers.css" rel="stylesheet">
     <link href="../../css/main.css" rel="stylesheet">
-    <link href="../../css/nav.css" rel="stylesheet">
 
 
     <!-- 슬라이드 css-->
