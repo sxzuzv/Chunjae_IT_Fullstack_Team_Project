@@ -30,18 +30,18 @@ public class PassController extends HttpServlet {
             return;
         }
 
-        // 본인 글이 아닐시 불가 메시지
-        if(request.getSession().getAttribute("userId") == null) {
-            JSFunction.alertBack(response, "해당글에 접근 권한이 없습니다.");
-            return;
-        }
+//        // 본인 글이 아닐시 불가 메시지
+//        if(request.getSession().getAttribute("userId") == null) {
+//            JSFunction.alertBack(response, "해당글에 접근 권한이 없습니다.");
+//            return;
+//        }
         // 비밀번호 확인
         BoardDAO dao = new BoardDAO();
-        boolean confirmed = dao.confirmPassword(pass, brdId);
+        boolean confirmed = true;
+                //dao.confirmPassword(pass, brdId);
         if (confirmed) {  // 비밀번호 일치
             if (mode.equals("edit")) {  // 수정 모드
                 HttpSession session = request.getSession();
-                session.setAttribute("pass", pass);
                 response.sendRedirect("/market/edit.do?brdId=" + brdId);
             }
             else if (mode.equals("delete")) {  // 삭제 모드
