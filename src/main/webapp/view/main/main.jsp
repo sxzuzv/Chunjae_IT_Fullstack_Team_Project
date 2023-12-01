@@ -10,50 +10,33 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
 <html lang="en" data-bs-theme="auto">
-<head><script src="../assets/js/color-modes.js"></script>
-
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>home</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/carousel/">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
-    <link href="../../css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Custom styles for this template -->
+    <!--헤더 공통 css -->
+    <link href="../../css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+
+
     <link href="../../css/headers.css" rel="stylesheet">
-    <link href="../../css/carousel.css" rel="stylesheet">
     <link href="../../css/main.css" rel="stylesheet">
+    <link href="../../css/nav.css" rel="stylesheet">
+
+
+    <!-- 슬라이드 css-->
+    <link href="../../css/carousel.css" rel="stylesheet">
+
 </head>
 <body>
 <header>
-    <nav class="py-2 bg-body-tertiary border-bottom fixed-top">
-        <div class="container d-flex flex-wrap">
-            <ul class="nav me-auto">
-                <div class="col-md-3 mb-2 mb-md-0">
-                    <a class="navbar-brand" href="/" class="d-inline-flex link-body-emphasis text-decoration-none">
-                        <svg class="bi" width="40" height="32" role="img" aria-label="Bootstrap" style="background-color: black;"><use xlink:href="#bootstrap"></use></svg>
-                        쌤마켓
-                    </a>
-                </div>
-            </ul>
-            <ul class="nav">
-                <li class="nav-item"><a href="#" class="nav-link link-body-emphasis px-2">Login</a></li>
-                <li class="nav-item"><a href="#" class="nav-link link-body-emphasis px-2">Sign up</a></li>
-            </ul>
-        </div>
-    </nav>
 
+    <jsp:include page="../common/top.jsp"></jsp:include>
 
-    <nav class="d-flex justify-content-center py-3">
-        <ul class="nav nav-pills">
-            <li class="nav-item"><a href="#" class="nav-link">중고 거래</a></li>
-            <li class="nav-item"><a href="#" class="nav-link">선생님 요모조모</a></li>
-            <li class="nav-item"><a href="#" class="nav-link">내 상점</a></li>
-            <li class="nav-item"><a href="#" class="nav-link">고객지원</a></li>
-        </ul>
-    </nav>
 
 </header>
 
