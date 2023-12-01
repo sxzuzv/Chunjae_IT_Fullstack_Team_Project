@@ -1,0 +1,5 @@
+#formContent div{
+    display: inline-block; /* block요소인 div를 inline으로 만들어준다. */
+    width: 200px;
+
+    }
