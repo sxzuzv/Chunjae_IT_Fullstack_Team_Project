@@ -32,6 +32,24 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script src="../../js/bootstrap.js"></script>
 	<script src="../../js/sidebar.js"></script>
+	<style>
+		/* 사용자 정의 스타일 추가 */
+		body {
+			padding-top: 20px;
+		}
+		.form-group {
+			max-width: 400px; /* 폼 요소의 최대 가로 크기 조정 */
+			margin: 0 auto; /* 가운데 정렬을 위한 마진 설정 */
+		}
+		.btnZone {
+			margin-top: 20px;
+			text-align: center; /* 버튼을 가운데 정렬 */
+		}
+
+		.small-heading {
+			font-size: 2rem; /* 원하는 크기로 설정 */
+		}
+	</style>
 
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script>
@@ -94,62 +112,53 @@
 			<div class="main_back">
 				<div class="container">
 					<form name="updateForm" method="post" action="${contextPath}/member/update.do">
-						<div class="joinBox">
-							<h1 class="tit">회원정보 수정</h1>
-							<table class="table_row W100P MAT10">
-								<colgroup>
-									<col style="">
-									<col style="">
-								</colgroup>
-								<tr>
-									<th><span class="blet"></span> 비밀번호</th>
-									<td><input type="password" name="userPW" size="20" maxlength="16" />
-										<span class="f12 fC666">※ 8~16글자의 영어, 숫자 혼용</span>
-									</td>
-								</tr>
-								<tr>
-									<th><span class="blet"></span> 비밀번호 확인</th>
-									<td><input type="password" name="userPW2" size="20" maxlength="16" /></td>
-								</tr>
-								<tr>
-									<th><span class="blet"></span> 이름</th>
-									<td><input type="text" name="name" size="15" maxlength="6" value="${user.userName}"/></td>
-								</tr>
-								<tr>
-									<th>전화</th>
-									<td><input type="text" name="tel" size="15" maxlength="15" value="${user.userCp}" /></td>
-								</tr>
-								<tr>
-									<th>이메일</th>
-									<td><input type="text" name="email" size="30" maxlength="40" value="${user.userEmail}" /></td>
-								</tr>
-								<tr>
-									 <th>주소</th>
-				                <td>
-				                    <input type="text" id="addr" name="addr" placeholder="주소" size="60" value="${user.userAddr}" >
-				                    <input type="button" onclick="execDaumPostcode()" value="주소 찾기"><br>
-				                </td>
-								</tr>
-									<tr>
-									 <th>상세주소</th>
-				                <td>
-				                    <input type="text" id="addr2" name="addr2" placeholder="상세주소" size="20" value="${user.userDaddr}" >
-				                </td>
-									</tr>
-							</table>
+						<div class="jumbotron">
+							<h1 class="display-4 small-heading">회원정보 수정</h1>
+							<hr class="my-4">
+							<div class="form-group">
+								<label for="userPW">비밀번호</label>
+								<input type="password" class="form-control" id="userPW" name="userPW" maxlength="16">
+								<small class="form-text text-muted">※ 8~16글자의 영어, 숫자 혼용</small>
+							</div>
+							<div class="form-group">
+								<label for="userPW2">비밀번호 확인</label>
+								<input type="password" class="form-control" id="userPW2" name="userPW2" maxlength="16">
+							</div>
+							<div class="form-group">
+								<label for="name">이름</label>
+								<input type="text" class="form-control" id="name" name="name" maxlength="6" value="${user.userName}">
+							</div>
+							<div class="form-group">
+								<label for="tel">전화</label>
+								<input type="text" class="form-control" id="tel" name="tel" maxlength="15" value="${user.userCp}">
+							</div>
+							<div class="form-group">
+								<label for="email">이메일</label>
+								<input type="text" class="form-control" id="email" name="email" maxlength="40" value="${user.userEmail}">
+							</div>
+							<div class="form-group">
+								<label for="addr">주소</label>
+								<div class="input-group">
+									<input type="text" class="form-control" id="addr" name="addr" placeholder="주소" value="${user.userAddr}">
+									<div class="input-group-append">
+										<button type="button" class="btn btn-outline-secondary" onclick="execDaumPostcode()">주소 찾기</button>
+									</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="addr2">상세주소</label>
+								<input type="text" class="form-control" id="addr2" name="addr2" placeholder="상세주소" value="${user.userDaddr}">
+							</div>
 							<div class="btnZone">
-								<input type="button" onClick="update();" class="btnOk" value="수정하기">
-								<input type="button" onClick="history.go(-1);" class="btnC" value="뒤로">
+								<button type="button" onclick="update();" class="btn btn-primary">수정하기</button>
+								<button type="button" onclick="history.go(-1);" class="btn btn-secondary">뒤로</button>
 							</div>
 						</div>
 					</form>
 				</div>
-			</div>
-		</div>
-	</div>
-	
-	
-	<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
-	<script src="../../js/bootstrap.js"></script>
+
+				<!-- 부트스트랩 및 jQuery 스크립트 -->
+				<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
+				<script src="../../js/bootstrap.js"></script>
 </body>
 </html>
