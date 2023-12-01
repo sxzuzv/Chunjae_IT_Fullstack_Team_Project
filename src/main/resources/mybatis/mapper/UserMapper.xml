@@ -33,6 +33,7 @@
         select user_id
         from user
         where user_name = #{user_name} AND user_email = #{user_email}
+        limit 1
     </select>
 
     <select id="authenticateFindPass" parameterType="map">
