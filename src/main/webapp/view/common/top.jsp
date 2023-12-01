@@ -97,10 +97,8 @@
 			<li class="nav-item">
 				<a href="#" class="nav-link">내 상점</a>
 				<ul class="submenu" id = "submenu03">
-					<li><a href="#">submenu01</a></li>
-					<li><a href="#">submenu02</a></li>
-					<li><a href="#">submenu03</a></li>
-					<li><a href="#">submenu04</a></li>
+					<li><a href="#">판매내역</a></li>
+					<li><a href="#">구매내역</a></li>
 				</ul>
 			</li>
 			<li class="nav-item">
