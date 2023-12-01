@@ -1,4 +1,4 @@
-package servlet;
+package servlet.market;
 
 import dao.BoardDAO;
 import dto.BoardDTO;
@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "WriteController", value = "/board/write.do")
+@WebServlet(value = "/market/write.do")
 @MultipartConfig(
         maxFileSize = 1024 * 1024 * 1,
         maxRequestSize = 1024 * 1024 * 10
@@ -25,7 +25,7 @@ public class WriteController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("../view/board/write.jsp").forward(request, response);
+        request.getRequestDispatcher("/view/board/market/write.jsp").forward(request, response);
     }
 
     @Override
@@ -37,7 +37,7 @@ public class WriteController extends HttpServlet {
         } catch (Exception e) {
             System.out.println("파일 업로드 실패");
             // /jsp_mvc2 => request.getContextPath();
-            JSFunction.alertLocation(response, "파일 업로드 오류 발생", request.getContextPath() + "/board/write.do");
+            JSFunction.alertLocation(response, "파일 업로드 오류 발생", request.getContextPath() + "/market/write.do");
             return;
         }
         BoardDTO dto = new BoardDTO();
@@ -55,14 +55,14 @@ public class WriteController extends HttpServlet {
             dto.setOfile(originalFileName);
             dto.setSfile(savedFileName);
         }
-        int result = dao.insertWrite(dto);
-        result = result * dao.insertWritePdt(dto);
+        int result = dao.marketInsertWrite(dto);
+        result = result * dao.marketInsertWritePdt(dto);
 
         if (result == 1) {
-            response.sendRedirect(request.getContextPath() + "../board/list.do");
+            response.sendRedirect(request.getContextPath() + "/market/list.do");
         } else {
             System.out.println("글쓰기 실패");
-            JSFunction.alertLocation(response, "글쓰기에 실패했습니다.", request.getContextPath() + "/board/write.do");
+            JSFunction.alertLocation(response, "글쓰기에 실패했습니다.", request.getContextPath() + "/market/write.do");
         }
     }
 }

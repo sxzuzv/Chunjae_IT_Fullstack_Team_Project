@@ -1,4 +1,4 @@
-package servlet;
+package servlet.market;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -17,7 +17,7 @@ import dto.BoardDTO;
 
 import util.BoardPage;
 
-@WebServlet("/board/list.do")
+@WebServlet("/market/list.do")
 public class ListController extends HttpServlet {
   private static final long serialVersionUID = 1L;
 //	private static String ARTICEL_IMAGE_REPO = "D:\\file_repo";
@@ -57,7 +57,7 @@ public class ListController extends HttpServlet {
         map.put("searchField", searchField);
         map.put("searchWord", searchWord);
       }
-      int totalCount = dao.selectCount(map);  // 게시물 개수
+      int totalCount = dao.marketSelectCount(map);  // 게시물 개수
 
       /* 페이지 처리 start */
       ServletContext application = getServletContext();
@@ -77,11 +77,11 @@ public class ListController extends HttpServlet {
       map.put("end", end);
       /* 페이지 처리 end */
 
-      List<BoardDTO> boardLists = dao.selectListPage(map);  // 게시물 목록 받기
+      List<BoardDTO> boardLists = dao.marketSelectListPage(map);  // 게시물 목록 받기
 
       // 뷰에 전달할 매개변수 추가
       String pagingImg = BoardPage.pagingStr(totalCount, pageSize,
-              blockPage, pageNum, searchField, searchWord, addOther, request.getContextPath() + "/board/list.do");  // 바로가기 영역 HTML 문자열
+              blockPage, pageNum, searchField, searchWord, addOther, request.getContextPath() + "/market/list.do");  // 바로가기 영역 HTML 문자열
       map.put("pagingImg", pagingImg);
       map.put("totalCount", totalCount);
       map.put("pageSize", pageSize);
@@ -91,9 +91,7 @@ public class ListController extends HttpServlet {
       request.setAttribute("boardLists", boardLists);
       request.setAttribute("map", map);
       // 서블렛 내장객체에서 루트컨택스트
-      request.getRequestDispatcher("../view/board/list.jsp").forward(request, response);
-
-
+      request.getRequestDispatcher("/view/board/market/list.jsp").forward(request, response);
 
   }
 

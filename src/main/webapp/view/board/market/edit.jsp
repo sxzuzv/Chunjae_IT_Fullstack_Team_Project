@@ -27,7 +27,7 @@
     </script>
 </head>
 <h2>파일 첨부형 게시판 - 수정하기(Edit)</h2>
-<form name="writeFrm" method="post" enctype="multipart/form-data" action="../board/edit.do" onsubmit="return validateForm(this);">
+<form name="writeFrm" method="post" enctype="multipart/form-data" action="/market/edit.do" onsubmit="return validateForm(this);">
     <input type="hidden" name="brdId" value="${ dto.brdId }"/>
     <input type="hidden" name="prevOfile" value="${ dto.ofile }" />
     <input type="hidden" name="prevSfile" value="${ dto.sfile }" />
@@ -74,7 +74,7 @@
             <td colspan="2" align="center">
                 <button type="submit">작성 완료</button>
                 <button type="reset">RESET</button>
-                <button type="button" onclick="location.href='../board/list.do';">
+                <button type="button" onclick="location.href='/market/list.do';">
                     목록 바로가기
                 </button>
             </td>

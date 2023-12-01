@@ -38,7 +38,7 @@
         <td colspan="3" height="100">
         	${ dto.content }
         	<c:if test="${ not empty dto.ofile and isImage eq true }">
-        		<br><img src="../Uploads/${ dto.sfile }" style="max-width:100%;"/>
+        		<br><img src="/Uploads/${ dto.sfile }" style="max-width:100%;"/>
         	</c:if>
         </td>
     </tr>
@@ -56,7 +56,7 @@
         <td>
             <c:if test="${ not empty dto.ofile }">
             ${ dto.ofile }
-            <a href="../board/download.do?ofile=${ dto.ofile }&sfile=${ dto.sfile }&brdId=${ dto.brdId }">
+            <a href="/market/download.do?ofile=${ dto.ofile }&sfile=${ dto.sfile }&brdId=${ dto.brdId }">
                 [다운로드]
             </a>
             </c:if>
@@ -66,13 +66,13 @@
     <!-- 하단 메뉴(버튼) -->
     <tr>
         <td colspan="4" align="center">
-            <button type="button" onclick="location.href='../board/edit.do?brdId=${ param.brdId }';">
+            <button type="button" onclick="location.href='/market/pass.do?mode=edit&brdId=${ param.brdId }';">
                 수정하기
             </button>
-            <button type="button" onclick="location.href='../board/edit.do?mode=delete&brdId=${ param.brdId }';">
+            <button type="button" onclick="location.href='/market/pass.do?mode=delete&brdId=${ param.brdId }';">
                 삭제하기
             </button>
-            <button type="button" onclick="location.href='../board/list.do';">
+            <button type="button" onclick="location.href='/market/list.do';">
                 목록 바로가기
             </button>
         </td>

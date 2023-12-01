@@ -1,4 +1,4 @@
-package servlet;
+package servlet.market;
 
 import dao.BoardDAO;
 import dto.BoardDTO;
@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
-@WebServlet("/board/view.do")
+@WebServlet("/market/view.do")
 public class ViewController extends HttpServlet {
   private static final long serialVersionUID = 1L;
 
@@ -23,7 +23,7 @@ public class ViewController extends HttpServlet {
     BoardDAO dao = new BoardDAO();
     String brdId = req.getParameter("brdId");
     dao.updateVisitCount(brdId);  // 조회수 1 증가
-    BoardDTO dto = dao.selectView(brdId);
+    BoardDTO dto = dao.marketSelectView(brdId);
 
     // 줄바꿈 처리
     dto.setContent(dto.getContent().replaceAll("\r\n", "<br/>"));
@@ -44,6 +44,6 @@ public class ViewController extends HttpServlet {
     // 게시물(dto) 저장 후 뷰로 포워드
     req.setAttribute("dto", dto);
     req.setAttribute("isImage", isImage);
-    req.getRequestDispatcher("../view/board/view.jsp").forward(req, resp);
+    req.getRequestDispatcher("/view/board/market/view.jsp").forward(req, resp);
   }
 }

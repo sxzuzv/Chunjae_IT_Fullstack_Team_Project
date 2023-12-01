@@ -1,4 +1,4 @@
-package servlet;
+package servlet.market;
 
 
 import dao.BoardDAO;
@@ -13,7 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.IOException;
 
-@WebServlet("/board/edit.do")
+@WebServlet("/market/edit.do")
 @MultipartConfig(
         maxFileSize = 1024 * 1024 * 1,
         maxRequestSize = 1024 * 1024 * 10
@@ -25,24 +25,24 @@ public class EditController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String mode = request.getParameter("mode");
-        System.out.println(mode);
         String brdId = request.getParameter("brdId");
 
         if (mode.equals("delete")) {  // 삭제 모드
             BoardDAO dao = new BoardDAO();
-            BoardDTO dto = dao.selectView(brdId);
+            BoardDTO dto = dao.marketSelectView(brdId);
             int result = dao.deletePost(brdId);  // 게시물 삭제
+            result = result * dao.deletePdtPost(brdId);
 
             if (result == 1) {  // 게시물 삭제 성공 시 첨부파일도 삭제
                 String saveFileName = dto.getSfile();
                 FileUtil.deleteFile(request, "/Uploads", saveFileName);
             }
-            JSFunction.alertLocation(response, "삭제되었습니다.", "../board/list.do");
-        }else {
+            JSFunction.alertLocation(response, "삭제되었습니다.", "/market/list.do");
+        }else if(mode.equals("edit")) {
             BoardDAO dao = new BoardDAO();
-            BoardDTO dto = dao.selectView(brdId);
+            BoardDTO dto = dao.marketSelectView(brdId);
             request.setAttribute("dto", dto);
-            request.getRequestDispatcher("../view/board/edit.jsp").forward(request, response);
+            request.getRequestDispatcher("/view/board/market/edit.jsp").forward(request, response);
         }
     }
 
@@ -107,15 +107,15 @@ public class EditController extends HttpServlet {
 
          // DB에 수정 내용 반영
          BoardDAO dao = new BoardDAO();
-         int result = dao.updatePost(dto);
+         int result = dao.marketUpdatePost(dto);
 
          // 성공 or 실패?
          if (result == 1) {  // 수정 성공
              //            session.removeAttribute("pass");
-             response.sendRedirect("../board/view.do?brdId=" + brdId);
+             response.sendRedirect("/market/view.do?brdId=" + brdId);
          } else {  // 수정 실패
              JSFunction.alertLocation(response, "비밀번호 검증을 다시 진행해주세요.",
-                     "../board/view.do?brdId=" + brdId);
+                     "/market/view.do?brdId=" + brdId);
          }
 
 

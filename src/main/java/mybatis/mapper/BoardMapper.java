@@ -15,25 +15,24 @@ public interface BoardMapper {
 
 
     //최영주
-    int selectCount(Map<String, Object> map);
+    int marketSelectCount(Map<String, Object> map);
 
-    List<BoardDTO> selectListPage(Map<String, Object> map);
+    List<BoardDTO> marketSelectListPage(Map<String, Object> map);
 
-    int insertWrite(BoardDTO dto);
-    int insertWritePdt(BoardDTO dto);
+    int marketInsertWrite(BoardDTO dto);
+    int marketInsertWritePdt(BoardDTO dto);
 
-    List<BoardDTO> selectListPageWithPaging(Map<String, Object> map);
+    BoardDTO marketSelectView(String brdId);
 
-    BoardDTO selectView(String idx);
+    int updateVisitCount(String brdId);
 
-    int updateVisitCount(String idx);
+    int deletePost(String brdId);
+    int deletePdtPost(String brdId);
 
+
+    int marketUpdatePost(BoardDTO dto);
 
     int confirmPassword(Map<String, String> map);
-
-    int deletePost(String idx);
-
-    int updatePost(BoardDTO dto);
 
     //최재혁
 

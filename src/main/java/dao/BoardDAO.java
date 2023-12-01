@@ -20,27 +20,27 @@ public class BoardDAO {
 
 
     //최영주
-    public int selectCount(Map<String, Object> map) {
+    public int marketSelectCount(Map<String, Object> map) {
       SqlSession sqlSession = MyBatisSessionFactory.getSqlSession();
       BoardMapper mapper = sqlSession.getMapper(BoardMapper.class);
-      int result = mapper.selectCount(map);
+      int result = mapper.marketSelectCount(map);
       System.out.println("selectCount - 행 개수 = " + result);
       sqlSession.close();
       return result;
     }
 
-  public List<BoardDTO> selectListPage(Map<String, Object> map) {
+  public List<BoardDTO> marketSelectListPage(Map<String, Object> map) {
     SqlSession sqlSession = MyBatisSessionFactory.getSqlSession();
     BoardMapper mapper = sqlSession.getMapper(BoardMapper.class);
-    List<BoardDTO> result = mapper.selectListPage(map);
+    List<BoardDTO> result = mapper.marketSelectListPage(map);
     sqlSession.close();
     return result;
   }
 
-  public int insertWrite(BoardDTO dto) {
+  public int marketInsertWrite(BoardDTO dto) {
     SqlSession sqlSession = MyBatisSessionFactory.getSqlSession();
     BoardMapper mapper = sqlSession.getMapper(BoardMapper.class);
-    int result = mapper.insertWrite(dto);
+    int result = mapper.marketInsertWrite(dto);
     if (result == 1) {
       sqlSession.commit();
       System.out.println("새로운 mvcboard 저장 성공");
@@ -51,10 +51,10 @@ public class BoardDAO {
     return result;
   }
 
-  public int insertWritePdt(BoardDTO dto) {
+  public int marketInsertWritePdt(BoardDTO dto) {
     SqlSession sqlSession = MyBatisSessionFactory.getSqlSession();
     BoardMapper mapper = sqlSession.getMapper(BoardMapper.class);
-    int result = mapper.insertWritePdt(dto);
+    int result = mapper.marketInsertWritePdt(dto);
     if (result == 1) {
       sqlSession.commit();
       System.out.println("새로운 mvcboard 저장 성공");
@@ -65,10 +65,10 @@ public class BoardDAO {
     return result;
   }
 
-  public BoardDTO selectView(String brdId) {
+  public BoardDTO marketSelectView(String brdId) {
     SqlSession sqlSession = MyBatisSessionFactory.getSqlSession();
     BoardMapper mapper = sqlSession.getMapper(BoardMapper.class);
-    BoardDTO dto = mapper.selectView(brdId);
+    BoardDTO dto = mapper.marketSelectView(brdId);
     sqlSession.close();
     return dto;
   }
@@ -86,10 +86,10 @@ public class BoardDAO {
     sqlSession.close();
   }
 
-  public int updatePost(BoardDTO dto) {
+  public int marketUpdatePost(BoardDTO dto) {
     SqlSession sqlSession = MyBatisSessionFactory.getSqlSession();
     BoardMapper mapper = sqlSession.getMapper(BoardMapper.class);
-    int result = mapper.updatePost(dto);
+    int result = mapper.marketUpdatePost(dto);
     if (result == 1) {
       sqlSession.commit();
     } else {
@@ -99,10 +99,10 @@ public class BoardDAO {
     return result;
   }
 
-  public int deletePost(String idx) {
+  public int deletePost(String brdId) {
     SqlSession sqlSession = MyBatisSessionFactory.getSqlSession();
     BoardMapper mapper = sqlSession.getMapper(BoardMapper.class);
-    int result = mapper.deletePost(idx);
+    int result = mapper.deletePost(brdId);
     if (result == 1) {
       sqlSession.commit();
     } else {
@@ -111,6 +111,32 @@ public class BoardDAO {
     return result;
   }
 
+  public int deletePdtPost(String brdId) {
+    SqlSession sqlSession = MyBatisSessionFactory.getSqlSession();
+    BoardMapper mapper = sqlSession.getMapper(BoardMapper.class);
+    int result = mapper.deletePdtPost(brdId);
+    if (result == 1) {
+      sqlSession.commit();
+    } else {
+      System.out.println("board 삭제 중 오류 발생...");
+    }
+    return result;
+  }
 
-    //최재혁
+  public boolean confirmPassword(String pass, String brdId) {
+    Map<String, String> map = new HashMap<>();
+    map.put("pass", Encrypt.getEncrypt(pass));
+    map.put("brdId", brdId);
+    SqlSession sqlSession = MyBatisSessionFactory.getSqlSession();
+    BoardMapper mapper = sqlSession.getMapper(BoardMapper.class);
+    int result = mapper.confirmPassword(map);
+    if (result == 1) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+
+  //최재혁
 }
