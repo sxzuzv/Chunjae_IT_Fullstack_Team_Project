@@ -198,7 +198,9 @@ public class UserController extends HttpServlet {
 					PrintWriter out = response.getWriter();
 					out.print("<script>"
 							+ "  alert('관리자로 로그인 합니다.');"   // 알림창
+
 							+ " location.href='" + request.getContextPath() + "/view/admin/admin_list.jsp';"  // 로그인 페이지로 이동
+
 							+ "</script>");
 
 				} else {// 로그인 실패
