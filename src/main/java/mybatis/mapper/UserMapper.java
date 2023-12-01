@@ -34,4 +34,6 @@ public interface UserMapper {
     String authenticateAdmin(String userId);
 
     int updatePass(UserDTO userDTO);
+    int updateUserInfo(UserDTO userDTO);
+
 }

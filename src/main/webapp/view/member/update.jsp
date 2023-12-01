@@ -22,13 +22,22 @@
 <meta name="Description" content="">
 <title>회원정보 수정</title>
 
-	<link rel="stylesheet" href="../../css/carousel.css">
+	<link href="../../css/bootstrap.min.css" rel="stylesheet">
 	<link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/carousel/">
-	<link href="../../css/bootstrap.min.css" rel="stylesheet"/>
+
+	<!--헤더 공통 css -->
+	<link href="../../css/bootstrap.min.css" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
-	<link href="../../css/main.css" rel="stylesheet"/>
-	<link href="../../css/nav.css" rel="stylesheet"/>
-	<link rel="stylesheet" href="../css/toggle.css"/>
+
+
+	<link href="../../css/headers.css" rel="stylesheet">
+	<link href="../../css/main.css" rel="stylesheet">
+
+
+	<!-- 슬라이드 css-->
+	<link href="../../css/carousel.css" rel="stylesheet">
+
+
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script src="../../js/bootstrap.js"></script>
 	<script src="../../js/sidebar.js"></script>
@@ -92,6 +101,25 @@
 		if (!form.name.value) {
 			alert("이름을 입력해주세요.");
 			form.name.focus();
+			return;
+		}
+		if (!form.userPW.value) {
+			alert("비밀번호를 입력해주세요.");
+			form.userPW.focus();
+			return;
+		}
+
+		// 비밀번호 유효성 검사 로직 추가
+		var passwordRegex = /^(?=.*[a-zA-Z])(?=.*[0-9]).{8,25}$/;
+		if (!passwordRegex.test(form.userPW.value)) {
+			alert("비밀번호는 8자리 이상이어야 하며, 영문/숫자 모두 포함해야 합니다.");
+			form.userPW.focus();
+			return;
+		}
+
+		if (form.userPW.value !== form.userPW2.value) {
+			alert("비밀번호를 확인해주세요.");
+			form.userPW2.focus();
 			return;
 		}
 		

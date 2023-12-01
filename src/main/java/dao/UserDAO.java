@@ -91,6 +91,18 @@ public class UserDAO {
         return result;
     }
 
+    public int updateUserInfo(UserDTO userDTO) {
+        SqlSession sqlSession = MyBatisSessionFactory.getSqlSession();
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+        int result = mapper.updateUserInfo(userDTO);
+        if (result == 1) {
+            sqlSession.commit();
+        } else {
+            System.out.println("업데이트중 오류 발생");
+        }
+        return result;
+    }
+
     public boolean idCheck(String userId) {
         SqlSession sqlSession = MyBatisSessionFactory.getSqlSession();
         UserMapper mapper = sqlSession.getMapper(UserMapper.class);

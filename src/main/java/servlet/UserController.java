@@ -136,39 +136,37 @@ public class UserController extends HttpServlet {
 
 			nextPage = "/member/main.do";
 
-//		} else if (action.equals("/update.do")) {
-//			// 회원정보수정
-//			String userPW = request.getParameter("userPW");
-//			String name = request.getParameter("name");
-//			String tel = request.getParameter("tel");
-//			String email = request.getParameter("email");
-//			String addr = request.getParameter("addr");
-//			String addr2 = request.getParameter("addr2");
-//
-//
-//			UserDTO user = new UserDTO();
-//
-//			user.setUserId((String)	request.getSession().getAttribute("userId"));
-//
-//			if(userPW == null)
-//			{
-//				UserDTO user2=userDao.selectById(user.getUserId());
-//				user.setUserPwd(user2.getUserPwd());
-//			} else {
-//				String hashedPassword = sha256Hash(userPW);
-//				user.setUserPwd(hashedPassword);
-//			}
-//
-//			user.setUserEmail(email);
-//			user.setUserName(name);
-//			user.setUserAddr(addr);
-//			user.setUserDaddr(addr2);
-//			user.setUserCp(tel);
-//
-//			userDao.update(user);
+		} else if (action.equals("/update.do")) {
+			// 회원정보수정
+			UserDTO userDTO = new UserDTO();
+			userDTO.setUserId((String)request.getSession().getAttribute("userId"));
+			userDTO.setUserPwd(request.getParameter("userPW"));
+			userDTO.setUserEmail(request.getParameter("email"));
+			userDTO.setUserName(request.getParameter("name"));
+			userDTO.setUserAddr(request.getParameter("addr"));
+			userDTO.setUserDaddr(request.getParameter("addr2"));
+			userDTO.setUserCp(request.getParameter("name"));
 
 
-//			nextPage = "/main/main.do";
+			int result = userDao.updateUserInfo(userDTO);
+
+			if (result == 1) {
+				PrintWriter out = response.getWriter();
+				out.print("<script>"
+						+ "  alert('회원정보가 변경 되었습니다..');"   // 알림창
+						+ " location.href='" + request.getContextPath() + "#';"  // 회원정보 보여주는 화면으로이동
+						+ "</script>");
+			} else {
+				PrintWriter out = response.getWriter();
+				out.print("<script>"
+						+ "  alert('회원정보 변경에 실패했습니다. 다시 진행해 주세요');"   // 알림창
+						+ " location.href='" + request.getContextPath() + "login.do';"  // 로그인 페이지로 이동
+						+ "</script>");
+
+			}
+
+
+			nextPage = "/main/main.do";
 		} else if (action.equals("/join.do")) {
 			nextPage = "/view/member/join.jsp";
 		} else if ("/login.do".equals(action)) {
@@ -237,17 +235,10 @@ public class UserController extends HttpServlet {
 				out.print("success");
 
 			return;
-//		}else if (action.equals("/updatefrom.do")) {
-//
-//			session = request.getSession();
-//			String userId = (String) session.getAttribute("userId");
-//
-//			UserDTO user= userDao.selectById(userId);
-//			request.setAttribute("user", user);
-//			nextPage = "/view/member/update.jsp";
 
-			//로그아웃
+
 		}else if (action.equals("/logout.do")) {
+			//로그아웃
 			session = request.getSession(false); // 세션 객체 생성하지 않고 기존 세션을 가져옴
 			if (session != null) {
 				session.removeAttribute("userId"); // 세션에서 userId 속성 제거

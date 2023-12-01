@@ -48,6 +48,12 @@
         where user_id = #{userId}
     </update>
 
+    <update id="updateUserInfo" parameterType="dto.UserDTO">
+        update user
+        set user_pwd = #{userPwd}, user_name = #{userName}, user_cp = #{userCp}, user_email = #{userEmail}, user_addr = #{userAddr}, user_daddr = #{userDaddr}
+        where user_id = #{userId}
+    </update>
+
 
     <select id="authenticateStatus" parameterType="String">
         select user_status
