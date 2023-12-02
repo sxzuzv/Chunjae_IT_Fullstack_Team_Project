@@ -22,6 +22,7 @@
 	<link href="../../css/main.css" rel="stylesheet"/>
 	<link href="../../css/nav.css" rel="stylesheet"/>
 	<link rel="stylesheet" href="../css/toggle.css"/>
+	<link rel="stylesheet" href="../../css/carousel.css">
 
 
 

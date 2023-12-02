@@ -40,4 +40,8 @@ public class UserDTO {
     private String userStatus;
 
     private int reportCnt;
+
+    private String ofile;
+
+    private String sfile;
 }
