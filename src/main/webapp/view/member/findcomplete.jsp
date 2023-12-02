@@ -9,9 +9,9 @@
 
     <title>home</title>
     <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/carousel/">
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <!--헤더 공통 css -->
-    <link href="../../css/bootstrap.min.css" rel="stylesheet">
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
 
 
@@ -28,14 +28,15 @@
 </header>
 <div class="container-fluid d-flex align-items-center justify-content-center" style="height: 100vh;">
     <div class="card p-5">
-        <form action="${contextPath}/member/login.do">
+        <form action="${contextPath}/view/member/login.jsp">
             <h1 class="mb-4">아이디 찾기</h1>
             <div class="alert alert-info" role="alert">
-                회원가입 시 사용한 아이디는 <strong>${userId}</strong> 입니다.
+                회원가입 시 사용한 아이디는 <strong>${memberId}</strong> 입니다.
             </div>
             <button type="submit" class="btn btn-primary mt-3">로그인 화면으로 돌아가기</button>
         </form>
     </div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
 </html>

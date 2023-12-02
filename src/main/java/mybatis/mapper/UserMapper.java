@@ -36,4 +36,7 @@ public interface UserMapper {
     int updatePass(UserDTO userDTO);
     int updateUserInfo(UserDTO userDTO);
 
+    UserDTO userSelectView(String userId);
+
+    int userSelfDelete(String userId);
 }
