@@ -2,9 +2,13 @@ package servlet;
 
 import dao.UserDAO;
 import dto.UserDTO;
+import util.FileUtil;
+import util.JSFunction;
+
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -18,6 +22,10 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Date;
 
 @WebServlet("/member/*")
+@MultipartConfig(
+		maxFileSize = 1024 * 1024 * 1,
+		maxRequestSize = 1024 * 1024 * 10
+)
 public class UserController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	UserDAO userDao;
@@ -68,8 +76,7 @@ public class UserController extends HttpServlet {
 						+ "</script>");
 
 			}else {
-
-
+				request.getSession(false);
 				nextPage = "/view/member/findcomplete.jsp";
 			}
 
@@ -118,8 +125,19 @@ public class UserController extends HttpServlet {
 
 
 			} else if (action.equals("/save.do")) {//회원가입
-			// 정보 세팅
+			 //정보 세팅
+			String saveDirectory = request.getServletContext().getRealPath("/Uploads");
+			String originalFileName = "";
+			try {
+				originalFileName = FileUtil.uploadFile(request, saveDirectory);
+			} catch (Exception e) {
+				e.printStackTrace();
+				System.out.println("파일 업로드 실패");
+				JSFunction.alertLocation(response, "파일 업로드 오류 발생", request.getContextPath() + "/market/write.do");
+				return;
+			}
 			UserDTO userDTO = new UserDTO();
+
 			userDTO.setUserId(request.getParameter("userID"));
 			userDTO.setUserPwd(request.getParameter("userPW"));
 			userDTO.setUserName(request.getParameter("name"));
@@ -130,11 +148,31 @@ public class UserController extends HttpServlet {
 			userDTO.setUserDaddr(request.getParameter("addr2"));
 			userDTO.setUserSchool(request.getParameter("userschool"));
 
+			if (!originalFileName.isEmpty()) {
+				String savedFileName = FileUtil.renameFile(saveDirectory, originalFileName);
+				userDTO.setOfile(originalFileName);
+				userDTO.setSfile(savedFileName);
+			}
+			int result =userDao.createUser(userDTO);
 
+			if (result == 1) {
+				PrintWriter out = response.getWriter();
+				out.print("<script>"
+						+ "  alert('회원가입 되었습니다...');"   // 알림창
+						+ " location.href='" + request.getContextPath() + "member/main.do';"  // 회원정보 보여주는 화면으로이동
+						+ "</script>");
+
+			} else {
+				PrintWriter out = response.getWriter();
+				out.print("<script>"
+						+ "  alert('회원정보 가입에 실패했습니다. 다시 진행해 주세요');"   // 알림창
+						+ " location.href='" + request.getContextPath() + "login.do';"  // 로그인 페이지로 이동
+						+ "</script>");
+
+
+			}
 			// 저장
-			userDao.createUser(userDTO);
 
-			nextPage = "/member/main.do";
 
 		} else if (action.equals("/update.do")) {
 			// 회원정보수정

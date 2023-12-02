@@ -24,13 +24,18 @@ public class UserDAO {
     //최영주
 
     //최재혁
-    public boolean createUser(UserDTO userDTO) {
+    public int createUser(UserDTO userDTO) {
 
         SqlSession sqlSession = MyBatisSessionFactory.getSqlSession();
         UserMapper mapper = sqlSession.getMapper(UserMapper.class);
-        boolean result = mapper.createUser(userDTO);
-        sqlSession.commit();
+        int result = mapper.createUser(userDTO);
+        if(result==1) {
+            sqlSession.commit();
+        }else{
+            System.out.println("저장실패");
 
+        }
+        sqlSession.close();
         return result;
     }
 

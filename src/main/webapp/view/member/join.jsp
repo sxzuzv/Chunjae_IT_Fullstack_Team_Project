@@ -126,7 +126,7 @@
     </script>
 </head>
 <body>
-<form name="joinForm" method="post" action="${contextPath}/member/save.do">
+<form name="joinForm" method="post" enctype="multipart/form-data" action="${contextPath}/member/save.do">
     <input type="hidden" name="checkID" value="no" />
     <div class="joinBox">
         <h1 class="tit">회원가입</h1>
@@ -183,6 +183,12 @@
                 <th>상세주소</th>
                 <td>
                     <input type="text" id="user_addr2" name="addr2" placeholder="상세주소" size="20">
+                </td>
+            </tr>
+            <tr>
+                <th>재직증명서</th>
+                <td>
+                    <input type="file" id="school_aut" name="ofile" >
                 </td>
             </tr>
             <tr>
