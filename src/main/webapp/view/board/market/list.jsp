@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: cyj
-  Date: 2023-11-26
-  Time: 오후 11:44
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 		 pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -17,48 +10,11 @@
 
 	<title>중고게시판</title>
 
-	<!--헤더 공통 css -->
-	<link href="../../../css/bootstrap.min.css" rel="stylesheet">
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
-
-
-	<link href="../../../css/headers.css" rel="stylesheet">
-	<link href="../../../css/main.css" rel="stylesheet">
-	<link href="../../../css/nav.css" rel="stylesheet">
-
-
-	<!-- 슬라이드 css-->
-	<link href="../../../css/carousel.css" rel="stylesheet">
-	<!-- jQuery CDN을 사용하는 경우 -->
-	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-	<script>
-		function redirectToUrl() {
-			var url = 'http://localhost:8090/market/list.do?cateSub=1';
-
-			// jQuery를 사용하여 AJAX로 페이지 이동
-			$.ajax({
-				type: 'GET',
-				url: url,
-				success: function () {
-					// 페이지 이동 성공 시 처리할 코드 작성
-					console.log('페이지 이동 성공');
-					// 여기에 추가 작업을 수행할 수 있습니다.
-				},
-				error: function () {
-					// 페이지 이동 실패 시 처리할 코드 작성
-					console.log('페이지 이동 실패');
-					// 여기에 추가 작업을 수행할 수 있습니다.
-				}
-			});
-		}
-
-	</script>
-
 </head>
 <body>
 <header>
 
-	<jsp:include page="../../common/top.jsp"></jsp:include>
+	<jsp:include page="../../common/header.jsp"></jsp:include>
 
 
 </header>

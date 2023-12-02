@@ -16,26 +16,16 @@
 
     <title>home</title>
 
+    <%--  슬라이드 CSS --%>
     <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/carousel/">
-
-    <!--헤더 공통 css -->
-    <link href="../../css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
-
-
-    <link href="../../css/headers.css" rel="stylesheet">
-    <link href="../../css/main.css" rel="stylesheet">
-
-
-    <!-- 슬라이드 css-->
     <link href="../../css/carousel.css" rel="stylesheet">
 
 </head>
 <body>
 <header>
 
-    <jsp:include page="../common/top.jsp"></jsp:include>
-
+    <jsp:include page="../common/header.jsp"></jsp:include>
+    <link href="../../css/main.css" rel="stylesheet">
 
 </header>
 
