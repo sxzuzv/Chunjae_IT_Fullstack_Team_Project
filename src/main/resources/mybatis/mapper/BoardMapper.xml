@@ -20,10 +20,21 @@
         FROM board b
         LEFT JOIN product p
         ON b.brd_id = p.brd_id
-        WHERE b.cate_main = 1 AND b.brd_id > 0
+        WHERE b.cate_main = 1
         ]]>
         <if test="cateSub != null and !cateSub.equals('')">
             AND b.cate_sub = #{cateSub}
+        </if>
+        <if test="myStore != null and !myStore.equals('')">
+            AND
+            <choose>
+                <when test="myStore == 'sell'">
+                    b.user_id = #{userId}
+                </when>
+                <otherwise>
+                    p.buyer_id = #{userId}
+                </otherwise>
+            </choose>
         </if>
         <if test="searchWord != null and !searchWord.equals('')">
             AND
@@ -36,7 +47,6 @@
                 </otherwise>
             </choose>
         </if>
-        order by b.brd_id desc
     </select>
 
     <insert id="marketInsertWrite" parameterType="dto.BoardDTO">
@@ -59,10 +69,21 @@
         FROM board b
         LEFT JOIN product p
         ON b.brd_id = p.brd_id
-        WHERE b.cate_main = 1 AND b.brd_id > 0
+        WHERE b.cate_main = 1
         ]]>
         <if test="cateSub != null and !cateSub.equals('')">
             AND b.cate_sub = #{cateSub}
+        </if>
+        <if test="myStore != null and !myStore.equals('')">
+            AND
+            <choose>
+                <when test="myStore == 'sell'">
+                    b.user_id = #{userId}
+                </when>
+                <otherwise>
+                    p.buyer_id = #{userId}
+                </otherwise>
+            </choose>
         </if>
         <if test="searchWord != null and !searchWord.equals('')">
             AND

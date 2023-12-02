@@ -31,7 +31,6 @@ public class PassController extends HttpServlet {
         // 비로그인시 튕겨냄
         if( userId == null) {
             JSFunction.alertLocation(response,"로그인해 주세요","/main/main.do");
-            return;
         }else{ //로그인시 확인
            dao = new BoardDAO();
             confirmed = dao.confirmPassword(userId, brdId);
