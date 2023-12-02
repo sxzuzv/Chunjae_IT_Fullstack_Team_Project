@@ -41,8 +41,8 @@
 					</div>
 				</ul>
 				<ul class="nav">
-					<li class="nav-item"><a href="#" class="nav-link link-body-emphasis px-2">로그인</a></li>
-					<li class="nav-item"><a href="#" class="nav-link link-body-emphasis px-2">회원가입</a></li>
+					<li class="nav-item"><a href="${contextPath}/member/main.do" class="nav-link link-body-emphasis px-2">로그인</a></li>
+					<li class="nav-item"><a href="${contextPath}/member/join.do" class="nav-link link-body-emphasis px-2">회원가입</a></li>
 				</ul>
 			</div>
 		</nav>
@@ -61,7 +61,7 @@
 				<ul class="nav">
 					<li id="btn" class ="nav-item"><a href="#">${userId}</a>
 						<ul id="slideTogglebox">
-							<li><a href="/member/updatefrom.do">회원정보수정</a></li>
+							<li><a href="/member/mypage.do">마이페이지</a></li>
 							<li><a href="/member/logout.do" onclick="toggleLogout()"><span id="logoutText">로그아웃</span></a></li>
 						</ul>
 					</li>

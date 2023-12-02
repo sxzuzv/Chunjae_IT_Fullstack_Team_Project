@@ -1,8 +1,10 @@
 package dao;
 
 
+import dto.BoardDTO;
 import dto.UserDTO;
 import mybatis.factory.MyBatisSessionFactory;
+import mybatis.mapper.BoardMapper;
 import mybatis.mapper.UserMapper;
 import org.apache.ibatis.session.SqlSession;
 import util.Encrypt;
@@ -136,5 +138,25 @@ public class UserDAO {
 
     }
 
+    public UserDTO userSelectView(String userId) {
+        SqlSession sqlSession = MyBatisSessionFactory.getSqlSession();
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+        UserDTO userDTO = mapper.userSelectView(userId);
+        sqlSession.close();
+        return userDTO;
+    }
+
+    public int userSelfDelete(String userId) {
+        SqlSession sqlSession = MyBatisSessionFactory.getSqlSession();
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+        int result = mapper.userSelfDelete(userId);
+        if(result == 1){
+            sqlSession.commit();
+        }else{
+            System.out.println("저장실패");
+        }
+        return result;
+
+    }
 
 }
