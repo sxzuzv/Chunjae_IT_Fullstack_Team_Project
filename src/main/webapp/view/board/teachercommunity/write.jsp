@@ -45,12 +45,12 @@
         </select>
       </td>
     </tr>
-    <tr>
-      <td>작성자</td>
-      <td>
-        <input type="text" name="name" style="width:150px;" />
-      </td>
-    </tr>
+<%--    <tr>--%>
+<%--      <td>작성자</td>--%>
+<%--      <td>--%>
+<%--        <input type="text" name="name" style="width:150px;" />--%>
+<%--      </td>--%>
+<%--    </tr>--%>
     <tr>
       <td>제목</td>
       <td>
