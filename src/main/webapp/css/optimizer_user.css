@@ -4564,6 +4564,15 @@
      border-bottom: 1px solid #d2d2d2;
      padding: 8px 0;
      margin: 0;
+     text-align: right;
+ }
+
+ .xans-product-normalmenu .function button{
+     background: #222222;
+     color: #FFFFFF;
+     font-size: 18px;
+     width: 106px;
+     height: 45px;
  }
 
  .xans-product-normalmenu .function .btnCompare {

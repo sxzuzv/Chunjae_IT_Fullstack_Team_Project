@@ -1,14 +1,21 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: cyj
+  Date: 2023-11-26
+  Time: 오후 11:44
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 		 pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <!doctype html>
-<html lang="en" data-bs-theme="auto">
+<html xml:lang="ko" lang="ko">
+
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<title>중고게시판</title>
+	<title>중고 거래</title>
 
 </head>
 <body>
@@ -19,86 +26,129 @@
 
 </header>
 
+<div id="wrap">
+	<div id="container">
+		<div id="contents">
+			<style>
+				#wrap {
+					overflow: hidden;
+				}
 
-<h2>파일 첨부형 게시판 - 목록 보기(List)</h2>
-	<!-- 검색 폼 -->
-	<form method="get">
-		<table border="1" width="90%">
-			<tr>
-				<td align="center">
-					<select name="searchField">
-						<option value="title">제목</option>
-						<option value="content">내용</option>
-					</select>
-					<input type="text" name="searchWord" />
-					<input type="hidden" name="cateSub" value=${ map.cateSub }/>
-					<input type="submit" value="검색하기" />
-				</td>
-			</tr>
-		</table>
-	</form>
-	<!-- 목록 테이블 -->
-	<div class="ec-base-table typeList gBorder">
-		<table border="1" width="90%">
-			<colgroup
-					class="xans-element- xans-board xans-board-listheader-1002 xans-board-listheader xans-board-1002 ">
-				<col style="width:95px;">
-				<col style="width:135px;">
-				<col style="width:auto;">
-				<col style="width:134px;">
-				<col style="width:134px;">
-				<col style="width:134px;">
-			</colgroup>
-			<thead
-					class="xans-element- xans-board xans-board-listheader-1002 xans-board-listheader xans-board-1002 ">
-				<tr>
-					<th scope="col">번호</th>
-					<th scope="col">지역</th>
-					<th scope="col">제목</th>
-					<th scope="col">상태</th>
-					<th scope="col">가격</th>
-					<th scope="col">게시일자</th>
-				</tr>
-			</thead>
-			<c:choose>
-				<c:when test="${ empty boardLists }">  <!-- 게시물이 없을 때 -->
-					<tr>
-						<td colspan="6" align="center">
-							등록된 게시물이 없습니다^^*
-						</td>
-					</tr>
-				</c:when>
-				<c:otherwise>  <!-- 게시물이 있을 때 -->
-					<c:forEach items="${ boardLists }" var="row" varStatus="loop">
-						<tbody
-							class="xans-element- xans-board xans-board-list-1002 xans-board-list xans-board-1002 center">
-							<tr style="background-color:#FFFFFF; color:#555555;" class="xans-record-">
-								<td>  <!-- 번호 -->
-										${ map.totalCount - (((map.pageNum-1) * map.pageSize) + loop.index)}
-								</td>
-								<td>${ row.dealAddress }</td>  <!-- 지역 -->
-								<td align="left">  <!-- 제목(링크) -->
-									<a href="/market/view.do?brdId=${ row.brdId }">${ row.title }</a>
-								</td>
-								<td>${ row.status }</td>  <!-- 상태 -->
-								<td><span class="txtNum">${ row.price }</span></td>  <!-- 가격 -->
-								<td><span class="txtNum">${ row.regDate }</span></td>  <!-- 게시일자 -->
-							</tr>
-						</tbody>
-					</c:forEach>
-				</c:otherwise>
-			</c:choose>
-		</table>
+				#quick {
+					top: 415px;
+				}
+			</style>
+			<!-- 추천상품 -->
+
+			<!-- 신상품 -->
+			<div class="xans-element- xans-board xans-board-title-1002 xans-board-title xans-board-1002 ">
+				<div class="titleArea">
+					<h2>
+						<c:choose>
+							<c:when test="${ map.cateSub eq 1}"> 중고 거래 - 교재 </c:when>
+							<c:when test="${ map.cateSub eq 2}"> 중고 거래 - 교구 </c:when>
+							<c:when test="${ map.cateSub eq 3}"> 중고 거래 - 일상 용품 </c:when>
+							<c:otherwise> 중고거래 </c:otherwise>
+						</c:choose>
+					</h2>
+					<p>중고거래 게시판 입니다.</p>
+				</div>
+				<p class="imgArea"></p>
+			</div>
+			<form id="boardSearchForm" name=""
+				  method="get">
+				<div class="xans-element- xans-board xans-board-search-1002 xans-board-search xans-board-1002 ">
+					<fieldset class="boardSearch">
+						<legend>게시물 검색</legend>
+						<p>
+							<select id="search_key" name="searchField">
+								<option value="title">제목</option>
+								<option value="content">내용</option>
+							</select>
+							<input type="hidden" name="cateSub" value=${ map.cateSub }/>
+							<input id="search" name="searchWord"
+								   class="inputTypeText" placeholder="" value="" type="text">
+							<input id= "submitbtn" type="submit" value="검색하기"/></p>
+					</fieldset>
+				</div>
+			</form>
+			<div class="xans-element- xans-product xans-product-normalpackage"><!-- 정렬기준 외 -->
+				<div class="xans-element- xans-product xans-product-normalmenu">
+					<div class="function" id="Product_ListMenu">
+						<button type="button" onclick="location.href='/market/write.do';">글쓰기</button>
+					</div>
+					<fieldset class="condition displaynone">
+						<legend>조건별 검색</legend>
+						<p>
+
+							<select class="xans-element- xans-product xans-product-firstselect FirstSelect">
+								<option value="">-조건선택-</option>
+								<option value="" class=""></option>
+							</select>
+							<select class="xans-element- xans-product xans-product-secondselect SecondSelect">
+								<option value="">-조건선택-</option>
+								<option value="" class=""></option>
+							</select>
+							<a href="#SelectSearch" class="btnSubmitFix">검색</a>
+						</p>
+					</fieldset>
+				</div>
+				<!-- 일반상품진열 -->
+				<div class="xans-element- xans-product xans-product-listnormal ec-base-product">
+					<!--
+            $count = 100
+                ※ 상품진열갯수를 설정하는 변수입니다. 설정하지 않을 경우, 최대 200개의 상품이 진열 됩니다.
+                ※ 진열된 상품이 많으면, 쇼핑몰에 부하가 발생할 수 있습니다.
+            $basket_result = /product/add_basket.html
+            $basket_option = /product/basket_option.html
+        -->
+					<ul class="prdList grid4">
+						<c:forEach items="${ boardLists }" var="row" varStatus="loop">
+							<li id="" class="xans-record-">
+								<div class="thumbnail">
+									<div class="prdImg">
+										<a href="https://mall.chunjaetext.co.kr/product/%EC%A4%91%ED%95%99-%EA%B3%BC%ED%95%99%EB%85%B8%ED%83%9C%ED%9D%AC-1/379/category/43/display/1/"
+										   name="anchorBoxName_379">
+											<img
+													src="./중학교과서 - 천재교과서_files/b48ec9780530cf09383d64507978c4b5.jpg"
+													id="eListPrdImage379_1" alt=""></a>
+										<span class="wish"></span>
+									</div>
+								</div>
+								<div class="description">
+									<p class="summary">[${ row.status }] ${ row.dealAddress }</p>
+									<strong class="name">
+										<a href="/market/view.do?brdId=${ row.brdId }" class="">
+											<span style="font-size:18px;color:#070707;">${ row.title }</span>
+										</a>
+									</strong>
+									<ul class="xans-element- xans-product xans-product-listitem spec">
+										<li rel="판매가" class=" xans-record-">
+											<span
+													style="font-size:20px;color:#070707;font-weight:bold;">${ row.price }원</span><span
+												id="span_product_tax_type_text" style=""> </span>
+										</li>
+									</ul>
+								</div>
+							</li>
+						</c:forEach>
+					</ul>
+				</div>
+			</div>
+
+			<%--페이징 블록--%>
+			<div
+					class="xans-element- xans-board xans-board-paging-1002 xans-board-paging xans-board-1002 ec-base-paginate">
+				<ol>
+
+					${ map.pagingImg }
+
+				</ol>
+			</div>
+		</div>
+		<hr class="layout">
 	</div>
-	<!-- 하단 메뉴(바로가기, 글쓰기) -->
-	<table border="1" width="90%">
-		<tr align="center">
-			<td>
-				${ map.pagingImg }
-			</td>
-			<td width="100"><button type="button"
-									onclick="location.href='/market/write.do';">글쓰기</button></td>
-		</tr>
-	</table>
+	<hr class="layout">
+</div>
 </body>
 </html>

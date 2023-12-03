@@ -9,26 +9,13 @@
 		 pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
-<html xmlns="//www.w3.org/1999/xhtml" xml:lang="ko" lang="ko">
+<html xml:lang="ko" lang="ko">
 
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<title>내상점</title>
-
-	<!--헤더 공통 css -->
-	<link href="../../../css/bootstrap.min.css" rel="stylesheet">
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
-
-
-	<link href="../../../css/headers.css" rel="stylesheet">
-	<link href="../../../css/main.css" rel="stylesheet">
-	<link href="../../../css/nav.css" rel="stylesheet">
-
-
-	<!-- 슬라이드 css-->
-	<link href="../../../css/carousel.css" rel="stylesheet">
 
 </head>
 <body>
