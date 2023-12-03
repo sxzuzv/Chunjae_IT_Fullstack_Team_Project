@@ -18,6 +18,8 @@
 
 
 </header>
+
+
 <h2>파일 첨부형 게시판 - 목록 보기(List)</h2>
 	<!-- 검색 폼 -->
 	<form method="get">
@@ -36,42 +38,58 @@
 		</table>
 	</form>
 	<!-- 목록 테이블 -->
-	<table border="1" width="90%">
-		<tr>
-			<th width="10%">번호</th>
-			<th width="*">지역</th>
-			<th width="*">제목</th>
-			<th width="15%">상태</th>
-			<th width="10%">가격</th>
-			<th width="15%">게시일자</th>
-		</tr>
-		<c:choose>
-			<c:when test="${ empty boardLists }">  <!-- 게시물이 없을 때 -->
+	<div class="ec-base-table typeList gBorder">
+		<table border="1" width="90%">
+			<colgroup
+					class="xans-element- xans-board xans-board-listheader-1002 xans-board-listheader xans-board-1002 ">
+				<col style="width:95px;">
+				<col style="width:135px;">
+				<col style="width:auto;">
+				<col style="width:134px;">
+				<col style="width:134px;">
+				<col style="width:134px;">
+			</colgroup>
+			<thead
+					class="xans-element- xans-board xans-board-listheader-1002 xans-board-listheader xans-board-1002 ">
 				<tr>
-					<td colspan="6" align="center">
-						등록된 게시물이 없습니다^^*
-					</td>
+					<th scope="col">번호</th>
+					<th scope="col">지역</th>
+					<th scope="col">제목</th>
+					<th scope="col">상태</th>
+					<th scope="col">가격</th>
+					<th scope="col">게시일자</th>
 				</tr>
-			</c:when>
-			<c:otherwise>  <!-- 게시물이 있을 때 -->
-				<c:forEach items="${ boardLists }" var="row" varStatus="loop">
-					<tr align="center">
-						<td>  <!-- 번호 -->
-								${ map.totalCount - (((map.pageNum-1) * map.pageSize) + loop.index)}
+			</thead>
+			<c:choose>
+				<c:when test="${ empty boardLists }">  <!-- 게시물이 없을 때 -->
+					<tr>
+						<td colspan="6" align="center">
+							등록된 게시물이 없습니다^^*
 						</td>
-						<td>${ row.dealAddress }</td>  <!-- 지역 -->
-						<td align="left">  <!-- 제목(링크) -->
-							<a href="/market/view.do?brdId=${ row.brdId }">${ row.title }</a>
-						</td>
-						<td>${ row.status }</td>  <!-- 상태 -->
-						<td>${ row.price }</td>  <!-- 가격 -->
-						<td>${ row.regDate }</td>  <!-- 게시일자 -->
 					</tr>
-				</c:forEach>
-			</c:otherwise>
-		</c:choose>
-	</table>
-
+				</c:when>
+				<c:otherwise>  <!-- 게시물이 있을 때 -->
+					<c:forEach items="${ boardLists }" var="row" varStatus="loop">
+						<tbody
+							class="xans-element- xans-board xans-board-list-1002 xans-board-list xans-board-1002 center">
+							<tr style="background-color:#FFFFFF; color:#555555;" class="xans-record-">
+								<td>  <!-- 번호 -->
+										${ map.totalCount - (((map.pageNum-1) * map.pageSize) + loop.index)}
+								</td>
+								<td>${ row.dealAddress }</td>  <!-- 지역 -->
+								<td align="left">  <!-- 제목(링크) -->
+									<a href="/market/view.do?brdId=${ row.brdId }">${ row.title }</a>
+								</td>
+								<td>${ row.status }</td>  <!-- 상태 -->
+								<td><span class="txtNum">${ row.price }</span></td>  <!-- 가격 -->
+								<td><span class="txtNum">${ row.regDate }</span></td>  <!-- 게시일자 -->
+							</tr>
+						</tbody>
+					</c:forEach>
+				</c:otherwise>
+			</c:choose>
+		</table>
+	</div>
 	<!-- 하단 메뉴(바로가기, 글쓰기) -->
 	<table border="1" width="90%">
 		<tr align="center">

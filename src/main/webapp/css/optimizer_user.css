@@ -7270,6 +7270,14 @@
      line-height: 40px;
  }
 
+ .xans-board-search .boardSearch p #submitbtn {
+     background: #3d5c97;
+     color: #ffffff;
+     font-size: 18px;
+     width: 106px;
+     height: 45px;
+ }
+
  .store-top .titleArea h2 {
      padding: 0 0 20px 0;
  }

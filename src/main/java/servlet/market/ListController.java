@@ -55,12 +55,6 @@ public class ListController extends HttpServlet {
     String userId = (String)request.getSession().getAttribute("userId");
 
 
-    //cate_sub가 존재하는 경우만 쿼리스트링 삽입, map에 저장
-    String addOther = "";
-    if (cateSub != null) {
-      addOther = "&cateSub="+cateSub;
-      map.put("cateSub", cateSub);
-    }
 
     if (searchWord != null) {
       // 쿼리스트링으로 전달받은 매개변수 중 검색어가 있다면 map에 저장
@@ -68,19 +62,27 @@ public class ListController extends HttpServlet {
       map.put("searchWord", searchWord);
     }
 
-    // 중고거래 or 내상점 여부 판단
+    //기타 쿼리스트링 삽입용 변수선언
+    String addOther = "";
+
+    // 중고거래 or 내상점 여부 판단하여 분기 처리
     if (myStore == null){ // 중고거래 게시판일때
-      nextPage = "/view/board/market/list.jsp";
+      nextPage = "/view/board/market/list.jsp"; //포워딩 페이지 중고거래 게시판으로 지정
+      if (cateSub != null) { //cateSub가 존재하면 쿼리스트링과 맵에 추가
+        addOther = "&cateSub="+cateSub;
+        map.put("cateSub", cateSub);
+      }
     }
-    else{ //내상점인 경우. 현재 로그인한 사용자Id 값 맵에 넘김
+    else{ //내상점인 경우
 
       if(userId == null) { //비로그인시 내상점 접근 불가
         JSFunction.alertLocation(response, "로그인해 주세요", "/main/main.do");
 
       } else {
-        map.put("userId", userId);
-        nextPage = "/view/board/market/myList.jsp";
-        map.put("myStore", myStore);
+        map.put("userId", userId); //현재 로그인한 사용자Id 값 맵에 넘김
+        nextPage = "/view/board/market/myList.jsp"; //포워딩 페이지 내상점으로 지정
+        addOther = "&myStore="+myStore; // 쿼리스트링 추가(sell 인지 buy인지)
+        map.put("myStore", myStore); //맵에 추가
       }
     }
 
