@@ -52,12 +52,12 @@ a, a:hover {
 						<table class="pull-right">
 							<tr>
 								<td>
-									<select class="form-control" name="searchField">
+									<%--<select class="form-control" name="searchField">
 										<option value="0">선택</option>
 										<option value="bbsTitle">제목</option>
 										<option value="userID">아이디</option>
-<%--									</select>--%>
-								</td>
+										</select>--%>
+									</td>
 								<td>
 									<input type="text" class="form-control" placeholder="검색어 입력" name="searchText" maxlength="100"></td>
 								<td><button type="button" class="btn btn-white btn-dark">검색</button></td>
@@ -67,8 +67,6 @@ a, a:hover {
 					<div id="memberList">
 						<jsp:include page="member_list.jsp"></jsp:include>
 					</div>
-					
-
 				</div>
 			</div>
 		</div>

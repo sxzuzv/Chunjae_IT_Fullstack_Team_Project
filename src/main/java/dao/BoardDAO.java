@@ -2,6 +2,7 @@ package dao;
 
 
 import dto.BoardDTO;
+import dto.UserDTO;
 import mybatis.factory.MyBatisSessionFactory;
 import mybatis.mapper.BoardMapper;
 import org.apache.ibatis.session.SqlSession;
@@ -18,7 +19,25 @@ public class BoardDAO {
 
 
     //최경락
+    public int csSelectCount(Map<String, Object> map) {
+      SqlSession sqlSession = MyBatisSessionFactory.getSqlSession();
+      BoardMapper mapper = sqlSession.getMapper(BoardMapper.class);
+      int result = mapper.csSelectCount(map);
+      System.out.println("selectCount - 행 개수 = " + result);
+      sqlSession.close();
+      return result;
+    }
 
+    public List<BoardDTO> csSelectListPage(Map<String, Object> map) {
+    SqlSession sqlSession = MyBatisSessionFactory.getSqlSession();
+    BoardMapper mapper = sqlSession.getMapper(BoardMapper.class);
+    List<BoardDTO> result = mapper.csSelectListPage(map);
+    sqlSession.close();
+    return result;
+  }
+  /*public List<UserDTO> selectUserList(Map<String, Object> map) {
+      return null;
+  }*/
 
     //최영주
     public int marketSelectCount(Map<String, Object> map) {
@@ -153,7 +172,8 @@ public class BoardDAO {
 
 
 
-    //최재혁
+
+  //최재혁
 
 
 

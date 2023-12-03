@@ -1,8 +1,10 @@
 package dao;
 
 
+import dto.BoardDTO;
 import dto.UserDTO;
 import mybatis.factory.MyBatisSessionFactory;
+import mybatis.mapper.BoardMapper;
 import mybatis.mapper.UserMapper;
 import org.apache.ibatis.session.SqlSession;
 import util.Encrypt;
@@ -19,7 +21,22 @@ public class UserDAO {
 
 
     //최경락
+   /* public int selectUser(Map<String, Object> map) {
+        SqlSession sqlSession = MyBatisSessionFactory.getSqlSession();
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+        int result = mapper.selectUser(map);
+        System.out.println("selectCount - 행 개수 = " + result);
+        sqlSession.close();
+        return result;
+    }
 
+    public List<UserDTO> selectUserList(Map<String, Object> map) {
+        SqlSession sqlSession = MyBatisSessionFactory.getSqlSession();
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+        List<UserDAO> result = mapper.selectUserList(map);
+        sqlSession.close();
+        return result;
+    }*/
 
     //최영주
 

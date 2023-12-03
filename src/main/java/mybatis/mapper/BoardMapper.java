@@ -12,7 +12,9 @@ public interface BoardMapper {
 
 
     //최경락
+    int csSelectCount(Map<String, Object> map);
 
+    List<BoardDTO> csSelectListPage(Map<String, Object> map);
 
     //최영주
     int marketSelectCount(Map<String, Object> map);

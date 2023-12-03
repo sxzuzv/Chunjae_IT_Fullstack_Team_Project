@@ -21,7 +21,7 @@
 </thead>
 <tbody>
 	<c:choose>
-		<c:when test="${list ==null }">
+		<c:when test="${userList ==null }">
 			<tr height="10">
 				<td colspan="6">
 					<p align="center">
@@ -30,19 +30,19 @@
 				</td>
 			</tr>
 		</c:when>
-		<c:when test="${list !=null }">
-			<c:forEach var="item" items="${list }" varStatus="articleNum">
+		<c:when test="${userList !=null }">
+			<c:forEach var="row" items="${userList }" varStatus="loop">
 				<tr align="center">
 					<!-- 다른곳에서 복붙하지말고 여기에 추가해주세요  -->
-					<td width="5%">${articleNum.count}</td>
-					<td width="15%">${item.userId}</td>
-					<td width="14%">${item.userName}</td>
-					<td width="20%">${item.userEmail}</td>
-					<td width="15%">${item.userCp}</td>
-					<td width="10%">${item.userGrade}</td>
-					<td width="8%">${item.regDate}</td>
-					<td width="8%">${item.joinDate}</td>
-					<td width="8%">${item.joinDate}</td>
+					<td width="5%">${map.totalCount - (((map.pageNum-1) * map.pageSize) + loop.index)}</td>
+					<td width="15%">${row.userId}</td>
+					<td width="14%">${row.userName}</td>
+					<td width="20%">${row.userEmail}</td>
+					<td width="15%">${row.userCp}</td>
+					<td width="10%">${row.userGrade}</td>
+					<td width="8%">${row.regDate}</td>
+					<td width="8%">${row.lastLogin}</td>
+					<td width="8%">${row.reportCnt}</td>
 					<td width="5%" colspan="2"><input type="button" value="삭제" onclick="location.href='${contextPath}/admin/remove2.do?id=${item.userId}&katNo=${katTargetNo}'"></td>
 			</c:forEach>
 		</c:when>
@@ -50,6 +50,7 @@
 </tbody>
 </table>
 </div>
+<%--
 <div class="text-center">
 <c:if test="${tot != null }">
 <ul class="pagination">
@@ -87,4 +88,4 @@
 	</c:choose>
 </ul>
 </c:if>
-</div>
+</div>--%>

@@ -9,7 +9,48 @@
 
 
     <!--최경락-->
+    <select id="csSelectCount" parameterType="map" resultType="int">
+        SELECT count(*)
+        FROM board
+        WHERE cate_main = 3
+   <!--     <if test="cateMain != null and !cateMain.equals('')">
+            AND cate_main = #{cateMain}
+        </if>
+        <if test="searchWord != null and !searchWord.equals('')">
+            AND
+            <choose>
+                <when test="searchField == 'title'">
+                    title LIKE CONCAT('%', #{searchWord}, '%')
+                </when>
+                <otherwise>
+                    content LIKE CONCAT('%', #{searchWord}, '%')
+                </otherwise>
+            </choose>
+        </if>-->
+        ORDER BY brd_id desc
+    </select>
 
+    <select id="csSelectListPage" parameterType="map" resultType="dto.BoardDTO">
+        SELECT *
+        FROM board
+        WHERE cate_main = 3
+        <!--<if test="cateMain != null and !cateMain.equals('')">
+            AND b.cate_main = #{cateMain}
+        </if>
+        <if test="searchWord != null and !searchWord.equals('')">
+            AND
+            <choose>
+                <when test="searchField == 'title'">
+                    title LIKE CONCAT('%', #{searchWord}, '%')
+                </when>
+                <otherwise>
+                    content LIKE CONCAT('%', #{searchWord}, '%')
+                </otherwise>
+            </choose>
+        </if>-->
+        order by brd_id desc
+        LIMIT #{start}, 10
+    </select>
 
 
     <!--최영주-->

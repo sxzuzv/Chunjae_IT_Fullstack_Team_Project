@@ -1,5 +1,6 @@
 package mybatis.mapper;
 
+import dto.BoardDTO;
 import dto.UserDTO;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -13,6 +14,10 @@ public interface UserMapper {
 
 
     //최경락
+    /*int selectUser(Map<String, Object> map);
+
+    List<UserDTO> selectUserList(Map<String, Object> map);*/
+
 
 
     //최영주
