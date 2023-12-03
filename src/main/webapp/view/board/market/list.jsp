@@ -45,9 +45,9 @@
 				<div class="titleArea">
 					<h2>
 						<c:choose>
-							<c:when test="${ map.cateSub eq 1}"> 중고 거래 - 교재 </c:when>
-							<c:when test="${ map.cateSub eq 2}"> 중고 거래 - 교구 </c:when>
-							<c:when test="${ map.cateSub eq 3}"> 중고 거래 - 일상 용품 </c:when>
+							<c:when test="${ map.cateSub eq '1'}"> 중고 거래 - 교재 </c:when>
+							<c:when test="${ map.cateSub eq '2'}"> 중고 거래 - 교구 </c:when>
+							<c:when test="${ map.cateSub eq '3'}"> 중고 거래 - 일상 용품 </c:when>
 							<c:otherwise> 중고거래 </c:otherwise>
 						</c:choose>
 					</h2>
@@ -122,7 +122,7 @@
 					class="xans-element- xans-board xans-board-paging-1002 xans-board-paging xans-board-1002 ec-base-paginate">
 				<ol>
 
-					${ map.pagingImg }
+					${ map.pagingImg }g
 
 				</ol>
 			</div>
