@@ -12,23 +12,16 @@
 
 	<title>home</title>
 
-	<link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/carousel/">
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
 
 
 
-	<link href="../../css/main.css" rel="stylesheet"/>
-	<link href="../../css/nav.css" rel="stylesheet"/>
-	<link rel="stylesheet" href="../css/toggle.css"/>
-	<link rel="stylesheet" href="../../css/carousel.css">
-	<link href="../../css/headers.css" rel="stylesheet">
 
-	<link rel="stylesheet" href="../../css/login.css">
+
 </head>
 <body>
 <header>
-	<jsp:include page="../common/top.jsp"></jsp:include>
+	<jsp:include page="../common/header.jsp"></jsp:include>
+	<link rel="stylesheet" href="../../css/login.css">
 </header>
 <div class="wrapper fadeInDown">
 	<div id="formContent">
@@ -49,6 +42,6 @@
 		</div>
 	</div>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
 </body>
 </html>

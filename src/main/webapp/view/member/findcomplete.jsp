@@ -24,7 +24,7 @@
 </head>
 <body>
 <header>
-    <jsp:include page="../common/top.jsp"></jsp:include>
+    <jsp:include page="../common/header.jsp"></jsp:include>
 </header>
 <div class="container-fluid d-flex align-items-center justify-content-center" style="height: 100vh;">
     <div class="card p-5">
