@@ -1,14 +1,32 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: cyj
+  Date: 2023-11-26
+  Time: 오후 11:44
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 		 pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <!doctype html>
-<html lang="en" data-bs-theme="auto">
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<title>중고게시판</title>
+	<title>내상점</title>
+
+	<!--헤더 공통 css -->
+	<link href="../../../css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+
+
+	<link href="../../../css/headers.css" rel="stylesheet">
+	<link href="../../../css/main.css" rel="stylesheet">
+	<link href="../../../css/nav.css" rel="stylesheet">
+
+
+	<!-- 슬라이드 css-->
+	<link href="../../../css/carousel.css" rel="stylesheet">
 
 </head>
 <body>
@@ -29,7 +47,7 @@
 						<option value="content">내용</option>
 					</select>
 					<input type="text" name="searchWord" />
-					<input type="hidden" name="cateSub" value=${ map.cateSub }/>
+					<input type="hidden" name="myStore" value=${ map.myStore }/>
 					<input type="submit" value="검색하기" />
 				</td>
 			</tr>
@@ -78,8 +96,6 @@
 			<td>
 				${ map.pagingImg }
 			</td>
-			<td width="100"><button type="button"
-									onclick="location.href='/market/write.do';">글쓰기</button></td>
 		</tr>
 	</table>
 </body>

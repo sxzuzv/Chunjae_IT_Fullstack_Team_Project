@@ -15,7 +15,7 @@ import java.util.Map;
 // categories, report 테이블의 경우 여기서 모두 접근
 public class BoardDAO {
 
-    //신수진 신수진 ~
+//신수진 신수진 ~
 
 
     //최경락
@@ -27,7 +27,6 @@ public class BoardDAO {
       sqlSession.close();
       return result;
     }
-
     public List<BoardDTO> csSelectListPage(Map<String, Object> map) {
     SqlSession sqlSession = MyBatisSessionFactory.getSqlSession();
     BoardMapper mapper = sqlSession.getMapper(BoardMapper.class);
@@ -35,9 +34,6 @@ public class BoardDAO {
     sqlSession.close();
     return result;
   }
-  /*public List<UserDTO> selectUserList(Map<String, Object> map) {
-      return null;
-  }*/
 
     //최영주
     public int marketSelectCount(Map<String, Object> map) {
@@ -175,8 +171,5 @@ public class BoardDAO {
 
   //최재혁
 
-
-
-  //최재혁
 }
 

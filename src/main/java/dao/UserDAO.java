@@ -41,13 +41,18 @@ public class UserDAO {
     //최영주
 
     //최재혁
-    public boolean createUser(UserDTO userDTO) {
+    public int createUser(UserDTO userDTO) {
 
         SqlSession sqlSession = MyBatisSessionFactory.getSqlSession();
         UserMapper mapper = sqlSession.getMapper(UserMapper.class);
-        boolean result = mapper.createUser(userDTO);
-        sqlSession.commit();
+        int result = mapper.createUser(userDTO);
+        if(result==1) {
+            sqlSession.commit();
+        }else{
+            System.out.println("저장실패");
 
+        }
+        sqlSession.close();
         return result;
     }
 
@@ -108,6 +113,18 @@ public class UserDAO {
         return result;
     }
 
+    public int updateUserInfo(UserDTO userDTO) {
+        SqlSession sqlSession = MyBatisSessionFactory.getSqlSession();
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+        int result = mapper.updateUserInfo(userDTO);
+        if (result == 1) {
+            sqlSession.commit();
+        } else {
+            System.out.println("업데이트중 오류 발생");
+        }
+        return result;
+    }
+
     public boolean idCheck(String userId) {
         SqlSession sqlSession = MyBatisSessionFactory.getSqlSession();
         UserMapper mapper = sqlSession.getMapper(UserMapper.class);
@@ -136,5 +153,25 @@ public class UserDAO {
 
     }
 
+    public UserDTO userSelectView(String userId) {
+        SqlSession sqlSession = MyBatisSessionFactory.getSqlSession();
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+        UserDTO userDTO = mapper.userSelectView(userId);
+        sqlSession.close();
+        return userDTO;
+    }
+
+    public int userSelfDelete(String userId) {
+        SqlSession sqlSession = MyBatisSessionFactory.getSqlSession();
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+        int result = mapper.userSelfDelete(userId);
+        if(result == 1){
+            sqlSession.commit();
+        }else{
+            System.out.println("저장실패");
+        }
+        return result;
+
+    }
 
 }

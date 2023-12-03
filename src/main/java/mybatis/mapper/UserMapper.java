@@ -24,7 +24,7 @@ public interface UserMapper {
 
 
     //최재혁
-    boolean createUser(UserDTO userDTO);
+    int createUser(UserDTO userDTO);
     int authenticateUser(Map<String, String> map);
 
     String authenticateFind(Map<String, String> map);
@@ -39,4 +39,9 @@ public interface UserMapper {
     String authenticateAdmin(String userId);
 
     int updatePass(UserDTO userDTO);
+    int updateUserInfo(UserDTO userDTO);
+
+    UserDTO userSelectView(String userId);
+
+    int userSelfDelete(String userId);
 }

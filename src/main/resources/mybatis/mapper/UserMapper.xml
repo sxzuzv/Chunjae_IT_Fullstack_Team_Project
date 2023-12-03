@@ -28,8 +28,8 @@
     <!--최재혁-->
     <insert id="createUser" parameterType="dto.UserDTO">
         INSERT
-        INTO user(user_id, user_nick, user_pwd, user_name, user_cp, user_email, user_addr, user_daddr, user_school)
-        VALUES(#{userId}, #{user_nick}, #{userPwd}, #{userName}, #{userCp}, #{userEmail}, #{userAddr}, #{userDaddr}, #{userSchool})
+        INTO user(user_id, user_nick, user_pwd, user_name, user_cp, user_email, user_addr, user_daddr, user_school, ofile, sfile)
+        VALUES(#{userId}, #{user_nick}, #{userPwd}, #{userName}, #{userCp}, #{userEmail}, #{userAddr}, #{userDaddr}, #{userSchool}, #{ofile}, #{sfile})
     </insert>
 
     <select id="authenticateUser" parameterType="map">
@@ -42,6 +42,7 @@
         select user_id
         from user
         where user_name = #{user_name} AND user_email = #{user_email}
+        limit 1
     </select>
 
     <select id="authenticateFindPass" parameterType="map">
@@ -53,6 +54,12 @@
     <update id="updatePass" parameterType="dto.UserDTO">
         update user
         set user_pwd = #{userPwd}
+        where user_id = #{userId}
+    </update>
+
+    <update id="updateUserInfo" parameterType="dto.UserDTO">
+        update user
+        set user_pwd = #{userPwd}, user_name = #{userName}, user_cp = #{userCp}, user_email = #{userEmail}, user_addr = #{userAddr}, user_daddr = #{userDaddr}
         where user_id = #{userId}
     </update>
 
@@ -74,6 +81,19 @@
         from user
         where user_id = #{userId}
     </select>
+
+    <select id="userSelectView" parameterType="String" resultType="dto.UserDTO">
+        select *
+        from user
+        where user_id = #{userId}
+    </select>
+
+    <delete id ="userSelfDelete" parameterType="String">
+        delete
+        from user
+        where user_id = #{userId}
+    </delete>
+
 
 
 

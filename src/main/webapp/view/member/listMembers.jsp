@@ -71,7 +71,5 @@ a, a:hover {
 			</div>
 		</div>
 	</div>
-
-	<script src="../../js/bootstrap.js"></script>
 </body>
-</html>
+

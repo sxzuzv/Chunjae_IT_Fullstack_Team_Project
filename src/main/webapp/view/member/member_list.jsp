@@ -1,8 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%--<%@ page language="java" contentType="text/html; charset=UTF-8"--%>
+<%--	pageEncoding="UTF-8"%>--%>
+<%--<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>--%>
+<%--<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>--%>
 
+<<<<<<< HEAD
 <div style="width:100%; height:70%; overflow:auto">
 <table width="100%" border="0" cellspacing="0" cellpadding="0" class="active table1" style=" border: 1px solid #dddddd">
 <thead>
@@ -50,42 +51,5 @@
 </tbody>
 </table>
 </div>
-<%--
-<div class="text-center">
-<c:if test="${tot != null }">
-<ul class="pagination">
-	<c:choose>
-		<c:when test="${tot > 100 }">
-			<c:forEach var="page" begin="1" end="10" step="1">
-				<c:if test="${section > 1 && page==1 }">
-					<li><a class="no-uline" href="/board/list.do?section=${section-1}&pageNum=${(section-1)*10 +1 }">&nbsp; prev </a></li>
-				</c:if>
-				<li><a class="no-uline" href="/board/list.do?section=${section}&pageNum=${page}">${(section-1)*10 +page }</a></li>
-					
-				<c:if test="${page ==10 }">
-					<li><a class="no-uline" href="/board/list.do?section=${section+1}&pageNum=${section*10+1}">&nbsp;next</a></li>
-				</c:if>
-			</c:forEach>
-		</c:when>
-		<c:when test="${tot == 100 }">
-			<c:forEach var="page" begin="1" end="10" step="1">
-				<li><a class="no-uline" href="#">${page} </a><li>
-			</c:forEach>
-		</c:when>
 
-		<c:when test="${tot< 100 }">
-			<c:forEach var="page" begin="1" end="${tot/10 +1}" step="1">
-				<c:choose>
-					<c:when test="${page== pageNum }">
-						<li><a class="sel-page" href="/board/list.do?section=${section}&pageNum=${page}">${page } </a></li>
-					</c:when>
-					<c:otherwise>
-						<li><a class="no-uline" href="/board/list.do?section=${section}&pageNum=${page}">${page } </a></li>
-					</c:otherwise>
-				</c:choose>
-			</c:forEach>
-		</c:when>
-	</c:choose>
-</ul>
-</c:if>
-</div>--%>
+
