@@ -77,21 +77,6 @@
 					<div class="function" id="Product_ListMenu">
 						<button type="button" onclick="location.href='/market/write.do';">글쓰기</button>
 					</div>
-					<fieldset class="condition displaynone">
-						<legend>조건별 검색</legend>
-						<p>
-
-							<select class="xans-element- xans-product xans-product-firstselect FirstSelect">
-								<option value="">-조건선택-</option>
-								<option value="" class=""></option>
-							</select>
-							<select class="xans-element- xans-product xans-product-secondselect SecondSelect">
-								<option value="">-조건선택-</option>
-								<option value="" class=""></option>
-							</select>
-							<a href="#SelectSearch" class="btnSubmitFix">검색</a>
-						</p>
-					</fieldset>
 				</div>
 				<!-- 일반상품진열 -->
 				<div class="xans-element- xans-product xans-product-listnormal ec-base-product">
