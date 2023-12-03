@@ -107,12 +107,8 @@
 							<li id="" class="xans-record-">
 								<div class="thumbnail">
 									<div class="prdImg">
-										<a href="https://mall.chunjaetext.co.kr/product/%EC%A4%91%ED%95%99-%EA%B3%BC%ED%95%99%EB%85%B8%ED%83%9C%ED%9D%AC-1/379/category/43/display/1/"
-										   name="anchorBoxName_379">
-											<img
-													src="./중학교과서 - 천재교과서_files/b48ec9780530cf09383d64507978c4b5.jpg"
-													id="eListPrdImage379_1" alt=""></a>
-										<span class="wish"></span>
+										<a href="/market/view.do?brdId=${ row.brdId }">
+											<img src="/Uploads/${ row.sfile }" alt=""></a>
 									</div>
 								</div>
 								<div class="description">

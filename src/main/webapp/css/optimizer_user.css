@@ -4694,6 +4694,7 @@
 
  .ec-base-product .prdList .thumbnail .prdImg {
      border: 0;
+     line-height: 340px;
  }
 
  .ec-base-product .prdList .thumbnail .prdImg a {
@@ -4701,14 +4702,14 @@
      border-radius: 10px;
      background: #f6f5f5;
      text-align: center;
-     padding: 37px 0;
+     padding: 0;
      min-height: 340px;
      box-sizing: border-box;
      overflow: hidden;
  }
 
  .ec-base-product .prdList .thumbnail .prdImg a img {
-     box-shadow: 4px 4px 5px 0 rgba(0, 0, 0, 0.2);
+     vertical-align:middle;
  }
 
  .ec-base-product .prdList .description {
@@ -4859,7 +4860,7 @@
  }
 
  .xans-product-detail .imgArea .keyImg img {
-     max-width: 395px;
+     max-height: 535px;
      width: 100%;
      border: 0;
  }
