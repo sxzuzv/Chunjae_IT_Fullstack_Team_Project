@@ -65,6 +65,7 @@
           <div class="ec-base-table typeList gBorder">
             <table border="1" summary="">
               <caption>지금 가장 인기있는 게시글</caption>
+              <br />
               <colgroup class="xans-element- xans-board xans-board-listheader-1002 xans-board-listheader xans-board-1002 ">
                 <col style="width:auto;">
                 <col style="width:134px;">
@@ -79,7 +80,7 @@
               </tr>
               </thead>
 
-            <tbody class="xans-element- xans-board xans-board-list-1002 xans-board-list xans-board-1002 center">>
+            <tbody class="xans-element- xans-board xans-board-list-1002 xans-board-list xans-board-1002 center">
             <c:choose>
               <c:when test="${ empty boardLists }">  <!-- 게시물이 없을 때 -->
                 <tr>
@@ -106,22 +107,34 @@
           <br /><br />
 
           <!-- 검색 폼 -->
-          <form id="tcboardSearchForm" method="get">
-            <div class="xans-element- xans-board xans-board-search-1002 xans-board-search xans-board-1002 ">
-            <table border="1" width="90%">
-              <tr>
-                <td align="center">
-                  <select name="searchField">
-                    <option value="title">제목</option>
-                    <option value="content">내용</option>
-                  </select>
-                  <input type="text" name="searchWord" />
-                  <input type="submit" value="검색하기" />
-                </td>
-              </tr>
-            </table>
-            </div>
-          </form>
+<%--          <form id="tcboardSearchForm" method="get">--%>
+<%--            <div class="xans-element- xans-board xans-board-search-1002 xans-board-search xans-board-1002 ">--%>
+<%--                  <select name="searchField">--%>
+<%--                    <option value="title">제목</option>--%>
+<%--                    <option value="content">내용</option>--%>
+<%--                  </select>--%>
+<%--                  <input type="hidden" name="cateSub" value=${ map.cateSub }/>--%>
+<%--                  <input id="search" name="searchField" class="inputTypeText" placeholder="" value="" type="text">--%>
+<%--                  <input id="submit" name="submit" value="검색하기"/></td>--%>
+<%--&lt;%&ndash;                  <input type="text" name="searchWord" />&ndash;%&gt;--%>
+<%--&lt;%&ndash;                  <input type="submit" value="검색하기" />&ndash;%&gt;--%>
+<%--            </div>--%>
+<%--          </form>--%>
+
+            <form id="tcboardSearchForm" name="" method="get">
+              <div class="xans-element- xans-board xans-board-search-1002 xans-board-search xans-board-1002 ">
+                <fieldset class="tcboardSearch">
+                  <legend>선생님 요조모조 검색</legend>
+                    <select name="searchField">
+                      <option value="title">제목</option>
+                      <option value="content">내용</option>
+                    </select>
+                    <input type="hidden" name="cateSub" value=${ map.cateSub } />
+                    <input type="text" id="search" name="searchWord">
+                    <input id="submit" type="submit" value="검색하기"/>
+                </fieldset>
+              </div>
+            </form>
 
           <div class="boardSort">
 							<span

@@ -7,11 +7,14 @@
     <!--신수진-->
     <!-- SELECT : 검색 조건에 맞는 게시글 개수 카운트 -->
     <select id="tcselectCount" parameterType="map" resultType="int">
+        <![CDATA[
         SELECT count(*)
         FROM board
+        WHERE cate_main = 2 and cate_sub = #{cateSub}
+        ]]>
         <!-- 검색 조건이 있는 경우 WHERE절로 추가 (searchWord = 검색창에 입력한 조건) -->
         <if test="searchWord != null and !searchWord.equals('')">
-            WHERE
+            AND
             <choose>
                 <!-- 제목으로 검색 -->
                 <when test="searchField == 'title'">
@@ -29,16 +32,9 @@
 
     <!-- SELECT : 제목 혹은 내용으로 검색한 결과 -->
     <select id="tcselectListPage" parameterType="map" resultType="dto.BoardDTO">
+        <![CDATA[
         SELECT * FROM board
         WHERE cate_main = 2 and cate_sub = #{cateSub}
-    </select>
-
-    <!-- SELECT : 게시글 페이징 처리 후 출력 -->
-    <select id="tcselectListPageWithPaging" parameterType="map" resultType="dto.BoardDTO">
-        <![CDATA[
-        SELECT *
-        FROM board
-        WHERE idx > 0
         ]]>
         <if test="searchWord != null and !searchWord.equals('')">
             AND
@@ -52,8 +48,30 @@
             </choose>
         </if>
         order by brd_id desc
-        LIMIT #{pageNum}, 10
+        LIMIT #{start}, 10
     </select>
+
+<!--    &lt;!&ndash; SELECT : 게시글 페이징 처리 후 출력 &ndash;&gt;-->
+<!--    <select id="tcselectListPageWithPaging" parameterType="map" resultType="dto.BoardDTO">-->
+<!--        <![CDATA[-->
+<!--        SELECT *-->
+<!--        FROM board-->
+<!--        WHERE idx > 0-->
+<!--        ]]>-->
+<!--        <if test="searchWord != null and !searchWord.equals('')">-->
+<!--            AND-->
+<!--            <choose>-->
+<!--                <when test="searchField == 'title'">-->
+<!--                    title LIKE CONCAT('%', #{searchWord}, '%')-->
+<!--                </when>-->
+<!--                <otherwise>-->
+<!--                    content LIKE CONCAT('%', #{searchWord}, '%')-->
+<!--                </otherwise>-->
+<!--            </choose>-->
+<!--        </if>-->
+<!--        order by brd_id desc-->
+<!--        LIMIT #{pageNum}, 10-->
+<!--    </select>-->
 
 
     <select id="tcselectView" parameterType="String" resultType="dto.BoardDTO">
