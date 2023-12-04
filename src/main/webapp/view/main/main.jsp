@@ -43,7 +43,7 @@
                     <div class="carousel-caption text-start">
                         <h1>티처마켓의 중고거래</h1>
                         <p class="opacity-75">단종으로 어디서도 찾기 어려운 교구들, 지금 중고거래로 만나보세요.</p>
-                        <p><a class="btn btn-lg btn-primary" href=""${contextPath}/market/list.do"">중고거래 둘러보기</a></p>
+                        <p><a class="btn btn-lg btn-primary" href="${contextPath}/market/list.do">중고거래 둘러보기</a></p>
                     </div>
                 </div>
             </div>
@@ -240,6 +240,7 @@
             </div>
         </div>
     </div>
+    <script src="../../js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
 
