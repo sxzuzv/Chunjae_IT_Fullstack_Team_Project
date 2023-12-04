@@ -11,7 +11,7 @@
             <transactionManager type="JDBC"/>
             <dataSource type="POOLED">
                 <property name="driver" value="org.mariadb.jdbc.Driver" />
-                <property name="url" value="jdbc:mariadb://localhost:3308/fleamarket" />
+                <property name="url" value="jdbc:mariadb://localhost:3306/fleamarket" />
                 <property name="username" value="root" />
                 <property name="password" value="12345" />
             </dataSource>
