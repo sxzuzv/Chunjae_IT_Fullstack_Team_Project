@@ -16,6 +16,8 @@ public interface BoardMapper {
 
     List<BoardDTO> csSelectListPage(Map<String, Object> map);
 
+//    BoardDTO csSelectView(String brdId);
+
     //최영주
     int marketSelectCount(Map<String, Object> map);
 

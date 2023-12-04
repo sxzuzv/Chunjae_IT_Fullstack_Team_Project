@@ -52,6 +52,12 @@
         LIMIT #{start}, 10
     </select>
 
+    <!--<select id="csSelectView" parameterType="String" resultType="dto.BoardDTO">
+    SELECT *
+    FROM board
+    WHERE brd_id = ${brdId}
+    </select>-->
+
 
     <!--최영주-->
         <!-- market을 붙이지 않은 쿼리는 다른 board에서 재사용 가능해 보임 -->

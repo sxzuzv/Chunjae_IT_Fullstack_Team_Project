@@ -34,6 +34,13 @@ public class BoardDAO {
     sqlSession.close();
     return result;
   }
+ /* public BoardDTO csSelectView(String brdId) {
+    SqlSession sqlSession = MyBatisSessionFactory.getSqlSession();
+    BoardMapper mapper = sqlSession.getMapper(BoardMapper.class);
+    BoardDTO dto = mapper.csSelectView(brdId);
+    sqlSession.close();
+    return dto;
+  }*/
 
     //최영주
     public int marketSelectCount(Map<String, Object> map) {
