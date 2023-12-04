@@ -5,7 +5,21 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>우하하</title>
+  <title>선생님 요모조모 - 게시글 수정</title>
+
+  <!--헤더 공통 css -->
+  <link href="../../../css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+
+
+  <link href="../../../css/headers.css" rel="stylesheet">
+  <link href="../../../css/main.css" rel="stylesheet">
+  <link href="../../../css/nav.css" rel="stylesheet">
+
+
+  <!-- 슬라이드 css-->
+  <link href="../../../css/carousel.css" rel="stylesheet">
+
   <script type="text/javascript">
     function validateForm(form) {
       if (form.name.value == "") {
@@ -26,6 +40,15 @@
     }
   </script>
 </head>
+<body>
+
+<header>
+
+  <jsp:include page="../../common/header.jsp"></jsp:include>
+  <link href="../../css/main.css" rel="stylesheet">
+
+</header>
+
 <h2>수정하기(Edit)</h2>
 <form name="writeFrm" method="post" enctype="multipart/form-data" action="/teachercommunity/edit.do" onsubmit="return validateForm(this);">
   <input type="hidden" name="brdId" value="${ dto.brdId }"/>
@@ -66,4 +89,5 @@
     </tr>
   </table>
 </form>
+</body>
 </html>

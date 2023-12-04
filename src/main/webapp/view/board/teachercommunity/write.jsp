@@ -6,6 +6,21 @@
 <head>
   <meta charset="UTF-8">
   <title>파일 첨부형 게시판</title>
+
+  <!--헤더 공통 css -->
+  <link href="../../../css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+
+
+  <link href="../../../css/headers.css" rel="stylesheet">
+  <link href="../../../css/main.css" rel="stylesheet">
+  <link href="../../../css/nav.css" rel="stylesheet">
+
+
+  <!-- 슬라이드 css-->
+  <link href="../../../css/carousel.css" rel="stylesheet">
+
+
   <script type="text/javascript">
     function validateForm(form) {  // 필수 항목 입력 확인
       if (form.name.value == "") {
@@ -30,7 +45,16 @@
       }
     }
   </script>
+
+
 </head>
+<body>
+<header>
+
+  <jsp:include page="../../common/header.jsp"></jsp:include>
+  <link href="../../css/main.css" rel="stylesheet">
+
+</header>
 <h2>글쓰기(Write)</h2>
 <form name="writeFrm" method="post" enctype="multipart/form-data"
       action="/teachercommunity/write.do" onsubmit="return validateForm(this);">
@@ -45,12 +69,6 @@
         </select>
       </td>
     </tr>
-<%--    <tr>--%>
-<%--      <td>작성자</td>--%>
-<%--      <td>--%>
-<%--        <input type="text" name="name" style="width:150px;" />--%>
-<%--      </td>--%>
-<%--    </tr>--%>
     <tr>
       <td>제목</td>
       <td>
@@ -80,4 +98,5 @@
     </tr>
   </table>
 </form>
+</body>
 </html>
