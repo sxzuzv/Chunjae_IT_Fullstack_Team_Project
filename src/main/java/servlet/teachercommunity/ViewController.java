@@ -10,19 +10,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @WebServlet("/teachercommunity/view.do")
 public class ViewController extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     @Override
-    protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // 게시물 불러오기
         BoardDAO dao = new BoardDAO();
-        String brdId = req.getParameter("brdId");
+        String brdId = request.getParameter("brdId");
         dao.updateVisitCount(brdId);  // 조회수 1 증가
         BoardDTO dto = dao.tcselectView(brdId);
+
 
         // 줄바꿈 처리
         dto.setContent(dto.getContent().replaceAll("\r\n", "<br/>"));
@@ -40,8 +43,8 @@ public class ViewController extends HttpServlet {
         }
 
         // 게시물(dto) 저장 후 뷰로 포워드
-        req.setAttribute("dto", dto);
-        req.setAttribute("isImage", isImage);
-        req.getRequestDispatcher("/view/board/teachercommunity/view.jsp").forward(req, resp);
+        request.setAttribute("dto", dto);
+        request.setAttribute("isImage", isImage);
+        request.getRequestDispatcher("/view/board/teachercommunity/view.jsp").forward(request, response);
     }
 }

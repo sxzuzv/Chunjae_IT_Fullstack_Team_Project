@@ -38,6 +38,7 @@ public class WriteController extends HttpServlet {
             JSFunction.alertLocation(response, "파일 업로드 오류 발생", request.getContextPath() + "/teachercommunity/write.do");
             return;
         }
+        
         BoardDTO dto = new BoardDTO();
         dto.setUserId((String)request.getSession().getAttribute("userId"));
         dto.setTitle(request.getParameter("title"));

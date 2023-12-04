@@ -69,7 +69,8 @@
             <button type="button" onclick="location.href='${contextPath}/teachercommunity/pass.do?mode=delete&brdId=${ param.brdId }';">
               삭제하기
             </button>
-            <button type="button" onclick="location.href='${contextPath}/teachercommunity/list.do';">
+<%--            <input type="hidden" name="cateSub" value="${ map.cateSub }" />--%>
+            <button type="button" onclick="location.href='${contextPath}/teachercommunity/list.do?cateSub=${ map.cateSub }';">
               목록 바로가기
             </button>
     </td>

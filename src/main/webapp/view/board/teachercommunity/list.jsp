@@ -129,7 +129,7 @@
           <br />
 
             <div>
-              <button type="button" class="button" onclick="location.href='${contextPath}/teachercommunity/write.do';">글쓰기</button>
+              <button type="button" class="button" onclick="location.href='${contextPath}/teachercommunity/pass.do';">글쓰기</button>
             </div>
             <br /><br />
 

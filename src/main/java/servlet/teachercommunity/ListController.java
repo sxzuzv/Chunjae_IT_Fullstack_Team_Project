@@ -36,8 +36,10 @@ public class ListController extends HttpServlet {
         // 뷰에 전달할 매개변수 저장용 맵 생성
         Map<String, Object> map = new HashMap<String, Object>();
 
+
         String cateSub = request.getParameter("cateSub");
         map.put("cateSub", cateSub);
+
 
         String searchField = request.getParameter("searchField");
         String searchWord = request.getParameter("searchWord");
@@ -71,11 +73,12 @@ public class ListController extends HttpServlet {
 
         // 뷰에 전달할 매개변수 추가
         String pagingImg = BoardPage.pagingStr(totalCount, pageSize,
-                blockPage, pageNum, searchField, searchWord, addOther,request.getContextPath() + "/teachercommunity/list.do");  // 바로가기 영역 HTML 문자열
+                blockPage, pageNum, searchField, searchWord, addOther, request.getContextPath() + "/teachercommunity/list.do");  // 바로가기 영역 HTML 문자열
         map.put("pagingImg", pagingImg);
         map.put("totalCount", totalCount);
         map.put("pageSize", pageSize);
         map.put("pageNum", pageNum);
+
 
         // 전달할 데이터를 request 영역에 저장 후 TeacherCommunityBoard.jsp로 포워드
         request.setAttribute("boardLists", boardLists);
@@ -83,5 +86,4 @@ public class ListController extends HttpServlet {
         request.setAttribute("map", map);
         request.getRequestDispatcher("/view/board/teachercommunity/list.jsp").forward(request, response);
     }
-
 }

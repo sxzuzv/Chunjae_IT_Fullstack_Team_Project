@@ -24,16 +24,19 @@ public class PassController extends HttpServlet {
         String mode = request.getParameter("mode");
         String userId = (String)request.getSession().getAttribute("userId");
 
+        System.out.println("userid" + userId);
+
         boolean confirmed = false;
         BoardDAO dao = new BoardDAO();
 
         // 비 로그인 시 수정 불가
         if( userId == null) {
             JSFunction.alertLocation(response,"로그인 후 이용 가능합니다.","/main/main.do");
-        }else{ // 로그인 시 확인
+        } else { // 로그인 시 확인
             dao = new BoardDAO();
             confirmed = dao.confirmPassword(userId, brdId);
             System.out.println(brdId);
+            response.sendRedirect("/teachercommunity/write.do");
         }
 
 
