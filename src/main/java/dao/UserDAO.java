@@ -7,6 +7,7 @@ import mybatis.factory.MyBatisSessionFactory;
 import mybatis.mapper.BoardMapper;
 import mybatis.mapper.UserMapper;
 import org.apache.ibatis.session.SqlSession;
+import org.apache.tomcat.jni.User;
 import util.Encrypt;
 
 import java.sql.Connection;
@@ -157,6 +158,26 @@ public class UserDAO {
         }
         return result;
 
+    }
+
+    public List<UserDTO> userSelectNonPass(UserDTO userDTO){
+        SqlSession sqlSession = MyBatisSessionFactory.getSqlSession();
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+        List<UserDTO> result = mapper.userSelectNonPass(userDTO);
+        sqlSession.close();
+        return result;
+    }
+
+    public int updateUserPass(String userId) {
+        SqlSession sqlSession = MyBatisSessionFactory.getSqlSession();
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+        int result = mapper.updateUserPass(userId);
+        if (result == 1) {
+            sqlSession.commit();
+        } else {
+            System.out.println("업데이트중 오류 발생");
+        }
+        return result;
     }
 
 }

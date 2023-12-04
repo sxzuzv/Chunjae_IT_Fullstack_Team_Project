@@ -4,6 +4,29 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <html>
 <head>
+
+    <style>
+        /* 가운데 정렬을 위한 스타일 */
+        .container {
+            display: flex;
+            justify-content: center;
+            margin-top: 100px;
+
+        }
+
+        #password{
+            margin-bottom: 15px;
+            height:50px;
+            width:400px;
+        }
+        #password2{
+            margin-bottom: 15px;
+            height:50px;
+            width:400px;
+        }
+
+
+    </style>
     <script>
         function passChange() {
             var form = document.passchangeForm;
@@ -31,15 +54,25 @@
         }
     </script>
 </head>
-    <!-- Tabs Titles -->
-    <h2 class="active">비밀번호 변경</h2>
-    <!-- password Form -->
-    <form name="passchangeForm" action="${contextPath}/member/passChange.do" method="post">
-        <input type="password" id="password" class="fadeIn second" name="userPW" placeholder="비밀번호">
-        <input type="password" id="password2" class="fadeIn third" name="userPW2" placeholder="비밀번호확인" autocomplete="off">
-    <!-- Signup Link -->
-    <div id="formFooter">
-        <input type="button" onClick="passChange();" class="btnOk" value="비밀번호 변경">
+<body>
+
+<jsp:include page="${contextPath}/view/common/header.jsp"></jsp:include>
+<div class="container">
+    <div>
+        <h2 class="text-center">비밀번호 변경</h2>
+        <!-- password Form -->
+        <form name="passchangeForm" action="${contextPath}/member/passChange.do" method="post">
+            <input type="password" id="password" class="form-control form-control-lg" name="userPW" placeholder="비밀번호">
+            <input type="password" id="password2" class="form-control form-control-l" name="userPW2" placeholder="비밀번호 확인" autocomplete="off">
+            <!-- Signup Link -->
+            <div class="text-center">
+                <input type="button" onClick="passChange();" class="btn btnOk" style="background-color: #114276; color: white" value="비밀번호 변경">
+            </div>
+        </form>
+        <!-- Bootstrap JS -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
     </div>
-    </form>
+</div>
+</body>
 </html>

@@ -85,6 +85,19 @@
         where user_id = #{userId}
     </delete>
 
+    <select id ="userSelectNonPass" parameterType="String" resultType="dto.UserDTO">
+        select *
+        from user
+        where user_status = 'reject'
+    </select>
+
+    <update id="updateUserPass" parameterType="String">
+        update user
+        set user_status = 'pass'
+        where user_id = #{userId}
+    </update>
+
+
 
 
 

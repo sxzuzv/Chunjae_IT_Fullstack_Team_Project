@@ -11,13 +11,19 @@
     <meta name="Keywords" content="">
     <meta name="Description" content="">
     <title>회원가입</title>
-    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/carousel/">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
-    <link href="../../css/headers.css" rel="stylesheet">
-    <link href="../../css/main.css" rel="stylesheet">
-    <link href="../../css/carousel.css" rel="stylesheet">
+    <style>
+        .joinBox {
+            max-width: 650px; /* 원하는 폭으로 조절하세요 */
+            margin: 0 auto; /* 중앙 정렬을 위한 마진 설정 */
+        }
 
+        .btnZone input[type="button"] {
+            margin: 0 5px; /* 버튼 간 여백 조절 */
+            background-color: #114276; /* 원하는 색상 코드 */
+            color: #fff;
+        }
+
+    </style>
 
     <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script>
@@ -132,14 +138,29 @@
         }
     </script>
 </head>
-<header>
-    <jsp:include page="../common/top.jsp"></jsp:include>
-</header>
+
+    <jsp:include page="${contextPath}/view/common/header.jsp"></jsp:include>
+
+
 <body>
+<div class="xans-element- xans-board xans-board-listpackage-1002 xans-board-listpackage xans-board-1002 ">
+    <div class="xans-element- xans-board xans-board-title-1002 xans-board-title xans-board-1002 ">
+        <div class="titleArea">
+            <h1 class="tit text-center">
+                <font color="#555555">회원가입
+                </font>
+            </h1>
+        </div>
+    </div>
+</div>
+
 <form name="joinForm" method="post" enctype="multipart/form-data" action="${contextPath}/member/save.do" class="container mt-5">
+    <hr class="my-4">
     <input type="hidden" name="checkID" value="no" />
+
     <div class="joinBox">
-        <h1 class="tit">회원가입</h1>
+        <div>
+
         <div class="text-right mt-3">
             <span class="blet">* </span>표시는 필수입니다.
         </div>
@@ -149,52 +170,51 @@
                 <tr>
                     <th><span class="blet">*</span> 아이디</th>
                     <td>
-                        <div class="input-group">
-                            <input type="text" name="userID" class="form-control" size="20" maxlength="16">
-                            <div class="input-group-append">
-                                <button class="btn btn-outline-secondary" type="button" onClick="CheckDup();">중복 검사</button>
-                            </div>
-                        </div>
-                        <div id='message' class="mt-2"></div>
+                            <input type="text" name="userID" class="form-control form-control-lg" size="20" maxlength="16">
+                    </td>
+                    <td>
+                        <button class="btn btn-secondary" type="button" onClick="CheckDup();">중복 검사</button>
                     </td>
                 </tr>
                 <tr>
                     <th><span class="blet">*</span> 닉네임</th>
-                    <td><input type="text" name="nickname" class="form-control" size="15" maxlength="6"></td>
+                    <td><input type="text" name="nickname" class="form-control form-control-lg" size="15" maxlength="6"></td>
                 </tr>
                 <tr>
                     <th><span class="blet">*</span> 비밀번호</th>
                     <td>
-                        <input type="password" name="userPW" class="form-control" size="20" maxlength="16">
+                        <input type="password" name="userPW" class="form-control form-control-lg" size="20" maxlength="16">
                         <small class="text-muted">※ 8~16글자의 영어, 숫자 혼용</small>
                     </td>
                 </tr>
                 <tr>
                     <th><span class="blet">*</span> 비밀번호 확인</th>
-                    <td><input type="password" name="userPW2" class="form-control" size="20" maxlength="16"></td>
+                    <td><input type="password" name="userPW2" class="form-control form-control-lg" size="20" maxlength="16"></td>
                 </tr>
                 <tr>
                     <th><span class="blet">*</span> 이름</th>
-                    <td><input type="text" name="name" class="form-control" size="15" maxlength="6"></td>
+                    <td><input type="text" name="name" class="form-control form-control-lg" size="15" maxlength="6"></td>
                 </tr>
                 <tr>
                     <th>전화</th>
-                    <td><input type="text" name="tel" class="form-control" size="15" maxlength="15"></td>
+                    <td><input type="text" name="tel" class="form-control form-control-lg" size="15" maxlength="15"></td>
                 </tr>
                 <tr>
                     <th>이메일</th>
-                    <td><input type="email" name="email" class="form-control" size="30" maxlength="40"></td>
+                    <td><input type="text" name="email" class="form-control form-control-lg" size="15" maxlength="30"></td>
                 </tr>
                 <tr>
                     <th>주소</th>
                     <td>
-                        <input type="text" id="addr" name="addr" class="form-control" placeholder="주소" size="60">
-                        <input type="button" onclick="execDaumPostcode()" value="주소 찾기" class="btn btn-secondary mt-2">
+                        <input type="text" id="addr" name="addr" class="form-control form-control-lg" placeholder="주소" size="60" readonly>
+                    </td>
+                    <td>
+                        <input type="button" onclick="execDaumPostcode()" value="주소 찾기" class="btn btn-secondary">
                     </td>
                 </tr>
                 <tr>
                     <th>상세주소</th>
-                    <td><input type="text" id="user_addr2" name="addr2" class="form-control" placeholder="상세주소" size="20"></td>
+                    <td><input type="text" id="user_addr2" name="addr2" class="form-control form-control-lg" placeholder="상세주소" size="20"></td>
                 </tr>
                 <tr>
                     <th>재직증명서</th>
@@ -202,14 +222,18 @@
                 </tr>
                 <tr>
                     <th><span class="blet">*</span> 학교이름</th>
-                    <td><input type="text" name="userschool" class="form-control" size="15" maxlength="15"></td>
+                    <td><input type="text" name="userschool" class="form-control form-control-lg" size="15" maxlength="15"></td>
                 </tr>
                 </tbody>
             </table>
         </div>
-        <div class="btnZone mt-4">
-            <input type="button" onClick="join();" class="btn btn-primary mr-2" value="확인">
+        <div class="btnZone d-flex justify-content-center">
+            <input type="button" onClick="join();" class="btn btn-custom mr-2" value="확인">
             <input type="button" onClick="history.go(-1);" class="btn btn-secondary" value="뒤로">
+        </div>
+
+        </div>
+    </div>
         </div>
     </div>
 </form>
