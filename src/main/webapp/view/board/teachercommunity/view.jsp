@@ -6,26 +6,13 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>게시글 상세 보기</title>
+  <title>TEACHER MARKET</title>
 
-  <!--헤더 공통 css -->
-  <link href="../../../css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
-
-
-  <link href="../../../css/headers.css" rel="stylesheet">
-  <link href="../../../css/main.css" rel="stylesheet">
-  <link href="../../../css/nav.css" rel="stylesheet">
-
-
-  <!-- 슬라이드 css-->
-  <link href="../../../css/carousel.css" rel="stylesheet">
 </head>
 <body>
 <header>
 
-  <jsp:include page="../../common/header.jsp"></jsp:include>
-  <link href="../../css/main.css" rel="stylesheet">
+  <jsp:include page="${contextPath}/view/common/header.jsp"></jsp:include>
 
 </header>
 
