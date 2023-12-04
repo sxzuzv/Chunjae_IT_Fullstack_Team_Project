@@ -34,6 +34,9 @@ public class ListController extends HttpServlet {
             map.put("searchField", searchField);
             map.put("searchWord", searchWord);
         }
+        String userId = (String)req.getSession().getAttribute("userId");
+        map.put("userId", userId);
+
         int totalCount = dao.cscenterCount(map);  // 게시물 개수
 
         /* 페이지 처리 start */
@@ -54,20 +57,18 @@ public class ListController extends HttpServlet {
         map.put("end", end);
         /* 페이지 처리 end */
 
-        List<BoardDTO> csList = dao.cscenterListPageWithPaging(map);  // 게시물 목록 받기
+        List<BoardDTO> csList = dao.cscenterListPageWithPaging(map);
 
-        // 뷰에 전달할 매개변수 추가
-        String pagingImg = BoardPage.pagingStr(totalCount, pageSize,
-                blockPage, pageNum, searchField, searchWord, addOther, req.getContextPath() + "/cscenter/list.do");  // 바로가기 영역 HTML 문자열
+        String pagingImg = BoardPage.pagingStr(totalCount, pageSize, blockPage,
+                pageNum, searchField, searchWord, addOther, req.getContextPath() + "/cscenter/list.do"); // 바로가기 영역 HTML 문자열
         map.put("pagingImg", pagingImg);
         map.put("totalCount", totalCount);
         map.put("pageSize", pageSize);
         map.put("pageNum", pageNum);
 
-        // 전달할 데이터를 request 영역에 저장 후 List.jsp or MyList.jsp로 포워드
+// 전달할 데이터를 request 영역에 저장 후 List.jsp or MyList.jsp로 포워드
         req.setAttribute("csList", csList);
         req.setAttribute("map", map);
-
 
         req.getRequestDispatcher("/view/board/cscenter/csList.jsp").forward(req, resp);
 
