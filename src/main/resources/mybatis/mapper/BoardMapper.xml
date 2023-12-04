@@ -29,19 +29,8 @@
 
     <!-- SELECT : 제목 혹은 내용으로 검색한 결과 -->
     <select id="tcselectListPage" parameterType="map" resultType="dto.BoardDTO">
-        SELECT *
-        FROM board
-        <if test="searchWord != null and !searchWord.equals('')">
-            WHERE
-            <choose>
-                <when test="searchField == 'title'">
-                    title like concat('%', #{searchWord}, '%')
-                </when>
-                <otherwise>
-                    content like concat('%', #{searchWord}, '%')
-                </otherwise>
-            </choose>
-        </if>
+        SELECT * FROM board
+        WHERE cate_main = 2 and cate_sub = #{cateSub}
     </select>
 
     <!-- SELECT : 게시글 페이징 처리 후 출력 -->
@@ -95,6 +84,15 @@
         INTO board(user_id, title, content, ofile, sfile, cate_main, cate_sub)
         VALUES(#{userId}, #{title}, #{content}, #{ofile}, #{sfile}, 2, #{cateSub})
     </insert>
+
+
+
+
+
+
+
+
+
 
 
     <!--최경락-->

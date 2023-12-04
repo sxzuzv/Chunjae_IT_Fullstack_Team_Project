@@ -27,6 +27,9 @@ public class ListController extends HttpServlet {
         // 뷰에 전달할 매개변수 저장용 맵 생성
         Map<String, Object> map = new HashMap<String, Object>();
 
+        String cateSub = req.getParameter("cateSub");
+        map.put("cateSub", cateSub);
+
         String searchField = req.getParameter("searchField");
         String searchWord = req.getParameter("searchWord");
         if (searchWord != null) {
@@ -56,11 +59,8 @@ public class ListController extends HttpServlet {
 
 
 
-        // 소분류 카테고리에 해당하는 게시물 목록 받기
         List<BoardDTO> boardLists = dao.tcselectListPage(map);
         List<BoardDTO> topLists = dao.selectTopList(map); // 선택한 소분류에서 조회수 기준 인기글 3개 목록 받기
-        // 사용자가 선택한 소분류 저장
-        int cateSub = Integer.parseInt(req.getParameter("cateSub"));
 
         // 뷰에 전달할 매개변수 추가
         String pagingImg = BoardPage.pagingStr(totalCount, pageSize,
@@ -69,7 +69,6 @@ public class ListController extends HttpServlet {
         map.put("totalCount", totalCount);
         map.put("pageSize", pageSize);
         map.put("pageNum", pageNum);
-        map.put("cateSub", cateSub);
 
         // 전달할 데이터를 request 영역에 저장 후 TeacherCommunityBoard.jsp로 포워드
         req.setAttribute("boardLists", boardLists);
