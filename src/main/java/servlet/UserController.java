@@ -211,7 +211,7 @@ public class UserController extends HttpServlet {
 				PrintWriter out = response.getWriter();
 				out.print("<script>"
 						+ "  alert('회원정보가 변경 되었습니다..');"   // 알림창
-						+ " location.href='" + request.getContextPath() + "#';"  // 회원정보 보여주는 화면으로이동
+						+ " location.href='" + request.getContextPath() + "/member/mypage.do';"  // 회원정보 보여주는 화면으로이동
 						+ "</script>");
 			} else {
 				PrintWriter out = response.getWriter();
@@ -223,7 +223,6 @@ public class UserController extends HttpServlet {
 			}
 
 
-			nextPage = "/main/main.do";
 		} else if ("/login.do".equals(action)) {
 			String userID = request.getParameter("userID");
 			String userPW = Encrypt.getEncrypt(request.getParameter("userPW"));
@@ -252,7 +251,7 @@ public class UserController extends HttpServlet {
 					out.print("<script>"
 							+ "  alert('관리자로 로그인 합니다.');"   // 알림창
 
-							+ " location.href='" + request.getContextPath() + "/view/admin/admin_list.jsp';"  // 로그인 페이지로 이동
+							+ " location.href='" + request.getContextPath() + "/admin/memberlist.do';"  // 로그인 페이지로 이동
 
 							+ "</script>");
 
@@ -323,59 +322,6 @@ public class UserController extends HttpServlet {
 				return;
 
 			}
-		}//////여기서 부터 관리자 회원관리
-		else if(action.equals("/memberlist.do")) {//
-			//status가 reject인 회원만 불러오기
-			UserDTO userDTO = new UserDTO();
-			List<UserDTO> userlist = userDao.userSelectNonPass(userDTO);
-			request.setAttribute("list", userlist);
-
-			nextPage = "/view/member/listMembers.jsp";
-
-
-
-		}else if(action.equals("/pass.do")) {
-			String userId = request.getParameter("id");
-			int result = userDao.updateUserPass(userId);
-			if (result == 1) {
-				PrintWriter out = response.getWriter();
-				out.print("<script>"
-						+ "  alert('회원승인.');"   // 알림창
-						+ " location.href='" + request.getContextPath() + "/member/memberlist.do';"
-						+ "</script>");
-				return;
-			} else {
-				PrintWriter out = response.getWriter();
-				out.print("<script>"
-						+ "  alert('승인 거절 오류');"   // 알림창
-						+ " location.href='" + request.getContextPath() + "/member/memberlist.do';"
-						+ "</script>");
-				return;
-
-			}
-
-
-		} else if(action.equals("/remove2.do")) {               // 회원 삭제
-			String userId = request.getParameter("id");
-			int result = userDao.userSelfDelete(userId);
-			if (result == 1) {
-				PrintWriter out = response.getWriter();
-				out.print("<script>"
-						+ "  alert('회원승인 거절후 삭제.');"   // 알림창
-						+ " location.href='" + request.getContextPath() + "/member/memberlist.do';"
-						+ "</script>");
-				return;
-			} else {
-				PrintWriter out = response.getWriter();
-				out.print("<script>"
-						+ "  alert('승인 거절 오류');"   // 알림창
-						+ " location.href='" + request.getContextPath() + "/member/memberlist.do';"
-						+ "</script>");
-				return;
-
-			}
-
-
 		}else if (action.equals("/logout.do")) {
 			//로그아웃
 			session = request.getSession(false); // 세션 객체 생성하지 않고 기존 세션을 가져옴

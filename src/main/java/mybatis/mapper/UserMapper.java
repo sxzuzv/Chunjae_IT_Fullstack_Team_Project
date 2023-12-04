@@ -1,5 +1,6 @@
 package mybatis.mapper;
 
+import dto.BoardDTO;
 import dto.UserDTO;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -40,7 +41,13 @@ public interface UserMapper {
 
     int userSelfDelete(String userId);
 
-    List<UserDTO> userSelectNonPass(UserDTO userDTO);
+    int userSelectNonPassCount(Map<String, Object> map);
+
+    List <UserDTO> userSelectNonPassPage(Map<String, Object> map);
 
     int updateUserPass(String userId);
+
+    List<UserDTO> userSelectReportCount(UserDTO userDTO);
+
+    int updateUserDrop(String userId);
 }

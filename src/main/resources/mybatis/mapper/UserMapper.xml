@@ -85,11 +85,57 @@
         where user_id = #{userId}
     </delete>
 
-    <select id ="userSelectNonPass" parameterType="String" resultType="dto.UserDTO">
+    <select id ="userSelectNonPassCount" parameterType="Map" resultType="int">
+        <![CDATA[
+        select count(*)
+        from user
+        where user_status = 'reject'
+          ]]>
+        <if test="searchWord != null and !searchWord.equals('')">
+            AND
+            <choose>
+                <when test="searchField == 'userId'">
+                    user_id LIKE CONCAT('%', #{searchWord}, '%')
+                </when>
+                <otherwise>
+                    user_name LIKE CONCAT('%', #{searchWord}, '%')
+                </otherwise>
+            </choose>
+        </if>
+    </select>
+
+    <select id ="userSelectNonPassPage" parameterType="Map" resultType="dto.UserDTO">
+        <![CDATA[
         select *
         from user
         where user_status = 'reject'
+          ]]>
+        <if test="searchWord != null and !searchWord.equals('')">
+            AND
+            <choose>
+                <when test="searchField == 'userId'">
+                    user_id LIKE CONCAT('%', #{searchWord}, '%')
+                </when>
+                <otherwise>
+                    user_name LIKE CONCAT('%', #{searchWord}, '%')
+                </otherwise>
+            </choose>
+        </if>
+        order by user_id desc
+        LIMIT #{start}, 10
     </select>
+
+    <select id ="userSelectReportCount" parameterType="String" resultType="dto.UserDTO">
+        select *
+        from user
+        where user_status = 'pass' and report_cnt >= 5
+    </select>
+
+    <update id="updateUserDrop" parameterType="String">
+        update user
+        set user_status = 'reject'
+        where user_id = #{userId}
+    </update>
 
     <update id="updateUserPass" parameterType="String">
         update user
