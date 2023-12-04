@@ -196,7 +196,7 @@
 
  body,
  code {
-     font: 0.75em Verdana, Dotum, AppleGothic, sans-serif;
+     font: 16px Verdana, Dotum, AppleGothic, sans-serif;
      color: #353535;
      background: #fff;
  }
@@ -3677,7 +3677,7 @@
  #header h1 {
      display: inline-block;
      float: left;
-     padding: 21px 0 20px;
+     padding: 18px 0 20px;
  }
 
  #header .header-util {
@@ -4564,6 +4564,15 @@
      border-bottom: 1px solid #d2d2d2;
      padding: 8px 0;
      margin: 0;
+     text-align: right;
+ }
+
+ .xans-product-normalmenu .function button{
+     background: #222222;
+     color: #FFFFFF;
+     font-size: 18px;
+     width: 106px;
+     height: 45px;
  }
 
  .xans-product-normalmenu .function .btnCompare {
@@ -4685,6 +4694,7 @@
 
  .ec-base-product .prdList .thumbnail .prdImg {
      border: 0;
+     line-height: 340px;
  }
 
  .ec-base-product .prdList .thumbnail .prdImg a {
@@ -4692,14 +4702,14 @@
      border-radius: 10px;
      background: #f6f5f5;
      text-align: center;
-     padding: 37px 0;
+     padding: 0;
      min-height: 340px;
      box-sizing: border-box;
      overflow: hidden;
  }
 
  .ec-base-product .prdList .thumbnail .prdImg a img {
-     box-shadow: 4px 4px 5px 0 rgba(0, 0, 0, 0.2);
+     vertical-align:middle;
  }
 
  .ec-base-product .prdList .description {
@@ -4850,7 +4860,7 @@
  }
 
  .xans-product-detail .imgArea .keyImg img {
-     max-width: 395px;
+     max-height: 535px;
      width: 100%;
      border: 0;
  }
@@ -7268,6 +7278,14 @@
      font-size: 18px;
      width: 106px;
      line-height: 40px;
+ }
+
+ .xans-board-search .boardSearch p #submitbtn {
+     background: #3d5c97;
+     color: #ffffff;
+     font-size: 18px;
+     width: 106px;
+     height: 45px;
  }
 
  .store-top .titleArea h2 {
