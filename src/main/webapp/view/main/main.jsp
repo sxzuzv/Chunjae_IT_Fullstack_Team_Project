@@ -18,14 +18,14 @@
 
     <%--  슬라이드 CSS --%>
     <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/carousel/">
-    <link href="../../css/carousel.css" rel="stylesheet">
+    <link href="${contextPath}/css/carousel.css" rel="stylesheet">
 
 </head>
 <body>
     <header>
 
-        <jsp:include page="../common/header.jsp"></jsp:include>
-        <link href="../../css/main.css" rel="stylesheet">
+        <jsp:include page="${contextPath}/view/common/header.jsp"></jsp:include>
+        <link href="${contextPath}/css/main.css" rel="stylesheet">
 
     </header>
 
@@ -38,7 +38,7 @@
         </div>
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="../../img/teacher2.jpg" class="bd-placeholder-img" width="100%" height="" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="true">
+                <img src="${contextPath}/img/teacher2.jpg" class="bd-placeholder-img" width="100%" height="" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="true">
                 <div class="container">
                     <div class="carousel-caption text-start">
                         <h1>티처마켓의 중고거래</h1>
@@ -48,7 +48,7 @@
                 </div>
             </div>
             <div class="carousel-item">
-                <img src="../../img/teacher3.jpg" class="bd-placeholder-img" width="100%" height="" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="true">
+                <img src="${contextPath}/img/teacher3.jpg" class="bd-placeholder-img" width="100%" height="" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="true">
                 <div class="container">
                     <div class="carousel-caption">
                         <h1>티처마켓에서는 선생님들과 커뮤니티도 가능</h1>
@@ -58,7 +58,7 @@
                 </div>
             </div>
             <div class="carousel-item">
-                <img src="../../img/teacher1.jpg" class="bd-placeholder-img" width="100%" height="" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="true">
+                <img src="${contextPath}/img/teacher1.jpg" class="bd-placeholder-img" width="100%" height="" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="true">
                 <div class="container">
                     <div class="carousel-caption text-end">
                         <h1>선생님 인증으로 안전한 거래</h1>
@@ -215,32 +215,32 @@
                     </div>
                 </div>
                 <div class="my-3 p-3 bg-body rounded shadow-sm">
-                                <div class="d-flex text-body-secondary pt-3">
-                                    <svg class="bd-placeholder-img flex-shrink-0 me-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 32x32" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#007bff"></rect><text x="50%" y="50%" fill="#007bff" dy=".3em">32x32</text></svg>
-                                    <p class="pb-3 mb-0 small lh-sm border-bottom">
-                                        <strong class="d-block text-gray-dark">제목입니다</strong>
-                                        Some representative placeholder content, with some information about this user. Imagine this being some sort of status update, perhaps?
-                                    </p>
-                                </div>
-                                <div class="d-flex text-body-secondary pt-3">
-                                    <svg class="bd-placeholder-img flex-shrink-0 me-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 32x32" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#e83e8c"></rect><text x="50%" y="50%" fill="#e83e8c" dy=".3em">32x32</text></svg>
-                                    <p class="pb-3 mb-0 small lh-sm border-bottom">
-                                        <strong class="d-block text-gray-dark">제목입니다</strong>
-                                        Some more representative placeholder content, related to this other user. Another status update, perhaps.
-                                    </p>
-                                </div>
-                                <div class="d-flex text-body-secondary pt-3">
-                                    <svg class="bd-placeholder-img flex-shrink-0 me-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 32x32" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#6f42c1"></rect><text x="50%" y="50%" fill="#6f42c1" dy=".3em">32x32</text></svg>
-                                    <p class="pb-3 mb-0 small lh-sm border-bottom">
-                                        <strong class="d-block text-gray-dark">제목입니다</strong>
-                                        This user also gets some representative placeholder content. Maybe they did something interesting, and you really want to highlight this in the recent updates.
-                                    </p>
-                                </div>
-                            </div>
+                    <div class="d-flex text-body-secondary pt-3">
+                        <svg class="bd-placeholder-img flex-shrink-0 me-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 32x32" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#007bff"></rect><text x="50%" y="50%" fill="#007bff" dy=".3em">32x32</text></svg>
+                        <p class="pb-3 mb-0 small lh-sm border-bottom">
+                            <strong class="d-block text-gray-dark">제목입니다</strong>
+                            Some representative placeholder content, with some information about this user. Imagine this being some sort of status update, perhaps?
+                        </p>
+                    </div>
+                    <div class="d-flex text-body-secondary pt-3">
+                        <svg class="bd-placeholder-img flex-shrink-0 me-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 32x32" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#e83e8c"></rect><text x="50%" y="50%" fill="#e83e8c" dy=".3em">32x32</text></svg>
+                        <p class="pb-3 mb-0 small lh-sm border-bottom">
+                            <strong class="d-block text-gray-dark">제목입니다</strong>
+                            Some more representative placeholder content, related to this other user. Another status update, perhaps.
+                        </p>
+                    </div>
+                    <div class="d-flex text-body-secondary pt-3">
+                        <svg class="bd-placeholder-img flex-shrink-0 me-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 32x32" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#6f42c1"></rect><text x="50%" y="50%" fill="#6f42c1" dy=".3em">32x32</text></svg>
+                        <p class="pb-3 mb-0 small lh-sm border-bottom">
+                            <strong class="d-block text-gray-dark">제목입니다</strong>
+                            This user also gets some representative placeholder content. Maybe they did something interesting, and you really want to highlight this in the recent updates.
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    <script src="../../js/bootstrap.bundle.min.js"></script>
+    <script src="${contextPath}/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
 
