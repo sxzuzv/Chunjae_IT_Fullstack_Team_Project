@@ -4,6 +4,7 @@ import dao.BoardDAO;
 import dao.UserDAO;
 import dto.BoardDTO;
 import dto.UserDTO;
+import util.Encrypt;
 import util.FileUtil;
 import util.JSFunction;
 
@@ -33,6 +34,7 @@ public class UserController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	UserDAO userDao;
 
+
 	public UserController() {
 		super();
 	}
@@ -45,7 +47,16 @@ public class UserController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		doHandle(request, response);
+	}
 
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		doHandle(request, response);
+	}
+
+
+	private void doHandle(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String nextPage = null;
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=UTF-8");
@@ -113,7 +124,7 @@ public class UserController extends HttpServlet {
 			//비밀번호 변경
 			UserDTO userDTO = new UserDTO();
 			userDTO.setUserId((String) request.getSession().getAttribute("userId"));
-			userDTO.setUserPwd(request.getParameter("userPW"));
+			userDTO.setUserPwd(Encrypt.getEncrypt(request.getParameter("userPW")));
 			int result = userDao.updatePass(userDTO);
 
 			if (result == 1) {
@@ -148,7 +159,7 @@ public class UserController extends HttpServlet {
 			UserDTO userDTO = new UserDTO();
 
 			userDTO.setUserId(request.getParameter("userID"));
-			userDTO.setUserPwd(request.getParameter("userPW"));
+			userDTO.setUserPwd(Encrypt.getEncrypt(request.getParameter("userPW")));
 			userDTO.setUserName(request.getParameter("name"));
 			userDTO.setUser_nick(request.getParameter("nickname"));
 			userDTO.setUserCp(request.getParameter("tel"));
@@ -186,12 +197,12 @@ public class UserController extends HttpServlet {
 			// 회원정보수정
 			UserDTO userDTO = new UserDTO();
 			userDTO.setUserId((String) request.getSession().getAttribute("userId"));
-			userDTO.setUserPwd(request.getParameter("userPW"));
+			userDTO.setUserPwd(Encrypt.getEncrypt(request.getParameter("userPW")));
 			userDTO.setUserEmail(request.getParameter("email"));
 			userDTO.setUserName(request.getParameter("name"));
 			userDTO.setUserAddr(request.getParameter("addr"));
 			userDTO.setUserDaddr(request.getParameter("addr2"));
-			userDTO.setUserCp(request.getParameter("name"));
+			userDTO.setUserCp(request.getParameter("tel"));
 
 
 			int result = userDao.updateUserInfo(userDTO);
@@ -215,7 +226,7 @@ public class UserController extends HttpServlet {
 			nextPage = "/main/main.do";
 		} else if ("/login.do".equals(action)) {
 			String userID = request.getParameter("userID");
-			String userPW = request.getParameter("userPW");
+			String userPW = Encrypt.getEncrypt(request.getParameter("userPW"));
 
 			//password 암호화
 			//String hashedPassword = sha256Hash(userPW);
@@ -380,13 +391,5 @@ public class UserController extends HttpServlet {
 		RequestDispatcher dis = request.getRequestDispatcher(nextPage);
 		dis.forward(request, response);
 	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		doGet(request, response);
-	}
-
-
-
 }
 
