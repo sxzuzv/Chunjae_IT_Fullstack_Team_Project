@@ -20,11 +20,15 @@ public class ViewController extends HttpServlet {
 
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html; charset=UTF-8");
+
         // 게시물 불러오기
         BoardDAO dao = new BoardDAO();
         String brdId = request.getParameter("brdId");
         dao.updateVisitCount(brdId);  // 조회수 1 증가
         BoardDTO dto = dao.tcselectView(brdId);
+//        String userId = (String)request.getSession().getAttribute("userId");
 
 
         // 줄바꿈 처리
@@ -45,6 +49,7 @@ public class ViewController extends HttpServlet {
         // 게시물(dto) 저장 후 뷰로 포워드
         request.setAttribute("dto", dto);
         request.setAttribute("isImage", isImage);
+//        request.setAttribute("userId", userId);
         request.getRequestDispatcher("/view/board/teachercommunity/view.jsp").forward(request, response);
     }
 }

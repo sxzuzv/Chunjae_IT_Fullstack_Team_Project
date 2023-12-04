@@ -63,16 +63,43 @@
   <!-- 하단 메뉴(버튼) -->
   <tr>
     <td colspan="4" align="center">
-            <button type="button" onclick="location.href='${contextPath}/teachercommunity/pass.do?mode=edit&brdId=${ param.brdId }';">
-              수정하기
-            </button>
-            <button type="button" onclick="location.href='${contextPath}/teachercommunity/pass.do?mode=delete&brdId=${ param.brdId }';">
-              삭제하기
-            </button>
-<%--            <input type="hidden" name="cateSub" value="${ map.cateSub }" />--%>
-            <button type="button" onclick="location.href='${contextPath}/teachercommunity/list.do?cateSub=${ map.cateSub }';">
-              목록 바로가기
-            </button>
+      <c:set var="userId" value="${ userId }" />
+      <c:set var="dtouserId" value="${ dto.userId }" />
+      <%
+        String userId = (String)request.getSession().getAttribute("userId");
+      %>
+      <c:choose>
+        <c:when test="${ dtouserId eq userId }">
+          <button type="button" onclick="location.href='${contextPath}/teachercommunity/pass.do?mode=edit&brdId=${ param.brdId }';">
+            수정하기
+          </button>
+          <button type="button" onclick="location.href='${contextPath}/teachercommunity/pass.do?mode=delete&brdId=${ param.brdId }';">
+            삭제하기
+          </button>
+          <button type="button" onclick="location.href='${contextPath}/teachercommunity/list.do?cateSub=${ map.cateSub }';">
+            목록 바로가기
+          </button>
+        </c:when>
+        <c:otherwise>
+          <button type="button"><a href="#">신고하기</a></button>
+          <button type="button" onclick="location.href='${contextPath}/teachercommunity/list.do?cateSub=${ map.cateSub }';">
+            목록 바로가기
+          </button>
+        </c:otherwise>
+      </c:choose>
+<%--        </c:otherwise>--%>
+<%--      </c:choose>--%>
+<%--            <button type="button" onclick="location.href='${contextPath}/teachercommunity/pass.do?mode=edit&brdId=${ param.brdId }';">--%>
+<%--              수정하기--%>
+<%--            </button>--%>
+<%--            <button type="button" onclick="location.href='${contextPath}/teachercommunity/pass.do?mode=delete&brdId=${ param.brdId }';">--%>
+<%--              삭제하기--%>
+<%--            </button>--%>
+<%--&lt;%&ndash;            <input type="hidden" name="cateSub" value="${ map.cateSub }" />&ndash;%&gt;--%>
+<%--            <button type="button"><a href="#">신고하기</a></button>--%>
+<%--            <button type="button" onclick="location.href='${contextPath}/teachercommunity/list.do?cateSub=${ map.cateSub }';">--%>
+<%--              목록 바로가기--%>
+<%--            </button>--%>
     </td>
   </tr>
 </table>

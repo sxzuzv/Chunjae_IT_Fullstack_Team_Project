@@ -36,7 +36,6 @@ public class PassController extends HttpServlet {
             dao = new BoardDAO();
             confirmed = dao.confirmPassword(userId, brdId);
             System.out.println(brdId);
-            response.sendRedirect("/teachercommunity/write.do");
         }
 
 
