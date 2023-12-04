@@ -4,14 +4,6 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
 
-<%
-	request.setCharacterEncoding("UTF-8");
-	response.setHeader("cache-control","no-store");
-	response.setHeader("expires","0");
-	response.setHeader("pragma","no-cache");
-%>
-
-
 
 <!doctype html>
 <html lang="ko">
@@ -24,21 +16,27 @@
 
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-	<script src="../../js/bootstrap.js"></script>
-	<script src="../../js/sidebar.js"></script>
 	<style>
 		/* 사용자 정의 스타일 추가 */
-		body {
-			padding-top: 20px;
-		}
+
 		.form-group {
 			max-width: 400px; /* 폼 요소의 최대 가로 크기 조정 */
 			margin: 0 auto; /* 가운데 정렬을 위한 마진 설정 */
 		}
+
+		.btnZone input[type="button"] {
+			margin: 0 5px; /* 버튼 간 여백 조절 */
+			background-color: #114276; /* 원하는 색상 코드 */
+			color: #fff;
+		}
+
+
 		.btnZone {
 			margin-top: 20px;
 			text-align: center; /* 버튼을 가운데 정렬 */
 		}
+
+
 
 		.small-heading {
 			font-size: 2rem; /* 원하는 크기로 설정 */
@@ -114,19 +112,16 @@
 </script>
 </head>
 
-<body>
-<header>
-	<jsp:include page="../common/header.jsp"></jsp:include>
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-</header>
-	<div id="viewport">
-		<!-- Content -->
-		<div id="content">
-			<div class="main_back">
+	<jsp:include page="${contextPath}/view/common/header.jsp"></jsp:include>
+
+
 				<div class="container">
 					<form name="updateForm" method="post" action="${contextPath}/member/update.do">
-						<div class="jumbotron">
-							<h1 class="display-4 small-heading">회원정보 수정</h1>
+						<div class="titleArea">
+							<h1>
+								<font color="#555555">회원정보수정</font>
+							</h1>
+							</div>
 							<hr class="my-4">
 							<div class="form-group">
 								<label for="userPW">비밀번호</label>
@@ -152,7 +147,7 @@
 							<div class="form-group">
 								<label for="addr">주소</label>
 								<div class="input-group">
-									<input type="text" class="form-control form-control-lg" id="addr" name="addr" placeholder="주소" value="${user.userAddr}">
+									<input type="text" class="form-control form-control-lg" id="addr" name="addr" placeholder="주소" value="${user.userAddr}" readonly>
 									<div class="input-group-append">
 										<button type="button" class="btn btn-outline-secondary" onclick="execDaumPostcode()">주소 찾기</button>
 									</div>
@@ -163,19 +158,15 @@
 								<input type="text" class="form-control form-control-lg" id="addr2" name="addr2" placeholder="상세주소" value="${user.userDaddr}">
 							</div>
 							<div class="btnZone">
-								<button type="button" onclick="update();" class="btn btn-primary btn-lg">수정하기</button>
+								<button type="button" onclick="update();" class="btn custom-btn btn-lg" style="background-color: #114276; color: white;">수정하기</button>
 								<button type="button" onclick="history.go(-1);" class="btn btn-secondary btn-lg">뒤로</button>
 							</div>
-						</div>
 					</form>
 				</div>
-			</div>
-		</div>
-	</div>
+
 
 				<!-- 부트스트랩 및 jQuery 스크립트 -->
 				<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
-				<script src="../../js/bootstrap.js"></script>
 				<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
 </html>
