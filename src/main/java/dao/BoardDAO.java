@@ -15,7 +15,85 @@ import java.util.Map;
 public class BoardDAO {
 
 //신수진 신수진 ~
+// [선생님 요모조모_소분류 공통] 검색 조건에 맞는 게시글 개수 카운트
+public int tcselectCount(Map<String, Object> map) {
+  SqlSession sqlSession = MyBatisSessionFactory.getSqlSession();
+  BoardMapper mapper = sqlSession.getMapper(BoardMapper.class);
 
+  // 쿼리문 실행 결과(= 검색 조건에 맞는 게시글 개수)를 totalCount에 저장
+  int totalCount = mapper.tcselectCount(map);
+  sqlSession.close();
+  // 검색 조건에 맞는 게시글 개수를 서블릿(.java)으로 반환
+  return totalCount;
+}
+
+  // [선생님 요모조모_소분류 공통] 검색 조건에 맞는 게시물 목록 출력
+  public List<BoardDTO> tcselectListPage(Map<String, Object> map) {
+    SqlSession sqlSession = MyBatisSessionFactory.getSqlSession();
+    BoardMapper mapper = sqlSession.getMapper(BoardMapper.class);
+
+    // 쿼리문 실행 결과(= 검색 조건에 맞는 게시물 목록)를 result에 저장
+    List<BoardDTO> result = mapper.tcselectListPage(map);
+
+    sqlSession.close();
+    // 검색 조건에 맞는 게시물 목록을 서블릿(
+    return result;
+  }
+
+  // [선생님 요모조모_소분류 공통] 게시물 페이징
+  public List<BoardDTO> tcselectListPageWithPaging(Map<String, Object> map) {
+    SqlSession sqlSession = MyBatisSessionFactory.getSqlSession();
+    BoardMapper mapper = sqlSession.getMapper(BoardMapper.class);
+    List<BoardDTO> result = mapper.tcselectListPageWithPaging(map);
+    sqlSession.close();
+    return result;
+  }
+
+  public BoardDTO tcselectView(String idx) {
+    SqlSession sqlSession = MyBatisSessionFactory.getSqlSession();
+    BoardMapper mapper = sqlSession.getMapper(BoardMapper.class);
+    BoardDTO dto = mapper.tcselectView(idx);
+    sqlSession.close();
+    return dto;
+  }
+
+  // 조회수 기준 인기 게시글(3개) 리스트업
+  public List<BoardDTO> selectTopList(Map<String, Object> map) {
+    SqlSession sqlSession = MyBatisSessionFactory.getSqlSession();
+    BoardMapper mapper = sqlSession.getMapper(BoardMapper.class);
+
+    List<BoardDTO> result = mapper.tcselectTopList(map);
+    sqlSession.close();
+    return result;
+  }
+
+  // 게시물 수정
+  public int tcUpdatePost(BoardDTO dto) {
+    SqlSession sqlSession = MyBatisSessionFactory.getSqlSession();
+    BoardMapper mapper = sqlSession.getMapper(BoardMapper.class);
+    int result = mapper.tcUpdatePost(dto);
+    if (result == 1) {
+      sqlSession.commit();
+    } else {
+      System.out.println("board update 중 오류 발생...");
+    }
+    sqlSession.commit();
+    return result;
+  }
+
+  public int tcinsertWrite(BoardDTO dto) {
+    SqlSession sqlSession = MyBatisSessionFactory.getSqlSession();
+    BoardMapper mapper = sqlSession.getMapper(BoardMapper.class);
+    int result = mapper.tcinsertWrite(dto);
+    if (result == 1) {
+      sqlSession.commit();
+      System.out.println("새로운 게시물 저장 성공");
+    } else {
+      System.out.println("새로운 게시물 저장 실패");
+    }
+    sqlSession.close();
+    return result;
+  }
 
     //최경락
 
