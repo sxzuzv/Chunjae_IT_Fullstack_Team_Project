@@ -44,4 +44,8 @@ public interface UserMapper {
     UserDTO userSelectView(String userId);
 
     int userSelfDelete(String userId);
+
+    List<UserDTO> userSelectNonPass(UserDTO userDTO);
+
+    int updateUserPass(String userId);
 }

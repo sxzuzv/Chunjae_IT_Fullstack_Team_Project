@@ -7,28 +7,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
 <title>home</title>
-    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/carousel/">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <!--헤더 공통 css -->
-
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
-
-
-    <link href="../../css/headers.css" rel="stylesheet">
-    <link href="../../css/main.css" rel="stylesheet">
-
-
-    <!-- 슬라이드 css-->
-    <link href="../../css/carousel.css" rel="stylesheet">
     <style>
         body {
             background-color: #f7f7f7;
         }
-        .wrapper {
-            margin-top: 80px;
-        }
+
         #formContent {
             background: #fff;
             padding: 40px;
@@ -47,15 +31,32 @@
             font-size: 24px;
         }
 
+
+
+        input[type="submit"].fadeIn{
+            background-color: #114276;
+            color: white;
+        }
+
+
+
     </style>
 </head>
 
+    <jsp:include page="${contextPath}/view/common/header.jsp"></jsp:include>
 
-<body>
-<header>
-    <jsp:include page="../common/top.jsp"></jsp:include>
-</header>
+
 <div class="container custom-container">
+    <div class="xans-element- xans-board xans-board-listpackage-1002 xans-board-listpackage xans-board-1002 ">
+    <div class="xans-element- xans-board xans-board-title-1002 xans-board-title xans-board-1002 ">
+        <div class="titleArea">
+    <h1>
+        <font color="#555555">아이디/비밀번호 변경</font>
+    </h1>
+        </div>
+    </div>
+    </div>
+    <hr class="my-4">
     <div class="row justify-content-center">
         <div class="col-lg-8">
             <div class="wrapper fadeInDown">
@@ -68,15 +69,15 @@
                             <h2 class="active">아이디 찾기</h2>
                             <form action="${contextPath}/member/idFind.do">
                                 <div class="form-group">
-                                    <input type="text" id="userName" class="form-control fadeIn second"
-                                           name="userName" placeholder="이름">
+                                    <input type="text" id="userName" class="form-control form-control-lg fadeIn second"
+                                           name="userName" placeholder="이름" style="width: 300px;"> <!-- Adjust width as needed -->
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" id="usermail" class="form-control fadeIn third"
-                                           name="userEmail" placeholder="이메일" autocomplete="off">
+                                    <input type="text" id="usermail" class="form-control form-control-lg fadeIn third"
+                                           name="userEmail" placeholder="이메일" autocomplete="off" style="width: 300px;"> <!-- Adjust width as needed -->
                                 </div>
                                 <div class="form-group">
-                                    <input type="submit" class="fadeIn fourth btn btn-primary btn-block"
+                                    <input type="submit" class="fadeIn fourth btn custom-btn"
                                            value="아이디찾기">
                                 </div>
                             </form>
@@ -85,19 +86,19 @@
                             <h2 class="active">비밀번호 변경</h2>
                             <form action="${contextPath}/member/passFind.do">
                                 <div class="form-group">
-                                    <input type="text" id="userId" class="form-control fadeIn second" name="userId"
-                                           placeholder="아이디">
+                                    <input type="text" id="userId" class="form-control form-control-lg fadeIn second" name="userId"
+                                           placeholder="아이디" style="width: 300px;"> <!-- Adjust width as needed -->
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" id="userEmail" class="form-control fadeIn second"
-                                           name="userEmail" placeholder="이메일">
+                                    <input type="text" id="userEmail" class="form-control form-control-lg fadeIn second"
+                                           name="userEmail" placeholder="이메일" style="width: 300px;"> <!-- Adjust width as needed -->
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" id="userPw" class="form-control fadeIn third" name="userCp"
-                                           placeholder="전화번호" autocomplete="off">
+                                    <input type="text" id="userPw" class="form-control form-control-lg fadeIn third" name="userCp"
+                                           placeholder="전화번호" autocomplete="off" style="width: 300px;"> <!-- Adjust width as needed -->
                                 </div>
                                 <div class="form-group">
-                                    <input type="submit" class="fadeIn fourth btn btn-primary btn-block"
+                                    <input type="submit" class="fadeIn fourth btn custom-btn"
                                            value="비밀번호변경">
                                 </div>
                             </form>
