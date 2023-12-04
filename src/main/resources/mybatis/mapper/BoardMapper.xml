@@ -173,7 +173,7 @@
             </choose>
         </if>
         order by brd_id desc
-        LIMIT #{pageNum}, 10
+        LIMIT #{start}, 10
     </select>
 
 
