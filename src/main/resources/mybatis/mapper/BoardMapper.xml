@@ -98,21 +98,7 @@
 
 
     <!--최경락-->
-    <select id="csSelectCount" parameterType="map" resultType="int">
-        SELECT count(*)
-        FROM board
-        WHERE cate_main = 3
-        ORDER BY brd_id desc
-    </select>
 
-    <select id="csSelectListPage" parameterType="map" resultType="dto.BoardDTO">
-        SELECT *
-        FROM board
-        WHERE cate_main = 3
-        order by brd_id desc
-        LIMIT #{start}, 10
-    </select>
-    <!--.........................................................................................  -->
     <!-- SELECT : 검색 조건에 맞는 게시글 개수 카운트 -->
     <select id="cscenterCount" parameterType="map" resultType="int">
         SELECT count(*)
