@@ -68,6 +68,7 @@
     <select id="tcselectTopList" parameterType="map" resultType="dto.BoardDTO">
         select *
         from board
+        where cate_main = 2 and cate_sub = #{cateSub}
         order by view_cnt desc LIMIT 3
     </select>
 
