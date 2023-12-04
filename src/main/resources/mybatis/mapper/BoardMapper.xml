@@ -102,20 +102,6 @@
         SELECT count(*)
         FROM board
         WHERE cate_main = 3
-   <!--     <if test="cateMain != null and !cateMain.equals('')">
-            AND cate_main = #{cateMain}
-        </if>
-        <if test="searchWord != null and !searchWord.equals('')">
-            AND
-            <choose>
-                <when test="searchField == 'title'">
-                    title LIKE CONCAT('%', #{searchWord}, '%')
-                </when>
-                <otherwise>
-                    content LIKE CONCAT('%', #{searchWord}, '%')
-                </otherwise>
-            </choose>
-        </if>-->
         ORDER BY brd_id desc
     </select>
 
@@ -123,9 +109,58 @@
         SELECT *
         FROM board
         WHERE cate_main = 3
-        <!--<if test="cateMain != null and !cateMain.equals('')">
-            AND b.cate_main = #{cateMain}
+        order by brd_id desc
+        LIMIT #{start}, 10
+    </select>
+    <!--.........................................................................................  -->
+    <!-- SELECT : 검색 조건에 맞는 게시글 개수 카운트 -->
+    <select id="cscenterCount" parameterType="map" resultType="int">
+        SELECT count(*)
+        FROM board
+        <!-- 검색 조건이 있는 경우 WHERE절로 추가 (searchWord = 검색창에 입력한 조건) -->
+        <if test="searchWord != null and !searchWord.equals('')">
+            WHERE
+            <choose>
+                <!-- 제목으로 검색 -->
+                <when test="searchField == 'title'">
+                    title like concat('%', #{searchWord}, '%')
+                </when>
+                <otherwise>
+                    <!-- 내용으로 검색 -->
+                    content like concat('%', #{searchWord}, '%')
+                </otherwise>
+            </choose>
         </if>
+        <!-- 게시글 번호를 내림차순으로 정렬 -->
+        ORDER BY brd_id desc
+    </select>
+
+    <!-- SELECT : 제목 혹은 내용으로 검색한 결과 -->
+    <select id="cscenterListPage" parameterType="map" resultType="dto.BoardDTO">
+        SELECT *
+        FROM board
+        <!--<if test="searchWord != null and !searchWord.equals('')">
+
+            <choose>
+                <when test="searchField == 'title'">
+                    title like concat('%', #{searchWord}, '%')
+                </when>
+                <otherwise>
+                    content like concat('%', #{searchWord}, '%')
+                </otherwise>
+            </choose>
+        </if>-->
+        WHERE cate_main = 3
+        ORDER BY brd_id desc
+    </select>
+
+    <!-- SELECT : 게시글 페이징 처리 후 출력 -->
+    <select id="cscenterListPageWithPaging" parameterType="map" resultType="dto.BoardDTO">
+        <![CDATA[
+        SELECT *
+        FROM board
+        WHERE cate_main = 3
+        ]]>
         <if test="searchWord != null and !searchWord.equals('')">
             AND
             <choose>
@@ -136,16 +171,35 @@
                     content LIKE CONCAT('%', #{searchWord}, '%')
                 </otherwise>
             </choose>
-        </if>-->
+        </if>
         order by brd_id desc
-        LIMIT #{start}, 10
+        LIMIT #{pageNum}, 10
     </select>
 
-    <!--<select id="csSelectView" parameterType="String" resultType="dto.BoardDTO">
-    SELECT *
-    FROM board
-    WHERE brd_id = ${brdId}
-    </select>-->
+
+    <select id="cscenterView" parameterType="String" resultType="dto.BoardDTO">
+        select *
+        from board
+        where brd_id = #{brdId}
+        <!--Expected one result (or null) to be returned by selectOne(), but found: 41
+           if nothing match, return null
+        -->
+    </select>
+
+
+    <update id="cscenterUpdatePost" parameterType="dto.BoardDTO">
+        update board
+        set
+        title = #{title}, content = #{content}, ofile = #{ofile}, sfile = #{sfile},
+        cate_sub = #{cateSub}
+        where brd_id = #{brdId}
+    </update>
+
+    <insert id="cscenterinsertWrite" parameterType="dto.BoardDTO">
+        INSERT
+        INTO board(user_id, title, content, ofile, sfile, cate_main, cate_sub)
+        VALUES(#{userId}, #{title}, #{content}, #{ofile}, #{sfile}, 3, #{cateSub})
+    </insert>
 
 
     <!--최영주-->

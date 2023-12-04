@@ -18,9 +18,12 @@ public interface BoardMapper {
     int tcinsertWrite(BoardDTO dto);
 
     //최경락
-    int csSelectCount(Map<String, Object> map);
-
-    List<BoardDTO> csSelectListPage(Map<String, Object> map);
+    int cscenterCount(Map<String, Object> map);
+    List<BoardDTO> cscenterListPage(Map<String, Object> map);
+    List<BoardDTO> cscenterListPageWithPaging(Map<String, Object> map);
+    BoardDTO cscenterView(String idx);
+    int cscenterUpdatePost(BoardDTO dto);
+    int cscenterinsertWrite(BoardDTO dto);
 
 //    BoardDTO csSelectView(String brdId);
 
