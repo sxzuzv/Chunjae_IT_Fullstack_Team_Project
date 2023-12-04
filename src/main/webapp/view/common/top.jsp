@@ -41,8 +41,8 @@
 					</div>
 				</ul>
 				<ul class="nav">
-					<li class="nav-item"><a href="#" class="nav-link link-body-emphasis px-2">Login</a></li>
-					<li class="nav-item"><a href="#" class="nav-link link-body-emphasis px-2">Sign up</a></li>
+					<li class="nav-item"><a href="${contextPath}/member/main.do" class="nav-link link-body-emphasis px-2">로그인</a></li>
+					<li class="nav-item"><a href="${contextPath}/member/join.do" class="nav-link link-body-emphasis px-2">회원가입</a></li>
 				</ul>
 			</div>
 		</nav>
@@ -61,7 +61,7 @@
 				<ul class="nav">
 					<li id="btn" class ="nav-item"><a href="#">${userId}</a>
 						<ul id="slideTogglebox">
-							<li><a href="/member/updatefrom.do">회원정보수정</a></li>
+							<li><a href="/member/mypage.do">마이페이지</a></li>
 							<li><a href="/member/logout.do" onclick="toggleLogout()"><span id="logoutText">로그아웃</span></a></li>
 						</ul>
 					</li>
@@ -97,10 +97,8 @@
 			<li class="nav-item">
 				<a href="#" class="nav-link">내 상점</a>
 				<ul class="submenu" id = "submenu03">
-					<li><a href="#">submenu01</a></li>
-					<li><a href="#">submenu02</a></li>
-					<li><a href="#">submenu03</a></li>
-					<li><a href="#">submenu04</a></li>
+					<li><a href="${contextPath}/market/list.do?myStore=sell">판매내역</a></li>
+					<li><a href="${contextPath}/market/list.do?myStore=buy">구매내역</a></li>
 				</ul>
 			</li>
 			<li class="nav-item">

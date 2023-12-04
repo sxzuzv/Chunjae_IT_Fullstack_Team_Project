@@ -39,7 +39,17 @@
         </tr>
         <tr>
             <td>상태</td>
-            <td><input type="text" name="status" style="width:150px;" value="${ dto.status }"/></td>
+            <td>
+            <select name="status">
+                <option value="거래중">거래중</option>
+                <option value="판매완료">판매완료</option>
+            </select>
+            </td>
+        </tr>
+        <tr>
+            <td>구매자</td>
+            <td>
+                <input type="text" name="buyerId" style="width:150px;" value="${ dto.buyerId }" /></td>
         </tr>
         <tr>
             <td>제목</td>

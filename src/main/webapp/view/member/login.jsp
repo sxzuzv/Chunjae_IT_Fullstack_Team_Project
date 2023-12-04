@@ -9,48 +9,82 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-
 	<title>home</title>
+	<style>
 
-	<link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/carousel/">
+		.wrapper {
+			display: flex;
+			justify-content: center;
+			height: 100vh;
+			margin-top: 100px;
 
-	<link href="../../css/bootstrap.min.css" rel="stylesheet"/>
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+		}
+
+		#formContent {
+			background-color: #fff; /* 폼의 배경색을 변경하세요 */
+			padding: 40px;
+			border-radius: 10px; /* 모서리를 둥글게 만듭니다 */
+			box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+			width: 500px; /* 폼의 너비를 조정하세요 */
+			height: 350px;
+		}
+		/* 입력 상자의 너비 및 여백을 조정하는 스타일 */
+		input[type="text"].fadeIn,
+		input[type="password"].fadeIn {
+			width: 100%;
+			height: 50px;
+			margin-bottom: 15px;
+		}
+		/* 버튼 스타일 */
+		input[type="submit"].fadeIn {
+			width: 100%;
+			padding: 8px;
+			background-color: #114276;
+			color: white;
+
+		}
+		/* 링크의 스타일 */
+		#formFooter a {
+			font-size: 18px; /* 링크의 글꼴 크기를 조정하세요 */
+		}
+
+		#formContent > * {
+			margin-bottom: 15px;
+		}
 
 
+	</style>
 
-	<link href="../../css/main.css" rel="stylesheet"/>
-	<link href="../../css/nav.css" rel="stylesheet"/>
-	<link rel="stylesheet" href="../css/toggle.css"/>
-
-
-
-
-
-	<link rel="stylesheet" href="../../css/login.css">
 </head>
+	<jsp:include page="${contextPath}/view/common/header.jsp"></jsp:include>
+
+
 <body>
-<header>
-	<jsp:include page="../common/top.jsp"></jsp:include>
-</header>
-<div class="wrapper fadeInDown">
+<div class="wrapper">
 	<div id="formContent">
-		<!-- Tabs Titles -->
-		<h2 class="active">로그인</h2>
+		<div class="xans-element- xans-board xans-board-listpackage-1002 xans-board-listpackage xans-board-1002 ">
+			<div class="xans-element- xans-board xans-board-title-1002 xans-board-title xans-board-1002 ">
+		<h1 class="active text-center">
+			<font color="#555555">로그인
+			</font>
+		</h1>
+			</div>
+		</div>
 		<!-- Login Form -->
 		<form action="${contextPath}/member/login.do" method="post">
-			<input type="text" id="login" class="fadeIn second" name="userID" placeholder="아이디">
-			<input type="password" id="password" class="fadeIn third" name="userPW" placeholder="비밀번호" autocomplete="off">
-			<input type="submit" class="fadeIn fourth" value="로그인">
+			<input type="text" id="login" class="form-control fadeIn" name="userID" placeholder="아이디">
+			<input type="password" id="password" class="form-control fadeIn" name="userPW" placeholder="비밀번호" autocomplete="off">
+			<input type="submit" class="btn custom-btn-color fadeIn" value="로그인">
 		</form>
-		<!-- Signup Link -->
-		<div id="formFooter">
+		<!-- Signup and Password Reset Links -->
+		<div id="formFooter" class="mt-3 text-center">
 			<a class="underlineHover" href="${contextPath}/member/join.do">회원가입</a>
-		</div>
-		<div id="formFooter2">
+			<span class="mx-2">|</span>
 			<a class="underlineHover" href="${contextPath}/member/find.do">아이디/비밀번호 찾기</a>
 		</div>
 	</div>
 </div>
+
+
 </body>
 </html>

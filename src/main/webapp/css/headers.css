@@ -1,18 +1,66 @@
-.form-control-dark {
-  border-color: var(--bs-gray);
-}
-.form-control-dark:focus {
-  border-color: #fff;
-  box-shadow: 0 0 0 .25rem rgba(255, 255, 255, .25);
-}
+*{padding:0; margin:0; border:0}
+li{list-style:none}
+a{text-decoration:none;
+  color: black;}
 
-.text-small {
-  font-size: 85%;
+.menu {
+  width: 800px;
+  overflow: hidden;
 }
 
-.dropdown-toggle:not(:focus) {
-  outline: 0;
+.menu > li {
+  width: 25%; /*20*5=100%*/
+  float: left;
+  text-align: center;
+  line-height: 40px;
+  background-color: transparent;
 }
 
+.submenu > li {
+  background-color: #fff;
+  width: 158px;
+  font-size: 16px;
+  height: 50px;
+  display: block;
+  line-height: 50px;
+}
 
+.submenu > li > .sub{
+  height: 50px;
+  line-height: 50px;
+}
+
+.submenu {
+  height: 0; /*ul의 높이를 안보이게 처리*/
+  overflow: hidden;
+}
+/* dropdown 할 메뉴목록에 높이를 0처리하고, overflow:hidden을 적용해 안보이게 처리해준다. */
+
+/* ▪️ :hover 했을 때 */
+.menu > li:hover {
+  background-color: #fff;
+  transition-duration: 0.5s;
+}
+
+.menu > li:hover .submenu {
+  transition-duration: 1s;
+  position: fixed;
+  z-index: 1;
+}
+
+.menu > li:hover #submenu01{
+  height: 150px;
+}
+
+.menu > li:hover #submenu02{
+  height: 150px;
+}
+
+.menu > li:hover #submenu03{
+  height: 100px;
+}
+
+.menu > li:hover #submenu04{
+  height: 250px;
+}
 

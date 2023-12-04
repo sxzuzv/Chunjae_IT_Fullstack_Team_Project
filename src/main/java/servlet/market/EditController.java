@@ -24,33 +24,19 @@ public class EditController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String mode = request.getParameter("mode");
+
         String brdId = request.getParameter("brdId");
 
-        if (mode.equals("delete")) {  // 삭제 모드
-            BoardDAO dao = new BoardDAO();
-            BoardDTO dto = dao.marketSelectView(brdId);
-            int result = dao.deletePost(brdId);  // 게시물 삭제
-            result = result * dao.deletePdtPost(brdId);
+        BoardDAO dao = new BoardDAO();
+        BoardDTO dto = dao.marketSelectView(brdId);
+        request.setAttribute("dto", dto);
+        request.getRequestDispatcher("/view/board/market/edit.jsp").forward(request, response);
 
-            if (result == 1) {  // 게시물 삭제 성공 시 첨부파일도 삭제
-                String saveFileName = dto.getSfile();
-                FileUtil.deleteFile(request, "/Uploads", saveFileName);
-            }
-            JSFunction.alertLocation(response, "삭제되었습니다.", "/market/list.do");
-        }else if(mode.equals("edit")) {
-            BoardDAO dao = new BoardDAO();
-            BoardDTO dto = dao.marketSelectView(brdId);
-            request.setAttribute("dto", dto);
-            request.getRequestDispatcher("/view/board/market/edit.jsp").forward(request, response);
-        }
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-
 
          // 1. 파일 업로드 처리 =============================
          // 업로드 디렉터리의 물리적 경로 확인
@@ -73,7 +59,7 @@ public class EditController extends HttpServlet {
 
          String title = request.getParameter("title");
          String content = request.getParameter("content");
-
+         String buyerId = request.getParameter("buyerId");
 
          //        // 비밀번호는 session에서 가져옴
          //        HttpSession session = request.getSession();
@@ -89,7 +75,12 @@ public class EditController extends HttpServlet {
          dto.setCateSub(Integer.parseInt(request.getParameter("cateSub")));
          dto.setPrice(request.getParameter("price"));
          dto.setDealAddress(request.getParameter("dealAddress"));
+         dto.setStatus(request.getParameter("status"));
 
+         //구매자 지정한 경우만 저장
+         if (buyerId != null) {
+           dto.setBuyerId(buyerId);
+         }
          // 원본 파일명과 저장된 파일 이름 설정
          if (!originalFileName.isEmpty()) {
              String savedFileName = FileUtil.renameFile(saveDirectory, originalFileName);
@@ -108,13 +99,13 @@ public class EditController extends HttpServlet {
          // DB에 수정 내용 반영
          BoardDAO dao = new BoardDAO();
          int result = dao.marketUpdatePost(dto);
-
+         result = result * dao.marketUpdatePostPdt(dto);
          // 성공 or 실패?
          if (result == 1) {  // 수정 성공
              //            session.removeAttribute("pass");
              response.sendRedirect("/market/view.do?brdId=" + brdId);
          } else {  // 수정 실패
-             JSFunction.alertLocation(response, "비밀번호 검증을 다시 진행해주세요.",
+             JSFunction.alertLocation(response, "오류로 수정내용이 반영되지 않았습니다",
                      "/market/view.do?brdId=" + brdId);
          }
 

@@ -9,7 +9,13 @@ import java.util.Map;
 @Mapper
 public interface BoardMapper {
     //신수진
-
+    int tcselectCount(Map<String, Object> map);
+    List<BoardDTO> tcselectListPage(Map<String, Object> map);
+    List<BoardDTO> tcselectListPageWithPaging(Map<String, Object> map);
+    BoardDTO tcselectView(String idx);
+    List<BoardDTO> tcselectTopList(Map<String, Object> map);
+    int tcUpdatePost(BoardDTO dto);
+    int tcinsertWrite(BoardDTO dto);
 
     //최경락
 
@@ -31,6 +37,7 @@ public interface BoardMapper {
 
 
     int marketUpdatePost(BoardDTO dto);
+    int marketUpdatePostPdt(BoardDTO dto);
 
     int confirmPassword(Map<String, String> map);
 
