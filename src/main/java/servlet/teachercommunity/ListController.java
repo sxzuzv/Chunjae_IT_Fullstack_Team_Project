@@ -54,8 +54,13 @@ public class ListController extends HttpServlet {
         map.put("end", end);
         /* 페이지 처리 end */
 
-        List<BoardDTO> boardLists = dao.tcselectListPage(map);  // 게시물 목록 받기
-        List<BoardDTO> topLists = dao.selectTopList(map); // 조회수 기준 인기글 3개 목록 받기
+
+
+        // 소분류 카테고리에 해당하는 게시물 목록 받기
+        List<BoardDTO> boardLists = dao.tcselectListPage(map);
+        List<BoardDTO> topLists = dao.selectTopList(map); // 선택한 소분류에서 조회수 기준 인기글 3개 목록 받기
+        // 사용자가 선택한 소분류 저장
+        int cateSub = Integer.parseInt(req.getParameter("cateSub"));
 
         // 뷰에 전달할 매개변수 추가
         String pagingImg = BoardPage.pagingStr(totalCount, pageSize,
@@ -64,6 +69,7 @@ public class ListController extends HttpServlet {
         map.put("totalCount", totalCount);
         map.put("pageSize", pageSize);
         map.put("pageNum", pageNum);
+        map.put("cateSub", cateSub);
 
         // 전달할 데이터를 request 영역에 저장 후 TeacherCommunityBoard.jsp로 포워드
         req.setAttribute("boardLists", boardLists);

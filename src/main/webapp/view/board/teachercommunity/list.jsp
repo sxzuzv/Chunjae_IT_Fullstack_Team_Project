@@ -48,8 +48,12 @@
         <div class="xans-element- xans-board xans-board-title-1002 xans-board-title xans-board-1002 ">
           <div class="titleArea">
           <h2>
-            <font color="#555555">
-            <a href="${contextPath}/teachercommunity/list.do">꿀팁 나눠요</a>
+            <c:choose>
+              <c:when test="${ map.cateSub eq '1'}">꿀팁 나눠요</c:when>
+              <c:when test="${ map.cateSub eq '2'}">고민 있어요</c:when>
+              <c:when test="${ map.cateSub eq '3'}">수업 질문</c:when>
+<%--              <a href="${contextPath}/teachercommunity/list.do">꿀팁 나눠요</a>--%>
+            </c:choose>
           </h2>
             <br /><br /><br /><br />
 
