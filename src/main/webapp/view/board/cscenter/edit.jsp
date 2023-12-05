@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: peter
-  Date: 2023-12-04
-  Time: PM 2:31
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -12,7 +5,8 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>우하하</title>
+    <title>TEACHER MARKET</title>
+
     <script type="text/javascript">
         function validateForm(form) {
             if (form.name.value == "") {
@@ -33,17 +27,22 @@
         }
     </script>
 </head>
-<h2>수정하기(Edit)</h2>
+<body>
+
+<header>
+
+    <jsp:include page="${contextPath}/view/common/header.jsp"></jsp:include>
+    <link rel="stylesheet" href="${contextPath}/css/teachercommunity/edit.css" />
+
+</header>
+<h2>게시글 수정</h2>
 <form name="writeFrm" method="post" enctype="multipart/form-data" action="/cscenter/edit.do" onsubmit="return validateForm(this);">
     <input type="hidden" name="brdId" value="${ dto.brdId }"/>
     <input type="hidden" name="prevOfile" value="${ dto.ofile }" />
     <input type="hidden" name="prevSfile" value="${ dto.sfile }" />
+    <input type="hidden" name="cateSub" style="width:150px;" value="${ dto.cateSub }"/>
 
     <table border="1" width="90%">
-        <tr>
-            <td>카테고리</td>
-            <td><input type="text" name="cateSub" style="width:150px;" value="${ dto.cateSub }"/></td>
-        </tr>
         <tr>
             <td>제목</td>
             <td>
@@ -73,4 +72,5 @@
         </tr>
     </table>
 </form>
+</body>
 </html>
