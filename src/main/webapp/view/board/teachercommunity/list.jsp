@@ -4,145 +4,13 @@
 <html>
 <head>
   <title>TEACHER MARKET</title>
-
-  <style>
-    /*a {*/
-    /*  text-decoration: none;*/
-    /*  color: inherit;*/
-    /*}*/
-
-    /*.button {*/
-    /*  float: right;*/
-    /*  width: 80px;*/
-    /*  font-size: 20px;*/
-    /*  background-color: #35497a;*/
-    /*  color: white*/
-    /*}*/
-
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f0f0f0;
-    }
-
-    /*header {*/
-    /*  background-color: #35497a;*/
-    /*  color: white;*/
-    /*  padding: 10px;*/
-    /*}*/
-
-    #wrap {
-      margin: 20px;
-    }
-
-    .button {
-      float: right;
-      margin-top: 10px;
-      padding: 10px;
-      font-size: 16px;
-      background-color: #35497a;
-      color: white;
-      border: none;
-      cursor: pointer;
-    }
-
-    .boardSort {
-      margin-top: 20px;
-    }
-
-    .ec-base-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 20px;
-    }
-
-    .ec-base-table th, .ec-base-table td {
-      border: 1px solid #ddd;
-      padding: 8px;
-      text-align: center;
-    }
-
-    .ec-base-table th {
-      background-color: #35497a;
-      color: white;
-    }
-
-    .ec-base-table tr:nth-child(even) {
-      background-color: #f2f2f2;
-    }
-
-    .ec-base-paginate {
-      margin-top: 20px;
-    }
-
-    .layout {
-      margin-top: 20px;
-    }
-
-    a {
-      text-decoration: none;
-      color: #35497a;
-    }
-
-    a:hover {
-      text-decoration: underline;
-      color: #1a2a48;
-    }
-
-
-    /* 검색폼 디자인 */
-    .boardSearch {
-      margin-top: 20px;
-      /*border: 1px solid #ddd;*/
-      padding: 15px;
-      /*border-radius: 5px;*/
-      background-color: #fff;
-    }
-
-    .boardSearch legend {
-      font-size: 20px;
-      font-weight: bold;
-      margin-top: 10px;
-      margin-bottom: 10px;
-    }
-
-    .boardSearch select,
-    .boardSearch input[type="text"],
-    .boardSearch input[type="submit"] {
-      padding: 10px;
-      margin-right: 10px;
-      margin-bottom: 10px;
-      border: 1px solid #ddd;
-      border-radius: 3px;
-    }
-
-    .boardSearch select {
-      width: 100px;
-      height: 40px;
-    }
-
-    .boardSearch input[type="text"] {
-      width: 250px;
-      height: 40px;
-    }
-
-    .boardSearch input[type="submit"] {
-      background-color: #35497a;
-      color: #fff;
-      border: none;
-      cursor: pointer;
-    }
-
-    .boardSearch input[type="submit"]:hover {
-      background-color: #1a2a48;
-    }
-  </style>
 </head>
 <body>
 <header>
 
   <jsp:include page="${contextPath}/view/common/header.jsp"></jsp:include>
+
+  <link rel="stylesheet" href="${contextPath}/css/teachercommunity/list.css" />
 
 </header>
 <div id="wrap">
@@ -159,7 +27,6 @@
               <c:when test="${ map.cateSub eq '3'}">수업 질문</c:when>
             </c:choose>
           </h2>
-            <br /><br /><br /><br />
 
             <h3>지금 가장 인기있는 게시글이에요!</h3>
           <div class="boardSort">
@@ -243,7 +110,7 @@
                                     class="xans-element- xans-board xans-board-replysort-1002 xans-board-replysort xans-board-1002 "></span>
           </div>
             <div>
-              <button type="button" class="button" onclick="location.href='${contextPath}/teachercommunity/pass.do';">글쓰기</button>
+              <button type="button" class="button" onclick="location.href='${contextPath}/teachercommunity/pass.do?mode=write';">글쓰기</button>
             </div>
             <br /><br />
 
@@ -311,8 +178,9 @@
           </div>
             <hr class="layout">
           </div>
-          <hr class="layout">
-        </div>
+          <div>
+            <hr class="layout">
+          </div>
 
 <%--          <table border="1" width="90%">--%>
 <%--            <tr align="center">--%>

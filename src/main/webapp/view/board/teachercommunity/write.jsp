@@ -6,23 +6,6 @@
 <head>
   <meta charset="UTF-8">
   <title>TEACHER MARKET</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f5f5f5;
-    }
-
-    h2 {
-      text-align: center;
-      color: #333;
-      margin-top: 20px;
-    }
-
-
-
-  </style>
 
   <script type="text/javascript">
     function validateForm(form) {  // 필수 항목 입력 확인
@@ -48,16 +31,15 @@
       }
     }
   </script>
-
-
 </head>
 <body>
 <header>
 
   <jsp:include page="${contextPath}/view/common/header.jsp"></jsp:include>
+  <link rel="stylesheet" href="${contextPath}/css/teachercommunity/write.css" />
 
 </header>
-<h2>글쓰기(Write)</h2>
+<h2>게시글 작성</h2>
 <form name="writeFrm" method="post" enctype="multipart/form-data"
       action="/teachercommunity/write.do" onsubmit="return validateForm(this);">
   <table border="1" width="90%">

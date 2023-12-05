@@ -32,21 +32,18 @@
 <header>
 
   <jsp:include page="${contextPath}/view/common/header.jsp"></jsp:include>
+  <link rel="stylesheet" href="${contextPath}/css/teachercommunity/edit.css" />
 
 </header>
-
-<h2>수정하기(Edit)</h2>
+<h2>게시글 수정</h2>
 <form name="writeFrm" method="post" enctype="multipart/form-data" action="/teachercommunity/edit.do" onsubmit="return validateForm(this);">
   <input type="hidden" name="brdId" value="${ dto.brdId }"/>
   <input type="hidden" name="prevOfile" value="${ dto.ofile }" />
   <input type="hidden" name="prevSfile" value="${ dto.sfile }" />
+  <input type="hidden" name="cateSub" style="width:150px;" value="${ dto.cateSub }"/>
 
   <table border="1" width="90%">
     <tr>
-      <td>카테고리</td>
-      <td><input type="text" name="cateSub" style="width:150px;" value="${ dto.cateSub }"/></td>
-    </tr>
-      <tr>
       <td>제목</td>
       <td>
         <input type="text" name="title" style="width:90%;" value="${ dto.title }" />
