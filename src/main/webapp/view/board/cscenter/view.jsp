@@ -83,15 +83,27 @@
             <button class="btndel" type="button" onclick="location.href='${contextPath}/cscenter/pass.do?mode=delete&brdId=${ param.brdId }';">
                 삭제하기
             </button>
-            <button class="btnlist" type="button" onclick="location.href='${contextPath}/cscenter/list.do?cateSub=${ cateSub }';">
+            <button class="btnlist" type="button" onclick="goBack()">
                 목록 바로가기
             </button>
+
+            <script>
+                function goBack() {
+                    history.go(-1);
+                }
+            </script>
         </c:when>
         <c:otherwise>
 
-            <button class="btnlist" type="button" onclick="location.href='${contextPath}/cscenter/list.do?cateSub=${ cateSub }';">
+            <button class="btnlist" type="button" onclick="goBack()">
                 목록 바로가기
             </button>
+
+            <script>
+                function goBack() {
+                    history.go(-1);
+                }
+            </script>
         </c:otherwise>
     </c:choose>
     <%--    </td>--%>
