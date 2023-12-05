@@ -33,13 +33,13 @@
 
 <div>
 <img src="https://img.shields.io/badge/java-007396?style=for-the-badge&logo=java&logoColor=white">
-<img src="https://img.shields.io/badge/jsp-E34F26?style=for-the-badge&logo=jsp&logoColor=red">
-<img src="https://img.shields.io/badge/MyBatis-E34F26?style=for-the-badge&logo=MyBatis&logoColor=black">
-  <img src="https://img.shields.io/badge/AWS-E34F26?style=for-the-badge&logo=AWS&logoColor=#232F3E"> <br>
-  <img src="https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white">
+<img src="https://img.shields.io/badge/jsp-#D40000?style=for-the-badge&logo=jsp&logoColor=white">
+<img src="https://img.shields.io/badge/MyBatis-#000000?style=for-the-badge&logo=MyBatis&logoColor=white">
+<img src="https://img.shields.io/badge/amazonaws-#232F3E?style=for-the-badge&logo=AWS&logoColor=white"> <br>
+<img src="https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white">
 <img src="https://img.shields.io/badge/MariaDB-003545?style=for-the-badge&logo=mariadb&logoColor=white">
-<img src="https://img.shields.io/badge/CSS3-E34F26?style=for-the-badge&logo=CSS3&logoColor=#1572B6">
-<img src="https://img.shields.io/badge/IntelliJ-000000?style=for-the-badge&logo=intellijidea&logoColor=white"> <br>
+<img src="https://img.shields.io/badge/CSS3-#1572B6?style=for-the-badge&logo=CSS3&logoColor=white">
+<img src="https://img.shields.io/badge/IntelliJ-#000000?style=for-the-badge&logo=intellijidea&logoColor=white"> <br>
 <img src="https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white">
 <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white">
 <img src="https://img.shields.io/badge/Slack-4A154B?style=for-the-badge&logo=slack&logoColor=white">
