@@ -7,124 +7,15 @@
 <head>
   <meta charset="UTF-8">
   <title>TEACHER MARKET</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f5f5f5;
-    }
-
-    h2 {
-      text-align: center;
-      color: #333;
-      margin-top: 20px;
-    }
-
-    .detailView {
-      border-collapse: collapse;
-      width: 90%;
-      margin: 20px auto;
-      background-color: #fff;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      border-radius: 8px;
-      overflow: hidden;
-    }
-
-    .detailView colgroup {
-      width: 15% 35% 15% auto;
-    }
-
-    .detailView th, .detailView td {
-      border: 1px solid #ddd;
-      padding: 15px;
-      text-align: left;
-    }
-
-    .detailView th {
-      background-color: #35497a;
-      color: white;
-    }
-
-    .detailView tr:nth-child(even) {
-      background-color: #f2f2f2;
-    }
-
-    .detailView td[colspan="3"] {
-      white-space: pre-wrap;
-    }
-
-    .detailView img {
-      max-width: 100%;
-      height: auto;
-      margin-top: 10px;
-    }
-
-
-    button {
-      margin-top: 10px;
-      padding: 10px;
-      /*font-size: 30px;*/
-      /*background-color: #35497a;*/
-      /*color: white;*/
-      border: none;
-      cursor: pointer;
-
-    }
-
-    .btnedit {
-      font-size: 20px;
-      color: black;
-      background-color:#3dd5f3;
-      width: 100px;
-      height: 45px;
-      border-radius: 10px;
-      margin-left: 43%;
-    }
-
-    .btndel {
-      font-size: 20px;
-      color: black;
-      background-color: #ee2a27;
-      width: 100px;
-      height: 45px;
-      border-radius: 10px;
-    }
-
-    .btnrep {
-      font-size: 20px;
-      color: white;
-      background-color: red;
-      width: 100px;
-      height: 45px;
-      border-radius: 10px;
-      margin-left: 43%;
-    }
-
-    .btnlist {
-      font-size: 20px;
-      color: black;
-      width: 130px;
-      height: 45px;
-      border-radius: 10px;
-    }
-
-  </style>
-
 </head>
-<body>
 <header>
-
   <jsp:include page="${contextPath}/view/common/header.jsp"></jsp:include>
-
+  <link rel="stylesheet" href="${contextPath}/css/teachercommunity/view.css" />
 </header>
-
-<br /><br />
+<body>
 <h2>
-  게시글 상세 보기(View)
+  게시글 상세 보기
 </h2>
-
-<br />
 <table class="detailView" border="1" width="90%">
   <colgroup>
     <col width="15%"/> <col width="35%"/>
@@ -133,7 +24,7 @@
 
   <!-- 게시글 정보 -->
   <tr>
-    <td>작성자</td> <td>${ dto.userId }</td>
+    <td>작성자</td> <td colspan="3">${ dto.userId }</td>
   </tr>
   <tr>
     <td>작성일</td> <td>${ dto.regDate }</td>
@@ -155,7 +46,7 @@
 
   <!-- 첨부파일 -->
   <tr>
-    <td>첨부파일</td>
+    <td>첨부 파일</td>
     <td>
       <c:if test="${ not empty dto.ofile }">
         ${ dto.ofile }
