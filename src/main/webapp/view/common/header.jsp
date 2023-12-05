@@ -52,9 +52,9 @@
 						<li class="xans-record-">
 							<a href="${contextPath}/teachercommunity/list.do">선생님 요모조모</a>
 							<ul class="submenu" id = "submenu02">
-								<li><a class = "sub" href="${contextPath}/teachercommunity/list.do">꿀팁 나눠요</a></li>
-								<li><a class = "sub" href="${contextPath}/teachercommunity/list.do">고민 있어요</a></li>
-								<li><a class = "sub" href="${contextPath}/teachercommunity/list.do">수업 질문</a></li>
+								<li><a class = "sub" href="${contextPath}/teachercommunity/list.do?cateSub=1">꿀팁 나눠요</a></li>
+								<li><a class = "sub" href="${contextPath}/teachercommunity/list.do?cateSub=2">고민 있어요</a></li>
+								<li><a class = "sub" href="${contextPath}/teachercommunity/list.do?cateSub=3">수업 질문</a></li>
 							</ul>
 						</li>
 						<li class="xans-record-">
