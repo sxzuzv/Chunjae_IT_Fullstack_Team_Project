@@ -17,7 +17,13 @@ public interface CommentMapper {
 
     //최영주
     int insertWriteComment(BoardCommentDTO dto);
+
     List<BoardCommentDTO> selectCommentList(Map<String, Object> map);
+
+    int deleteComment(String comId);
+
+    int updateComment(BoardCommentDTO dto);
+
 
     //최재혁
 

@@ -3,6 +3,7 @@ package dao;
 import dto.BoardCommentDTO;
 import dto.BoardDTO;
 import mybatis.factory.MyBatisSessionFactory;
+import mybatis.mapper.BoardMapper;
 import mybatis.mapper.CommentMapper;
 import org.apache.ibatis.session.SqlSession;
 
@@ -39,6 +40,30 @@ public class CommentDAO {
       return result;
     }
 
+    public int deleteComment(String comId) {
+        SqlSession sqlSession = MyBatisSessionFactory.getSqlSession();
+        CommentMapper mapper = sqlSession.getMapper(CommentMapper.class);
+        int result = mapper.deleteComment(comId);
+        if (result == 1) {
+            sqlSession.commit();
+        } else {
+            System.out.println("Comment 삭제 중 오류 발생...");
+        }
+        return result;
+    }
+
+    public int updateComment(BoardCommentDTO dto) {
+        SqlSession sqlSession = MyBatisSessionFactory.getSqlSession();
+        CommentMapper mapper = sqlSession.getMapper(CommentMapper.class);
+        int result = mapper.updateComment(dto);
+        if (result == 1) {
+            sqlSession.commit();
+        } else {
+            System.out.println("Comment update 중 오류 발생...");
+        }
+        sqlSession.commit();
+        return result;
+    }
     //최재혁
 
 }
