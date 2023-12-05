@@ -82,9 +82,15 @@
                         </div>
                         <div class="btn-zone mt-4">
                             <div class="col-12 text-center">
-                                <button type="button" class="btn btn-info" onclick="location.href='/cscenter/list.do';">
-                                    목록으로
+                                <button class="btnlist" type="button" onclick="goBack()">
+                                    목록 바로가기
                                 </button>
+
+                                <script>
+                                    function goBack() {
+                                        history.go(-1);
+                                    }
+                                </script>
                                 <button type="reset" class="btn btn-secondary">RESET</button>
                                 <button type="submit" class="btn btn-primary">작성 완료</button>
                             </div>
