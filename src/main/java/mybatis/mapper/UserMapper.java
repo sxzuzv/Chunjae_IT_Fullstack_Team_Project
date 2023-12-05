@@ -47,7 +47,11 @@ public interface UserMapper {
 
     int updateUserPass(String userId);
 
-    List<UserDTO> userSelectReportCount(UserDTO userDTO);
+    int updateUserPending(String userId);
+
+    int userSelectReportCount(Map<String, Object> map);
+
+    List<UserDTO> userSelectReportPage(Map<String, Object> map);
 
     int updateUserDrop(String userId);
 }

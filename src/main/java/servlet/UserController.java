@@ -255,7 +255,17 @@ public class UserController extends HttpServlet {
 
 							+ "</script>");
 
-				} else {// 로그인 실패
+				}else if(isStatus.equals("pending") && isAdmin.equals("E")){
+					userDao.userSelfDelete(userID);
+					PrintWriter out = response.getWriter();
+					out.print("<script>"
+							+ "  alert('가입승인이 거절되어 다시 가입해주세요.');"   // 알림창
+
+							+ " location.href='" + request.getContextPath() + "/member/join.do';"  // 로그인 페이지로 이동
+
+							+ "</script>");
+
+				}else {// 로그인 실패
 					PrintWriter out = response.getWriter();
 					out.print("<script>"
 							+ "  alert('아직 승인이 완료되지 않았습니다.');"   // 알림창

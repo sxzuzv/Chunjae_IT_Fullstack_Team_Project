@@ -53,7 +53,7 @@
 							<a href="#">회원관리</a>
 							<ul class="submenu" id = "submenu03">
 								<li><a class = "sub" href="${contextPath}/admin/memberlist.do">가입승인</a></li>
-								<li><a class = "sub" href="${contextPath}/market/list.do?myStore=buy">신고회원</a></li>
+								<li><a class = "sub" href="${contextPath}/admin/memreportlist.do">신고회원</a></li>
 							</ul>
 						</li>
 					</ul>

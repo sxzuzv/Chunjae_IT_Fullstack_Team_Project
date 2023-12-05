@@ -168,6 +168,8 @@ public class UserDAO {
 
     }
 
+
+
     public int userSelectNonPassCount(Map<String, Object> map){
         //status가 reject인 사람들 불러오기
         SqlSession sqlSession = MyBatisSessionFactory.getSqlSession();
@@ -185,11 +187,19 @@ public class UserDAO {
         return result;
     }
 
-    public List<UserDTO> userSelectReportCount(UserDTO userDTO){
+    public int userSelectReportCount(Map<String, Object> map){
         //유저의 신고횟수가 5회가 넘을때 가져옴
         SqlSession sqlSession = MyBatisSessionFactory.getSqlSession();
         UserMapper mapper = sqlSession.getMapper(UserMapper.class);
-        List<UserDTO> result =mapper.userSelectReportCount(userDTO);
+        int result =mapper.userSelectReportCount(map);
+        sqlSession.close();
+        return result;
+    }
+
+    public List<UserDTO> userSelectReportPage(Map<String, Object> map){
+        SqlSession sqlSession = MyBatisSessionFactory.getSqlSession();
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+        List<UserDTO> result = mapper.userSelectReportPage(map);
         sqlSession.close();
         return result;
     }
@@ -199,6 +209,18 @@ public class UserDAO {
         SqlSession sqlSession = MyBatisSessionFactory.getSqlSession();
         UserMapper mapper = sqlSession.getMapper(UserMapper.class);
         int result = mapper.updateUserPass(userId);
+        if (result == 1) {
+            sqlSession.commit();
+        } else {
+            System.out.println("업데이트중 오류 발생");
+        }
+        return result;
+    }
+
+    public int updateUserPending(String userId){
+        SqlSession sqlSession = MyBatisSessionFactory.getSqlSession();
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+        int result = mapper.updateUserPending(userId);
         if (result == 1) {
             sqlSession.commit();
         } else {
