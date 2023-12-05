@@ -19,6 +19,9 @@ public class ViewController extends HttpServlet {
   @Override
   protected void service(HttpServletRequest req, HttpServletResponse resp)
           throws ServletException, IOException {
+
+
+
     // 게시물 불러오기
     BoardDAO dao = new BoardDAO();
     String brdId = req.getParameter("brdId");

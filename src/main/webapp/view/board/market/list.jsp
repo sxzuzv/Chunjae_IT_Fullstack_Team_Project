@@ -122,7 +122,7 @@
 					class="xans-element- xans-board xans-board-paging-1002 xans-board-paging xans-board-1002 ec-base-paginate">
 				<ol>
 
-					${ map.pagingImg }g
+					${ map.pagingImg }
 
 				</ol>
 			</div>

@@ -1,6 +1,11 @@
 package mybatis.mapper;
 
+import dto.BoardCommentDTO;
+import dto.BoardDTO;
 import org.apache.ibatis.annotations.Mapper;
+
+import java.util.List;
+import java.util.Map;
 
 @Mapper
 public interface CommentMapper {
@@ -11,7 +16,8 @@ public interface CommentMapper {
 
 
     //최영주
-
+    int insertWriteComment(BoardCommentDTO dto);
+    List<BoardCommentDTO> selectCommentList(Map<String, Object> map);
 
     //최재혁
 
