@@ -6,7 +6,23 @@
 <head>
   <meta charset="UTF-8">
   <title>TEACHER MARKET</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f5f5f5;
+    }
 
+    h2 {
+      text-align: center;
+      color: #333;
+      margin-top: 20px;
+    }
+
+
+
+  </style>
 
   <script type="text/javascript">
     function validateForm(form) {  // 필수 항목 입력 확인

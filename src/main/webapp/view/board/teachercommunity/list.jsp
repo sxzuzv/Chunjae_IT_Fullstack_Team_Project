@@ -6,17 +6,136 @@
   <title>TEACHER MARKET</title>
 
   <style>
-    a {
-      text-decoration: none;
-      color: inherit;
+    /*a {*/
+    /*  text-decoration: none;*/
+    /*  color: inherit;*/
+    /*}*/
+
+    /*.button {*/
+    /*  float: right;*/
+    /*  width: 80px;*/
+    /*  font-size: 20px;*/
+    /*  background-color: #35497a;*/
+    /*  color: white*/
+    /*}*/
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f0f0f0;
+    }
+
+    /*header {*/
+    /*  background-color: #35497a;*/
+    /*  color: white;*/
+    /*  padding: 10px;*/
+    /*}*/
+
+    #wrap {
+      margin: 20px;
     }
 
     .button {
       float: right;
-      width: 100px;
-      font-size: 20px;
+      margin-top: 10px;
+      padding: 10px;
+      font-size: 16px;
       background-color: #35497a;
-      color: white
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    .boardSort {
+      margin-top: 20px;
+    }
+
+    .ec-base-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    .ec-base-table th, .ec-base-table td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: center;
+    }
+
+    .ec-base-table th {
+      background-color: #35497a;
+      color: white;
+    }
+
+    .ec-base-table tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+
+    .ec-base-paginate {
+      margin-top: 20px;
+    }
+
+    .layout {
+      margin-top: 20px;
+    }
+
+    a {
+      text-decoration: none;
+      color: #35497a;
+    }
+
+    a:hover {
+      text-decoration: underline;
+      color: #1a2a48;
+    }
+
+
+    /* 검색폼 디자인 */
+    .boardSearch {
+      margin-top: 20px;
+      /*border: 1px solid #ddd;*/
+      padding: 15px;
+      /*border-radius: 5px;*/
+      background-color: #fff;
+    }
+
+    .boardSearch legend {
+      font-size: 20px;
+      font-weight: bold;
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+
+    .boardSearch select,
+    .boardSearch input[type="text"],
+    .boardSearch input[type="submit"] {
+      padding: 10px;
+      margin-right: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ddd;
+      border-radius: 3px;
+    }
+
+    .boardSearch select {
+      width: 100px;
+      height: 40px;
+    }
+
+    .boardSearch input[type="text"] {
+      width: 250px;
+      height: 40px;
+    }
+
+    .boardSearch input[type="submit"] {
+      background-color: #35497a;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+    }
+
+    .boardSearch input[type="submit"]:hover {
+      background-color: #1a2a48;
     }
   </style>
 </head>
@@ -38,7 +157,6 @@
               <c:when test="${ map.cateSub eq '1'}">꿀팁 나눠요</c:when>
               <c:when test="${ map.cateSub eq '2'}">고민 있어요</c:when>
               <c:when test="${ map.cateSub eq '3'}">수업 질문</c:when>
-<%--              <a href="${contextPath}/teachercommunity/list.do">꿀팁 나눠요</a>--%>
             </c:choose>
           </h2>
             <br /><br /><br /><br />
@@ -90,44 +208,40 @@
             </tbody>
 
             </table>
-          <br /><br />
 
-          <!-- 검색 폼 -->
+<%--          <!-- 검색 폼 -->--%>
 <%--          <form id="tcboardSearchForm" method="get">--%>
 <%--            <div class="xans-element- xans-board xans-board-search-1002 xans-board-search xans-board-1002 ">--%>
 <%--                  <select name="searchField">--%>
 <%--                    <option value="title">제목</option>--%>
 <%--                    <option value="content">내용</option>--%>
 <%--                  </select>--%>
-<%--                  <input type="hidden" name="cateSub" value=${ map.cateSub }/>--%>
-<%--                  <input id="search" name="searchField" class="inputTypeText" placeholder="" value="" type="text">--%>
-<%--                  <input id="submit" name="submit" value="검색하기"/></td>--%>
+<%--                  <input type="hidden" name="cateSub" value=${ map.cateSub } />--%>
+<%--                  <input id="search" name="searchField" class="inputTypeText" placeholder="" value="" type="text" />--%>
+<%--                  <input id="submit" name="submit" value="검색하기" />--%>
 <%--&lt;%&ndash;                  <input type="text" name="searchWord" />&ndash;%&gt;--%>
 <%--&lt;%&ndash;                  <input type="submit" value="검색하기" />&ndash;%&gt;--%>
 <%--            </div>--%>
 <%--          </form>--%>
 
-            <form id="tcboardSearchForm" name="" method="get">
-              <div class="xans-element- xans-board xans-board-search-1002 xans-board-search xans-board-1002 ">
-                <fieldset class="tcboardSearch">
+            <br /><br />
+            <form id="boardSearchForm" name="" method="get">
+                <fieldset class="boardSearch">
                   <legend>선생님 요조모조 검색</legend>
                     <select name="searchField">
-                      <option value="title">제목</option>
+                      <option value="title" selected>제목</option>
                       <option value="content">내용</option>
                     </select>
                     <input type="hidden" name="cateSub" value=${ map.cateSub } />
                     <input type="text" id="search" name="searchWord">
-                    <input id="submit" type="submit" value="검색하기"/>
+                    <input id="submit" type="submit" value="검색"/>
                 </fieldset>
-              </div>
             </form>
 
           <div class="boardSort">
 							<span
                                     class="xans-element- xans-board xans-board-replysort-1002 xans-board-replysort xans-board-1002 "></span>
           </div>
-          <br />
-
             <div>
               <button type="button" class="button" onclick="location.href='${contextPath}/teachercommunity/pass.do';">글쓰기</button>
             </div>
