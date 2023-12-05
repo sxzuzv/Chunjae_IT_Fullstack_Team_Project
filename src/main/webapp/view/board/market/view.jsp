@@ -1,13 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
 
     <head>
         <meta charset="UTF-8">
         <title>상세 보기</title>
+
+
     </head>
+
 
     <body>
         <header>
@@ -137,7 +141,7 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="xans-element- xans-board xans-board-read-1002 xans-board-read xans-board-1002">
+                    <div class="xans-element- xans-board xans-board-read-1002 xans-board-read xans-board-1002 xans-product-detail">
                         <div class="ec-base-table typeWrite ">
                             <table border="1" summary="">
                                 <caption>게시판 상세</caption>
@@ -148,7 +152,7 @@
                                 <tbody>
                                 <tr>
                                     <th scope="row">제목</th>
-                                    <td>8월 15일 광복절 휴무 안내 (8월 14일 택배 없는 날)</td>
+                                    <td>${ dto.title }</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">작성자</th>
@@ -182,10 +186,12 @@
                             </table>
                         </div>
                     </div>
+                    <jsp:include page="${pageContext.request.contextPath}/view/common/comment.jsp"></jsp:include>
+
+                    <hr class="layout">
                 </div>
                 <hr class="layout">
             </div>
-            <hr class="layout">
         </div>
     </body>
 </html>

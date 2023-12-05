@@ -13,8 +13,31 @@
 
 
     <!--최영주-->
+    <insert id="insertWriteComment" parameterType="dto.BoardCommentDTO">
+        INSERT
+        INTO board_comment(parent_id, user_id, com_content)
+        VALUES(#{parentId}, #{userId}, #{comContent})
+    </insert>
 
+    <select id="selectCommentList" parameterType="map" resultType="dto.BoardCommentDTO">
+        SELECT *
+        FROM board_comment
+        WHERE parent_id = #{brdId}
+        order by com_id desc
+    </select>
 
+    <delete id="deleteComment">
+        delete
+        from board_comment
+        where com_id = #{comId}
+    </delete>
+
+    <update id="updateComment" parameterType="dto.BoardCommentDTO">
+        update board_comment
+        set
+        com_content = #{comContent}
+        where com_id = #{comId}
+    </update>
 
     <!--최재혁-->
 
