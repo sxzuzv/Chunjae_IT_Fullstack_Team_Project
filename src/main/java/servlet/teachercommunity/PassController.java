@@ -24,13 +24,16 @@ public class PassController extends HttpServlet {
         String mode = request.getParameter("mode");
         String userId = (String)request.getSession().getAttribute("userId");
 
+        System.out.println("userid" + userId);
+
         boolean confirmed = false;
         BoardDAO dao = new BoardDAO();
 
         // 비 로그인 시 수정 불가
         if( userId == null) {
             JSFunction.alertLocation(response,"로그인 후 이용 가능합니다.","/main/main.do");
-        }else{ // 로그인 시 확인
+        } else { // 로그인 시 확인
+            response.sendRedirect("/teachercommunity/write.do");
             dao = new BoardDAO();
             confirmed = dao.confirmPassword(userId, brdId);
             System.out.println(brdId);
@@ -38,6 +41,9 @@ public class PassController extends HttpServlet {
 
 
         if (confirmed) {  // 비밀번호 일치
+//            if(mode.equals("write")) {
+//                response.sendRedirect("/teachercommunity/write.do");
+//            }
             if (mode.equals("edit")) {  // 수정 모드
                 response.sendRedirect("/teachercommunity/edit.do?brdId=" + brdId);
             }

@@ -5,7 +5,8 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>우하하</title>
+  <title>TEACHER MARKET</title>
+
   <script type="text/javascript">
     function validateForm(form) {
       if (form.name.value == "") {
@@ -26,6 +27,14 @@
     }
   </script>
 </head>
+<body>
+
+<header>
+
+  <jsp:include page="${contextPath}/view/common/header.jsp"></jsp:include>
+
+</header>
+
 <h2>수정하기(Edit)</h2>
 <form name="writeFrm" method="post" enctype="multipart/form-data" action="/teachercommunity/edit.do" onsubmit="return validateForm(this);">
   <input type="hidden" name="brdId" value="${ dto.brdId }"/>
@@ -66,4 +75,5 @@
     </tr>
   </table>
 </form>
+</body>
 </html>

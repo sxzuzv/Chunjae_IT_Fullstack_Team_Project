@@ -35,6 +35,7 @@ public int tcselectCount(Map<String, Object> map) {
 
     // 쿼리문 실행 결과(= 검색 조건에 맞는 게시물 목록)를 result에 저장
     List<BoardDTO> result = mapper.tcselectListPage(map);
+    System.out.println(result);
 
     sqlSession.close();
     // 검색 조건에 맞는 게시물 목록을 서블릿(
@@ -95,6 +96,13 @@ public int tcselectCount(Map<String, Object> map) {
     sqlSession.close();
     return result;
   }
+
+
+
+
+
+
+
 
     //최경락
     public int cscenterCount(Map<String, Object> map) {

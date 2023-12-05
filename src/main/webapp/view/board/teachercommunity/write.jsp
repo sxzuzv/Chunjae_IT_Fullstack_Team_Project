@@ -5,7 +5,25 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>파일 첨부형 게시판</title>
+  <title>TEACHER MARKET</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f5f5f5;
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+      margin-top: 20px;
+    }
+
+
+
+  </style>
+
   <script type="text/javascript">
     function validateForm(form) {  // 필수 항목 입력 확인
       if (form.name.value == "") {
@@ -30,7 +48,15 @@
       }
     }
   </script>
+
+
 </head>
+<body>
+<header>
+
+  <jsp:include page="${contextPath}/view/common/header.jsp"></jsp:include>
+
+</header>
 <h2>글쓰기(Write)</h2>
 <form name="writeFrm" method="post" enctype="multipart/form-data"
       action="/teachercommunity/write.do" onsubmit="return validateForm(this);">
@@ -43,12 +69,6 @@
           <option value="2">고민 있어요</option>
           <option value="3">수업 질문</option>
         </select>
-      </td>
-    </tr>
-    <tr>
-      <td>작성자</td>
-      <td>
-        <input type="text" name="name" style="width:150px;" />
       </td>
     </tr>
     <tr>
@@ -80,4 +100,5 @@
     </tr>
   </table>
 </form>
+</body>
 </html>

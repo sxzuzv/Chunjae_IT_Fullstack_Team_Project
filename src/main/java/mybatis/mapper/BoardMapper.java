@@ -17,6 +17,13 @@ public interface BoardMapper {
     int tcUpdatePost(BoardDTO dto);
     int tcinsertWrite(BoardDTO dto);
 
+
+
+
+
+
+
+
     //최경락
     int cscenterCount(Map<String, Object> map);
     List<BoardDTO> cscenterListPage(Map<String, Object> map);
