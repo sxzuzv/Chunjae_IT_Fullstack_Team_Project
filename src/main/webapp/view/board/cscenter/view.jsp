@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: peter
-  Date: 2023-12-04
-  Time: PM 2:31
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -13,12 +6,17 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>게시글 상세 보기</title>
+    <title>TEACHER MARKET</title>
 </head>
+<header>
+    <jsp:include page="${contextPath}/view/common/header.jsp"></jsp:include>
+    <link rel="stylesheet" href="${contextPath}/css/teachercommunity/view.css" />
+</header>
 <body>
-<h2>게시글 상세 보기(View)</h2>
-
-<table border="1" width="90%">
+<h2>
+    게시글 상세 보기
+</h2>
+<table class="detailView" border="1" width="90%">
     <colgroup>
         <col width="15%"/> <col width="35%"/>
         <col width="15%"/> <col width="*"/>
@@ -26,12 +24,14 @@
 
     <!-- 게시글 정보 -->
     <tr>
-        <td>번호</td> <td>${ dto.brdId }</td>
-        <td>작성자</td> <td>${ dto.userId }</td>
+        <td>작성자</td> <td colspan="3">${ dto.userId }</td>
     </tr>
     <tr>
         <td>작성일</td> <td>${ dto.regDate }</td>
-        <td>조회수</td> <td>${ dto.viewCnt }</td>
+        <td>문의유형</td> <td><c:choose>
+        <c:when test="${dto.cateSub eq 1}"> 문의사항 </c:when>
+        <c:when test="${dto.cateSub eq 2}"> 신고 </c:when>
+    </c:choose></td>
     </tr>
     <tr>
         <td>제목</td>
@@ -49,7 +49,7 @@
 
     <!-- 첨부파일 -->
     <tr>
-        <td>첨부파일</td>
+        <td>첨부 파일</td>
         <td>
             <c:if test="${ not empty dto.ofile }">
                 ${ dto.ofile }
@@ -59,21 +59,44 @@
             </c:if>
         </td>
     </tr>
+</table>
 
-    <!-- 하단 메뉴(버튼) -->
-    <tr>
-        <td colspan="4" align="center">
-            <button type="button" onclick="location.href='${contextPath}/cscenter/pass.do?mode=edit&brdId=${ param.brdId }';">
+<!-- 하단 메뉴(버튼) -->
+<%--  <tr>--%>
+<%--    <td colspan="4" align="center">--%>
+<br />
+<div>
+    <c:set var="userId" value="${ userId }" />
+    <c:set var="dtouserId" value="${ dto.userId }" />
+    <c:set var="cateSub" value="${ cateSub }" />
+    <%
+        String cateSub = (String)request.getParameter("cateSub");
+    %>
+    <%
+        String userId = (String)request.getSession().getAttribute("userId");
+    %>
+    <c:choose>
+        <c:when test="${ dtouserId eq userId }">
+            <button class="btnedit" type="button" onclick="location.href='${contextPath}/cscenter/pass.do?mode=edit&brdId=${ param.brdId }';">
                 수정하기
             </button>
-            <button type="button" onclick="location.href='${contextPath}/cscenter/pass.do?mode=delete&brdId=${ param.brdId }';">
+            <button class="btndel" type="button" onclick="location.href='${contextPath}/cscenter/pass.do?mode=delete&brdId=${ param.brdId }';">
                 삭제하기
             </button>
-            <button type="button" onclick="location.href='${contextPath}/cscenter/list.do';">
+            <button class="btnlist" type="button" onclick="location.href='${contextPath}/cscenter/list.do?cateSub=${ cateSub }';">
                 목록 바로가기
             </button>
-        </td>
-    </tr>
-</table>
+        </c:when>
+        <c:otherwise>
+
+            <button class="btnlist" type="button" onclick="location.href='${contextPath}/cscenter/list.do?cateSub=${ cateSub }';">
+                목록 바로가기
+            </button>
+        </c:otherwise>
+    </c:choose>
+    <%--    </td>--%>
+    <%--  </tr>--%>
+</div>
 </body>
 </html>
+
