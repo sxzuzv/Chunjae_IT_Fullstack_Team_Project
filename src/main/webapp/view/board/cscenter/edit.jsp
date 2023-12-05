@@ -65,9 +65,15 @@
             <td colspan="2" align="center">
                 <button type="submit">작성 완료</button>
                 <button type="reset">RESET</button>
-                <button type="button" onclick="location.href='/cscenter/list.do';">
+                <button class="btnlist" type="button" onclick="goBack()">
                     목록 바로가기
                 </button>
+
+                <script>
+                    function goBack() {
+                        history.go(-1);
+                    }
+                </script>
             </td>
         </tr>
     </table>
