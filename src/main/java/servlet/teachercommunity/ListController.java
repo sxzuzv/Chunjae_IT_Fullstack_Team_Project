@@ -1,6 +1,5 @@
 package servlet.teachercommunity;
 
-import com.mysql.cj.PreparedQuery;
 import dao.BoardDAO;
 import dto.BoardDTO;
 import util.BoardPage;

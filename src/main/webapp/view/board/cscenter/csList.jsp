@@ -107,7 +107,10 @@
                                             <td class="subject left txtBreak" style="text-align: center">  <!-- 제목(링크) -->
                                                 <a href="/cscenter/view.do?brdId=${ row.brdId }">${ row.title }</a> <span
                                                         class="txtEm"></span></td>
-                                            <td>${ row.cateSub }</td>   <!-- 문의 유형 -->
+                                            <td><c:choose>
+                                                <c:when test="${row.cateSub eq 1}"> 문의사항 </c:when>
+                                                <c:when test="${row.cateSub eq 2}"> 신고 </c:when>
+                                                </c:choose></td>   <!-- 문의 유형 -->
                                             <td>${ row.regDate }</td>  <!-- 처리상태-->
                                             <td><span class="txtNum">${ row.userId }</span></td>    <!-- 작성자 -->
                                             <td><span class="txtNum">${ row.regDate }</span></td>  <!-- 게시일자 -->
