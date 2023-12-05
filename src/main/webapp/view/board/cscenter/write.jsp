@@ -82,10 +82,9 @@
                         </div>
                         <div class="btn-zone mt-4">
                             <div class="col-12 text-center">
-                                <button class="btnlist" type="button" onclick="goBack()">
+                                <button class="btn btn-info" type="button" onclick="goBack()">
                                     목록 바로가기
                                 </button>
-
                                 <script>
                                     function goBack() {
                                         history.go(-1);
