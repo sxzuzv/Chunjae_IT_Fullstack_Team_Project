@@ -2,6 +2,7 @@ package servlet.teachercommunity;
 
 import dao.BoardDAO;
 import dto.BoardDTO;
+import dto.CategoriesDTO;
 import util.FileUtil;
 import util.JSFunction;
 
