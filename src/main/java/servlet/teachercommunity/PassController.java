@@ -29,14 +29,15 @@ public class PassController extends HttpServlet {
         boolean confirmed = false;
         BoardDAO dao = new BoardDAO();
 
-        // 비 로그인 시 수정 불가
+        // 비 로그인 시 글쓰기, 수정 불가
         if( userId == null) {
             JSFunction.alertLocation(response,"로그인 후 이용 가능합니다.","/main/main.do");
-        } else { // 로그인 시 확인
+        } else if(mode.equals("write")) {
             response.sendRedirect("/teachercommunity/write.do");
-            dao = new BoardDAO();
-            confirmed = dao.confirmPassword(userId, brdId);
-            System.out.println(brdId);
+        } else { // 로그인 시 확인
+                dao = new BoardDAO();
+                confirmed = dao.confirmPassword(userId, brdId);
+                System.out.println(brdId);
         }
 
 

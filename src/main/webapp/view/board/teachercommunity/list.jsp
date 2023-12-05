@@ -243,7 +243,7 @@
                                     class="xans-element- xans-board xans-board-replysort-1002 xans-board-replysort xans-board-1002 "></span>
           </div>
             <div>
-              <button type="button" class="button" onclick="location.href='${contextPath}/teachercommunity/pass.do';">글쓰기</button>
+              <button type="button" class="button" onclick="location.href='${contextPath}/teachercommunity/pass.do?mode=write';">글쓰기</button>
             </div>
             <br /><br />
 
