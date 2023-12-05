@@ -15,12 +15,12 @@
 | DELETE | 구매 내역 삭제 |
   
   - 프로젝트 요약 :  <br>
-  - 프로젝트 진행 기간 : 2023. 11. 23. ~ 2023.  <br>
+  - 프로젝트 진행 기간 : 2023. 11. 23. ~ 2023. 12. 11. <br>
 
 <br><br>
 
 
-# 멤버 소개
+# 팀원 소개
 
 ### 신수진 
 ### 최경락 
@@ -28,57 +28,15 @@
 ### 최재혁
 <br><br>
 
-# 요구사항 명세
-
-
-<br>
-
-
-<br><br>
-
-# 다이어그램
-
-## 💠 유스 케이스 다이어그램
-
-
-<br><br>
-
-## 💠 블록 다이어그램
-
-
-
-<br><br>
-
-## 💠 ERD
-### 논리적 ERD
-
-
-
-<br><br>
-
-### 물리적 ERD
-
-
-<br><br>
-
-## 💠 클래스 다이어그램
-
-
-<br><br>
-
-
-## 💠 시퀀스 다이어그램
-
-
-<br><br>
 
 # 사용 기술
 
 <div>
 <img src="https://img.shields.io/badge/java-007396?style=for-the-badge&logo=java&logoColor=white">
-<img src="https://img.shields.io/badge/IntelliJ-000000?style=for-the-badge&logo=intellijidea&logoColor=white"> <br>
+<img src="https://img.shields.io/badge/jsp-E34F26?style=for-the-badge&logo=jsp&logoColor=orange">
 <img src="https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white">
 <img src="https://img.shields.io/badge/MariaDB-003545?style=for-the-badge&logo=mariadb&logoColor=white">  <br>
+<img src="https://img.shields.io/badge/IntelliJ-000000?style=for-the-badge&logo=intellijidea&logoColor=white"> <br>
 <img src="https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white">
 <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white"> <br>
 <img src="https://img.shields.io/badge/Notion-00000?style=for-the-badge&logo=notion&logoColor=white">
