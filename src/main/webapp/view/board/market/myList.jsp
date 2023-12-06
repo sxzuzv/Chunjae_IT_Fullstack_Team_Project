@@ -106,7 +106,7 @@
 														${ map.totalCount - (((map.pageNum-1) * map.pageSize) + loop.index)}
 												</td>
 												<td class="subject left txtBreak">  <!-- 제목(링크) -->
-													<a href="/market/view.do?brdId=${ row.brdId }">${ row.title }</a> <span
+													<a href="${contextPath}/market/view.do?brdId=${ row.brdId }">${ row.title }</a> <span
 															class="txtEm"></span>
 												</td>
 												<td>sh</td>  <!-- 상태 -->

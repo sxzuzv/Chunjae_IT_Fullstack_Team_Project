@@ -108,7 +108,7 @@
                 <div class="xans-element- xans-product xans-produgitct-normalpackage"><!-- 정렬기준 외 -->
                     <div class="xans-element- xans-product xans-product-normalmenu">
                         <div class="function" id="Product_ListMenu">
-                            <button type="button" onclick="location.href='/market/list.do';" style="background-color: #0a53be">바로가기</button>
+                            <button type="button" onclick="location.href='${contextPath}/market/list.do';" style="background-color: #0a53be">바로가기</button>
                         </div>
                     </div>
                 </div>
@@ -211,7 +211,7 @@
                 <div class="xans-element- xans-product xans-product-normalpackage"><!-- 정렬기준 외 -->
                     <div class="xans-element- xans-product xans-product-normalmenu">
                         <div class="function">
-                            <button type="button" onclick="location.href='/market/list.do';" style="background-color: #0a53be">바로가기</button>
+                            <button type="button" onclick="location.href='${contextPath}/market/list.do';" style="background-color: #0a53be">바로가기</button>
                         </div>
                     </div>
                 </div>

@@ -122,13 +122,13 @@
                                     <div class="ec-base-button gColumn">
                                         <a href="#"
                                            class="btnNormal sizeM btnBasket "
-                                           onclick="location.href='/market/pass.do?mode=delete&brdId=${ param.brdId }'">삭제하기</a>
+                                           onclick="location.href='${contextPath}/market/pass.do?mode=delete&brdId=${ param.brdId }'">삭제하기</a>
                                         <a href="#"
                                            class="btnNormal sizeM btnBasket "
-                                           onclick="location.href='/market/pass.do?mode=edit&brdId=${ param.brdId }'">수정하기</a>
+                                           onclick="location.href='${contextPath}/market/pass.do?mode=edit&brdId=${ param.brdId }'">수정하기</a>
                                         <a href="#"
                                            class="btnSubmit sizeM "
-                                           onclick="location.href='/market/list.do'">목록으로
+                                           onclick="location.href='${contextPath}/market/list.do'">목록으로
                                         </a>
                                     </div>
                                 </div>

@@ -38,7 +38,7 @@
   function loadComment() {
     $.ajax({
       type: "GET",
-      url: "/comment/commentList.do?brdId=${dto.brdId}",
+      url: "${contextPath}/comment/commentList.do?brdId=${dto.brdId}",
       dataType: "Json",
       success: function(commentArray) {
 
@@ -81,7 +81,7 @@
             // ajax기능으로 요청 및 응답처리
             $.ajax({
               type: "POST",
-              url: "/comment/addComment.do",
+              url: "${contextPath}/comment/addComment.do",
               data: "brdId="+${ dto.brdId } + "&comContent=" + comContent,  // QueryString형태로 전달
               dataType: "Json",
               success: function(result) {
@@ -145,7 +145,7 @@
     // ajax기능으로 요청 및 응답처리
     $.ajax({
       type: "POST",
-      url: "/comment/updateComment.do",
+      url: "${contextPath}/comment/updateComment.do",
       data: "comId=" + comId + "&comContent=" + comContent,  // QueryString형태로 전달
       dataType: "Json",
       success: function(result) {

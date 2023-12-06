@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,7 +37,7 @@
 
 </header>
 <h2>게시글 수정</h2>
-<form name="writeFrm" method="post" enctype="multipart/form-data" action="/teachercommunity/edit.do" onsubmit="return validateForm(this);">
+<form name="writeFrm" method="post" enctype="multipart/form-data" action="${contextPath}/teachercommunity/edit.do" onsubmit="return validateForm(this);">
   <input type="hidden" name="brdId" value="${ dto.brdId }"/>
   <input type="hidden" name="prevOfile" value="${ dto.ofile }" />
   <input type="hidden" name="prevSfile" value="${ dto.sfile }" />

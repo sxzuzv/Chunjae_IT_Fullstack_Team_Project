@@ -93,14 +93,14 @@
 							<li id="" class="xans-record-">
 								<div class="thumbnail">
 									<div class="prdImg">
-										<a href="/market/view.do?brdId=${ row.brdId }">
+										<a href="${contextPath}/market/view.do?brdId=${ row.brdId }">
 											<img src="/Uploads/${ row.sfile }" alt=""></a>
 									</div>
 								</div>
 								<div class="description">
 									<p class="summary">[${ row.status }] ${ row.dealAddress }</p>
 									<strong class="name">
-										<a href="/market/view.do?brdId=${ row.brdId }" class="">
+										<a href="${contextPath}/market/view.do?brdId=${ row.brdId }" class="">
 											<span style="font-size:18px;color:#070707;">${ row.title }</span>
 										</a>
 									</strong>
