@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
 <%-- AJAX를 이용하여 댓글에 대한 저장/변경/삭제 기능을 제공하고 댓글목록을 검색하려 출력하는 JSP문서 --%>
@@ -58,7 +60,7 @@
         });
       },
       error: function() {
-        alert("에러발생");
+        alert("list 로드시 에러발생");
       }
     });
   }
@@ -88,7 +90,7 @@
                 loadComment();
               },
               error: function() {
-                alert("에러발생");
+                alert("댓글 작성시 에러발생");
               }
             });
           });
@@ -102,7 +104,7 @@
             // ajax기능으로 요청 및 응답처리
             $.ajax({
               type: "POST",
-              url: "/comment/deleteComment.do",
+              url: "${contextPath}/comment/deleteComment.do",
               data: "comId=" + comId,  // QueryString형태로 전달
               dataType: "Json",
               success: function(result) {
@@ -110,7 +112,7 @@
                 loadComment();
               },
               error: function() {
-                alert("에러발생");
+                alert("삭제시 에러발생");
               }
             });
           });
@@ -153,7 +155,7 @@
         loadComment();
       },
       error: function() {
-        alert("에러발생");
+        alert("수정시 에러발생");
       }
     });
   });

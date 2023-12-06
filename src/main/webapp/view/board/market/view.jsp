@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+         pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
@@ -42,7 +43,7 @@
                                         <a href="#"
                                            alt=""
                                            onclick="window.open(this.href, &#39;image_zoom2&#39;, &#39;toolbar=no,scrollbars=auto,resizable=yes,width=450,height=693,left=0,top=0&#39;, this);return false;">
-                                            <img src="/Uploads/${ dto.sfile }"
+                                            <img src="${contextPath}/Uploads/${ dto.sfile }"
                                                  alt="" class="BigImage "> </a>
                                         <div id="zoom_wrap"></div>
                                     </div>

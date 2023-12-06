@@ -1,13 +1,8 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: cyj
-  Date: 2023-11-26
-  Time: 오후 11:44
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 		 pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!doctype html>
 <html xml:lang="ko" lang="ko">
 
