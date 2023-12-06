@@ -76,7 +76,7 @@
                         </li>
 -->
 						<li>
-							<a href="#">고객지원</a>
+							<a href="${contextPath}/cscenter/list.do">고객지원</a>
 						</li>
 					</ul>
 				</div>
