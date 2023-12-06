@@ -1,4 +1,4 @@
-package servlet.market;
+package servlet.cscenter;
 
 import dao.BoardDAO;
 import dto.BoardDTO;
@@ -10,10 +10,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebServlet("/market/pass.do")
+@WebServlet("/cscenter/pass.do")
 public class PassController extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
@@ -28,29 +27,29 @@ public class PassController extends HttpServlet {
         boolean confirmed = false;
         BoardDAO dao = new BoardDAO();
 
-        // 비로그인시 튕겨냄
+        // 비 로그인 시 수정 불가
         if( userId == null) {
-            JSFunction.alertLocation(response,"로그인해 주세요",request.getContextPath() + "/main/main.do");
-        }else{ //로그인시 확인
-           dao = new BoardDAO();
+            JSFunction.alertLocation(response,"로그인 후 이용 가능합니다.","/main/main.do");
+        }else{ // 로그인 시 확인
+            dao = new BoardDAO();
             confirmed = dao.confirmPassword(userId, brdId);
+            System.out.println(brdId);
         }
 
 
         if (confirmed) {  // 비밀번호 일치
             if (mode.equals("edit")) {  // 수정 모드
-                response.sendRedirect(request.getContextPath()  + "/market/edit.do?brdId=" + brdId);
+                response.sendRedirect("/cscenter/edit.do?brdId=" + brdId);
             }
             else if (mode.equals("delete")) {  // 삭제 모드
-                BoardDTO dto = dao.marketSelectView(brdId);
+                BoardDTO dto = dao.cscenterView(brdId);
                 int result = dao.deletePost(brdId);  // 게시물 삭제
-                result = result * dao.deletePdtPost(brdId);
 
                 if (result == 1) {  // 게시물 삭제 성공 시 첨부파일도 삭제
                     String saveFileName = dto.getSfile();
                     FileUtil.deleteFile(request, "/Uploads", saveFileName);
                 }
-                JSFunction.alertLocation(response, "삭제되었습니다.",request.getContextPath() + "/market/list.do");
+                JSFunction.alertLocation(response, "삭제되었습니다.", "/cscenter/list.do");
             }
         }
         else {  // 비밀번호 불일치
@@ -61,6 +60,5 @@ public class PassController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
     }
 }

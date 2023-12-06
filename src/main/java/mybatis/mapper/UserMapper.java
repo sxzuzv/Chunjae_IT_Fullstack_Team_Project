@@ -14,6 +14,10 @@ public interface UserMapper {
 
 
     //최경락
+    /*int selectUser(Map<String, Object> map);
+
+    List<UserDTO> selectUserList(Map<String, Object> map);*/
+
 
 
     //최영주

@@ -2,6 +2,7 @@ package dao;
 
 
 import dto.BoardDTO;
+import dto.UserDTO;
 import mybatis.factory.MyBatisSessionFactory;
 import mybatis.mapper.BoardMapper;
 import org.apache.ibatis.session.SqlSession;
@@ -104,6 +105,74 @@ public int tcselectCount(Map<String, Object> map) {
 
 
     //최경락
+    public int cscenterCount(Map<String, Object> map) {
+      SqlSession sqlSession = MyBatisSessionFactory.getSqlSession();
+      BoardMapper mapper = sqlSession.getMapper(BoardMapper.class);
+
+      // 쿼리문 실행 결과(= 검색 조건에 맞는 게시글 개수)를 totalCount에 저장
+      int totalCount = mapper.cscenterCount(map);
+      sqlSession.close();
+      // 검색 조건에 맞는 게시글 개수를 서블릿(.java)으로 반환
+      return totalCount;
+    }
+
+  // [고객지원] 검색 조건에 맞는 게시물 목록 출력
+  public List<BoardDTO> cscenterListPage(Map<String, Object> map) {
+    SqlSession sqlSession = MyBatisSessionFactory.getSqlSession();
+    BoardMapper mapper = sqlSession.getMapper(BoardMapper.class);
+
+    // 쿼리문 실행 결과(= 검색 조건에 맞는 게시물 목록)를 result에 저장
+    List<BoardDTO> result = mapper.cscenterListPage(map);
+
+    sqlSession.close();
+    // 검색 조건에 맞는 게시물 목록을 서블릿(
+    return result;
+  }
+
+  // [고객지원] 게시물 페이징
+  public List<BoardDTO> cscenterListPageWithPaging(Map<String, Object> map) {
+    SqlSession sqlSession = MyBatisSessionFactory.getSqlSession();
+    BoardMapper mapper = sqlSession.getMapper(BoardMapper.class);
+    List<BoardDTO> result = mapper.cscenterListPageWithPaging(map);
+    sqlSession.close();
+    return result;
+  }
+
+  public BoardDTO cscenterView(String idx) {
+    SqlSession sqlSession = MyBatisSessionFactory.getSqlSession();
+    BoardMapper mapper = sqlSession.getMapper(BoardMapper.class);
+    BoardDTO dto = mapper.cscenterView(idx);
+    sqlSession.close();
+    return dto;
+  }
+
+  // 게시물 수정
+  public int cscenterUpdatePost(BoardDTO dto) {
+    SqlSession sqlSession = MyBatisSessionFactory.getSqlSession();
+    BoardMapper mapper = sqlSession.getMapper(BoardMapper.class);
+    int result = mapper.cscenterUpdatePost(dto);
+    if (result == 1) {
+      sqlSession.commit();
+    } else {
+      System.out.println("board update 중 오류 발생...");
+    }
+    sqlSession.commit();
+    return result;
+  }
+
+  public int cscenterinsertWrite(BoardDTO dto) {
+    SqlSession sqlSession = MyBatisSessionFactory.getSqlSession();
+    BoardMapper mapper = sqlSession.getMapper(BoardMapper.class);
+    int result = mapper.cscenterinsertWrite(dto);
+    if (result == 1) {
+      sqlSession.commit();
+      System.out.println("새로운 게시물 저장 성공");
+    } else {
+      System.out.println("새로운 게시물 저장 실패");
+    }
+    sqlSession.close();
+    return result;
+  }
 
     //최영주
     public int marketSelectCount(Map<String, Object> map) {
@@ -235,7 +304,6 @@ public int tcselectCount(Map<String, Object> map) {
       return false;
     }
   }
-
 
 
     //최재혁

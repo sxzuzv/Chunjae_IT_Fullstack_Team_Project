@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
@@ -9,7 +10,7 @@
   <title>TEACHER MARKET</title>
 </head>
 <header>
-  <jsp:include page="${contextPath}/view/common/header.jsp"></jsp:include>
+  <jsp:include page="/view/common/header.jsp"></jsp:include>
   <link rel="stylesheet" href="${contextPath}/css/teachercommunity/view.css" />
 </header>
 <body>
@@ -39,7 +40,7 @@
     <td colspan="3" height="100">
       ${ dto.content }
       <c:if test="${ not empty dto.ofile and isImage eq true }">
-        <br><img src="../Uploads/${ dto.sfile }" style="max-width:100%;"/>
+        <br><img src="${contextPath}/Uploads/${ dto.sfile }" style="max-width:100%;"/>
       </c:if>
     </td>
   </tr>
@@ -93,7 +94,7 @@
       </c:choose>
 <%--    </td>--%>
 <%--  </tr>--%>
-    <jsp:include page="${contextPath}/view/common/comment.jsp"></jsp:include>
+    <jsp:include page="/view/common/comment.jsp"></jsp:include>
   </div>
 </body>
 </html>

@@ -32,7 +32,7 @@
 	<div class="topArea">
 		<div class="inner">
 			<!-- 로고 -->
-			<h1 class="xans-element- xans-layout xans-layout-logotop "><a href="/"><img src="${contextPath}/img/logo.png"
+			<h1 class="xans-element- xans-layout xans-layout-logotop "><a href="${contextPath}/"><img src="${contextPath}/img/logo.png"
 																						alt="Teacher Market" /></a>
 			</h1>
 			<div id="category" class="gnb">
@@ -76,7 +76,7 @@
                         </li>
 -->
 						<li>
-							<a href="#">고객지원</a>
+							<a href="${contextPath}/cscenter/list.do">고객지원</a>
 						</li>
 					</ul>
 				</div>
@@ -101,13 +101,13 @@
 				<c:when test="${!empty userId}">
 					<ul>
 						<li class="xans-element- xans-layout xans-layout-statelogoff log "><a
-								href="/member/login.do"><strong>${ userId } 님</strong></a>
+								href="${contextPath}/main/main.do"><strong>${ userId } 님</strong></a>
 						</li>
 						<li class="xans-element- xans-layout xans-layout-statelogoff log "><a
-								href="/member/mypage.do">회원정보수정</a>
+								href="${contextPath}/member/mypage.do">회원정보수정</a>
 						</li>
 						<li class="xans-element- xans-layout xans-layout-statelogoff join "><a
-								href="/member/logout.do">로그아웃</a>
+								href="${contextPath}/member/logout.do">로그아웃</a>
 						</li>
 					</ul>
 				</c:when>

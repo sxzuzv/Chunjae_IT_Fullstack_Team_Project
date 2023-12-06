@@ -112,7 +112,7 @@
 </script>
 </head>
 
-	<jsp:include page="${contextPath}/view/common/header.jsp"></jsp:include>
+	<jsp:include page="/view/common/header.jsp"></jsp:include>
 
 
 				<div class="container">

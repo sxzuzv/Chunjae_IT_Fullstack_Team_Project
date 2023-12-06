@@ -1,13 +1,8 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: cyj
-  Date: 2023-11-26
-  Time: 오후 11:44
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!doctype html>
 <html lang="en" data-bs-theme="auto">
 <head>
@@ -24,7 +19,7 @@
 <body>
     <header>
 
-        <jsp:include page="${contextPath}/view/common/header.jsp"></jsp:include>
+        <jsp:include page="/view/common/header.jsp"></jsp:include>
         <link href="${contextPath}/css/main.css" rel="stylesheet">
 
     </header>
@@ -107,7 +102,7 @@
                 <div class="xans-element- xans-product xans-produgitct-normalpackage"><!-- 정렬기준 외 -->
                     <div class="xans-element- xans-product xans-product-normalmenu">
                         <div class="function" id="Product_ListMenu">
-                            <button type="button" onclick="location.href='/market/list.do';" style="background-color: #0a53be">바로가기</button>
+                            <button type="button" onclick="location.href='${contextPath}/market/list.do';" style="background-color: #0a53be">바로가기</button>
                         </div>
                     </div>
                 </div>
@@ -210,7 +205,7 @@
                 <div class="xans-element- xans-product xans-product-normalpackage"><!-- 정렬기준 외 -->
                     <div class="xans-element- xans-product xans-product-normalmenu">
                         <div class="function">
-                            <button type="button" onclick="location.href='/market/list.do';" style="background-color: #0a53be">바로가기</button>
+                            <button type="button" onclick="location.href='${contextPath}/market/list.do';" style="background-color: #0a53be">바로가기</button>
                         </div>
                     </div>
                 </div>
