@@ -17,5 +17,4 @@ public class BoardCommentDTO {
     private String userId;
     private LocalDate regDate;
     private LocalDate modDate;
-
 }
