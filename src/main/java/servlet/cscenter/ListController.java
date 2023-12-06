@@ -70,7 +70,7 @@ public class ListController extends HttpServlet {
         req.setAttribute("csList", csList);
         req.setAttribute("map", map);
 
-        req.getRequestDispatcher("/view/board/cscenter/csList.jsp").forward(req, resp);
+        req.getRequestDispatcher(req.getContextPath() +"/view/board/cscenter/csList.jsp").forward(req, resp);
 
     }
 }
