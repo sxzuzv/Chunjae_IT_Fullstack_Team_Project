@@ -9,7 +9,7 @@
   - 프로젝트 진행 기간 : 2023. 11. 23. ~ 2023. 12. 11. <br>
 <br>
 
-## 🧑🏻‍💻 팀원 소개
+## 🧑🏻‍💻 팀원 GitHub
 - [신수진](https://github.com/sxzuzv) 
 - [최경락](https://github.com/raknrak)
 - [최영주](https://github.com/cyj083386)
@@ -49,7 +49,7 @@
 
 
 
-# 📚 STACKS
+## 📚 STACKS
 
 <div>
 <img src="https://img.shields.io/badge/java-007396?style=for-the-badge&logo=java&logoColor=white">
@@ -71,15 +71,22 @@
 
 
 
-# 🖥️ 구현 화면
-### 로그인 후 구매
+## 🖥️ 구현 화면
+### 1. 공통
+![회원정보 수정](https://github.com/Chunjae3Team/teacherFleaMarket/assets/106226864/424b96ba-3bcb-40d4-a1f9-48b8867a0a41)
 
-### 주문접수
+<br>
 
-<br><br>
+### 2. 중고 거래
+![중고 거래 - 게시글 목록 불러오기](https://github.com/Chunjae3Team/teacherFleaMarket/assets/106226864/ea349f0e-5690-4978-917d-a5d745eb0a27)
+![중고 거래 - 게시글 상세 페이지 불러오기](https://github.com/Chunjae3Team/teacherFleaMarket/assets/106226864/8e0939df-5e9c-461b-8335-adc9779a0633)
+<br>
 
-### 회원가입
+### 3. 선생님 요모조모
+![선생님 요모조모 - 게시글 작성](https://github.com/Chunjae3Team/teacherFleaMarket/assets/106226864/721fff83-c7e6-421f-b077-0cce19668275)
+![선생님 요모조모 - 게시글 목록 불러오기](https://github.com/Chunjae3Team/teacherFleaMarket/assets/106226864/9a00a08d-7827-41a9-b224-e0cb78dc4a4b)
+![선생님 요모조모 - 게시글 수정](https://github.com/Chunjae3Team/teacherFleaMarket/assets/106226864/98c26165-5359-412e-b493-52b18e361d9f)
+<br>
 
-<br><br>
-
-### 회원가입
+### 4. 내 상점
+![내 상점 - 판매 내역 목록 불러오기](https://github.com/Chunjae3Team/teacherFleaMarket/assets/106226864/cb3fbf28-0fdd-462a-bf1d-2c05ad2089cd)
