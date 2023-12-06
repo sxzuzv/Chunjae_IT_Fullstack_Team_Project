@@ -7,7 +7,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>TEACHER MARKET</title>
+    <title>고객지원</title>
 </head>
 <header>
     <jsp:include page="/view/common/header.jsp"></jsp:include>

@@ -138,7 +138,7 @@
 
 
     <!-- SELECT : 제목 혹은 내용으로 검색한 결과 -->
-    <select id="cscenterListPage" parameterType="map" resultType="dto.BoardDTO">
+   <!-- <select id="cscenterListPage" parameterType="map" resultType="dto.BoardDTO">
         SELECT *
         FROM board
         WHERE cate_main = 3
@@ -154,14 +154,19 @@
         </if>
 
         ORDER BY brd_id desc
-    </select>
+    </select>-->
 
     <!-- SELECT : 게시글 페이징 처리 후 출력 -->
     <select id="cscenterListPageWithPaging" parameterType="map" resultType="dto.BoardDTO">
         <![CDATA[
-    SELECT *
-    FROM board
-    WHERE cate_main = 3 AND user_id = #{userId}
+    SELECT *, (
+        CASE
+            WHEN com_id is not null THEN 'true'
+            ELSE 'false'
+    	END
+	) AS closed
+    FROM board b LEFT OUTER JOIN board_comment bc ON b.brd_id = bc.parent_id
+    WHERE b.cate_main = 3 AND b.user_id = #{userId}
     ]]>
         <if test="searchWord != null and !searchWord.equals('')">
             AND
@@ -174,6 +179,7 @@
                 </otherwise>
             </choose>
         </if>
+        GROUP BY brd_id
         ORDER BY brd_id DESC
         LIMIT #{start}, 10
     </select>
