@@ -1,4 +1,4 @@
-package servlet;
+package servlet.user;
 
 import dao.BoardDAO;
 import dao.UserDAO;
@@ -247,6 +247,7 @@ public class UserController extends HttpServlet {
 				} else if (isStatus.equals("pass") && isAdmin.equals("A")) {
 					//로그인 성공 관리자
 					request.getSession().setAttribute("userId", userID);
+					request.getSession().setAttribute("userStatus", isAdmin);
 					PrintWriter out = response.getWriter();
 					out.print("<script>"
 							+ "  alert('관리자로 로그인 합니다.');"   // 알림창
@@ -311,6 +312,7 @@ public class UserController extends HttpServlet {
 			request.getRequestDispatcher("/view/member/mypage.jsp").forward(request, response);
 
 		} else if("/selfDelete.do".equals(action)) {
+			//회원 탈퇴
 			String userId = (String) request.getSession().getAttribute("userId");
 			int result = userDao.userSelfDelete(userId);
 			if (result == 1) {

@@ -42,11 +42,11 @@
 						class="xans-element- xans-layout xans-layout-category-1 xans-layout-category xans-layout-1 cate-list">
 					<ul class="menu">
 						<li class="xans-record-">
-							<a href="${contextPath}/teachercommunity/list.do">선생님 요모조모</a>
+							<a href="${contextPath}/teachercommunity/list.do">고객지원</a>
 							<ul class="submenu" id = "submenu02">
-								<li><a class = "sub" href="${contextPath}/teachercommunity/list.do">꿀팁 나눠요</a></li>
-								<li><a class = "sub" href="${contextPath}/teachercommunity/list.do">고민 있어요</a></li>
-								<li><a class = "sub" href="${contextPath}/teachercommunity/list.do">수업 질문</a></li>
+								<li><a class = "sub" href="${contextPath}/admin/list.do?cateSub=1">문의</a></li>
+								<li><a class = "sub" href="${contextPath}/admin/list.do?cateSub=2">신고사항</a></li>
+
 							</ul>
 						</li>
 						<li class="xans-record-">

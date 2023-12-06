@@ -129,7 +129,7 @@
         <![CDATA[
         select count(*)
         from user
-        where user_status = 'pass' and report_cnt >= 5
+        where user_status = 'pass'
           ]]>
         <if test="searchWord != null and !searchWord.equals('')">
             AND
@@ -148,7 +148,7 @@
         <![CDATA[
         select *
         from user
-        where user_status = 'pass' and report_cnt >= 5
+        where user_status = 'pass'
           ]]>
         <if test="searchWord != null and !searchWord.equals('')">
             AND
@@ -161,7 +161,7 @@
                 </otherwise>
             </choose>
         </if>
-        order by user_id desc
+        ORDER BY report_cnt DESC
         LIMIT #{start}, 10
     </select>
 

@@ -1,5 +1,6 @@
-package servlet;
+package servlet.admin;
 
+import dao.BoardDAO;
 import dao.UserDAO;
 import dto.BoardDTO;
 import dto.UserDTO;

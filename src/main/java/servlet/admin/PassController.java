@@ -1,0 +1,72 @@
+package servlet.admin;
+
+import dao.BoardDAO;
+import dto.BoardDTO;
+import util.FileUtil;
+import util.JSFunction;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
+@WebServlet("/admin/pass.do")
+public class PassController extends HttpServlet {
+    private static final long serialVersionUID = 1L;
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        // 매개변수 저장
+        String brdId = request.getParameter("brdId");
+        String mode = request.getParameter("mode");
+        String userId = (String)request.getSession().getAttribute("userId");
+        String userStatus = (String)request.getSession().getAttribute("userStatus");
+
+        System.out.println("userid" + userId);
+
+        boolean confirmed = false;
+        BoardDAO dao = new BoardDAO();
+
+        // 비 로그인 시 글쓰기, 수정 불가
+        if(!userStatus.equals("A")) {
+            JSFunction.alertLocation(response,"로그인 후 이용 가능합니다.","/main/main.do");
+        } else if(mode.equals("write")) {
+            response.sendRedirect("/admin/write.do");
+        } else { // 로그인 시 확인
+            dao = new BoardDAO();
+            confirmed = dao.confirmStatus(userId, userStatus);
+
+        }
+
+
+        if (confirmed) {  // 비밀번호 일치
+//            if(mode.equals("write")) {
+//                response.sendRedirect("/teachercommunity/write.do");
+//            }
+            if (mode.equals("edit")) {  // 수정 모드
+                response.sendRedirect("/admin/edit.do?brdId=" + brdId);
+            }
+            else if (mode.equals("delete")) {  // 삭제 모드
+                BoardDTO dto = dao.tcselectView(brdId);
+                int result = dao.deletePost(brdId);  // 게시물 삭제
+
+                if (result == 1) {  // 게시물 삭제 성공 시 첨부파일도 삭제
+                    String saveFileName = dto.getSfile();
+                    FileUtil.deleteFile(request, "/Uploads", saveFileName);
+                }
+                JSFunction.alertLocation(response, "삭제되었습니다.", "/admin/list.do");
+            }
+        }
+        else {  // 비밀번호 불일치
+            JSFunction.alertBack(response, "해당글에 접근 권한이 없습니다.");
+        }
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+    }
+}
