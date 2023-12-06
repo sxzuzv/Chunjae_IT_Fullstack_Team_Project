@@ -37,10 +37,11 @@ public class JSFunction {
             PrintWriter writer = resp.getWriter();
             String script = "<script>"
                     + "    alert('" + msg + "');"
-                    + "    history.back();"
+                    + "     history.back();"
                     + "</script>";
             writer.print(script);
         }
         catch (Exception e) {}
     }
+
 }
