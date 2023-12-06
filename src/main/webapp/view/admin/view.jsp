@@ -56,7 +56,7 @@
 </table>
 
 <br />
-<div>
+<iv>
 
     <c:set var="userStatus" value="${userStatus}" />
     <c:set var="cateSub" value="${ cateSub }" />
@@ -78,7 +78,9 @@
             </button>
         </c:otherwise>
     </c:choose>
-
+        <div>
+            <jsp:include page="${pageContext.request.contextPath}/view/common/comment.jsp"></jsp:include>
+        </div>
 </div>
 </body>
 </html>
