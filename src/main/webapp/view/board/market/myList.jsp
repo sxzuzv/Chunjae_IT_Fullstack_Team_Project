@@ -109,7 +109,7 @@
 													<a href="/market/view.do?brdId=${ row.brdId }">${ row.title }</a> <span
 															class="txtEm"></span>
 												</td>
-												<td>${ row.status }</td>  <!-- 상태 -->
+												<td>sh</td>  <!-- 상태 -->
 												<td><span class="txtNum">${ row.regDate }</span></td>  <!-- 게시일자 -->
 												<td><span class="txtNum">${ row.price }</span></td>  <!-- 가격 -->
 												<td>${ row.dealAddress }</td>  <!-- 지역 -->
