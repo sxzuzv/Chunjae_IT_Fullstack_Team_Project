@@ -56,7 +56,7 @@
 	</style>
 
 </head>
-	<jsp:include page="${contextPath}/view/common/header.jsp"></jsp:include>
+	<jsp:include page="/view/common/header.jsp"></jsp:include>
 
 
 <body>

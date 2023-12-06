@@ -15,9 +15,9 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width" , initial-scale="1">
-	<link rel="stylesheet" href="../../css/bootstrap.css">
-	<link rel="stylesheet" href="../../css/sidebar.css">
-	<link rel="stylesheet" href="../../css/list.css">
+	<link rel="stylesheet" href="${contextPath}/css/bootstrap.css">
+	<link rel="stylesheet" href="${contextPath}/css/sidebar.css">
+	<link rel="stylesheet" href="${contextPath}/css/list.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<title>회원관리</title>
 	<style type="text/css">
@@ -71,6 +71,6 @@
 	</div>
 </div>
 
-<script src="../../js/bootstrap.js"></script>
+<script src="${contextPath}/js/bootstrap.js"></script>
 </body>
 </html>

@@ -56,7 +56,7 @@
 </head>
 <body>
 
-<jsp:include page="${contextPath}/view/common/header.jsp"></jsp:include>
+<jsp:include page="/view/common/header.jsp"></jsp:include>
 <div class="container">
     <div>
         <h2 class="text-center">비밀번호 변경</h2>

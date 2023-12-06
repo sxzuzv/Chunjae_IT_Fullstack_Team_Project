@@ -31,7 +31,7 @@
 
 <header>
 
-  <jsp:include page="${contextPath}/view/common/header.jsp"></jsp:include>
+  <jsp:include page="/view/common/header.jsp"></jsp:include>
   <link rel="stylesheet" href="${contextPath}/css/teachercommunity/edit.css" />
 
 </header>

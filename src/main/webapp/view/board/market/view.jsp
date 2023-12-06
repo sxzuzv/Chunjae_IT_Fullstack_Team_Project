@@ -16,7 +16,7 @@
     <body>
         <header>
 
-            <jsp:include page="${pageContext.request.contextPath}/view/common/header.jsp"></jsp:include>
+            <jsp:include page="/view/common/header.jsp"></jsp:include>
 
 
         </header>
@@ -186,7 +186,7 @@
                             </table>
                         </div>
                     </div>
-                    <jsp:include page="${pageContext.request.contextPath}/view/common/comment.jsp"></jsp:include>
+                    <jsp:include page="/view/common/comment.jsp"></jsp:include>
 
                     <hr class="layout">
                 </div>

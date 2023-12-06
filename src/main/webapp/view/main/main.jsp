@@ -25,7 +25,7 @@
 <body>
     <header>
 
-        <jsp:include page="${contextPath}/view/common/header.jsp"></jsp:include>
+        <jsp:include page="/view/common/header.jsp"></jsp:include>
         <link href="${contextPath}/css/main.css" rel="stylesheet">
 
     </header>

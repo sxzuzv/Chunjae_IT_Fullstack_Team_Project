@@ -22,7 +22,7 @@
 
 </head>
 <header>
-	<jsp:include page="../common/header.jsp"></jsp:include>
+	<jsp:include page="/view/common/header.jsp"></jsp:include>
 </header>
 <div class="main_back">
 	<div class="container">
