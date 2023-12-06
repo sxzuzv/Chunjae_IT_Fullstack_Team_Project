@@ -73,20 +73,35 @@
 
 ## 🖥️ 구현 화면
 ### 1. 공통
+
+- 회원가입 <br>
+![회원가입](https://github.com/Chunjae3Team/teacherFleaMarket/assets/106226864/a3cc0155-87a2-49fb-ad8a-3cdad5d52f2f)
+- 회원정보 수정 <br>
 ![회원정보 수정](https://github.com/Chunjae3Team/teacherFleaMarket/assets/106226864/424b96ba-3bcb-40d4-a1f9-48b8867a0a41)
+- 아이디/비밀번호 변경 <br>
+![공통 - 아이디, 비밀번호 변경](https://github.com/Chunjae3Team/teacherFleaMarket/assets/106226864/a9af867f-013c-4ade-98ca-9b768d7eb847)
 
 <br>
 
 ### 2. 중고 거래
+
+- 게시글 목록 불러오기 <br>
 ![중고 거래 - 게시글 목록 불러오기](https://github.com/Chunjae3Team/teacherFleaMarket/assets/106226864/ea349f0e-5690-4978-917d-a5d745eb0a27)
+- 게시글 상세 페이지 불러오기 <br>
 ![중고 거래 - 게시글 상세 페이지 불러오기](https://github.com/Chunjae3Team/teacherFleaMarket/assets/106226864/8e0939df-5e9c-461b-8335-adc9779a0633)
 <br>
 
 ### 3. 선생님 요모조모
+
+- 게시글 작성 <br>
 ![선생님 요모조모 - 게시글 작성](https://github.com/Chunjae3Team/teacherFleaMarket/assets/106226864/721fff83-c7e6-421f-b077-0cce19668275)
+- 게시글 목록 불러오기 <br>
 ![선생님 요모조모 - 게시글 목록 불러오기](https://github.com/Chunjae3Team/teacherFleaMarket/assets/106226864/9a00a08d-7827-41a9-b224-e0cb78dc4a4b)
+- 게시글 수정 <br>
 ![선생님 요모조모 - 게시글 수정](https://github.com/Chunjae3Team/teacherFleaMarket/assets/106226864/98c26165-5359-412e-b493-52b18e361d9f)
 <br>
 
 ### 4. 내 상점
+
+- 판매 내역 불러오기 <br>
 ![내 상점 - 판매 내역 목록 불러오기](https://github.com/Chunjae3Team/teacherFleaMarket/assets/106226864/cb3fbf28-0fdd-462a-bf1d-2c05ad2089cd)
