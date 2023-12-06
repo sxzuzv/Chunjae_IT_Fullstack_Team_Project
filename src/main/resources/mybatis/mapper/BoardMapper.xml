@@ -116,6 +116,92 @@
 
     <!--최경락-->
 
+    <!-- SELECT : 검색 조건에 맞는 게시글 개수 카운트 -->
+    <select id="cscenterCount" parameterType="map" resultType="int">
+        SELECT count(*)
+        FROM board
+        WHERE cate_main = 3 <!-- 카테고리 조건 -->
+        <if test="searchWord != null and !searchWord.equals('')">
+            AND
+            <choose>
+                <when test="searchField == 'title'">
+                    title LIKE CONCAT('%', #{searchWord}, '%')
+                </when>
+                <otherwise>
+                    content LIKE CONCAT('%', #{searchWord}, '%')
+                </otherwise>
+            </choose>
+        </if>
+        AND user_id = #{userId} <!-- 현재 로그인한 사용자의 ID -->
+        ORDER BY brd_id DESC
+    </select>
+
+
+    <!-- SELECT : 제목 혹은 내용으로 검색한 결과 -->
+    <select id="cscenterListPage" parameterType="map" resultType="dto.BoardDTO">
+        SELECT *
+        FROM board
+        WHERE cate_main = 3
+        <if test="searchWord != null and !searchWord.equals('')">
+            <choose>
+                <when test="searchField == 'title'">
+                    title like concat('%', #{searchWord}, '%')
+                </when>
+                <otherwise>
+                    content like concat('%', #{searchWord}, '%')
+                </otherwise>
+            </choose>
+        </if>
+
+        ORDER BY brd_id desc
+    </select>
+
+    <!-- SELECT : 게시글 페이징 처리 후 출력 -->
+    <select id="cscenterListPageWithPaging" parameterType="map" resultType="dto.BoardDTO">
+        <![CDATA[
+    SELECT *
+    FROM board
+    WHERE cate_main = 3 AND user_id = #{userId}
+    ]]>
+        <if test="searchWord != null and !searchWord.equals('')">
+            AND
+            <choose>
+                <when test="searchField == 'title'">
+                    title LIKE CONCAT('%', #{searchWord}, '%')
+                </when>
+                <otherwise>
+                    content LIKE CONCAT('%', #{searchWord}, '%')
+                </otherwise>
+            </choose>
+        </if>
+        ORDER BY brd_id DESC
+        LIMIT #{start}, 10
+    </select>
+
+
+    <select id="cscenterView" parameterType="String" resultType="dto.BoardDTO">
+        select *
+        from board
+        where brd_id = #{brdId}
+        <!--Expected one result (or null) to be returned by selectOne(), but found: 41
+           if nothing match, return null
+        -->
+    </select>
+
+
+    <update id="cscenterUpdatePost" parameterType="dto.BoardDTO">
+        update board
+        set
+        title = #{title}, content = #{content}, ofile = #{ofile}, sfile = #{sfile},
+        cate_sub = #{cateSub}
+        where brd_id = #{brdId}
+    </update>
+
+    <insert id="cscenterinsertWrite" parameterType="dto.BoardDTO">
+        INSERT
+        INTO board(user_id, title, content, ofile, sfile, cate_main, cate_sub)
+        VALUES(#{userId}, #{title}, #{content}, #{ofile}, #{sfile}, 3, #{cateSub})
+    </insert>
 
 
     <!--최영주-->

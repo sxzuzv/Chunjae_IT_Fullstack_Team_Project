@@ -25,7 +25,14 @@ public interface BoardMapper {
 
 
     //최경락
+    int cscenterCount(Map<String, Object> map);
+    List<BoardDTO> cscenterListPage(Map<String, Object> map);
+    List<BoardDTO> cscenterListPageWithPaging(Map<String, Object> map);
+    BoardDTO cscenterView(String idx);
+    int cscenterUpdatePost(BoardDTO dto);
+    int cscenterinsertWrite(BoardDTO dto);
 
+//    BoardDTO csSelectView(String brdId);
 
     //최영주
     int marketSelectCount(Map<String, Object> map);
