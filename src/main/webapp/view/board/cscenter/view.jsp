@@ -108,6 +108,7 @@
     </c:choose>
     <%--    </td>--%>
     <%--  </tr>--%>
+    <jsp:include page="${pageContext.request.contextPath}/view/common/comment.jsp"></jsp:include>
 </div>
 </body>
 </html>

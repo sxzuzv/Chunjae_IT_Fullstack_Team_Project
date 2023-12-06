@@ -111,9 +111,7 @@
                                                 <c:when test="${row.cateSub eq 1}"> 문의사항 </c:when>
                                                 <c:when test="${row.cateSub eq 2}"> 신고 </c:when>
                                                 </c:choose></td>   <!-- 문의 유형 -->
-                                            <td><c:when test="${row.cateSub eq 1}"> 답변완료 </c:when>
-                                                <c:when test="${row.cateSub eq 2}"> 처리중 </c:when>
-                                                </c:choose></td>  <!-- 처리상태-->
+                                            <td>${ row.userId }</td>  <!-- 처리상태-->
                                             <td><span class="txtNum">${ row.userId }</span></td>    <!-- 작성자 -->
                                             <td><span class="txtNum">${ row.regDate }</span></td>  <!-- 게시일자 -->
                                             <!-- 가격 -->
