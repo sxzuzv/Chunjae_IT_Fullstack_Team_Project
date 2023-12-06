@@ -14,10 +14,10 @@
 	<title>Teacher Market</title>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
-	<link rel="stylesheet" href="../../css/froala_style_ec.min.css" />
-	<link rel="stylesheet" href="../../css/optimizer.css" />
-	<link rel="stylesheet" href="../../css/optimizer_user.css" />
-	<link rel="stylesheet" href="../../css/headers.css" />
+	<link rel="stylesheet" href="${contextPath}/css/froala_style_ec.min.css" />
+	<link rel="stylesheet" href="${contextPath}/css/optimizer.css" />
+	<link rel="stylesheet" href="${contextPath}/css/optimizer_user.css" />
+	<link rel="stylesheet" href="${contextPath}/css/headers.css" />
 
 
 </head>
@@ -32,7 +32,7 @@
 	<div class="topArea">
 		<div class="inner">
 			<!-- 로고 -->
-			<h1 class="xans-element- xans-layout xans-layout-logotop "><a href="/"><img src="../../img/logo.png"
+			<h1 class="xans-element- xans-layout xans-layout-logotop "><a href="/"><img src="${contextPath}/img/logo.png"
 																						alt="Teacher Market" /></a>
 			</h1>
 			<div id="category" class="gnb">
@@ -52,9 +52,9 @@
 						<li class="xans-record-">
 							<a href="${contextPath}/teachercommunity/list.do">선생님 요모조모</a>
 							<ul class="submenu" id = "submenu02">
-								<li><a class = "sub" href="${contextPath}/teachercommunity/list.do">꿀팁 나눠요</a></li>
-								<li><a class = "sub" href="${contextPath}/teachercommunity/list.do">고민 있어요</a></li>
-								<li><a class = "sub" href="${contextPath}/teachercommunity/list.do">수업 질문</a></li>
+								<li><a class = "sub" href="${contextPath}/teachercommunity/list.do?cateSub=1">꿀팁 나눠요</a></li>
+								<li><a class = "sub" href="${contextPath}/teachercommunity/list.do?cateSub=2">고민 있어요</a></li>
+								<li><a class = "sub" href="${contextPath}/teachercommunity/list.do?cateSub=3">수업 질문</a></li>
 							</ul>
 						</li>
 						<li class="xans-record-">
@@ -101,7 +101,7 @@
 				<c:when test="${!empty userId}">
 					<ul>
 						<li class="xans-element- xans-layout xans-layout-statelogoff log "><a
-								href="/member/login.html"><strong>${ userId } 님</strong></a>
+								href="/member/login.do"><strong>${ userId } 님</strong></a>
 						</li>
 						<li class="xans-element- xans-layout xans-layout-statelogoff log "><a
 								href="/member/mypage.do">회원정보수정</a>
