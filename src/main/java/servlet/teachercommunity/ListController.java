@@ -37,6 +37,7 @@ public class ListController extends HttpServlet {
 
 
         String cateSub = request.getParameter("cateSub");
+        addOther = "&cateSub=" + cateSub;
         map.put("cateSub", cateSub);
 
 
