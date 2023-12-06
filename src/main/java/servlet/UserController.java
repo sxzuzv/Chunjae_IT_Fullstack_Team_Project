@@ -1,4 +1,4 @@
-package servlet.user;
+package servlet;
 
 import dao.BoardDAO;
 import dao.UserDAO;
@@ -108,7 +108,7 @@ public class UserController extends HttpServlet {
 
 			boolean authenticateId = userDao.authenticateFindPass(userId, userEmail, userCp);
 			if (authenticateId) {
-				request.getSession().setAttribute("userId", userId);
+				request.getSession().setAttribute("memberId", userId);
 				nextPage = "/view/member/passChange.jsp";
 
 			} else {
@@ -123,12 +123,12 @@ public class UserController extends HttpServlet {
 		} else if ("/passChange.do".equals(action)) {
 			//비밀번호 변경
 			UserDTO userDTO = new UserDTO();
-			userDTO.setUserId((String) request.getSession().getAttribute("userId"));
+			userDTO.setUserId((String) request.getSession().getAttribute("memberId"));
 			userDTO.setUserPwd(Encrypt.getEncrypt(request.getParameter("userPW")));
 			int result = userDao.updatePass(userDTO);
 
 			if (result == 1) {
-				request.getSession().removeAttribute("userId");
+				request.getSession().removeAttribute("memberId");
 				PrintWriter out = response.getWriter();
 				out.print("<script>"
 						+ "  alert('비밀번호가 변경 되었습니다..');"   // 알림창
@@ -199,7 +199,7 @@ public class UserController extends HttpServlet {
 			userDTO.setUserId((String) request.getSession().getAttribute("userId"));
 			userDTO.setUserPwd(Encrypt.getEncrypt(request.getParameter("userPW")));
 			userDTO.setUserEmail(request.getParameter("email"));
-			userDTO.setUserName(request.getParameter("name"));
+			userDTO.setUser_nick(request.getParameter("nickname"));
 			userDTO.setUserAddr(request.getParameter("addr"));
 			userDTO.setUserDaddr(request.getParameter("addr2"));
 			userDTO.setUserCp(request.getParameter("tel"));

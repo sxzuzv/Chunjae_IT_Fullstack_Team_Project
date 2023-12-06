@@ -59,7 +59,7 @@
 
     <update id="updateUserInfo" parameterType="dto.UserDTO">
         update user
-        set user_pwd = #{userPwd}, user_name = #{userName}, user_cp = #{userCp}, user_email = #{userEmail}, user_addr = #{userAddr}, user_daddr = #{userDaddr}
+        set user_pwd = #{userPwd}, user_nick = #{user_nick}, user_cp = #{userCp}, user_email = #{userEmail}, user_addr = #{userAddr}, user_daddr = #{userDaddr}
         where user_id = #{userId}
     </update>
 

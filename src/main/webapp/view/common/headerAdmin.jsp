@@ -32,7 +32,7 @@
 	<div class="topArea">
 		<div class="inner">
 			<!-- 로고 -->
-			<h1 class="xans-element- xans-layout xans-layout-logotop "><a href="/"><img src="${contextPath}/img/logo.png"
+			<h1 class="xans-element- xans-layout xans-layout-logotop "><a href="${contextPath}/admin/memberlist.do"><img src="${contextPath}/img/logo.png"
 																						alt="Teacher Market" /></a>
 			</h1>
 			<div id="category" class="gnb">
@@ -42,7 +42,7 @@
 						class="xans-element- xans-layout xans-layout-category-1 xans-layout-category xans-layout-1 cate-list">
 					<ul class="menu">
 						<li class="xans-record-">
-							<a href="${contextPath}/teachercommunity/list.do">고객지원</a>
+							<a href="#">고객지원</a>
 							<ul class="submenu" id = "submenu02">
 								<li><a class = "sub" href="${contextPath}/admin/list.do?cateSub=1">문의</a></li>
 								<li><a class = "sub" href="${contextPath}/admin/list.do?cateSub=2">신고사항</a></li>

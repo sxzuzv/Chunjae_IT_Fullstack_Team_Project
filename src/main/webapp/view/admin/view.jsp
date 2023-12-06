@@ -56,32 +56,15 @@
 </table>
 
 <br />
-<iv>
-
-    <c:set var="userStatus" value="${userStatus}" />
-    <c:set var="cateSub" value="${ cateSub }" />
-    <c:choose>
-        <c:when test="${userStatus eq 'A'}">
-            <button class="btnedit" type="button" onclick="location.href='${contextPath}/admin/pass.do?mode=edit&brdId=${ param.brdId }';">
-                답글달기
-            </button>
-            <button class="btndel" type="button" onclick="location.href='${contextPath}/admin/pass.do?mode=delete&brdId=${ param.brdId }';">
-                삭제하기
-            </button>
+<div>
             <button class="btnlist" type="button" onclick="location.href='${contextPath}/admin/list.do?cateSub=${ cateSub }';">
                 목록 바로가기
             </button>
-        </c:when>
-        <c:otherwise>
-            <button class="btnlist" type="button" onclick="location.href='${contextPath}/admin/list.do?cateSub=${ cateSub }';">
-                목록 바로가기
-            </button>
-        </c:otherwise>
-    </c:choose>
         <div>
             <jsp:include page="${pageContext.request.contextPath}/view/common/comment.jsp"></jsp:include>
         </div>
 </div>
+
 </body>
 </html>
 
