@@ -25,7 +25,7 @@ pageEncoding="UTF-8"%>
 </head>
 <body>
 <div>
-<jsp:include page="${contextPath}/view/common/headerAdmin.jsp"></jsp:include>
+<jsp:include page="${contextPath}/view/common/headeradmin.jsp"></jsp:include>
 </div>
 <div id="viewport">
 <div id="content">
