@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `join_date` datetime DEFAULT current_timestamp(),
   `user_grade` ENUM('A', 'E') NOT NULL DEFAULT 'E',
   `user_status` ENUM('pass', 'reject') DEFAULT 'reject',
-  `report_cnt` int(10) DEFAULT NULL,
+  `report_cnt` int(10) DEFAULT 0,
   PRIMARY KEY (`user_idx`),
   unique key(`user_id`)
 );
@@ -82,13 +82,12 @@ CREATE TABLE IF NOT EXISTS `categories` (
   UNIQUE KEY unique_cate (`cate_main`, `cate_sub`)
 );
 
-insert into `categories`(`cate_main`, `cate_sub`, `kate_name`, `user_grade`) values 
+insert into `categories`(`cate_main`, `cate_sub`, `cate_name`, `user_grade`) values
 (1, null, '중고거래', 'E'),
 (2, 1, '선생님요모조모 꿀팁나눠요', 'E'),
 (2, 2, '선생님요모조모 고민 있어요', 'E'),
 (2, 3, '선생님요모조모 수업 질문', 'E'),
-(3, 1, '고객지원 문의사항', 'E'),
-(3, 2, '고객지원 신고', 'E');
+(3, 1, '고객지원 문의사항', 'E')
 
 
 

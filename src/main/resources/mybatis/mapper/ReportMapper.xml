@@ -13,7 +13,11 @@
 
 
     <!--최영주-->
-
+    <insert id="reportInsertWrite" parameterType="dto.ReportDTO">
+        INSERT
+        INTO report(user_id, brd_id, report_title, report_content)
+        VALUES(#{userId}, #{brdId}, #{reportTitle}, #{reportContent})
+    </insert>
 
 
     <!--최재혁-->

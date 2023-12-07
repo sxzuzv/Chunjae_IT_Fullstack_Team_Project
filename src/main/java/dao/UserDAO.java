@@ -40,6 +40,23 @@ public class UserDAO {
     }*/
 
     //최영주
+    public int updateUserRptCnt(String userId) {
+        SqlSession sqlSession = MyBatisSessionFactory.getSqlSession();
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+        int result = mapper.updateUserRptCnt(userId);
+        System.out.println("update query result val = " + result);
+        if (result == 1) {
+            sqlSession.commit();
+        } else {
+            System.out.println("신고횟수 증가 중 오류 발생");
+        }
+        sqlSession.close();
+        return result;
+    }
+
+
+
+
 
     //최재혁
     public int createUser(UserDTO userDTO) {

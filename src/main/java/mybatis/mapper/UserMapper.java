@@ -21,7 +21,7 @@ public interface UserMapper {
 
 
     //최영주
-
+    int updateUserRptCnt(String brdId);
 
     //최재혁
     int createUser(UserDTO userDTO);
