@@ -1,5 +1,7 @@
 package mybatis.mapper;
 
+
+import dto.ReportDTO;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
@@ -11,7 +13,7 @@ public interface ReportMapper {
 
 
     //최영주
-
+    int reportInsertWrite(ReportDTO dto);
 
     //최재혁
 

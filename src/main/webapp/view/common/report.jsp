@@ -30,7 +30,8 @@
                             <label for="message-text" class="col-form-label">신고내용</label>
                             <textarea class="form-control" id="message-text" name="content"></textarea>
                         </div>
-                        <input type="hidden" name="badGuyBrdId" value="${dto.brdId}" />
+                        <input type="hidden" name="brdId" value="${dto.brdId}" />
+                        <input type="hidden" name="userId" value="${dto.userId}" />
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" >취소</button>
