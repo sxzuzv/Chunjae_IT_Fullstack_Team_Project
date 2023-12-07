@@ -179,9 +179,6 @@
                                         <div class="detail">
                                             <div class="fr-view fr-view-article">
                                                 ${ dto.content }
-                                                <c:if test="${ not empty dto.ofile and isImage eq true }">
-                                                    <br><img src="${contextPath}/Uploads/${ dto.sfile }" class="img-fluid" alt="첨부 이미지"/> <!-- 이미지 클래스 적용 -->
-                                                </c:if>
                                             </div>
                                         </div>
                                     </td>
