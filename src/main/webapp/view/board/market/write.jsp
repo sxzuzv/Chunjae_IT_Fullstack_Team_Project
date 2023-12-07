@@ -97,7 +97,7 @@
                             </div>
                             <div class="btn-zone mt-4">
                                 <div class="col-12 text-center">
-                                    <button type="button" class="btn btn-info" onclick="location.href='/market/list.do';">
+                                    <button type="button" class="btn btn-info" onclick="location.href='${contextPath}/market/list.do';">
                                         목록으로
                                     </button>
                                     <button type="reset" class="btn btn-secondary">RESET</button>
