@@ -59,7 +59,7 @@
 
     <update id="updateUserInfo" parameterType="dto.UserDTO">
         update user
-        set user_pwd = #{userPwd}, user_name = #{userName}, user_cp = #{userCp}, user_email = #{userEmail}, user_addr = #{userAddr}, user_daddr = #{userDaddr}
+        set user_pwd = #{userPwd}, user_nick = #{user_nick}, user_cp = #{userCp}, user_email = #{userEmail}, user_addr = #{userAddr}, user_daddr = #{userDaddr}
         where user_id = #{userId}
     </update>
 
@@ -94,15 +94,101 @@
         where user_id = #{userId}
     </delete>
 
-    <select id ="userSelectNonPass" parameterType="String" resultType="dto.UserDTO">
+    <select id ="userSelectNonPassCount" parameterType="Map" resultType="int">
+        <![CDATA[
+        select count(*)
+        from user
+        where user_status = 'reject'
+          ]]>
+        <if test="searchWord != null and !searchWord.equals('')">
+            AND
+            <choose>
+                <when test="searchField == 'userId'">
+                    user_id LIKE CONCAT('%', #{searchWord}, '%')
+                </when>
+                <otherwise>
+                    user_name LIKE CONCAT('%', #{searchWord}, '%')
+                </otherwise>
+            </choose>
+        </if>
+    </select>
+
+    <select id ="userSelectNonPassPage" parameterType="Map" resultType="dto.UserDTO">
+        <![CDATA[
         select *
         from user
         where user_status = 'reject'
+          ]]>
+        <if test="searchWord != null and !searchWord.equals('')">
+            AND
+            <choose>
+                <when test="searchField == 'userId'">
+                    user_id LIKE CONCAT('%', #{searchWord}, '%')
+                </when>
+                <otherwise>
+                    user_name LIKE CONCAT('%', #{searchWord}, '%')
+                </otherwise>
+            </choose>
+        </if>
+        order by user_id desc
+        LIMIT #{start}, 10
     </select>
+
+    <select id ="userSelectReportCount" parameterType="Map" resultType="int">
+        <![CDATA[
+        select count(*)
+        from user
+        where user_status = 'pass'
+          ]]>
+        <if test="searchWord != null and !searchWord.equals('')">
+            AND
+            <choose>
+                <when test="searchField == 'userId'">
+                    user_id LIKE CONCAT('%', #{searchWord}, '%')
+                </when>
+                <otherwise>
+                    user_name LIKE CONCAT('%', #{searchWord}, '%')
+                </otherwise>
+            </choose>
+        </if>
+    </select>
+
+    <select id ="userSelectReportPage" parameterType="Map" resultType="dto.UserDTO">
+        <![CDATA[
+        select *
+        from user
+        where user_status = 'pass'
+          ]]>
+        <if test="searchWord != null and !searchWord.equals('')">
+            AND
+            <choose>
+                <when test="searchField == 'userId'">
+                    user_id LIKE CONCAT('%', #{searchWord}, '%')
+                </when>
+                <otherwise>
+                    user_name LIKE CONCAT('%', #{searchWord}, '%')
+                </otherwise>
+            </choose>
+        </if>
+        ORDER BY report_cnt DESC
+        LIMIT #{start}, 10
+    </select>
+
+    <update id="updateUserDrop" parameterType="String">
+        update user
+        set user_status = 'reject'
+        where user_id = #{userId}
+    </update>
 
     <update id="updateUserPass" parameterType="String">
         update user
         set user_status = 'pass'
+        where user_id = #{userId}
+    </update>
+
+    <update id="updateUserPending" parameterType="String">
+        update user
+        set user_status = 'pending'
         where user_id = #{userId}
     </update>
 

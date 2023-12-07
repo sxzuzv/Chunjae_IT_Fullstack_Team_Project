@@ -45,7 +45,17 @@ public interface UserMapper {
 
     int userSelfDelete(String userId);
 
-    List<UserDTO> userSelectNonPass(UserDTO userDTO);
+    int userSelectNonPassCount(Map<String, Object> map);
+
+    List <UserDTO> userSelectNonPassPage(Map<String, Object> map);
 
     int updateUserPass(String userId);
+
+    int updateUserPending(String userId);
+
+    int userSelectReportCount(Map<String, Object> map);
+
+    List<UserDTO> userSelectReportPage(Map<String, Object> map);
+
+    int updateUserDrop(String userId);
 }
