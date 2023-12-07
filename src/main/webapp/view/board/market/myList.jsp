@@ -1,13 +1,8 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: cyj
-  Date: 2023-11-26
-  Time: 오후 11:44
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 		 pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!doctype html>
 <html xml:lang="ko" lang="ko">
 
@@ -21,7 +16,7 @@
 <body>
 	<header>
 
-		<jsp:include page="../../common/header.jsp"></jsp:include>
+		<jsp:include page="/view/common/header.jsp"></jsp:include>
 
 
 	</header>
@@ -106,7 +101,7 @@
 														${ map.totalCount - (((map.pageNum-1) * map.pageSize) + loop.index)}
 												</td>
 												<td class="subject left txtBreak">  <!-- 제목(링크) -->
-													<a href="/market/view.do?brdId=${ row.brdId }">${ row.title }</a> <span
+													<a href="${contextPath}/market/view.do?brdId=${ row.brdId }">${ row.title }</a> <span
 															class="txtEm"></span>
 												</td>
 												<td>sh</td>  <!-- 상태 -->

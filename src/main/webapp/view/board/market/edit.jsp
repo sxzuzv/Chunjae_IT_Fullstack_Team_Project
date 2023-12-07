@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
@@ -28,7 +29,7 @@
     </script>
 </head>
 <h2>파일 첨부형 게시판 - 수정하기(Edit)</h2>
-<form name="writeFrm" method="post" enctype="multipart/form-data" action="/market/edit.do" onsubmit="return validateForm(this);">
+<form name="writeFrm" method="post" enctype="multipart/form-data" action="${contextPath}/market/edit.do" onsubmit="return validateForm(this);">
     <input type="hidden" name="brdId" value="${ dto.brdId }"/>
     <input type="hidden" name="prevOfile" value="${ dto.ofile }" />
     <input type="hidden" name="prevSfile" value="${ dto.sfile }" />

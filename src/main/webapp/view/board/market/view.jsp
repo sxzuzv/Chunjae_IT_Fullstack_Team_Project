@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+         pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
@@ -16,7 +17,7 @@
     <body>
         <header>
 
-            <jsp:include page="${pageContext.request.contextPath}/view/common/header.jsp"></jsp:include>
+            <jsp:include page="/view/common/header.jsp"></jsp:include>
 
 
         </header>
@@ -42,7 +43,7 @@
                                         <a href="#"
                                            alt=""
                                            onclick="window.open(this.href, &#39;image_zoom2&#39;, &#39;toolbar=no,scrollbars=auto,resizable=yes,width=450,height=693,left=0,top=0&#39;, this);return false;">
-                                            <img src="/Uploads/${ dto.sfile }"
+                                            <img src="${contextPath}/Uploads/${ dto.sfile }"
                                                  alt="" class="BigImage "> </a>
                                         <div id="zoom_wrap"></div>
                                     </div>
@@ -122,13 +123,13 @@
                                     <div class="ec-base-button gColumn">
                                         <a href="#"
                                            class="btnNormal sizeM btnBasket "
-                                           onclick="location.href='/market/pass.do?mode=delete&brdId=${ param.brdId }'">삭제하기</a>
+                                           onclick="location.href='${contextPath}/market/pass.do?mode=delete&brdId=${ param.brdId }'">삭제하기</a>
                                         <a href="#"
                                            class="btnNormal sizeM btnBasket "
-                                           onclick="location.href='/market/pass.do?mode=edit&brdId=${ param.brdId }'">수정하기</a>
+                                           onclick="location.href='${contextPath}/market/pass.do?mode=edit&brdId=${ param.brdId }'">수정하기</a>
                                         <a href="#"
                                            class="btnSubmit sizeM "
-                                           onclick="location.href='/market/list.do'">목록으로
+                                           onclick="location.href='${contextPath}/market/list.do'">목록으로
                                         </a>
                                     </div>
                                 </div>
@@ -186,7 +187,7 @@
                             </table>
                         </div>
                     </div>
-                    <jsp:include page="${pageContext.request.contextPath}/view/common/comment.jsp"></jsp:include>
+                    <jsp:include page="/view/common/comment.jsp"></jsp:include>
 
                     <hr class="layout">
                 </div>

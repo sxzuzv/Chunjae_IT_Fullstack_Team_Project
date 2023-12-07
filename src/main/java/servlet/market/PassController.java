@@ -30,7 +30,7 @@ public class PassController extends HttpServlet {
 
         // 비로그인시 튕겨냄
         if( userId == null) {
-            JSFunction.alertLocation(response,"로그인해 주세요","/main/main.do");
+            JSFunction.alertLocation(response,"로그인해 주세요",request.getContextPath() + "/main/main.do");
         }else{ //로그인시 확인
            dao = new BoardDAO();
             confirmed = dao.confirmPassword(userId, brdId);
@@ -39,7 +39,7 @@ public class PassController extends HttpServlet {
 
         if (confirmed) {  // 비밀번호 일치
             if (mode.equals("edit")) {  // 수정 모드
-                response.sendRedirect("/market/edit.do?brdId=" + brdId);
+                response.sendRedirect(request.getContextPath()  + "/market/edit.do?brdId=" + brdId);
             }
             else if (mode.equals("delete")) {  // 삭제 모드
                 BoardDTO dto = dao.marketSelectView(brdId);
@@ -50,7 +50,7 @@ public class PassController extends HttpServlet {
                     String saveFileName = dto.getSfile();
                     FileUtil.deleteFile(request, "/Uploads", saveFileName);
                 }
-                JSFunction.alertLocation(response, "삭제되었습니다.", "/market/list.do");
+                JSFunction.alertLocation(response, "삭제되었습니다.",request.getContextPath() + "/market/list.do");
             }
         }
         else {  // 비밀번호 불일치

@@ -1,13 +1,8 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: cyj
-  Date: 2023-11-26
-  Time: 오후 11:44
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 		 pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!doctype html>
 <html xml:lang="ko" lang="ko">
 
@@ -21,7 +16,7 @@
 <body>
 <header>
 
-	<jsp:include page="${contextPath}/view/common/header.jsp"></jsp:include>
+	<jsp:include page="/view/common/header.jsp"></jsp:include>
 
 
 </header>
@@ -75,7 +70,7 @@
 			<div class="xans-element- xans-product xans-product-normalpackage"><!-- 정렬기준 외 -->
 				<div class="xans-element- xans-product xans-product-normalmenu">
 					<div class="function" id="Product_ListMenu">
-						<button type="button" onclick="location.href='/market/write.do';">글쓰기</button>
+						<button type="button" onclick="location.href='${contextPath}/market/write.do';">글쓰기</button>
 					</div>
 				</div>
 				<!-- 일반상품진열 -->
@@ -92,14 +87,14 @@
 							<li id="" class="xans-record-">
 								<div class="thumbnail">
 									<div class="prdImg">
-										<a href="/market/view.do?brdId=${ row.brdId }">
+										<a href="${contextPath}/market/view.do?brdId=${ row.brdId }">
 											<img src="/Uploads/${ row.sfile }" alt=""></a>
 									</div>
 								</div>
 								<div class="description">
 									<p class="summary">[${ row.status }] ${ row.dealAddress }</p>
 									<strong class="name">
-										<a href="/market/view.do?brdId=${ row.brdId }" class="">
+										<a href="${contextPath}/market/view.do?brdId=${ row.brdId }" class="">
 											<span style="font-size:18px;color:#070707;">${ row.title }</span>
 										</a>
 									</strong>
