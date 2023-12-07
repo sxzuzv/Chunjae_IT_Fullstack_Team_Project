@@ -24,7 +24,7 @@
         }
 
     </style>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script>
         function execDaumPostcode() {
@@ -60,7 +60,6 @@
 
         function join() {
             var form = document.joinForm;
-
             if (!form.userID.value) {
                 alert("아이디를 입력해주세요.");
                 form.userID.focus();
@@ -76,7 +75,6 @@
                 form.userPW.focus();
                 return;
             }
-
             // 비밀번호 유효성 검사 로직 추가
             var passwordRegex = /^(?=.*[a-zA-Z])(?=.*[0-9]).{8,25}$/;
             if (!passwordRegex.test(form.userPW.value)) {
@@ -84,58 +82,68 @@
                 form.userPW.focus();
                 return;
             }
-
             if (form.userPW.value !== form.userPW2.value) {
                 alert("비밀번호를 확인해주세요.");
                 form.userPW2.focus();
                 return;
             }
-
             if (!form.name.value) {
                 alert("이름을 입력해주세요.");
                 form.name.focus();
                 return;
             }
-
-
-            form.submit();
-        }
-
-        function CheckDup() {
-            var form = document.joinForm;
-
-            if (!form.userID.value) {
-                alert("아이디를 입력해주세요.");
-                form.userID.focus();
+            if (!form.nickname.value) {
+                alert("닉네임을 입력해주세요.");
+                form.name.focus();
                 return;
             }
+            if (!form.ofile.value) {
+                alert("파일을 첨부해주세요");
+                form.ofile.focus();
+                return;
+            }
+            if (!form.userschool.value) {
+                alert("학교이름을 입력해주세요");
+                form.userschool.focus();
+                return;
+            }
+            CheckDup(function(result) {
+                if (result === true) {
+                    form.submit(); // 회원가입 진행
+                } else {
+                    // 사용 가능한 아이디가 아닌 경우 처리
+                    alert("아이디 중복검사를 다시 진행해주세요.");
+                }
+            });
+        }
+
+        function CheckDup(callback) {
+            var form = document.joinForm;
 
             $.ajax({
-                url:"/member/checkId.do",		// servlet
+                url: "/member/checkId.do",
                 type: "post",
-                datatype:"text",
-                data: {"userID" : form.userID.value},
-                success:function(data){
-
-                    if(data === 'success'){
+                dataType: "text",
+                data: { "userID": form.userID.value },
+                success: function (data) {
+                    if (data === 'success') {
                         $('input[name=checkID]').val("ok");
-                        alert("사용 가능한 아이디입니다.")
-                        $('#message').text('사용할 수 있는 ID입니다.')
-                        $('#message').css('color','green')
-
-                    }
-                    else {
-                        alert("사용 불가능한 아이디입니다.")
-                        $('#message').text('이미 사용 중인 아이디입니다.')
-                        $('#message').css('color','red')
-
+                        $('#message').text('사용할 수 있는 ID입니다.');
+                        $('#message').css('color', 'green');
+                        callback(true); // 사용 가능한 아이디를 전달하여 콜백 실행
+                    } else {
+                        $('#message').text('이미 사용 중인 아이디입니다.');
+                        $('#message').css('color', 'red');
+                        callback(false); // 사용 불가능한 아이디를 전달하여 콜백 실행
                     }
                 },
-                error:function(){
-                    alert("error");
+                error: function () {
+                    alert("서버 오류가 발생했습니다.");
+                    callback(false); // 오류 발생시 false를 전달하여 콜백 실행
                 }
-            })
+            });
         }
+
     </script>
 </head>
 
@@ -176,6 +184,11 @@
                         <button class="btn btn-secondary" type="button" onClick="CheckDup();">중복 검사</button>
                     </td>
                 </tr>
+                <td colspan="2" id='message'></td>
+                <tr>
+                    <th><span class="blet">*</span> 이름</th>
+                    <td><input type="text" name="name" class="form-control form-control-lg" size="15" maxlength="6"></td>
+                </tr>
                 <tr>
                     <th><span class="blet">*</span> 닉네임</th>
                     <td><input type="text" name="nickname" class="form-control form-control-lg" size="15" maxlength="6"></td>
@@ -190,10 +203,6 @@
                 <tr>
                     <th><span class="blet">*</span> 비밀번호 확인</th>
                     <td><input type="password" name="userPW2" class="form-control form-control-lg" size="20" maxlength="16"></td>
-                </tr>
-                <tr>
-                    <th><span class="blet">*</span> 이름</th>
-                    <td><input type="text" name="name" class="form-control form-control-lg" size="15" maxlength="6"></td>
                 </tr>
                 <tr>
                     <th>전화</th>
@@ -217,7 +226,7 @@
                     <td><input type="text" id="user_addr2" name="addr2" class="form-control form-control-lg" placeholder="상세주소" size="20"></td>
                 </tr>
                 <tr>
-                    <th>재직증명서</th>
+                    <th><span class="blet">*</span>재직증명서</th>
                     <td><input type="file" id="school_aut" name="ofile" class="form-control-file"></td>
                 </tr>
                 <tr>

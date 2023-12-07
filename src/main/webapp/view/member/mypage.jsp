@@ -61,8 +61,12 @@
 								<hr class="my-4">
 								<div class="form-group">
 									<label for="name">이름</label>
-									<input type="text" class="form-control form-control-lg" id="name" name="name" maxlength="6" value="${userDTO.userName}" readonly>
+									<input type="text" class="form-control form-control-lg" id="name" name="name" maxlength="10" value="${userDTO.userName}" readonly>
 								</div>
+							<div class="form-group">
+								<label for="nickname">닉네임</label>
+								<input type="text" class="form-control form-control-lg" id="nickname" name="nickname" maxlength="10" value="${userDTO.user_nick}" readonly>
+							</div>
 								<div class="form-group">
 									<label for="tel">전화번호</label>
 									<input type="text" class="form-control form-control-lg" id="tel" name="tel" maxlength="15" value="${userDTO.userCp}" readonly>

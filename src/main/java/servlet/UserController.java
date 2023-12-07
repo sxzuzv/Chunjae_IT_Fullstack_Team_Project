@@ -4,6 +4,7 @@ import dao.BoardDAO;
 import dao.UserDAO;
 import dto.BoardDTO;
 import dto.UserDTO;
+import util.Encrypt;
 import util.FileUtil;
 import util.JSFunction;
 
@@ -33,6 +34,7 @@ public class UserController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	UserDAO userDao;
 
+
 	public UserController() {
 		super();
 	}
@@ -45,7 +47,16 @@ public class UserController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		doHandle(request, response);
+	}
 
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		doHandle(request, response);
+	}
+
+
+	private void doHandle(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String nextPage = null;
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=UTF-8");
@@ -63,7 +74,9 @@ public class UserController extends HttpServlet {
 			nextPage = "/view/member/login.jsp";
 
 
-		} else if ("/updateform.do".equals(action)) {
+		}else if ("/mainpage.do".equals(action)) {
+			nextPage = "/view/main/main.jsp";
+		}else if ("/updateform.do".equals(action)) {
 			nextPage = "/view/member/update.jsp";
 
 
@@ -97,7 +110,7 @@ public class UserController extends HttpServlet {
 
 			boolean authenticateId = userDao.authenticateFindPass(userId, userEmail, userCp);
 			if (authenticateId) {
-				request.getSession().setAttribute("userId", userId);
+				request.getSession().setAttribute("memberId", userId);
 				nextPage = "/view/member/passChange.jsp";
 
 			} else {
@@ -112,12 +125,12 @@ public class UserController extends HttpServlet {
 		} else if ("/passChange.do".equals(action)) {
 			//비밀번호 변경
 			UserDTO userDTO = new UserDTO();
-			userDTO.setUserId((String) request.getSession().getAttribute("userId"));
-			userDTO.setUserPwd(request.getParameter("userPW"));
+			userDTO.setUserId((String) request.getSession().getAttribute("memberId"));
+			userDTO.setUserPwd(Encrypt.getEncrypt(request.getParameter("userPW")));
 			int result = userDao.updatePass(userDTO);
 
 			if (result == 1) {
-				request.getSession().removeAttribute("userId");
+				request.getSession().removeAttribute("memberId");
 				PrintWriter out = response.getWriter();
 				out.print("<script>"
 						+ "  alert('비밀번호가 변경 되었습니다..');"   // 알림창
@@ -148,7 +161,7 @@ public class UserController extends HttpServlet {
 			UserDTO userDTO = new UserDTO();
 
 			userDTO.setUserId(request.getParameter("userID"));
-			userDTO.setUserPwd(request.getParameter("userPW"));
+			userDTO.setUserPwd(Encrypt.getEncrypt(request.getParameter("userPW")));
 			userDTO.setUserName(request.getParameter("name"));
 			userDTO.setUser_nick(request.getParameter("nickname"));
 			userDTO.setUserCp(request.getParameter("tel"));
@@ -186,12 +199,12 @@ public class UserController extends HttpServlet {
 			// 회원정보수정
 			UserDTO userDTO = new UserDTO();
 			userDTO.setUserId((String) request.getSession().getAttribute("userId"));
-			userDTO.setUserPwd(request.getParameter("userPW"));
+			userDTO.setUserPwd(Encrypt.getEncrypt(request.getParameter("userPW")));
 			userDTO.setUserEmail(request.getParameter("email"));
-			userDTO.setUserName(request.getParameter("name"));
+			userDTO.setUser_nick(request.getParameter("nickname"));
 			userDTO.setUserAddr(request.getParameter("addr"));
 			userDTO.setUserDaddr(request.getParameter("addr2"));
-			userDTO.setUserCp(request.getParameter("name"));
+			userDTO.setUserCp(request.getParameter("tel"));
 
 
 			int result = userDao.updateUserInfo(userDTO);
@@ -200,7 +213,7 @@ public class UserController extends HttpServlet {
 				PrintWriter out = response.getWriter();
 				out.print("<script>"
 						+ "  alert('회원정보가 변경 되었습니다..');"   // 알림창
-						+ " location.href='" + request.getContextPath() + "#';"  // 회원정보 보여주는 화면으로이동
+						+ " location.href='" + request.getContextPath() + "/member/mypage.do';"  // 회원정보 보여주는 화면으로이동
 						+ "</script>");
 			} else {
 				PrintWriter out = response.getWriter();
@@ -212,10 +225,9 @@ public class UserController extends HttpServlet {
 			}
 
 
-			nextPage = "/main/main.do";
 		} else if ("/login.do".equals(action)) {
 			String userID = request.getParameter("userID");
-			String userPW = request.getParameter("userPW");
+			String userPW = Encrypt.getEncrypt(request.getParameter("userPW"));
 
 			//password 암호화
 			//String hashedPassword = sha256Hash(userPW);
@@ -237,15 +249,26 @@ public class UserController extends HttpServlet {
 				} else if (isStatus.equals("pass") && isAdmin.equals("A")) {
 					//로그인 성공 관리자
 					request.getSession().setAttribute("userId", userID);
+					request.getSession().setAttribute("userStatus", isAdmin);
 					PrintWriter out = response.getWriter();
 					out.print("<script>"
 							+ "  alert('관리자로 로그인 합니다.');"   // 알림창
 
-							+ " location.href='" + request.getContextPath() + "/view/admin/admin_list.jsp';"  // 로그인 페이지로 이동
+							+ " location.href='" + request.getContextPath() + "/admin/memberlist.do';"  // 로그인 페이지로 이동
 
 							+ "</script>");
 
-				} else {// 로그인 실패
+				}else if(isStatus.equals("pending") && isAdmin.equals("E")){
+					userDao.userSelfDelete(userID);
+					PrintWriter out = response.getWriter();
+					out.print("<script>"
+							+ "  alert('가입승인이 거절되어 다시 가입해주세요.');"   // 알림창
+
+							+ " location.href='" + request.getContextPath() + "/member/join.do';"  // 로그인 페이지로 이동
+
+							+ "</script>");
+
+				}else {// 로그인 실패
 					PrintWriter out = response.getWriter();
 					out.print("<script>"
 							+ "  alert('아직 승인이 완료되지 않았습니다.');"   // 알림창
@@ -291,12 +314,13 @@ public class UserController extends HttpServlet {
 			request.getRequestDispatcher("/view/member/mypage.jsp").forward(request, response);
 
 		} else if("/selfDelete.do".equals(action)) {
+			//회원 탈퇴
 			String userId = (String) request.getSession().getAttribute("userId");
 			int result = userDao.userSelfDelete(userId);
 			if (result == 1) {
 				PrintWriter out = response.getWriter();
 				out.print("<script>"
-						+ "  alert('회원이 삭제 되었습니다.');"   // 알림창
+						+ "  alert('회원이 정성적으로 탈퇴 되었습니다.');"   // 알림창
 						+ " location.href='" + request.getContextPath() + "/member/main.do';"
 						+ "</script>");
 				session = request.getSession(false);
@@ -312,59 +336,6 @@ public class UserController extends HttpServlet {
 				return;
 
 			}
-		}//////여기서 부터 관리자 회원관리
-		else if(action.equals("/memberlist.do")) {//
-			//status가 reject인 회원만 불러오기
-			UserDTO userDTO = new UserDTO();
-			List<UserDTO> userlist = userDao.userSelectNonPass(userDTO);
-			request.setAttribute("list", userlist);
-
-			nextPage = "/view/member/listMembers.jsp";
-
-
-
-		}else if(action.equals("/pass.do")) {
-			String userId = request.getParameter("id");
-			int result = userDao.updateUserPass(userId);
-			if (result == 1) {
-				PrintWriter out = response.getWriter();
-				out.print("<script>"
-						+ "  alert('회원승인.');"   // 알림창
-						+ " location.href='" + request.getContextPath() + "/member/memberlist.do';"
-						+ "</script>");
-				return;
-			} else {
-				PrintWriter out = response.getWriter();
-				out.print("<script>"
-						+ "  alert('승인 거절 오류');"   // 알림창
-						+ " location.href='" + request.getContextPath() + "/member/memberlist.do';"
-						+ "</script>");
-				return;
-
-			}
-
-
-		} else if(action.equals("/remove2.do")) {               // 회원 삭제
-			String userId = request.getParameter("id");
-			int result = userDao.userSelfDelete(userId);
-			if (result == 1) {
-				PrintWriter out = response.getWriter();
-				out.print("<script>"
-						+ "  alert('회원승인 거절후 삭제.');"   // 알림창
-						+ " location.href='" + request.getContextPath() + "/member/memberlist.do';"
-						+ "</script>");
-				return;
-			} else {
-				PrintWriter out = response.getWriter();
-				out.print("<script>"
-						+ "  alert('승인 거절 오류');"   // 알림창
-						+ " location.href='" + request.getContextPath() + "/member/memberlist.do';"
-						+ "</script>");
-				return;
-
-			}
-
-
 		}else if (action.equals("/logout.do")) {
 			//로그아웃
 			session = request.getSession(false); // 세션 객체 생성하지 않고 기존 세션을 가져옴
@@ -380,13 +351,5 @@ public class UserController extends HttpServlet {
 		RequestDispatcher dis = request.getRequestDispatcher(nextPage);
 		dis.forward(request, response);
 	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		doGet(request, response);
-	}
-
-
-
 }
 
