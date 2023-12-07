@@ -84,7 +84,7 @@
 								<strong>관리자님</strong>
 						</li>
 						<li class="xans-element- xans-layout xans-layout-statelogoff join "><a
-								href="/member/logout.do">로그아웃</a>
+								href="${contextPath}/member/logout.do">로그아웃</a>
 						</li>
 					</ul>
 				</c:when>

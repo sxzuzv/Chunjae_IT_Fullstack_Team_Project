@@ -8,7 +8,7 @@
 <body>
 <header>
 
-    <jsp:include page="${contextPath}/view/common/headerAdmin.jsp"></jsp:include>
+    <jsp:include page="/view/common/headerAdmin.jsp"></jsp:include>
 
     <link rel="stylesheet" href="${contextPath}/css/teachercommunity/list.css" />
 
