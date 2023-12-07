@@ -3,13 +3,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="Author" content="silverline">
-    <meta name="Keywords" content="">
-    <meta name="Description" content="">
     <title>회원가입</title>
     <style>
         .joinBox {

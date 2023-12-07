@@ -10,8 +10,6 @@ pageEncoding="UTF-8"%>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width" , initial-scale="1">
-<link rel="stylesheet" href="../../css/bootstrap.css">
-<link rel="stylesheet" href="../../css/list.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <title>회원관리</title>
 <style type="text/css">
@@ -20,14 +18,11 @@ pageEncoding="UTF-8"%>
 		text-decoration: none;
 	}
 
-
-
 </style>
-
 </head>
 <body>
 <div>
-<jsp:include page="${contextPath}/view/common/headerAdmin.jsp"></jsp:include>
+<jsp:include page="/view/common/headerAdmin.jsp"></jsp:include>
 </div>
 <div id="viewport">
 	<div class="main_back d-flex align-items-center justify-content-center">
