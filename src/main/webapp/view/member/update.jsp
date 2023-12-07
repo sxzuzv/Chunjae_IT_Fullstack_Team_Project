@@ -80,12 +80,6 @@
 		var form = document.updateForm;
 
 
-
-		if (!form.name.value) {
-			alert("이름을 입력해주세요.");
-			form.name.focus();
-			return;
-		}
 		if (!form.userPW.value) {
 			alert("비밀번호를 입력해주세요.");
 			form.userPW.focus();
@@ -133,8 +127,8 @@
 								<input type="password" class="form-control form-control-lg" id="userPW2" name="userPW2" maxlength="16">
 							</div>
 							<div class="form-group">
-								<label for="name">이름</label>
-								<input type="text" class="form-control form-control-lg" id="name" name="name" maxlength="6" value="${user.userName}">
+								<label for="nickname">닉네임</label>
+								<input type="text" class="form-control form-control-lg" id="nickname" name="nickname" maxlength="6" value="${user.user_nick}">
 							</div>
 							<div class="form-group">
 								<label for="tel">전화</label>

@@ -1,4 +1,4 @@
-package servlet.market;
+package servlet;
 
 import com.google.gson.Gson;
 import dao.CommentDAO;

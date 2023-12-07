@@ -20,6 +20,7 @@ public class ViewController extends HttpServlet {
   protected void service(HttpServletRequest req, HttpServletResponse resp)
           throws ServletException, IOException {
 
+    String userId = (String)req.getSession().getAttribute("userId");
 
 
     // 게시물 불러오기
@@ -47,6 +48,7 @@ public class ViewController extends HttpServlet {
     // 게시물(dto) 저장 후 뷰로 포워드
     req.setAttribute("dto", dto);
     req.setAttribute("isImage", isImage);
+    req.setAttribute("SessionUserId", userId);
     req.getRequestDispatcher("/view/board/market/view.jsp").forward(req, resp);
   }
 }
