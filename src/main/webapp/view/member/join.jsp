@@ -92,6 +92,11 @@
                 form.name.focus();
                 return;
             }
+            if (!form.nickname.value) {
+                alert("닉네임을 입력해주세요.");
+                form.name.focus();
+                return;
+            }
             if (!form.ofile.value) {
                 alert("파일을 첨부해주세요");
                 form.ofile.focus();

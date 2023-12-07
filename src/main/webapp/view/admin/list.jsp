@@ -65,7 +65,7 @@
                                         <th scope="col">번호</th>
                                         <th scope="col">제목</th>
                                         <th scope="col">작성자</th>
-                                        <th scope="col">조회수</th>
+                                        <th scope="col">답변상태</th>
                                         <th scope="col">게시일</th>
                                     </tr>
                                     </thead>
@@ -89,7 +89,14 @@
                                             <a href="${contextPath}/admin/view.do?brdId=${ row.brdId }">${ row.title }</a>
                                         </td>
                                         <td>${ row.userId }</td>  <!-- 작성자 -->
-                                        <td>${ row.viewCnt }</td>  <!-- 조회수 -->
+                                        <c:choose>
+                                            <c:when test="${commentStatus == 1}">
+                                                <td>답변완료</td>  <!-- 조회수 -->
+                                            </c:when>
+                                            <c:otherwise>
+                                                <td>답변중</td>
+                                            </c:otherwise>
+                                        </c:choose>
                                         <td>${ row.regDate }</td>  <!-- 작성일 -->
                                     </tr>
                                     </c:forEach>

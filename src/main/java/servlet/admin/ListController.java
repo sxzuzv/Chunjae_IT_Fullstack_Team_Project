@@ -1,7 +1,9 @@
 package servlet.admin;
 
 import dao.BoardDAO;
+import dao.CommentDAO;
 import dao.UserDAO;
+import dto.BoardCommentDTO;
 import dto.BoardDTO;
 import dto.ReportDTO;
 import util.BoardPage;
@@ -101,9 +103,14 @@ public class ListController extends HttpServlet {
         map.put("pageNum", pageNum);
 
 
+
+
+
         // 전달할 데이터를 request 영역에 저장 후 TeacherCommunityBoard.jsp로 포워드
         request.setAttribute("boardLists", boardLists);
         request.setAttribute("map", map);
+        
+
 
 
         request.getRequestDispatcher("/view/admin/list.jsp").forward(request, response);

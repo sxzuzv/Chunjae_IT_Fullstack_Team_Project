@@ -80,8 +80,8 @@
 				</c:when>
 				<c:when test="${!empty userId}">
 					<ul>
-						<li class="xans-element- xans-layout xans-layout-statelogoff log ">
-								<strong>${ userId } 님</strong>
+						<li class="xans-element- xans-layout xans-layout-statelogoff log " style="color: white">
+								<strong>관리자님</strong>
 						</li>
 						<li class="xans-element- xans-layout xans-layout-statelogoff join "><a
 								href="/member/logout.do">로그아웃</a>

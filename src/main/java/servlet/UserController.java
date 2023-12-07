@@ -74,7 +74,9 @@ public class UserController extends HttpServlet {
 			nextPage = "/view/member/login.jsp";
 
 
-		} else if ("/updateform.do".equals(action)) {
+		}else if ("/mainpage.do".equals(action)) {
+			nextPage = "/view/main/main.jsp";
+		}else if ("/updateform.do".equals(action)) {
 			nextPage = "/view/member/update.jsp";
 
 
@@ -318,7 +320,7 @@ public class UserController extends HttpServlet {
 			if (result == 1) {
 				PrintWriter out = response.getWriter();
 				out.print("<script>"
-						+ "  alert('회원이 삭제 되었습니다.');"   // 알림창
+						+ "  alert('회원이 정성적으로 탈퇴 되었습니다.');"   // 알림창
 						+ " location.href='" + request.getContextPath() + "/member/main.do';"
 						+ "</script>");
 				session = request.getSession(false);

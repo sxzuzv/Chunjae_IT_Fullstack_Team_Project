@@ -66,7 +66,7 @@ pageEncoding="UTF-8"%>
 			<c:when test="${reportlist != null}">
 			<th style="text-align: center; vertical-align: middle;">가입일</th>
 			<th style="text-align: center; vertical-align: middle;">누적신고횟수</th>
-			<th style="text-align: center; vertical-align: middle;">삭제</th>
+			<th style="text-align: center; vertical-align: middle;">회원제재</th>
 			</c:when>
 		</c:choose>
 	</tr>
@@ -101,25 +101,21 @@ pageEncoding="UTF-8"%>
 					<td width="15%">${item.userCp}</td>
 					<td width="8%">${item.joinDate}</td>
 					<td width="8%">${item.reportCnt}</td>
-					<td width="10%" colspan="2"><input type="button" value="삭제" onclick="location.href='${contextPath}/admin/dropuser.do?id=${item.userId}'"></td>
+					<td width="10%" colspan="2"><input type="button" value="정지" onclick="location.href='${contextPath}/admin/dropuser.do?id=${item.userId}'"></td>
 				</tr>
 			</c:forEach>
 		</c:when>
 	<c:when test="${empty list}">
 		<tr height="10">
-			<td colspan="6">
-				<p align="center">
-					<b><span style="font-size: 9pt;">승인대기 회원이 없습니다.</span></b>
-				</p>
+			<td colspan="6" style="text-align: center;">
+				<b style="font-size: 9pt; display: block; width: 100%; text-align: center; margin-left: 200px">승인대기 회원이 없습니다.</b>
 			</td>
 		</tr>
 	</c:when>
 	<c:when test="${empty reportlist}">
 		<tr height="10">
-			<td colspan="6">
-				<p align="center">
-					<b><span style="font-size: 9pt;">신고당한 회원이 없습니다.</span></b>
-				</p>
+			<td colspan="6" style="text-align: center;">
+				<b style="font-size: 9pt; display: block; width: 100%; text-align: center; margin-left: 200px">신고당한 회원이 없습니다.</b>
 			</td>
 		</tr>
 	</c:when>

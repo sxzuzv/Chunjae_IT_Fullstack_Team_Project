@@ -13,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
@@ -44,6 +45,18 @@ public class AdminController extends HttpServlet {
 	}
 
 	private void doHandle(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//관리자가 아닐때 못들어오게하기
+		HttpSession session = request.getSession();
+		String isadminStatus = (String) session.getAttribute("userStatus");
+		if (isadminStatus == null) {
+			PrintWriter out = response.getWriter();
+			out.print("<script>"
+					+ "  alert('관리자가 아닙니다 관리자로 로그인하세요.');"   // 알림창
+					+ " location.href='" + request.getContextPath() + "/member/mainpage.do';"
+					+ "</script>");
+					return;
+		}
+
 		String nextPage = null;
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=UTF-8");
