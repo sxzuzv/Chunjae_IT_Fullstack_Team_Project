@@ -103,10 +103,10 @@ public class EditController extends HttpServlet {
          // 성공 or 실패?
          if (result == 1) {  // 수정 성공
              //            session.removeAttribute("pass");
-             response.sendRedirect("/market/view.do?brdId=" + brdId);
+             response.sendRedirect(request.getContextPath() + "/market/view.do?brdId=" + brdId);
          } else {  // 수정 실패
              JSFunction.alertLocation(response, "오류로 수정내용이 반영되지 않았습니다",
-                     "/market/view.do?brdId=" + brdId);
+                     request.getContextPath() + "/market/view.do?brdId=" + brdId);
          }
 
 

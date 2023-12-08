@@ -67,7 +67,7 @@
                         <div class="row">
                             <div class="col-3">제목</div>
                             <div class="col-9">
-                                <input type="text" name="title" class="form-control form-control-lg" />
+                                <input type="text" name="title" class="form-control form-control-lg">
                             </div>
                         </div>
                         <div class="row">
@@ -79,7 +79,7 @@
                         <div class="row">
                             <div class="col-3">첨부 파일</div>
                             <div class="col-9">
-                                <input type="file" name="ofile" class="form-control form-control-lg" />
+                                <input type="file" name="ofile" class="form-control form-control-lg">
                             </div>
                         </div>
                         <div class="btn-zone mt-4">

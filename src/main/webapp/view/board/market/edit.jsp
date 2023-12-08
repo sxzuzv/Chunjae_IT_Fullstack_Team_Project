@@ -37,14 +37,14 @@
 </header>
     <h2>게시글 수정</h2>
     <form name="writeFrm" method="post" enctype="multipart/form-data" action="${contextPath}/market/edit.do" onsubmit="return validateForm(this);">
-        <input type="hidden" name="brdId" value="${ dto.brdId }"/>
-        <input type="hidden" name="prevOfile" value="${ dto.ofile }" />
-        <input type="hidden" name="prevSfile" value="${ dto.sfile }" />
+        <input type="hidden" name="brdId" value="${ dto.brdId }">
+        <input type="hidden" name="prevOfile" value="${ dto.ofile }">
+        <input type="hidden" name="prevSfile" value="${ dto.sfile }">
 
         <table border="1" width="90%">
             <tr>
                 <td>카테고리</td>
-                <td><input type="text" name="cateSub" style="width:150px;" value="${ dto.cateSub }"/></td>
+                <td><input type="text" name="cateSub" style="width:150px;" value="${ dto.cateSub }"></td>
             </tr>
             <tr>
                 <td>상태</td>
@@ -58,12 +58,12 @@
             <tr>
                 <td>구매자</td>
                 <td>
-                    <input type="text" name="buyerId" style="width:150px;" value="${ dto.buyerId }" /></td>
+                    <input type="text" name="buyerId" style="width:150px;" value="${ dto.buyerId }"></td>
             </tr>
             <tr>
                 <td>제목</td>
                 <td>
-                    <input type="text" name="title" style="width:90%;" value="${ dto.title }" />
+                    <input type="text" name="title" style="width:90%;" value="${ dto.title }">
                 </td>
             </tr>
             <tr>
@@ -75,25 +75,25 @@
             <tr>
                 <td>지역</td>
                 <td>
-                    <input type="text" name="dealAddress" style="width:150px;" value="${ dto.dealAddress }" /></td>
+                    <input type="text" name="dealAddress" style="width:150px;" value="${ dto.dealAddress }"></td>
             </tr>
             <tr>
                 <td>가격</td>
                 <td>
-                    <input type="text" name="price" style="width:150px;" value="${ dto.price }" /></td>
+                    <input type="text" name="price" style="width:150px;" value="${ dto.price }"></td>
             </tr>
 
             <tr>
                 <td>첨부 파일</td>
                 <td>
-                    <input type="file" name="ofile" />
+                    <input type="file" name="ofile">
                 </td>
             </tr>
             <tr>
                 <td colspan="2" align="center">
                     <button type="submit">작성 완료</button>
                     <button type="reset">RESET</button>
-                    <button type="button" onclick="location.href='/market/list.do';">
+                    <button type="button" onclick="location.href='${contextPath}/market/list.do';">
                         목록 바로가기
                     </button>
                 </td>

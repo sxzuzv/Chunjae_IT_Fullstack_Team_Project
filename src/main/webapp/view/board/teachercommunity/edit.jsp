@@ -39,16 +39,16 @@
 </header>
 <h2>게시글 수정</h2>
 <form name="writeFrm" method="post" enctype="multipart/form-data" action="${contextPath}/teachercommunity/edit.do" onsubmit="return validateForm(this);">
-  <input type="hidden" name="brdId" value="${ dto.brdId }"/>
-  <input type="hidden" name="prevOfile" value="${ dto.ofile }" />
-  <input type="hidden" name="prevSfile" value="${ dto.sfile }" />
-  <input type="hidden" name="cateSub" style="width:150px;" value="${ dto.cateSub }"/>
+  <input type="hidden" name="brdId" value="${ dto.brdId }">
+  <input type="hidden" name="prevOfile" value="${ dto.ofile }">
+  <input type="hidden" name="prevSfile" value="${ dto.sfile }">
+  <input type="hidden" name="cateSub" style="width:150px;" value="${ dto.cateSub }">
 
   <table border="1" width="90%">
     <tr>
       <td>제목</td>
       <td>
-        <input type="text" name="title" style="width:90%;" value="${ dto.title }" />
+        <input type="text" name="title" style="width:90%;" value="${ dto.title }">
       </td>
     </tr>
     <tr>
@@ -60,14 +60,14 @@
     <tr>
       <td>첨부 파일</td>
       <td>
-        <input type="file" name="ofile" />
+        <input type="file" name="ofile">
       </td>
     </tr>
     <tr>
       <td colspan="2" align="center">
         <button type="submit">작성 완료</button>
         <button type="reset">RESET</button>
-        <button type="button" onclick="location.href='/teachercommunity/list.do';">
+        <button type="button" onclick="location.href='${contextPath}/teachercommunity/list.do';">
           목록 바로가기
         </button>
       </td>

@@ -49,10 +49,10 @@
 										<option value="title">제목</option>
 										<option value="content">내용</option>
 									</select>
-									<input type="hidden" name="myStore" value=${ map.myStore }/>
+									<input type="hidden" name="myStore" value=${ map.myStore }>
 									<input id="search" name="searchWord"
 										   class="inputTypeText" placeholder="" value="" type="text">
-									<input id= "submitbtn" type="submit" value="검색하기"/></p>
+									<input id= "submitbtn" type="submit" value="검색하기"></p>
 							</fieldset>
 						</div>
 					</form>
