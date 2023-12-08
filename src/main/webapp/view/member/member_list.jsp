@@ -10,8 +10,8 @@ pageEncoding="UTF-8"%>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width" , initial-scale="1">
-<link rel="stylesheet" href="../../css/bootstrap.css">
-<link rel="stylesheet" href="../../css/list.css">
+<link rel="stylesheet" href="${contextPath}/css/bootstrap.css">
+<link rel="stylesheet" href="${contextPath}/css/list.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <title>회원관리</title>
 <style type="text/css">
@@ -27,7 +27,7 @@ pageEncoding="UTF-8"%>
 </head>
 <body>
 <div>
-<jsp:include page="${contextPath}/view/common/headerAdmin.jsp"></jsp:include>
+<jsp:include page="/view/common/headerAdmin.jsp"></jsp:include>
 </div>
 <div id="viewport">
 	<div class="main_back d-flex align-items-center justify-content-center">
@@ -59,7 +59,7 @@ pageEncoding="UTF-8"%>
 <c:when test="${list != null}">
         <th style="text-align: center; vertical-align: middle;">파일</th>
         <th style="text-align: center; vertical-align: middle;">가입신청일</th>
-		<th style="text-align: center; vertical-align: middle;">회원등급</th>
+		<th style="text-align: center; vertical-align: middle;">승인상태</th>
 		<th style="text-align: center; vertical-align: middle;">회원승인</th>
 		<th style="text-align: center; vertical-align: middle;">회원거절</th>
 			</c:when>

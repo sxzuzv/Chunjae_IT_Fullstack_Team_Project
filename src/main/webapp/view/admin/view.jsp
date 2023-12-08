@@ -9,7 +9,7 @@
     <title>TEACHER MARKET</title>
 </head>
 <header>
-    <jsp:include page="${contextPath}/view/common/headerAdmin.jsp"></jsp:include>
+    <jsp:include page="/view/common/headerAdmin.jsp"></jsp:include>
     <link rel="stylesheet" href="${contextPath}/css/teachercommunity/view.css" />
 </header>
 <body>
@@ -61,7 +61,7 @@
                 목록 바로가기
             </button>
         <div>
-            <jsp:include page="${pageContext.request.contextPath}/view/common/comment.jsp"></jsp:include>
+            <jsp:include page="/view/common/comment.jsp"></jsp:include>
         </div>
 </div>
 

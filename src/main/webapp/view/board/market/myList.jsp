@@ -20,7 +20,6 @@
 
 
 	</header>
-
 	<div id="wrap">
 		<div id="container">
 			<div id="contents">

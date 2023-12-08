@@ -181,7 +181,7 @@ public class UserController extends HttpServlet {
 				PrintWriter out = response.getWriter();
 				out.print("<script>"
 						+ "  alert('회원가입 되었습니다...');"   // 알림창
-						+ " location.href='" + request.getContextPath() + "member/main.do';"  // 회원정보 보여주는 화면으로이동
+						+ " location.href='" + request.getContextPath() + "/member/main.do';"  // 회원정보 보여주는 화면으로이동
 						+ "</script>");
 
 			} else {

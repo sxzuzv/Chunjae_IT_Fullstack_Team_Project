@@ -88,7 +88,7 @@
 								<div class="thumbnail">
 									<div class="prdImg">
 										<a href="${contextPath}/market/view.do?brdId=${ row.brdId }">
-											<img src="/Uploads/${ row.sfile }" alt=""></a>
+											<img src="${contextPath}/Uploads/${ row.sfile }" alt=""></a>
 									</div>
 								</div>
 								<div class="description">

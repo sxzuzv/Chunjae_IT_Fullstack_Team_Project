@@ -29,7 +29,9 @@ public class PassController extends HttpServlet {
 
         // 비 로그인 시 수정 불가
         if( userId == null) {
-            JSFunction.alertLocation(response,"로그인 후 이용 가능합니다.",request.getContextPath() +"/main/main.do");
+
+            JSFunction.alertLocation(response,"로그인 후 이용 가능합니다.",request.getContextPath() + "/main/main.do");
+
         }else{ // 로그인 시 확인
             dao = new BoardDAO();
             confirmed = dao.confirmPassword(userId, brdId);
@@ -39,7 +41,9 @@ public class PassController extends HttpServlet {
 
         if (confirmed) {  // 비밀번호 일치
             if (mode.equals("edit")) {  // 수정 모드
-                response.sendRedirect(request.getContextPath() +"/cscenter/edit.do?brdId=" + brdId);
+
+                response.sendRedirect(request.getContextPath() + "/cscenter/edit.do?brdId=" + brdId);
+
             }
             else if (mode.equals("delete")) {  // 삭제 모드
                 BoardDTO dto = dao.cscenterView(brdId);
