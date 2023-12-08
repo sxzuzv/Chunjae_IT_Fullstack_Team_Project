@@ -19,6 +19,53 @@
         VALUES(#{userId}, #{brdId}, #{reportTitle}, #{reportContent})
     </insert>
 
+    <select id="reportSelectCount" parameterType="map" resultType="int">
+        SELECT count(*)
+        FROM report
+        WHERE userId = #{userId}
+        <if test="searchWord != null and !searchWord.equals('')">
+            AND
+            <choose>
+                <when test="searchField == 'title'">
+                    title LIKE CONCAT('%', #{searchWord}, '%')
+                </when>
+                <otherwise>
+                    content LIKE CONCAT('%', #{searchWord}, '%')
+                </otherwise>
+            </choose>
+        </if>
+    </select>
+
+    <select id="reportSelectListPage" parameterType="map" resultType="dto.ReportDTO">
+        SELECT *
+        FROM report
+        WHERE userId = #{userId}
+        <if test="searchWord != null and !searchWord.equals('')">
+            AND
+            <choose>
+                <when test="searchField == 'title'">
+                    title LIKE CONCAT('%', #{searchWord}, '%')
+                </when>
+                <otherwise>
+                    content LIKE CONCAT('%', #{searchWord}, '%')
+                </otherwise>
+            </choose>
+        </if>
+        order by report_id desc
+        LIMIT #{start}, 10
+    </select>
+
+    <select id="reportSelectView" parameterType="String" resultType="dto.ReportDTO">
+        SELECT *
+        FROM report
+        WHERE report_id = #{reportId}
+    </select>
+
+    <delete id="reportDelete">
+        delete
+        from report
+        where report_id = #{reportId}
+    </delete>
 
     <!--최재혁-->
 
