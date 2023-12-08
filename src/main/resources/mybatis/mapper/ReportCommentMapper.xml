@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mybatis.mapper.ReportCommentMapper">
+
+    <!--신수진-->
+
+
+
+    <!--최경락-->
+
+
+
+    <!--최영주-->
+    <insert id="insertWriteComment" parameterType="dto.ReportCommentDTO">
+        INSERT
+        INTO report_comment(parent_id, user_id, com_content)
+        VALUES(#{parentId}, #{userId}, #{comContent})
+    </insert>
+
+    <select id="selectCommentList" parameterType="map" resultType="dto.ReportCommentDTO">
+        SELECT *
+        FROM report_comment
+        WHERE parent_id = #{brdId}
+        order by com_id desc
+    </select>
+
+    <delete id="deleteComment">
+        delete
+        from report_comment
+        where com_id = #{comId}
+    </delete>
+
+    <update id="updateComment" parameterType="dto.ReportCommentDTO">
+        update report_comment
+        set
+        com_content = #{comContent}
+        where com_id = #{comId}
+    </update>
+
+    <!--최재혁-->
+
+
+</mapper>
