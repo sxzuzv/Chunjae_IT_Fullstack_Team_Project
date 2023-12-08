@@ -23,6 +23,8 @@ CREATE TABLE IF NOT EXISTS `user` (
   `user_grade` ENUM('A', 'E') NOT NULL DEFAULT 'E',
   `user_status` ENUM('pass', 'reject') DEFAULT 'reject',
   `report_cnt` int(10) DEFAULT 0,
+  `ofile` varchar(100) DEFAULT NULL,
+  `sfile` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`user_idx`),
   unique key(`user_id`)
 );

@@ -86,7 +86,7 @@
           </button>
         </c:when>
         <c:otherwise>
-          <button class="btnrep" type="button"><a href="#">신고하기</a></button>
+          <button class="btnrep" type="button"><a href="#" data-bs-toggle="modal" data-bs-target="#reportModal" data-bs-whatever="@mdo">신고하기</a></button>
           <button class="btnlist" type="button" onclick="location.href='${contextPath}/teachercommunity/list.do?cateSub=${ cateSub }';">
             목록 바로가기
           </button>
@@ -96,6 +96,7 @@
 <%--  </tr>--%>
     <jsp:include page="/view/common/comment.jsp"></jsp:include>
   </div>
+  <jsp:include page="/view/common/report.jsp"></jsp:include>
 </body>
 </html>
 
