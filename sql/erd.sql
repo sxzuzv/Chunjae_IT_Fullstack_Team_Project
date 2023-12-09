@@ -23,6 +23,8 @@ CREATE TABLE IF NOT EXISTS `user` (
   `user_grade` ENUM('A', 'E') NOT NULL DEFAULT 'E',
   `user_status` ENUM('pass', 'reject') DEFAULT 'reject',
   `report_cnt` int(10) DEFAULT 0,
+  `ofile` varchar(100) DEFAULT NULL,
+  `sfile` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`user_idx`),
   unique key(`user_id`)
 );
@@ -68,6 +70,18 @@ CREATE TABLE IF NOT EXISTS `board_comment` (
   `reg_date` datetime NOT NULL DEFAULT current_timestamp(),
   `mod_date` datetime DEFAULT NULL,
   PRIMARY KEY (`com_id`)
+);
+
+-- 테이블 fleamarket.report_comment
+CREATE TABLE IF NOT EXISTS `report_comment` (
+    `com_id` int(10) NOT NULL AUTO_INCREMENT,
+    `parent_id` int(10) NOT NULL,
+    `com_depth` int(10) DEFAULT NULL,
+    `com_content` varchar(50) NOT NULL,
+    `user_id` varchar(10) NOT NULL,
+    `reg_date` datetime NOT NULL DEFAULT current_timestamp(),
+    `mod_date` datetime DEFAULT NULL,
+    PRIMARY KEY (`com_id`)
 );
 
 
@@ -212,6 +226,9 @@ alter table board_comment add foreign key(parent_id) REFERENCES board(brd_id); -
 alter table board_comment add foreign key(user_id) REFERENCES user(user_id);
 
 alter table report add foreign key (brd_id) REFERENCES board(brd_id);
+
+alter table report_comment add foreign key(parent_id) REFERENCES report(report_id); -- 이건 댓글을 참조하기도 해서 풀어놓아야 되나 싶슴다..
+alter table report_comment add foreign key(user_id) REFERENCES user(user_id);
 
 
 

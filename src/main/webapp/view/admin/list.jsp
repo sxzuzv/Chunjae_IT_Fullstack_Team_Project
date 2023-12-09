@@ -35,9 +35,9 @@
                                         <option value="title" selected>제목</option>
                                         <option value="content">내용</option>
                                     </select>
-                                    <input type="hidden" name="cateSub" value=${ map.cateSub } />
+                                    <input type="hidden" name="cateSub" value=${ map.cateSub }>
                                     <input type="text" id="search" name="searchWord">
-                                    <input id="submit" type="submit" value="검색"/>
+                                    <input id="submit" type="submit" value="검색">
                                 </fieldset>
                             </form>
 

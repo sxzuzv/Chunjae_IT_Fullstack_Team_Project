@@ -49,10 +49,10 @@
 										<option value="title">제목</option>
 										<option value="content">내용</option>
 									</select>
-									<input type="hidden" name="myStore" value=${ map.myStore }/>
+									<input type="hidden" name="myStore" value=${ map.myStore }>
 									<input id="search" name="searchWord"
 										   class="inputTypeText" placeholder="" value="" type="text">
-									<input id= "submitbtn" type="submit" value="검색하기"/></p>
+									<input id= "submitbtn" type="submit" value="검색하기"></p>
 							</fieldset>
 						</div>
 					</form>
@@ -103,7 +103,7 @@
 													<a href="${contextPath}/market/view.do?brdId=${ row.brdId }">${ row.title }</a> <span
 															class="txtEm"></span>
 												</td>
-												<td>sh</td>  <!-- 상태 -->
+												<td>${ row.status }</td>  <!-- 상태 -->
 												<td><span class="txtNum">${ row.regDate }</span></td>  <!-- 게시일자 -->
 												<td><span class="txtNum">${ row.price }</span></td>  <!-- 가격 -->
 												<td>${ row.dealAddress }</td>  <!-- 지역 -->

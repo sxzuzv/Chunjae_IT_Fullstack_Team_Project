@@ -50,17 +50,17 @@
                                     <option value="title">제목</option>
                                     <option value="content">내용</option>
                                 </select>
-                                <input type="hidden" name="myStore" value=${ map.myStore }/>
+                                <input type="hidden" name="myStore" value=${ map.myStore }>
                                 <input id="search" name="searchWord"
                                        class="inputTypeText" placeholder="" value="" type="text">
-                                <input id= "submitbtn" type="submit" value="검색하기"/></p>
+                                <input id= "submitbtn" type="submit" value="검색하기"></p>
                         </fieldset>
                     </div>
                 </form>
                 <div class="xans-element- xans-product xans-product-normalpackage"><!-- 정렬기준 외 -->
                     <div class="xans-element- xans-product xans-product-normalmenu">
                         <div class="function" id="Product_ListMenu">
-                            <button type="button" onclick="location.href='/cscenter/write.do';">글쓰기</button>
+                            <button type="button" onclick="location.href='${contextPath}/cscenter/write.do';">글쓰기</button>
                         </div>
                     </div>
                     <div class="boardSort">
