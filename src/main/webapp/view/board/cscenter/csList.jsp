@@ -31,7 +31,7 @@
                         <h2>
                             <font color="#555555">
                                 <c:choose>
-<%--                                    <c:when test="${ map.myStore eq 'sell'}">  </c:when>--%>
+                                    <c:when test="${ map.myStore eq 'sell'}">  </c:when>
                                     <c:otherwise> 고객지원 </c:otherwise>
                                 </c:choose>
                             </font>
@@ -109,10 +109,7 @@
                                             <td class="subject left txtBreak" style="text-align: center">  <!-- 제목(링크) -->
                                                 <a href="/cscenter/view.do?brdId=${ row.brdId }">${ row.title }</a> <span
                                                         class="txtEm"></span></td>
-                                            <td><c:choose>
-                                                <c:when test="${row.cateSub eq 1}"> 문의사항 </c:when>
-                                                <c:when test="${row.cateSub eq 2}"> 신고 </c:when>
-                                                </c:choose></td>   <!-- 문의 유형 -->
+                                            <td>문의사항</td>   <!-- 문의 유형 -->
                                             <td>${row.closed eq 'true' ? '답변 완료' : '답변 대기중'}</td>  <!-- 처리상태-->
                                             <td><span class="txtNum">${ row.userId }</span></td>    <!-- 작성자 -->
                                             <td><span class="txtNum">${ row.regDate }</span></td>  <!-- 게시일자 -->

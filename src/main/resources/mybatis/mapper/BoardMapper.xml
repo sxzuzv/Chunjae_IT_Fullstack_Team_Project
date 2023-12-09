@@ -136,26 +136,6 @@
         ORDER BY brd_id DESC
     </select>
 
-
-    <!-- SELECT : 제목 혹은 내용으로 검색한 결과 -->
-   <!-- <select id="cscenterListPage" parameterType="map" resultType="dto.BoardDTO">
-        SELECT *
-        FROM board
-        WHERE cate_main = 3
-        <if test="searchWord != null and !searchWord.equals('')">
-            <choose>
-                <when test="searchField == 'title'">
-                    title like concat('%', #{searchWord}, '%')
-                </when>
-                <otherwise>
-                    content like concat('%', #{searchWord}, '%')
-                </otherwise>
-            </choose>
-        </if>
-
-        ORDER BY brd_id desc
-    </select>-->
-
     <!-- SELECT : 게시글 페이징 처리 후 출력 -->
     <select id="cscenterListPageWithPaging" parameterType="map" resultType="dto.BoardDTO">
         <![CDATA[

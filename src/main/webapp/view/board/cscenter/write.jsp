@@ -60,7 +60,6 @@
                             <div class="col-9">
                                 <select name="cateSub" class="form-select form-control-lg">
                                     <option value="1">고객문의</option>
-                                    <option value="2">신고</option>
                                 </select>
                             </div>
                         </div>
