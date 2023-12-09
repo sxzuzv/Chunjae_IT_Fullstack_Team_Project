@@ -31,7 +31,7 @@
                         <h2>
                             <font color="#555555">
                                 <c:choose>
-                                    <c:when test="${ map.myStore eq 'sell'}">  </c:when>
+<%--                                    <c:when test="${ map.myStore eq 'sell'}">  </c:when>--%>
                                     <c:otherwise> 고객지원 </c:otherwise>
                                 </c:choose>
                             </font>

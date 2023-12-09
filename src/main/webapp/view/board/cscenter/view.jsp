@@ -105,8 +105,9 @@
     </c:choose>
     <%--    </td>--%>
     <%--  </tr>--%>
-    <jsp:include page="/view/common/comment.jsp"></jsp:include>
+
 </div>
+<jsp:include page="/view/common/comment.jsp"></jsp:include>
 </body>
 </html>
 
