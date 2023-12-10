@@ -103,7 +103,7 @@
 <details><summary>시퀀스다이어그램(회원-선생님)
 </summary>
 
-*Write here!*
+![회원-시퀀스 다이어그램](https://github.com/Chunjae3Team/teacherFleaMarket/assets/140072536/7aa14570-a271-4be8-b676-934cac0330de)
 </details>
 
 <details><summary>시퀀스다이어그램(관리자)
