@@ -40,7 +40,11 @@ public class MainController extends HttpServlet {
 				nextPage = "/view/main/main.jsp";
 				
 			} else if("/main.do".equals(action)) {
+				//최영주
 
+
+
+				//신수진
 				
 				nextPage = "/view/main/main.jsp";
 			} else if(action.equals("/change.do")){

@@ -339,6 +339,14 @@
         where brd_id = #{brdId}
     </update>
 
+    <select id="marketSelectTop" parameterType="map" resultType="dto.BoardDTO">
+        select *
+        from board
+        where cate_main = 1
+        order by view_cnt desc LIMIT 6
+    </select>
+
+
 
     <!--최재혁-->
     <select id="adselectCount" parameterType="map" resultType="int">
