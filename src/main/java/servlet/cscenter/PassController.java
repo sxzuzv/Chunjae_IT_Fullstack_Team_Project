@@ -30,7 +30,7 @@ public class PassController extends HttpServlet {
         // 비 로그인 시 수정 불가
         if (userId == null) {
             // userId가 없다면 경고창을 띄우고, main으로 이동
-            JSFunction.alertLocation(response, "로그인 후 이용 가능합니다.", request.getContextPath() + "/main/main.do");
+            JSFunction.alertLocation(response, "로그인 후 이용 가능합니다.", request.getContextPath() + "/member/main.do");
         } else {
             if (mode.equals("write")) {
                 response.sendRedirect(request.getContextPath() + "/cscenter/write.do");
