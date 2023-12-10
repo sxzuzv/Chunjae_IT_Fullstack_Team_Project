@@ -15,7 +15,7 @@
 </header>
 <body>
 <h2>
-    게시글 상세 보기
+    내 신고 글 상세 보기
 </h2>
 <table class="detailView" border="1" width="90%">
     <colgroup>
@@ -29,54 +29,29 @@
     </tr>
     <tr>
         <td>작성일</td> <td>${ dto.regDate }</td>
+        <td>신고한 게시물번호</td> <td>${ dto.brdId }</td>
 
     </tr>
     <tr>
         <td>제목</td>
-        <td colspan="3">${ dto.title }</td>
+        <td colspan="3">${ dto.reportTitle }</td>
     </tr>
     <tr>
         <td>내용</td>
         <td colspan="3" height="100">
-            ${ dto.content }
-            <c:if test="${ not empty dto.ofile and isImage eq true }">
-                <br><img src="../Uploads/${ dto.sfile }" style="max-width:100%;"/>
-            </c:if>
+            ${ dto.reportContent }
         </td>
     </tr>
 
-    <!-- 첨부파일 -->
-    <tr>
-        <td>첨부 파일</td>
-        <td>
-            <c:if test="${ not empty dto.ofile }">
-                ${ dto.ofile }
-                <%--                <a href="/teachercommunity/download.do?ofile=${ dto.ofile }&sfile=${ dto.sfile }&idx=${ dto.brdId }">--%>
-                <%--                  [다운로드]--%>
-                <%--                </a>--%>
-            </c:if>
-        </td>
-    </tr>
 </table>
 
-<!-- 하단 메뉴(버튼) -->
-<%--  <tr>--%>
-<%--    <td colspan="4" align="center">--%>
 <br />
-<div>
+<div style="text-align: center;"> <!-- Wrap the content in a div and align it to the right -->
     <c:set var="userId" value="${ userId }" />
     <c:set var="dtouserId" value="${ dto.userId }" />
-<%--    <c:set var="cateSub" value="${ cateSub }" />--%>
-<%--    <c:set var="cateSub" value="${param.cateSub}" />
-    <c:set var="userId" value="${sessionScope.userId}" />--%>
+
     <c:choose>
         <c:when test="${ dtouserId eq userId }">
-            <%--<button class="btnedit" type="button" onclick="location.href='${contextPath}/cscenter/pass.do?mode=edit&brdId=${ param.brdId }';">
-                수정하기
-            </button>
-            <button class="btndel" type="button" onclick="location.href='${contextPath}/cscenter/pass.do?mode=delete&brdId=${ param.brdId }';">
-                삭제하기
-            </button>--%>
             <button class="btnlist" type="button" onclick="goBack()">
                 목록 바로가기
             </button>
@@ -87,25 +62,11 @@
                 }
             </script>
         </c:when>
-        <c:otherwise>
-
-            <button class="btnlist" type="button" onclick="goBack()">
-                목록 바로가기
-            </button>
-
-            <script>
-                function goBack() {
-                    history.go(-1);
-                }
-            </script>
-        </c:otherwise>
     </c:choose>
-    <%--    </td>--%>
-    <%--  </tr>--%>
-
 </div>
 <jsp:include page="/view/board/cscenter/comment.jsp"></jsp:include>
 </body>
 <jsp:include page="/view/common/footer.jsp" flush="false"/>
 </html>
+
 

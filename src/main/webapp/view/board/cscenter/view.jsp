@@ -15,7 +15,7 @@
 </header>
 <body>
 <h2>
-    게시글 상세 보기
+    내 문의 글 상세 보기
 </h2>
 <table class="detailView" border="1" width="90%">
     <colgroup>

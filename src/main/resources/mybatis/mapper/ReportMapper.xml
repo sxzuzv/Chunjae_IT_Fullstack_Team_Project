@@ -9,6 +9,7 @@
 
 
     <!--최경락-->
+
     <select id="reportListPageWithPaging" parameterType="map" resultType="dto.ReportDTO">
         <![CDATA[
     SELECT *, (
@@ -31,8 +32,8 @@
                 </otherwise>
             </choose>
         </if>
-        GROUP BY brd_id
-        ORDER BY brd_id DESC
+
+        ORDER BY report_id DESC
         LIMIT #{start}, 10
     </select>
 

@@ -1,8 +1,6 @@
 package servlet.cscenter;
 
-import dao.BoardDAO;
 import dao.ReportDAO;
-import dto.BoardDTO;
 import dto.ReportDTO;
 import util.BoardPage;
 
