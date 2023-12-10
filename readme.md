@@ -80,6 +80,39 @@
 </div>
 <br><br>
 
+## 💿 다이어그램
+<details><summary>유스케이스
+</summary>
+
+![유스케이스](https://github.com/Chunjae3Team/teacherFleaMarket/assets/140072536/2f9a81fb-e4d3-4a8e-b531-6dfebfbd7acd)
+</details>
+
+<details><summary>ERD
+</summary>
+
+![ERD](https://github.com/Chunjae3Team/teacherFleaMarket/assets/140072536/7c868991-8fb3-41f4-8dbf-46b4667bac92)
+</details>
+
+<details><summary>시퀀스다이어그램(비회원)
+</summary>
+
+*Write here!*
+</details>
+
+<details><summary>시퀀스다이어그램(회원-선생님)
+</summary>
+
+*Write here!*
+</details>
+
+<details><summary>시퀀스다이어그램(관리자)
+</summary>
+
+*Write here!*
+</details>
+
+
+
 
 
 ## 🖥️ 구현 화면
