@@ -43,7 +43,7 @@
         <td colspan="3" height="100">
             ${ dto.content }
             <c:if test="${ not empty dto.ofile and isImage eq true }">
-                <br><img src="../Uploads/${ dto.sfile }" style="max-width:100%;"/>
+                <br><img src="${contextPath}/Uploads/${ dto.sfile }" style="max-width:100%;"/>
             </c:if>
         </td>
     </tr>
