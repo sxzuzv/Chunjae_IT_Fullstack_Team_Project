@@ -119,9 +119,14 @@
 
     <select id="adreportListPageWithPaging" parameterType="map" resultType="dto.ReportDTO">
         <![CDATA[
-        SELECT *
-        FROM report
-        ]]>
+    SELECT *, (
+        CASE
+            WHEN com_id is not null THEN 'true'
+            ELSE 'false'
+    	END
+	) AS answer
+    FROM report r LEFT OUTER JOIN report_comment rc ON r.brd_id = rc.parent_id
+    ]]>
         <if test="searchWord != null and !searchWord.equals('')">
             AND
             <choose>
@@ -133,9 +138,7 @@
                 </otherwise>
             </choose>
         </if>
-        order by report_id desc
+        ORDER BY report_id DESC
         LIMIT #{start}, 10
     </select>
-
-
 </mapper>
