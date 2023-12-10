@@ -80,6 +80,53 @@
 </div>
 <br><br>
 
+## 💿 다이어그램
+<details><summary>유스케이스
+</summary>
+
+![유스케이스](https://github.com/Chunjae3Team/teacherFleaMarket/assets/140072536/2f9a81fb-e4d3-4a8e-b531-6dfebfbd7acd)
+</details>
+
+<details><summary>ERD
+</summary>
+
+![ERD](https://github.com/Chunjae3Team/teacherFleaMarket/assets/140072536/7c868991-8fb3-41f4-8dbf-46b4667bac92)
+</details>
+
+<details><summary>시퀀스 다이어그램(비회원)
+</summary>
+
+![비회원-시퀀스 다이어그램](https://github.com/Chunjae3Team/teacherFleaMarket/assets/140072536/5877f5e3-606d-4e6b-9784-bb4f2bafbf3e)
+
+</details>
+
+<details><summary>시퀀스다이어그램(회원-선생님)
+</summary>
+
+![회원-시퀀스 다이어그램](https://github.com/Chunjae3Team/teacherFleaMarket/assets/140072536/7aa14570-a271-4be8-b676-934cac0330de)
+</details>
+
+<details><summary>시퀀스 다이어그램(관리자)
+</summary>
+  
+![관리자-시퀀스 다이어그램](https://github.com/Chunjae3Team/teacherFleaMarket/assets/140072536/6044e122-a6a7-4efd-8764-91d7901f08ac)
+</details>
+
+<details><summary>클래스 다이어그램
+</summary>
+  
+![클래스다이어그램](https://github.com/Chunjae3Team/teacherFleaMarket/assets/140072536/c66d3b2e-1ecb-4cda-b4e7-70fd08647dc5)
+</details>
+
+<details><summary>블록 다이어그램
+</summary>
+  
+![블록 다이어그램 2안](https://github.com/Chunjae3Team/teacherFleaMarket/assets/140072536/e8166819-29ac-4084-b6a7-94b913eb5c1b)
+</details>
+
+
+
+
 
 
 ## 🖥️ 구현 화면

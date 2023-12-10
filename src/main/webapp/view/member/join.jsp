@@ -117,7 +117,7 @@
             var form = document.joinForm;
 
             $.ajax({
-                url: "/member/checkId.do",
+                url: "${contextPath}/member/checkId.do",
                 type: "post",
                 dataType: "text",
                 data: { "userID": form.userID.value },

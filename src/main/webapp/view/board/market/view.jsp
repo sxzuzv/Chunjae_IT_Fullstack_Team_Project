@@ -19,7 +19,6 @@
 
             <jsp:include page="/view/common/header.jsp"></jsp:include>
 
-
         </header>
 
         <div id="wrap">
@@ -121,12 +120,24 @@
 
                                 <div class="xans-element- xans-product xans-product-action ">
                                     <div class="ec-base-button gColumn">
-                                        <a href="#"
-                                           class="btnNormal sizeM btnBasket "
-                                           onclick="location.href='${contextPath}/market/pass.do?mode=delete&brdId=${ param.brdId }'">삭제하기</a>
-                                        <a href="#"
-                                           class="btnNormal sizeM btnBasket "
-                                           onclick="location.href='${contextPath}/market/pass.do?mode=edit&brdId=${ param.brdId }'">수정하기</a>
+
+                                        <c:choose>
+                                            <c:when test="${ dto.userId eq SessionUserId }">
+                                                <a href="#"
+                                                   class="btnNormal sizeM btnBasket "
+                                                   onclick="location.href='${contextPath}/market/pass.do?mode=delete&brdId=${ param.brdId }'">삭제하기</a>
+                                                <a href="#"
+                                                   class="btnNormal sizeM btnBasket "
+                                                   onclick="location.href='${contextPath}/market/pass.do?mode=edit&brdId=${ param.brdId }'">수정하기</a>
+                                            </c:when>
+                                            <c:otherwise>
+                                            <%--신고하기 기능 사용시 data-bs-toggle, data-bs-target, data-bs-whatever 설정을 아래와 같이 진행. a태그 or 버튼여부 무관--%>
+                                                <a href="#"
+                                                   class="btnNormal sizeM btnBasket "
+                                                   data-bs-toggle="modal" data-bs-target="#reportModal" data-bs-whatever="@mdo">신고하기</a>
+                                            </c:otherwise>
+                                        </c:choose>
+
                                         <a href="#"
                                            class="btnSubmit sizeM "
                                            onclick="location.href='${contextPath}/market/list.do'">목록으로
@@ -168,9 +179,6 @@
                                         <div class="detail">
                                             <div class="fr-view fr-view-article">
                                                 ${ dto.content }
-                                                <c:if test="${ not empty dto.ofile and isImage eq true }">
-                                                    <br><img src="/Uploads/${ dto.sfile }" class="img-fluid" alt="첨부 이미지"/> <!-- 이미지 클래스 적용 -->
-                                                </c:if>
                                             </div>
                                         </div>
                                     </td>
@@ -194,5 +202,8 @@
                 <hr class="layout">
             </div>
         </div>
+
+        <jsp:include page="/view/common/report.jsp"></jsp:include>
+
     </body>
 </html>

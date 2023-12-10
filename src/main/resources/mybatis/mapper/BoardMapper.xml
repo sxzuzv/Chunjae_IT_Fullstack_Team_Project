@@ -206,6 +206,8 @@
 
     <!--최영주-->
         <!-- market을 붙이지 않은 쿼리는 다른 board에서 재사용 가능해 보임 -->
+
+
     <select id="marketSelectCount" parameterType="map" resultType="int">
         <![CDATA[
         SELECT count(*)
@@ -246,6 +248,7 @@
         INTO board(user_id, title, content, ofile, sfile, cate_main, cate_sub)
         VALUES(#{userId}, #{title}, #{content}, #{ofile}, #{sfile}, 1, #{cateSub})
     </insert>
+
     <insert id="marketInsertWritePdt" parameterType="dto.BoardDTO">
         INSERT
         INTO product(price, status, deal_address, prd_type, brd_id)
@@ -297,7 +300,7 @@
         FROM board b
         LEFT JOIN product p
         ON b.brd_id = p.brd_id
-        WHERE b.brd_id = ${brdId}
+        WHERE b.brd_id = #{brdId}
         <!--Expected one result (or null) to be returned by selectOne(), but found: 41
            if nothing match, return null
         -->

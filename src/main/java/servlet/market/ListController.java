@@ -76,7 +76,7 @@ public class ListController extends HttpServlet {
     else{ //내상점인 경우
 
       if(userId == null) { //비로그인시 내상점 접근 불가
-        JSFunction.alertLocation(response, "로그인해 주세요", "/main/main.do");
+        JSFunction.alertLocation(response, "로그인해 주세요", request.getContextPath() + "/main/main.do");
 
       } else {
         map.put("userId", userId); //현재 로그인한 사용자Id 값 맵에 넘김

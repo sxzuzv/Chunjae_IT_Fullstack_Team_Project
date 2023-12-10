@@ -23,5 +23,6 @@
         <mapper resource="mybatis/mapper/CommentMapper.xml" />
         <mapper resource="mybatis/mapper/ProductMapper.xml" />
         <mapper resource="mybatis/mapper/ReportMapper.xml" />
+        <mapper resource="mybatis/mapper/ReportCommentMapper.xml" />
     </mappers>
 </configuration>

@@ -22,7 +22,11 @@
     </select>
 
     <!--최영주-->
-
+    <update id="updateUserRptCnt" parameterType="String">
+        update user
+        set report_cnt = report_cnt + 1
+        where user_id = #{userId}
+    </update>
 
 
     <!--최재혁-->

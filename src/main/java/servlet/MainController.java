@@ -29,7 +29,7 @@ public class MainController extends HttpServlet {
 
 		
         if(request.getSession().getAttribute("userId") == null) {
-            response.sendRedirect("/member/main.do");
+            response.sendRedirect(request.getContextPath() + "/member/main.do");
             return;
         }
 

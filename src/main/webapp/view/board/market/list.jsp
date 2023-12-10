@@ -60,10 +60,10 @@
 								<option value="title">제목</option>
 								<option value="content">내용</option>
 							</select>
-							<input type="hidden" name="cateSub" value=${ map.cateSub }/>
+							<input type="hidden" name="cateSub" value=${ map.cateSub }>
 							<input id="search" name="searchWord"
 								   class="inputTypeText" placeholder="" value="" type="text">
-							<input id= "submitbtn" type="submit" value="검색하기"/></p>
+							<input id= "submitbtn" type="submit" value="검색하기"></p>
 					</fieldset>
 				</div>
 			</form>
@@ -88,7 +88,7 @@
 								<div class="thumbnail">
 									<div class="prdImg">
 										<a href="${contextPath}/market/view.do?brdId=${ row.brdId }">
-											<img src="/Uploads/${ row.sfile }" alt=""></a>
+											<img src="${contextPath}/Uploads/${ row.sfile }" alt=""></a>
 									</div>
 								</div>
 								<div class="description">
