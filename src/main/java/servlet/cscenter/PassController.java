@@ -32,8 +32,7 @@ public class PassController extends HttpServlet {
             // userId가 없다면 경고창을 띄우고, main으로 이동
             JSFunction.alertLocation(response, "로그인 후 이용 가능합니다.", request.getContextPath() + "/main/main.do");
         } else {
-            if (mode.equals("write")) { // Write mode
-                // Redirect to the writing page
+            if (mode.equals("write")) {
                 response.sendRedirect(request.getContextPath() + "/cscenter/write.do");
                 return;
             } else { // 로그인 시 확인

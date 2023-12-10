@@ -19,9 +19,9 @@ public class ViewController extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // 게시물 불러오기
-        BoardDAO dao = new BoardDAO();
-        String brdId = req.getParameter("brdId");
-        BoardDTO dto = dao.cscenterView(brdId);
+        BoardDAO dao = new BoardDAO(); // BoardDAO 객체 생성
+        String brdId = req.getParameter("brdId"); //brdId 매개변수 가져옴
+        BoardDTO dto = dao.cscenterView(brdId); //brdId에 해당하는 게시물 정보 가져오기
 
         // 줄바꿈 처리
         dto.setContent(dto.getContent().replaceAll("\r\n", "<br/>"));
@@ -29,10 +29,11 @@ public class ViewController extends HttpServlet {
         //첨부파일 확장자 추출 및 이미지 타입 확인
         String ext = null, fileName = dto.getSfile();
         if(fileName!=null) {
+            // 파일 이름에서 확장자 추출
             ext = fileName.substring(fileName .lastIndexOf(".")+1);
         }
-        String[] mimeStr = {"png","jpg","gif","jpeg"};
-        List<String> mimeList = Arrays.asList(mimeStr);
+        String[] mimeStr = {"png","jpg","gif","jpeg"}; // MIME 타입
+        List<String> mimeList = Arrays.asList(mimeStr); // 배열을 리스트로 변환
         boolean isImage = false;
         if(mimeList.contains(ext)) {
             isImage = true;
