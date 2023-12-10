@@ -15,7 +15,7 @@
 </header>
 <body>
 <h2>
-    게시글 상세 보기
+    내 문의 글 상세 보기
 </h2>
 <table class="detailView" border="1" width="90%">
     <colgroup>
@@ -32,7 +32,7 @@
         <td>문의유형</td> <td><c:choose>
         <c:when test="${dto.cateSub eq 1}"> 문의사항 </c:when>
         <c:when test="${dto.cateSub eq 2}"> 신고 </c:when>
-    </c:choose></td>
+        </c:choose></td>
     </tr>
     <tr>
         <td>제목</td>
