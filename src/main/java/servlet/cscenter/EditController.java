@@ -32,7 +32,7 @@ public class EditController extends HttpServlet {
         BoardDTO dto = dao.cscenterView(brdId);
         request.setAttribute("dto", dto);
         // 얻어온 정보를 edit.jsp로 전달하여 보여줌
-        request.getRequestDispatcher(request.getContextPath() + "/view/board/cscenter/edit.jsp").forward(request, response);
+        request.getRequestDispatcher("/view/board/cscenter/edit.jsp").forward(request, response);
 
     }
 
