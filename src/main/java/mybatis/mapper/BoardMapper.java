@@ -55,6 +55,8 @@ public interface BoardMapper {
 
     int confirmPassword(Map<String, String> map);
 
+    List<BoardDTO> marketSelectTop(Map<String, Object> map);
+
     //최재혁
 
     int adselectCount(Map<String, Object> map);

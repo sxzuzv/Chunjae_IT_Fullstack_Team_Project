@@ -194,6 +194,7 @@
                 </div>
             </div>
             <br>
+<%--    인기게시글     --%>
             <div class="xans-element- xans-board xans-board-title-1002 xans-board-title xans-board-1002 ">
                 <div class="titleArea">
                     <h2>
