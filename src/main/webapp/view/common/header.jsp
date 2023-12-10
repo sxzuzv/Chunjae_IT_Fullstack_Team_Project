@@ -66,18 +66,16 @@
 						</li>
 					</ul>
 					<!-- 추가 메뉴 -->
-					<ul class="etc-list">
-						<!--	<li>
-                            <a href="/board/gallery/list.html?board_no=8&search_date=all">이벤트</a>
-                            <ul>
-                                <li><a href="/board/gallery/list.html?board_no=8&search_date=all">진행 중 이벤트</a></li>
-                                <li><a href="/board/free2/list.html?board_no=5&search_date=all">당첨자 발표</a></li>
-                            </ul>
-                        </li>
--->
-						<li>
-							<a href="${contextPath}/cscenter/list.do">고객지원</a>
-						</li>
+					<ul class="etc-list menu2">
+						<ul class = "menu2">
+							<li>
+								<a id = "etcfont" href="#">고객지원</a>
+								<ul class="submenu2" id = "submenu04">
+									<li><a class = "sub2" href="${contextPath}/cscenter/list.do">문의사항</a></li>
+									<li><a class = "sub2" href="${contextPath}/cscenter/list/report.do">신고내역</a></li>
+								</ul>
+							</li>
+						</ul>
 					</ul>
 				</div>
 			</div>
