@@ -1,7 +1,9 @@
 package servlet.cscenter;
 
 import dao.BoardDAO;
+import dao.ReportDAO;
 import dto.BoardDTO;
+import dto.ReportDTO;
 import util.BoardPage;
 
 import javax.servlet.ServletContext;
@@ -74,6 +76,6 @@ public class ListController extends HttpServlet {
         req.setAttribute("map", map);
 
         req.getRequestDispatcher("/view/board/cscenter/csList.jsp").forward(req, resp);
-
     }
+    //report
 }

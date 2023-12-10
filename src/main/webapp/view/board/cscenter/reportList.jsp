@@ -32,7 +32,7 @@
                             <font color="#555555">
                                 <c:choose>
                                     <c:when test="${ map.myStore eq 'sell'}">  </c:when>
-                                    <c:otherwise> 문의사항 </c:otherwise>
+                                    <c:otherwise> 신고내역 </c:otherwise>
                                 </c:choose>
                             </font>
                         </h2>
