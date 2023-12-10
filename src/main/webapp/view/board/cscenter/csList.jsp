@@ -60,7 +60,7 @@
                 <div class="xans-element- xans-product xans-product-normalpackage"><!-- 정렬기준 외 -->
                     <div class="xans-element- xans-product xans-product-normalmenu">
                         <div class="function" id="Product_ListMenu">
-                            <button type="button" onclick="location.href='${contextPath}/cscenter/write.do';">글쓰기</button>
+                            <button type="button" onclick="location.href='${contextPath}/cscenter/pass.do?mode=write';">글쓰기</button>
                         </div>
                     </div>
                     <div class="boardSort">

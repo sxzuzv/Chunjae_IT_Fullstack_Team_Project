@@ -163,7 +163,7 @@ public class UserController extends HttpServlet {
 			userDTO.setUserId(request.getParameter("userID"));
 			userDTO.setUserPwd(Encrypt.getEncrypt(request.getParameter("userPW")));
 			userDTO.setUserName(request.getParameter("name"));
-			userDTO.setUser_nick(request.getParameter("nickname"));
+			userDTO.setUserNick(request.getParameter("nickname"));
 			userDTO.setUserCp(request.getParameter("tel"));
 			userDTO.setUserEmail(request.getParameter("email"));
 			userDTO.setUserAddr(request.getParameter("addr"));
@@ -201,7 +201,7 @@ public class UserController extends HttpServlet {
 			userDTO.setUserId((String) request.getSession().getAttribute("userId"));
 			userDTO.setUserPwd(Encrypt.getEncrypt(request.getParameter("userPW")));
 			userDTO.setUserEmail(request.getParameter("email"));
-			userDTO.setUser_nick(request.getParameter("nickname"));
+			userDTO.setUserNick(request.getParameter("nickname"));
 			userDTO.setUserAddr(request.getParameter("addr"));
 			userDTO.setUserDaddr(request.getParameter("addr2"));
 			userDTO.setUserCp(request.getParameter("tel"));
@@ -311,7 +311,7 @@ public class UserController extends HttpServlet {
 
 
 			request.setAttribute("userDTO", userDTO);
-			request.getRequestDispatcher("/view/member/mypage.jsp").forward(request, response);
+			nextPage = "/view/member/mypage.jsp";
 
 		} else if("/selfDelete.do".equals(action)) {
 			//회원 탈퇴
