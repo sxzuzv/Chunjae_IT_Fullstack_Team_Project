@@ -118,6 +118,13 @@
 ![클래스다이어그램](https://github.com/Chunjae3Team/teacherFleaMarket/assets/140072536/c66d3b2e-1ecb-4cda-b4e7-70fd08647dc5)
 </details>
 
+<details><summary>블록 다이어그램
+</summary>
+  
+![블록 다이어그램 2안](https://github.com/Chunjae3Team/teacherFleaMarket/assets/140072536/e8166819-29ac-4084-b6a7-94b913eb5c1b)
+</details>
+
+
 
 
 
