@@ -110,9 +110,10 @@
                 <c:forEach items="${ marketTopLists }" var="row" varStatus="loop">
                     <div class="col">
                         <div class="card shadow-sm">
-                            <img src="${contextPath}/Uploads/${ row.sfile }" class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/></svg>
+                            <img src="${contextPath}/Uploads/${ row.sfile }" class="bd-placeholder-img card-img-top" width="100%" height="400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/></svg>
                             <div class="card-body">
-                                <p class="card-text">${ row.title }</p>
+                                <p class="card-text">[${ row.status }] ${ row.dealAddress }
+                                    <br> ${ row.title }</p>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-sm btn-outline-secondary" onclick="location.href='${contextPath}/market/view.do?brdId=${ row.brdId }';">View</button>
