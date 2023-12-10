@@ -133,5 +133,6 @@
 		</div>
 		<hr class="layout">
 	</div>
+	<jsp:include page="/view/common/footer.jsp" flush="false"/>
 </body>
 </html>

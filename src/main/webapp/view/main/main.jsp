@@ -236,5 +236,6 @@
     </div>
 </div>
 <script src="${contextPath}/js/bootstrap.bundle.min.js"></script>
+<jsp:include page="/view/common/footer.jsp" flush="false"/>
 </body>
 </html>
