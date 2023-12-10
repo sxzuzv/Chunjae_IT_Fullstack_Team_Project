@@ -10,7 +10,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>고객지원</title>
+    <title>TEACHER MARKET</title>
 
 </head>
 <body>
@@ -60,7 +60,7 @@
                 <div class="xans-element- xans-product xans-product-normalpackage"><!-- 정렬기준 외 -->
                     <div class="xans-element- xans-product xans-product-normalmenu">
                         <div class="function" id="Product_ListMenu">
-                            <button type="button" onclick="location.href='${contextPath}/cscenter/write.do';">글쓰기</button>
+                            <button type="button" class="button" onclick="location.href='${contextPath}/cscenter/pass.do?mode=write';">글쓰기</button>
                         </div>
                     </div>
                     <div class="boardSort">
@@ -109,11 +109,8 @@
                                             <td class="subject left txtBreak" style="text-align: center">  <!-- 제목(링크) -->
                                                 <a href="/cscenter/view.do?brdId=${ row.brdId }">${ row.title }</a> <span
                                                         class="txtEm"></span></td>
-                                            <td><c:choose>
-                                                <c:when test="${row.cateSub eq 1}"> 문의사항 </c:when>
-                                                <c:when test="${row.cateSub eq 2}"> 신고 </c:when>
-                                                </c:choose></td>   <!-- 문의 유형 -->
-                                            <td>${ row.userId }</td>  <!-- 처리상태-->
+                                            <td>문의사항</td>   <!-- 문의 유형 -->
+                                            <td>${row.closed eq 'true' ? '답변 완료' : '답변 대기중'}</td>  <!-- 처리상태-->
                                             <td><span class="txtNum">${ row.userId }</span></td>    <!-- 작성자 -->
                                             <td><span class="txtNum">${ row.regDate }</span></td>  <!-- 게시일자 -->
                                             <!-- 가격 -->
@@ -144,5 +141,7 @@
         <hr class="layout">
     </div>
 </div>
+<%-- footer --%>
+<jsp:include page="/view/common/footer.jsp" flush="false"/>
 </body>
 </html>

@@ -64,7 +64,7 @@
             <jsp:include page="/view/common/comment.jsp"></jsp:include>
         </div>
 </div>
-
+<jsp:include page="/view/common/footer.jsp" flush="false"/>
 </body>
 </html>
 

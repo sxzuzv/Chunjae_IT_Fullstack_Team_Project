@@ -70,12 +70,8 @@
     <c:set var="userId" value="${ userId }" />
     <c:set var="dtouserId" value="${ dto.userId }" />
     <c:set var="cateSub" value="${ cateSub }" />
-    <%
-        String cateSub = (String)request.getParameter("cateSub");
-    %>
-    <%
-        String userId = (String)request.getSession().getAttribute("userId");
-    %>
+<%--    <c:set var="cateSub" value="${param.cateSub}" />
+    <c:set var="userId" value="${sessionScope.userId}" />--%>
     <c:choose>
         <c:when test="${ dtouserId eq userId }">
             <button class="btnedit" type="button" onclick="location.href='${contextPath}/cscenter/pass.do?mode=edit&brdId=${ param.brdId }';">
@@ -109,8 +105,10 @@
     </c:choose>
     <%--    </td>--%>
     <%--  </tr>--%>
-    <jsp:include page="/view/common/comment.jsp"></jsp:include>
+
 </div>
+<jsp:include page="/view/board/cscenter/comment.jsp"></jsp:include>
 </body>
+<jsp:include page="/view/common/footer.jsp" flush="false"/>
 </html>
 

@@ -31,4 +31,6 @@ public class BoardDTO extends ProductDTO {
 
     private int viewCnt;
 
+    private String closed;
+
 }
