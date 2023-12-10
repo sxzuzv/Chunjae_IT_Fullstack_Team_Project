@@ -108,8 +108,8 @@
 
 <details><summary>시퀀스다이어그램(관리자)
 </summary>
-
-*Write here!*
+  
+![관리자-시퀀스 다이어그램](https://github.com/Chunjae3Team/teacherFleaMarket/assets/140072536/6044e122-a6a7-4efd-8764-91d7901f08ac)
 </details>
 
 
