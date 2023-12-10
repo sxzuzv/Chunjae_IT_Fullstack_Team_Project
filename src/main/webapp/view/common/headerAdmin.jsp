@@ -45,7 +45,7 @@
 							<a href="#">고객지원</a>
 							<ul class="submenu" id = "submenu02">
 								<li><a class = "sub" href="${contextPath}/admin/list.do?cateSub=1">문의</a></li>
-								<li><a class = "sub" href="${contextPath}/admin/list.do?cateSub=2">신고사항</a></li>
+								<li><a class = "sub" href="${contextPath}/admin/reportList.do">신고사항</a></li>
 
 							</ul>
 						</li>

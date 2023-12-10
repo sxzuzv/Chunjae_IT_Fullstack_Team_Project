@@ -65,7 +65,7 @@
 								</div>
 							<div class="form-group">
 								<label for="nickname">닉네임</label>
-								<input type="text" class="form-control form-control-lg" id="nickname" name="nickname" maxlength="10" value="${userDTO.user_nick}" readonly>
+								<input type="text" class="form-control form-control-lg" id="nickname" name="nickname" maxlength="10" value="${userDTO.userNick}" readonly>
 							</div>
 								<div class="form-group">
 									<label for="tel">전화번호</label>
