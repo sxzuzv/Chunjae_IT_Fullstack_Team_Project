@@ -138,7 +138,7 @@
 
     <!-- SELECT : 게시글 페이징 처리 후 출력 -->
     <select id="cscenterListPageWithPaging" parameterType="map" resultType="dto.BoardDTO">
-        <![CDATA[
+    <![CDATA[
     SELECT *, (
         CASE
             WHEN com_id is not null THEN 'true'
@@ -148,21 +148,21 @@
     FROM board b LEFT OUTER JOIN board_comment bc ON b.brd_id = bc.parent_id
     WHERE b.cate_main = 3 AND b.user_id = #{userId}
     ]]>
-        <if test="searchWord != null and !searchWord.equals('')">
-            AND
-            <choose>
-                <when test="searchField == 'title'">
-                    title LIKE CONCAT('%', #{searchWord}, '%')
-                </when>
-                <otherwise>
-                    content LIKE CONCAT('%', #{searchWord}, '%')
-                </otherwise>
-            </choose>
-        </if>
-        GROUP BY brd_id
-        ORDER BY brd_id DESC
-        LIMIT #{start}, 10
-    </select>
+    <if test="searchWord != null and !searchWord.equals('')">
+        AND
+        <choose>
+            <when test="searchField == 'title'">
+                title LIKE CONCAT('%', #{searchWord}, '%')
+            </when>
+            <otherwise>
+                content LIKE CONCAT('%', #{searchWord}, '%')
+            </otherwise>
+        </choose>
+    </if>
+    GROUP BY brd_id
+    ORDER BY brd_id DESC
+    LIMIT #{start}, 10
+</select>
 
 
     <select id="cscenterView" parameterType="String" resultType="dto.BoardDTO">
