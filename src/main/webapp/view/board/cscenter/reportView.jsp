@@ -64,7 +64,7 @@
         </c:when>
     </c:choose>
 </div>
-<jsp:include page="/view/board/cscenter/comment.jsp"></jsp:include>
+<jsp:include page="/view/board/cscenter/reportComment.jsp"></jsp:include>
 </body>
 <jsp:include page="/view/common/footer.jsp" flush="false"/>
 </html>
