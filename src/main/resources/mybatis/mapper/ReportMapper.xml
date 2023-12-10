@@ -18,7 +18,7 @@
             ELSE 'false'
     	END
 	) AS answer
-    FROM report r LEFT OUTER JOIN board_comment rc ON r.brd_id = rc.parent_id
+    FROM report r LEFT OUTER JOIN report_comment rc ON r.brd_id = rc.parent_id
     WHERE r.user_id = #{userId}
     ]]>
         <if test="searchWord != null and !searchWord.equals('')">
