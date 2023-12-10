@@ -9,17 +9,6 @@
 
 
     <!--최경락-->
-    <select id="selectUser" parameterType="map">
-        SELECT COUNT(*)
-        FROM user
-        ORDER BY report_cnt desc
-    </select>
-
-    <select id="selectUserList" parameterType="map">
-        SELECT COUNT(*)
-        FROM user
-        ORDER BY report_cnt desc
-    </select>
 
     <!--최영주-->
     <update id="updateUserRptCnt" parameterType="String">

@@ -135,5 +135,6 @@ pageEncoding="UTF-8"%>
 </table>
 </div>
 </div>
+	<jsp:include page="/view/common/footer.jsp" flush="false"/>
 </body>
 </html>

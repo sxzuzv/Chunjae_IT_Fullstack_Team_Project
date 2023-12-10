@@ -206,4 +206,5 @@
         <jsp:include page="/view/common/report.jsp"></jsp:include>
 
     </body>
+    <jsp:include page="/view/common/footer.jsp" flush="false"/>
 </html>

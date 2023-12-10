@@ -97,6 +97,7 @@
     <jsp:include page="/view/common/comment.jsp"></jsp:include>
   </div>
   <jsp:include page="/view/common/report.jsp"></jsp:include>
+<jsp:include page="/view/common/footer.jsp" flush="false"/>
 </body>
 </html>
 

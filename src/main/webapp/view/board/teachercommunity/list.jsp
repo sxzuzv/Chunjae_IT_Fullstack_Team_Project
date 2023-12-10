@@ -192,5 +192,6 @@
 <%--              <td width="100"><button type="button" onclick="location.href='${contextPath}/teachercommunity/write.do';">글쓰기</button></td>--%>
 <%--            </tr>--%>
 <%--          </table>--%>
+          <jsp:include page="/view/common/footer.jsp" flush="false"/>
 </body>
 </html>
