@@ -71,7 +71,7 @@
 							<li>
 								<a id = "etcfont" href="#">고객지원</a>
 								<ul class="submenu2" id = "submenu04">
-									<li><a class = "sub2" href="${contextPath}/cscenter/list/inquiry.do">문의사항</a></li>
+									<li><a class = "sub2" href="${contextPath}/cscenter/list.do">문의사항</a></li>
 									<li><a class = "sub2" href="${contextPath}/cscenter/list/report.do">신고내역</a></li>
 								</ul>
 							</li>
