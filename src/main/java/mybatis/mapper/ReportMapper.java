@@ -15,7 +15,7 @@ public interface ReportMapper {
 
     //최경락
 
-
+    List<ReportDTO> reportListPageWithPaging(Map<String, Object> map);
     //최영주
     int reportInsertWrite(ReportDTO dto);
 

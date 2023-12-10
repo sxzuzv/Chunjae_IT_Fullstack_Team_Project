@@ -16,7 +16,13 @@ public class ReportDAO {
 
 
   //최경락
-
+  public List<ReportDTO> reportListPageWithPaging(Map<String, Object> map) {
+    SqlSession sqlSession = MyBatisSessionFactory.getSqlSession();
+    ReportMapper mapper = sqlSession.getMapper(ReportMapper.class);
+    List<ReportDTO> result = mapper.reportListPageWithPaging(map);
+    sqlSession.close();
+    return result;
+  }
 
   //최영주
   public int reportInsertWrite(ReportDTO dto) {
