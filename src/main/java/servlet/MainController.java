@@ -11,33 +11,27 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-@WebServlet("/main/*")
+@WebServlet("/mainPage/*")
 public class MainController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)  throws ServletException, IOException {
-		doHandle(request, response);
+	List<BoardDTO> marketTopLists = null;
+	@Override
+	public void init(){
+		System.out.println("여긴 몇번");
+		BoardDAO brdDao = new BoardDAO();
+		marketTopLists = brdDao.marketSelectTop(); // 조회수 기준 중고게시판 인기글 6개 목록 받기
 	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doHandle(request, response);
-	}
-
-	private void doHandle(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String nextPage = null;
+	@Override
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String nextPage = "";
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=UTF-8");
 		String action = request.getPathInfo();
 
-		
-        if(request.getSession().getAttribute("userId") == null) {
-            response.sendRedirect(request.getContextPath() + "/member/main.do");
-            return;
-        }
+		request.setAttribute("marketTopLists", marketTopLists);
+
 
 
 		try {
@@ -45,12 +39,9 @@ public class MainController extends HttpServlet {
 
 				nextPage = "/view/main/main.jsp";
 				
-			} else if("/main.do".equals(action)) {
+			} else if("/mainPage.do".equals(action)) {
 				//최영주
-				BoardDAO brdDao = new BoardDAO();
-				Map<String, Object> marketMap = new HashMap<String, Object>();
-				List<BoardDTO> marketTopLists = brdDao.marketSelectTop(marketMap); // 조회수 기준 중고게시판 인기글 6개 목록 받기
-				request.setAttribute("marketTopLists", marketTopLists);
+
 
 				//신수진
 				
