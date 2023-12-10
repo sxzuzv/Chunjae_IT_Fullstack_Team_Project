@@ -203,14 +203,14 @@ public class AdminController extends HttpServlet {
 			if (result == 1) {
 				PrintWriter out = response.getWriter();
 				out.print("<script>"
-						+ "  alert('회원강퇴.');"   // 알림창
+						+ "  alert('회원제재.');"   // 알림창
 						+ " location.href='" + request.getContextPath() + "/admin/memreportlist.do';"
 						+ "</script>");
 
 			}else{
 				PrintWriter out = response.getWriter();
 				out.print("<script>"
-						+ "  alert('회원탈퇴 실패.');"   // 알림창
+						+ "  alert('회원제재 실패.');"   // 알림창
 						+ " location.href='" + request.getContextPath() + "/admin/memberReportList.do';"
 						+ "</script>");
 
