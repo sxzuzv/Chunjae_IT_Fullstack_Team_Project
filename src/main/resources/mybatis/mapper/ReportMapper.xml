@@ -10,6 +10,31 @@
 
     <!--최경락-->
 
+    <select id="reportListPageWithPaging" parameterType="map" resultType="dto.ReportDTO">
+        <![CDATA[
+    SELECT *, (
+        CASE
+            WHEN com_id is not null THEN 'true'
+            ELSE 'false'
+    	END
+	) AS answer
+    FROM report r LEFT OUTER JOIN board_comment rc ON r.brd_id = rc.parent_id
+    WHERE r.user_id = #{userId}
+    ]]>
+        <if test="searchWord != null and !searchWord.equals('')">
+            AND
+            <choose>
+                <when test="searchField == 'title'">
+                    report_title LIKE CONCAT('%', #{searchWord}, '%')
+                </when>
+                <otherwise>
+                    report_content LIKE CONCAT('%', #{searchWord}, '%')
+                </otherwise>
+            </choose>
+        </if>
+        ORDER BY report_id DESC
+        LIMIT #{start}, 10
+    </select>
 
 
     <!--최영주-->
@@ -22,18 +47,19 @@
     <select id="reportSelectCount" parameterType="map" resultType="int">
         SELECT count(*)
         FROM report
-        WHERE userId = #{userId}
+        WHERE user_id = #{userId}
         <if test="searchWord != null and !searchWord.equals('')">
             AND
             <choose>
-                <when test="searchField == 'title'">
-                    title LIKE CONCAT('%', #{searchWord}, '%')
+                <when test="searchField == 'report_title'">
+                    report_title LIKE CONCAT('%', #{searchWord}, '%')
                 </when>
                 <otherwise>
-                    content LIKE CONCAT('%', #{searchWord}, '%')
+                    report_content LIKE CONCAT('%', #{searchWord}, '%')
                 </otherwise>
             </choose>
         </if>
+
     </select>
 
     <select id="reportSelectListPage" parameterType="map" resultType="dto.ReportDTO">
