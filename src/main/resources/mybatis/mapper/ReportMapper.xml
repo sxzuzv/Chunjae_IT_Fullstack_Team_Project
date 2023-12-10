@@ -24,7 +24,7 @@
         <if test="searchWord != null and !searchWord.equals('')">
             AND
             <choose>
-                <when test="searchField == 'report_title'">
+                <when test="searchField == 'title'">
                     report_title LIKE CONCAT('%', #{searchWord}, '%')
                 </when>
                 <otherwise>
@@ -32,7 +32,6 @@
                 </otherwise>
             </choose>
         </if>
-
         ORDER BY report_id DESC
         LIMIT #{start}, 10
     </select>

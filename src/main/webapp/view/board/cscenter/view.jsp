@@ -32,7 +32,7 @@
         <td>문의유형</td> <td><c:choose>
         <c:when test="${dto.cateSub eq 1}"> 문의사항 </c:when>
         <c:when test="${dto.cateSub eq 2}"> 신고 </c:when>
-    </c:choose></td>
+        </c:choose></td>
     </tr>
     <tr>
         <td>제목</td>
