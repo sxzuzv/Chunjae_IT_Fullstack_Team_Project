@@ -7,7 +7,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>고객지원</title>
+    <title>TEACHER MARKET</title>
     <!-- bootstrap 5.3.2 cdn 추가 -->
     <script type="text/javascript">
         function validateForm(form) {  // 필수 항목 입력 확인
@@ -101,5 +101,6 @@
         </div>
     </div>
 </div>
+<jsp:include page="/view/common/footer.jsp" flush="false"/>
 </body>
 </html>

@@ -10,7 +10,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>고객지원</title>
+    <title>TEACHER MARKET</title>
 
 </head>
 <body>
@@ -141,5 +141,7 @@
         <hr class="layout">
     </div>
 </div>
+<%-- footer --%>
+<jsp:include page="/view/common/footer.jsp" flush="false"/>
 </body>
 </html>

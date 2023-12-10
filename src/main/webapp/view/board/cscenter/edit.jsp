@@ -80,5 +80,6 @@
         </tr>
     </table>
 </form>
+<jsp:include page="/view/common/footer.jsp" flush="false"/>
 </body>
 </html>

@@ -7,7 +7,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>고객지원</title>
+    <title>TEACHER MARKET</title>
 </head>
 <header>
     <jsp:include page="/view/common/header.jsp"></jsp:include>
@@ -107,7 +107,8 @@
     <%--  </tr>--%>
 
 </div>
-<jsp:include page="/view/common/comment.jsp"></jsp:include>
+<jsp:include page="/view/board/cscenter/comment.jsp"></jsp:include>
 </body>
+<jsp:include page="/view/common/footer.jsp" flush="false"/>
 </html>
 
