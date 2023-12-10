@@ -91,14 +91,7 @@
                                             <a href="${contextPath}/admin/view.do?brdId=${ row.brdId }">${ row.title }</a>
                                         </td>
                                         <td>${ row.userId }</td>  <!-- 작성자 -->
-                                        <c:choose>
-                                            <c:when test="${commentStatus == 1}">
-                                                <td>답변완료</td>  <!-- 조회수 -->
-                                            </c:when>
-                                            <c:otherwise>
-                                                <td>답변중</td>
-                                            </c:otherwise>
-                                        </c:choose>
+                                        <td>${row.closed eq 'true' ? '답변 완료' : '답변 대기중'}</td>  <!-- 처리상태-->
                                         <td>${ row.regDate }</td>  <!-- 작성일 -->
                                     </tr>
                                     </c:forEach>
