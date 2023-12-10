@@ -36,7 +36,7 @@
                                 </c:choose>
                             </font>
                         </h2>
-                        <p>문의사항입니다.</p>
+                        <p>신고내역입니다.</p>
                     </div>
                     <p class="imgArea"></p>
                 </div>
@@ -59,9 +59,7 @@
                 </form>
                 <div class="xans-element- xans-product xans-product-normalpackage"><!-- 정렬기준 외 -->
                     <div class="xans-element- xans-product xans-product-normalmenu">
-                        <div class="function" id="Product_ListMenu">
-                            <button type="button" class="button" onclick="location.href='${contextPath}/cscenter/pass.do?mode=write';">글쓰기</button>
-                        </div>
+
                     </div>
                     <div class="boardSort">
 							<span
@@ -93,7 +91,7 @@
                             <tbody
                                     class="xans-element- xans-board xans-board-list-1002 xans-board-list xans-board-1002 center">
                             <c:choose>
-                                <c:when test="${ empty csList }">  <!-- 게시물이 없을 때 -->
+                                <c:when test="${ empty reportList }">  <!-- 게시물이 없을 때 -->
                                     <tr style="background-color:#FFFFFF; color:#555555;" class="xans-record-">
                                         <td colspan="6" align="center">
                                             등록된 게시물이 없습니다.
@@ -101,16 +99,16 @@
                                     </tr>
                                 </c:when>
                                 <c:otherwise>  <!-- 게시물이 있을 때 -->
-                                    <c:forEach items="${ csList }" var="row" varStatus="loop">
+                                    <c:forEach items="${ reportList }" var="row" varStatus="loop">
                                         <tr style="background-color:#FFFFFF; color:#555555;" class="xans-record-">
                                             <td>  <!-- 번호 -->
                                                     ${ map.totalCount - (((map.pageNum-1) * map.pageSize) + loop.index)}
                                             </td>
                                             <td class="subject left txtBreak" style="text-align: center">  <!-- 제목(링크) -->
-                                                <a href="/cscenter/view.do?brdId=${ row.brdId }">${ row.title }</a> <span
+                                                <a href="/cscenter/reportview.do?brdId=${ row.reportId }">${ row.reportTitle }</a> <span
                                                         class="txtEm"></span></td>
                                             <td></td>
-                                            <td>${row.closed eq 'true' ? '답변 완료' : '답변 대기중'}</td>  <!-- 처리상태-->
+                                            <td>${row.answer eq 'true' ? '답변 완료' : '답변 대기중'}</td>  <!-- 처리상태-->
                                             <td><span class="txtNum">${ row.userId }</span></td>    <!-- 작성자 -->
                                             <td><span class="txtNum">${ row.regDate }</span></td>  <!-- 게시일자 -->
                                             <!-- 가격 -->

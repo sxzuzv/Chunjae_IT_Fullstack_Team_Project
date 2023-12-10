@@ -1,8 +1,6 @@
 package servlet.cscenter;
 
-import dao.BoardDAO;
 import dao.ReportDAO;
-import dto.BoardDTO;
 import dto.ReportDTO;
 import util.BoardPage;
 
@@ -17,14 +15,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@WebServlet("/cscenter/list.do")
-public class ListController extends HttpServlet {
+@WebServlet("/cscenter/reportlist.do")
+public class ReportListController extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-        // DAO 객체 생성
-        BoardDAO dao = new BoardDAO();
+        //report
+        ReportDAO dao = new ReportDAO();
         // 쿼리스트링 추가용 변수
         String addOther = "";
         // 뷰에 전달할 매개변수 저장용 맵 생성
@@ -41,7 +38,7 @@ public class ListController extends HttpServlet {
         String userId = (String)req.getSession().getAttribute("userId");
         map.put("userId", userId);
         // 게시글의 총 개수를 조회
-        int totalCount = dao.cscenterCount(map);  // 게시물 개수
+        int totalCount = dao.reportSelectCount(map);  // 게시물 개수
 
         /* 페이지 처리 start */
         ServletContext application = getServletContext();
@@ -61,10 +58,10 @@ public class ListController extends HttpServlet {
         map.put("end", end);
         /* 페이지 처리 end */
         // 페이지 번호에 따라 해당 범위의 게시글 목록을 가져옴
-        List<BoardDTO> csList = dao.cscenterListPageWithPaging(map);
+        List<ReportDTO> reportList = dao.reportListPageWithPaging(map);
         // 페이징 처리를 위한 HTML 문자열 생성
         String pagingImg = BoardPage.pagingStr(totalCount, pageSize, blockPage,
-                pageNum, searchField, searchWord, addOther, req.getContextPath() + "/cscenter/list.do"); // 바로가기 영역 HTML 문자열
+                pageNum, searchField, searchWord, addOther, req.getContextPath() + "/cscenter/reportlist.do"); // 바로가기 영역 HTML 문자열
         // 맵에 페이징 정보 추가
         map.put("pagingImg", pagingImg);
         map.put("totalCount", totalCount);
@@ -72,10 +69,9 @@ public class ListController extends HttpServlet {
         map.put("pageNum", pageNum);
 
         // 전달할 데이터를 request 영역에 저장 후 csList.jsp로 포워드
-        req.setAttribute("csList", csList);
+        req.setAttribute("reportList", reportList);
         req.setAttribute("map", map);
 
-        req.getRequestDispatcher("/view/board/cscenter/csList.jsp").forward(req, resp);
+        req.getRequestDispatcher("/view/board/cscenter/reportList.jsp").forward(req, resp);
     }
-
 }
