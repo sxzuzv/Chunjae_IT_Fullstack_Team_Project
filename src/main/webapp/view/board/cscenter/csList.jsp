@@ -107,7 +107,7 @@
                                                     ${ map.totalCount - (((map.pageNum-1) * map.pageSize) + loop.index)}
                                             </td>
                                             <td class="subject left txtBreak" style="text-align: center">  <!-- 제목(링크) -->
-                                                <a href="/cscenter/view.do?brdId=${ row.brdId }">${ row.title }</a> <span
+                                                <a href="${contextPath}/cscenter/view.do?brdId=${ row.brdId }">${ row.title }</a> <span
                                                         class="txtEm"></span></td>
                                             <td></td>
                                             <td>${row.closed eq 'true' ? '답변 완료' : '답변 대기중'}</td>  <!-- 처리상태-->

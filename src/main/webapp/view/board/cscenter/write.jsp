@@ -52,7 +52,7 @@
                     </div>
                 </div>
                 <form name="writeFrm" method="post" enctype="multipart/form-data"
-                      action="/cscenter/write.do" onsubmit="return validateForm(this);">
+                      action="${contextPath}/cscenter/write.do" onsubmit="return validateForm(this);">
                     <!-- table 대신 bootstrap grid system 사용 -->
                     <div class="container">
                         <div class="row">

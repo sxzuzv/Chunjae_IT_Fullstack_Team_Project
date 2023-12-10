@@ -38,7 +38,7 @@
 
 </header>
 <h2>게시글 수정</h2>
-<form name="writeFrm" method="post" enctype="multipart/form-data" action="/cscenter/edit.do" onsubmit="return validateForm(this);">
+<form name="writeFrm" method="post" enctype="multipart/form-data" action="${contextPath}/cscenter/edit.do" onsubmit="return validateForm(this);">
     <input type="hidden" name="brdId" value="${ dto.brdId }">
     <input type="hidden" name="prevOfile" value="${ dto.ofile }">
     <input type="hidden" name="prevSfile" value="${ dto.sfile }">
