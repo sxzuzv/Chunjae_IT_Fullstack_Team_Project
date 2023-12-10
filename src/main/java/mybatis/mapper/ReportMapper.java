@@ -31,4 +31,9 @@ public interface ReportMapper {
 
     //최재혁
 
+    int adreportSelectCount(Map<String, Object> map);
+    List<ReportDTO> adreportListPageWithPaging(Map<String, Object> map);
+
+
+
 }

@@ -25,45 +25,32 @@
 
     <!-- 게시글 정보 -->
     <tr>
-        <td>작성자</td> <td colspan="3">${ dto.userId }</td>
+        <td>신고자</td> <td colspan="3">${ dto.userId }</td>
     </tr>
     <tr>
         <td>작성일</td> <td>${ dto.regDate }</td>
-        <td>조회수</td> <td>${ dto.viewCnt }</td>
+        <td>신고한 게시물 아이디</td><td>${ dto.brdId }</td>
     </tr>
     <tr>
         <td>제목</td>
-        <td colspan="3">${ dto.title }</td>
+        <td colspan="3">${ dto.reportTitle }</td>
     </tr>
     <tr>
         <td>내용</td>
         <td colspan="3" height="100">
-            ${ dto.content }
-            <c:if test="${ not empty dto.ofile and isImage eq true }">
-                <br><img src="../Uploads/${ dto.sfile }" style="max-width:100%;"/>
-            </c:if>
-        </td>
-    </tr>
-
-
-    <tr>
-        <td>첨부 파일</td>
-        <td>
-            <c:if test="${ not empty dto.ofile }">
-                ${ dto.ofile }
-            </c:if>
+            ${ dto.reportContent }
         </td>
     </tr>
 </table>
 
 <br />
 <div>
-            <button class="btnlist" type="button" onclick="location.href='${contextPath}/admin/list.do?cateSub=${ cateSub }';">
-                목록 바로가기
-            </button>
-        <div>
-            <jsp:include page="/view/common/comment.jsp"></jsp:include>
-        </div>
+    <button class="btnlist" type="button" onclick="location.href='${contextPath}/admin/list.do?cateSub=${ cateSub }';">
+        목록 바로가기
+    </button>
+    <div>
+        <jsp:include page="/view/admin/reportComment.jsp"></jsp:include>
+    </div>
 </div>
 <jsp:include page="/view/common/footer.jsp" flush="false"/>
 </body>

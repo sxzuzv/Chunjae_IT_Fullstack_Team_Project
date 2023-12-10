@@ -12,6 +12,7 @@ pageEncoding="UTF-8"%>
 <meta name="viewport" content="width=device-width" , initial-scale="1">
 <link rel="stylesheet" href="${contextPath}/css/bootstrap.css">
 <link rel="stylesheet" href="${contextPath}/css/list.css">
+>>>>>>> develop
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <title>회원관리</title>
 <style type="text/css">
@@ -20,10 +21,7 @@ pageEncoding="UTF-8"%>
 		text-decoration: none;
 	}
 
-
-
 </style>
-
 </head>
 <body>
 <div>
