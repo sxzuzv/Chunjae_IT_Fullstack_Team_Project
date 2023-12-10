@@ -96,7 +96,8 @@
 <details><summary>시퀀스다이어그램(비회원)
 </summary>
 
-*Write here!*
+![비회원-시퀀스 다이어그램](https://github.com/Chunjae3Team/teacherFleaMarket/assets/140072536/5877f5e3-606d-4e6b-9784-bb4f2bafbf3e)
+
 </details>
 
 <details><summary>시퀀스다이어그램(회원-선생님)
