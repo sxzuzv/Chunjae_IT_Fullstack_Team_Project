@@ -31,7 +31,7 @@ public class PassController extends HttpServlet {
 
         // 비 로그인 시 글쓰기, 수정 불가
         if( userId == null) {
-            JSFunction.alertLocation(response,"로그인 후 이용 가능합니다.",request.getContextPath() + "/main/main.do");
+            JSFunction.alertLocation(response,"로그인 후 이용 가능합니다.",request.getContextPath() + "/member/main.do");
         } else if(mode.equals("write")) {
             response.sendRedirect(request.getContextPath() + "/teachercommunity/write.do");
         } else { // 로그인 시 확인
