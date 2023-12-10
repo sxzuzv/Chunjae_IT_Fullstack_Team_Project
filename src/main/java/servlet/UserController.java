@@ -245,7 +245,7 @@ public class UserController extends HttpServlet {
 					java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
 					//	userDao.joinDateUpdate(userID, sqlDate);
 
-					nextPage = "/main/main.do";
+					nextPage = "/view/main/main.jsp";
 				} else if (isStatus.equals("pass") && isAdmin.equals("A")) {
 					//로그인 성공 관리자
 					request.getSession().setAttribute("userId", userID);

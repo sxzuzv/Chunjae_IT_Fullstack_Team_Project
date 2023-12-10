@@ -73,5 +73,21 @@ public class ReportDAO {
 
 
   //최재혁
+  public int adreportSelectCount(Map<String, Object> map) {
+    SqlSession sqlSession = MyBatisSessionFactory.getSqlSession();
+    ReportMapper mapper = sqlSession.getMapper(ReportMapper.class);
+    int result = mapper.adreportSelectCount(map);
+    System.out.println("selectCount - 행 개수 = " + result);
+    sqlSession.close();
+    return result;
+  }
+
+  public List<ReportDTO> adreportListPageWithPaging(Map<String, Object> map) {
+    SqlSession sqlSession = MyBatisSessionFactory.getSqlSession();
+    ReportMapper mapper = sqlSession.getMapper(ReportMapper.class);
+    List<ReportDTO> result = mapper.adreportListPageWithPaging(map);
+    sqlSession.close();
+    return result;
+  }
 
 }

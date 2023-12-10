@@ -69,6 +69,47 @@
 
     <!--최재혁-->
 
+    <select id="adreportSelectCount" parameterType="map" resultType="int">
+        <![CDATA[
+        SELECT count(*)
+        FROM report
+        ]]>
+        <if test="searchWord != null and !searchWord.equals('')">
+            AND
+            <choose>
+                <when test="searchField == 'title'">
+                    report_title LIKE CONCAT('%', #{searchWord}, '%')
+                </when>
+                <otherwise>
+                    report_content LIKE CONCAT('%', #{searchWord}, '%')
+                </otherwise>
+            </choose>
+        </if>
+    </select>
+
+
+
+
+
+    <select id="adreportListPageWithPaging" parameterType="map" resultType="dto.ReportDTO">
+        <![CDATA[
+        SELECT *
+        FROM report
+        ]]>
+        <if test="searchWord != null and !searchWord.equals('')">
+            AND
+            <choose>
+                <when test="searchField == 'title'">
+                    report_title LIKE CONCAT('%', #{searchWord}, '%')
+                </when>
+                <otherwise>
+                    report_content LIKE CONCAT('%', #{searchWord}, '%')
+                </otherwise>
+            </choose>
+        </if>
+        order by report_id desc
+        LIMIT #{start}, 10
+    </select>
 
 
 </mapper>
