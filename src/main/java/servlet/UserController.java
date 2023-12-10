@@ -74,8 +74,6 @@ public class UserController extends HttpServlet {
 			nextPage = "/view/member/login.jsp";
 
 
-		}else if ("/mainpage.do".equals(action)) {
-			nextPage = "/view/main/main.jsp";
 		}else if ("/updateform.do".equals(action)) {
 			nextPage = "/view/member/update.jsp";
 
@@ -244,8 +242,9 @@ public class UserController extends HttpServlet {
 					Date utilDate = new Date();
 					java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
 					//	userDao.joinDateUpdate(userID, sqlDate);
+					
+					nextPage = "/mainPage/mainPage.do";
 
-					nextPage = "/view/main/main.jsp";
 				} else if (isStatus.equals("pass") && isAdmin.equals("A")) {
 					//로그인 성공 관리자
 					request.getSession().setAttribute("userId", userID);

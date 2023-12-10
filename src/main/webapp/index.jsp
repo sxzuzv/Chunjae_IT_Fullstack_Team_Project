@@ -4,6 +4,6 @@
     <head>
     </head>
     <body>
-        <jsp:forward page="${pageContext.request.contextPath}/member/mainpage.do"></jsp:forward>
+        <jsp:forward page="${pageContext.request.contextPath}/mainPage/mainPage.do"></jsp:forward>
     </body>
 </html>
