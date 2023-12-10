@@ -305,6 +305,16 @@ public int tcselectCount(Map<String, Object> map) {
     }
   }
 
+  // 조회수 기준 인기 게시글(6개) 리스트업
+  public List<BoardDTO> marketSelectTop(Map<String, Object> map) {
+    SqlSession sqlSession = MyBatisSessionFactory.getSqlSession();
+    BoardMapper mapper = sqlSession.getMapper(BoardMapper.class);
+
+    List<BoardDTO> result = mapper.marketSelectTop(map);
+    sqlSession.close();
+    return result;
+  }
+
 
     //최재혁
     public int adselectCount(Map<String, Object> map) {
