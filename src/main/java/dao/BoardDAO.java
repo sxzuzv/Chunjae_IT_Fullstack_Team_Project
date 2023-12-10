@@ -306,10 +306,10 @@ public int tcselectCount(Map<String, Object> map) {
   }
 
   // 조회수 기준 인기 게시글(6개) 리스트업
-  public List<BoardDTO> marketSelectTop(Map<String, Object> map) {
+  public List<BoardDTO> marketSelectTop() {
     SqlSession sqlSession = MyBatisSessionFactory.getSqlSession();
     BoardMapper mapper = sqlSession.getMapper(BoardMapper.class);
-    List<BoardDTO> result = mapper.marketSelectTop(map);
+    List<BoardDTO> result = mapper.marketSelectTop();
     sqlSession.close();
     return result;
   }

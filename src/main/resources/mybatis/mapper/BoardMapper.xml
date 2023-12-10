@@ -339,10 +339,11 @@
         where brd_id = #{brdId}
     </update>
 
-    <select id="marketSelectTop" parameterType="map" resultType="dto.BoardDTO">
+    <select id="marketSelectTop" resultType="dto.BoardDTO">
         select *
         from board
         where cate_main = 1
+        and Date(reg_date) =  Date(now())
         order by view_cnt desc LIMIT 6
     </select>
 
