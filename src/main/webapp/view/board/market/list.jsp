@@ -70,7 +70,13 @@
 			<div class="xans-element- xans-product xans-product-normalpackage"><!-- 정렬기준 외 -->
 				<div class="xans-element- xans-product xans-product-normalmenu">
 					<div class="function" id="Product_ListMenu">
-						<button type="button" onclick="location.href='${contextPath}/market/write.do';">글쓰기</button>
+						<c:choose>
+							<c:when test="${ SessionUserId eq null }">
+							</c:when>
+							<c:otherwise>
+								<button type="button" onclick="location.href='${contextPath}/market/write.do';">글쓰기</button>
+							</c:otherwise>
+						</c:choose>
 					</div>
 				</div>
 				<!-- 일반상품진열 -->

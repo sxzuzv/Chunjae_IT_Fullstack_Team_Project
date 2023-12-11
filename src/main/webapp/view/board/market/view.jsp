@@ -122,6 +122,8 @@
                                     <div class="ec-base-button gColumn">
 
                                         <c:choose>
+                                            <c:when test="${ SessionUserId eq null }">
+                                            </c:when>
                                             <c:when test="${ dto.userId eq SessionUserId }">
                                                 <a href="#"
                                                    class="btnNormal sizeM btnBasket "

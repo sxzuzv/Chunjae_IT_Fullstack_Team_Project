@@ -19,14 +19,20 @@
 <%-- 댓글 입력 영역 --%>
 <div class = "xans-product-detail">
   <%-- 댓글 입력 영역 --%>
-  <div id="comment_add">
-    <div class="title">댓글</div>
-    <div class="input"><textarea id="comContent"></textarea></div>
-    <div class="btn"><button type="button" id="add_btn">댓글등록</button></div>
-    <div id="add_message">&nbsp;</div>
-  </div>
-  <%-- 댓글 목록 출력 영역 --%>
-  <div id="comment_list"></div>
+<c:choose>
+  <c:when test="${ SessionUserId eq null }">
+  </c:when>
+  <c:otherwise>
+    <div id="comment_add">
+      <div class="title">댓글</div>
+      <div class="input"><textarea id="comContent"></textarea></div>
+      <div class="btn"><button type="button" id="add_btn">댓글등록</button></div>
+      <div id="add_message">&nbsp;</div>
+    </div>
+    <%-- 댓글 목록 출력 영역 --%>
+    <div id="comment_list"></div>
+  </c:otherwise>
+</c:choose>
 </div>
 
 <script type="text/javascript">

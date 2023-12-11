@@ -76,7 +76,7 @@ public class ListController extends HttpServlet {
     else{ //내상점인 경우
 
       if(userId == null) { //비로그인시 내상점 접근 불가
-        JSFunction.alertLocation(response, "로그인해 주세요", request.getContextPath() + "/main/main.do");
+        JSFunction.alertLocation(response, "로그인해 주세요", request.getContextPath() + "/member/main.do");
 
       } else {
         map.put("userId", userId); //현재 로그인한 사용자Id 값 맵에 넘김
@@ -127,6 +127,7 @@ public class ListController extends HttpServlet {
     // 전달할 데이터를 request 영역에 저장 후 List.jsp or MyList.jsp로 포워드
     request.setAttribute("boardLists", boardLists);
     request.setAttribute("map", map);
+    request.setAttribute("SessionUserId", userId);
 
 
     request.getRequestDispatcher(nextPage).forward(request, response);
