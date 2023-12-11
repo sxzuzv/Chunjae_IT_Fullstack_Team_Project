@@ -90,7 +90,7 @@
 <details><summary>ERD
 </summary>
 
-![ERD](https://github.com/Chunjae3Team/teacherFleaMarket/assets/140072536/7c868991-8fb3-41f4-8dbf-46b4667bac92)
+![ERD](https://github.com/Chunjae3Team/teacherFleaMarket/assets/140072536/2e3a9693-c1ab-46a6-bdec-8ea78015301d)
 </details>
 
 <details><summary>시퀀스 다이어그램(비회원)
