@@ -168,3 +168,12 @@
 
 - 판매 내역 불러오기 <br>
 ![내 상점 - 판매 내역 목록 불러오기](https://github.com/Chunjae3Team/teacherFleaMarket/assets/106226864/cb3fbf28-0fdd-462a-bf1d-2c05ad2089cd)
+
+<br>
+
+### ▼ 고객지원
+
+- 내문의글 <br>
+![고객센터 문의사항](https://github.com/Chunjae3Team/teacherFleaMarket/assets/140072536/acbe59f1-5a47-492a-8054-b1f0aaacb666)
+- 신고목록 <br>
+![고객센터 신고내역](https://github.com/Chunjae3Team/teacherFleaMarket/assets/140072536/1f3dcdf3-7fdb-4839-8f4f-a9b2b0a87cf2)
