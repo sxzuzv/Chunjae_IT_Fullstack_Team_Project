@@ -60,17 +60,23 @@
 								<option value="title">제목</option>
 								<option value="content">내용</option>
 							</select>
-							<input type="hidden" name="cateSub" value=${ map.cateSub }/>
+							<input type="hidden" name="cateSub" value=${ map.cateSub }>
 							<input id="search" name="searchWord"
 								   class="inputTypeText" placeholder="" value="" type="text">
-							<input id= "submitbtn" type="submit" value="검색하기"/></p>
+							<input id= "submitbtn" type="submit" value="검색하기"></p>
 					</fieldset>
 				</div>
 			</form>
 			<div class="xans-element- xans-product xans-product-normalpackage"><!-- 정렬기준 외 -->
 				<div class="xans-element- xans-product xans-product-normalmenu">
 					<div class="function" id="Product_ListMenu">
-						<button type="button" onclick="location.href='${contextPath}/market/write.do';">글쓰기</button>
+						<c:choose>
+							<c:when test="${ SessionUserId eq null }">
+							</c:when>
+							<c:otherwise>
+								<button type="button" onclick="location.href='${contextPath}/market/write.do';">글쓰기</button>
+							</c:otherwise>
+						</c:choose>
 					</div>
 				</div>
 				<!-- 일반상품진열 -->
@@ -88,7 +94,7 @@
 								<div class="thumbnail">
 									<div class="prdImg">
 										<a href="${contextPath}/market/view.do?brdId=${ row.brdId }">
-											<img src="/Uploads/${ row.sfile }" alt=""></a>
+											<img src="${contextPath}/Uploads/${ row.sfile }" alt=""></a>
 									</div>
 								</div>
 								<div class="description">
@@ -126,5 +132,6 @@
 	</div>
 	<hr class="layout">
 </div>
+<jsp:include page="/view/common/footer.jsp" flush="false"/>
 </body>
 </html>

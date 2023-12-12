@@ -10,7 +10,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>고객지원</title>
+    <title>TEACHER MARKET</title>
 
 </head>
 <body>
@@ -32,11 +32,11 @@
                             <font color="#555555">
                                 <c:choose>
                                     <c:when test="${ map.myStore eq 'sell'}">  </c:when>
-                                    <c:otherwise> 고객지원 </c:otherwise>
+                                    <c:otherwise> 문의사항 </c:otherwise>
                                 </c:choose>
                             </font>
                         </h2>
-                        <p>내상점 입니다.</p>
+                        <p>문의사항입니다.</p>
                     </div>
                     <p class="imgArea"></p>
                 </div>
@@ -50,17 +50,17 @@
                                     <option value="title">제목</option>
                                     <option value="content">내용</option>
                                 </select>
-                                <input type="hidden" name="myStore" value=${ map.myStore }/>
+                                <input type="hidden" name="myStore" value=${ map.myStore }>
                                 <input id="search" name="searchWord"
                                        class="inputTypeText" placeholder="" value="" type="text">
-                                <input id= "submitbtn" type="submit" value="검색하기"/></p>
+                                <input id= "submitbtn" type="submit" value="검색하기"></p>
                         </fieldset>
                     </div>
                 </form>
                 <div class="xans-element- xans-product xans-product-normalpackage"><!-- 정렬기준 외 -->
                     <div class="xans-element- xans-product xans-product-normalmenu">
                         <div class="function" id="Product_ListMenu">
-                            <button type="button" onclick="location.href='/cscenter/write.do';">글쓰기</button>
+                            <button type="button" class="button" onclick="location.href='${contextPath}/cscenter/pass.do?mode=write';">글쓰기</button>
                         </div>
                     </div>
                     <div class="boardSort">
@@ -84,7 +84,7 @@
                             <tr style=" ">
                                 <th scope="col">번호</th>
                                 <th scope="col">제목</th>
-                                <th scope="col">문의유형</th>
+                                <th></th>
                                 <th scope="col">처리상태</th>
                                 <th scope="col">작성자</th>
                                 <th scope="col">게시일자</th>
@@ -107,13 +107,10 @@
                                                     ${ map.totalCount - (((map.pageNum-1) * map.pageSize) + loop.index)}
                                             </td>
                                             <td class="subject left txtBreak" style="text-align: center">  <!-- 제목(링크) -->
-                                                <a href="/cscenter/view.do?brdId=${ row.brdId }">${ row.title }</a> <span
+                                                <a href="${contextPath}/cscenter/view.do?brdId=${ row.brdId }">${ row.title }</a> <span
                                                         class="txtEm"></span></td>
-                                            <td><c:choose>
-                                                <c:when test="${row.cateSub eq 1}"> 문의사항 </c:when>
-                                                <c:when test="${row.cateSub eq 2}"> 신고 </c:when>
-                                                </c:choose></td>   <!-- 문의 유형 -->
-                                            <td>${ row.userId }</td>  <!-- 처리상태-->
+                                            <td></td>
+                                            <td>${row.closed eq 'true' ? '답변 완료' : '답변 대기중'}</td>  <!-- 처리상태-->
                                             <td><span class="txtNum">${ row.userId }</span></td>    <!-- 작성자 -->
                                             <td><span class="txtNum">${ row.regDate }</span></td>  <!-- 게시일자 -->
                                             <!-- 가격 -->
@@ -144,5 +141,7 @@
         <hr class="layout">
     </div>
 </div>
+<%-- footer --%>
+<jsp:include page="/view/common/footer.jsp" flush="false"/>
 </body>
 </html>

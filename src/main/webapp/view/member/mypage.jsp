@@ -61,8 +61,12 @@
 								<hr class="my-4">
 								<div class="form-group">
 									<label for="name">이름</label>
-									<input type="text" class="form-control form-control-lg" id="name" name="name" maxlength="6" value="${userDTO.userName}" readonly>
+									<input type="text" class="form-control form-control-lg" id="name" name="name" maxlength="10" value="${userDTO.userName}" readonly>
 								</div>
+							<div class="form-group">
+								<label for="nickname">닉네임</label>
+								<input type="text" class="form-control form-control-lg" id="nickname" name="nickname" maxlength="10" value="${userDTO.userNick}" readonly>
+							</div>
 								<div class="form-group">
 									<label for="tel">전화번호</label>
 									<input type="text" class="form-control form-control-lg" id="tel" name="tel" maxlength="15" value="${userDTO.userCp}" readonly>
@@ -94,5 +98,6 @@
 	<!-- 부트스트랩 및 jQuery 스크립트 -->
 <script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+<jsp:include page="/view/common/footer.jsp" flush="false"/>
 </body>
 </html>

@@ -31,6 +31,7 @@
 
 /* 댓글등록 버튼의 스타일 */
 #add_btn {
+    line-height: 0px;
     width: 100px; /* 버튼의 너비 */
     height: 30px; /* 버튼의 높이 */
     background-color: #0e4d90; /* 버튼의 배경색 */

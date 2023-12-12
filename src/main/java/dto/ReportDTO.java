@@ -18,4 +18,5 @@ public class ReportDTO {
     private String reportContent;
     private LocalDate regDate;
     private LocalDate modDate;
+    private String answer;
 }

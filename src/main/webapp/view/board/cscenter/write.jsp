@@ -7,7 +7,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>고객지원</title>
+    <title>TEACHER MARKET</title>
     <!-- bootstrap 5.3.2 cdn 추가 -->
     <script type="text/javascript">
         function validateForm(form) {  // 필수 항목 입력 확인
@@ -52,7 +52,7 @@
                     </div>
                 </div>
                 <form name="writeFrm" method="post" enctype="multipart/form-data"
-                      action="/cscenter/write.do" onsubmit="return validateForm(this);">
+                      action="${contextPath}/cscenter/write.do" onsubmit="return validateForm(this);">
                     <!-- table 대신 bootstrap grid system 사용 -->
                     <div class="container">
                         <div class="row">
@@ -60,14 +60,13 @@
                             <div class="col-9">
                                 <select name="cateSub" class="form-select form-control-lg">
                                     <option value="1">고객문의</option>
-                                    <option value="2">신고</option>
                                 </select>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-3">제목</div>
                             <div class="col-9">
-                                <input type="text" name="title" class="form-control form-control-lg" />
+                                <input type="text" name="title" class="form-control form-control-lg">
                             </div>
                         </div>
                         <div class="row">
@@ -79,7 +78,7 @@
                         <div class="row">
                             <div class="col-3">첨부 파일</div>
                             <div class="col-9">
-                                <input type="file" name="ofile" class="form-control form-control-lg" />
+                                <input type="file" name="ofile" class="form-control form-control-lg">
                             </div>
                         </div>
                         <div class="btn-zone mt-4">
@@ -102,5 +101,6 @@
         </div>
     </div>
 </div>
+<jsp:include page="/view/common/footer.jsp" flush="false"/>
 </body>
 </html>

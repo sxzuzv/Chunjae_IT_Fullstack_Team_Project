@@ -91,9 +91,9 @@ public class EditController extends HttpServlet {
         // 성공 or 실패?
         if (result == 1) {  // 수정 성공
             //            session.removeAttribute("pass");
-            response.sendRedirect("/teachercommunity/view.do?brdId=" + brdId);
+            response.sendRedirect(request.getContextPath() + "/teachercommunity/view.do?brdId=" + brdId);
         } else {  // 수정 실패
-            JSFunction.alertLocation(response, "오류로 수정 내용이 반영되지 않았습니다.",
+            JSFunction.alertLocation(response, "오류로 수정 내용이 반영되지 않았습니다.",request.getContextPath() +
                     "/teachercommunity/view.do?brdId=" + brdId);
         }
     }

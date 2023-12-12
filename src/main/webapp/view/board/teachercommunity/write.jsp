@@ -58,7 +58,7 @@
     <tr>
       <td>제목</td>
       <td>
-        <input type="text" name="title" style="width:90%;" />
+        <input type="text" name="title" style="width:90%;">
       </td>
     </tr>
     <tr>
@@ -70,7 +70,7 @@
     <tr>
       <td>첨부 파일</td>
       <td>
-        <input type="file" name="ofile" />
+        <input type="file" name="ofile">
       </td>
     </tr>
     <tr>
@@ -84,5 +84,6 @@
     </tr>
   </table>
 </form>
+<jsp:include page="/view/common/footer.jsp" flush="false"/>
 </body>
 </html>

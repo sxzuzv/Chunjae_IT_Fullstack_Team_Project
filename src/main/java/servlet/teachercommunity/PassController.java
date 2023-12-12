@@ -31,9 +31,9 @@ public class PassController extends HttpServlet {
 
         // 비 로그인 시 글쓰기, 수정 불가
         if( userId == null) {
-            JSFunction.alertLocation(response,"로그인 후 이용 가능합니다.","/main/main.do");
+            JSFunction.alertLocation(response,"로그인 후 이용 가능합니다.",request.getContextPath() + "/member/main.do");
         } else if(mode.equals("write")) {
-            response.sendRedirect("/teachercommunity/write.do");
+            response.sendRedirect(request.getContextPath() + "/teachercommunity/write.do");
         } else { // 로그인 시 확인
                 dao = new BoardDAO();
                 confirmed = dao.confirmPassword(userId, brdId);
@@ -46,7 +46,7 @@ public class PassController extends HttpServlet {
 //                response.sendRedirect("/teachercommunity/write.do");
 //            }
             if (mode.equals("edit")) {  // 수정 모드
-                response.sendRedirect("/teachercommunity/edit.do?brdId=" + brdId);
+                response.sendRedirect(request.getContextPath() + "/teachercommunity/edit.do?brdId=" + brdId);
             }
             else if (mode.equals("delete")) {  // 삭제 모드
                 BoardDTO dto = dao.tcselectView(brdId);
@@ -56,7 +56,7 @@ public class PassController extends HttpServlet {
                     String saveFileName = dto.getSfile();
                     FileUtil.deleteFile(request, "/Uploads", saveFileName);
                 }
-                JSFunction.alertLocation(response, "삭제되었습니다.", "/teachercommunity/list.do");
+                JSFunction.alertLocation(response, "삭제되었습니다.", request.getContextPath() + "/teachercommunity/list.do");
             }
         }
         else {  // 비밀번호 불일치

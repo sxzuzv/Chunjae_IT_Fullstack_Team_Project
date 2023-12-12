@@ -19,7 +19,7 @@ import java.io.IOException;
         maxRequestSize = 1024 * 1024 * 10
 )
 public class WriteController extends HttpServlet {
-    private BoardDAO dao = new BoardDAO();
+    private BoardDAO dao = new BoardDAO(); // BoardDAO 객체 생성
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -42,7 +42,7 @@ public class WriteController extends HttpServlet {
         dto.setUserId((String)request.getSession().getAttribute("userId"));
         dto.setTitle(request.getParameter("title"));
         dto.setContent(request.getParameter("content"));
-        dto.setCateMain(2);
+        dto.setCateMain(3);
         dto.setCateSub(Integer.parseInt(request.getParameter("cateSub")));
 
         if (!originalFileName.isEmpty()) {

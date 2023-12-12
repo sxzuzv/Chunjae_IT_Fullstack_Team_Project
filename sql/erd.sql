@@ -22,7 +22,9 @@ CREATE TABLE IF NOT EXISTS `user` (
   `join_date` datetime DEFAULT current_timestamp(),
   `user_grade` ENUM('A', 'E') NOT NULL DEFAULT 'E',
   `user_status` ENUM('pass', 'reject') DEFAULT 'reject',
-  `report_cnt` int(10) DEFAULT NULL,
+  `report_cnt` int(10) DEFAULT 0,
+  `ofile` varchar(100) DEFAULT NULL,
+  `sfile` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`user_idx`),
   unique key(`user_id`)
 );
@@ -70,6 +72,18 @@ CREATE TABLE IF NOT EXISTS `board_comment` (
   PRIMARY KEY (`com_id`)
 );
 
+-- 테이블 fleamarket.report_comment
+CREATE TABLE IF NOT EXISTS `report_comment` (
+    `com_id` int(10) NOT NULL AUTO_INCREMENT,
+    `parent_id` int(10) NOT NULL,
+    `com_depth` int(10) DEFAULT NULL,
+    `com_content` varchar(50) NOT NULL,
+    `user_id` varchar(10) NOT NULL,
+    `reg_date` datetime NOT NULL DEFAULT current_timestamp(),
+    `mod_date` datetime DEFAULT NULL,
+    PRIMARY KEY (`com_id`)
+);
+
 
 -- 테이블 studycafe.categories 구조 내보내기
 CREATE TABLE IF NOT EXISTS `categories` (
@@ -82,13 +96,12 @@ CREATE TABLE IF NOT EXISTS `categories` (
   UNIQUE KEY unique_cate (`cate_main`, `cate_sub`)
 );
 
-insert into `categories`(`cate_main`, `cate_sub`, `kate_name`, `user_grade`) values 
+insert into `categories`(`cate_main`, `cate_sub`, `cate_name`, `user_grade`) values
 (1, null, '중고거래', 'E'),
 (2, 1, '선생님요모조모 꿀팁나눠요', 'E'),
 (2, 2, '선생님요모조모 고민 있어요', 'E'),
 (2, 3, '선생님요모조모 수업 질문', 'E'),
-(3, 1, '고객지원 문의사항', 'E'),
-(3, 2, '고객지원 신고', 'E');
+(3, 1, '고객지원 문의사항', 'E')
 
 
 
@@ -213,6 +226,9 @@ alter table board_comment add foreign key(parent_id) REFERENCES board(brd_id); -
 alter table board_comment add foreign key(user_id) REFERENCES user(user_id);
 
 alter table report add foreign key (brd_id) REFERENCES board(brd_id);
+
+alter table report_comment add foreign key(parent_id) REFERENCES report(report_id); -- 이건 댓글을 참조하기도 해서 풀어놓아야 되나 싶슴다..
+alter table report_comment add foreign key(user_id) REFERENCES user(user_id);
 
 
 

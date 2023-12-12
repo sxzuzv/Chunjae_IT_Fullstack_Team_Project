@@ -305,10 +305,63 @@ public int tcselectCount(Map<String, Object> map) {
     }
   }
 
+  // 조회수 기준 인기 게시글(6개) 리스트업
+  public List<BoardDTO> marketSelectTop() {
+    SqlSession sqlSession = MyBatisSessionFactory.getSqlSession();
+    BoardMapper mapper = sqlSession.getMapper(BoardMapper.class);
+    List<BoardDTO> result = mapper.marketSelectTop();
+    sqlSession.close();
+    return result;
+  }
 
 
+    //최재혁
+    public int adselectCount(Map<String, Object> map) {
+      SqlSession sqlSession = MyBatisSessionFactory.getSqlSession();
+      BoardMapper mapper = sqlSession.getMapper(BoardMapper.class);
 
-  //최재혁
+      // 쿼리문 실행 결과(= 검색 조건에 맞는 게시글 개수)를 totalCount에 저장
+      int totalCount = mapper.adselectCount(map);
+      sqlSession.close();
+      // 검색 조건에 맞는 게시글 개수를 서블릿(.java)으로 반환
+      return totalCount;
+    }
+
+  // [선생님 요모조모_소분류 공통] 검색 조건에 맞는 게시물 목록 출력
+  public List<BoardDTO> adselectListPage(Map<String, Object> map) {
+    SqlSession sqlSession = MyBatisSessionFactory.getSqlSession();
+    BoardMapper mapper = sqlSession.getMapper(BoardMapper.class);
+
+    // 쿼리문 실행 결과(= 검색 조건에 맞는 게시물 목록)를 result에 저장
+    List<BoardDTO> result = mapper.adselectListPage(map);
+    System.out.println(result);
+
+    sqlSession.close();
+    // 검색 조건에 맞는 게시물 목록을 서블릿(
+    return result;
+  }
+
+  public BoardDTO adselectView(String idx) {
+    SqlSession sqlSession = MyBatisSessionFactory.getSqlSession();
+    BoardMapper mapper = sqlSession.getMapper(BoardMapper.class);
+    BoardDTO dto = mapper.adselectView(idx);
+    sqlSession.close();
+    return dto;
+  }
+
+  public boolean confirmStatus(String userId, String userStatus) {
+    Map<String, String> map = new HashMap<>();
+    map.put("userId", userId);
+    map.put("userStatus", userStatus);
+    SqlSession sqlSession = MyBatisSessionFactory.getSqlSession();
+    BoardMapper mapper = sqlSession.getMapper(BoardMapper.class);
+    int result = mapper.confirmStatus(map);
+    if (result == 1) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 
 }
 
