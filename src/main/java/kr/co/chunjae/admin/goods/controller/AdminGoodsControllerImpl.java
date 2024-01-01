@@ -102,7 +102,7 @@ public class AdminGoodsControllerImpl extends BaseController  implements AdminGo
 		
 		HttpSession session = multipartRequest.getSession();
 		MemberVO memberVO = (MemberVO) session.getAttribute("memberInfo");
-		String reg_id = memberVO.getMember_id();
+		String reg_id = memberVO.getMemberId();
 		
 		
 		List<ImageFileVO> imageFileList =upload(multipartRequest);
@@ -200,7 +200,7 @@ public class AdminGoodsControllerImpl extends BaseController  implements AdminGo
 		
 		HttpSession session = multipartRequest.getSession();
 		MemberVO memberVO = (MemberVO) session.getAttribute("memberInfo");
-		String reg_id = memberVO.getMember_id();
+		String reg_id = memberVO.getMemberId();
 		
 		List<ImageFileVO> imageFileList=null;
 		int goods_id=0;
@@ -257,7 +257,7 @@ public class AdminGoodsControllerImpl extends BaseController  implements AdminGo
 		
 		HttpSession session = multipartRequest.getSession();
 		MemberVO memberVO = (MemberVO) session.getAttribute("memberInfo");
-		String reg_id = memberVO.getMember_id();
+		String reg_id = memberVO.getMemberId();
 		
 		List<ImageFileVO> imageFileList=null;
 		int goods_id=0;

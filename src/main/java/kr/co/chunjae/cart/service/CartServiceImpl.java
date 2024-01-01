@@ -44,8 +44,8 @@ public class CartServiceImpl  implements CartService{
 		cartDAO.updateCartGoodsQty(cartVO);
 		return result;
 	}
-	public void removeCartGoods(int cart_id) throws Exception{
-		cartDAO.deleteCartGoods(cart_id);
+	public void removeCartGoods(Long cartId) throws Exception{
+		cartDAO.deleteCartGoods(cartId);
 	}
 	
 }

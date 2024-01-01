@@ -36,24 +36,24 @@ public class CartControllerImpl extends BaseController implements CartController
 		ModelAndView mav = new ModelAndView(viewName);
 		HttpSession session=request.getSession();
 		MemberVO memberVO=(MemberVO)session.getAttribute("memberInfo");
-		String member_id=memberVO.getMember_id();
-		cartVO.setMember_id(member_id);
+		String memberId=memberVO.getMemberId();
+		cartVO.setMemberId(memberId);
 		Map<String ,List> cartMap=cartService.myCartList(cartVO);
 		session.setAttribute("cartMap", cartMap);//장바구니 목록 화면에서 상품 주문 시 사용하기 위해서 장바구니 목록을 세션에 저장한다.
 		//mav.addObject("cartMap", cartMap);
 		return mav;
 	}
 	@RequestMapping(value="/addGoodsInCart.do" ,method = RequestMethod.POST,produces = "application/text; charset=utf8")
-	public  @ResponseBody String addGoodsInCart(@RequestParam("goods_id") int goods_id,
+	public  @ResponseBody String addGoodsInCart(@RequestParam("goods_id") Long goodsId,
 			                    HttpServletRequest request, HttpServletResponse response)  throws Exception{
 		HttpSession session=request.getSession();
 		memberVO=(MemberVO)session.getAttribute("memberInfo");
-		String member_id=memberVO.getMember_id();
+		String memberId=memberVO.getMemberId();
 		
-		cartVO.setMember_id(member_id);
+		cartVO.setMemberId(memberId);
 		//카트 등록전에 이미 등록된 제품인지 판별한다.
-		cartVO.setGoods_id(goods_id);
-		cartVO.setMember_id(member_id);
+		cartVO.setGoodsId(goodsId);
+		cartVO.setMemberId(memberId);
 		boolean isAreadyExisted=cartService.findCartGoods(cartVO);
 		System.out.println("isAreadyExisted:"+isAreadyExisted);
 		if(isAreadyExisted==true){
@@ -65,15 +65,15 @@ public class CartControllerImpl extends BaseController implements CartController
 	}
 	
 	@RequestMapping(value="/modifyCartQty.do" ,method = RequestMethod.POST)
-	public @ResponseBody String  modifyCartQty(@RequestParam("goods_id") int goods_id,
-			                                   @RequestParam("cart_goods_qty") int cart_goods_qty,
+	public @ResponseBody String  modifyCartQty(@RequestParam("goods_id") Long goodsId,
+			                                   @RequestParam("cart_goods_qty") int cartGoodsQty,
 			                                    HttpServletRequest request, HttpServletResponse response)  throws Exception{
 		HttpSession session=request.getSession();
 		memberVO=(MemberVO)session.getAttribute("memberInfo");
-		String member_id=memberVO.getMember_id();
-		cartVO.setGoods_id(goods_id);
-		cartVO.setMember_id(member_id);
-		cartVO.setCart_goods_qty(cart_goods_qty);
+		String memberId=memberVO.getMemberId();
+		cartVO.setGoodsId(goodsId);
+		cartVO.setMemberId(memberId);
+		cartVO.setCartGoodsQty(cartGoodsQty);
 		boolean result=cartService.modifyCartQty(cartVO);
 		
 		if(result==true){
@@ -85,10 +85,10 @@ public class CartControllerImpl extends BaseController implements CartController
 	}
 	
 	@RequestMapping(value="/removeCartGoods.do" ,method = RequestMethod.POST)
-	public ModelAndView removeCartGoods(@RequestParam("cart_id") int cart_id,
+	public ModelAndView removeCartGoods(@RequestParam("cart_id") Long cartId,
 			                          HttpServletRequest request, HttpServletResponse response)  throws Exception{
 		ModelAndView mav=new ModelAndView();
-		cartService.removeCartGoods(cart_id);
+		cartService.removeCartGoods(cartId);
 		mav.setViewName("redirect:/cart/myCartList.do");
 		return mav;
 	}

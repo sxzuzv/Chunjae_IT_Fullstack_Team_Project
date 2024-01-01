@@ -31,11 +31,11 @@ public class GoodsServiceImpl implements GoodsService{
 		return goodsMap;
 	}
 	
-	public Map goodsDetail(String _goods_id) throws Exception {
+	public Map goodsDetail(Long _goodsId) throws Exception {
 		Map goodsMap=new HashMap();
-		GoodsVO goodsVO = goodsDAO.selectGoodsDetail(_goods_id);
+		GoodsVO goodsVO = goodsDAO.selectGoodsDetail(_goodsId);
 		goodsMap.put("goodsVO", goodsVO);
-		List<ImageFileVO> imageList =goodsDAO.selectGoodsDetailImage(_goods_id);
+		List<ImageFileVO> imageList =goodsDAO.selectGoodsDetailImage(_goodsId);
 		goodsMap.put("imageList", imageList);
 		return goodsMap;
 	}
