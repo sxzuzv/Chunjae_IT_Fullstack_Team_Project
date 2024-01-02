@@ -1,10 +1,42 @@
 package kr.co.chunjae.order.vo;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 import org.springframework.stereotype.Component;
 
+import java.sql.Date;
+
+@Getter
+@Setter
+@ToString
 @Component("orderVO")
 public class OrderVO {
-	private int order_seq_num;
+
+	private int orderSeqNum;
+	private Long orderId;
+	private String memberId;
+	private Long goodsId;
+	private String ordererName;
+	private String goodsTitle;
+	private int orderGoodsQty;
+	private int goodsSalesPrice;
+	private String goodsFilename;
+	private String recieverName;
+	private String recieverHp;
+	private String deliveryAddress;
+	private String deliveryMethod;
+	private String deliveryMessage;
+	private String giftWrapping;
+	private String payMethod;
+	private String cardComName;
+	private String cardPayMonth;
+	private String payOrdererHpNum;
+	private String deliveryState;
+	private Date payOrderTime;
+	private String ordererHp;
+
+	/*private int order_seq_num;
 	private String member_id;
 	private int order_id;
 	private int goods_id;
@@ -21,7 +53,7 @@ public class OrderVO {
 	private String receiver_tel1;
 	private String receiver_tel2;
 	private String receiver_tel3;
-	
+
 	private String delivery_address;
 	private String delivery_message;
 	private String delivery_method;
@@ -32,16 +64,16 @@ public class OrderVO {
 	private String pay_orderer_hp_num; //휴대폰 결제 전화번호
 	private String pay_order_time;
 	private String delivery_state;  //현재 주문 상품 배송 상태
-	
+
 	private String final_total_price;
 	private int goods_qty;
 	private String goods_fileName;
 	private String orderer_hp;
-	
-	
-	
-	
-	
+
+
+
+
+
 	public int getOrder_seq_num() {
 		return order_seq_num;
 	}
@@ -72,10 +104,10 @@ public class OrderVO {
 	public void setGoods_title(String goods_title) {
 		this.goods_title = goods_title;
 	}
-	
-	
-	
-	
+
+
+
+
 	public int getGoods_sales_price() {
 		return goods_sales_price;
 	}
@@ -100,8 +132,8 @@ public class OrderVO {
 	public void setGoods_qty(int goods_qty) {
 		this.goods_qty = goods_qty;
 	}
-	
-	
+
+
 	public int getTotal_goods_price() {
 		return total_goods_price;
 	}
@@ -114,8 +146,8 @@ public class OrderVO {
 	public void setCart_goods_qty(int cart_goods_qty) {
 		this.cart_goods_qty = cart_goods_qty;
 	}
-	
-	
+
+
 	public int getOrder_goods_qty() {
 		return order_goods_qty;
 	}
@@ -134,9 +166,9 @@ public class OrderVO {
 	public void setReceiver_name(String receiver_name) {
 		this.receiver_name = receiver_name;
 	}
-	
-	
-	
+
+
+
 	public String getReceiver_hp1() {
 		return receiver_hp1;
 	}
@@ -152,8 +184,8 @@ public class OrderVO {
 	public String getReceiver_hp3() {
 		return receiver_hp3;
 	}
-	
-	
+
+
 	public String getReceiver_tel1() {
 		return receiver_tel1;
 	}
@@ -217,8 +249,8 @@ public class OrderVO {
 	public void setCard_pay_month(String card_pay_month) {
 		this.card_pay_month = card_pay_month;
 	}
-	
-	
+
+
 	public String getPay_order_time() {
 		return pay_order_time;
 	}
@@ -242,8 +274,8 @@ public class OrderVO {
 	}
 	public void setOrderer_hp(String orderer_hp) {
 		this.orderer_hp = orderer_hp;
-	}
-	
-	
+	}*/
+
+
 
 }
