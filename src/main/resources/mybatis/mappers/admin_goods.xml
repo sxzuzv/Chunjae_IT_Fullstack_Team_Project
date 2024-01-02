@@ -139,15 +139,15 @@
 		]]>
 	</insert> 
 	<select id="selectNewGoodsList" resultType="goodsVO"   parameterType="java.util.Map"  >
-	    <![CDATA[
 		  select * from (
-			   select rowNum as recNum,
+			   select
+-- 			       rowNum as recNum,
 			   		  goods_id,
 			          goods_title,
 			          goods_writer,
 			          goods_publisher,
 			          goods_sales_price,
--- 			          to_char(goods_creDate,'YYYY-MM-DD')  as goods_creDate,
+			          to_char(goods_credate,'YYYY-MM-DD')  as goods_creDate,
 			          to_char(goods_published_date,'YYYY-MM-DD') as goods_published_date
 			       from (
 			             select  goods_id,
@@ -155,21 +155,22 @@
 			             		 goods_writer,
 			             		 goods_publisher,
 			             		 goods_sales_price,
-			             		 -- goods_creDate,
+			             		 goods_credate,
 			             		 goods_published_date
 			              from t_shopping_goods 
-			                -- where  to_char(goods_creDate,'YYYY-MM-DD')  between #{beginDate} and #{endDate}
-			               order by goods_creDate desc
+			                where  to_char(goods_credate,'YYYY-MM-DD')  between #{beginDate} and #{endDate}
+			               order by goods_credate desc
 					    )
 				)							
 			where				
-		recNum between (#{section}-1)*100+ (#{pageNum}-1)*10+1 and (#{section}-1)*100+(#{pageNum})*10				        
-    	]]>
+		recNum between (#{section}-1)*100+ (#{pageNum}-1)*10+1 and (#{section}-1)*100+(#{pageNum})*10
 	</select>
 	
 	<select id="selectOrderGoodsList" resultType="OrderVO" parameterType="java.util.Map"  >
+		<![CDATA[
 		  select * from (
-			    select rowNum as recNum,t.*
+			    select
+			        rowNum as recNum, t.*
 			       from (
 			              select  *  from t_shopping_order 
 			              where to_char(pay_order_time,'yyyy-mm-dd')  between #{beginDate} and #{endDate}
@@ -183,10 +184,11 @@
 			                   AND orderer_hp=#{search_word}
 			                </if>
 			              order by PAY_ORDER_TIME desc
-					    )
+					    ) t
 				)							
 			where				
-		recNum between (#{section}-1)*100+ (#{pageNum}-1)*10+1 and (#{section}-1)*100+(#{pageNum})*10				        
+		recNum between (#{section}-1)*100+ (#{pageNum}-1)*10+1 and (#{section}-1)*100+(#{pageNum})*10
+		]]>
 	</select>
 	
 
