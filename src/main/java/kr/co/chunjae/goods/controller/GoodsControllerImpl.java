@@ -29,15 +29,17 @@ public class GoodsControllerImpl extends BaseController implements GoodsControll
 	GoodsService goodsService;
 	
 	@RequestMapping(value="/goodsDetail.do" ,method = RequestMethod.GET)
-	public ModelAndView goodsDetail(@RequestParam("goods_id") String goods_id,
+	public ModelAndView goodsDetail(@RequestParam("goods_id") String goodsId,
 			                       HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String viewName=(String)request.getAttribute("viewName");
 		HttpSession session=request.getSession();
-		Map goodsMap=goodsService.goodsDetail(goods_id);
+		Map goodsMap=goodsService.goodsDetail(goodsId);
+		System.out.println("========================="+goodsMap.get("goodsVO").getClass().getName());
+		System.out.println("========================="+goodsMap.get("imageList").toString());
 		ModelAndView mav = new ModelAndView(viewName);
 		mav.addObject("goodsMap", goodsMap);
 		GoodsVO goodsVO=(GoodsVO)goodsMap.get("goodsVO");
-		addGoodsInQuick(goods_id,goodsVO,session);
+		addGoodsInQuick(goodsId,goodsVO,session);
 		return mav;
 	}
 	
@@ -73,7 +75,7 @@ public class GoodsControllerImpl extends BaseController implements GoodsControll
 		
 	}
 	
-	private void addGoodsInQuick(String goods_id,GoodsVO goodsVO,HttpSession session){
+	private void addGoodsInQuick(String goodsId,GoodsVO goodsVO,HttpSession session){
 		boolean already_existed=false;
 		List<GoodsVO> quickGoodsList; //최근 본 상품 저장 ArrayList
 		quickGoodsList=(ArrayList<GoodsVO>)session.getAttribute("quickGoodsList");
@@ -82,7 +84,7 @@ public class GoodsControllerImpl extends BaseController implements GoodsControll
 			if(quickGoodsList.size() < 4){ //미리본 상품 리스트에 상품개수가 세개 이하인 경우
 				for(int i=0; i<quickGoodsList.size();i++){
 					GoodsVO _goodsBean=(GoodsVO)quickGoodsList.get(i);
-					if(goods_id.equals(_goodsBean.getGoods_id())){
+					if(goodsId.equals(_goodsBean.getGoodsId())){
 						already_existed=true;
 						break;
 					}

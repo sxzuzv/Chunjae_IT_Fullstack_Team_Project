@@ -21,6 +21,7 @@ import kr.co.chunjae.common.base.BaseController;
 import kr.co.chunjae.member.service.MemberService;
 import kr.co.chunjae.member.vo.MemberVO;
 
+
 @Controller("memberController")
 @RequestMapping(value="/member")
 public class MemberControllerImpl extends BaseController implements MemberController{
@@ -35,7 +36,8 @@ public class MemberControllerImpl extends BaseController implements MemberContro
 			                  HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelAndView mav = new ModelAndView();
 		 memberVO=memberService.login(loginMap);
-		if(memberVO!= null && memberVO.getMember_id()!=null){
+
+		if(memberVO!= null && memberVO.getMemberId()!=null){
 			HttpSession session=request.getSession();
 			session=request.getSession();
 			session.setAttribute("isLogOn", true);

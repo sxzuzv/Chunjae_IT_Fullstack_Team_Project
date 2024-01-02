@@ -3,6 +3,9 @@
 	"http://mybatis.org/dtd/mybatis-3-config.dtd">
 
 <configuration>
+  <settings>
+    <setting name="mapUnderscoreToCamelCase" value="true" />
+  </settings>
   <typeAliases>
     <typeAlias type="kr.co.chunjae.goods.vo.GoodsVO" alias="goodsVO" />
     <typeAlias type="kr.co.chunjae.goods.vo.ImageFileVO" alias="imageFileVO" />
