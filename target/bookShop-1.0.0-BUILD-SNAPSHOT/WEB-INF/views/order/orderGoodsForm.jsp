@@ -516,36 +516,36 @@ function fn_process_pay_order(){
 			<tr>
 				<c:forEach var="item" items="${myOrderList }">
 					<td class="goods_image">
-					  <a href="${contextPath}/goods/goodsDetail.do?goods_id=${item.goods_id }">
-					    <img width="75" alt=""  src="${contextPath}/thumbnails.do?goods_id=${item.goods_id}&fileName=${item.goods_fileName}">
-					    <input   type="hidden" id="h_goods_id" name="h_goods_id" value="${item.goods_id }" />
-					    <input   type="hidden" id="h_goods_fileName" name="h_goods_fileName" value="${item.goods_fileName }" />
+					  <a href="${contextPath}/goods/goodsDetail.do?goods_id=${item.goodsId }">
+					    <img width="75" alt=""  src="${contextPath}/thumbnails.do?goods_id=${item.goodsId}&fileName=${item.goodsFileName}">
+					    <input   type="hidden" id="h_goods_id" name="h_goods_id" value="${item.goodsId }" />
+					    <input   type="hidden" id="h_goods_fileName" name="h_goods_fileName" value="${item.goodsFileName }" />
 					  </a>
 					</td>
 					<td>
 					  <h2>
-					     <a href="${pageContext.request.contextPath}/goods/goods.do?command=goods_detail&goods_id=${item.goods_id }">${item.goods_title }</A>
-					      <input   type="hidden" id="h_goods_title" name="h_goods_title" value="${item.goods_title }" />
+					     <a href="${pageContext.request.contextPath}/goods/goods.do?command=goods_detail&goods_id=${item.goodsId }">${item.goodsTitle }</A>
+					      <input   type="hidden" id="h_goods_title" name="h_goods_title" value="${item.goodsTitle }" />
 					  </h2>
 					</td>
 					<td>
-					  <h2>${item.order_goods_qty }개<h2>
-					    <input   type="hidden" id="h_order_goods_qty" name="h_order_goods_qty" value="${item.order_goods_qty}" />
+					  <h2>${item.orderGoodsQty }개<h2>
+					    <input   type="hidden" id="h_order_goods_qty" name="h_order_goods_qty" value="${item.orderGoodsQty}" />
 					</td>
-					<td><h2>${item.goods_sales_price}원 (10% 할인)</h2></td>
+					<td><h2>${item.goodsSalesPrice}원 (10% 할인)</h2></td>
 					<td><h2>0원</h2></td>
-					<td><h2>${1500 *item.order_goods_qty}원</h2></td>
+					<td><h2>${1500 *item.orderGoodsQty}원</h2></td>
 					<td>
-					  <h2>${item.goods_sales_price * item.order_goods_qty}원</h2>
-					  <input  type="hidden" id="h_each_goods_price"  name="h_each_goods_price" value="${item.goods_sales_price * item.order_goods_qty}" />
+					  <h2>${item.goodsSalesPrice * item.orderGoodsQty}원</h2>
+					  <input  type="hidden" id="h_each_goods_price"  name="h_each_goods_price" value="${item.goodsSalesPrice * item.orderGoodsQty}" />
 					</td>
 			</tr>
 			<c:set var="final_total_order_price"
-				value="${final_total_order_price+ item.goods_sales_price* item.order_goods_qty}" />
+				value="${final_total_order_price+ item.goodsSalesPrice* item.orderGoodsQty}" />
 			<c:set var="total_order_price"
-				value="${total_order_price+ item.goods_sales_price* item.order_goods_qty}" />
+				value="${total_order_price+ item.goodsSalesPrice* item.orderGoodsQty}" />
 			<c:set var="total_order_goods_qty"
-				value="${total_order_goods_qty+item.order_goods_qty }" />
+				value="${total_order_goods_qty+item.orderGoodsQty }" />
 			</c:forEach>
 		</tbody>
 	</table>
@@ -576,9 +576,9 @@ function fn_process_pay_order(){
 				</tr>
 				<tr class="dot_line">
 					<td class="fixed_join">받으실 분</td>
-					<td><input id="receiver_name" name="receiver_name" type="text" size="40" value="${orderer.member_name }" />
-					   <input type="hidden" id="h_orderer_name" name="h_orderer_name"  value="${orderer.member_name }" /> 
-					   <input type="hidden" id="h_receiver_name" name="h_receiver_name"  value="${orderer.member_name }" />
+					<td><input id="receiver_name" name="receiver_name" type="text" size="40" value="${orderer.memberName }" />
+					   <input type="hidden" id="h_orderer_name" name="h_orderer_name"  value="${orderer.memberName }" />
+					   <input type="hidden" id="h_receiver_name" name="h_receiver_name"  value="${orderer.memberName }" />
 					</td>
 				</tr>
 				<tr class="dot_line">
@@ -592,8 +592,8 @@ function fn_process_pay_order(){
 							<option value="018">018</option>
 							<option value="019">019</option>
 					</select> 
-					 - <input size="10px" type="text" id="hp2" name="hp2" value="${orderer.hp2 }"> 
-					 - <input size="10px" type="text" id="hp3" name="hp3" value="${orderer.hp3 }"><br><br> 
+					 - <input size="10px" type="text" id="hp2" name="hp2" value="${orderer.hp }">
+<%--					 - <input size="10px" type="text" id="hp3" name="hp3" value="${orderer.hp3 }"><br><br> --%>
 					  <input type="hidden" id="h_hp1" name="h_hp1" value="${orderer.hp1 }" /> 
 					  <input type="hidden" id="h_hp2" name="h_hp2" value="${orderer.hp2 }" /> 
 					  <input type="hidden" id="h_hp3" name="h_hp3"  value="${orderer.hp3 }" />

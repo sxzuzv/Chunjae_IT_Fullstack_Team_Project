@@ -61,12 +61,7 @@
 									    goods_sales_price,
 									    orderer_name,
 									    receiver_name,
-									    receiver_hp1,
-					                    receiver_hp2,
-					                    receiver_hp3,
-					                    receiver_tel1,
-					                    receiver_tel2,
-					                    receiver_tel3,
+									    receiver_hp,
 					                    delivery_address,
 					                    delivery_message,
 						                delivery_method,
@@ -76,52 +71,41 @@
 						                card_pay_month,
 						                orderer_hp,
 						                pay_orderer_hp_num)
-							     values(#{order_seq_num},
-							            #{order_id},
-									    #{member_id},
-									    #{goods_id},
-									    #{goods_title},
-									    #{goods_fileName},
-									    #{order_goods_qty},
-									    #{goods_sales_price},
-									    #{orderer_name},
-									    #{receiver_name},
-									    #{receiver_hp1},
-					                    #{receiver_hp2},
-					                    #{receiver_hp3},
-					                    #{receiver_tel1},
-					                    #{receiver_tel2},
-					                    #{receiver_tel3},
-					                    #{delivery_address},
-					                    #{delivery_message},
-						                #{delivery_method},
-						                #{gift_wrapping},
-						                #{pay_method},
-						                #{card_com_name},
-						                #{card_pay_month},
-						                #{orderer_hp},
-						                #{pay_orderer_hp_num})
+							     values(#{orderId},
+									    #{memberId},
+									    #{goodsId},
+									    #{goodsTitle},
+									    #{goodsFileName},
+									    #{orderGoodsQty},
+									    #{goodsSalesPrice},
+									    #{ordererName},
+									    #{receiverName},
+									    #{receiverHp},
+					                    #{deliveryAddress},
+					                    #{deliveryMessage},
+						                #{deliveryMethod},
+						                #{giftWrapping},
+						                #{payMethod},
+						                #{cardComName},
+						                #{cardPayMonth},
+						                #{ordererHp},
+						                #{payOrdererHpNum})
     	]]>
 	</insert>
 
-   <select id="selectOrderID" resultType="int"  >
-	    <![CDATA[
-		    select seq_order_id.nextval from dual
-    	]]>
-	</select>
 	
 	<select id="selectMyOrder" resultType="orderVO"   parameterType="String"  >
 	    <![CDATA[
 		    select * from t_shopping_order
-            where to_char(pay_order_time,'yyyy-mm-dd')=to_char(sysdate,'yyyy-mm-dd') 
-            and order_id=#{order_id}
+            where date_format(pay_order_time,'%Y-%m-%d')= date_format(now(),'%Y-%m-%d')
+            and order_id=#{orderId}
             order by pay_order_time desc
     	]]>
 	</select>
 	
 	<delete id="deleteGoodsFromCart" parameterType="orderVO">
 	  delete from t_shopping_cart
-	  where goods_id=#{goods_id}
+	  where goods_id=#{goodsId}
 	</delete>
 	
 </mapper>
