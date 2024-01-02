@@ -12,17 +12,17 @@
 	<!-- http는 최상위 태그. auto-config로 기본보안(기본 로그인 페이지, http 기본인증, 로그아웃) 지원여부 설정, use-expressions로 SpEL지원 여부 설정	-->
 	<http auto-config="true" use-expressions="true">
 
-		<intercept-url pattern="/books/add"  access="hasAuthority('ROLE_ADMIN')" />
-		<intercept-url pattern="/**"  access="permitAll" />
-		<intercept-url pattern="/upload/**" access="permitAll()"/>
-		<!--로그인 페이지 걍로, 인증 성공시 경로, 인증 실패시 경로, 사용자 계정 이름, 사용자 계정 비밀번호.	-->
+<!--		<intercept-url pattern="/books/add"  access="hasAuthority('ROLE_ADMIN')" />-->
+<!--		<intercept-url pattern="/**"  access="permitAll" />-->
+<!--		<intercept-url pattern="/upload/**" access="permitAll()"/>-->
+<!--		&lt;!&ndash;로그인 페이지 걍로, 인증 성공시 경로, 인증 실패시 경로, 사용자 계정 이름, 사용자 계정 비밀번호.	&ndash;&gt;-->
 
-		<form-login login-page="/login"
-					default-target-url="/books/add"
-					authentication-failure-url="/loginfailed"
-					username-parameter="username"
-					password-parameter="password"/>
-		<csrf/>
+<!--		<form-login login-page="/login"-->
+<!--					default-target-url="/books/add"-->
+<!--					authentication-failure-url="/loginfailed"-->
+<!--					username-parameter="username"-->
+<!--					password-parameter="password"/>-->
+<!--		<csrf/>-->
 		<logout logout-success-url="/logout/"/>
 	</http>
 
@@ -38,7 +38,7 @@
     <authentication-manager>
     	<authentication-provider>
         	<user-service>
-        		<user name="Admin"  password="{noop}Admin1234" authorities="ROLE_ADMIN"/>
+        		<user name="admin"  password="{noop}1212" authorities="ROLE_ADMIN"/>
 				<!--<user name="guest"  password="{noop}guest1234" authorities="ROLE_USER"/>-->
 				<!--<user name="admin"  password="{noop}1234" authorities="ROLE_ADMIN, ROLE_MANAGER, ROLE_USER"/>
 				<user name="manager"  password="{noop}1235" authorities="ROLE_MANAGER, ROLE_USER"/>
