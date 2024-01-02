@@ -29,9 +29,10 @@ function init(){
 function fn_modify_goods(goods_id, attribute){
 	var frm_mod_goods=document.frm_mod_goods;
 	var value="";
-	if(attribute=='goods_sort'){
-		value=frm_mod_goods.goods_sort.value;
-	}else if(attribute=='goods_title'){
+	// if(attribute=='goods_sort'){
+	// 	value=frm_mod_goods.goods_sort.value;
+	// }else
+	if(attribute=='goods_title'){
 		value=frm_mod_goods.goods_title.value;
 	}else if(attribute=='goods_writer'){
 		value=frm_mod_goods.goods_writer.value;   
@@ -188,140 +189,140 @@ function fn_modify_goods(goods_id, attribute){
 	<!-- 내용 들어 가는 곳 -->
 	<DIV id="container">
 		<UL class="tabs">
-			<li><A href="#tab1">상품정보</A></li>
-			<li><A href="#tab2">상품목차</A></li>
-			<li><A href="#tab3">상품저자소개</A></li>
-			<li><A href="#tab4">상품소개</A></li>
+			<li><A href="#tab1">상품 정보</A></li>
+			<li><A href="#tab2">상품 목차</A></li>
+			<li><A href="#tab3">상품 저자 소개</A></li>
+			<li><A href="#tab4">상품 소개</A></li>
 			<li><A href="#tab5">출판사 상품 평가</A></li>
 			<li><A href="#tab6">추천사</A></li>
-			<li><A href="#tab7">상품이미지</A></li>
+			<li><A href="#tab7">상품 이미지</A></li>
 		</UL>
 		<DIV class="tab_container">
 			<DIV class="tab_content" id="tab1">
 				<table >
+<%--			<tr >--%>
+<%--				<td width=200 >상품 분류</td>--%>
+<%--				<td width=500>--%>
+<%--				  <select name="goods_sort">--%>
+<%--					<c:choose>--%>
+<%--				      <c:when test="${goods.goods_sort=='컴퓨터와 인터넷' }">--%>
+<%--						<option value="컴퓨터와 인터넷" selected>컴퓨터와 인터넷 </option>--%>
+<%--				  	    <option value="디지털 기기">디지털 기기  </option>--%>
+<%--				  	  </c:when>--%>
+<%--				  	  <c:when test="${goods.goods_sort=='디지털 기기' }">--%>
+<%--						<option value="컴퓨터와 인터넷" >컴퓨터와 인터넷 </option>--%>
+<%--				  	    <option value="디지털 기기" selected>디지털 기기  </option>--%>
+<%--				  	  </c:when>--%>
+<%--				  	</c:choose>--%>
+<%--					</select>--%>
+<%--				</td>--%>
+<%--				<td >--%>
+<%--				 <input  type="button" value="수정반영"  onClick="fn_modify_goods('${goods.goods_id }','goods_sort')"/>--%>
+<%--				</td>--%>
+<%--			</tr>--%>
 			<tr >
-				<td width=200 >상품분류</td>
-				<td width=500>
-				  <select name="goods_sort">
-					<c:choose>
-				      <c:when test="${goods.goods_sort=='컴퓨터와 인터넷' }">
-						<option value="컴퓨터와 인터넷" selected>컴퓨터와 인터넷 </option>
-				  	    <option value="디지털 기기">디지털 기기  </option>
-				  	  </c:when>
-				  	  <c:when test="${goods.goods_sort=='디지털 기기' }">
-						<option value="컴퓨터와 인터넷" >컴퓨터와 인터넷 </option>
-				  	    <option value="디지털 기기" selected>디지털 기기  </option>
-				  	  </c:when>
-				  	</c:choose>
-					</select>
-				</td>
-				<td >
-				 <input  type="button" value="수정반영"  onClick="fn_modify_goods('${goods.goods_id }','goods_sort')"/>
-				</td>
-			</tr>
-			<tr >
-				<td >상품이름</td>
-				<td><input name="goods_title" type="text" size="40"  value="${goods.goods_title }"/></td>
+				<td >상품 이름</td>
+				<td><input name="goodsTitle" type="text" size="40"  value="${goods.goodsTitle }"/></td>
 				<td>
-				 <input  type="button" value="수정반영"  onClick="fn_modify_goods('${goods.goods_id }','goods_title')"/>
+				 <input  type="button" value="수정반영"  onClick="fn_modify_goods('${goods.goodsId }','goodsTitle')"/>
 				</td>
 			</tr>
 			
 			<tr>
 				<td >저자</td>
-				<td><input name="goods_writer" type="text" size="40" value="${goods.goods_writer }" /></td>
+				<td><input name="goodsWriter" type="text" size="40" value="${goods.goodsWriter }" /></td>
 								<td>
-				 <input  type="button" value="수정반영"  onClick="fn_modify_goods('${goods.goods_id }','goods_writer')"/>
+				 <input  type="button" value="수정반영"  onClick="fn_modify_goods('${goods.goodsId }','goodsWriter')"/>
 				</td>
 				
 			</tr>
 			<tr>
 				<td >출판사</td>
-				<td><input name="goods_publisher" type="text" size="40" value="${goods.goods_publisher }" /></td>
+				<td><input name="goodsPublisher" type="text" size="40" value="${goods.goodsPublisher }" /></td>
 			     <td>
-				  <input  type="button" value="수정반영"  onClick="fn_modify_goods('${goods.goods_id }','goods_publisher')"/>
+				  <input  type="button" value="수정반영"  onClick="fn_modify_goods('${goods.goodsId }','goodsPublisher')"/>
 				</td>
 				
 			</tr>
 			<tr>
-				<td >상품정가</td>
-				<td><input name="goods_price" type="text" size="40" value="${goods.goods_price }" /></td>
+				<td >상품 정가</td>
+				<td><input name="goodsPrice" type="text" size="40" value="${goods.goodsPrice }" /></td>
 				<td>
-				 <input  type="button" value="수정반영"  onClick="fn_modify_goods('${goods.goods_id }','goods_price')"/>
+				 <input  type="button" value="수정반영"  onClick="fn_modify_goods('${goods.goodsId }','goodsPrice')"/>
 				</td>
 				
 			</tr>
 			
 			<tr>
-				<td >상품판매가격</td>
-				<td><input name="goods_sales_price" type="text" size="40" value="${goods.goods_sales_price }" /></td>
+				<td >상품 판매 가격</td>
+				<td><input name="goodsSalesPrice" type="text" size="40" value="${goods.goodsSalesPrice }" /></td>
 				<td>
-				 <input  type="button" value="수정반영"  onClick="fn_modify_goods('${goods.goods_id }','goods_sales_price')"/>
+				 <input  type="button" value="수정반영"  onClick="fn_modify_goods('${goods.goodsId }','goodsSalesPrice')"/>
 				</td>
 				
 			</tr>
 			
 			
-			<tr>
-				<td >상품 구매 포인트</td>
-				<td><input name="goods_point" type="text" size="40" value="${goods.goods_point }" /></td>
-				<td>
-				 <input  type="button" value="수정반영"  onClick="fn_modify_goods('${goods.goods_id }','goods_point')"/>
-				</td>
+<%--			<tr>--%>
+<%--				<td >상품 구매 포인트</td>--%>
+<%--				<td><input name="goods_point" type="text" size="40" value="${goods.goods_point }" /></td>--%>
+<%--				<td>--%>
+<%--				 <input  type="button" value="수정반영"  onClick="fn_modify_goods('${goods.goods_id }','goods_point')"/>--%>
+<%--				</td>--%>
 
-			</tr>
+<%--			</tr>--%>
 
 			<tr>
-				<td >상품출판일</td>
+				<td >상품 출판일</td>
 				<td>
-				  <input  name="goods_published_date"  type="date"  value="${goods.goods_published_date }" />
+				  <input  name="goodsPublishedDate"  type="date"  value="${goods.goodsPublishedDate }" />
 				</td>
 				<td>
-				 <input  type="button" value="수정반영"  onClick="fn_modify_goods('${goods.goods_id }','goods_published_date')"/>
+				 <input  type="button" value="수정반영"  onClick="fn_modify_goods('${goods.goodsId }','goodsPublishedDate')"/>
 				</td>
 
 			</tr>
 			
 			<tr>
-				<td >상품 총 페이지수</td>
-				<td><input name="goods_total_page" type="text" size="40"  value="${goods.goods_total_page }"/></td>
+				<td >상품 총 페이지 수</td>
+				<td><input name="goodsTotalPage" type="text" size="40"  value="${goods.goodsTotalPage }"/></td>
 				<td>
-				 <input  type="button" value="수정반영"  onClick="fn_modify_goods('${goods.goods_id }','goods_total_page"/>
+				 <input  type="button" value="수정반영"  onClick="fn_modify_goods('${goods.goodsId }','goodsTotalPage"/>
 				</td>
 
 			</tr>
 			
 			<tr>
 				<td >ISBN</td>
-				<td><input name="goods_isbn" type="text" size="40" value="${goods.goods_isbn }" /></td>
+				<td><input name="goodsIsbn" type="text" size="40" value="${goods.goodsIsbn }" /></td>
 				<td>
-				 <input  type="button" value="수정반영"  onClick="fn_modify_goods('${goods.goods_id }','goods_isbn')"/>
+				 <input  type="button" value="수정반영"  onClick="fn_modify_goods('${goods.goodsId }','goodsIsbn')"/>
 				</td>
 
 			</tr>
 			<tr>
 				<td >상품 배송비</td>
-				<td><input name="goods_delivery_price" type="text" size="40"  value="${goods.goods_delivery_price }"/></td>
+				<td><input name="goodsDeliveryPrice" type="text" size="40"  value="${goods.goodsDeliveryPrice }"/></td>
 				<td>
-				 <input  type="button" value="수정반영"  onClick="fn_modify_goods('${goods.goods_id }','goods_delivery_price')"/>
+				 <input  type="button" value="수정반영"  onClick="fn_modify_goods('${goods.goodsId }','goodsDeliveryPrice')"/>
 				</td>
 
 			</tr>
 			<tr>
 				<td >상품 도착 예정일</td>
 				<td>
-				  <input name="goods_delivery_date" type="date"  value="${goods.goods_delivery_date }" />
+				  <input name="goodsDeliveryDate" type="date"  value="${goods.goodsDeliveryDate }" />
 				  </td>
 				<td>
-				 <input  type="button" value="수정반영"  onClick="fn_modify_goods('${goods.goods_id }','goods_delivery_date')"/>
+				 <input  type="button" value="수정반영"  onClick="fn_modify_goods('${goods.goodsId }','goodsDeliveryDate')"/>
 				</td>
 
 			</tr>
 			
 			<tr>
-				<td >상품종류</td>
+				<td >상품 종류</td>
 				<td>
-				<select name="goods_status">
+				<select name="goodsStatus">
 				  <option value="bestseller"  >베스트셀러</option>
 				  <option value="steadyseller" >스테디셀러</option>
 				  <option value="newbook" >신간</option>
@@ -329,10 +330,10 @@ function fn_modify_goods(goods_id, attribute){
 				  <option value="buy_out"  selected>품절</option>
 				  <option value="out_of_print" >절판</option>
 				</select>
-				<input  type="hidden" name="h_goods_status" value="${goods.goods_status }"/>
+				<input  type="hidden" name="h_goods_status" value="${goods.goodsStatus }"/>
 				</td>
 				<td>
-				 <input  type="button" value="수정반영"  onClick="fn_modify_goods('${goods.goods_id }','goods_status')"/>
+				 <input  type="button" value="수정반영"  onClick="fn_modify_goods('${goods.goodsId }','goodsStatus')"/>
 				</td>
 			</tr>
 			<tr>
@@ -343,17 +344,17 @@ function fn_modify_goods(goods_id, attribute){
 				</table>	
 			</DIV>
 			<DIV class="tab_content" id="tab2">
-				<h4>책목차</h4>
+				<h4>책 목차</h4>
 				<table>	
 				<tr>
-					<td >상품목차</td>
-					<td><textarea  rows="100" cols="80" name="goods_contents_order">
-					  ${goods.goods_contents_order }
+					<td >상품 목차</td>
+					<td><textarea  rows="100" cols="80" name="goodsContentsOrder">
+					  ${goods.goodsContentsOrder }
 					</textarea>
 					</td>
 					<td>
 					&nbsp;&nbsp;&nbsp;&nbsp;
-					 <input  type="button" value="수정반영"  onClick="fn_modify_goods('${goods.goods_id }','goods_contents_order')"/>
+					 <input  type="button" value="수정반영"  onClick="fn_modify_goods('${goods.goodsId }','goodsContentsOrder')"/>
 					</td>
 				</tr>
 				</table>	
@@ -364,31 +365,31 @@ function fn_modify_goods(goods_id, attribute){
 				 <table>
 	  				 <tr>
 						<td >상품 저자 소개</td>
-						<td><textarea  rows="100" cols="80" name="goods_writer_intro">
-						  ${goods.goods_writer_intro }
+						<td><textarea  rows="100" cols="80" name="goodsWriterIntro">
+						  ${goods.goodsWriterIntro }
 						</textarea>
 						</td>
 						<td>
 						&nbsp;&nbsp;&nbsp;&nbsp;
-						 <input  type="button" value="수정반영"  onClick="fn_modify_goods('${goods.goods_id }','goods_writer_intro')"/>
+						 <input  type="button" value="수정반영"  onClick="fn_modify_goods('${goods.goodsId }','goodsWriterIntro')"/>
 						</td>
 				   </tr>
 			   </table>
 				</P>
 			</DIV>
 			<DIV class="tab_content" id="tab4">
-				<H4>상품소개</H4>
+				<H4>상품 소개</H4>
 				<P>
 				<table>
 					<tr>
-						<td>상품소개</td>
-						<td><textarea  rows="100" cols="80" name="goods_intro">
-						${goods.goods_intro }
+						<td>상품 소개</td>
+						<td><textarea  rows="100" cols="80" name="goodsIntro">
+						${goods.goodsIntro }
 						</textarea>
 						</td>
 						<td>
 						&nbsp;&nbsp;&nbsp;&nbsp;
-						 <input  type="button" value="수정반영"  onClick="fn_modify_goods('${goods.goods_id }','goods_intro')"/>
+						 <input  type="button" value="수정반영"  onClick="fn_modify_goods('${goods.goodsId }','goodsIntro')"/>
 						</td>
 					</tr>
 			    </table>
@@ -399,13 +400,13 @@ function fn_modify_goods(goods_id, attribute){
 				<P>
 				<table>
 					<tr>
-						<td><textarea  rows="100" cols="80" name="goods_publisher_comment">
-						  ${goods.goods_publisher_comment }
+						<td><textarea  rows="100" cols="80" name="goodsPublisherComment">
+						  ${goods.goodsPublisherComment }
 						</textarea>
 						</td>
 						<td>
 						&nbsp;&nbsp;&nbsp;&nbsp;
-						 <input  type="button" value="수정반영"  onClick="fn_modify_goods('${goods.goods_id }','goods_publisher_comment')"/>
+						 <input  type="button" value="수정반영"  onClick="fn_modify_goods('${goods.goodsId }','goodsPublisherComment')"/>
 						</td>
 					</tr>
 			</table>
@@ -416,20 +417,20 @@ function fn_modify_goods(goods_id, attribute){
 				 <table>
 					 <tr>
 						<td>추천사</td>
-						<td><textarea  rows="100" cols="80" name="goods_recommendation">
-						  ${goods.goods_recommendation }
+						<td><textarea  rows="100" cols="80" name="goodsRecommendation">
+						  ${goods.goodsRecommendation }
 						</textarea>
 						</td>
 						<td>
 						&nbsp;&nbsp;&nbsp;&nbsp;
-						 <input  type="button" value="수정반영"  onClick="fn_modify_goods('${goods.goods_id }','goods_recommendation')"/>
+						 <input  type="button" value="수정반영"  onClick="fn_modify_goods('${goods.goodsId }','goodsRecommendation')"/>
 						</td>
 					</tr>
 			    </table>
 			</DIV>
 			<DIV class="tab_content" id="tab7">
 			   <form id="FILE_FORM" method="post" enctype="multipart/form-data"  >
-				<h4>상품이미지</h4>
+				<h4>상품 이미지</h4>
 				 <table>
 					 <tr>
 					<c:forEach var="item" items="${imageFileList }"  varStatus="itemNum">
@@ -440,17 +441,17 @@ function fn_modify_goods(goods_id, attribute){
 						    <td>
 							  <input type="file"  id="main_image"  name="main_image"  onchange="readURL(this,'preview${itemNum.count}');" />
 						      <%-- <input type="text" id="image_id${itemNum.count }"  value="${item.fileName }" disabled  /> --%>
-							  <input type="hidden"  name="image_id" value="${item.image_id}"  />
+							  <input type="hidden"  name="imageId" value="${item.imageId}"  />
 							<br>
 						</td>
 						<td>
-						  <img  id="preview${itemNum.count }"   width=200 height=200 src="${contextPath}/download.do?goods_id=${item.goods_id}&fileName=${item.fileName}" />
+						  <img  id="preview${itemNum.count }"   width=200 height=200 src="${contextPath}/download.do?goodsId=${item.goodsId}&fileName=${item.fileName}" />
 						</td>
 						<td>
 						  &nbsp;&nbsp;&nbsp;&nbsp;
 						</td>
 						 <td>
-						 <input  type="button" value="수정"  onClick="modifyImageFile('main_image','${item.goods_id}','${item.image_id}','${item.fileType}')"/>
+						 <input  type="button" value="수정"  onClick="modifyImageFile('main_image','${item.goodsId}','${item.imageId}','${item.fileType}')"/>
 						</td> 
 					</tr>
 					<tr>
@@ -469,14 +470,14 @@ function fn_modify_goods(goods_id, attribute){
 							<br>
 						</td>
 						<td>
-						  <img  id="preview${itemNum.count }"   width=200 height=200 src="${contextPath}/download.do?goods_id=${item.goods_id}&fileName=${item.fileName}">
+						  <img  id="preview${itemNum.count }"   width=200 height=200 src="${contextPath}/download.do?goodsId=${item.goodsId}&fileName=${item.fileName}">
 						</td>
 						<td>
 						  &nbsp;&nbsp;&nbsp;&nbsp;
 						</td>
 						 <td>
-						 <input  type="button" value="수정"  onClick="modifyImageFile('detail_image','${item.goods_id}','${item.image_id}','${item.fileType}')"/>
-						  <input  type="button" value="삭제"  onClick="deleteImageFile('${item.goods_id}','${item.image_id}','${item.fileName}','${itemNum.count-1}')"/>
+						 <input  type="button" value="수정"  onClick="modifyImageFile('detail_image','${item.goodsId}','${item.goodsId}','${item.fileType}')"/>
+						  <input  type="button" value="삭제"  onClick="deleteImageFile('${item.goodsId}','${item.imageId}','${item.fileName}','${itemNum.count-1}')"/>
 						</td> 
 					</tr>
 					<tr>
@@ -497,7 +498,7 @@ function fn_modify_goods(goods_id, attribute){
 		   <tr>
 		     <td align=center colspan=2>
 		     
-		     <input   type="button" value="이미지파일추가하기"  onClick="fn_addFile()"  />
+		     <input   type="button" value="이미지 파일 추가하기"  onClick="fn_addFile()"  />
 		   </td>
 		</tr> 
 	</table>

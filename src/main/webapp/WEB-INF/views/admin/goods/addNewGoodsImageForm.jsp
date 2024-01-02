@@ -4,7 +4,7 @@
 
 
 <body>
-	<h1>새제품 이미지 등록창</h1>
+	<h1>새 제품 이미지 등록창</h1>
 	<br>
 	<form action="${pageContext.request.contextPath}/admin/goods/addNewGoods.do" method="post"	enctype="multipart/form-data">
 	<table  cellspacing="0" cellpadding="0">
@@ -20,7 +20,7 @@
 		 </td>
 		</tr>
 		<tr>
-			<td>상세 이미지1</td>
+			<td>상세 이미지 1</td>
 			<td>
 				<input type="file" name="detail_image1"><br>
 			</td>
@@ -31,7 +31,7 @@
 		 </td>
 		</tr>
 		<tr>
-			<td>상세 이미지2:</td>
+			<td>상세 이미지 2 :</td>
 			<td>
 				<input type="file" name="detail_image2"><br>
 			</td>
@@ -42,7 +42,7 @@
 		 </td>
 		</tr>
 		<tr>
-			<td>상세 이미지3:</td>
+			<td>상세 이미지 3 :</td>
 			<td>
 				<input type="file" name="detail_image3"><br>
 			</td>
