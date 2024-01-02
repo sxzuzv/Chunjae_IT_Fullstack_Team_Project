@@ -13,8 +13,8 @@ import java.sql.Date;
 public class OrderVO {
 	private int orderSeqNum;
 	private String memberId;
-	private Long orderId;
-	private Long goodsId;
+	private int orderId;
+	private int goodsId;
 	private String goodsTitle;
 	private int goodsSalesPrice;
 	private int totalGoodsPrice;

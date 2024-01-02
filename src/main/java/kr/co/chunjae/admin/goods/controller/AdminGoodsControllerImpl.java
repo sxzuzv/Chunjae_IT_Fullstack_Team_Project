@@ -108,7 +108,7 @@ public class AdminGoodsControllerImpl extends BaseController  implements AdminGo
 		List<ImageFileVO> imageFileList =upload(multipartRequest);
 		if(imageFileList!= null && imageFileList.size()!=0) {
 			for(ImageFileVO imageFileVO : imageFileList) {
-				imageFileVO.setReg_id(reg_id);
+				imageFileVO.setRegId(reg_id);
 			}
 			newGoodsMap.put("imageFileList", imageFileList);
 		}
@@ -211,9 +211,9 @@ public class AdminGoodsControllerImpl extends BaseController  implements AdminGo
 				for(ImageFileVO imageFileVO : imageFileList) {
 					goods_id = Integer.parseInt((String)goodsMap.get("goods_id"));
 					image_id = Integer.parseInt((String)goodsMap.get("image_id"));
-					imageFileVO.setGoods_id(goods_id);
-					imageFileVO.setImage_id(image_id);
-					imageFileVO.setReg_id(reg_id);
+					imageFileVO.setGoodsId(goods_id);
+					imageFileVO.setImageId(image_id);
+					imageFileVO.setRegId(reg_id);
 				}
 				
 			    adminGoodsService.modifyGoodsImage(imageFileList);
@@ -257,24 +257,24 @@ public class AdminGoodsControllerImpl extends BaseController  implements AdminGo
 		
 		HttpSession session = multipartRequest.getSession();
 		MemberVO memberVO = (MemberVO) session.getAttribute("memberInfo");
-		String reg_id = memberVO.getMemberId();
+		String regId = memberVO.getMemberId();
 		
 		List<ImageFileVO> imageFileList=null;
-		int goods_id=0;
+		int goodsId=0;
 		try {
 			imageFileList =upload(multipartRequest);
 			if(imageFileList!= null && imageFileList.size()!=0) {
 				for(ImageFileVO imageFileVO : imageFileList) {
-					goods_id = Integer.parseInt((String)goodsMap.get("goods_id"));
-					imageFileVO.setGoods_id(goods_id);
-					imageFileVO.setReg_id(reg_id);
+					goodsId = Integer.parseInt((String)goodsMap.get("goods_id"));
+					imageFileVO.setGoodsId(goodsId);
+					imageFileVO.setRegId(regId);
 				}
 				
 			    adminGoodsService.addNewGoodsImage(imageFileList);
 				for(ImageFileVO  imageFileVO:imageFileList) {
 					imageFileName = imageFileVO.getFileName();
 					File srcFile = new File(CURR_IMAGE_REPO_PATH+"\\"+"temp"+"\\"+imageFileName);
-					File destDir = new File(CURR_IMAGE_REPO_PATH+"\\"+goods_id);
+					File destDir = new File(CURR_IMAGE_REPO_PATH+"\\"+goodsId);
 					FileUtils.moveFileToDirectory(srcFile, destDir,true);
 				}
 			}

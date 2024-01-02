@@ -29,11 +29,13 @@ public class GoodsControllerImpl extends BaseController implements GoodsControll
 	GoodsService goodsService;
 	
 	@RequestMapping(value="/goodsDetail.do" ,method = RequestMethod.GET)
-	public ModelAndView goodsDetail(@RequestParam("goods_id") Long goodsId,
+	public ModelAndView goodsDetail(@RequestParam("goods_id") String goodsId,
 			                       HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String viewName=(String)request.getAttribute("viewName");
 		HttpSession session=request.getSession();
 		Map goodsMap=goodsService.goodsDetail(goodsId);
+		System.out.println("========================="+goodsMap.get("goodsVO").getClass().getName());
+		System.out.println("========================="+goodsMap.get("imageList").toString());
 		ModelAndView mav = new ModelAndView(viewName);
 		mav.addObject("goodsMap", goodsMap);
 		GoodsVO goodsVO=(GoodsVO)goodsMap.get("goodsVO");
@@ -73,7 +75,7 @@ public class GoodsControllerImpl extends BaseController implements GoodsControll
 		
 	}
 	
-	private void addGoodsInQuick(Long goodsId,GoodsVO goodsVO,HttpSession session){
+	private void addGoodsInQuick(String goodsId,GoodsVO goodsVO,HttpSession session){
 		boolean already_existed=false;
 		List<GoodsVO> quickGoodsList; //최근 본 상품 저장 ArrayList
 		quickGoodsList=(ArrayList<GoodsVO>)session.getAttribute("quickGoodsList");

@@ -85,7 +85,7 @@ public class OrderControllerImpl extends BaseController implements OrderControll
 			String[] cart_goods=cart_goods_qty[i].split(":");
 			for(int j = 0; j< myGoodsList.size();j++) {
 				GoodsVO goodsVO = myGoodsList.get(j);
-				Long goodsId = goodsVO.getGoodsId();
+				int goodsId = goodsVO.getGoodsId();
 				if(goodsId==Integer.parseInt(cart_goods[0])) {
 					OrderVO _orderVO=new OrderVO();
 					String goods_title=goodsVO.getGoodsTitle();

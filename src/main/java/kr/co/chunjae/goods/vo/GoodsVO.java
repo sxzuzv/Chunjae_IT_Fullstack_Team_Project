@@ -10,7 +10,7 @@ import java.sql.Date;
 @ToString
 @NoArgsConstructor
 public class GoodsVO {
-	private Long goodsId;
+	private int goodsId;
 	private String goodsTitle;
 	private String goodsWriter;
 	private int    goodsPrice;

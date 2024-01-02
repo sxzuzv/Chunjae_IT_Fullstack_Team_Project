@@ -32,7 +32,7 @@ public class CartDAOImpl  implements  CartDAO{
 	}
 
 	public void insertGoodsInCart(CartVO cartVO) throws DataAccessException{
-		Long cartId=selectMaxCartId();
+		int cartId=selectMaxCartId();
 		cartVO.setCartId(cartId);
 		sqlSession.insert("mapper.cart.insertGoodsInCart",cartVO);
 	}
@@ -41,12 +41,12 @@ public class CartDAOImpl  implements  CartDAO{
 		sqlSession.insert("mapper.cart.updateCartGoodsQty",cartVO);
 	}
 	
-	public void deleteCartGoods(Long cartId) throws DataAccessException{
+	public void deleteCartGoods(int cartId) throws DataAccessException{
 		sqlSession.delete("mapper.cart.deleteCartGoods",cartId);
 	}
 
-	private Long selectMaxCartId() throws DataAccessException{
-		Long cartId =sqlSession.selectOne("mapper.cart.selectMaxCartId");
+	private int selectMaxCartId() throws DataAccessException{
+		int cartId =sqlSession.selectOne("mapper.cart.selectMaxCartId");
 		return cartId;
 	}
 

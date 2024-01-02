@@ -8,8 +8,8 @@ import org.springframework.stereotype.Component;
 @ToString
 @Component("cartVO")
 public class CartVO {
-	private Long cartId;
-	private Long goodsId;
+	private int cartId;
+	private int goodsId;
 	private String memberId;
 	private int cartGoodsQty;
 	private String creDate;

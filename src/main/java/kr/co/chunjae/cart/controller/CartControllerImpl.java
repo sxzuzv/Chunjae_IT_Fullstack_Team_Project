@@ -44,7 +44,7 @@ public class CartControllerImpl extends BaseController implements CartController
 		return mav;
 	}
 	@RequestMapping(value="/addGoodsInCart.do" ,method = RequestMethod.POST,produces = "application/text; charset=utf8")
-	public  @ResponseBody String addGoodsInCart(@RequestParam("goods_id") Long goodsId,
+	public  @ResponseBody String addGoodsInCart(@RequestParam("goods_id") int goodsId,
 			                    HttpServletRequest request, HttpServletResponse response)  throws Exception{
 		HttpSession session=request.getSession();
 		memberVO=(MemberVO)session.getAttribute("memberInfo");
@@ -65,7 +65,7 @@ public class CartControllerImpl extends BaseController implements CartController
 	}
 	
 	@RequestMapping(value="/modifyCartQty.do" ,method = RequestMethod.POST)
-	public @ResponseBody String  modifyCartQty(@RequestParam("goods_id") Long goodsId,
+	public @ResponseBody String  modifyCartQty(@RequestParam("goods_id") int goodsId,
 			                                   @RequestParam("cart_goods_qty") int cartGoodsQty,
 			                                    HttpServletRequest request, HttpServletResponse response)  throws Exception{
 		HttpSession session=request.getSession();
@@ -85,7 +85,7 @@ public class CartControllerImpl extends BaseController implements CartController
 	}
 	
 	@RequestMapping(value="/removeCartGoods.do" ,method = RequestMethod.POST)
-	public ModelAndView removeCartGoods(@RequestParam("cart_id") Long cartId,
+	public ModelAndView removeCartGoods(@RequestParam("cart_id") int cartId,
 			                          HttpServletRequest request, HttpServletResponse response)  throws Exception{
 		ModelAndView mav=new ModelAndView();
 		cartService.removeCartGoods(cartId);

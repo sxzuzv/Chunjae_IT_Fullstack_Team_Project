@@ -13,7 +13,7 @@ public interface CartDAO {
 	public boolean selectCountInCart(CartVO cartVO) throws DataAccessException;
 	public void insertGoodsInCart(CartVO cartVO) throws DataAccessException;
 	public void updateCartGoodsQty(CartVO cartVO) throws DataAccessException;
-	public void deleteCartGoods(Long cartId) throws DataAccessException;
+	public void deleteCartGoods(int cartId) throws DataAccessException;
 	
 	
 

@@ -31,7 +31,7 @@ public class GoodsServiceImpl implements GoodsService{
 		return goodsMap;
 	}
 	
-	public Map goodsDetail(Long _goodsId) throws Exception {
+	public Map goodsDetail(String _goodsId) throws Exception {
 		Map goodsMap=new HashMap();
 		GoodsVO goodsVO = goodsDAO.selectGoodsDetail(_goodsId);
 		goodsMap.put("goodsVO", goodsVO);

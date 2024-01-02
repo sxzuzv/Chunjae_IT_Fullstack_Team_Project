@@ -22,7 +22,7 @@ public class OrderDAOImpl implements OrderDAO {
 	}
 	
 	public void insertNewOrder(List<OrderVO> myOrderList) throws DataAccessException{
-		Long order_id=selectOrderID();
+		int order_id=selectOrderID();
 		for(int i=0; i<myOrderList.size();i++){
 			OrderVO orderVO =(OrderVO)myOrderList.get(i);
 			orderVO.setOrderId(order_id);
@@ -46,7 +46,7 @@ public class OrderDAOImpl implements OrderDAO {
 			sqlSession.delete("mapper.order.deleteGoodsFromCart",orderVO);		
 		}
 	}	
-	private Long selectOrderID() throws DataAccessException{
+	private int selectOrderID() throws DataAccessException{
 		return sqlSession.selectOne("mapper.order.selectOrderID");
 		
 	}

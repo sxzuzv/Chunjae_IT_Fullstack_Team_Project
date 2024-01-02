@@ -10,7 +10,7 @@ import kr.co.chunjae.goods.vo.ImageFileVO;
 public interface GoodsDAO {
 	public List<GoodsVO> selectGoodsList(String goodsStatus) throws DataAccessException;
 	public List<String> selectKeywordSearch(String keyword) throws DataAccessException;
-	public GoodsVO selectGoodsDetail(Long goodsId) throws DataAccessException;
-	public List<ImageFileVO> selectGoodsDetailImage(Long goodsId) throws DataAccessException;
+	public GoodsVO selectGoodsDetail(String goodsId) throws DataAccessException;
+	public List<ImageFileVO> selectGoodsDetailImage(String goodsId) throws DataAccessException;
 	public List<GoodsVO> selectGoodsBySearchWord(String searchWord) throws DataAccessException;
 }
