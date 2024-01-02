@@ -41,13 +41,13 @@
 		}
 	</style>
 	<script type="text/javascript">
-		function add_cart(goodsId) {
+		function add_cart(goods_id) {
 			$.ajax({
 				type : "post",
 				async : false, //false인 경우 동기식으로 처리한다.
 				url : "${contextPath}/cart/addGoodsInCart.do",
 				data : {
-					goods_id:goodsId
+					goods_id:goods_id
 
 				},
 				success : function(data, textStatus) {
@@ -85,7 +85,7 @@
 			}
 		}
 
-		function fn_order_each_goods(goodsId,goodsTitle,goodsSalesPrice,fileName){
+		function fn_order_each_goods(goods_id,goods_title,goods_sales_price,fileName){
 			var _isLogOn=document.getElementById("isLogOn");
 			var isLogOn=_isLogOn.value;
 
@@ -95,7 +95,7 @@
 
 
 			var total_price,final_total_price;
-			var orderGoodsQty=document.getElementById("order_goods_qty");
+			var order_goods_qty=document.getElementById("order_goods_qty");
 
 			var formObj=document.createElement("form");
 			var i_goods_id = document.createElement("input");
@@ -104,16 +104,16 @@
 			var i_fileName=document.createElement("input");
 			var i_order_goods_qty=document.createElement("input");
 
-			i_goods_id.name="goodsId";
-			i_goods_title.name="goodsTitle";
-			i_goods_sales_price.name="goodsSalesPrice";
-			i_fileName.name="goodsFileName";
-			i_order_goods_qty.name="orderGoodsQty";
+			i_goods_id.name="goods_id";
+			i_goods_title.name="goods_title";
+			i_goods_sales_price.name="goods_sales_price";
+			i_fileName.name="goods_fileName";
+			i_order_goods_qty.name="order_goods_qty";
 
-			i_goods_id.value=goodsId;
-			i_order_goods_qty.value=orderGoodsQty.value;
-			i_goods_title.value=goodsTitle;
-			i_goods_sales_price.value=goodsSalesPrice;
+			i_goods_id.value=goods_id;
+			i_order_goods_qty.value=order_goods_qty.value;
+			i_goods_title.value=goods_title;
+			i_goods_sales_price.value=goods_sales_price;
 			i_fileName.value=fileName;
 
 			formObj.appendChild(i_goods_id);
