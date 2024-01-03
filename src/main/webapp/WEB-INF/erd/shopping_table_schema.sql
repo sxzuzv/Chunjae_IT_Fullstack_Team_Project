@@ -645,7 +645,7 @@ CHAPTER 05 데이터 정리부터 데이터 필터링까지
 CHAPTER 06 데이터 자동화 및 분석을 위한 표 & 피벗 테이블
 CHAPTER 07 엑셀 활용의 10%를 채워 줄 기본 & 필수 함수 익히기
 CHAPTER 08 실무에서 필요한 엑셀 데이터 시각화의 모든 것
-APPENDIX 한 걸음 더', '2024-01-01');
+APPENDIX 한 걸음 더');
 
 INSERT INTO bookshop.t_goods_detail_image
     (image_id, goods_id, file_name, reg_id, file_type)
@@ -677,7 +677,7 @@ VALUES (401, '개발자 오늘도 마음 튼튼하게 성장하기', '피오다르 서재나베츠 · 이�
 7 수도자 정신은 성공적인 프로그래머가 되는 데 어떤 도움을 주는가
 8 마이크로태스크로 미루는 습관 극복하기
 9 지적확인 환호응답 - 존에 쉽게 들어가는 일본 기법
-10 뽀모도로와 타이머로 더 쉽게 일하기', '2024-01-01');
+10 뽀모도로와 타이머로 더 쉽게 일하기');
 
 INSERT INTO bookshop.t_goods_detail_image
     (image_id, goods_id, file_name, reg_id, file_type)
@@ -768,7 +768,7 @@ AWS는 점유율 1위에 달하는 클라우드 서비스 플랫폼으로, 전 세계에 걸친 광범위한 클
 11장 워드프레스 이중화
 11.1 실습 소개
 11.2 실습 1 AWS 서비스를 활용한 워드프레스 구성하기
-11.3 실습 2 확장성과 안정성을 고려한 워드프레스 구성하기', '2024-01-01');
+11.3 실습 2 확장성과 안정성을 고려한 워드프레스 구성하기');
 
 INSERT INTO bookshop.t_goods_detail_image
     (image_id, goods_id, file_name, reg_id, file_type)
@@ -822,7 +822,7 @@ Chapter 24 루프, 분기, 그리고 호출
 Chapter 25 주변 장치들
 Chapter 26 운영체제
 Chapter 27 코딩
-Chapter 28 월드 브레인', '2024-01-01');
+Chapter 28 월드 브레인');
 
 INSERT INTO bookshop.t_goods_detail_image
     (image_id, goods_id, file_name, reg_id, file_type)
