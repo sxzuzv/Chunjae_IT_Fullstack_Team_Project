@@ -227,8 +227,8 @@ function fn_detail_search(){
 			<tbody>
 				<tr>
 					<td>
-						<input type="radio" name="r_search_option" value="simple_search" checked onClick="fn_enable_detail_search(this)"/> 간단조회 &nbsp;&nbsp;&nbsp;
-						<input type="radio" name="r_search_option" value="detail_search"  onClick="fn_enable_detail_search(this)" /> 상세조회 &nbsp;&nbsp;&nbsp;
+						<input type="radio" name="r_search_option" value="simple_search" checked onClick="fn_enable_detail_search(this)"/> 간단 조회 &nbsp;&nbsp;&nbsp;
+						<input type="radio" name="r_search_option" value="detail_search"  onClick="fn_enable_detail_search(this)" /> 상세 조회 &nbsp;&nbsp;&nbsp;
 					</td>
 				</tr>
 				<tr>
@@ -405,10 +405,10 @@ function fn_detail_search(){
 				  <td>
 				    <select name="s_search_type" disabled >
 						<option value="all" checked>전체</option>
-						<option value="member_name">회원이름</option>
-						<option value="member_id">회원아이디</option>
-						<option value="member_hp_num">회원휴대폰번호</option>
-						<option value="member_addr">회원주소</option>
+						<option value="member_name">회원 이름</option>
+						<option value="member_id">회원 아이디</option>
+						<option value="member_hp_num">회원 휴대폰 번호</option>
+						<option value="member_addr">회원 주소</option>
 					</select>
 					<input  type="text"  size="30" name="t_search_word" disabled />  
 					<input   type="button"  value="조회" name="btn_search" onClick="fn_detail_search()" disabled  />
@@ -423,12 +423,12 @@ function fn_detail_search(){
 <table class="list_view">
 		<tbody align=center >
 			<tr align=center bgcolor="#ffcc00">
-				<td class="fixed" >회원아이디</td>
-				<td class="fixed">회원이름</td>
-				<td>휴대폰번호</td>
+				<td class="fixed" >회원 아이디</td>
+				<td class="fixed">회원 이름</td>
+				<td>휴대폰 번호</td>
 				<td>주소</td>
 				<td>가입일</td>
-				<td>탈퇴여부</td>
+				<td>탈퇴 여부</td>
 			</tr>
    <c:choose>
      <c:when test="${empty member_list}">			
@@ -443,7 +443,7 @@ function fn_detail_search(){
 	            <tr >       
 					<td width=10%>
 					
-					  <a href="${pageContext.request.contextPath}/admin/member/memberDetail.do?member_id=${item.member_id}">
+					  <a href="${pageContext.request.contextPath}/admin/member/memberDetail.do?member_id=${item.memberId}">
 					     <strong>${item.member_id}</strong>
 					  </a>
 					</td>

@@ -116,7 +116,7 @@
 
 						#{goodsPublisherComment},
 					  #{goodsRecommendation},
-					  #{goodsContentsOrder},
+					  #{goodsContentsOrder}
 		 )
 		]]>
 	</insert>
@@ -126,7 +126,7 @@
 <!--	    	select seq_image_id.nextval from dual-->
 <!--	    </selectKey>-->
 	    <![CDATA[
-		   insert into t_goods_detail_image (image_id,
+		   insert into t_goods_detail_image(image_id,
 		                                     goods_id,
 											 file_Name,
 											 reg_id,
@@ -137,65 +137,66 @@
 										 #{regId},
 										 #{fileType} )
 		]]>
-	</insert> 
+	</insert>
+
 	<select id="selectNewGoodsList" resultType="goodsVO"   parameterType="java.util.Map"  >
 		  select * from (
 			   select
--- 			       rowNum as recNum,
+			   		@ROWNUM:=@ROWNUM+1 as recNum,
 			   		  goods_id,
 			          goods_title,
 			          goods_writer,
 			          goods_publisher,
 			          goods_sales_price,
-			          to_char(goods_credate,'YYYY-MM-DD')  as goods_creDate,
-			          to_char(goods_published_date,'YYYY-MM-DD') as goods_published_date
+			          date_format(goods_entered_date,'%Y-%m-%d')  as goods_entered_date,
+			          date_format(goods_title,'%Y-%m-%d') as goods_published_date
 			       from (
 			             select  goods_id,
 			             		 goods_title,
 			             		 goods_writer,
 			             		 goods_publisher,
 			             		 goods_sales_price,
-			             		 goods_credate,
+								 goods_entered_date,
 			             		 goods_published_date
-			              from t_shopping_goods 
-			                where  to_char(goods_credate,'YYYY-MM-DD')  between #{beginDate} and #{endDate}
-			               order by goods_credate desc
-					    )
-				)							
-			where				
-		recNum between (#{section}-1)*100+ (#{pageNum}-1)*10+1 and (#{section}-1)*100+(#{pageNum})*10
+			              from t_shopping_goods
+			                where  date_format(goods_entered_date,'%Y-%m-%d')  between #{beginDate} and #{endDate}
+			               order by goods_entered_date desc
+					    ) as innerquery
+			       cross join (select @rowNum := 0) as dummy
+				) as outerquery
+			where recNum between (#{section}-1)*100+ (#{pageNum}-1)*10+1 and (#{section}-1)*100+(#{pageNum})*10
 	</select>
 	
 	<select id="selectOrderGoodsList" resultType="OrderVO" parameterType="java.util.Map"  >
 		<![CDATA[
-		  select * from (
-			    select
--- 			        rowNum as recNum,
-			        t.*
-			       from (
-			              select  *  from t_shopping_order 
-			              where to_char(pay_order_time,'yyyy-mm-dd')  between #{beginDate} and #{endDate}
-			                <if test="search_type=='orderId'">
-			                  AND order_id=#{search_word}
-			                </if>
-			                <if test="search_type=='ordererName'">
-			                  AND orderer_name=#{search_word}
-			                </if>
-			                <if test="search_type=='ordererHp'">
-			                   AND orderer_hp=#{search_word}
-			                </if>
-			              order by PAY_ORDER_TIME desc
-					    ) t
-				)							
-			where				
-		recNum between (#{section}-1)*100+ (#{pageNum}-1)*10+1 and (#{section}-1)*100+(#{pageNum})*10
+		select * from (
+			select
+			    (@ROWNUM := @ROWNUM + 1) as recNum, t.*
+			  from (
+			  		select *
+					from t_shopping_order
+					where date_format(pay_order_time, '%Y-%m-%d') between #{beginDate} and #{endDate}
+						<if test='search_type=="orderId"'>
+							order_id = #{search_word}
+						</if>
+						<if test='search_type=="ordererName"'>
+							orderer_name=#{search_word}
+						</if>
+						<if test='search_type=="receiverHp"'>
+							receiver_hp=#{search_word}
+						</if>
+					order by pay_order_time desc
+					) as t
+			  ) as result
+			where recNum between (#{section} - 1) * 100 + (#{pageNum} - 1) * 10 + 1 and (#{section} - 1) * 100 + (#{pageNum}) * 10
 		]]>
 	</select>
 	
 
 	<select id="selectGoodsDetail" resultType="goodsVO"   parameterType="String"  >
 	    <![CDATA[
-		     select g.*,to_char(g.goods_published_date,'YYYY-MM-DD') as goods_published_date, d.file_name from t_shopping_goods g, t_goods_detail_image d
+		     select g.*,date_format(g.goods_published_date,'%Y-%m-%d') as goods_published_date, d.file_name
+		     from t_shopping_goods g, t_goods_detail_image d
 	        where g.goods_id=d.goods_id
 	        and d.file_type='main_image'
 	        and g.goods_id=#{goodsId}
@@ -204,7 +205,7 @@
 	</select>
 	<select id="selectGoodsImageFileList" resultType="ImageFileVO"   parameterType="String"  >
 	    <![CDATA[
-		    	select * from  t_goods_detail_image 
+		    	select * from t_goods_detail_image
 		    	where  
 			    goods_id=#{goodsId}
 			    order by image_id asc

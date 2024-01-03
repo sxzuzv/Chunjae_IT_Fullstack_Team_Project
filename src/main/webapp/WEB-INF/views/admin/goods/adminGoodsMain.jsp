@@ -230,7 +230,7 @@ function  calcPeriod(search_period){
 				  <strong>${item.goodsSalesPrice }</strong>
 				</td>
 				<td>
-				 <strong>${item.goods_credate }</strong> 
+				 <strong>${item.goodsEnteredDate }</strong>
 				</td>
 				<td>
 				    <c:set var="pub_date" value="${item.goodsPublishedDate}" />

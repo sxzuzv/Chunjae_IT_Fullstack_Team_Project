@@ -43,34 +43,48 @@
 	
 	<select id="selectGoodsList" resultType="goodsVO"  parameterType="java.util.Map">
       <![CDATA[
-          select g.*,d.fileName from t_shopping_goods g, t_goods_detail_image d
+          /*select g.*,d.fileName from t_shopping_goods g, t_goods_detail_image d
           where g.goods_id=d.goods_id
           and d.filetype='main_image'
+           and g.goods_id in*/
+          select g.*,d.file_name from t_shopping_goods g, t_goods_detail_image d
+          where g.goods_id=d.goods_id
+          and d.file_type='main_image'
            and g.goods_id in
       ]]>
       <foreach item="item"  collection="list" open="(" separator="," close=")" >
         #{item.goodsId}
       </foreach>
-       order by g.goods_creDate desc
+       /*order by g.goods_creDate desc*/
+       order by g.goods_entered_date desc
  </select>
 	
 	<select id="selectCountInCart" resultType="String"   parameterType="cartVO"  >
 	    <![CDATA[
-		    select decode(count(*),0,'false','true') from t_shopping_cart
-			where goods_id=#{goodsId}
-			  and member_id=#{memberId}
-
-    	]]>
+        /*select decode(count(*),0,'false','true') from t_shopping_cart
+        where goods_id=#{goodsId}
+          and member_id=#{memberId}*/
+        SELECT IF(COUNT(*) = 0, 'false', 'true') AS result
+        FROM t_shopping_cart
+        WHERE goods_id = #{goodsId}
+          AND member_id = #{memberId};
+        ]]>
 	</select>
 	
 	<insert id="insertGoodsInCart" parameterType="cartVO"  >
 	    <![CDATA[
-		    	insert into t_shopping_cart(cart_id,
+		    	/*insert into t_shopping_cart(cart_id,
 		    	                           goods_id,
 		    	                           member_id)
 		        					         values(#{cartId},
 		        							            #{goodsId},
-		        							            #{memberId})
+		        							            #{memberId})*/
+				insert into t_shopping_cart(cart_id,
+											goods_id,
+											member_id, cart_goods_qty)
+				values (#{cartId},
+						#{goodsId},
+						#{memberId}, #{cartGoodsQty})
     	]]>
 	</insert>
 	

@@ -74,48 +74,38 @@
 			      <if test=" memberGender!='' and memberGender!=null">
 			         member_gender=#{memberGender},
 			      </if>
-<!--			       <if test=" member_birth_y!='' and member_birth_y!=null">-->
-<!--			         member_birth_y=#{member_birth_y},-->
-<!--			      </if>-->
-<!--			      <if test=" member_birth_m!='' and member_birth_m!=null">-->
-<!--			         member_birth_m=#{member_birth_m},-->
-<!--			      </if>-->
-<!--			      <if test=" member_birth_d!='' and member_birth_d!=null">-->
-<!--			         member_birth_d=#{member_birth_d},-->
-<!--			      </if>-->
-	       		<if test=" memberBirth!='' and memberBirth!=null">
-					member_birth=#{memberBirth}
-				</if>
-	       		<if test=" memberHp!='' and memberHp!=null">
-					member_hp=#{memberHp}
-				</if>
-			      <if test=" smsstsYn!='' and smsstsYn!=null">
+					<if test=" memberBirth!='' and memberBirth!=null">
+						member_birth=#{memberBirth}
+					</if>
+					<if test=" memberHp!='' and memberHp!=null">
+						member_hp=#{memberHp}
+					</if>
+				  <if test=" smsstsYn!='' and smsstsYn!=null">
 					smssts_yn=#{smsstsYn},
-			      </if>
-			      <if test=" memberEmail!='' and memberEmail!=null">
+				  </if>
+				  <if test=" memberEmail!='' and memberEmail!=null">
 					member_email=#{memberEmail}
 				  </if>
-			      <if test=" emailstsYn!='' and emailstsYn!=null">
-			         emailsts_yn=#{emailstsYn},
-			      </if>
-			      <if test=" zipcode!='' and zipcode!=null">
-			         zipcode=#{zipcode},
-			      </if>
-			      <if test=" roadAddress!='' and roadAddress!=null">
-			         road_address=#{roadAddress},
-			      </if>			     
-			      <if test=" jibunAddress!='' and jibunAddress!=null">
-			         jibun_address=#{jibunAddress},
-			      </if>
-			      <if test=" namujiAddress!='' and namujiAddress!=null">
-			         namuji_address=#{namujiAddress}
-			      </if>
-			      <if test=" delYn!='' and delYn!=null">
-			         del_yn=#{delYn}
-			      </if>
+				  <if test=" emailstsYn!='' and emailstsYn!=null">
+					 emailsts_yn=#{emailstsYn},
+				  </if>
+				  <if test=" zipcode!='' and zipcode!=null">
+					 zipcode=#{zipcode},
+				  </if>
+				  <if test=" roadAddress!='' and roadAddress!=null">
+					 road_address=#{roadAddress},
+				  </if>
+				  <if test=" jibunAddress!='' and jibunAddress!=null">
+					 jibun_address=#{jibunAddress},
+				  </if>
+				  <if test=" namujiAddress!='' and namujiAddress!=null">
+					 namuji_address=#{namujiAddress}
+				  </if>
+				  <if test=" delYn!='' and delYn!=null">
+					 del_yn=#{delYn}
+				  </if>
 			   </set>
-		where 
-		member_id=#{memberId}
+		where member_id=#{memberId}
 	</update>	
 </mapper>
 
