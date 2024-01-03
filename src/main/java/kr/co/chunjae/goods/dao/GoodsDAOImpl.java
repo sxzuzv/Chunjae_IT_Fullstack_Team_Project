@@ -17,7 +17,7 @@ public class GoodsDAOImpl  implements GoodsDAO{
 	private SqlSession sqlSession;
 
 	@Override
-	public List<GoodsVO> selectGoodsList(String goodsStatus ) throws DataAccessException {
+	public List<GoodsVO> selectGoodsList(String goodsStatus) throws DataAccessException {
 		List<GoodsVO> goodsList=(ArrayList)sqlSession.selectList("mapper.goods.selectGoodsList",goodsStatus);
 	   return goodsList;	
      
@@ -35,14 +35,14 @@ public class GoodsDAOImpl  implements GoodsDAO{
 	}
 	
 	@Override
-	public GoodsVO selectGoodsDetail(String goods_id) throws DataAccessException{
-		GoodsVO goodsVO=(GoodsVO)sqlSession.selectOne("mapper.goods.selectGoodsDetail",goods_id);
+	public GoodsVO selectGoodsDetail(String goodsId) throws DataAccessException{
+		GoodsVO goodsVO=(GoodsVO)sqlSession.selectOne("mapper.goods.selectGoodsDetail",goodsId);
 		return goodsVO;
 	}
 	
 	@Override
-	public List<ImageFileVO> selectGoodsDetailImage(String goods_id) throws DataAccessException{
-		List<ImageFileVO> imageList=(ArrayList)sqlSession.selectList("mapper.goods.selectGoodsDetailImage",goods_id);
+	public List<ImageFileVO> selectGoodsDetailImage(String goodsId) throws DataAccessException{
+		List<ImageFileVO> imageList=(ArrayList)sqlSession.selectList("mapper.goods.selectGoodsDetailImage",goodsId);
 		return imageList;
 	}
 	
