@@ -443,7 +443,7 @@ function fn_detail_search(){
 	            <tr >       
 					<td width=10%>
 					
-					  <a href="${pageContext.request.contextPath}/admin/member/memberDetail.do?member_id=${item.member_id}">
+					  <a href="${pageContext.request.contextPath}/admin/member/memberDetail.do?member_id=${item.memberId}">
 					     <strong>${item.member_id}</strong>
 					  </a>
 					</td>

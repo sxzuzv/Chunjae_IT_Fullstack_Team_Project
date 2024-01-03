@@ -126,7 +126,7 @@
 <!--	    	select seq_image_id.nextval from dual-->
 <!--	    </selectKey>-->
 	    <![CDATA[
-		   insert into t_goods_detail_image (image_id,
+		   insert into t_goods_detail_image(image_id,
 		                                     goods_id,
 											 file_Name,
 											 reg_id,
@@ -142,7 +142,7 @@
 		  select * from (
 			   select
 -- 			       rowNum as recNum,
-			   		  goods_id,
+			   		  goods_id,git co
 			          goods_title,
 			          goods_writer,
 			          goods_publisher,

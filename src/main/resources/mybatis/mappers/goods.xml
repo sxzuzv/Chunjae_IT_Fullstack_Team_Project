@@ -63,7 +63,7 @@
 	<select id="selectGoodsDetailImage" resultType="ImageFileVO"   parameterType="String"  >
 	    <![CDATA[
 		    	select * from  t_goods_detail_image 
-		    	where  file_type!='main_image'
+		    	where  file_type != 'main_image'
 				and goods_id=#{goodsId}
     	]]>
 	</select>
