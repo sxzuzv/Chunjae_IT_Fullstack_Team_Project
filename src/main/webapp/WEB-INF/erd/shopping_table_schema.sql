@@ -7,15 +7,20 @@ CREATE TABLE t_shopping_member
     `member_pw`       varchar(30) NOT NULL comment '비밀번호',
     `member_name`     varchar(50) NOT NULL comment '이름',
     `member_gender`   varchar(10) comment '성별',
-    `member_hp`       varchar(20) comment '휴대폰번호',
+    `member_hp1`       varchar(20) comment '휴대폰번호1',
+    `member_hp2`       varchar(20) comment '휴대폰번호2',
+    `member_hp3`       varchar(20) comment '휴대폰번호3',
     `smssts_yn`       varchar(5) comment '문자수신동의여부',
-    `member_email`    varchar(20) comment '이메일',
+    `member_email1`    varchar(20) comment '이메일1',
+    `member_email2`    varchar(20) comment '이메일2',
     `emailsts_yn`     varchar(5) comment '이메일수신동의여부',
     `zipcode`         varchar(20) comment '우편번호',
     `road_address`    varchar(50) comment '도로명',
     `jibun_address`   varchar(50) comment '지번',
     `namuji_address`  varchar(50) comment '나머지주소',
-    `member_birth`    varchar(20) comment '생일',
+    `member_birth_y`    varchar(20) comment '생년월일',
+    `member_birth_m`    varchar(20) comment '생년월일',
+    `member_birth_d`    varchar(20) comment '생년월일',
     `member_birth_gn` varchar(20) comment '양력음력',
     `join_date`       date       DEFAULT current_date comment '가입일',
     `del_yn`          varchar(5) default 'n' comment '탈퇴여부'
@@ -133,16 +138,10 @@ CREATE TABLE member_auth
 -- 더미데이터
 
 -- t_shopping_member
-insert into t_shopping_member(member_id, member_pw, member_name, member_gender, member_hp, smssts_yn, member_email,
-                              emailsts_yn, zipcode, road_address, jibun_address, namuji_address, member_birth,
-                              member_birth_gn)
-values ('lee', '1212', '이병승', '101', '010-2222-3333', 'Y', 'lee@test.com', 'Y', '13547', '경기 성남시 분당구 고기로 25(동원동)',
-        '경기 성남시 분당구 동원동 79-1', '럭키빌딩 101호', '2000-5-10', 2);
-insert into t_shopping_member(member_id, member_pw, member_name, member_gender, member_hp, smssts_yn, member_email,
-                              emailsts_yn, zipcode, road_address, jibun_address, namuji_address, member_birth,
-                              member_birth_gn)
-values ('admin', '1212', '어드민', '101', '010-1111-2222', 'Y', 'admin@test.com', 'Y', '06253', '서울 강남구 강남대로 298(역삼동)',
-        '서울 강남구 역삼동 838', '럭키빌딩 101호', '2000-5-10', 2);
+insert into t_shopping_member(member_id, member_pw, member_name, member_gender, member_hp1, member_hp2, member_hp3, smssts_yn, member_email1, member_email2, emailsts_yn, zipcode, road_address, jibun_address, namuji_address, member_birth_y, member_birth_m, member_birth_d, member_birth_gn) values
+    ('lee', '1212', '이병승', '101', '010','2222','3333','Y','lee','test.com','Y','13547','경기 성남시 분당구 고기로 25(동원동)','경기 성남시 분당구 동원동 79-1','럭키빌딩 101호','2000','5','10','2');
+insert into t_shopping_member(member_id, member_pw, member_name, member_gender, member_hp1, member_hp2 ,member_hp3, smssts_yn, member_email1 ,member_email2, emailsts_yn, zipcode, road_address, jibun_address, namuji_address, member_birth_y, member_birth_m, member_birth_d, member_birth_gn) values
+    ('admin', '1212', '어드민', '101', '010','1111','2222','Y','admin','test.com','Y','06253','서울 강남구 강남대로 298(역삼동)','서울 강남구 역삼동 838','럭키빌딩 101호','2000','5','10','2');
 
 
 -- 상품 정보
