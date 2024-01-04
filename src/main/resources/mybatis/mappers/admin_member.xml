@@ -50,7 +50,7 @@
 -- 			                   AND hp1||hp2||hp3=#{search_word}
 			              		AND member_hp=#{search_word}
 			                </if>
-			              order by joinDate desc
+			              order by join_date desc
 					    ) as t
 				) as result
 			where				
