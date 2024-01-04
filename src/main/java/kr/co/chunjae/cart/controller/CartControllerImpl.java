@@ -28,8 +28,8 @@ public class CartControllerImpl extends BaseController implements CartController
 	@Autowired
 	CartVO cartVO;
 	@Autowired
-    MemberVO memberVO;
-	
+	MemberVO memberVO;
+
 	@RequestMapping(value="/myCartList.do" ,method = RequestMethod.GET)
 	public ModelAndView myCartMain(HttpServletRequest request, HttpServletResponse response)  throws Exception {
 		String viewName=(String)request.getAttribute("viewName");
@@ -45,11 +45,11 @@ public class CartControllerImpl extends BaseController implements CartController
 	}
 	@RequestMapping(value="/addGoodsInCart.do" ,method = RequestMethod.POST,produces = "application/text; charset=utf8")
 	public  @ResponseBody String addGoodsInCart(@RequestParam("goods_id") int goodsId,
-			                    HttpServletRequest request, HttpServletResponse response)  throws Exception{
+												HttpServletRequest request, HttpServletResponse response)  throws Exception{
 		HttpSession session=request.getSession();
 		memberVO=(MemberVO)session.getAttribute("memberInfo");
 		String memberId=memberVO.getMemberId();
-		
+
 		cartVO.setMemberId(memberId);
 		//카트 등록전에 이미 등록된 제품인지 판별한다.
 		cartVO.setGoodsId(goodsId);
@@ -63,11 +63,11 @@ public class CartControllerImpl extends BaseController implements CartController
 			return "add_success";
 		}
 	}
-	
+
 	@RequestMapping(value="/modifyCartQty.do" ,method = RequestMethod.POST)
 	public @ResponseBody String  modifyCartQty(@RequestParam("goods_id") int goodsId,
-			                                   @RequestParam("cart_goods_qty") int cartGoodsQty,
-			                                    HttpServletRequest request, HttpServletResponse response)  throws Exception{
+											   @RequestParam("cart_goods_qty") int cartGoodsQty,
+											   HttpServletRequest request, HttpServletResponse response)  throws Exception{
 		HttpSession session=request.getSession();
 		memberVO=(MemberVO)session.getAttribute("memberInfo");
 		String memberId=memberVO.getMemberId();
@@ -75,18 +75,18 @@ public class CartControllerImpl extends BaseController implements CartController
 		cartVO.setMemberId(memberId);
 		cartVO.setCartGoodsQty(cartGoodsQty);
 		boolean result=cartService.modifyCartQty(cartVO);
-		
+
 		if(result==true){
-		   return "modify_success";
+			return "modify_success";
 		}else{
-			  return "modify_failed";	
+			return "modify_failed";
 		}
-		
+
 	}
-	
+
 	@RequestMapping(value="/removeCartGoods.do" ,method = RequestMethod.POST)
 	public ModelAndView removeCartGoods(@RequestParam("cart_id") int cartId,
-			                          HttpServletRequest request, HttpServletResponse response)  throws Exception{
+										HttpServletRequest request, HttpServletResponse response)  throws Exception{
 		ModelAndView mav=new ModelAndView();
 		cartService.removeCartGoods(cartId);
 		mav.setViewName("redirect:/cart/myCartList.do");
