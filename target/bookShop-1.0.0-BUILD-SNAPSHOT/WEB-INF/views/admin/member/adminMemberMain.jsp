@@ -448,10 +448,10 @@ function fn_detail_search(){
 					  </a>
 					</td>
 					<td width=10%>
-					  <strong>${item.member_name}</strong><br>
+					  <strong>${item.memberName}</strong><br>
 					</td>
 					<td width=10% >
-					  <strong>${item.hp1}-${item.hp2}-${item.hp3}</strong><br>
+					  <strong>${item.memberHp}-${item.memberHp}-${item.memberHp}</strong><br>
 					</td>
 					<td width=50%>
 					  <strong>${item.roadAddress}</strong><br>
@@ -465,8 +465,8 @@ function fn_detail_search(){
 				    </td>
 				    <td width=10%>
 				       <c:choose>
-				         <c:when test="${item.del_yn=='N' }">
-				           <strong>활동중</strong>  
+				         <c:when test="${item.delYn=='N' }">
+				           <strong>활동 중</strong>
 				         </c:when>
 				         <c:otherwise>
 				           <strong>탈퇴</strong>
@@ -481,11 +481,11 @@ function fn_detail_search(){
              <td colspan=8 class="fixed">
                  <c:forEach   var="page" begin="1" end="10" step="1" >
 		         <c:if test="${chapter >1 && page==1 }">
-		          <a href="${pageContext.request.contextPath}/admin/member/adminMemberMain.do?chapter=${chapter-1}&pageNum=${(chapter-1)*10 +1 }">&nbsp;pre &nbsp;</a>
+		          <a href="${pageContext.request.contextPath}/admin/member/adminMemberMain.do?chapter=${section-1}&pageNum=${(section-1)*10 +1 }">&nbsp;pre &nbsp;</a>
 		         </c:if>
-		          <a href="${pageContext.request.contextPath}/admin/member/adminMemberMain.do?chapter=${chapter}&pageNum=${page}">${(chapter-1)*10 +page } </a>
+		          <a href="${pageContext.request.contextPath}/admin/member/adminMemberMain.do?chapter=${section}&pageNum=${page}">${(section-1)*10 +page } </a>
 		         <c:if test="${page ==10 }">
-		          <a href="${pageContext.request.contextPath}/admin/member/adminMemberMain.do?chapter=${chapter+1}&pageNum=${chapter*10+1}">&nbsp; next</a>
+		          <a href="${pageContext.request.contextPath}/admin/member/adminMemberMain.do?chapter=${section+1}&pageNum=${section*10+1}">&nbsp; next</a>
 		         </c:if> 
 	      		</c:forEach> 
            </td>
@@ -499,11 +499,11 @@ function fn_detail_search(){
    <DIV id="page_wrap">
 		 <c:forEach   var="page" begin="1" end="10" step="1" >
 		         <c:if test="${chapter >1 && page==1 }">
-		          <a href="${pageContext.request.contextPath}/admin/member/adminMemberMain.do?chapter=${chapter-1}&pageNum=${(chapter-1)*10 +1 }">&nbsp;pre &nbsp;</a>
+		          <a href="${pageContext.request.contextPath}/admin/member/adminMemberMain.do?chapter=${section-1}&pageNum=${(section-1)*10 +1 }">&nbsp;pre &nbsp;</a>
 		         </c:if>
-		          <a href="${pageContext.request.contextPath}/admin/member/adminMemberMain.do?chapter=${chapter}&pageNum=${page}">${(chapter-1)*10 +page } </a>
+		          <a href="${pageContext.request.contextPath}/admin/member/adminMemberMain.do?chapter=${section}&pageNum=${page}">${(section-1)*10 +page } </a>
 		         <c:if test="${page ==10 }">
-		          <a href="${pageContext.request.contextPath}/admin/member/adminMemberMain.do?chapter=${chapter+1}&pageNum=${chapter*10+1}">&nbsp; next</a>
+		          <a href="${pageContext.request.contextPath}/admin/member/adminMemberMain.do?chapter=${section+1}&pageNum=${section*10+1}">&nbsp; next</a>
 		         </c:if> 
 	      </c:forEach> 
 	</DIV>	
