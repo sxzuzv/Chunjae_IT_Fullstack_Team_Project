@@ -38,9 +38,9 @@ CREATE TABLE t_shopping_order
     goods_sales_price  int comment '상품판매가격',
     goods_file_name    varchar(60) comment '상품이미지파일이름',
     receiver_name      varchar(50) comment '수령자이름',
-    receiver_hp        varchar(20) comment '수령자 휴대폰번호',
--- 컬럼 삭제 	"receiver_hp2" varchar(20) comment '수령자 휴대폰번호2',
--- 컬럼 삭제	"receiver_hp3" varchar(20) comment '수령자 휴대폰번호3',
+    receiver_hp1        varchar(20) comment '수령자 휴대폰번호1',
+	receiver_hp2 varchar(20) comment '수령자 휴대폰번호2',
+    receiver_hp3 varchar(20) comment '수령자 휴대폰번호3',
 -- 컬럼 삭제 	"receiver_tel1" varchar(20) comment '수령자 유선 전화번호1',
 -- 컬럼 삭제	"receiver_tel2" varchar(20) comment '수령자 유선 전화번호2',
 -- 컬럼 삭제	"receiver_tel3" varchar(20) comment '수령자 유선 전화번호3',
@@ -846,6 +846,11 @@ VALUES (409, 'Clean Code(클린 코드)', '로버트 C. 마틴', '인사이트', 33000, 29700
 INSERT INTO bookshop.t_goods_detail_image
     (image_id, goods_id, file_name, reg_id, file_type)
 VALUES (10409, 409, '클린코드_메인.jpg', 'admin', 'main_image');
+
+-- t_shopping_order
+Insert into t_shopping_order (order_seq_num,order_id,member_id,goods_id,orderer_name,goods_title,order_goods_qty,goods_sales_price,goods_file_name,receiver_name,receiver_hp1,receiver_hp2,receiver_hp3,delivery_address, delivery_method, delivery_message, gift_wrapping, pay_method, card_com_name, card_pay_month, pay_orderer_hp_num, delivery_state, pay_order_time, orderer_hp) values (88,92,'lee',344,'이병승','초보자를 위한 자바프로그래밍',1,30000,'image1.jpg','이병승','010','2222','3333','우편번호:13547 도로명 주소:경기 성남시 분당구 고기로 25 (동원동) [지번 주소:경기 성남시 분당구 동원동 79-1] 럭키빌딩 101호','일반택배',null,'no','신용카드 카드사:삼성, 할부개월수:일시불','삼성','일시불','해당없음','delivery_prepared','2023/12/20','010-2222-3333');
+Insert into t_shopping_order (order_seq_num,order_id,member_id,goods_id,orderer_name,goods_title,order_goods_qty,goods_sales_price,goods_file_name,receiver_name,receiver_hp1,receiver_hp2,receiver_hp3,delivery_address, delivery_method, delivery_message, gift_wrapping, pay_method, card_com_name, card_pay_month, pay_orderer_hp_num, delivery_state, pay_order_time, orderer_hp) values (89,93,'lee',354,'이병승','모두의 딥러닝',1,21600,'모두의 딥러닝_메인.jpg','이병승','010','2222','3333','우편번호:13547 도로명 주소:경기 성남시 분당구 고기로 25 (동원동) [지번 주소:경기 성남시 분당구 동원동 79-1] 럭키빌딩 101호','일반택배',null,'no','신용카드 카드사:삼성, 할부개월수:일시불','삼성','일시불','해당없음','delivering','2023/12/20','010-2222-3333');
+Insert into t_shopping_order (order_seq_num,order_id,member_id,goods_id,orderer_name,goods_title,order_goods_qty,goods_sales_price,goods_file_name,receiver_name,receiver_hp1,receiver_hp2,receiver_hp3,delivery_address, delivery_method, delivery_message, gift_wrapping, pay_method, card_com_name, card_pay_month, pay_orderer_hp_num, delivery_state, pay_order_time, orderer_hp) values (90,94,'lee',354,'이병승','모두의 딥러닝',1,21600,'모두의 딥러닝_메인.jpg','이병승','010','2222','3333','우편번호:13547 도로명 주소:경기 성남시 분당구 고기로 25 (동원동) [지번 주소:경기 성남시 분당구 동원동 79-1] 럭키빌딩 101호','일반택배',null,'no','신용카드 카드사:삼성, 할부개월수:일시불','삼성','일시불','해당없음','delivery_prepared','2023/12/20','010-2222-3333');
 
 -- 게시판 종류 테이블 데이터
 insert into categories(cate, cate_name)

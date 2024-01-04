@@ -7,15 +7,20 @@ CREATE TABLE t_shopping_member
     `member_pw`       varchar(30) NOT NULL comment '비밀번호',
     `member_name`     varchar(50) NOT NULL comment '이름',
     `member_gender`   varchar(10) comment '성별',
-    `member_hp`       varchar(20) comment '휴대폰번호',
+    `member_hp1`       varchar(20) comment '휴대폰번호1',
+    `member_hp2`       varchar(20) comment '휴대폰번호2',
+    `member_hp3`       varchar(20) comment '휴대폰번호3',
     `smssts_yn`       varchar(5) comment '문자수신동의여부',
-    `member_email`    varchar(20) comment '이메일',
+    `member_email1`    varchar(20) comment '이메일1',
+    `member_email2`    varchar(20) comment '이메일2',
     `emailsts_yn`     varchar(5) comment '이메일수신동의여부',
     `zipcode`         varchar(20) comment '우편번호',
     `road_address`    varchar(50) comment '도로명',
     `jibun_address`   varchar(50) comment '지번',
     `namuji_address`  varchar(50) comment '나머지주소',
-    `member_birth`    varchar(20) comment '생일',
+    `member_birth_y`    varchar(20) comment '생년월일',
+    `member_birth_m`    varchar(20) comment '생년월일',
+    `member_birth_d`    varchar(20) comment '생년월일',
     `member_birth_gn` varchar(20) comment '양력음력',
     `join_date`       date       DEFAULT current_date comment '가입일',
     `del_yn`          varchar(5) default 'n' comment '탈퇴여부'
@@ -33,9 +38,9 @@ CREATE TABLE t_shopping_order
     goods_sales_price  int comment '상품판매가격',
     goods_file_name    varchar(60) comment '상품이미지파일이름',
     receiver_name      varchar(50) comment '수령자이름',
-    receiver_hp        varchar(20) comment '수령자 휴대폰번호',
--- 컬럼 삭제 	"receiver_hp2" varchar(20) comment '수령자 휴대폰번호2',
--- 컬럼 삭제	"receiver_hp3" varchar(20) comment '수령자 휴대폰번호3',
+    receiver_hp1        varchar(20) comment '수령자 휴대폰번호1',
+	receiver_hp2 varchar(20) comment '수령자 휴대폰번호2',
+    receiver_hp3 varchar(20) comment '수령자 휴대폰번호3',
 -- 컬럼 삭제 	"receiver_tel1" varchar(20) comment '수령자 유선 전화번호1',
 -- 컬럼 삭제	"receiver_tel2" varchar(20) comment '수령자 유선 전화번호2',
 -- 컬럼 삭제	"receiver_tel3" varchar(20) comment '수령자 유선 전화번호3',
@@ -133,16 +138,10 @@ CREATE TABLE member_auth
 -- 더미데이터
 
 -- t_shopping_member
-insert into t_shopping_member(member_id, member_pw, member_name, member_gender, member_hp, smssts_yn, member_email,
-                              emailsts_yn, zipcode, road_address, jibun_address, namuji_address, member_birth,
-                              member_birth_gn)
-values ('lee', '1212', '이병승', '101', '010-2222-3333', 'Y', 'lee@test.com', 'Y', '13547', '경기 성남시 분당구 고기로 25(동원동)',
-        '경기 성남시 분당구 동원동 79-1', '럭키빌딩 101호', '2000-5-10', 2);
-insert into t_shopping_member(member_id, member_pw, member_name, member_gender, member_hp, smssts_yn, member_email,
-                              emailsts_yn, zipcode, road_address, jibun_address, namuji_address, member_birth,
-                              member_birth_gn)
-values ('admin', '1212', '어드민', '101', '010-1111-2222', 'Y', 'admin@test.com', 'Y', '06253', '서울 강남구 강남대로 298(역삼동)',
-        '서울 강남구 역삼동 838', '럭키빌딩 101호', '2000-5-10', 2);
+insert into t_shopping_member(member_id, member_pw, member_name, member_gender, member_hp1, member_hp2, member_hp3, smssts_yn, member_email1, member_email2, emailsts_yn, zipcode, road_address, jibun_address, namuji_address, member_birth_y, member_birth_m, member_birth_d, member_birth_gn) values
+    ('lee', '1212', '이병승', '101', '010','2222','3333','Y','lee','test.com','Y','13547','경기 성남시 분당구 고기로 25(동원동)','경기 성남시 분당구 동원동 79-1','럭키빌딩 101호','2000','5','10','2');
+insert into t_shopping_member(member_id, member_pw, member_name, member_gender, member_hp1, member_hp2 ,member_hp3, smssts_yn, member_email1 ,member_email2, emailsts_yn, zipcode, road_address, jibun_address, namuji_address, member_birth_y, member_birth_m, member_birth_d, member_birth_gn) values
+    ('admin', '1212', '어드민', '101', '010','1111','2222','Y','admin','test.com','Y','06253','서울 강남구 강남대로 298(역삼동)','서울 강남구 역삼동 838','럭키빌딩 101호','2000','5','10','2');
 
 
 -- 상품 정보
@@ -847,6 +846,11 @@ VALUES (409, 'Clean Code(클린 코드)', '로버트 C. 마틴', '인사이트', 33000, 29700
 INSERT INTO bookshop.t_goods_detail_image
     (image_id, goods_id, file_name, reg_id, file_type)
 VALUES (10409, 409, '클린코드_메인.jpg', 'admin', 'main_image');
+
+-- t_shopping_order
+Insert into t_shopping_order (order_seq_num,order_id,member_id,goods_id,orderer_name,goods_title,order_goods_qty,goods_sales_price,goods_file_name,receiver_name,receiver_hp1,receiver_hp2,receiver_hp3,delivery_address, delivery_method, delivery_message, gift_wrapping, pay_method, card_com_name, card_pay_month, pay_orderer_hp_num, delivery_state, pay_order_time, orderer_hp) values (88,92,'lee',344,'이병승','초보자를 위한 자바프로그래밍',1,30000,'image1.jpg','이병승','010','2222','3333','우편번호:13547 도로명 주소:경기 성남시 분당구 고기로 25 (동원동) [지번 주소:경기 성남시 분당구 동원동 79-1] 럭키빌딩 101호','일반택배',null,'no','신용카드 카드사:삼성, 할부개월수:일시불','삼성','일시불','해당없음','delivery_prepared','2023/12/20','010-2222-3333');
+Insert into t_shopping_order (order_seq_num,order_id,member_id,goods_id,orderer_name,goods_title,order_goods_qty,goods_sales_price,goods_file_name,receiver_name,receiver_hp1,receiver_hp2,receiver_hp3,delivery_address, delivery_method, delivery_message, gift_wrapping, pay_method, card_com_name, card_pay_month, pay_orderer_hp_num, delivery_state, pay_order_time, orderer_hp) values (89,93,'lee',354,'이병승','모두의 딥러닝',1,21600,'모두의 딥러닝_메인.jpg','이병승','010','2222','3333','우편번호:13547 도로명 주소:경기 성남시 분당구 고기로 25 (동원동) [지번 주소:경기 성남시 분당구 동원동 79-1] 럭키빌딩 101호','일반택배',null,'no','신용카드 카드사:삼성, 할부개월수:일시불','삼성','일시불','해당없음','delivering','2023/12/20','010-2222-3333');
+Insert into t_shopping_order (order_seq_num,order_id,member_id,goods_id,orderer_name,goods_title,order_goods_qty,goods_sales_price,goods_file_name,receiver_name,receiver_hp1,receiver_hp2,receiver_hp3,delivery_address, delivery_method, delivery_message, gift_wrapping, pay_method, card_com_name, card_pay_month, pay_orderer_hp_num, delivery_state, pay_order_time, orderer_hp) values (90,94,'lee',354,'이병승','모두의 딥러닝',1,21600,'모두의 딥러닝_메인.jpg','이병승','010','2222','3333','우편번호:13547 도로명 주소:경기 성남시 분당구 고기로 25 (동원동) [지번 주소:경기 성남시 분당구 동원동 79-1] 럭키빌딩 101호','일반택배',null,'no','신용카드 카드사:삼성, 할부개월수:일시불','삼성','일시불','해당없음','delivery_prepared','2023/12/20','010-2222-3333');
 
 -- 게시판 종류 테이블 데이터
 insert into categories(cate, cate_name)
