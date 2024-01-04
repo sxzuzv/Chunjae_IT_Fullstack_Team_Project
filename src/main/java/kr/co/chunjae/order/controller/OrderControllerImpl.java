@@ -36,7 +36,6 @@ public class OrderControllerImpl extends BaseController implements OrderControll
 		
 		request.setCharacterEncoding("utf-8");
 		HttpSession session=request.getSession();
-		session=request.getSession();
 		
 		Boolean isLogOn=(Boolean)session.getAttribute("isLogOn");
 		String action=(String)session.getAttribute("action");
@@ -116,7 +115,7 @@ public class OrderControllerImpl extends BaseController implements OrderControll
 		MemberVO memberVO=(MemberVO)session.getAttribute("orderer");
 		String member_id=memberVO.getMemberId();
 		String orderer_name=memberVO.getMemberName();
-		String orderer_hp = memberVO.getMemberHp();
+		String orderer_hp = memberVO.getMemberHp1()+"-"+memberVO.getMemberHp2()+"-"+memberVO.getMemberHp3();
 		List<OrderVO> myOrderList=(List<OrderVO>)session.getAttribute("myOrderList");
 		
 		for(int i=0; i<myOrderList.size();i++){
@@ -125,7 +124,9 @@ public class OrderControllerImpl extends BaseController implements OrderControll
 			orderVO.setOrdererName(orderer_name);
 			orderVO.setReceiverName(receiverMap.get("receiver_name"));
 			
-			orderVO.setReceiverHp(receiverMap.get("receiver_hp1"));
+			orderVO.setReceiverHp1(receiverMap.get("receiver_hp1"));
+			orderVO.setReceiverHp2(receiverMap.get("receiver_hp2"));
+			orderVO.setReceiverHp3(receiverMap.get("receiver_hp3"));
 			orderVO.setDeliveryAddress(receiverMap.get("delivery_address"));
 			orderVO.setDeliveryMessage(receiverMap.get("delivery_message"));
 			orderVO.setDeliveryMethod(receiverMap.get("delivery_method"));
