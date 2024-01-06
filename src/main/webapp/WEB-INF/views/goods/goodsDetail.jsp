@@ -104,11 +104,11 @@
 			var i_fileName=document.createElement("input");
 			var i_order_goods_qty=document.createElement("input");
 
-			i_goods_id.name="goods_id";
-			i_goods_title.name="goods_title";
-			i_goods_sales_price.name="goods_sales_price";
-			i_fileName.name="goods_fileName";
-			i_order_goods_qty.name="order_goods_qty";
+			i_goods_id.name="goodsId";
+			i_goods_title.name="goodsTitle";
+			i_goods_sales_price.name="goodsSalesPrice";
+			i_fileName.name="goodsFileName";
+			i_order_goods_qty.name="orderGoodsQty";
 
 			i_goods_id.value=goods_id;
 			i_order_goods_qty.value=order_goods_qty.value;
