@@ -64,15 +64,15 @@
           and  to_char(pay_order_time,'yyyy-mm-dd')  between #{beginDate} and #{endDate}
           order by pay_order_time desc
     	]]>
-	</select>	
-	
+	</select>
+
 	<update id="updateMyInfo" parameterType="java.util.HashMap">
 	   update t_shopping_member
 			   <set>
-			      <if test=" member_pw!='' and member_pw!=null">
+			      <if test=" memberPw!='' and memberPw!=null">
 			        member_pw=#{memberPw},
 			      </if>
-			      <if test=" member_gender!='' and member_gender!=null">
+			      <if test=" memberGender!='' and memberGender!=null">
 			         member_gender=#{memberGender},
 			      </if>
 			       <if test=" member_birth_y!='' and member_birth_y!=null">
@@ -110,7 +110,7 @@
 			      </if>
 			      <if test=" roadAddress!='' and roadAddress!=null">
 			         roadAddress=#{roadAddress},
-			      </if>			     
+			      </if>
 			      <if test=" jibunAddress!='' and jibunAddress!=null">
 			         jibunAddress=#{jibunAddress},
 			      </if>
@@ -118,8 +118,8 @@
 			         namujiAddress=#{namujiAddress}
 			      </if>
 			   </set>
-		where 
-		member_id=#{member_id}
+		where
+		member_id=#{memberId}
 	</update>
 	
 	<select id="selectMyDetailInfo" resultType="memberVO"   parameterType="String"  >

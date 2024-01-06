@@ -31,7 +31,7 @@ public class MyPageServiceImpl  implements MyPageService{
 	}
 	
 	public MemberVO  modifyMyInfo(Map memberMap) throws Exception{
-		 String member_id=(String)memberMap.get("member_id");
+		 String member_id=(String)memberMap.get("memberId");
 		 myPageDAO.updateMyInfo(memberMap);
 		 return myPageDAO.selectMyDetailInfo(member_id);
 	}

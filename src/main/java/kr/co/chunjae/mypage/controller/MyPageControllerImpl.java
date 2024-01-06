@@ -8,6 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import lombok.extern.log4j.Log4j;
+import lombok.extern.log4j.Log4j2;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -127,7 +130,7 @@ public class MyPageControllerImpl extends BaseController  implements MyPageContr
 		String val[]=null;
 		HttpSession session=request.getSession();
 		memberVO=(MemberVO)session.getAttribute("memberInfo");
-		String  member_id=memberVO.getMemberId();
+		String memberId=memberVO.getMemberId();
 		if(attribute.equals("member_birth")){
 			val=value.split(",");
 			memberMap.put("member_birth_y",val[0]);
@@ -155,12 +158,14 @@ public class MyPageControllerImpl extends BaseController  implements MyPageContr
 			memberMap.put(attribute,value);	
 		}
 		
-		memberMap.put("member_id", member_id);
+		memberMap.put("memberId", memberId);
 		
 		//수정된 회원 정보를 다시 세션에 저장한다.
 		memberVO=(MemberVO)myPageService.modifyMyInfo(memberMap);
 		session.removeAttribute("memberInfo");
 		session.setAttribute("memberInfo", memberVO);
+
+
 		
 		String message = null;
 		ResponseEntity resEntity = null;
