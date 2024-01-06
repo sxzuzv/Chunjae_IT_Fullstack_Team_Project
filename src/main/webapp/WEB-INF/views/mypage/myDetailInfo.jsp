@@ -66,22 +66,11 @@
     }
 
     function selectBoxInit(){
-    
-     var tel1='${memberInfo.tel1 }';
-     var hp1='${memberInfo.hp1}';
-     var selTel1 = document.getElementById('tel1');
+
+     var hp1='${memberInfo.memberHp1}';
      var selHp1 = document.getElementById('hp1');
-     var optionTel1 = selTel1.options;
      var optionHp1 = selHp1.options;
      var val;
-     for(var i=0; i<optionTel1.length;i++){
-       val = optionTel1[i].value;
-       if(tel1 == val){
-    	   optionTel1[i].selected= true;
-        break;
-       }
-     }  
-     
      for(var i=0; i<optionHp1.length;i++){
          val = optionHp1[i].value;
          if(hp1 == val){
@@ -98,10 +87,10 @@ function fn_modify_member_info(attribute){
 	// alert(member_id);
 	// alert("mod_type:"+mod_type);
 		var frm_mod_member=document.frm_mod_member;
-		if(attribute=='member_pw'){
+		if(attribute=='memberPw'){
 			value=frm_mod_member.member_pw.value;
 			//alert("member_pw:"+value);
-		}else if(attribute=='member_gender'){
+		}else if(attribute=='memberGender'){
 			var member_gender=frm_mod_member.member_gender;
 			for(var i=0; member_gender.length;i++){
 			 	if(member_gender[i].checked){
@@ -110,11 +99,11 @@ function fn_modify_member_info(attribute){
 				} 
 			}
 			
-		}else if(attribute=='member_birth'){
-			var member_birth_y=frm_mod_member.member_birth_y;
-			var member_birth_m=frm_mod_member.member_birth_m;
-			var member_birth_d=frm_mod_member.member_birth_d;
-			var member_birth_gn=frm_mod_member.member_birth_gn;
+		}else if(attribute=='memberBirth'){
+			var member_birth_y=frm_mod_member.memberBirthY;
+			var member_birth_m=frm_mod_member.memberBirthM;
+			var member_birth_d=frm_mod_member.memberBirthD;
+			var member_birth_gn=frm_mod_member.memberBirthGn;
 			
 			for(var i=0; member_birth_y.length;i++){
 			 	if(member_birth_y[i].selected){
@@ -145,21 +134,7 @@ function fn_modify_member_info(attribute){
 			}
 			//alert("생년 양음년 "+value_gn);
 			value=+value_y+","+value_m+","+value_d+","+value_gn;
-		}else if(attribute=='tel'){
-			var tel1=frm_mod_member.tel1;
-			var tel2=frm_mod_member.tel2;
-			var tel3=frm_mod_member.tel3;
-			
-			for(var i=0; tel1.length;i++){
-			 	if(tel1[i].selected){
-					value_tel1=tel1[i].value;
-					break;
-				} 
-			}
-			value_tel2=tel2.value;
-			value_tel3=tel3.value;
-			value=value_tel1+","+value_tel2+", "+value_tel3;
-		}else if(attribute=='hp'){
+		}else if(attribute=='memberHp'){
 			var hp1=frm_mod_member.hp1;
 			var hp2=frm_mod_member.hp2;
 			var hp3=frm_mod_member.hp3;
@@ -175,7 +150,7 @@ function fn_modify_member_info(attribute){
 			value_hp3=hp3.value;
 			value_smssts_yn=smssts_yn.checked;
 			value=value_hp1+","+value_hp2+", "+value_hp3+","+value_smssts_yn;
-		}else if(attribute=='email'){
+		}else if(attribute=='memberEmail'){
 			var email1=frm_mod_member.email1;
 			var email2=frm_mod_member.email2;
 			var emailsts_yn=frm_mod_member.emailsts_yn;
@@ -185,7 +160,7 @@ function fn_modify_member_info(attribute){
 			value_emailsts_yn=emailsts_yn.checked;
 			value=value_email1+","+value_email2+","+value_emailsts_yn;
 			//alert(value);
-		}else if(attribute=='address'){
+		}else if(attribute=='memberAddress'){
 			var zipcode=frm_mod_member.zipcode;
 			var roadAddress=frm_mod_member.roadAddress;
 			var jibunAddress=frm_mod_member.jibunAddress;
@@ -224,6 +199,21 @@ function fn_modify_member_info(attribute){
 			}
 		}); //end ajax
 }
+
+	document.addEventListener('DOMContentLoaded', function() {//페이지로드후 실행
+		const domainListEl = document.querySelector('#domainlist');//도메인 리스트 정의
+		const domainInputEl = document.querySelector('#domaintxt');//직접입력 도메인 정의
+
+		domainListEl.addEventListener('change', (event) => {
+			if (event.target.value !== "type") {//직접입력 도메인 선택 안했을때
+				domainInputEl.value = event.target.value;//선택한 도메인을 input 에 입력
+				domainInputEl.disabled = true;
+			} else {//직접입력 도메인 선택시
+				domainInputEl.value = "";//input 내용 초기화
+				domainInputEl.disabled = false;
+			}
+		});
+	});
 </script>
 </head>
 
@@ -236,7 +226,7 @@ function fn_modify_member_info(attribute){
 				<tr class="dot_line">
 					<td class="fixed_join">아이디</td>
 					<td>
-						<input name="member_id" type="text" size="20" value="${memberInfo.member_id }"  disabled/>
+						<input name="memberId" type="text" size="20" value="${memberInfo.memberId }"  disabled/>
 					</td>
 					 <td>
 					</td>
@@ -244,16 +234,16 @@ function fn_modify_member_info(attribute){
 				<tr class="dot_line">
 					<td class="fixed_join">비밀번호</td>
 					<td>
-					  <input name="member_pw" type="password" size="20" value="${memberInfo.member_pw }" />
+					  <input name="member_pw" type="password" size="20" value="${memberInfo.memberPw }" />
 					</td>
 					<td>
-					  <input type="button" value="수정하기" onClick="fn_modify_member_info('member_pw')" />
+					  <input type="button" value="수정하기" onClick="fn_modify_member_info('memberPw')" />
 					</td>
 				</tr>
 				<tr class="dot_line">
 					<td class="fixed_join">이름</td>
 					<td>
-					  <input name="member_name" type="text" size="20" value="${memberInfo.member_name }"  disabled />
+					  <input name="memberName" type="text" size="20" value="${memberInfo.memberName }"  disabled />
 					 </td>
 					 <td>
 					</td>
@@ -262,7 +252,7 @@ function fn_modify_member_info(attribute){
 					<td class="fixed_join">성별</td>
 					<td>
 					  <c:choose >
-					    <c:when test="${memberInfo.member_gender =='101' }">
+					    <c:when test="${memberInfo.memberGender =='101' }">
 					      <input type="radio" name="member_gender" value="102" />
 						  여성 <span style="padding-left:30px"></span>
 					   <input type="radio" name="member_gender" value="101" checked />남성
@@ -275,16 +265,16 @@ function fn_modify_member_info(attribute){
 					   </c:choose>
 					</td>
 					<td>
-					  <input type="button" value="수정하기" onClick="fn_modify_member_info('member_gender')" />
+					  <input type="button" value="수정하기" onClick="fn_modify_member_info('memberGender')" />
 					</td>
 				</tr>
 				<tr class="dot_line">
 					<td class="fixed_join">법정생년월일</td>
 					<td>
-					   <select name="member_birth_y">
+					   <select name="memberBirthY">
 					     <c:forEach var="i" begin="1" end="100">
 					       <c:choose>
-					         <c:when test="${memberInfo.member_birth_y==1920+i }">
+					         <c:when test="${memberInfo.memberBirthY==1920+i }">
 							   <option value="${ 1920+i}" selected>${ 1920+i} </option>
 							</c:when>
 							<c:otherwise>
@@ -293,10 +283,10 @@ function fn_modify_member_info(attribute){
 							</c:choose>
 					   	</c:forEach>
 					</select>년 
-					<select name="member_birth_m" >
+					<select name="memberBirthM" >
 						<c:forEach var="i" begin="1" end="12">
 					       <c:choose>
-					         <c:when test="${memberInfo.member_birth_m==i }">
+					         <c:when test="${memberInfo.memberBirthM==i }">
 							   <option value="${i }" selected>${i }</option>
 							</c:when>
 							<c:otherwise>
@@ -306,10 +296,10 @@ function fn_modify_member_info(attribute){
 					   	</c:forEach>
 					</select>월 
 					
-					<select name="member_birth_d">
+					<select name="memberBirthD">
 							<c:forEach var="i" begin="1" end="31">
 					       <c:choose>
-					         <c:when test="${memberInfo.member_birth_d==i }">
+					         <c:when test="${memberInfo.memberBirthD==i }">
 							   <option value="${i }" selected>${i }</option>
 							</c:when>
 							<c:otherwise>
@@ -319,56 +309,19 @@ function fn_modify_member_info(attribute){
 					   	</c:forEach>
 					</select>일 <span style="padding-left:50px"></span>
 					   <c:choose>
-					    <c:when test="${memberInfo.member_birth_gn=='2' }"> 
-					  <input type="radio" name="member_birth_gn" value="2" checked />양력
+					    <c:when test="${memberInfo.memberBirthGn=='2' }">
+					  <input type="radio" name="memberBirthGn" value="2" checked />양력
 						<span style="padding-left:20px"></span> 
-						<input type="radio"  name="member_birth_gn" value="1" />음력
+						<input type="radio"  name="memberBirthGn" value="1" />음력
 						</c:when>
 						<c:otherwise>
-						  <input type="radio" name="member_birth_gn" value="2" />양력
-						  <input type="radio"  name="member_birth_gn" value="1" checked  />음력
+						  <input type="radio" name="memberBirthBn" value="2" />양력
+						  <input type="radio"  name="memberBirthGn" value="1" checked  />음력
 						</c:otherwise>
 						</c:choose>
 					</td>
 					<td>
-					  <input type="button" value="수정하기" onClick="fn_modify_member_info('member_birth')" />
-					</td>
-				</tr>
-				<tr class="dot_line">
-					<td class="fixed_join">전화번호</td>
-					<td>
-					    <select  name="tel1" id="tel1"  >
-							<option value="00">없음</option>
-							<option value="02">02</option>
-							<option value="031">031</option>
-							<option value="032">032</option>
-							<option value="033">033</option>
-							<option value="041">041</option>
-							<option value="042">042</option>
-							<option value="043">043</option>
-							<option value="044">044</option>
-							<option value="051">051</option>
-							<option value="052">052</option>
-							<option value="053">053</option>
-							<option value="054">054</option>
-							<option value="055">055</option>
-							<option value="061">061</option>
-							<option value="062">062</option>
-							<option value="063">063</option>
-							<option value="064">064</option>
-							<option value="0502">0502</option>
-							<option value="0503">0503</option>
-							<option value="0505">0505</option>
-							<option value="0506">0506</option>
-							<option value="0507">0507</option>
-							<option value="0508">0508</option>
-							<option value="070">070</option>
-					</select> 
-					    - <input type="text" size=4  name="tel2" value="${memberInfo.tel2 }"> 
-					    - <input type="text" size=4  name="tel3" value="${memberInfo.tel3 }">
-					</td>
-					<td>
-					  <input type="button" value="수정하기" onClick="fn_modify_member_info('tel')" />
+					  <input type="button" value="수정하기" onClick="fn_modify_member_info('memberBirth')" />
 					</td>
 				</tr>
 				<tr class="dot_line">
@@ -383,10 +336,10 @@ function fn_modify_member_info(attribute){
 							<option value="018">018</option>
 							<option value="019">019</option>
 					</select> 
-					 - <input type="text" name="hp2" size=4 value="${memberInfo.hp2 }"> 
-					 - <input type="text"name="hp3"  size=4 value="${memberInfo.hp3 }"><br> <br>
+					 - <input type="text" name="hp2" size=4 value="${memberInfo.memberHp2 }">
+					 - <input type="text" name="hp3"  size=4 value="${memberInfo.memberHp3 }"><br> <br>
 					 <c:choose> 
-					   <c:when test="${memberInfo.smssts_yn=='true' }">
+					   <c:when test="${memberInfo.smsstsYn=='true' }">
 					     <input type="checkbox"  name="smssts_yn" value="Y" checked /> 쇼핑몰에서 발송하는 SMS 소식을 수신합니다.
 						</c:when>
 						<c:otherwise>
@@ -395,15 +348,15 @@ function fn_modify_member_info(attribute){
 					 </c:choose>	
 				    </td>
 					<td>
-					  <input type="button" value="수정하기" onClick="fn_modify_member_info('hp')" />
+					  <input type="button" value="수정하기" onClick="fn_modify_member_info('memberHp')" />
 					</td>	
 				</tr>
 				<tr class="dot_line">
 					<td class="fixed_join">이메일<br>(e-mail)</td>
 					<td>
-					   <input type="text" name="email1" size=10 value="${memberInfo.email1 }" /> @ <input type="text" size=10  name="email2" value="${memberInfo.email2 }" /> 
-					   <select name="select_email2" onChange=""  title="직접입력">
-							<option value="non">직접입력</option>
+					   <input type="text" name="email1" size=10 value="${memberInfo.memberEmail1 }" /> @ <input type="text" size=10  name="email2" value="${memberInfo.memberEmail2 }" id="domaintxt"/>
+					   <select id="domainlist" title="직접입력">
+							<option value="type">직접입력</option>
 							<option value="hanmail.net">hanmail.net</option>
 							<option value="naver.com">naver.com</option>
 							<option value="yahoo.co.kr">yahoo.co.kr</option>
@@ -417,7 +370,7 @@ function fn_modify_member_info(attribute){
 							<option value="freechal.com">freechal.com</option>
 					</select><Br><br> 
 					<c:choose> 
-					   <c:when test="${memberInfo.emailsts_yn=='true' }">
+					   <c:when test="${memberInfo.emailstsYn=='true' }">
 					     <input type="checkbox" name="emailsts_yn"  value="Y" checked /> 쇼핑몰에서 발송하는 e-mail을 수신합니다.
 						</c:when>
 						<c:otherwise>
@@ -426,7 +379,7 @@ function fn_modify_member_info(attribute){
 					 </c:choose>
 					</td>
 					<td>
-					  <input type="button" value="수정하기" onClick="fn_modify_member_info('email')" />
+					  <input type="button" value="수정하기" onClick="fn_modify_member_info('memberEmail')" />
 					</td>
 				</tr>
 				<tr class="dot_line">
@@ -441,7 +394,7 @@ function fn_modify_member_info(attribute){
 					   </p>
 					</td>
 					<td>
-					  <input type="button" value="수정하기" onClick="fn_modify_member_info('address')" />
+					  <input type="button" value="수정하기" onClick="fn_modify_member_info('memberAddress')" />
 					</td>
 				</tr>
 			</tbody>
@@ -458,8 +411,7 @@ function fn_modify_member_info(attribute){
 		</tr>
 	</table>
 	</div>
-	<input  type="hidden" name="h_tel1" value="${memberInfo.tel1}" />
-	<input  type="hidden" name="h_hp1" value="${memberInfo.hp1}" />		
+	<input  type="hidden" name="h_hp1" value="${memberInfo.memberHp1}" />
 </form>	
 </body>
 </html>

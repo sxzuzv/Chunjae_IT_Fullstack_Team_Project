@@ -57,6 +57,15 @@ public class MemberControllerImpl extends BaseController implements MemberContro
 			mav.addObject("message", message);
 			mav.setViewName("/member/loginForm");
 		}
+		if (memberVO != null) {
+			// 세션에 저장된 MemberVO 객체가 null이 아닌 경우
+			// MemberVO 객체에 저장된 정보 출력 또는 로깅
+			System.out.println("Member ID: " + memberVO.getMemberId());
+			// 필요한 다른 정보들도 출력 또는 로깅
+		} else {
+			// 세션에 MemberInfo 객체가 없는 경우 또는 null인 경우
+			System.out.println("No member info found in the session.");
+		}
 		return mav;
 	}
 	
