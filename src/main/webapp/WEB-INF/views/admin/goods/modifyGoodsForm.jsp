@@ -8,7 +8,7 @@
 <c:set var="imageFileList"  value="${goodsMap.imageFileList}"  />
 
 <c:choose>
-<c:when test='${not empty goods.goods_status}'>
+<c:when test='${not empty goods.goodsStatus}'>
 <script>
 window.onload=function()
 {
@@ -19,53 +19,55 @@ function init(){
 	var frm_mod_goods=document.frm_mod_goods;
 	var h_goods_status=frm_mod_goods.h_goods_status;
 	var goods_status=h_goods_status.value;
-	var select_goods_status=frm_mod_goods.goods_status;
+	var select_goods_status=frm_mod_goods.goodsStatus;
 	 select_goods_status.value=goods_status;
 }
 </script>
 </c:when>
 </c:choose>
 <script type="text/javascript">
-function fn_modify_goods(goods_id, attribute){
+function fn_modify_goods(goodsId, attribute){
 	var frm_mod_goods=document.frm_mod_goods;
 	var value="";
 	// if(attribute=='goods_sort'){
 	// 	value=frm_mod_goods.goods_sort.value;
 	// }else
-	if(attribute=='goods_title'){
-		value=frm_mod_goods.goods_title.value;
-	}else if(attribute=='goods_writer'){
-		value=frm_mod_goods.goods_writer.value;   
-	}else if(attribute=='goods_publisher'){
-		value=frm_mod_goods.goods_publisher.value;
-	}else if(attribute=='goods_price'){
-		value=frm_mod_goods.goods_price.value;
-	}else if(attribute=='goods_sales_price'){
-		value=frm_mod_goods.goods_sales_price.value;
-	}else if(attribute=='goods_point'){
-		value=frm_mod_goods.goods_point.value;
-	}else if(attribute=='goods_published_date'){
-		value=frm_mod_goods.goods_published_date.value;
-	}else if(attribute=='goods_page_total'){
-		value=frm_mod_goods.goods_page_total.value;
-	}else if(attribute=='goods_isbn'){
-		value=frm_mod_goods.goods_isbn.value;
-	}else if(attribute=='goods_delivery_price'){
-		value=frm_mod_goods.goods_delivery_price.value;
-	}else if(attribute=='goods_delivery_date'){
-		value=frm_mod_goods.goods_delivery_date.value;
-	}else if(attribute=='goods_status'){
-		value=frm_mod_goods.goods_status.value;
-	}else if(attribute=='goods_contents_order'){
-		value=frm_mod_goods.goods_contents_order.value;
-	}else if(attribute=='goods_writer_intro'){
-		value=frm_mod_goods.goods_writer_intro.value;
-	}else if(attribute=='goods_intro'){
-		value=frm_mod_goods.goods_intro.value;
-	}else if(attribute=='publisher_comment'){
-		value=frm_mod_goods.publisher_comment.value;
-	}else if(attribute=='recommendation'){
-		value=frm_mod_goods.recommendation.value;
+	if(attribute=='goodsTitle'){
+		value=frm_mod_goods.goodsTitle.value;
+	}else if(attribute=='goodsWriter'){
+		value=frm_mod_goods.goodsWriter.value;
+	}else if(attribute=='goodsPublisher'){
+		value=frm_mod_goods.goodsPublisher.value;
+	}else if(attribute=='goodsPrice'){
+		value=frm_mod_goods.goodsPrice.value;
+	}else if(attribute=='goodsSalesPrice'){
+		value=frm_mod_goods.goodsSalesPrice.value;
+	}
+	// else if(attribute=='goods_point'){
+	// 	value=frm_mod_goods.goods_point.value;
+	// }
+	else if(attribute=='goodsPublishedDate'){
+		value=frm_mod_goods.goodsPublishedDate.value;
+	}else if(attribute=='goodsTotalPage'){
+		value=frm_mod_goods.goodsTotalPage.value;
+	}else if(attribute=='goodsIsbn'){
+		value=frm_mod_goods.goodsIsbn.value;
+	}else if(attribute=='goodsDeliveryPrice'){
+		value=frm_mod_goods.goodsDeliveryPrice.value;
+	}else if(attribute=='goodsDeliveryDate'){
+		value=frm_mod_goods.goodsDeliveryDate.value;
+	}else if(attribute=='goodsStatus'){
+		value=frm_mod_goods.goodsStatus.value;
+	}else if(attribute=='goodsContentsOrder'){
+		value=frm_mod_goods.goodsContentsOrder.value;
+	}else if(attribute=='goodsWriterIntro'){
+		value=frm_mod_goods.goodsWriterIntro.value;
+	}else if(attribute=='goodsIntro'){
+		value=frm_mod_goods.goodsIntro.value;
+	}else if(attribute=='goodsPublisherComment'){
+		value=frm_mod_goods.goodsPublisherComment.value;
+	}else if(attribute=='goodsRecommendation'){
+		value=frm_mod_goods.goodsRecommendation.value;
 	}
 
 	$.ajax({
@@ -73,7 +75,7 @@ function fn_modify_goods(goods_id, attribute){
 		async : false, //false인 경우 동기식으로 처리한다.
 		url : "${contextPath}/admin/goods/modifyGoodsInfo.do",
 		data : {
-			goods_id:goods_id,
+			goodsId:goodsId,
 			attribute:attribute,
 			value:value
 		},
@@ -112,17 +114,17 @@ function fn_modify_goods(goods_id, attribute){
   function fn_addFile(){
 	  $("#d_file").append("<br>"+"<input  type='file' name='detail_image"+cnt+"' id='detail_image"+cnt+"'  onchange=readURL(this,'previewImage"+cnt+"') />");
 	  $("#d_file").append("<img  id='previewImage"+cnt+"'   width=200 height=200  />");
-	  $("#d_file").append("<input  type='button' value='추가'  onClick=addNewImageFile('detail_image"+cnt+"','${imageFileList[0].goods_id}','detail_image')  />");
+	  $("#d_file").append("<input  type='button' value='추가'  onClick=addNewImageFile('detail_image"+cnt+"','${imageFileList[0].goodsId}','detail_image')  />");
 	  cnt++;
   }
   
-  function modifyImageFile(fileId,goods_id, image_id,fileType){
+  function modifyImageFile(fileId,goodsId,imageId,fileType){
     // alert(fileId);
 	  var form = $('#FILE_FORM')[0];
       var formData = new FormData(form);
       formData.append("fileName", $('#'+fileId)[0].files[0]);
-      formData.append("goods_id", goods_id);
-      formData.append("image_id", image_id);
+      formData.append("goods_id", goodsId);
+      formData.append("image_id", imageId);
       formData.append("fileType", fileType);
       
       $.ajax({
@@ -137,12 +139,12 @@ function fn_modify_goods(goods_id, attribute){
       });
   }
   
-  function addNewImageFile(fileId,goods_id, fileType){
+  function addNewImageFile(fileId,goodsId,fileType){
 	   //  alert(fileId);
 		  var form = $('#FILE_FORM')[0];
 	      var formData = new FormData(form);
 	      formData.append("uploadFile", $('#'+fileId)[0].files[0]);
-	      formData.append("goods_id", goods_id);
+	      formData.append("goods_id", goodsId);
 	      formData.append("fileType", fileType);
 	      
 	      $.ajax({
@@ -157,15 +159,15 @@ function fn_modify_goods(goods_id, attribute){
 	          });
 	  }
   
-  function deleteImageFile(goods_id,image_id,imageFileName,trId){
+  function deleteImageFile(goodsId,imageId,imageFileName,trId){
 	var tr = document.getElementById(trId);
 
       	$.ajax({
     		type : "post",
     		async : true, //false인 경우 동기식으로 처리한다.
     		url : "${contextPath}/admin/goods/removeGoodsImage.do",
-    		data: {goods_id:goods_id,
-     	         image_id:image_id,
+    		data: {goods_id:goodsId,
+     	         image_id:imageId,
      	         imageFileName:imageFileName},
     		success : function(data, textStatus) {
     			alert("이미지를 삭제했습니다!!");
@@ -466,7 +468,7 @@ function fn_modify_goods(goods_id, attribute){
 						<td>
 							<input type="file" name="detail_image"  id="detail_image"   onchange="readURL(this,'preview${itemNum.count}');" />
 							<%-- <input type="text" id="image_id${itemNum.count }"  value="${item.fileName }" disabled  /> --%>
-							<input type="hidden"  name="image_id" value="${item.image_id }"  />
+							<input type="hidden"  name="image_id" value="${item.imageId }"  />
 							<br>
 						</td>
 						<td>
