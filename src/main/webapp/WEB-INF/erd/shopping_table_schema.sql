@@ -28,7 +28,7 @@ CREATE TABLE t_shopping_member
 -- 주문 테이블
 CREATE TABLE t_shopping_order
 (
-    order_seq_num      bigint PRIMARY KEY comment '주문상품일련번호',
+    order_seq_num      bigint auto_increment PRIMARY KEY comment '주문상품일련번호',
     order_id           bigint comment '주문번호',
     member_id          varchar(20) comment '주문자아이디', -- FK
     goods_id           bigint comment '상품번호',        -- FK

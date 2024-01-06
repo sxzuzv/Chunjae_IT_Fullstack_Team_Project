@@ -104,14 +104,16 @@
 
       function init() {
           var form_order = document.form_order;
-          var h_tel1 = form_order.h_tel1;
+          
           var h_hp1 = form_order.h_hp1;
-          var tel1 = h_tel1.value;
           var hp1 = h_hp1.value;
-          var select_tel1 = form_order.tel1;
           var select_hp1 = form_order.hp1;
-          select_tel1.value = tel1;
           select_hp1.value = hp1;
+
+          // var h_tel1 = form_order.h_tel1;
+          // var tel1 = h_tel1.value;
+          // var select_tel1 = form_order.tel1;
+          // select_tel1.value = tel1;
       }
 
       function reset_all() {
@@ -366,9 +368,9 @@
           hp2 = i_hp2.value;
           hp3 = i_hp3.value;
 
-          tel1 = i_tel1.value;
-          tel2 = i_tel2.value;
-          tel3 = i_tel3.value;
+          // tel1 = i_tel1.value;
+          // tel2 = i_tel2.value;
+          // tel3 = i_tel3.value;
 
           receiver_hp_num = hp1 + "-" + hp2 + "-" + hp3;
           receiver_tel_num = tel1 + "-" + tel2 + "-" + tel3;
@@ -580,6 +582,7 @@
           <input type="hidden" id="h_receiver_name" name="h_receiver_name" value="${orderer.memberName }"/>
         </td>
       </tr>
+      <%-- 오류 로그 찍히는 곳 --%>
       <tr class="dot_line">
         <td class="fixed_join">휴대폰번호</td>
         <td><select id="hp1" name="hp1">
@@ -592,11 +595,9 @@
           <option value="019">019</option>
         </select>
           <input type="hidden" id="h_hp1" name="h_hp1" value="${orderer.memberHp1 }" />
-           - <input id="h_hp2" name="h_hp2" value="${orderer.memberHp2 }" />
-           - <input id="h_hp3" name="h_hp3"  value="${orderer.memberHp3 }" />
+           - <input id="hp2" name="h_hp2" value="${orderer.memberHp2 }" />
+           - <input id="hp3" name="h_hp3"  value="${orderer.memberHp3 }" />
           <c:set  var="orderer_hp" value="${orderer.memberHp1}-${orderer.memberHp2}-${orderer.memberHp3 }"/>
-      
-      
       </tr>
       <%--				<tr class="dot_line">--%>
       <%--					<td class="fixed_join">유선전화(선택)</td>--%>
