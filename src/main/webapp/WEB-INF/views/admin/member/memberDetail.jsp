@@ -171,16 +171,16 @@ function fn_modify_member_info(member_id,mod_type){
 			var tel1=frm_mod_member.tel1;
 			var tel2=frm_mod_member.tel2;
 			var tel3=frm_mod_member.tel3;
-			
+
 			for(var i=0; tel1.length;i++){
 			 	if(tel1[i].selected){
 					value_tel1=tel1[i].value;
 					break;
-				} 
+				}
 			}
 			value_tel2=tel2.value;
 			value_tel3=tel3.value;
-			
+
 			value=value_tel1+","+value_tel2+", "+value_tel3;
 		}else if(mod_type=='hp'){
 			var hp1=frm_mod_member.hp1;
@@ -269,6 +269,21 @@ function fn_delete_member(member_id ,del_yn){
     frm_mod_member.action="/bookshop01/admin/member/deleteMember.do";
     frm_mod_member.submit();
 }
+
+document.addEventListener('DOMContentLoaded', function() {//페이지로드후 실행
+	const domainListEl = document.querySelector('#domainlist');//도메인 리스트 정의
+	const domainInputEl = document.querySelector('#domaintxt');//직접입력 도메인 정의
+
+	domainListEl.addEventListener('change', (event) => {
+		if (event.target.value !== "type") {//직접입력 도메인 선택 안했을때
+			domainInputEl.value = event.target.value;//선택한 도메인을 input 에 입력
+			domainInputEl.disabled = true;
+		} else {//직접입력 도메인 선택시
+			domainInputEl.value = "";//input 내용 초기화
+			domainInputEl.disabled = false;
+		}
+	});
+});
 </script>
 </head>
 
@@ -451,9 +466,11 @@ function fn_delete_member(member_id ,del_yn){
 				<tr class="dot_line">
 					<td class="fixed_join">이메일(e-mail)</td>
 					<td>
-					   <input type="text" name="email1" size=10 value="${member_info.memberEmail1 }" /> @ <input type="text" size=10  name="email2" value="${member_info.memberEmail2 }" />
-					   <select name="select_email2" onChange=""  title="직접입력">
-							<option value="non">직접입력</option>
+					   <input type="text" name="email1" size=10 value="${member_info.memberEmail1 }" /> @ <input type="text" size=10  name="email2" value="${member_info.memberEmail2 }" id="domaintxt"/>
+<%--					   <select name="select_email2" onChange=""  title="직접입력">--%>
+						<select id="domainlist" title="직접입력">
+<%--							<option value="non">직접입력</option>--%>
+							<option value="type">직접입력</option>
 							<option value="hanmail.net">hanmail.net</option>
 							<option value="naver.com">naver.com</option>
 							<option value="yahoo.co.kr">yahoo.co.kr</option>
