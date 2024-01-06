@@ -95,8 +95,8 @@ function  calcPeriod(search_period){
 			<TBODY>
 				<TR >
 					<TD>
-						<input type="radio" name="r_search"  checked/> 등록일로조회 &nbsp;&nbsp;&nbsp;
-						<input type="radio" name="r_search" />상세조회 &nbsp;&nbsp;&nbsp;
+						<input type="radio" name="r_search"  checked/> 등록일로 조회 &nbsp;&nbsp;&nbsp;
+						<input type="radio" name="r_search" />상세 조회 &nbsp;&nbsp;&nbsp;
 					</TD>
 				</TR>
 				<TR >
@@ -165,8 +165,8 @@ function  calcPeriod(search_period){
 				  <td>
 				    <select name="search_condition" disabled >
 						<option value="전체" checked>전체</option>
-						<option value="제품번호">상품번호</option>
-						<option value="제품이름">상품이름</option>
+						<option value="제품번호">상품 번호</option>
+						<option value="제품이름">상품 이름</option>
 						<option value="제조사">제조사</option>
 					</select>
 					<input  type="text"  size="30"  disabled/>  
@@ -193,11 +193,11 @@ function  calcPeriod(search_period){
 <TABLE class="list_view">
 		<TBODY align=center >
 			<tr style="background:#33ff00" >
-				<td>상품번호</td>
-				<td>상품이름</td>
+				<td>상품 번호</td>
+				<td>상품 이름</td>
 				<td>저자</td>
 				<td>출판사</td>
-				<td>상품가격</td>
+				<td>상품 가격</td>
 				<td>입고일자</td>
 				<td>출판일</td>
 			</tr>
@@ -213,27 +213,27 @@ function  calcPeriod(search_period){
      <c:forEach var="item" items="${newGoodsList }">
 			 <TR>       
 				<TD>
-				  <strong>${item.goods_id }</strong>
+				  <strong>${item.goodsId }</strong>
 				</TD>
 				<TD >
-				 <a href="${pageContext.request.contextPath}/admin/goods/modifyGoodsForm.do?goods_id=${item.goods_id}">
-				    <strong>${item.goods_title } </strong>
+				 <a href="${pageContext.request.contextPath}/admin/goods/modifyGoodsForm.do?goodsId=${item.goodsId}">
+				    <strong>${item.goodsTitle } </strong>
 				 </a> 
 				</TD>
 				<TD>
-				<strong>${item.goods_writer }</strong> 
+				<strong>${item.goodsWriter }</strong>
 				</TD>
 				<TD >
-				   <strong>${item.goods_publisher }</strong> 
+				   <strong>${item.goodsPublisher }</strong>
 				</TD>
 				<td>
-				  <strong>${item.goods_sales_price }</strong>
+				  <strong>${item.goodsSalesPrice }</strong>
 				</td>
 				<td>
-				 <strong>${item.goods_credate }</strong> 
+				 <strong>${item.goodsEnteredDate }</strong>
 				</td>
 				<td>
-				    <c:set var="pub_date" value="${item.goods_published_date}" />
+				    <c:set var="pub_date" value="${item.goodsPublishedDate}" />
 					   <c:set var="arr" value="${fn:split(pub_date,' ')}" />
 					<strong>
 					   <c:out value="${arr[0]}" />
@@ -261,7 +261,7 @@ function  calcPeriod(search_period){
 	</TABLE>
 	<DIV class="clear"></DIV>
 	<br><br><br>
-<H3>상품등록하기</H3>
+<H3>상품 등록하기</H3>
 <DIV id="search">
 	<form action="${contextPath}/admin/goods/addNewGoodsForm.do">
 		<input   type="submit" value="상품 등록하기">
