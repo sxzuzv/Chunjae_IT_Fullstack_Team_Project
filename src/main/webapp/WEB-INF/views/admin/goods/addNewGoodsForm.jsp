@@ -39,70 +39,70 @@
 		<div class="tab_container">
 			<div class="tab_content" id="tab1">
 				<table >
+<%--			<tr >--%>
+<%--				<td width=200 >제품분류</td>--%>
+<%--				<td width=500><select name="goods_sort">--%>
+<%--						<option value="컴퓨터와 인터넷" selected>컴퓨터와 인터넷--%>
+<%--						<option value="디지털 기기">디지털 기기--%>
+<%--					</select>--%>
+<%--				</td>--%>
+<%--			</tr>--%>
 			<tr >
-				<td width=200 >제품분류</td>
-				<td width=500><select name="goods_sort">
-						<option value="컴퓨터와 인터넷" selected>컴퓨터와 인터넷
-						<option value="디지털 기기">디지털 기기
-					</select>
-				</td>
-			</tr>
-			<tr >
-				<td >제품이름</td>
-				<td><input name="goods_title" type="text" size="40" /></td>
+				<td >제품 이름</td>
+				<td><input name="goodsTitle" type="text" size="40" /></td>
 			</tr>
 			
 			<tr>
 				<td >저자</td>
-				<td><input name="goods_writer" type="text" size="40" /></td>
+				<td><input name="goodsWriter" type="text" size="40" /></td>
 			</tr>
 			<tr>
 				<td >출판사</td>
-				<td><input name="goods_publisher" type="text" size="40" /></td>
+				<td><input name="goodsPublisher" type="text" size="40" /></td>
 			</tr>
 			<tr>
-				<td >제품정가</td>
-				<td><input name="goods_price" type="text" size="40" /></td>
-			</tr>
-			
-			<tr>
-				<td >제품판매가격</td>
-				<td><input name="goods_sales_price" type="text" size="40" /></td>
-			</tr>
-			
-			
-			<tr>
-				<td >제품 구매 포인트</td>
-				<td><input name="goods_point" type="text" size="40" /></td>
+				<td >제품 정가</td>
+				<td><input name="goodsPrice" type="text" size="40" /></td>
 			</tr>
 			
 			<tr>
-				<td >제품출판일</td>
-				<td><input  name="goods_published_date"  type="date" size="40" /></td>
+				<td >제품 판매 가격</td>
+				<td><input name="goodsSalesPrice" type="text" size="40" /></td>
+			</tr>
+			
+			
+<%--			<tr>--%>
+<%--				<td >제품 구매 포인트</td>--%>
+<%--				<td><input name="goods_point" type="text" size="40" /></td>--%>
+<%--			</tr>--%>
+			
+			<tr>
+				<td >제품 출판일</td>
+				<td><input  name="goodsPublishedDate"  type="date" size="40" /></td>
 			</tr>
 			
 			<tr>
-				<td >제품 총 페이지수</td>
-				<td><input name="goods_total_page" type="text" size="40" /></td>
+				<td >제품 총 페이지 수</td>
+				<td><input name="goodsTotalPage" type="text" size="40" /></td>
 			</tr>
 			
 			<tr>
 				<td >ISBN</td>
-				<td><input name="goods_isbn" type="text" size="40" /></td>
+				<td><input name="goodsIsbn" type="text" size="40" /></td>
 			</tr>
 			<tr>
 				<td >제품 배송비</td>
-				<td><input name="goods_delivery_price" type="text" size="40" /></td>
+				<td><input name="goodsDeliveryPrice" type="text" size="40" /></td>
 			</tr>
 			<tr>
 				<td >제품 도착 예정일</td>
-				<td><input name="goods_delivery_date"  type="date" size="40" /></td>
+				<td><input name="goodsDeliveryDate"  type="date" size="40" /></td>
 			</tr>
 			
 			<tr>
-				<td >제품종류</td>
+				<td >제품 종류</td>
 				<td>
-				<select name="goods_status">
+				<select name="goodsStatus">
 				  <option value="bestseller"  >베스트셀러</option>
 				  <option value="steadyseller" >스테디셀러</option>
 				  <option value="newbook" selected >신간</option>
@@ -120,11 +120,11 @@
 				</table>	
 			</div>
 			<div class="tab_content" id="tab2">
-				<H4>책목차</H4>
+				<H4>책 목차</H4>
 				<table>	
 				 <tr>
-					<td >책목차</td>
-					<td><textarea  rows="100" cols="80" name="goods_contents_order"></textarea></td>
+					<td >책 목차</td>
+					<td><textarea  rows="100" cols="80" name="goodsContentsOrder"></textarea></td>
 				</tr>
 				</table>	
 			</div>
@@ -133,16 +133,16 @@
 				 <table>
   				 <tr>
 					<td>제품 저자 소개</td>
-					<td><textarea  rows="100" cols="80" name="goods_writer_intro"></textarea></td>
+					<td><textarea  rows="100" cols="80" name="goodsWriterIntro"></textarea></td>
 			    </tr>
 			   </table>
 			</div>
 			<div class="tab_content" id="tab4">
-				<H4>제품소개</H4>
+				<H4>제품 소개</H4>
 				<table>
 					<tr>
-						<td >제품소개</td>
-						<td><textarea  rows="100" cols="80" name="goods_intro"></textarea></td>
+						<td >제품 소개</td>
+						<td><textarea  rows="100" cols="80" name="goodsIntro"></textarea></td>
 				    </tr>
 			    </table>
 			</div>
@@ -151,7 +151,7 @@
 				<table>
 				 <tr>
 					<td>출판사 제품 평가</td>
-					<td><textarea  rows="100" cols="80" name="goods_publisher_comment"></textarea></td>
+					<td><textarea  rows="100" cols="80" name="goodsPublisherComment"></textarea></td>
 			    </tr>
 			</table>
 			</div>
@@ -160,15 +160,15 @@
 				 <table>
 					 <tr>
 					   <td>추천사</td>
-					    <td><textarea  rows="100" cols="80" name="goods_recommendation"></textarea></td>
+					    <td><textarea  rows="100" cols="80" name="goodsRecommendation"></textarea></td>
 				    </tr>
 			    </table>
 			</div>
 			<div class="tab_content" id="tab7">
-				<h4>상품이미지</h4>
+				<h4>상품 이미지</h4>
 				<table >
 					<tr>
-						<td align="right">이미지파일 첨부</td>
+						<td align="right">이미지 파일 첨부</td>
 			            
 			            <td  align="left"> <input type="button"  value="파일 추가" onClick="fn_addFile()"/></td>
 			            <td>
