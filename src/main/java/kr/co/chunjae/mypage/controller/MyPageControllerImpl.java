@@ -131,24 +131,24 @@ public class MyPageControllerImpl extends BaseController  implements MyPageContr
 		HttpSession session=request.getSession();
 		memberVO=(MemberVO)session.getAttribute("memberInfo");
 		String memberId=memberVO.getMemberId();
-		if(attribute.equals("member_birth")){
+		if(attribute.equals("memberBirth")){
 			val=value.split(",");
-			memberMap.put("member_birth_y",val[0]);
-			memberMap.put("member_birth_m",val[1]);
-			memberMap.put("member_birth_d",val[2]);
-			memberMap.put("member_birth_gn",val[3]);
-		}else if(attribute.equals("hp")){
+			memberMap.put("memberBirthY",val[0]);
+			memberMap.put("memberBirthM",val[1]);
+			memberMap.put("memberBirthD",val[2]);
+			memberMap.put("memberBirthGn",val[3]);
+		}else if(attribute.equals("memberHp")){
 			val=value.split(",");
-			memberMap.put("hp1",val[0]);
-			memberMap.put("hp2",val[1]);
-			memberMap.put("hp3",val[2]);
-			memberMap.put("smssts_yn", val[3]);
-		}else if(attribute.equals("email")){
+			memberMap.put("memberHp1",val[0]);
+			memberMap.put("memberHp2",val[1]);
+			memberMap.put("memberHp3",val[2]);
+			memberMap.put("smsstsYn", val[3]);
+		}else if(attribute.equals("memberEmail")){
 			val=value.split(",");
-			memberMap.put("email1",val[0]);
-			memberMap.put("email2",val[1]);
-			memberMap.put("emailsts_yn", val[2]);
-		}else if(attribute.equals("address")){
+			memberMap.put("memberEmail1",val[0]);
+			memberMap.put("memberEmail2",val[1]);
+			memberMap.put("emailstsYn", val[2]);
+		}else if(attribute.equals("memberAddress")){
 			val=value.split(",");
 			memberMap.put("zipcode",val[0]);
 			memberMap.put("roadAddress",val[1]);
