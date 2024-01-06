@@ -60,7 +60,7 @@
     <select id="memberDetail" resultType="MemberVO"   parameterType="String"  >
 	    <![CDATA[
 		    select * from t_shopping_member
-            where member_id=#{memberId}
+            where member_id=#{member_id}
     	]]>
 	</select>	
 	
@@ -69,40 +69,40 @@
 	   update t_shopping_member
 			   <set>
 			      <if test=" memberPw!='' and memberPw!=null">
-			        member_pw=#{memberPw},
+			        	member_pw=#{memberPw},
 			      </if>
 			      <if test=" memberGender!='' and memberGender!=null">
-			         member_gender=#{memberGender},
+			         	member_gender=#{memberGender},
 			      </if>
-					<if test=" memberBirth!='' and memberBirth!=null">
-						member_birth=#{memberBirthY}
+					<if test=" member_birth_y!='' and member_birth_y!=null">
+						member_birth_y=#{member_birth_y}
 					</if>
 				   <if test=" member_birth_m!='' and member_birth_m!=null">
-					   member_birth_m=#{memberBirthM}
+					   member_birth_m=#{member_birth_m}
 				   </if>
 				   <if test=" member_birth_d!='' and member_birth_d!=null">
-				   member_birth_d=#{memberBirthD}
+				   		member_birth_d=#{member_birth_d}
 				   </if>
-					<if test=" memberHp!='' and memberHp!=null">
-						member_hp=#{memberHp}
+					<if test=" hp1!='' and hp1!=null">
+						member_hp1=#{hp1}
 					</if>
 				   <if test=" hp2!='' and hp2!=null">
-					   hp2=#{memberHp2}
+					   member_hp2=#{hp2}
 				   </if>
 				   <if test=" hp3!='' and hp3!=null">
-					   hp3=#{memberHp3}
+					   member_hp3=#{hp3}
 				   </if>
-				  <if test=" smsstsYn!='' and smsstsYn!=null">
-					smssts_yn=#{smsstsYn}
+				  <if test=" smssts_yn!='' and smssts_yn!=null">
+						smssts_yn=#{smssts_yn}
 				  </if>
 				   <if test=" email1!='' and email1!=null">
-					   email1=#{memberEmail1}
+					   member_email1=#{email1}
 				   </if>
 				   <if test=" email2!='' and email2!=null">
-					   email2=#{memberEmail2}
+					   member_email2=#{email2}
 				   </if>
 				  <if test=" emailstsYn!='' and emailstsYn!=null">
-					 emailsts_yn=#{emailstsYn}
+					 emailsts_yn=#{emailsts_yn}
 				  </if>
 				  <if test=" zipcode!='' and zipcode!=null">
 					 zipcode=#{zipcode}
@@ -120,7 +120,7 @@
 					 del_yn=#{delYn}
 				  </if>
 			   </set>
-		where member_id=#{member_Id}
+		where member_id=#{member_id}
 	</update>	
 </mapper>
 
