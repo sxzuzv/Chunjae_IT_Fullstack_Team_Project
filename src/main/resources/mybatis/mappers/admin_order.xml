@@ -74,13 +74,13 @@
 			       from (
 			              select  *  from t_shopping_order 
 			              where date_format(pay_order_time,'%Y-%m-%d')  between #{beginDate} and #{endDate}
-			                <if test="search_type=='orderId'">
+			                <if test='search_type=="orderId"'>
 			                  AND order_id=#{search_word}
 			                </if>
-			                <if test="search_type=='ordererName'">
+			                <if test='search_type=="ordererName"'>
 			                  AND orderer_name=#{search_word}
 			                </if>
-			                <if test="search_type=='payOrdererHpNum'">
+			                <if test='search_type=="payOrdererHpNum"'>
 			                   AND pay_orderer_hp_num=#{search_word}
 			                </if>
 			              order by pay_order_time desc
