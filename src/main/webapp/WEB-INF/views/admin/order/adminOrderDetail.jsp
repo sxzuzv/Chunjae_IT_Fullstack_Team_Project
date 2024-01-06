@@ -43,17 +43,17 @@ function fn_modify_order_state(order_id){
 </script>
 </head>
 <body>
-	<H1>1. 주문 상세정보</H1>
+	<H1>1. 주문 상세 정보</H1>
 	<table class="list_view">
 		<tbody align=center>
 			<tr style="background: #33ff00">
-			     <td>주문번호 </td>
-				<td colspan=2 class="fixed">주문상품명</td>
+			     <td>주문 번호 </td>
+				<td colspan=2 class="fixed">주문 상품명</td>
 				<td>수량</td>
-				<td>주문금액</td>
+				<td>주문 금액</td>
 				<td>배송비</td>
-				<td>예상적립금</td>
-				<td>주문금액합계</td>
+				<td>예상 적립금</td>
+				<td>주문 금액 합계</td>
 			</tr>
 			<tr>
 				<c:forEach var="item" items="${orderList }">
@@ -69,7 +69,7 @@ function fn_modify_order_state(order_id){
 					  </h2>
 					</td>
 					<td>
-					  <h2>${item.order_goods_qty }개<h2>
+					  <h2>${item.order_goods_qty }개</h2>
 					</td>
 					<td><h2>${item.order_goods_qty *item.goods_sales_price}원 (10% 할인)</h2></td>
 					<td><h2>0원</h2></td>
@@ -91,7 +91,7 @@ function fn_modify_order_state(order_id){
 		<table>
 			<tbody>
 				<tr class="dot_line">
-					<td class="fixed_join">배송방법</td>
+					<td class="fixed_join">배송 방법</td>
 					<td>
 					   ${deliveryInfo.delivery_method }
 				    </td>
@@ -103,12 +103,12 @@ function fn_modify_order_state(order_id){
 					</td>
 				</tr>
 				<tr class="dot_line">
-					<td class="fixed_join">휴대폰번호</td>
+					<td class="fixed_join">휴대폰 번호</td>
 					<td>
 					  ${deliveryInfo.receiver_hp1}-${deliveryInfo.receiver_hp2}-${deliveryInfo.receiver_hp3}</td>
 				  </tr>
 				<tr class="dot_line">
-					<td class="fixed_join">유선전화(선택)</td>
+					<td class="fixed_join">유선 전화(선택)</td>
 					<td>
 					   ${deliveryInfo.receiver_tel1}-${deliveryInfo.receiver_tel2}-${deliveryInfo.receiver_tel3}</td>
 				</tr>
@@ -138,7 +138,7 @@ function fn_modify_order_state(order_id){
 	</div>
 	<div >
 	  <br><br>
-	   <h2>주문고객</h2>
+	   <h2>주문 고객</h2>
 		 <table >
 		   <TBODY>
 			 <tr class="dot_line">
@@ -166,24 +166,24 @@ function fn_modify_order_state(order_id){
 	<br>
 	<br>
 	<br>
-	<h1>3.결제정보</h1>
+	<h1>3.결제 정보</h1>
 	<div class="detail_table">
 		<table>
 			<tbody>
 				<tr class="dot_line">
-					<td class="fixed_join">결제방법</td>
+					<td class="fixed_join">결제 방법</td>
 					<td>
 					   ${deliveryInfo.pay_method }
 				    </td>
 				</tr>
 				<tr class="dot_line">
-					<td class="fixed_join">결제카드</td>
+					<td class="fixed_join">결제 카드</td>
 					<td>
 					   ${deliveryInfo.card_com_name}
 				    </TD>
 				</tr>
 				<tr class="dot_line">
-					<td class="fixed_join">할부기간</td>
+					<td class="fixed_join">할부 기간</td>
 					<td>
 					   ${deliveryInfo.card_pay_month }
 				    </td>
@@ -195,7 +195,7 @@ function fn_modify_order_state(order_id){
 	<br>
 	<br>
 	<br>
-	<h1>3.배송상태</h1>
+	<h1>3.배송 상태</h1>
 	<div class="detail_table">
 		<table>
 			<tbody>
@@ -204,38 +204,38 @@ function fn_modify_order_state(order_id){
 				<select name="s_delivery_state"  id="s_delivery_state">
 				 <c:choose>
 				   <c:when test="${deliveryInfo.delivery_state=='delivery_prepared' }">
-				     <option  value="delivery_prepared" selected>배송준비중</option>
-				     <option  value="delivering">배송중</option>
-				     <option  value="finished_delivering">배송완료</option>
-				     <option  value="cancel_order">주문취소</option>
+				     <option  value="delivery_prepared" selected>배송 준비 중</option>
+				     <option  value="delivering">배송 중</option>
+				     <option  value="finished_delivering">배송 완료</option>
+				     <option  value="cancel_order">주문 취소</option>
 				     <option  value="returning_goods">반품</option>
 				   </c:when>
 				    <c:when test="${deliveryInfo.delivery_state=='delivering' }">
-				    <option  value="delivery_prepared" >배송준비중</option>
-				     <option  value="delivering" selected >배송중</option>
-				     <option  value="finished_delivering">배송완료</option>
-				     <option  value="cancel_order">주문취소</option>
+				    <option  value="delivery_prepared" >배송 준비 중</option>
+				     <option  value="delivering" selected >배송 중</option>
+				     <option  value="finished_delivering">배송 완료</option>
+				     <option  value="cancel_order">주문 취소</option>
 				     <option  value="returning_goods">반품</option>
 				   </c:when>
 				   <c:when test="${deliveryInfo.delivery_state=='finished_delivering' }">
-				    <option  value="delivery_prepared" >배송준비중</option>
-				     <option  value="delivering"  >배송중</option>
-				     <option  value="finished_delivering" selected>배송완료</option>
-				     <option  value="cancel_order">주문취소</option>
+				    <option  value="delivery_prepared" >배송 준비 중</option>
+				     <option  value="delivering"  >배송 중</option>
+				     <option  value="finished_delivering" selected>배송 완료</option>
+				     <option  value="cancel_order">주문 취소</option>
 				     <option  value="returning_goods">반품</option>
 				   </c:when>
 				   <c:when test="${deliveryInfo.delivery_state=='cancel_order' }">
-				    <option  value="delivery_prepared" >배송준비중</option>
-				     <option  value="delivering"  >배송중</option>
-				     <option  value="finished_delivering" >배송완료</option>
-				     <option  value="cancel_order" selected>주문취소</option>
+				    <option  value="delivery_prepared" >배송 준비 중</option>
+				     <option  value="delivering"  >배송 중</option>
+				     <option  value="finished_delivering" >배송 완료</option>
+				     <option  value="cancel_order" selected>주문 취소</option>
 				     <option  value="returning_goods">반품</option>
 				   </c:when>
 				   <c:when test="${deliveryInfo.delivery_state=='returning_goods' }">
-				    <option  value="delivery_prepared" >배송준비중</option>
-				     <option  value="delivering"  >배송중</option>
-				     <option  value="finished_delivering" >배송완료</option>
-				     <option  value="cancel_order" >주문취소</option>
+				    <option  value="delivery_prepared" >배송 준비 중</option>
+				     <option  value="delivering"  >배송 중</option>
+				     <option  value="finished_delivering" >배송 완료</option>
+				     <option  value="cancel_order" >주문 취소</option>
 				     <option  value="returning_goods" selected>반품</option>
 				   </c:when>
 				   </c:choose>
@@ -243,7 +243,7 @@ function fn_modify_order_state(order_id){
 				  <input  type="hidden" name="h_delivery_state" value="${deliveryInfo.delivery_state }" />
 				</td>
 				<td width=10%>
-			     <input  type="button" value="배송수정"  onClick="fn_modify_order_state('${deliveryInfo.order_id}')"/>
+			     <input  type="button" value="배송 수정"  onClick="fn_modify_order_state('${deliveryInfo.order_id}')"/>
 			    </td>
 				</tr>
 				

@@ -26,7 +26,7 @@ function init(){
 </c:when>
 </c:choose>
 <script type="text/javascript">
-function fn_modify_goods(goodsId, attribute){
+function fn_modify_goods(goods_Id, attribute){
 	var frm_mod_goods=document.frm_mod_goods;
 	var value="";
 	// if(attribute=='goods_sort'){
@@ -75,7 +75,7 @@ function fn_modify_goods(goodsId, attribute){
 		async : false, //false인 경우 동기식으로 처리한다.
 		url : "${contextPath}/admin/goods/modifyGoodsInfo.do",
 		data : {
-			goodsId:goodsId,
+			goods_Id:goods_Id,
 			attribute:attribute,
 			value:value
 		},
@@ -118,13 +118,13 @@ function fn_modify_goods(goodsId, attribute){
 	  cnt++;
   }
   
-  function modifyImageFile(fileId,goodsId,imageId,fileType){
+  function modifyImageFile(file_Id,goods_Id,image_Id,fileType){
     // alert(fileId);
 	  var form = $('#FILE_FORM')[0];
       var formData = new FormData(form);
-      formData.append("fileName", $('#'+fileId)[0].files[0]);
-      formData.append("goods_id", goodsId);
-      formData.append("image_id", imageId);
+      formData.append("fileName", $('#'+file_Id)[0].files[0]);
+      formData.append("goods_id", goods_Id);
+      formData.append("image_id", image_Id);
       formData.append("fileType", fileType);
       
       $.ajax({
@@ -139,12 +139,12 @@ function fn_modify_goods(goodsId, attribute){
       });
   }
   
-  function addNewImageFile(fileId,goodsId,fileType){
+  function addNewImageFile(file_Id,goods_Id,fileType){
 	   //  alert(fileId);
 		  var form = $('#FILE_FORM')[0];
 	      var formData = new FormData(form);
-	      formData.append("uploadFile", $('#'+fileId)[0].files[0]);
-	      formData.append("goods_id", goodsId);
+	      formData.append("uploadFile", $('#'+file_Id)[0].files[0]);
+	      formData.append("goods_id", goods_Id);
 	      formData.append("fileType", fileType);
 	      
 	      $.ajax({
@@ -159,15 +159,15 @@ function fn_modify_goods(goodsId, attribute){
 	          });
 	  }
   
-  function deleteImageFile(goodsId,imageId,imageFileName,trId){
+  function deleteImageFile(goods_Id,image_Id,imageFileName,trId){
 	var tr = document.getElementById(trId);
 
       	$.ajax({
     		type : "post",
     		async : true, //false인 경우 동기식으로 처리한다.
     		url : "${contextPath}/admin/goods/removeGoodsImage.do",
-    		data: {goods_id:goodsId,
-     	         image_id:imageId,
+    		data: {goods_id:goods_Id,
+     	         image_id:image_Id,
      	         imageFileName:imageFileName},
     		success : function(data, textStatus) {
     			alert("이미지를 삭제했습니다!!");

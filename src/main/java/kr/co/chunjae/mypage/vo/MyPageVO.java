@@ -8,8 +8,8 @@ import lombok.ToString;
 @Setter
 @ToString
 public class MyPageVO {
-	private String memberId;
-	private String beginDate;
-	private String endDate;
+	private String memberId;	// 회원 아이디
+	private String beginDate;	// 시작일
+	private String endDate;		// 종료일
 
 }
