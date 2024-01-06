@@ -2,6 +2,7 @@ package kr.co.chunjae.order.vo;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 import org.springframework.stereotype.Component;
 
 import java.sql.Date;
@@ -10,6 +11,7 @@ import java.sql.Date;
 @Getter
 @Setter
 @Component("orderVO")
+@ToString
 public class OrderVO {
 	private int orderSeqNum;
 	private String memberId;
