@@ -115,6 +115,9 @@ public class OrderControllerImpl extends BaseController implements OrderControll
 		MemberVO memberVO=(MemberVO)session.getAttribute("orderer");
 		String member_id=memberVO.getMemberId();
 		String orderer_name=memberVO.getMemberName();
+
+		System.out.println(" ========================= orderer_name = " + orderer_name);
+
 		String orderer_hp = memberVO.getMemberHp1()+"-"+memberVO.getMemberHp2()+"-"+memberVO.getMemberHp3();
 		List<OrderVO> myOrderList=(List<OrderVO>)session.getAttribute("myOrderList");
 		
@@ -122,23 +125,23 @@ public class OrderControllerImpl extends BaseController implements OrderControll
 			OrderVO orderVO=(OrderVO)myOrderList.get(i);
 			orderVO.setMemberId(member_id);
 			orderVO.setOrdererName(orderer_name);
-			orderVO.setReceiverName(receiverMap.get("receiver_name"));
+			orderVO.setReceiverName(receiverMap.get("receiverName"));
 			
-			orderVO.setReceiverHp1(receiverMap.get("receiver_hp1"));
-			orderVO.setReceiverHp2(receiverMap.get("receiver_hp2"));
-			orderVO.setReceiverHp3(receiverMap.get("receiver_hp3"));
-			orderVO.setDeliveryAddress(receiverMap.get("delivery_address"));
-			orderVO.setDeliveryMessage(receiverMap.get("delivery_message"));
-			orderVO.setDeliveryMethod(receiverMap.get("delivery_method"));
-			orderVO.setGiftWrapping(receiverMap.get("gift_wrapping"));
-			orderVO.setPayMethod(receiverMap.get("pay_method"));
-			orderVO.setCardComName(receiverMap.get("card_com_name"));
-			orderVO.setCardPayMonth(receiverMap.get("card_pay_month"));
-			orderVO.setPayOrdererHpNum(receiverMap.get("pay_orderer_hp_num"));
+			orderVO.setReceiverHp1(receiverMap.get("receiverHp1"));
+			orderVO.setReceiverHp2(receiverMap.get("receiverHp2"));
+			orderVO.setReceiverHp3(receiverMap.get("receiverHp3"));
+			orderVO.setDeliveryAddress(receiverMap.get("deliveryAddress"));
+			orderVO.setDeliveryMessage(receiverMap.get("deliveryMessage"));
+			orderVO.setDeliveryMethod(receiverMap.get("deliveryMethod"));
+			orderVO.setGiftWrapping(receiverMap.get("giftWrapping"));
+			orderVO.setPayMethod(receiverMap.get("payMethod"));
+			orderVO.setCardComName(receiverMap.get("cardComName"));
+			orderVO.setCardPayMonth(receiverMap.get("cardPayMonth"));
+			orderVO.setPayOrdererHpNum(receiverMap.get("payOrdererHpNum"));
 			orderVO.setOrdererHp(orderer_hp);
 			myOrderList.set(i, orderVO); //각 orderVO에 주문자 정보를 세팅한 후 다시 myOrderList에 저장한다.
 		}//end for
-		
+
 	    orderService.addNewOrder(myOrderList);
 		mav.addObject("myOrderInfo",receiverMap);//OrderVO로 주문결과 페이지에  주문자 정보를 표시한다.
 		mav.addObject("myOrderList", myOrderList);
