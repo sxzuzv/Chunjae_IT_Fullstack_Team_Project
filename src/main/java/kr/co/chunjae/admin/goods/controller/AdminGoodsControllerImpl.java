@@ -151,7 +151,7 @@ public class AdminGoodsControllerImpl extends BaseController  implements AdminGo
 	}
 	
 	@RequestMapping(value="/modifyGoodsForm.do" ,method={RequestMethod.GET,RequestMethod.POST})
-	public ModelAndView modifyGoodsForm(@RequestParam("goods_id") int goods_id,
+	public ModelAndView modifyGoodsForm(@RequestParam("goods_Id") int goods_id,
 			                            HttpServletRequest request, HttpServletResponse response)  throws Exception {
 		String viewName=(String)request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
@@ -163,7 +163,7 @@ public class AdminGoodsControllerImpl extends BaseController  implements AdminGo
 	}
 	
 	@RequestMapping(value="/modifyGoodsInfo.do" ,method={RequestMethod.POST})
-	public ResponseEntity modifyGoodsInfo( @RequestParam("goods_id") String goods_id,
+	public ResponseEntity modifyGoodsInfo( @RequestParam("goods_Id") String goods_id,
 			                     @RequestParam("attribute") String attribute,
 			                     @RequestParam("value") String value,
 			HttpServletRequest request, HttpServletResponse response)  throws Exception {
