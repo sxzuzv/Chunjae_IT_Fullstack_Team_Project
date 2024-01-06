@@ -170,7 +170,7 @@ public class AdminGoodsControllerImpl extends BaseController  implements AdminGo
 		//System.out.println("modifyGoodsInfo");
 		
 		Map<String,String> goodsMap=new HashMap<String,String>();
-		goodsMap.put("goods_id", goods_id);
+		goodsMap.put("goods_Id", goods_id);
 		goodsMap.put(attribute, value);
 		adminGoodsService.modifyGoodsInfo(goodsMap);
 		
