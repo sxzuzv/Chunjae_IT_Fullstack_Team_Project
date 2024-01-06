@@ -23,17 +23,24 @@ public abstract class BaseController  {
 	private static final String CURR_IMAGE_REPO_PATH = "C:\\shopping\\file_repo";
 	
 	protected List<ImageFileVO> upload(MultipartHttpServletRequest multipartRequest) throws Exception{
+		// n개의 파일을 저장할 fileList
 		List<ImageFileVO> fileList= new ArrayList<ImageFileVO>();
+		//
 		Iterator<String> fileNames = multipartRequest.getFileNames();
 		while(fileNames.hasNext()){
+			// ImageFileVO 타입의 인스턴스를 생성한다.
 			ImageFileVO imageFileVO =new ImageFileVO();
+
+			// 파일명을 저장한다.
 			String fileName = fileNames.next();
+
 			imageFileVO.setFileType(fileName);
 			MultipartFile mFile = multipartRequest.getFile(fileName);
 			String originalFileName=mFile.getOriginalFilename();
 			imageFileVO.setFileName(originalFileName);
 			fileList.add(imageFileVO);
-			
+
+
 			File file = new File(CURR_IMAGE_REPO_PATH +"\\"+ fileName);
 			if(mFile.getSize()!=0){ //File Null Check
 				if(! file.exists()){ //경로상에 파일이 존재하지 않을 경우
@@ -41,6 +48,9 @@ public abstract class BaseController  {
 							file.createNewFile(); //이후 파일 생성
 					}
 				}
+				// 업로드 된 파일 저장 시, MultipartFile의 transferTo(File file) 메서드를 사용한다.
+				// .transferTo(new File(업로드 된 파일을 저장할 경로 + 파일 이름));
+				// 업로드 된 파일을 저장할 경로 : C:\shopping\file_repo\\temp\\파일 이름
 				mFile.transferTo(new File(CURR_IMAGE_REPO_PATH +"\\"+"temp"+ "\\"+originalFileName)); //임시로 저장된 multipartFile을 실제 파일로 전송
 			}
 		}

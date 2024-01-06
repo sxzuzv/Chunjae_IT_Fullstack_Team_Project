@@ -64,62 +64,62 @@
           and  to_char(pay_order_time,'yyyy-mm-dd')  between #{beginDate} and #{endDate}
           order by pay_order_time desc
     	]]>
-	</select>	
-	
+	</select>
+
 	<update id="updateMyInfo" parameterType="java.util.HashMap">
 	   update t_shopping_member
 			   <set>
-			      <if test=" member_pw!='' and member_pw!=null">
+			      <if test=" memberPw!='' and memberPw!=null">
 			        member_pw=#{memberPw},
 			      </if>
-			      <if test=" member_gender!='' and member_gender!=null">
+			      <if test=" memberGender!='' and memberGender!=null">
 			         member_gender=#{memberGender},
 			      </if>
-			       <if test=" member_birth_y!='' and member_birth_y!=null">
+			       <if test=" memberBirthY!='' and memberBirthY!=null">
 			         member_birth_y=#{memberBirthY},
 			      </if>
-			      <if test=" member_birth_m!='' and member_birth_m!=null">
+			      <if test=" memberBirthM!='' and memberBirthM!=null">
 			         member_birth_m=#{memberBirthM},
 			      </if>
-			      <if test=" member_birth_d!='' and member_birth_d!=null">
+			      <if test=" memberBirthD!='' and memberBirthD!=null">
 			         member_birth_d=#{memberBirthD},
 			      </if>
-			      <if test=" hp1!='' and hp1!=null">
-			         hp1=#{memberHp1},
+			      <if test=" memberHp1!='' and memberHp1!=null">
+			         member_hp1=#{memberHp1},
 			      </if>
-			      <if test=" hp2!='' and hp2!=null">
-			         hp2=#{memberHp2},
+			      <if test=" memberHp2!='' and memberHp2!=null">
+			         member_hp2=#{memberHp2},
 			      </if>
-			      <if test=" hp3!='' and hp3!=null">
-			         hp3=#{memberHp3},
+			      <if test=" memberHp3!='' and memberHp3!=null">
+			         member_hp3=#{memberHp3},
 			      </if>
-			      <if test=" smssts_yn!='' and smssts_yn!=null">
-			         smssts_yn=#{SmsstsYn},
+			      <if test=" smsstsYn!='' and smsstsYn!=null">
+			         smssts_yn=#{smsstsYn},
 			      </if>
-			      <if test=" email1!='' and email1!=null">
-			         email1=#{memberEmail1},
+			      <if test=" memberEmail1!='' and memberEmail1!=null">
+			         member_email1=#{memberEmail1},
 			      </if>
-			      <if test=" email2!='' and email2!=null">
-			         email2=#{memberEmail2},
+			      <if test=" memberEmail2!='' and memberEmail2!=null">
+			         member_email2=#{memberEmail2},
 			      </if>
-			      <if test=" emailsts_yn!='' and emailsts_yn!=null">
+			      <if test=" emailstsYn!='' and emailstsYn!=null">
 			         emailsts_yn=#{emailstsYn},
 			      </if>
 			      <if test=" zipcode!='' and zipcode!=null">
 			         zipcode=#{zipcode},
 			      </if>
 			      <if test=" roadAddress!='' and roadAddress!=null">
-			         roadAddress=#{roadAddress},
-			      </if>			     
+			         road_address=#{roadAddress},
+			      </if>
 			      <if test=" jibunAddress!='' and jibunAddress!=null">
-			         jibunAddress=#{jibunAddress},
+			         jibun_address=#{jibunAddress},
 			      </if>
 			      <if test=" namujiAddress!='' and namujiAddress!=null">
-			         namujiAddress=#{namujiAddress}
+			         namuji_address=#{namujiAddress}
 			      </if>
 			   </set>
-		where 
-		member_id=#{member_id}
+		where
+		member_id=#{memberId}
 	</update>
 	
 	<select id="selectMyDetailInfo" resultType="memberVO"   parameterType="String"  >

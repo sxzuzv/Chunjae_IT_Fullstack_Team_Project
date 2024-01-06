@@ -444,14 +444,14 @@ function fn_detail_search(){
 					<td width=10%>
 					
 					  <a href="${pageContext.request.contextPath}/admin/member/memberDetail.do?member_id=${item.memberId}">
-					     <strong>${item.member_id}</strong>
+					     <strong>${item.memberId}</strong>
 					  </a>
 					</td>
 					<td width=10%>
 					  <strong>${item.memberName}</strong><br>
 					</td>
 					<td width=10% >
-					  <strong>${item.memberHp}-${item.memberHp}-${item.memberHp}</strong><br>
+					  <strong>${item.memberHp1}-${item.memberHp2}-${item.memberHp3}</strong><br>
 					</td>
 					<td width=50%>
 					  <strong>${item.roadAddress}</strong><br>
