@@ -592,8 +592,8 @@
           <option value="019">019</option>
         </select>
           <input type="hidden" id="h_hp1" name="h_hp1" value="${orderer.memberHp1 }" />
-          <input type="hidden" id="h_hp2" name="h_hp2" value="${orderer.memberHp2 }" />
-          <input type="hidden" id="h_hp3" name="h_hp3"  value="${orderer.memberHp3 }" />
+           - <input id="h_hp2" name="h_hp2" value="${orderer.memberHp2 }" />
+           - <input id="h_hp3" name="h_hp3"  value="${orderer.memberHp3 }" />
           <c:set  var="orderer_hp" value="${orderer.memberHp1}-${orderer.memberHp2}-${orderer.memberHp3 }"/>
       
       
@@ -943,6 +943,7 @@
       </div>
       <div class="clear"></div>
       <br>
-			
-			
-			
+    </div>
+  </div>
+</center>
+</body>
