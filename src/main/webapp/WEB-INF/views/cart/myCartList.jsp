@@ -13,7 +13,7 @@
 <c:set  var="totalDiscountedPrice" value="0" /> <!-- 총 할인금액 -->
 <head>
 	<script type="text/javascript">
-		function calcGoodsPrice(bookPrice,obj){
+		function calcGoodsPrice(bookPrice,obj, index){
 			var totalPrice,final_total_price,totalNum;
 			var goods_qty=document.getElementById("select_goods_qty");
 			alert("총 상품금액"+goods_qty.value);
@@ -121,11 +121,11 @@
 			var i_fileName=document.createElement("input");
 			var i_order_goods_qty=document.createElement("input");
 
-			i_goods_id.name="goods_id";
-			i_goods_title.name="goods_title";
-			i_goods_sales_price.name="goods_sales_price";
-			i_fileName.name="goods_fileName";
-			i_order_goods_qty.name="order_goods_qty";
+			i_goods_id.name="goodsId";
+			i_goods_title.name="goodsTitle";
+			i_goods_sales_price.name="goodsSalesPrice";
+			i_fileName.name="goodsFileName";
+			i_order_goods_qty.name="orderGoodsQty";
 
 			i_goods_id.value=goods_id;
 			i_order_goods_qty.value=_order_goods_qty;
@@ -224,19 +224,19 @@
 			<td>
 				<strong>
 					<fmt:formatNumber  value="${item.goodsSalesPrice*0.9}" type="number" var="discounted_price" />
-						${discountedPrice}원(10%할인)
+						${discounted_price}원(10%할인)
 				</strong>
 			</td>
 			<td>
-				<input type="text" id="cart_goods_qty" name="cart_goods_qty" size=3 value="${cartGoodsQty}"><br>
-				<a href="javascript:modify_cart_qty(${item.goodsId }${item.goodsSalesPrice*0.9 }${cnt.count-1 });" >
+				<input type="text" id="cart_goods_qty" name="cart_goods_qty" size=3 value="${cart_goods_qty}"><br>
+				<a href="javascript:modify_cart_qty(${item.goodsId }${item.goodsSalesPrice*0.9 }${cnt.count});" >
 					<img width=25 alt=""  src="${contextPath}/resources/image/btn_modify_qty.jpg">
 				</a>
 			</td>
 			<td>
 				<strong>
-					<fmt:formatNumber  value="${item.goodsSalesPrice*0.9*cartGoodsQty}" type="number" var="total_sales_price" />
-						${totalSalesPrice}원
+					<fmt:formatNumber  value="${item.goodsSalesPrice*0.9*cart_goods_qty}" type="number" var="total_sales_price" />
+						${total_sales_price}원
 				</strong> </td>
 			<td>
 				<a href="javascript:fn_order_each_goods('${item.goodsId }','${item.goodsTitle }','${item.goodsSalesPrice}','${item.goodsFileName}');">
@@ -256,8 +256,8 @@
 				</a>
 			</td>
 	</tr>
-	<c:set  var="totalGoodsPrice" value="${totalGoodsPrice+item.goodsSalesPrice*0.9*cartGoodsQty }" />
-	<c:set  var="totalGoodsNum" value="${totalGoodsNum+1 }" />
+	<c:set  var="totalGoodsPrice" value="${totalGoodsPrice+item.goodsSalesPrice*0.9*cart_goods_qty }" />
+	<c:set  var="totalGoodsNum" value="${cart_goods_qty }" />
 	</c:forEach>
 
 	</tbody>
@@ -289,7 +289,7 @@
 		<td>
 			<p id="p_totalGoodsPrice">
 				<fmt:formatNumber  value="${totalGoodsPrice}" type="number" var="total_goods_price" />
-				${totalGoodsPrice}원
+				${total_goods_price}원
 			</p>
 			<input id="h_totalGoodsPrice"type="hidden" value="${totalGoodsPrice}" />
 		</td>
@@ -315,7 +315,7 @@
 		<td>
 			<p id="p_final_totalPrice">
 				<fmt:formatNumber  value="${totalGoodsPrice+totalDeliveryPrice-totalDiscountedPrice}" type="number" var="total_price" />
-				${totalPrice}원
+				${total_price}원
 			</p>
 			<input id="h_final_totalPrice" type="hidden" value="${totalGoodsPrice+totalDeliveryPrice-totalDiscountedPrice}" />
 		</td>
