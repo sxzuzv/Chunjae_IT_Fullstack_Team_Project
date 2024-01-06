@@ -9,9 +9,11 @@
 <script type="text/javascript">
 	var loopSearch=true;
 	function keywordSearch(){
-		if(loopSearch==false)
+		if(loopSearch==false){
 			return;
-	 var value=document.frmSearch.searchWord.value;
+		}
+
+		var value=document.frmSearch.searchWord.value;
 		$.ajax({
 			type : "get",
 			async : true, //false인 경우 동기식으로 처리한다.
@@ -97,12 +99,14 @@
 	<br>
 	<div id="search" >
 		<form name="frmSearch" action="${contextPath}/goods/searchGoods.do" >
-			<input name="searchWord" class="main_input" type="text"  onKeyUp="keywordSearch()"> 
+			<%--input 태그에 onkeyup을 사용해 키를 누를때마다 filter()라는 함수를 실행시키기 --%>
+			<input name="searchWord" class="main_input" type="text"  onKeyUp="keywordSearch()">
 			<input type="submit" name="search" class="btn1"  value="검 색" >
 		</form>
+		<div id="suggest">
+			<div id="suggestList"></div>
+		</div>
 	</div>
-   <div id="suggest">
-        <div id="suggestList"></div>
-   </div>
+
 </body>
 </html>

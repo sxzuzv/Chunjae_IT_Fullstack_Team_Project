@@ -34,8 +34,6 @@ public class GoodsControllerImpl extends BaseController implements GoodsControll
 		String viewName=(String)request.getAttribute("viewName");
 		HttpSession session=request.getSession();
 		Map goodsMap=goodsService.goodsDetail(goodsId);
-		System.out.println("========================="+goodsMap.get("goodsVO").getClass().getName());
-		System.out.println("========================="+goodsMap.get("imageList").toString());
 		ModelAndView mav = new ModelAndView(viewName);
 		mav.addObject("goodsMap", goodsMap);
 		GoodsVO goodsVO=(GoodsVO)goodsMap.get("goodsVO");
