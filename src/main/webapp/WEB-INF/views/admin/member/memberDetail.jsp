@@ -2,6 +2,7 @@
 	pageEncoding="utf-8"
 	isELIgnored="false"%> 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -181,7 +182,7 @@ function fn_modify_member_info(member_id,mod_type){
 			value_tel2=tel2.value;
 			value_tel3=tel3.value;
 
-			value=value_tel1+","+value_tel2+", "+value_tel3;
+			value=value_tel1+","+value_tel2+","+value_tel3;
 		}else if(mod_type=='hp'){
 			var hp1=frm_mod_member.hp1;
 			var hp2=frm_mod_member.hp2;
@@ -198,7 +199,7 @@ function fn_modify_member_info(member_id,mod_type){
 			value_hp3=hp3.value;
 			value_smssts_yn=smssts_yn.checked;
 			
-			value=value_hp1+","+value_hp2+", "+value_hp3+","+value_smssts_yn;
+			value=value_hp1+","+value_hp2+","+value_hp3+","+value_smssts_yn;
 			
 		}else if(mod_type=='email'){
 			var email1=frm_mod_member.email1;
@@ -228,11 +229,11 @@ function fn_modify_member_info(member_id,mod_type){
 		$.ajax({
 			type : "post",
 			async : false, //false인 경우 동기식으로 처리한다.
-			url : "http://localhost:8090/bookshop01/admin/member/modifyMemberInfo.do",
+			url : "${contextPath}/admin/member/modifyMemberInfo.do",
 			data : {
 				member_id:member_id,
 				mod_type:mod_type,
-				value:value
+				value:value,
 			},
 			success : function(data, textStatus) {
 				if(data.trim()=='mod_success'){
@@ -288,7 +289,7 @@ document.addEventListener('DOMContentLoaded', function() {//페이지로드후 �
 </head>
 
 <body>
-	<h3>내 상세 정보</h3>
+	<h3>회원 상세 정보</h3>
 <form name="frm_mod_member">	
 	<div id="detail_table">
 		<table>
