@@ -116,11 +116,9 @@ public class OrderControllerImpl extends BaseController implements OrderControll
 		String member_id=memberVO.getMemberId();
 		String orderer_name=memberVO.getMemberName();
 
-		System.out.println(" ========================= orderer_name = " + orderer_name);
-
 		String orderer_hp = memberVO.getMemberHp1()+"-"+memberVO.getMemberHp2()+"-"+memberVO.getMemberHp3();
 		List<OrderVO> myOrderList=(List<OrderVO>)session.getAttribute("myOrderList");
-		
+
 		for(int i=0; i<myOrderList.size();i++){
 			OrderVO orderVO=(OrderVO)myOrderList.get(i);
 			orderVO.setMemberId(member_id);
@@ -143,6 +141,7 @@ public class OrderControllerImpl extends BaseController implements OrderControll
 		}//end for
 
 	    orderService.addNewOrder(myOrderList);
+
 		mav.addObject("myOrderInfo",receiverMap);//OrderVO로 주문결과 페이지에  주문자 정보를 표시한다.
 		mav.addObject("myOrderList", myOrderList);
 		return mav;
