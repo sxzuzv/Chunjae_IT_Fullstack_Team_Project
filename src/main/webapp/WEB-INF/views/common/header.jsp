@@ -26,11 +26,11 @@
 			},
 			complete : function(data, textStatus) {
 				//alert("작업을완료 했습니다");
-				
+
 			}
 		}); //end ajax
 	}
-	
+
 	function displayResult(jsonInfo){
 		var count = jsonInfo.keyword.length;
 		if(count > 0) {
@@ -45,20 +45,20 @@
 		    hide('suggest');
 		}
 	}
-	
+
 	function select(selectedKeyword) {
 		 document.frmSearch.searchWord.value=selectedKeyword;
 		 loopSearch = false;
 		 hide('suggest');
 	}
-	
+
 	function show(elementId) {
 		 var element = document.getElementById(elementId);
 		 if(element) {
 		  element.style.display = 'block';
 		 }
 		}
-	
+
 	function hide(elementId){
 	   var element = document.getElementById(elementId);
 	   if(element){
@@ -91,18 +91,19 @@
       <c:if test="${isLogOn==true and memberInfo.memberId =='admin' }">
 	   	   <li class="no_line"><a href="${contextPath}/admin/goods/adminGoodsMain.do">관리자</a></li>
 	    </c:if>
-			  
+
 		</ul>
 	</div>
 	<br>
 	<div id="search" >
 		<form name="frmSearch" action="${contextPath}/goods/searchGoods.do" >
+			<%--input 태그에 onkeyup을 사용해 키를 누를때마다 filter()라는 함수를 실행시키기 --%>
 			<input name="searchWord" class="main_input" type="text"  onKeyUp="keywordSearch()">
 			<input type="submit" name="search" class="btn1"  value="검 색" >
 		</form>
+		<div id="suggest">
+			<div id="suggestList"></div>
+		</div>
 	</div>
-   <div id="suggest">
-        <div id="suggestList"></div>
-   </div>
 </body>
 </html>
