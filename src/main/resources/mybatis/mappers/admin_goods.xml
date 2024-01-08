@@ -160,7 +160,7 @@
 			             		 goods_published_date
 			              from t_shopping_goods
 			                where  date_format(goods_entered_date,'%Y-%m-%d')  between #{beginDate} and #{endDate}
-			               order by goods_entered_date desc
+			               order by goods_entered_date desc, goods_id desc
 					    ) as innerquery
 			       cross join (select @rowNum := 0) as dummy
 				) as outerquery
@@ -185,7 +185,7 @@
 						<if test='search_type=="receiverHp"'>
 							receiver_hp=#{search_word}
 						</if>
-					order by pay_order_time desc
+					order by pay_order_time desc, order_id desc
 					) as t
 			  ) as result
 			where recNum between (#{section} - 1) * 100 + (#{pageNum} - 1) * 10 + 1 and (#{section} - 1) * 100 + (#{pageNum}) * 10

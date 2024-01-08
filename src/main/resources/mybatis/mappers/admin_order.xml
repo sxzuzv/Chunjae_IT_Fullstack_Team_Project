@@ -83,7 +83,7 @@
 			                <if test='search_type=="payOrdererHpNum"'>
 			                   AND pay_orderer_hp_num=#{search_word}
 			                </if>
-			              order by pay_order_time desc
+			              order by pay_order_time desc, order_id asc
 					    ) as t
 					CROSS JOIN (SELECT @ROWNUM:=0) AS dummy
 				) as result
