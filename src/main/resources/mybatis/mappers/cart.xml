@@ -35,16 +35,19 @@
 	<!--	</resultMap>-->
 
 	<select id="selectCartList" resultType="cartVO" parameterType="cartVO" >
-	    <![CDATA[
+		<![CDATA[
 		select * from t_shopping_cart
 		where member_id=#{memberId}
 		]]>
+		order by cart_id desc
 	</select>
 
 	<select id="selectGoodsList" resultType="goodsVO"  parameterType="java.util.Map">
 		<![CDATA[
-    select g.*,d.file_name from t_shopping_goods g, t_goods_detail_image d
+    select g.*,d.file_name,c.cart_id
+    from t_shopping_goods g, t_goods_detail_image d, t_shopping_cart c
     where g.goods_id=d.goods_id
+    and g.goods_id = c.goods_id
     and d.file_type='main_image'
     and g.goods_id in (
     ]]>
@@ -53,7 +56,7 @@
 		</foreach>
 		<![CDATA[
     )
-    order by g.goods_entered_date desc
+    order by c.cart_id desc
     ]]>
 	</select>
 
@@ -66,6 +69,7 @@
 		select case count(*) when 0 then 'false' else 'true' end from t_shopping_cart
 		where goods_id=#{goodsId}
 		  and member_id=#{memberId}
+		order by goods_id
 		]]>
 	</select>
 
