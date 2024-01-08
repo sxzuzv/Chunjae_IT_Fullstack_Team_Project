@@ -95,26 +95,15 @@
 			}); //end ajax
 		}
 
-		function delete_cart_goods(cart_id){
-			$.ajax({
-				type: "post",
-				async: false,
-				url: "${contextPath}/cart/removeCartGoods.do",
-				data: {
-					cartId: cart_id
-				},
-				success: function(data, textStatus) {
-					alert(data);
-					// 성공적으로 처리된 후에 할 일을 추가할 수 있습니다.
-				},
-				error: function(data, textStatus) {
-					alert("에러가 발생했습니다." + data);
-				},
-				complete: function(data, textStatus) {
-					alert("작업을 완료 했습니다");
-				}
-			});
+		function deleteCartGoods(cartId) {
+			// 삭제 폼에 cartId 설정 후 서브밋
+			var deleteForm = document.getElementById("deleteForm");
+			var cartIdToDelete = document.getElementById("cartIdToDelete");
+			cartIdToDelete.value = cartId;
+			deleteForm.submit();
+
 		}
+
 
 		function fn_order_each_goods(goods_id,goods_title,goods_sales_price,fileName){
 			var total_price,final_total_price,_goods_qty;
@@ -202,6 +191,10 @@
 		<td>주문</td>
 	</tr>
 
+	<form id="deleteForm" action="${contextPath}/cart/removeCartGoods.do" method="post">
+		<input type="hidden" id="cartIdToDelete" name="cart_id" value="" />
+	</form>
+
 	<c:choose>
 	<c:when test="${ empty myCartList }">
 		<tr>
@@ -211,11 +204,13 @@
 		</tr>
 	</c:when>
 	<c:otherwise>
+
 	<tr>
+
 		<form name="frm_order_all_cart">
 			<c:forEach var="item" items="${myGoodsList }" varStatus="cnt">
-				<c:set var="cart_goods_qty" value="${myCartList[cnt.count-1].cartGoodsQty }" />
-				<c:set var="cart_id" value="${myCartList[cnt.count-1].cartId }" />
+			<c:set var="cart_goods_qty" value="${myCartList[cnt.count-1].cartGoodsQty }" />
+			<c:set var="cart_id" value="${myCartList[cnt.count-1].cartId }" />
 			<td><input type="checkbox" name="checked_goods"  checked  value="${item.goodsId }"  onClick="calcGoodsPrice(${item.goodsSalesPrice },this)"></td>
 			<td class="goods_image">
 				<a href="${contextPath}/goods/goodsDetail.do?goods_id=${item.goodsId }">
@@ -257,11 +252,9 @@
 					<img width="75" alt=""
 						 src="${contextPath}/resources/image/btn_add_list.jpg">
 				</A><br>
-				<a href="javascript:delete_cart_goods('${cartId }');">
-					<img width="75" alt=""
-						 src="${contextPath}/resources/image/btn_delete.jpg">
+				<a href="javascript:void(0);" onclick="deleteCartGoods('${cart_id}');">
+					<img width="75" alt="" src="${contextPath}/resources/image/btn_delete.jpg">
 				</a>
-			</td>
 	</tr>
 	<c:set  var="totalGoodsPrice" value="${totalGoodsPrice+item.goodsSalesPrice*cart_goods_qty }" />
 	<c:set  var="totalGoodsNum" value="${cart_goods_qty }" />

@@ -88,6 +88,7 @@ public class CartControllerImpl extends BaseController implements CartController
 	public ModelAndView removeCartGoods(@RequestParam("cart_id") int cartId,
 										HttpServletRequest request, HttpServletResponse response)  throws Exception{
 		ModelAndView mav=new ModelAndView();
+		mav.addObject("cart_id", cartId);
 		cartService.removeCartGoods(cartId);
 		mav.setViewName("redirect:/cart/myCartList.do");
 		return mav;
