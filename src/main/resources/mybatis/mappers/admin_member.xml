@@ -47,14 +47,14 @@
 			                  AND member_name=#{search_word}
 			                </if>
 			                <if test='search_type=="memberHp"'>
--- 			                   AND hp1||hp2||hp3=#{search_word}
-			              		AND member_hp=#{search_word}
+			                   AND hp1||hp2||hp3=#{search_word}
 			                </if>
 			              order by join_date desc
 					    ) as t
+					CROSS JOIN (SELECT @ROWNUM:=0) AS dummy
 				) as result
 			where				
-		recNum between (#{chapter}-1)*100+ (#{pageNum}-1)*10+1 and (#{chapter}-1)*100+(#{pageNum})*10				        
+		recNum between (#{section}-1)*100+ (#{pageNum}-1)*10+1 and (#{section}-1)*100+(#{pageNum})*10
 	</select>
 	
     <select id="memberDetail" resultType="MemberVO"   parameterType="String"  >
@@ -75,28 +75,43 @@
 			         member_gender=#{memberGender},
 			      </if>
 					<if test=" memberBirth!='' and memberBirth!=null">
-						member_birth=#{memberBirth}
+						member_birth=#{memberBirthY}
 					</if>
+				   <if test=" member_birth_m!='' and member_birth_m!=null">
+					   member_birth_m=#{memberBirthM}
+				   </if>
+				   <if test=" member_birth_d!='' and member_birth_d!=null">
+				   member_birth_d=#{memberBirthD}
+				   </if>
 					<if test=" memberHp!='' and memberHp!=null">
 						member_hp=#{memberHp}
 					</if>
+				   <if test=" hp2!='' and hp2!=null">
+					   hp2=#{memberHp2}
+				   </if>
+				   <if test=" hp3!='' and hp3!=null">
+					   hp3=#{memberHp3}
+				   </if>
 				  <if test=" smsstsYn!='' and smsstsYn!=null">
-					smssts_yn=#{smsstsYn},
+					smssts_yn=#{smsstsYn}
 				  </if>
-				  <if test=" memberEmail!='' and memberEmail!=null">
-					member_email=#{memberEmail}
-				  </if>
+				   <if test=" email1!='' and email1!=null">
+					   email1=#{memberEmail1}
+				   </if>
+				   <if test=" email2!='' and email2!=null">
+					   email2=#{memberEmail2}
+				   </if>
 				  <if test=" emailstsYn!='' and emailstsYn!=null">
-					 emailsts_yn=#{emailstsYn},
+					 emailsts_yn=#{emailstsYn}
 				  </if>
 				  <if test=" zipcode!='' and zipcode!=null">
-					 zipcode=#{zipcode},
+					 zipcode=#{zipcode}
 				  </if>
 				  <if test=" roadAddress!='' and roadAddress!=null">
-					 road_address=#{roadAddress},
+					 road_address=#{roadAddress}
 				  </if>
 				  <if test=" jibunAddress!='' and jibunAddress!=null">
-					 jibun_address=#{jibunAddress},
+					 jibun_address=#{jibunAddress}
 				  </if>
 				  <if test=" namujiAddress!='' and namujiAddress!=null">
 					 namuji_address=#{namujiAddress}
@@ -105,7 +120,7 @@
 					 del_yn=#{delYn}
 				  </if>
 			   </set>
-		where member_id=#{memberId}
+		where member_id=#{member_Id}
 	</update>	
 </mapper>
 

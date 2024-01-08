@@ -2,7 +2,7 @@
     pageEncoding="utf-8"
     isELIgnored="false"
     %>
-<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>    
+<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="contextPath"  value="${pageContext.request.contextPath}" />
 
@@ -28,7 +28,7 @@
 				//alert("작업을완료 했습니다");
 				
 			}
-		}); //end ajax	
+		}); //end ajax
 	}
 	
 	function displayResult(jsonInfo){
@@ -43,7 +43,7 @@
 		    show('suggest');
 		}else{
 		    hide('suggest');
-		} 
+		}
 	}
 	
 	function select(selectedKeyword) {
@@ -51,7 +51,7 @@
 		 loopSearch = false;
 		 hide('suggest');
 	}
-		
+	
 	function show(elementId) {
 		 var element = document.getElementById(elementId);
 		 if(element) {
@@ -84,7 +84,7 @@
 			 </c:when>
 			 <c:otherwise>
 			   <li><a href="${contextPath}/member/loginForm.do">로그인</a></li>
-			   <li><a href="${contextPath}/member/memberForm.do">회원가입</a></li> 
+			   <li><a href="${contextPath}/member/memberForm.do">회원가입</a></li>
 			 </c:otherwise>
 			</c:choose>
 			   <li><a href="#">고객센터</a></li>
@@ -97,7 +97,7 @@
 	<br>
 	<div id="search" >
 		<form name="frmSearch" action="${contextPath}/goods/searchGoods.do" >
-			<input name="searchWord" class="main_input" type="text"  onKeyUp="keywordSearch()"> 
+			<input name="searchWord" class="main_input" type="text"  onKeyUp="keywordSearch()">
 			<input type="submit" name="search" class="btn1"  value="검 색" >
 		</form>
 	</div>

@@ -141,7 +141,7 @@ function fn_modify_order_state(orderId,select_id){
 		success : function(data, textStatus) {
 			if(data.trim()=='mod_success'){
 				alert("주문 정보를 수정했습니다.");
-				location.href="${contextPath}//admin/order/adminOrderMain.do";
+				location.href="${contextPath}/admin/order/adminOrderMain.do";
 			}else if(data.trim()=='failed'){
 				alert("다시 시도해 주세요.");	
 			}
@@ -510,7 +510,7 @@ function fn_detail_search(){
 				    <strong>주문자:${item.ordererName}</strong><br>
 				  <strong>주문자 전화번호:${item.ordererHp}</strong><br>
 				  <strong>수령자:${item.receiverName}</strong><br>
-				  <strong>수령자 전화번호:${item.receiverHp}-${item.receiverHp}-${item.receiverHp}</strong><br>
+				  <strong>수령자 전화번호:${item.receiverHp1}-${item.receiverHp2}-${item.receiverHp3}</strong><br>
 				  <strong>주문 상품명(수량):${item.goodsTitle}(${item.orderGoodsQty})</strong><br>
 				     <c:forEach var="item2" items="${newOrderList}" varStatus="j">
 				       <c:if test="${j.index > i.index }" >
@@ -562,7 +562,7 @@ function fn_detail_search(){
 				 </select> 
 				</td>
 				<td width=10%>
-			     <input  type="button" value="배송수정"  onClick="fn_modify_order_state('${item.orderId}','s_deliveryState${i.index}')"/>
+			     <input  type="button" value="배송 수정"  onClick="fn_modify_order_state('${item.orderId}','s_deliveryState${i.index}')"/>
 			    </td>
 			</tr>
 		</c:when>

@@ -34,11 +34,8 @@
 <!--	   <result property="image_id" column="image_id" />-->
 <!--	   <result property="fileType" column="fileType" />-->
 <!--	</resultMap>-->
-	
 
-	
-   
-      <select id="selectGoodsList" resultType="goodsVO"  parameterType="String"   >
+	<select id="selectGoodsList" resultType="goodsVO"  parameterType="String"   >
         <![CDATA[
 		  select t.*
 		  from(
@@ -46,8 +43,8 @@
 				  where g.goods_id=d.goods_id
 					and d.file_type='main_image'
 					and goods_status='newbook'
-				  order by g.goods_entered_date desc)  t
-		  -- 	             where   rowNum <16
+				  order by g.goods_entered_date desc) t
+		  limit 15
 	    ]]>
 	</select>
 	
@@ -70,10 +67,10 @@
 	
    <select id="selectGoodsBySearchWord" resultType="goodsVO"   parameterType="String"  >
      <![CDATA[
-				select g.*,d.fileName from t_shopping_goods g, t_goods_detail_image d
+			select g.*, d.file_name from t_shopping_goods g, t_goods_detail_image d
 		    where g.goods_id=d.goods_id
 		    and d.file_type='main_image'
-		    and g.goods_title like '%'|| #{searchWord} || '%'
+		    and g.goods_title like concat('%',  #{searchWord}, '%')
 		    order by g.goods_entered_date desc
 		]]>
 	</select>	
@@ -81,8 +78,8 @@
 	<select id="selectKeywordSearch" resultType="String"   parameterType="String"  >
 	    <![CDATA[
         select goods_title from t_shopping_goods 
-        where         
-        goods_title like '%'|| #{keyword} || '%'
+        where
+        goods_title like concat('%',  #{keyword}, '%')
         order by goods_entered_date desc
 		]]>
 	</select>

@@ -91,7 +91,23 @@ function fn_overlapped(){
           //alert("작업을완료 했습니다");
        }
     });  //end ajax	 
- }	
+ }
+
+
+document.addEventListener('DOMContentLoaded', function() {//페이지로드후 실행
+	const domainListEl = document.querySelector('#domainlist');//도메인 리스트 정의
+	const domainInputEl = document.querySelector('#domaintxt');//직접입력 도메인 정의
+
+	domainListEl.addEventListener('change', (event) => {
+		if (event.target.value !== "type") {//직접입력 도메인 선택 안했을때
+			domainInputEl.value = event.target.value;//선택한 도메인을 input 에 입력
+			domainInputEl.disabled = true;
+		} else {//직접입력 도메인 선택시
+			domainInputEl.value = "";//input내용 초기화
+			domainInputEl.disabled = false;
+		}
+	});
+});
 </script>
 </head>
 <body>
@@ -185,9 +201,9 @@ function fn_overlapped(){
 				</tr>
 				<tr class="dot_line">
 					<td class="fixed_join">이메일<br>(e-mail)</td>
-					<td><input size="10px"   type="text" name="memberEmail1" /> @ <input  size="10px"  type="text"name="memberEmail2" />
-						  <select name="memberEmail2" onChange=""	title="직접입력">
-									<option value="non">직접입력</option>
+					<td><input size="10px"   type="text" name="memberEmail1" /> @ <input  size="10px"  type="text"name="memberEmail2" id="domaintxt"/>
+						  <select id="domainlist" title="직접입력">
+									<option value="type">직접입력</option>
 									<option value="hanmail.net">hanmail.net</option>
 									<option value="naver.com">naver.com</option>
 									<option value="yahoo.co.kr">yahoo.co.kr</option>

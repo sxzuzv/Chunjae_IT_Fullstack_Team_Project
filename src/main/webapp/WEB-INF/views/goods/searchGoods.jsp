@@ -39,22 +39,22 @@
 			    <c:forEach var="item" items="${goodsList }" >
 			     <li>
 					<div id="book">
-						<a href="${contextPath}/goods/goodsDetail.do?goods_id=${item.goods_id}">
-						<img width="75" alt="" src="${contextPath}/thumbnails.do?goods_id=${item.goods_id}&fileName=${item.goods_fileName}">
+						<a href="${contextPath}/goods/goodsDetail.do?goods_id=${item.goodsId}">
+						<img width="75" alt="" src="${contextPath}/thumbnails.do?goods_id=${item.goodsId}&fileName=${item.goodsFileName}">
 						</a>
 						<div class="sort">[컴퓨터 인터넷]</div>
 						<div class="title">
-							<a href="${contextPath}/goods/goodsDetail.do?goods_id=${item.goods_id }">
-							  ${item.goods_title}
+							<a href="${contextPath}/goods/goodsDetail.do?goods_id=${item.goodsId }">
+							  ${item.goodsTitle}
 							</a>
 						</div>
-						<div class="writer">${item.goods_writer} | ${item.goods_publisher}</div>
+						<div class="writer">${item.goodsWriter} | ${item.goodsPublisher}</div>
 						<div class="price">
 							<span>
-							  <fmt:formatNumber  value="${item.goods_price}" type="number" var="goods_price" />
+							  <fmt:formatNumber  value="${item.goodsPrice}" type="number" var="goods_price" />
 		                         ${goods_price}원
 							</span> <br>
-							 <fmt:formatNumber  value="${item.goods_price*0.9}" type="number" var="discounted_price" />
+							 <fmt:formatNumber  value="${item.goodsPrice*0.9}" type="number" var="discounted_price" />
 				               ${discounted_price}원(10%할인)
 						</div>
 					</div>
@@ -87,23 +87,23 @@
 		  <c:forEach var="item" items="${goodsList }"> 
 			<tr>
 					<td class="goods_image">
-						<a href="${contextPath}/goods/goodsDetail.do?goods_id=${item.goods_id}">
-							   <img width="75" alt="" src="${contextPath}/thumbnails.do?goods_id=${item.goods_id}&fileName=${item.goods_fileName}">
+						<a href="${contextPath}/goods/goodsDetail.do?goods_id=${item.goodsId}">
+							   <img width="75" alt="" src="${contextPath}/thumbnails.do?goods_id=${item.goodsId}&fileName=${item.goodsFileName}">
 						</a>
 					</td>
 					<td class="goods_description">
 						<h2>
-							<a href="${contextPath}/goods/goodsDetail.do?goods_id=${item.goods_id }">${item.goods_title }</a>
+							<a href="${contextPath}/goods/goodsDetail.do?goods_id=${item.goodsId }">${item.goodsTitle }</a>
 						</h2>
-						<c:set var="goods_pub_date" value="${item.goods_published_date }" />
-					   <c:set var="arr" value="${fn:split(goods_pub_date,' ')}" />
-						<div class="writer_press"  >${item.goods_writer }저
-							|${item.goods_publisher }|<c:out value="${arr[0]}" />
+						<c:set var="goods_pub_date" value="${item.goodsPublishedDate }" />
+					    <c:set var="arr" value="${fn:split(goods_pub_date,' ')}" />
+						<div class="writer_press"  >${item.goodsWriter }저
+							|${item.goodsPublisher }|<c:out value="${arr[0]}" />
 						</div>
 					</td>
-					<td class="price"><span>${item.goods_price }원</span><br>
+					<td class="price"><span>${item.goodsPrice }원</span><br>
 						<strong>
-						 <fmt:formatNumber  value="${item.goods_price*0.9}" type="number" var="discounted_price" />
+						 <fmt:formatNumber  value="${item.goodsPrice*0.9}" type="number" var="discounted_price" />
 				               ${discounted_price}원
 						</strong><br>(10% 할인)
 					</td>

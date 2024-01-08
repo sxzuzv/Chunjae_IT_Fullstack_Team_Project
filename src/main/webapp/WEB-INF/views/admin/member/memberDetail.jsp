@@ -171,16 +171,16 @@ function fn_modify_member_info(member_id,mod_type){
 			var tel1=frm_mod_member.tel1;
 			var tel2=frm_mod_member.tel2;
 			var tel3=frm_mod_member.tel3;
-			
+
 			for(var i=0; tel1.length;i++){
 			 	if(tel1[i].selected){
 					value_tel1=tel1[i].value;
 					break;
-				} 
+				}
 			}
 			value_tel2=tel2.value;
 			value_tel3=tel3.value;
-			
+
 			value=value_tel1+","+value_tel2+", "+value_tel3;
 		}else if(mod_type=='hp'){
 			var hp1=frm_mod_member.hp1;
@@ -269,6 +269,21 @@ function fn_delete_member(member_id ,del_yn){
     frm_mod_member.action="/bookshop01/admin/member/deleteMember.do";
     frm_mod_member.submit();
 }
+
+document.addEventListener('DOMContentLoaded', function() {//페이지로드후 실행
+	const domainListEl = document.querySelector('#domainlist');//도메인 리스트 정의
+	const domainInputEl = document.querySelector('#domaintxt');//직접입력 도메인 정의
+
+	domainListEl.addEventListener('change', (event) => {
+		if (event.target.value !== "type") {//직접입력 도메인 선택 안했을때
+			domainInputEl.value = event.target.value;//선택한 도메인을 input 에 입력
+			domainInputEl.disabled = true;
+		} else {//직접입력 도메인 선택시
+			domainInputEl.value = "";//input 내용 초기화
+			domainInputEl.disabled = false;
+		}
+	});
+});
 </script>
 </head>
 
@@ -281,35 +296,35 @@ function fn_delete_member(member_id ,del_yn){
 				<tr class="dot_line">
 					<td class="fixed_join">아이디</td>
 					<td>
-						<input name="member_id" type="text" size="20" value="${member_info.member_id }"  disabled/>
+						<input name="member_id" type="text" size="20" value="${member_info.memberId }"  disabled/>
 					</td>
 					 <td>
-					  <input type="button" value="수정하기" disabled onClick="fn_modify_member_info('${member_info.member_id }','member_name')" />
+					  <input type="button" value="수정하기" disabled onClick="fn_modify_member_info('${member_info.memberId }','member_name')" />
 					</td>
 				</tr>
 				<tr class="dot_line">
 					<td class="fixed_join">비밀번호</td>
 					<td>
-					  <input name="member_pw" type="password" size="20" value="${member_info.member_pw }" />
+					  <input name="member_pw" type="password" size="20" value="${member_info.memberPw }" />
 					</td>
 					<td>
-					  <input type="button" value="수정하기" onClick="fn_modify_member_info('${member_info.member_id }','member_pw')" />
+					  <input type="button" value="수정하기" onClick="fn_modify_member_info('${member_info.memberId }','member_pw')" />
 					</td>
 				</tr>
 				<tr class="dot_line">
 					<td class="fixed_join">이름</td>
 					<td>
-					  <input name="member_name" type="text" size="20" value="${member_info.member_name }"  disabled />
+					  <input name="member_name" type="text" size="20" value="${member_info.memberName }"  disabled />
 					 </td>
 					 <td>
-					  <input type="button" value="수정하기" disabled onClick="fn_modify_member_info('${member_info.member_id }','member_name')" />
+					  <input type="button" value="수정하기" disabled onClick="fn_modify_member_info('${member_info.memberId }','member_name')" />
 					</td>
 				</tr>
 				<tr class="dot_line">
 					<td class="fixed_join">성별</td>
 					<td>
 					  <c:choose >
-					    <c:when test="${member_info.member_gender =='101' }">
+					    <c:when test="${member_info.memberGender =='101' }">
 					      <input type="radio" name="member_gender" value="102" />
 						  여성&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					   <input type="radio" name="member_gender" value="101" checked />남성
@@ -322,7 +337,7 @@ function fn_delete_member(member_id ,del_yn){
 					   </c:choose>
 					</td>
 					<td>
-					  <input type="button" value="수정하기" onClick="fn_modify_member_info('${member_info.member_id }','member_gender')" />
+					  <input type="button" value="수정하기" onClick="fn_modify_member_info('${member_info.memberId }','member_gender')" />
 					</td>
 				</tr>
 				<tr class="dot_line">
@@ -331,7 +346,7 @@ function fn_delete_member(member_id ,del_yn){
 					   <select name="member_birth_y">
 					     <c:forEach var="i" begin="1" end="100">
 					       <c:choose>
-					         <c:when test="${member_info.member_birth_y==1920+i }">
+					         <c:when test="${member_info.memberBirthY==1920+i }">
 							   <option value="${ 1920+i}" selected>${ 1920+i} </option>
 							</c:when>
 							<c:otherwise>
@@ -343,7 +358,7 @@ function fn_delete_member(member_id ,del_yn){
 					<select name="member_birth_m" >
 						<c:forEach var="i" begin="1" end="12">
 					       <c:choose>
-					         <c:when test="${member_info.member_birth_m==i }">
+					         <c:when test="${member_info.memberBirthM==i }">
 							   <option value="${i }" selected>${i }</option>
 							</c:when>
 							<c:otherwise>
@@ -356,7 +371,7 @@ function fn_delete_member(member_id ,del_yn){
 					<select name="member_birth_d">
 							<c:forEach var="i" begin="1" end="31">
 					       <c:choose>
-					         <c:when test="${member_info.member_birth_d==i }">
+					         <c:when test="${member_info.memberBirthD==i }">
 							   <option value="${i }" selected>${i }</option>
 							</c:when>
 							<c:otherwise>
@@ -368,7 +383,7 @@ function fn_delete_member(member_id ,del_yn){
 					
 					   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					   <c:choose>
-					    <c:when test="${member_info.member_birth_gn=='2' }"> 
+					    <c:when test="${member_info.memberBirthGn=='2' }">
 					  <input type="radio" name="member_birth_gn" value="2" checked />양력
 						&nbsp;&nbsp;&nbsp; 
 						<input type="radio"  name="member_birth_gn" value="1" />음력
@@ -381,7 +396,7 @@ function fn_delete_member(member_id ,del_yn){
 						</c:choose>
 					</td>
 					<td>
-					  <input type="button" value="수정하기" onClick="fn_modify_member_info('${member_info.member_id }','member_birth')" />
+					  <input type="button" value="수정하기" onClick="fn_modify_member_info('${member_info.memberId }','member_birth')" />
 					</td>
 				</tr>
 				<tr class="dot_line">
@@ -414,11 +429,11 @@ function fn_delete_member(member_id ,del_yn){
 							<option value="0508">0508</option>
 							<option value="070">070</option>
 					</select> 
-					    - <input type="text" size=4  name="tel2" value="${member_info.tel2 }"> 
-					    - <input type="text" size=4  name="tel3" value="${member_info.tel3 }">
+					    - <input type="text" size=4  name="tel2" value="${member_info.memberHp2 }">
+					    - <input type="text" size=4  name="tel3" value="${member_info.memberHp3 }">
 					</td>
 					<td>
-					  <input type="button" value="수정하기" onClick="fn_modify_member_info('${member_info.member_id }','tel')" />
+					  <input type="button" value="수정하기" onClick="fn_modify_member_info('${member_info.memberId }','tel')" />
 					</td>
 				</tr>
 				<tr class="dot_line">
@@ -433,10 +448,10 @@ function fn_delete_member(member_id ,del_yn){
 							<option value="018">018</option>
 							<option value="019">019</option>
 					</select> 
-					 - <input type="text" name="hp2" size=4 value="${member_info.hp2 }"> 
-					 - <input type="text"name="hp3"  size=4 value="${member_info.hp3 }"><br> <br>
+					 - <input type="text" name="hp2" size=4 value="${member_info.memberHp2 }">
+					 - <input type="text"name="hp3"  size=4 value="${member_info.memberHp3 }"><br> <br>
 					 <c:choose> 
-					   <c:when test="${member_info.smssts_yn=='true' }">
+					   <c:when test="${member_info.smsstsYn=='true' }">
 					     <input type="checkbox"  name="smssts_yn" value="Y" checked /> 쇼핑몰에서 발송하는 SMS 소식을 수신합니다.
 						</c:when>
 						<c:otherwise>
@@ -445,15 +460,17 @@ function fn_delete_member(member_id ,del_yn){
 					 </c:choose>	
 				    </td>
 					<td>
-					  <input type="button" value="수정하기" onClick="fn_modify_member_info('${member_info.member_id }','hp')" />
+					  <input type="button" value="수정하기" onClick="fn_modify_member_info('${member_info.memberId }','hp')" />
 					</td>	
 				</tr>
 				<tr class="dot_line">
 					<td class="fixed_join">이메일(e-mail)</td>
 					<td>
-					   <input type="text" name="email1" size=10 value="${member_info.email1 }" /> @ <input type="text" size=10  name="email2" value="${member_info.email2 }" /> 
-					   <select name="select_email2" onChange=""  title="직접입력">
-							<option value="non">직접입력</option>
+					   <input type="text" name="email1" size=10 value="${member_info.memberEmail1 }" /> @ <input type="text" size=10  name="email2" value="${member_info.memberEmail2 }" id="domaintxt"/>
+<%--					   <select name="select_email2" onChange=""  title="직접입력">--%>
+						<select id="domainlist" title="직접입력">
+<%--							<option value="non">직접입력</option>--%>
+							<option value="type">직접입력</option>
 							<option value="hanmail.net">hanmail.net</option>
 							<option value="naver.com">naver.com</option>
 							<option value="yahoo.co.kr">yahoo.co.kr</option>
@@ -467,7 +484,7 @@ function fn_delete_member(member_id ,del_yn){
 							<option value="freechal.com">freechal.com</option>
 					</select><Br><br> 
 					<c:choose> 
-					   <c:when test="${member_info.emailsts_yn=='true' }">
+					   <c:when test="${member_info.emailstsYn=='true' }">
 					     <input type="checkbox" name="emailsts_yn"  value="Y" checked /> 쇼핑몰에서 발송하는 e-mail을 수신합니다.
 						</c:when>
 						<c:otherwise>
@@ -476,13 +493,13 @@ function fn_delete_member(member_id ,del_yn){
 					 </c:choose>
 					</td>
 					<td>
-					  <input type="button" value="수정하기" onClick="fn_modify_member_info('${member_info.member_id }','email')" />
+					  <input type="button" value="수정하기" onClick="fn_modify_member_info('${member_info.memberId }','email')" />
 					</td>
 				</tr>
 				<tr class="dot_line">
 					<td class="fixed_join">주소</td>
 					<td>
-					   <input type="text" id="zipcode" name="zipcode" size=5 value="${member_info.zipcode }" > <a href="javascript:execDaumPostcode()">우편번호검색</a>
+					   <input type="text" id="zipcode" name="zipcode" size=5 value="${member_info.zipcode }" > <a href="javascript:execDaumPostcode()">우편번호 검색</a>
 					  <br>
 					  <p> 
 					   지번 주소:<br><input type="text" id="roadAddress"  name="roadAddress" size="50" value="${member_info.roadAddress }"><br><br>
@@ -492,7 +509,7 @@ function fn_delete_member(member_id ,del_yn){
 					   </p>
 					</td>
 					<td>
-					  <input type="button" value="수정하기" onClick="fn_modify_member_info('${member_info.member_id }','address')" />
+					  <input type="button" value="수정하기" onClick="fn_modify_member_info('${member_info.memberId }','address')" />
 					</td>
 				</tr>
 			</tbody>
@@ -505,11 +522,11 @@ function fn_delete_member(member_id ,del_yn){
 			<td >
 				<input type="hidden" name="command"  value="modify_my_info" /> 
 				<c:choose>
-				  <c:when test="${member_info.del_yn=='Y' }">
-				    <input  type="button"  value="회원복원" onClick="fn_delete_member('${member_info.member_id }','N')">   
+				  <c:when test="${member_info.delYn=='Y' }">
+				    <input  type="button"  value="회원복원" onClick="fn_delete_member('${member_info.memberId }','N')">
 				  </c:when>
-				  <c:when  test="${member_info.del_yn=='N' }">
-				    <input  type="button"  value="회원탈퇴" onClick="fn_delete_member('${member_info.member_id }','Y')">
+				  <c:when  test="${member_info.delYn=='N' }">
+				    <input  type="button"  value="회원탈퇴" onClick="fn_delete_member('${member_info.memberId }','Y')">
 				  </c:when>
 				  
 				</c:choose>
@@ -518,8 +535,8 @@ function fn_delete_member(member_id ,del_yn){
 		</tr>
 	</table>
 	</div>
-	<input  type="hidden" name="h_tel1" value="${member_info.tel1}" />
-	<input  type="hidden" name="h_hp1" value="${member_info.hp1}" />		
+<%--	<input  type="hidden" name="h_tel1" value="${member_info.tel1}" />--%>
+	<input  type="hidden" name="h_hp1" value="${member_info.memberHp1}" />
 </form>	
 </body>
 </html>
