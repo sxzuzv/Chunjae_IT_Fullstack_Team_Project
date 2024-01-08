@@ -18,5 +18,7 @@ public interface MyPageController {
 	public ResponseEntity modifyMyInfo(@RequestParam("attribute") String attribute,
                                        @RequestParam("value") String value,
                                        HttpServletRequest request, HttpServletResponse response)  throws Exception;
-	
+	public ModelAndView myCancelOrder(@RequestParam Map<String, String> dateMap,
+									  HttpServletRequest request, HttpServletResponse response)  throws Exception;
+
 }

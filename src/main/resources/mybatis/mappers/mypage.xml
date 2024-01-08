@@ -134,6 +134,15 @@
 	 	  set delivery_state='cancel_order'
 	   where order_id=#{orderId}
 	</update>
+
+	<select id="cancelOrderHistory" resultType="orderVO"   parameterType="java.util.Map">
+		<![CDATA[
+		select * from t_shopping_order
+		where member_id=#{memberId} and delivery_state= "cancel_order"
+		  and  to_char(pay_order_time,'yyyy-mm-dd')  between #{beginDate} and #{endDate}
+		order by pay_order_time desc
+		]]>
+	</select>
 		
 		
 </mapper>

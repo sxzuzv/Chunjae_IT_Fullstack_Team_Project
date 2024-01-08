@@ -173,6 +173,42 @@ public class MyPageControllerImpl extends BaseController  implements MyPageContr
 		message  = "mod_success";
 		resEntity =new ResponseEntity(message, responseHeaders, HttpStatus.OK);
 		return resEntity;
-	}	
-	
+	}
+
+	@Override
+	@RequestMapping(value="/cancelOrderHistory.do" ,method = RequestMethod.GET)
+	public ModelAndView myCancelOrder(@RequestParam Map<String, String> dateMap,
+										   HttpServletRequest request, HttpServletResponse response)  throws Exception {
+		String viewName=(String)request.getAttribute("viewName");
+		ModelAndView mav = new ModelAndView(viewName);
+		HttpSession session=request.getSession();
+		memberVO=(MemberVO)session.getAttribute("memberInfo");
+		String member_id=memberVO.getMemberId();
+
+
+		String fixedSearchPeriod = dateMap.get("fixedSearchPeriod");
+		String beginDate=null,endDate=null;
+
+		String [] tempDate=calcSearchPeriod(fixedSearchPeriod).split(",");
+		beginDate=tempDate[0];
+		endDate=tempDate[1];
+		dateMap.put("beginDate", beginDate);
+		dateMap.put("endDate", endDate);
+		dateMap.put("memberId", member_id);
+		List<OrderVO> myCancelList=myPageService.cancelOrderHistory(dateMap);
+
+		String beginDate1[]=beginDate.split("-"); //검색일자를 년,월,일로 분리해서 화면에 전달합니다.
+		String endDate1[]=endDate.split("-");
+		mav.addObject("beginYear",beginDate1[0]);
+		mav.addObject("beginMonth",beginDate1[1]);
+		mav.addObject("beginDay",beginDate1[2]);
+		mav.addObject("endYear",endDate1[0]);
+		mav.addObject("endMonth",endDate1[1]);
+		mav.addObject("endDay",endDate1[2]);
+		mav.addObject("myCancelList", myCancelList);
+		return mav;
+	}
+
+
+
 }
