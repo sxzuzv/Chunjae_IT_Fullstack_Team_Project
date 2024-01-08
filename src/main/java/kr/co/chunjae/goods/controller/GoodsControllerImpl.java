@@ -1,6 +1,7 @@
 package kr.co.chunjae.goods.controller;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -75,25 +76,28 @@ public class GoodsControllerImpl extends BaseController implements GoodsControll
 	
 	private void addGoodsInQuick(String goodsId,GoodsVO goodsVO,HttpSession session){
 		boolean already_existed=false;
-		List<GoodsVO> quickGoodsList; //최근 본 상품 저장 ArrayList
-		quickGoodsList=(ArrayList<GoodsVO>)session.getAttribute("quickGoodsList");
+		List<GoodsVO> quickGoodsList; //최근 본 상품 저장 LinkedList, 효율을 위해 순서가 있으나 수정 삭제시 리소스 소모가 덜한 linked list로 변경
+		quickGoodsList=(LinkedList<GoodsVO>)session.getAttribute("quickGoodsList");
 		
 		if(quickGoodsList!=null){
-			if(quickGoodsList.size() < 4){ //미리본 상품 리스트에 상품개수가 세개 이하인 경우
-				for(int i=0; i<quickGoodsList.size();i++){
-					GoodsVO _goodsBean=(GoodsVO)quickGoodsList.get(i);
-					if(goodsId.equals(_goodsBean.getGoodsId())){
-						already_existed=true;
-						break;
-					}
-				}
-				if(already_existed==false){
-					quickGoodsList.add(goodsVO);
+			for(int i=0; i<quickGoodsList.size();i++){ //중복체크
+				GoodsVO _goodsBean=(GoodsVO)quickGoodsList.get(i);
+				if(goodsId.equals(_goodsBean.getGoodsId())){
+					already_existed=true;
+					break;
 				}
 			}
-			
+			if(already_existed==false) { // 중복아닌경우 add 결정로직 시작
+				if (quickGoodsList.size() < 4) { //미리본 상품 리스트에 상품개수가 세개 이하인 경우
+					quickGoodsList.add(0,goodsVO);
+
+				} else { //4개인 경우
+					quickGoodsList.remove(quickGoodsList.size()-1); //마지막 리스트 요소 삭제
+					quickGoodsList.add(0,goodsVO); //첫번째 인덱스에 추가
+				}
+			}
 		}else{
-			quickGoodsList =new ArrayList<GoodsVO>();
+			quickGoodsList =new LinkedList<GoodsVO>();
 			quickGoodsList.add(goodsVO);
 			
 		}
