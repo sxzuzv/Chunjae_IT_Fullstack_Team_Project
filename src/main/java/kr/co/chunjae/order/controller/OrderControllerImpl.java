@@ -10,8 +10,10 @@ import javax.servlet.http.HttpSession;
 
 import kr.co.chunjae.common.base.BaseController;
 import kr.co.chunjae.member.vo.MemberVO;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -24,15 +26,15 @@ import kr.co.chunjae.order.vo.OrderVO;
 
 @Controller("orderController")
 @RequestMapping(value="/order")
+@RequiredArgsConstructor
 public class OrderControllerImpl extends BaseController implements OrderController {
-	@Autowired
-	OrderService orderService;
-	@Autowired
-	OrderVO orderVO;
+
+	private final OrderService orderService;
+	private OrderVO orderVO;
 	
 	@RequestMapping(value="/orderEachGoods.do" ,method = RequestMethod.POST)
-	public ModelAndView orderEachGoods(@ModelAttribute("orderVO") OrderVO _orderVO,
-			                       HttpServletRequest request, HttpServletResponse response)  throws Exception{
+	public String orderEachGoods(@ModelAttribute("orderVO") OrderVO _orderVO,
+			                       HttpServletRequest request)  throws Exception{
 		
 		request.setCharacterEncoding("utf-8");
 		HttpSession session=request.getSession();
@@ -45,7 +47,8 @@ public class OrderControllerImpl extends BaseController implements OrderControll
 		if(isLogOn==null || isLogOn==false){
 			session.setAttribute("orderInfo", _orderVO);
 			session.setAttribute("action", "/order/orderEachGoods.do");
-			return new ModelAndView("redirect:/member/loginForm.do");
+
+			return "redirect:/member/loginForm.do";
 		}else{
 			 if(action!=null && action.equals("/order/orderEachGoods.do")){
 				orderVO=(OrderVO)session.getAttribute("orderInfo");
@@ -56,8 +59,7 @@ public class OrderControllerImpl extends BaseController implements OrderControll
 		 }
 		
 		String viewName=(String)request.getAttribute("viewName");
-		ModelAndView mav = new ModelAndView(viewName);
-		
+
 		List myOrderList=new ArrayList<OrderVO>();
 		myOrderList.add(orderVO);
 
@@ -65,14 +67,14 @@ public class OrderControllerImpl extends BaseController implements OrderControll
 		
 		session.setAttribute("myOrderList", myOrderList);
 		session.setAttribute("orderer", memberInfo);
-		return mav;
+
+		return viewName;
 	}
-	
+
 	@RequestMapping(value="/orderAllCartGoods.do" ,method = RequestMethod.POST)
-	public ModelAndView orderAllCartGoods( @RequestParam("cart_goods_qty")  String[] cart_goods_qty,
-			                 HttpServletRequest request, HttpServletResponse response)  throws Exception{
+	public String orderAllCartGoods( @RequestParam("cart_goods_qty")  String[] cart_goods_qty,
+			                 HttpServletRequest request)  throws Exception{
 		String viewName=(String)request.getAttribute("viewName");
-		ModelAndView mav = new ModelAndView(viewName);
 		HttpSession session=request.getSession();
 		Map cartMap=(Map)session.getAttribute("cartMap");
 		List myOrderList=new ArrayList<OrderVO>();
@@ -100,17 +102,18 @@ public class OrderControllerImpl extends BaseController implements OrderControll
 				}
 			}
 		}
+
 		session.setAttribute("myOrderList", myOrderList);
 		session.setAttribute("orderer", memberVO);
-		return mav;
+
+		return viewName;
 	}	
-	
+
 	@RequestMapping(value="/payToOrderGoods.do" ,method = RequestMethod.POST)
-	public ModelAndView payToOrderGoods(@RequestParam Map<String, String> receiverMap,
-			                       HttpServletRequest request, HttpServletResponse response)  throws Exception{
+	public String payToOrderGoods(@RequestParam Map<String, String> receiverMap,
+								  HttpServletRequest request, Model model)  throws Exception{
 		String viewName=(String)request.getAttribute("viewName");
-		ModelAndView mav = new ModelAndView(viewName);
-		
+
 		HttpSession session=request.getSession();
 		MemberVO memberVO=(MemberVO)session.getAttribute("orderer");
 		String member_id=memberVO.getMemberId();
@@ -142,10 +145,10 @@ public class OrderControllerImpl extends BaseController implements OrderControll
 
 	    orderService.addNewOrder(myOrderList);
 
-		mav.addObject("myOrderInfo",receiverMap);//OrderVO로 주문결과 페이지에  주문자 정보를 표시한다.
-		mav.addObject("myOrderList", myOrderList);
-		return mav;
+		model.addAttribute("myOrderInfo",receiverMap);//OrderVO로 주문결과 페이지에  주문자 정보를 표시한다.
+		model.addAttribute("myOrderList", myOrderList);
+
+		return viewName;
 	}
-	
 
 }
