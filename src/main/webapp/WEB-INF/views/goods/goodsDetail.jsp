@@ -41,13 +41,20 @@
 		}
 	</style>
 	<script type="text/javascript">
+		function changefn() {
+			var order_goods_qty  = document.getElementById("order_goods_qty");
+			var value = (order_goods_qty.options[order_goods_qty.selectedIndex].value);
+			return value;
+		}
 		function add_cart(goods_id) {
+			let cartGoodsQty = changefn();
 			$.ajax({
 				type : "post",
 				async : false, //false인 경우 동기식으로 처리한다.
 				url : "${contextPath}/cart/addGoodsInCart.do",
 				data : {
-					goods_id:goods_id
+					goods_id:goods_id,
+					cartGoodsQty: cartGoodsQty
 
 				},
 				success : function(data, textStatus) {
@@ -198,12 +205,12 @@
 		<tr>
 			<td class="fixed">수량</td>
 			<td class="fixed">
-				<select style="width: 60px;" id="order_goods_qty">
-					<option>1</option>
-					<option>2</option>
-					<option>3</option>
-					<option>4</option>
-					<option>5</option>
+				<select style="width: 60px;" id="order_goods_qty" onchange="changefn()">
+					<option value="1">1</option>
+					<option value="2">2</option>`
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
 				</select>
 			</td>
 		</tr>

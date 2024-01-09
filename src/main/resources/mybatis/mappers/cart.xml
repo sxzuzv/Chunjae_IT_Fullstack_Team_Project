@@ -63,9 +63,6 @@
 
 	<select id="selectCountInCart" resultType="String"   parameterType="cartVO"  >
 	    <![CDATA[
-		/*select decode(count(*),0,'false','true') from t_shopping_cart
-        where goods_id=#{goodsId}
-          and member_id=#{memberId}*/
 		select case count(*) when 0 then 'false' else 'true' end from t_shopping_cart
 		where goods_id=#{goodsId}
 		  and member_id=#{memberId}
@@ -75,18 +72,8 @@
 
 	<insert id="insertGoodsInCart" parameterType="cartVO"  >
 	    <![CDATA[
-		/*insert into t_shopping_cart(cart_id,
-                                   goods_id,
-                                   member_id)
-                                     values(#{cartId},
-                                                #{goodsId},
-                                                #{memberId})*/
-		insert into t_shopping_cart(cart_id,
-									goods_id,
-									member_id, cart_goods_qty)
-		values (#{cartId},
-				#{goodsId},
-				#{memberId}, #{cartGoodsQty})
+		insert into t_shopping_cart(goods_id,member_id, cart_goods_qty)
+		values (#{goodsId},#{memberId}, #{cartGoodsQty})
 		]]>
 	</insert>
 
