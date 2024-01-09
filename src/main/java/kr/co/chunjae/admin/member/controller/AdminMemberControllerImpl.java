@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 
 import kr.co.chunjae.common.base.BaseController;
 import kr.co.chunjae.member.vo.MemberVO;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -25,10 +26,10 @@ import org.springframework.web.servlet.ModelAndView;
 import kr.co.chunjae.admin.member.service.AdminMemberService;
 
 @Controller("adminMemberController")
+@RequiredArgsConstructor
 @RequestMapping(value="/admin/member")
 public class AdminMemberControllerImpl extends BaseController implements AdminMemberController{
-	@Autowired
-	AdminMemberService adminMemberService;
+	private  final AdminMemberService adminMemberService;
 	
 	@RequestMapping(value="/adminMemberMain.do" ,method={RequestMethod.POST,RequestMethod.GET})
 	public String adminGoodsMain(@RequestParam Map<String, String> dateMap,

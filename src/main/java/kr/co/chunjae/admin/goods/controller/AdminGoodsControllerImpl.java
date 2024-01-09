@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import lombok.RequiredArgsConstructor;
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -30,11 +31,11 @@ import kr.co.chunjae.goods.vo.ImageFileVO;
 import kr.co.chunjae.member.vo.MemberVO;
 
 @Controller("adminGoodsController")
+@RequiredArgsConstructor
 @RequestMapping(value="/admin/goods")
 public class AdminGoodsControllerImpl extends BaseController  implements AdminGoodsController{
 	private static final String CURR_IMAGE_REPO_PATH = "C:\\shopping\\file_repo";
-	@Autowired
-	AdminGoodsService adminGoodsService;
+	private final AdminGoodsService adminGoodsService;
 	
 	@RequestMapping(value="/adminGoodsMain.do" ,method={RequestMethod.POST,RequestMethod.GET})
 	public String adminGoodsMain(@RequestParam Map<String, String> dateMap,

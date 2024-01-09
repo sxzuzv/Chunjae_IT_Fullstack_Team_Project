@@ -7,6 +7,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -23,10 +24,10 @@ import kr.co.chunjae.common.base.BaseController;
 import kr.co.chunjae.order.vo.OrderVO;
 
 @Controller("adminOrderController")
+@RequiredArgsConstructor
 @RequestMapping(value="/admin/order")
 public class AdminOrderControllerImpl extends BaseController  implements AdminOrderController{
-	@Autowired
-	AdminOrderService adminOrderService;
+	private final AdminOrderService adminOrderService;
 	
 	@Override
 	@RequestMapping(value="/adminOrderMain.do" ,method={RequestMethod.GET, RequestMethod.POST})
