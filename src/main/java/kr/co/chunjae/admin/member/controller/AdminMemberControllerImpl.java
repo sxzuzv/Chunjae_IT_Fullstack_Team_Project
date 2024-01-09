@@ -135,7 +135,6 @@ public class AdminMemberControllerImpl extends BaseController implements AdminMe
 	
 	@RequestMapping(value="/deleteMember.do" ,method={RequestMethod.POST})
 	public String deleteMember(HttpServletRequest request)  throws Exception {
-//		ModelAndView mav = new ModelAndView();
 		String viewName = "redirect:/admin/member/adminMemberMain.do";
 		HashMap<String,String> memberMap=new HashMap<String,String>();
 		String member_id=request.getParameter("member_id");
@@ -144,7 +143,6 @@ public class AdminMemberControllerImpl extends BaseController implements AdminMe
 		memberMap.put("member_id", member_id);
 		
 		adminMemberService.modifyMemberInfo(memberMap);
-//		mav.setViewName("redirect:/admin/member/adminMemberMain.do");
 		return viewName;
 		
 	}

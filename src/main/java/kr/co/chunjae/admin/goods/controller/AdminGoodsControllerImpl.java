@@ -16,6 +16,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -36,10 +37,9 @@ public class AdminGoodsControllerImpl extends BaseController  implements AdminGo
 	AdminGoodsService adminGoodsService;
 	
 	@RequestMapping(value="/adminGoodsMain.do" ,method={RequestMethod.POST,RequestMethod.GET})
-	public ModelAndView adminGoodsMain(@RequestParam Map<String, String> dateMap,
-			                           HttpServletRequest request, HttpServletResponse response)  throws Exception {
+	public String adminGoodsMain(@RequestParam Map<String, String> dateMap,
+								HttpServletRequest request, HttpServletResponse response, Model model)  throws Exception {
 		String viewName=(String)request.getAttribute("viewName");
-		ModelAndView mav = new ModelAndView(viewName);
 		HttpSession session=request.getSession();
 		session=request.getSession();
 		session.setAttribute("side_menu", "admin_mode"); //마이페이지 사이드 메뉴로 설정한다.
@@ -67,20 +67,20 @@ public class AdminGoodsControllerImpl extends BaseController  implements AdminGo
 		condMap.put("beginDate",beginDate);
 		condMap.put("endDate", endDate);
 		List<GoodsVO> newGoodsList=adminGoodsService.listNewGoods(condMap);
-		mav.addObject("newGoodsList", newGoodsList);
+		model.addAttribute("newGoodsList", newGoodsList);
 		
 		String beginDate1[]=beginDate.split("-");
 		String endDate2[]=endDate.split("-");
-		mav.addObject("beginYear",beginDate1[0]);
-		mav.addObject("beginMonth",beginDate1[1]);
-		mav.addObject("beginDay",beginDate1[2]);
-		mav.addObject("endYear",endDate2[0]);
-		mav.addObject("endMonth",endDate2[1]);
-		mav.addObject("endDay",endDate2[2]);
-		
-		mav.addObject("section", section);
-		mav.addObject("pageNum", pageNum);
-		return mav;
+		model.addAttribute("beginYear",beginDate1[0]);
+		model.addAttribute("beginMonth",beginDate1[1]);
+		model.addAttribute("beginDay",beginDate1[2]);
+		model.addAttribute("endYear",endDate2[0]);
+		model.addAttribute("endMonth",endDate2[1]);
+		model.addAttribute("endDay",endDate2[2]);
+
+		model.addAttribute("section", section);
+		model.addAttribute("pageNum", pageNum);
+		return viewName;
 		
 	}
 	
@@ -151,15 +151,14 @@ public class AdminGoodsControllerImpl extends BaseController  implements AdminGo
 	}
 	
 	@RequestMapping(value="/modifyGoodsForm.do" ,method={RequestMethod.GET,RequestMethod.POST})
-	public ModelAndView modifyGoodsForm(@RequestParam("goods_Id") int goods_id,
-			                            HttpServletRequest request, HttpServletResponse response)  throws Exception {
+	public String modifyGoodsForm(@RequestParam("goods_Id") int goods_id,
+			                            HttpServletRequest request, HttpServletResponse response, Model model)  throws Exception {
 		String viewName=(String)request.getAttribute("viewName");
-		ModelAndView mav = new ModelAndView(viewName);
 		
 		Map goodsMap=adminGoodsService.goodsDetail(goods_id);
-		mav.addObject("goodsMap",goodsMap);
+		model.addAttribute("goodsMap",goodsMap);
 		
-		return mav;
+		return viewName;
 	}
 	
 	@RequestMapping(value="/modifyGoodsInfo.do" ,method={RequestMethod.POST})

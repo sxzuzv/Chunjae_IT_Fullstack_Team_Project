@@ -81,7 +81,7 @@
 			          goods_publisher,
 			          goods_sales_price,
 			          date_format(goods_entered_date,'%Y-%m-%d')  as goods_entered_date,
-			          date_format(goods_title,'%Y-%m-%d') as goods_published_date
+			          date_format(goods_published_date,'%Y-%m-%d') as goods_published_date
 			       from (
 			             select  goods_id,
 			             		 goods_title,
