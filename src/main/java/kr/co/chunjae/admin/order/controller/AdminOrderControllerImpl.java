@@ -93,7 +93,7 @@ public class AdminOrderControllerImpl extends BaseController  implements AdminOr
 	
 	@Override
 	@RequestMapping(value="/orderDetail.do" ,method={RequestMethod.GET,RequestMethod.POST})
-	public String orderDetail(@RequestParam("order_id") int order_id,
+	public String orderDetail(@RequestParam("orderId") int order_id,
 			                      HttpServletRequest request, HttpServletResponse response, Model model)  throws Exception {
 		String viewName=(String)request.getAttribute("viewName");
 		Map orderMap =adminOrderService.orderDetail(order_id);

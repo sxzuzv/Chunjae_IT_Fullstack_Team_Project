@@ -57,25 +57,25 @@ function fn_modify_order_state(order_id){
 			</tr>
 			<tr>
 				<c:forEach var="item" items="${orderList }">
-				    <td> ${item.order_id }</td>
+				    <td> ${item.orderId }</td>
 					<td class="goods_image">
-					  <a href="${contextPath}/goods/goodsDetail.do?goods_id=${item.goods_id }">
-					    <img width="75" alt=""  src="${contextPath}/thumbnails.do?goods_id=${item.goods_id}&fileName=${item.goods_fileName}">
+					  <a href="${contextPath}/goods/goodsDetail.do?goods_id=${item.goodsId }">
+					    <img width="75" alt=""  src="${contextPath}/thumbnails.do?goods_id=${item.goodsId}&fileName=${item.goodsFileName}">
 					  </a>
 					</td>
 					<td>
 					  <h2>
-					     <a href="${contextPath}/goods/goodsDetail.do?goods_id=${item.goods_id }">${item.goods_title }</a>
+					     <a href="${contextPath}/goods/goodsDetail.do?goods_id=${item.goodsId }">${item.goodsTitle }</a>
 					  </h2>
 					</td>
 					<td>
-					  <h2>${item.order_goods_qty }개</h2>
+					  <h2>${item.orderGoodsQty }개</h2>
 					</td>
-					<td><h2>${item.order_goods_qty *item.goods_sales_price}원 (10% 할인)</h2></td>
+					<td><h2>${item.orderGoodsQty *item.goodsSalesPrice}원 (10% 할인)</h2></td>
 					<td><h2>0원</h2></td>
-					<td><h2>${1500 *item.order_goods_qty }원</h2></td>
+					<td><h2>${1500 *item.orderGoodsQty }원</h2></td>
 					<td>
-					  <h2>${item.order_goods_qty *item.goods_sales_price}원</h2>
+					  <h2>${item.orderGoodsQty *item.goodsSalesPrice}원</h2>
 					</td>
 			</tr>
 			</c:forEach>
@@ -85,7 +85,7 @@ function fn_modify_order_state(order_id){
 <form name="frm_delivery_list" >	
 	<br>
 	<br>
-	<h1>2.배송지 정보</h1>
+	<h1>2. 배송지 정보</h1>
 	<div class="detail_table">
 	
 		<table>
@@ -93,43 +93,41 @@ function fn_modify_order_state(order_id){
 				<tr class="dot_line">
 					<td class="fixed_join">배송 방법</td>
 					<td>
-					   ${deliveryInfo.delivery_method }
+					   ${deliveryInfo.deliveryMethod }
 				    </td>
 				</tr>
 				<tr class="dot_line">
 					<td class="fixed_join">받으실 분</td>
 					<td>
-					${deliveryInfo.receiver_name }
+					${deliveryInfo.receiverName }
 					</td>
 				</tr>
 				<tr class="dot_line">
 					<td class="fixed_join">휴대폰 번호</td>
 					<td>
-					  ${deliveryInfo.receiver_hp1}-${deliveryInfo.receiver_hp2}-${deliveryInfo.receiver_hp3}</td>
+					  ${deliveryInfo.receiverHp1}-${deliveryInfo.receiverHp2}-${deliveryInfo.receiverHp3}</td>
 				  </tr>
-				<tr class="dot_line">
-					<td class="fixed_join">유선 전화(선택)</td>
-					<td>
-					   ${deliveryInfo.receiver_tel1}-${deliveryInfo.receiver_tel2}-${deliveryInfo.receiver_tel3}</td>
-				</tr>
-
-
+<%--				<tr class="dot_line">--%>
+<%--					<td class="fixed_join">유선 전화(선택)</td>--%>
+<%--					<td>--%>
+<%--					   ${deliveryInfo.receiver_tel1}-${deliveryInfo.receiver_tel2}-${deliveryInfo.receiver_tel3}</td>--%>
+<%--				</tr>--%>
 				<tr class="dot_line">
 					<td class="fixed_join">주소</td>
 					<td>
-					   ${deliveryInfo.delivery_address}
+					   ${deliveryInfo.deliveryAddress}
 					</td>
 				</tr>
 				<tr class="dot_line">
 					<td class="fixed_join">배송 메시지</td>
 					<td>
-					${deliveryInfo.delivery_message}
+					${deliveryInfo.deliveryMessage}
 					</td>
 				</tr>
 				<tr class="dot_line">
 					<td class="fixed_join">선물 포장</td>
 					<td>
-					${deliveryInfo.gift_wrapping}
+					${deliveryInfo.giftWrapping}
 					</td>
 				</tr>
 			</tbody>
@@ -144,19 +142,19 @@ function fn_modify_order_state(order_id){
 			 <tr class="dot_line">
 				<td ><h2>이름</h2></td>
 				<td>
-				 <input  type="text" value="${orderer.member_name}" size="15" disabled />
+				 <input  type="text" value="${orderer.memberName}" size="15" disabled />
 				</td>
 			  </tr>
 			  <tr class="dot_line">
-				<td ><h2>핸드폰</h2></td>
+				<td ><h2>휴대전화</h2></td>
 				<td>
-				 <input  type="text" value="${orderer.hp1}-${orderer.hp2}-${orderer.hp3}" size="15" disabled />
+				 <input  type="text" value="${orderer.memberHp1}-${orderer.memberHp2}-${orderer.memberHp3}" size="15" disabled />
 				</td>
 			  </tr>
 			  <tr class="dot_line">
 				<td><h2>이메일</h2></td>
 				<td>
-				   <input  type="text" value="${orderer.email1}@${orderer.email2}" size="15" disabled />
+				   <input  type="text" value="${orderer.memberEmail1}@${orderer.memberEmail2}" size="15" disabled />
 				</td>
 			  </tr>
 		   </tbody>
@@ -166,26 +164,26 @@ function fn_modify_order_state(order_id){
 	<br>
 	<br>
 	<br>
-	<h1>3.결제 정보</h1>
+	<h1>3. 결제 정보</h1>
 	<div class="detail_table">
 		<table>
 			<tbody>
 				<tr class="dot_line">
 					<td class="fixed_join">결제 방법</td>
 					<td>
-					   ${deliveryInfo.pay_method }
+					   ${deliveryInfo.payMethod }
 				    </td>
 				</tr>
 				<tr class="dot_line">
 					<td class="fixed_join">결제 카드</td>
 					<td>
-					   ${deliveryInfo.card_com_name}
+					   ${deliveryInfo.cardComName}
 				    </TD>
 				</tr>
 				<tr class="dot_line">
 					<td class="fixed_join">할부 기간</td>
 					<td>
-					   ${deliveryInfo.card_pay_month }
+					   ${deliveryInfo.cardPayMonth }
 				    </td>
 				</tr>
 			</tbody>
@@ -195,7 +193,7 @@ function fn_modify_order_state(order_id){
 	<br>
 	<br>
 	<br>
-	<h1>3.배송 상태</h1>
+	<h1>4. 배송 상태</h1>
 	<div class="detail_table">
 		<table>
 			<tbody>
@@ -203,35 +201,35 @@ function fn_modify_order_state(order_id){
 					<td>
 				<select name="s_delivery_state"  id="s_delivery_state">
 				 <c:choose>
-				   <c:when test="${deliveryInfo.delivery_state=='delivery_prepared' }">
+				   <c:when test="${deliveryInfo.deliveryState=='delivery_prepared' }">
 				     <option  value="delivery_prepared" selected>배송 준비 중</option>
 				     <option  value="delivering">배송 중</option>
 				     <option  value="finished_delivering">배송 완료</option>
 				     <option  value="cancel_order">주문 취소</option>
 				     <option  value="returning_goods">반품</option>
 				   </c:when>
-				    <c:when test="${deliveryInfo.delivery_state=='delivering' }">
+				    <c:when test="${deliveryInfo.deliveryState=='delivering' }">
 				    <option  value="delivery_prepared" >배송 준비 중</option>
 				     <option  value="delivering" selected >배송 중</option>
 				     <option  value="finished_delivering">배송 완료</option>
 				     <option  value="cancel_order">주문 취소</option>
 				     <option  value="returning_goods">반품</option>
 				   </c:when>
-				   <c:when test="${deliveryInfo.delivery_state=='finished_delivering' }">
+				   <c:when test="${deliveryInfo.deliveryState=='finished_delivering' }">
 				    <option  value="delivery_prepared" >배송 준비 중</option>
 				     <option  value="delivering"  >배송 중</option>
 				     <option  value="finished_delivering" selected>배송 완료</option>
 				     <option  value="cancel_order">주문 취소</option>
 				     <option  value="returning_goods">반품</option>
 				   </c:when>
-				   <c:when test="${deliveryInfo.delivery_state=='cancel_order' }">
+				   <c:when test="${deliveryInfo.deliveryState=='cancel_order' }">
 				    <option  value="delivery_prepared" >배송 준비 중</option>
 				     <option  value="delivering"  >배송 중</option>
 				     <option  value="finished_delivering" >배송 완료</option>
 				     <option  value="cancel_order" selected>주문 취소</option>
 				     <option  value="returning_goods">반품</option>
 				   </c:when>
-				   <c:when test="${deliveryInfo.delivery_state=='returning_goods' }">
+				   <c:when test="${deliveryInfo.deliveryState=='returning_goods' }">
 				    <option  value="delivery_prepared" >배송 준비 중</option>
 				     <option  value="delivering"  >배송 중</option>
 				     <option  value="finished_delivering" >배송 완료</option>
@@ -240,10 +238,10 @@ function fn_modify_order_state(order_id){
 				   </c:when>
 				   </c:choose>
 				 </select> 
-				  <input  type="hidden" name="h_delivery_state" value="${deliveryInfo.delivery_state }" />
+				  <input  type="hidden" name="h_delivery_state" value="${deliveryInfo.deliveryState }" />
 				</td>
 				<td width=10%>
-			     <input  type="button" value="배송 수정"  onClick="fn_modify_order_state('${deliveryInfo.order_id}')"/>
+			     <input  type="button" value="배송 수정"  onClick="fn_modify_order_state('${deliveryInfo.orderId}')"/>
 			    </td>
 				</tr>
 				
@@ -258,7 +256,7 @@ function fn_modify_order_state(order_id){
 		<br>
 		<br> 
 		<a href="${contextPath}/main/main.do"> 
-		   <IMG width="75" alt="" src="${contextPath}/resources/image/btn_shoping_continue.jpg">
+		   <IMG width="75" alt="" src="${contextPath}/resources/image/btn_shopping_continue.jpg">
 		</a>
 <div class="clear"></div>		
 	
