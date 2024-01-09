@@ -13,7 +13,7 @@
 <c:set  var="totalDiscountedPrice" value="0" /> <!-- 총 할인금액 -->
 <head>
 	<script type="text/javascript">
-		function calcGoodsPrice(bookPrice,obj){
+		function calcGoodsPrice(bookPrice,obj,index){
 			var totalPrice,final_total_price,totalNum;
 			var goods_qty=document.getElementById("select_goods_qty");
 			alert("총 상품금액"+goods_qty.value);
@@ -106,7 +106,7 @@
 
 
 		function fn_order_each_goods(goods_id,goods_title,goods_sales_price,fileName){
-			var total_price,final_total_price,_goods_qty;
+			var total_price,final_total_price,cart_goods_qty;
 			var cart_goods_qty=document.getElementById("cart_goods_qty");
 
 			_order_goods_qty=cart_goods_qty.value; //장바구니에 담긴 개수 만큼 주문한다.
@@ -209,8 +209,8 @@
 
 		<form name="frm_order_all_cart">
 			<c:forEach var="item" items="${myGoodsList }" varStatus="cnt">
-			<c:set var="cart_goods_qty" value="${myCartList[cnt.count-1].cartGoodsQty }" />
-			<c:set var="cart_id" value="${myCartList[cnt.count-1].cartId }" />
+				<c:set var="cart_goods_qty" value="${myCartList[cnt.count-1].cartGoodsQty }" />
+				<c:set var="cart_id" value="${myCartList[cnt.count-1].cartId }" />
 			<td><input type="checkbox" name="checked_goods"  checked  value="${item.goodsId }"  onClick="calcGoodsPrice(${item.goodsSalesPrice },this)"></td>
 			<td class="goods_image">
 				<a href="${contextPath}/goods/goodsDetail.do?goods_id=${item.goodsId }">
@@ -237,7 +237,7 @@
 			</td>
 			<td>
 				<strong>
-					<fmt:formatNumber  value="${item.goodsSalesPrice*cart_goods_qty}" type="number" var="total_sales_price" />
+					<fmt:formatNumber value="${item.goodsSalesPrice*cart_goods_qty}" type="number" var="total_sales_price" />
 						${total_sales_price}원
 				</strong> </td>
 			<td>
@@ -257,7 +257,11 @@
 				</a>
 	</tr>
 	<c:set  var="totalGoodsPrice" value="${totalGoodsPrice+item.goodsSalesPrice*cart_goods_qty }" />
-	<c:set  var="totalGoodsNum" value="${cart_goods_qty }" />
+	<c:set var="totalGoodsNum" value="0" />
+	<c:forEach var="item" items="${myGoodsList}" varStatus="cnt">
+		<c:set var="cart_goods_qty" value="${myCartList[cnt.count-1].cartGoodsQty}" />
+		<c:set var="totalGoodsNum" value="${totalGoodsNum + cart_goods_qty}" />
+	</c:forEach>
 	</c:forEach>
 
 	</tbody>
