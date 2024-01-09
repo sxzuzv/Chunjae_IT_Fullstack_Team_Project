@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import kr.co.chunjae.member.vo.MemberVO;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -13,10 +14,11 @@ import kr.co.chunjae.admin.member.dao.AdminMemberDAO;
 
 
 @Service("adminMemberService")
+@RequiredArgsConstructor
 @Transactional(propagation=Propagation.REQUIRED)
 public class AdminMemberServiceImpl implements AdminMemberService {
-	@Autowired
-	AdminMemberDAO adminMemberDAO;
+	private final AdminMemberDAO adminMemberDAO;
+
 	public ArrayList<MemberVO> listMember(HashMap condMap) throws Exception{
 		return adminMemberDAO.listMember(condMap);
 	}
