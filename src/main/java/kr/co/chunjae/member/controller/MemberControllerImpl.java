@@ -11,6 +11,9 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -32,10 +35,10 @@ public class MemberControllerImpl extends BaseController implements MemberContro
 	
 	@Override
 	@RequestMapping(value="/login.do" ,method = RequestMethod.POST)
-	public ModelAndView login(@RequestParam Map<String, String> loginMap,
-			                  HttpServletRequest request, HttpServletResponse response) throws Exception {
-		ModelAndView mav = new ModelAndView();
-		 memberVO=memberService.login(loginMap);
+	public String login(@RequestParam Map<String, String> loginMap,
+			                  HttpServletRequest request, Model model) throws Exception {
+		String viewname = "";
+		memberVO=memberService.login(loginMap);
 
 		if(memberVO!= null && memberVO.getMemberId()!=null){
 			HttpSession session=request.getSession();
@@ -44,18 +47,19 @@ public class MemberControllerImpl extends BaseController implements MemberContro
 			session.setAttribute("memberInfo",memberVO);
 			
 			String action=(String)session.getAttribute("action");
+			//action을 통해서 로그인되었을 경우 넘어갈수 있게함 로그인이 안되었을경우 튕기게함
 			if(action!=null && action.equals("/order/orderEachGoods.do")){
-				mav.setViewName("forward:"+action);
+				viewname = "forward:"+action;
 			}else{
-				mav.setViewName("redirect:/main/main.do");	
+				viewname = "redirect:/main/main.do";
 			}
 			
 			
 			
 		}else{
 			String message="아이디나  비밀번호가 틀립니다. 다시 로그인해주세요";
-			mav.addObject("message", message);
-			mav.setViewName("/member/loginForm");
+			model.addAttribute("message", message);
+			viewname = "/member/loginForm";
 		}
 		if (memberVO != null) {
 			// 세션에 저장된 MemberVO 객체가 null이 아닌 경우
@@ -66,24 +70,22 @@ public class MemberControllerImpl extends BaseController implements MemberContro
 			// 세션에 MemberInfo 객체가 없는 경우 또는 null인 경우
 			System.out.println("No member info found in the session.");
 		}
-		return mav;
+		return viewname;
 	}
 	
 	@Override
 	@RequestMapping(value="/logout.do" ,method = RequestMethod.GET)
-	public ModelAndView logout(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		ModelAndView mav = new ModelAndView();
+	public String logout(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session=request.getSession();
 		session.setAttribute("isLogOn", false);
 		session.removeAttribute("memberInfo");
-		mav.setViewName("redirect:/main/main.do");
-		return mav;
+		return "redirect:/main/main.do";
 	}
 	
 	@Override
 	@RequestMapping(value="/addMember.do" ,method = RequestMethod.POST)
-	public ResponseEntity addMember(@ModelAttribute("memberVO") MemberVO _memberVO,
-			                HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ResponseEntity addMember(@Validated @ModelAttribute("memberVO") MemberVO _memberVO,
+									HttpServletRequest request, HttpServletResponse response) throws Exception {
 		response.setContentType("text/html; charset=UTF-8");
 		request.setCharacterEncoding("utf-8");
 		String message = null;
@@ -96,7 +98,7 @@ public class MemberControllerImpl extends BaseController implements MemberContro
 		    message +=" alert('회원 가입을 마쳤습니다.로그인창으로 이동합니다.');";
 		    message += " location.href='"+request.getContextPath()+"/member/loginForm.do';";
 		    message += " </script>";
-		    
+
 		}catch(Exception e) {
 			message  = "<script>";
 		    message +=" alert('작업 중 오류가 발생했습니다. 다시 시도해 주세요');";
