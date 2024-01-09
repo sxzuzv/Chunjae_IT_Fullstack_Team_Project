@@ -111,9 +111,7 @@
 	</delete>
 
 	<select id="selectOrderID" resultType="int"  >
-	    <![CDATA[
-		SELECT LAST_INSERT_ID();
-		]]>
+			select max(order_seq_num)+1 from t_shopping_order
 	</select>
 
 </mapper>
