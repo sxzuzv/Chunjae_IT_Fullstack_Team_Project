@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import kr.co.chunjae.common.base.BaseController;
 import kr.co.chunjae.member.vo.MemberVO;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,11 +26,11 @@ import kr.co.chunjae.order.vo.OrderVO;
 
 @Controller("orderController")
 @RequestMapping(value="/order")
+@RequiredArgsConstructor
 public class OrderControllerImpl extends BaseController implements OrderController {
-	@Autowired
-	OrderService orderService;
-	@Autowired
-	OrderVO orderVO;
+
+	private final OrderService orderService;
+	private OrderVO orderVO;
 	
 	@RequestMapping(value="/orderEachGoods.do" ,method = RequestMethod.POST)
 	public String orderEachGoods(@ModelAttribute("orderVO") OrderVO _orderVO,
