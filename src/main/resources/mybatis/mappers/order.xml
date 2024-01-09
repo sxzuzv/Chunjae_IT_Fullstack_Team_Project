@@ -43,12 +43,10 @@
 <!--	</resultMap>-->
 	
 	 <select id="selectMyOrderList" resultType="orderVO"  parameterType="orderVO"  >
-	    <![CDATA[
 		 select * from t_shopping_order
 		 where date_format(pay_order_time,'%Y-%m-%d')= date_format(now(),'%Y-%m-%d')
-		   and member_id= 'lee'
+		   and member_id= #{memberId}
 		 order by pay_order_time desc
-		]]>
 	</select>
 	<insert id="insertNewOrder" parameterType="orderVO"  >
 	    <![CDATA[
@@ -111,5 +109,11 @@
 	  delete from t_shopping_cart
 	  where goods_id=#{goodsId}
 	</delete>
-	
+
+	<select id="selectOrderID" resultType="int"  >
+	    <![CDATA[
+		SELECT LAST_INSERT_ID();
+		]]>
+	</select>
+
 </mapper>
