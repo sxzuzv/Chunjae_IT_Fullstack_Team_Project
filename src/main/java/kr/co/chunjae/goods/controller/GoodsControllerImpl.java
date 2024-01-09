@@ -10,8 +10,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import kr.co.chunjae.common.base.BaseController;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -25,29 +27,28 @@ import net.sf.json.JSONObject;
 
 @Controller("goodsController")
 @RequestMapping(value="/goods")
+@RequiredArgsConstructor
 public class GoodsControllerImpl extends BaseController implements GoodsController {
-	@Autowired
-	GoodsService goodsService;
+
+	private final GoodsService goodsService;
 	
 	@RequestMapping(value="/goodsDetail.do" ,method = RequestMethod.GET)
-	public ModelAndView goodsDetail(@RequestParam("goods_id") String goodsId,
-			                       HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public String goodsDetail(@RequestParam("goods_id") String goodsId,
+			                       HttpServletRequest request, Model model) throws Exception {
 		String viewName=(String)request.getAttribute("viewName");
 		HttpSession session=request.getSession();
 		Map goodsMap=goodsService.goodsDetail(goodsId);
-		ModelAndView mav = new ModelAndView(viewName);
-		mav.addObject("goodsMap", goodsMap);
+		model.addAttribute("goodsMap", goodsMap);
 		GoodsVO goodsVO=(GoodsVO)goodsMap.get("goodsVO");
 		addGoodsInQuick(goodsId,goodsVO,session);
-		return mav;
+		return viewName;
 	}
 	
 	@RequestMapping(value="/keywordSearch.do",method = RequestMethod.GET,produces = "application/text; charset=utf8")
-	public @ResponseBody String  keywordSearch(@RequestParam("keyword") String keyword,
+	public @ResponseBody String keywordSearch(@RequestParam("keyword") String keyword,
 			                                  HttpServletRequest request, HttpServletResponse response) throws Exception{
 		response.setContentType("text/html;charset=utf-8");
 		response.setCharacterEncoding("utf-8");
-		//System.out.println(keyword);
 		if(keyword == null || keyword.equals(""))
 		   return null ;
 	
@@ -59,19 +60,16 @@ public class GoodsControllerImpl extends BaseController implements GoodsControll
 		jsonObject.put("keyword", keywordList);
 		 		
 	    String jsonInfo = jsonObject.toString();
-	   // System.out.println(jsonInfo);
 	    return jsonInfo ;
 	}
 	
 	@RequestMapping(value="/searchGoods.do" ,method = RequestMethod.GET)
-	public ModelAndView searchGoods(@RequestParam("searchWord") String searchWord,
-			                       HttpServletRequest request, HttpServletResponse response) throws Exception{
+	public String searchGoods(@RequestParam("searchWord") String searchWord,
+			                       HttpServletRequest request, Model model) throws Exception{
 		String viewName=(String)request.getAttribute("viewName");
 		List<GoodsVO> goodsList=goodsService.searchGoods(searchWord);
-		ModelAndView mav = new ModelAndView(viewName);
-		mav.addObject("goodsList", goodsList);
-		return mav;
-		
+		model.addAttribute("goodsList", goodsList);
+		return viewName;
 	}
 	
 	private void addGoodsInQuick(String goodsId,GoodsVO goodsVO,HttpSession session){
