@@ -3,6 +3,7 @@ package kr.co.chunjae.order.dao;
 import java.util.ArrayList;
 import java.util.List;
 
+import lombok.RequiredArgsConstructor;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -11,9 +12,10 @@ import org.springframework.stereotype.Repository;
 import kr.co.chunjae.order.vo.OrderVO;
 
 @Repository("orderDAO")
+@RequiredArgsConstructor
 public class OrderDAOImpl implements OrderDAO {
-	@Autowired
-	private SqlSession sqlSession;
+
+	private final SqlSession sqlSession;
 	
 	public List<OrderVO> listMyOrderGoods(OrderVO orderVO) throws DataAccessException{
 		List<OrderVO> orderGoodsList=new ArrayList<OrderVO>();
