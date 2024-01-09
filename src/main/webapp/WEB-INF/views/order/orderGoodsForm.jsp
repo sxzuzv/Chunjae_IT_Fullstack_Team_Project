@@ -104,7 +104,7 @@
 
       function init() {
           var form_order = document.form_order;
-          
+
           var h_hp1 = form_order.h_hp1;
           var hp1 = h_hp1.value;
           var select_hp1 = form_order.hp1;
@@ -405,7 +405,7 @@
           p_receiver_name.innerHTML = receiver_name;
           p_delivery_method.innerHTML = delivery_method;
           p_receiver_hp_num.innerHTML = receiver_hp_num;
-          p_receiver_tel_num.innerHTML = receiver_tel_num;
+          // p_receiver_tel_num.innerHTML = receiver_tel_num;
           p_delivery_address.innerHTML = delivery_address;
           p_delivery_message.innerHTML = delivery_message;
           p_gift_wrapping.innerHTML = gift_wrapping;
@@ -436,23 +436,23 @@
           var i_card_pay_month = document.createElement("input");
           var i_pay_orderer_hp_num = document.createElement("input");
 
-          i_receiver_name.name = "receiver_name";
-          i_receiver_hp1.name = "receiver_hp1";
-          i_receiver_hp2.name = "receiver_hp2";
-          i_receiver_hp3.name = "receiver_hp3";
+          i_receiver_name.name = "receiverName";
+          i_receiver_hp1.name = "receiverHp1";
+          i_receiver_hp2.name = "receiverHp2";
+          i_receiver_hp3.name = "receiverHp3";
 
           i_receiver_tel1.name = "receiver_tel1";
           i_receiver_tel2.name = "receiver_tel2";
           i_receiver_tel3.name = "receiver_tel3";
 
-          i_delivery_address.name = "delivery_address";
-          i_delivery_message.name = "delivery_message";
-          i_delivery_method.name = "delivery_method";
-          i_gift_wrapping.name = "gift_wrapping";
-          i_pay_method.name = "pay_method";
-          i_card_com_name.name = "card_com_name";
-          i_card_pay_month.name = "card_pay_month";
-          i_pay_orderer_hp_num.name = "pay_orderer_hp_num";
+          i_delivery_address.name = "deliveryAddress";
+          i_delivery_message.name = "deliveryMessage";
+          i_delivery_method.name = "deliveryMethod";
+          i_gift_wrapping.name = "giftWrapping";
+          i_pay_method.name = "payMethod";
+          i_card_com_name.name = "cardComName";
+          i_card_pay_month.name = "cardPayMonth";
+          i_pay_orderer_hp_num.name = "payOrdererHpNum";
 
           i_receiver_name.value = receiver_name;
           i_receiver_hp1.value = hp1;
@@ -529,8 +529,8 @@
         </h2>
       </td>
       <td>
-        <h2>${item.orderGoodsQty }개<h2>
-          <input type="hidden" id="h_order_goods_qty" name="h_order_goods_qty" value="${item.orderGoodsQty}"/>
+        <h2>${item.orderGoodsQty }개</h2>
+        <input type="hidden" id="h_order_goods_qty" name="h_order_goods_qty" value="${item.orderGoodsQty}"/>
       </td>
       <td><h2>${item.goodsSalesPrice}원 (10% 할인)</h2></td>
       <td><h2>0원</h2></td>
@@ -562,9 +562,9 @@
       <tr class="dot_line">
         <td class="fixed_join">배송방법</td>
         <td>
-          <input type="radio" id="delivery_method" name="delivery_method" value="일반택배" checked>일반택배 &nbsp;&nbsp;&nbsp;
-          <input type="radio" id="delivery_method" name="delivery_method" value="편의점택배">편의점택배 &nbsp;&nbsp;&nbsp;
-          <input type="radio" id="delivery_method" name="delivery_method" value="해외배송">해외배송 &nbsp;&nbsp;&nbsp;
+          <input type="radio" name="delivery_method" value="일반택배" checked>일반택배 &nbsp;&nbsp;&nbsp;
+          <input type="radio" name="delivery_method" value="편의점택배">편의점택배 &nbsp;&nbsp;&nbsp;
+          <input type="radio" name="delivery_method" value="해외배송">해외배송 &nbsp;&nbsp;&nbsp;
         </td>
       </tr>
       <tr class="dot_line">
@@ -594,10 +594,10 @@
           <option value="018">018</option>
           <option value="019">019</option>
         </select>
-          <input type="hidden" id="h_hp1" name="h_hp1" value="${orderer.memberHp1 }" />
-           - <input id="hp2" name="h_hp2" value="${orderer.memberHp2 }" />
-           - <input id="hp3" name="h_hp3"  value="${orderer.memberHp3 }" />
-          <c:set  var="orderer_hp" value="${orderer.memberHp1}-${orderer.memberHp2}-${orderer.memberHp3 }"/>
+          <input type="hidden" id="h_hp1" name="h_hp1" value="${orderer.memberHp1 }"/>
+          - <input id="hp2" name="h_hp2" value="${orderer.memberHp2 }"/>
+          - <input id="hp3" name="h_hp3" value="${orderer.memberHp3 }"/>
+          <c:set var="orderer_hp" value="${orderer.memberHp1}-${orderer.memberHp2}-${orderer.memberHp3 }"/>
       </tr>
       <%--				<tr class="dot_line">--%>
       <%--					<td class="fixed_join">유선전화(선택)</td>--%>
@@ -662,11 +662,12 @@
       </tr>
       <tr class="dot_line">
         <td class="fixed_join">선물 포장</td>
-        <td><input type="radio" id="gift_wrapping" name="gift_wrapping" value="yes">예
-          &nbsp;&nbsp;&nbsp; <input type="radio" id="gift_wrapping" name="gift_wrapping" checked value="no">아니요
+        <td>
+          <input type="radio" name="gift_wrapping" value="yes">예
+          &nbsp;&nbsp;&nbsp; <input type="radio" name="gift_wrapping" checked value="no">아니요
         </td>
-        </td>
-        </tboby>
+      </tr>
+      </tbody>
     </table>
   </div>
   <div>
@@ -748,10 +749,11 @@
       <tbody>
       <tr>
         <td>
-          <input type="radio" id="credit_card" name="pay_method" value="신용카드" onClick="fn_pay_card()" checked>신용카드 &nbsp;&nbsp;&nbsp;
-          <input type="radio" id="pay_method" name="pay_method" value="제휴 신용카드">제휴 신용카드 &nbsp;&nbsp;&nbsp;
-          <input type="radio" id="pay_method" name="pay_method" value="실시간 계좌이체">실시간 계좌이체 &nbsp;&nbsp;&nbsp;
-          <input type="radio" id="pay_method" name="pay_method" value="무통장 입금">무통장 입금 &nbsp;&nbsp;&nbsp;
+          <input type="radio" id="credit_card" name="pay_method" value="신용카드" onClick="fn_pay_card()" checked>신용카드
+          &nbsp;&nbsp;&nbsp;
+          <input type="radio" name="pay_method" value="제휴 신용카드">제휴 신용카드 &nbsp;&nbsp;&nbsp;
+          <input type="radio" name="pay_method" value="실시간 계좌이체">실시간 계좌이체 &nbsp;&nbsp;&nbsp;
+          <input type="radio" name="pay_method" value="무통장 입금">무통장 입금 &nbsp;&nbsp;&nbsp;
         </td>
       </tr>
       <tr>
@@ -764,7 +766,7 @@
       </tr>
       <tr>
         <td>
-          <input type="radio" id="pay_method" name="pay_method" value="직접입금">직접입금&nbsp;&nbsp;&nbsp;
+          <input type="radio" name="pay_method" value="직접입금">직접입금&nbsp;&nbsp;&nbsp;
         </td>
       </tr>
       <tr id="tr_pay_card">
@@ -894,14 +896,14 @@
               <p id="p_receiver_hp_num"></p>
             </td>
           </tr>
-          <tr>
+          <%--<tr>
             <td width=200px>
               받는사람 유선번화번호:
             </td>
             <td>
               <p id="p_receiver_tel_num">배송방법</p>
             </td>
-          </tr>
+          </tr>--%>
           <tr>
             <td width=200px>
               배송주소:

@@ -1,6 +1,6 @@
 @font-face {
 	font-family: NanumGothic;
-	src: local("?"), url(../imgs/nanum.woff) format("woff"), url(../imgs/nanum.ttf) format("truetype");
+	src: local("?"), url(../image/NanumGothic.ttf) format("truetype");
 }
 * {
 	margin: 0px; padding: 0px; vertical-align: middle;
@@ -70,7 +70,7 @@ nav ul li a {
 	display: block;
 }
 nav ul li h3 {
-	background-position: top; padding: 5px 20px; border-radius: 20px; border: 1px solid rgb(204, 204, 204); border-image: none; text-transform: capitalize; font-size: 14px; background-image: url("../imgs/nav_back.jpg"); background-repeat: repeat-x; background-color: rgb(229, 229, 229);
+	background-position: top; padding: 5px 20px; border-radius: 20px; border: 1px solid rgb(204, 204, 204); border-image: none; text-transform: capitalize; font-size: 14px; background-repeat: repeat-x; background-color: rgb(229, 229, 229);
 }
 nav ul li ul {
 	margin: 10px 0px 0px;
@@ -383,13 +383,13 @@ ul.tabs li.active a:hover {
 	margin: 10px 0px; padding: 5px; color: rgb(0, 0, 0); font-size: 1.2em; font-weight: bold; border-bottom-color: rgb(255, 153, 0); border-bottom-width: 1px; border-bottom-style: solid;
 }
 footer {
-	background-position: top; margin: 10px 0px 0px; font-size: 0.75em; background-image: url("../imgs/foo_back.gif"); background-repeat: repeat-x;
+	background-position: top; margin: 10px 0px 0px; font-size: 0.75em; background-repeat: repeat-x;
 }
 footer ul {
 	list-style: none; margin: 0px 0px 0px 210px;
 }
 footer ul li {
-	background-position: right; font-family: "NanumGothic", Serif; float: left; background-image: url("../imgs/foot_line.gif"); background-repeat: no-repeat;
+	background-position: right; font-family: "NanumGothic"; float: left; background-image: url("../imgs/foot_line.gif"); background-repeat: no-repeat;
 }
 footer ul li.no_line {
 	background-image: none;
@@ -500,7 +500,7 @@ footer img {
 	border-bottom-color: rgb(102, 102, 102); border-bottom-width: 1px; border-bottom-style: solid;
 }
 .detail_table table td span {
-	font-family: "NanumGothic", Serif; font-size: 1.2em; font-weight: bold;
+	font-family: "NanumGothic"; font-size: 1.2em; font-weight: bold;
 }
 
 .detail_table table td.fixed {
@@ -559,7 +559,7 @@ article h1_TITLE {
 	width: auto; padding-top: 7px; font-size: 0.75em;
 }
 .main_book h3 {
-	margin: 0px 0px 5px; padding: 0px 0px 5px; color: rgb(51, 102, 153); text-transform: uppercase; font-family: "NanumGothic", Serif; font-size: 1.2em; border-bottom-color: rgb(51, 102, 153); border-bottom-width: 1px; border-bottom-style: solid;
+	margin: 0px 0px 5px; padding: 0px 0px 5px; color: rgb(51, 102, 153); text-transform: uppercase; font-family: "NanumGothic"; font-size: 1.2em; border-bottom-color: rgb(51, 102, 153); border-bottom-width: 1px; border-bottom-style: solid;
 }
 
 .main_book .book {
@@ -592,11 +592,8 @@ article h1_TITLE {
 .main_book .book .title {
 	font-weight: bold;
 }
-
 #search > #suggest{
-display:none; position: absolute; border: 0.1px  solid #87cb42; z-index:3;font-weight: bold;background-color:#ffffff;
-	
-}
+	display:none; position: absolute; border: 0.1px  solid #87cb42; z-index:3;font-weight: bold;background-color:#ffffff;}
 
 .show_row_line{
 	margin: 0px; padding: 10px 0px; border-bottom-color: rgb(153, 153, 153); border-bottom-width: 1px;    border-bottom-style: dotted;
@@ -605,4 +602,3 @@ display:none; position: absolute; border: 0.1px  solid #87cb42; z-index:3;font-w
 .del_row_line{
 	margin: 0px; padding: 10px 0px; border-bottom-color: rgb(153, 153, 153); border-bottom-width: 1px;     border-bottom-style: none;border-top-style:solid; border-top-width: 1px;border-top-color:#ffffff;
 }
-

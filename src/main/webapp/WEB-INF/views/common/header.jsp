@@ -2,18 +2,16 @@
     pageEncoding="utf-8"
     isELIgnored="false"
     %>
-<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>    
+<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="contextPath"  value="${pageContext.request.contextPath}" />
 
 <script type="text/javascript">
 	var loopSearch=true;
 	function keywordSearch(){
-		if(loopSearch==false){
+		if(loopSearch==false)
 			return;
-		}
-
-		var value=document.frmSearch.searchWord.value;
+	 var value=document.frmSearch.searchWord.value;
 		$.ajax({
 			type : "get",
 			async : true, //false인 경우 동기식으로 처리한다.
@@ -28,11 +26,11 @@
 			},
 			complete : function(data, textStatus) {
 				//alert("작업을완료 했습니다");
-				
+
 			}
-		}); //end ajax	
+		}); //end ajax
 	}
-	
+
 	function displayResult(jsonInfo){
 		var count = jsonInfo.keyword.length;
 		if(count > 0) {
@@ -45,22 +43,22 @@
 		    show('suggest');
 		}else{
 		    hide('suggest');
-		} 
+		}
 	}
-	
+
 	function select(selectedKeyword) {
 		 document.frmSearch.searchWord.value=selectedKeyword;
 		 loopSearch = false;
 		 hide('suggest');
 	}
-		
+
 	function show(elementId) {
 		 var element = document.getElementById(elementId);
 		 if(element) {
 		  element.style.display = 'block';
 		 }
 		}
-	
+
 	function hide(elementId){
 	   var element = document.getElementById(elementId);
 	   if(element){
@@ -86,14 +84,14 @@
 			 </c:when>
 			 <c:otherwise>
 			   <li><a href="${contextPath}/member/loginForm.do">로그인</a></li>
-			   <li><a href="${contextPath}/member/memberForm.do">회원가입</a></li> 
+			   <li><a href="${contextPath}/member/memberForm.do">회원가입</a></li>
 			 </c:otherwise>
 			</c:choose>
 			   <li><a href="#">고객센터</a></li>
       <c:if test="${isLogOn==true and memberInfo.memberId =='admin' }">
 	   	   <li class="no_line"><a href="${contextPath}/admin/goods/adminGoodsMain.do">관리자</a></li>
 	    </c:if>
-			  
+
 		</ul>
 	</div>
 	<br>
@@ -107,6 +105,5 @@
 			<div id="suggestList"></div>
 		</div>
 	</div>
-
 </body>
 </html>
