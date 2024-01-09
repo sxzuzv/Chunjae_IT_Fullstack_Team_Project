@@ -95,7 +95,7 @@
 	   update t_shopping_order
 	    <set> 
 	      <if test=" deliveryState!='' and deliveryState!=null">
-			delivery_state=#{delivery_State}
+			delivery_state=#{deliveryState}
 	      </if>
 	    </set>
 	    where 
