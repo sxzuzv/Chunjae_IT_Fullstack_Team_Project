@@ -42,7 +42,7 @@
 				  select g.*,d.file_name from t_shopping_goods g, t_goods_detail_image d
 				  where g.goods_id=d.goods_id
 					and d.file_type='main_image'
-					and goods_status='newbook'
+					and goods_status=#{goodsStatus}
 				  order by g.goods_entered_date desc) t
 		  limit 15
 	    ]]>
