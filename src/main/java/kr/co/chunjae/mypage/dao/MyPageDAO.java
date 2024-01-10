@@ -12,7 +12,8 @@ public interface MyPageDAO {
 	public List<OrderVO> selectMyOrderGoodsList(String member_id) throws DataAccessException;
 	public List selectMyOrderInfo(String order_id) throws DataAccessException;
 	public List<OrderVO> selectMyOrderHistoryList(Map dateMap) throws DataAccessException;
-	public void updateMyInfo(Map memberMap) throws DataAccessException;
+	public void updateMyInfo(//Map memberMap
+							 MemberVO memberVO ) throws DataAccessException;
 	public MemberVO selectMyDetailInfo(String member_id) throws DataAccessException;
 	public void updateMyOrderCancel(String order_id) throws DataAccessException;
 

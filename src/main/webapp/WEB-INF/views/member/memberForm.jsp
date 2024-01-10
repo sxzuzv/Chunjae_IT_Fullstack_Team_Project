@@ -101,13 +101,39 @@ document.addEventListener('DOMContentLoaded', function() {//페이지로드후 �
 	domainListEl.addEventListener('change', (event) => {
 		if (event.target.value !== "type") {//직접입력 도메인 선택 안했을때
 			domainInputEl.value = event.target.value;//선택한 도메인을 input 에 입력
-			domainInputEl.disabled = true;
+			domainInputEl.readOnly = true;
 		} else {//직접입력 도메인 선택시
 			domainInputEl.value = "";//input내용 초기화
-			domainInputEl.disabled = false;
+			domainInputEl.readonly = false;
 		}
 	});
 });
+
+function setSmsValue (event) {//sms 체크박스 함수
+	const checked = !event.target.checked;//true or false
+	const tag = document.getElementById("smsstsYn");
+	if (checked) {
+		event.target.checked = false;
+		tag.value = 'N';
+	} else {
+		event.target.checked = true;
+		tag.value = 'Y';
+	}
+}
+
+	function setEmailValue (event) {//이메일 체크박스 함수
+		const checked = !event.target.checked; // true or false
+		const tag = document.getElementById("emailstsYn");
+		if (checked) {
+			event.target.checked = false;
+			tag.value = 'N';
+		} else {
+			event.target.checked = true;
+			tag.value = 'Y';
+		}
+	}
+
+
 </script>
 </head>
 <body>
@@ -197,7 +223,8 @@ document.addEventListener('DOMContentLoaded', function() {//페이지로드후 �
 							<option value="018">018</option>
 							<option value="019">019</option>
 					</select> - <input size="10px"  type="text" name="memberHp2"> - <input size="10px"  type="text"name="memberHp3"><br> <br>
-					<input type="checkbox"	name="smsstsYn" value="Y" checked /> 쇼핑몰에서 발송하는 SMS 소식을 수신합니다.</td>
+						<input type="checkbox"  onchange="setSmsValue(event)" checked/>
+						<input type="hidden" id="smsstsYn" name="smsstsYn" value=""/>쇼핑몰에서 발송하는 SMS 소식을 수신합니다.</td>
 				</tr>
 				<tr class="dot_line">
 					<td class="fixed_join">이메일<br>(e-mail)</td>
@@ -215,7 +242,9 @@ document.addEventListener('DOMContentLoaded', function() {//페이지로드후 �
 									<option value="empal.com">empal.com</option>
 									<option value="korea.com">korea.com</option>
 									<option value="freechal.com">freechal.com</option>
-							</select><br> <br> <input type="checkbox" name="emailstsYn" value="Y" checked /> 쇼핑몰에서 발송하는 e-mail을 수신합니다.</td>
+						  </select><br><br>
+							  <input type="checkbox" onchange="setEmailValue(event)" checked/>
+							  <input type="hidden" id="emailstsYn" name="emailstsYn"  value=""/>쇼핑몰에서 발송하는 e-mail을 수신합니다.</td>
 				</tr>
 				<tr class="dot_line">
 					<td class="fixed_join">주소</td>

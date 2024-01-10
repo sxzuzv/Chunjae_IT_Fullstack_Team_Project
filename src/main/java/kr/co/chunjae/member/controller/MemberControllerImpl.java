@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -27,18 +28,17 @@ import kr.co.chunjae.member.vo.MemberVO;
 
 @Controller("memberController")
 @RequestMapping(value="/member")
+@RequiredArgsConstructor
 public class MemberControllerImpl extends BaseController implements MemberController{
-	@Autowired
-	MemberService memberService;
-	@Autowired
-	MemberVO memberVO;
-	
+
+	private final MemberService memberService;
+
 	@Override
 	@RequestMapping(value="/login.do" ,method = RequestMethod.POST)
 	public String login(@RequestParam Map<String, String> loginMap,
 			                  HttpServletRequest request, Model model) throws Exception {
 		String viewname = "";
-		memberVO=memberService.login(loginMap);
+		MemberVO memberVO=memberService.login(loginMap);
 
 		if(memberVO!= null && memberVO.getMemberId()!=null){
 			HttpSession session=request.getSession();

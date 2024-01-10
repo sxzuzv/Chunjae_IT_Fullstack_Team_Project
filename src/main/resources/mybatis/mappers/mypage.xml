@@ -66,58 +66,60 @@
     	]]>
 	</select>
 
-	<update id="updateMyInfo" parameterType="java.util.HashMap">
+	<update id="updateMyInfo" parameterType="memberVO">
 	   update t_shopping_member
-			   <set>
-			      <if test=" memberPw!='' and memberPw!=null">
-			        member_pw=#{memberPw},
-			      </if>
-			      <if test=" memberGender!='' and memberGender!=null">
-			         member_gender=#{memberGender},
-			      </if>
-			       <if test=" memberBirthY!='' and memberBirthY!=null">
-			         member_birth_y=#{memberBirthY},
-			      </if>
-			      <if test=" memberBirthM!='' and memberBirthM!=null">
-			         member_birth_m=#{memberBirthM},
-			      </if>
-			      <if test=" memberBirthD!='' and memberBirthD!=null">
-			         member_birth_d=#{memberBirthD},
-			      </if>
-			      <if test=" memberHp1!='' and memberHp1!=null">
-			         member_hp1=#{memberHp1},
-			      </if>
-			      <if test=" memberHp2!='' and memberHp2!=null">
-			         member_hp2=#{memberHp2},
-			      </if>
-			      <if test=" memberHp3!='' and memberHp3!=null">
-			         member_hp3=#{memberHp3},
-			      </if>
-			      <if test=" smsstsYn!='' and smsstsYn!=null">
-			         smssts_yn=#{smsstsYn},
-			      </if>
-			      <if test=" memberEmail1!='' and memberEmail1!=null">
-			         member_email1=#{memberEmail1},
-			      </if>
-			      <if test=" memberEmail2!='' and memberEmail2!=null">
-			         member_email2=#{memberEmail2},
-			      </if>
-			      <if test=" emailstsYn!='' and emailstsYn!=null">
-			         emailsts_yn=#{emailstsYn},
-			      </if>
-			      <if test=" zipcode!='' and zipcode!=null">
-			         zipcode=#{zipcode},
-			      </if>
-			      <if test=" roadAddress!='' and roadAddress!=null">
-			         road_address=#{roadAddress},
-			      </if>
-			      <if test=" jibunAddress!='' and jibunAddress!=null">
-			         jibun_address=#{jibunAddress},
-			      </if>
-			      <if test=" namujiAddress!='' and namujiAddress!=null">
-			         namuji_address=#{namujiAddress}
-			      </if>
-			   </set>
+			   set
+<!--			      <if test=" memberPw!='' and memberPw!=null">-->
+<!--			        member_pw=#{memberPw},-->
+<!--			      </if>-->
+<!--			      <if test=" memberGender!='' and memberGender!=null">-->
+<!--			         member_gender=#{memberGender},-->
+<!--			      </if>-->
+<!--			       <if test=" memberBirthY!='' and memberBirthY!=null">-->
+<!--			         member_birth_y=#{memberBirthY},-->
+<!--			      </if>-->
+<!--			      <if test=" memberBirthM!='' and memberBirthM!=null">-->
+<!--			         member_birth_m=#{memberBirthM},-->
+<!--			      </if>-->
+<!--			      <if test=" memberBirthD!='' and memberBirthD!=null">-->
+<!--			         member_birth_d=#{memberBirthD},-->
+<!--			      </if>-->
+<!--			      <if test=" memberHp1!='' and memberHp1!=null">-->
+<!--			         member_hp1=#{memberHp1},-->
+<!--			      </if>-->
+<!--			      <if test=" memberHp2!='' and memberHp2!=null">-->
+<!--			         member_hp2=#{memberHp2},-->
+<!--			      </if>-->
+<!--			      <if test=" memberHp3!='' and memberHp3!=null">-->
+<!--			         member_hp3=#{memberHp3},-->
+<!--			      </if>-->
+<!--			      <if test=" smsstsYn!='' and smsstsYn!=null">-->
+<!--			         smssts_yn=#{smsstsYn},-->
+<!--			      </if>-->
+<!--			      <if test=" memberEmail1!='' and memberEmail1!=null">-->
+<!--			         member_email1=#{memberEmail1},-->
+<!--			      </if>-->
+<!--			      <if test=" memberEmail2!='' and memberEmail2!=null">-->
+<!--			         member_email2=#{memberEmail2},-->
+<!--			      </if>-->
+<!--			      <if test=" emailstsYn!='' and emailstsYn!=null">-->
+<!--			         emailsts_yn=#{emailstsYn},-->
+<!--			      </if>-->
+<!--			      <if test=" zipcode!='' and zipcode!=null">-->
+<!--			         zipcode=#{zipcode},-->
+<!--			      </if>-->
+<!--			      <if test=" roadAddress!='' and roadAddress!=null">-->
+<!--			         road_address=#{roadAddress},-->
+<!--			      </if>-->
+<!--			      <if test=" jibunAddress!='' and jibunAddress!=null">-->
+<!--			         jibun_address=#{jibunAddress},-->
+<!--			      </if>-->
+<!--			      <if test=" namujiAddress!='' and namujiAddress!=null">-->
+<!--			         namuji_address=#{namujiAddress}-->
+<!--			      </if>-->
+				   member_pw=#{memberPw},member_gender=#{memberGender},member_birth_y=#{memberBirthY},member_birth_m=#{memberBirthM},member_birth_d=#{memberBirthD},member_birth_d=#{memberBirthD},member_birth_gn=#{memberBirthGn},
+				   member_hp1=#{memberHp1},member_hp2=#{memberHp2}, member_hp3=#{memberHp3},smssts_yn=#{smsstsYn}, member_email1=#{memberEmail1},member_email2=#{memberEmail2}, emailsts_yn=#{emailstsYn},
+				   zipcode=#{zipcode},road_address=#{roadAddress},jibun_address=#{jibunAddress}, namuji_address=#{namujiAddress}
 		where
 		member_id=#{memberId}
 	</update>
@@ -125,7 +127,7 @@
 	<select id="selectMyDetailInfo" resultType="memberVO"   parameterType="String"  >
 	    <![CDATA[
 			select * from t_shopping_member 
-			where member_id=#{memberId}
+			where member_id=#{member_id}
     	]]>
 	</select>	
 	

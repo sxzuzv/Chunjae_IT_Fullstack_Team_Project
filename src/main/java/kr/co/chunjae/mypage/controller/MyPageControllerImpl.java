@@ -17,6 +17,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -120,56 +121,57 @@ public class MyPageControllerImpl extends BaseController  implements MyPageContr
 	
 	@Override
 	@RequestMapping(value="/modifyMyInfo.do" ,method = RequestMethod.POST)
-	public ResponseEntity modifyMyInfo(@RequestParam("attribute")  String attribute,
-			                 @RequestParam("value")  String value,
-			               HttpServletRequest request, HttpServletResponse response)  throws Exception {
-		Map<String,String> memberMap=new HashMap<String,String>();
-		String val[]=null;
+	public String modifyMyInfo(//@RequestParam("attribute")  String attribute,@RequestParam("value")  String value,
+									   @ModelAttribute("memberVO") MemberVO memberVO, HttpServletRequest request, HttpServletResponse response)  throws Exception {
+//		Map<String,String> memberMap=new HashMap<String,String>();
+//		String val[]=null;
 		HttpSession session=request.getSession();
-		memberVO=(MemberVO)session.getAttribute("memberInfo");
-		String memberId=memberVO.getMemberId();
-		if(attribute.equals("memberBirth")){
-			val=value.split(",");
-			memberMap.put("memberBirthY",val[0]);
-			memberMap.put("memberBirthM",val[1]);
-			memberMap.put("memberBirthD",val[2]);
-			memberMap.put("memberBirthGn",val[3]);
-		}else if(attribute.equals("memberHp")){
-			val=value.split(",");
-			memberMap.put("memberHp1",val[0]);
-			memberMap.put("memberHp2",val[1]);
-			memberMap.put("memberHp3",val[2]);
-			memberMap.put("smsstsYn", val[3]);
-		}else if(attribute.equals("memberEmail")){
-			val=value.split(",");
-			memberMap.put("memberEmail1",val[0]);
-			memberMap.put("memberEmail2",val[1]);
-			memberMap.put("emailstsYn", val[2]);
-		}else if(attribute.equals("memberAddress")){
-			val=value.split(",");
-			memberMap.put("zipcode",val[0]);
-			memberMap.put("roadAddress",val[1]);
-			memberMap.put("jibunAddress", val[2]);
-			memberMap.put("namujiAddress", val[3]);
-		}else {
-			memberMap.put(attribute,value);	
-		}
+//		memberVO=(MemberVO)session.getAttribute("memberInfo");
+//		String memberId=memberVO.getMemberId();
+//		if(attribute.equals("memberBirth")){
+//			val=value.split(",");
+//			memberMap.put("memberBirthY",val[0]);
+//			memberMap.put("memberBirthM",val[1]);
+//			memberMap.put("memberBirthD",val[2]);
+//			memberMap.put("memberBirthGn",val[3]);
+//		}else if(attribute.equals("memberHp")){
+//			val=value.split(",");
+//			memberMap.put("memberHp1",val[0]);
+//			memberMap.put("memberHp2",val[1]);
+//			memberMap.put("memberHp3",val[2]);
+//			memberMap.put("smsstsYn", val[3]);
+//		}else if(attribute.equals("memberEmail")){
+//			val=value.split(",");
+//			memberMap.put("memberEmail1",val[0]);
+//			memberMap.put("memberEmail2",val[1]);
+//			memberMap.put("emailstsYn", val[2]);
+//		}else if(attribute.equals("memberAddress")){
+//			val=value.split(",");
+//			memberMap.put("zipcode",val[0]);
+//			memberMap.put("roadAddress",val[1]);
+//			memberMap.put("jibunAddress", val[2]);
+//			memberMap.put("namujiAddress", val[3]);
+//		}else {
+//			memberMap.put(attribute,value);
+//		}
 		
-		memberMap.put("memberId", memberId);
+//		memberMap.put("memberId", memberId);
 		
 		//수정된 회원 정보를 다시 세션에 저장한다.
-		memberVO=(MemberVO)myPageService.modifyMyInfo(memberMap);
+//		memberVO=(MemberVO)myPageService.modifyMyInfo(memberMap);
+		memberVO = myPageService.modifyMyInfo(memberVO);
 		session.removeAttribute("memberInfo");
 		session.setAttribute("memberInfo", memberVO);
 
 
 		
-		String message = null;
-		ResponseEntity resEntity = null;
-		HttpHeaders responseHeaders = new HttpHeaders();
-		message  = "mod_success";
-		resEntity =new ResponseEntity(message, responseHeaders, HttpStatus.OK);
-		return resEntity;
+//		String message = null;
+//		ResponseEntity resEntity = null;
+//		HttpHeaders responseHeaders = new HttpHeaders();
+//		message  = "mod_success";
+//		resEntity =new ResponseEntity(message, responseHeaders, HttpStatus.OK);
+//		return resEntity;
+		return "redirect:/mypage/myDetailInfo.do";
 	}
 
 	@Override
