@@ -509,7 +509,6 @@
       <td>수량</td>
       <td>주문금액</td>
       <td>배송비</td>
-      <td>예상적립금</td>
       <td>주문금액합계</td>
     </tr>
     <tr>
@@ -524,7 +523,8 @@
       </td>
       <td>
         <h2>
-          <a href="${pageContext.request.contextPath}/goods/goods.do?command=goods_detail&goods_id=${item.goodsId }">${item.goodsTitle }</A>
+<%--          <a href="${pageContext.request.contextPath}/goods/goods.do?command=goods_detail&goods_id=${item.goodsId }">${item.goodsTitle }</A>--%>
+          <a href="${pageContext.request.contextPath}/goods/goodsDetail.do?goods_id=${item.goodsId }">${item.goodsTitle }</a>
           <input type="hidden" id="h_goods_title" name="h_goods_title" value="${item.goodsTitle }"/>
         </h2>
       </td>
@@ -532,9 +532,9 @@
         <h2>${item.orderGoodsQty }개</h2>
         <input type="hidden" id="h_order_goods_qty" name="h_order_goods_qty" value="${item.orderGoodsQty}"/>
       </td>
-      <td><h2>${item.goodsSalesPrice}원 (10% 할인)</h2></td>
+      <td><h2>${item.goodsSalesPrice}원</h2></td>
+        <%-- 배송비 항목 받아와야 함 --%>
       <td><h2>0원</h2></td>
-      <td><h2>${1500 *item.orderGoodsQty}원</h2></td>
       <td>
         <h2>${item.goodsSalesPrice * item.orderGoodsQty}원</h2>
         <input type="hidden" id="h_each_goods_price" name="h_each_goods_price"
@@ -705,8 +705,6 @@
       <td></td>
       <td>총 배송비</td>
       <td></td>
-      <td>총 할인 금액</td>
-      <td></td>
       <td>최종 결제금액</td>
     </tr>
     <tr cellpadding=40 align=center>
@@ -724,12 +722,12 @@
         <p id="p_totalDelivery">${total_delivery_price }원</p> <input
               id="h_totalDelivery" type="hidden" value="${total_delivery_price}"/>
       </td>
-      <td>
+      <%--<td>
         <img width="25" alt="" src="${pageContext.request.contextPath}/resources/image/minus.jpg"></td>
-      <td>
-        <p id="p_totalSalesPrice">${total_discount_price }원</p>
+      <td>--%>
+        <%--<p id="p_totalSalesPrice">${total_discount_price }원</p>
         <input id="h_total_sales_price" type="hidden" value="${total_discount_price}"/>
-      </td>
+      </td>--%>
       <td><img width="25" alt="" src="${pageContext.request.contextPath}/resources/image/equal.jpg"></td>
       <td>
         <p id="p_final_totalPrice">
