@@ -9,8 +9,6 @@
 
 <script  type="text/javascript">
 function fn_modify_order_state(order_id){
-	alert(order_id);
-	console.log(typeof order_id);
 	var s_delivery_state=document.getElementById("s_delivery_state");
     var index = s_delivery_state.selectedIndex;   //선택한 옵션의 인덱스를 구합니다.
     var value = s_delivery_state[index].value;    //선택한 옵션의 값을 구합니다.
