@@ -143,18 +143,20 @@
           ${myOrderInfo.payMethod }
         </TD>
       </TR>
-      <TR class="dot_line">
-        <TD class="fixed_join">결제카드</TD>
-        <TD>
-          ${myOrderInfo.cardComName}
-        </TD>
-      </TR>
-      <TR class="dot_line">
-        <TD class="fixed_join">할부기간</TD>
-        <TD>
-          ${myOrderInfo.cardPayMonth }
-        </TD>
-      </TR>
+        <c:if test="${myOrderInfo.payMethod} == '신용카드'">
+          <TR class="dot_line">
+            <TD class="fixed_join">결제카드</TD>
+            <TD>
+                ${myOrderInfo.cardComName}
+            </TD>
+          </TR>
+          <TR class="dot_line">
+            <TD class="fixed_join">할부기간</TD>
+            <TD>
+                ${myOrderInfo.cardPayMonth }
+            </TD>
+          </TR>
+        </c:if>
       </TBODY>
     </table>
   </DIV>
