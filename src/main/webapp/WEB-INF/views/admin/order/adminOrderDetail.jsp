@@ -19,7 +19,7 @@ function fn_modify_order_state(order_id){
 		url : "${contextPath}/admin/order/modifyDeliveryState.do",
 		data : {
 			order_id:order_id,
-			'delivery_state':value
+			"delivery_state":value
 		},
 		success : function(data, textStatus) {
 			if(data.trim()=='mod_success'){
