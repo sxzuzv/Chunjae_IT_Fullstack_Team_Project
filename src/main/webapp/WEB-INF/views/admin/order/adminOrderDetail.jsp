@@ -264,7 +264,13 @@ function fn_modify_order_state(order_id){
 	<br>
 	<br>
 	<br>
-	<a href="${contextPath}/admin/order/adminOrderMain.do"><input type="button" value="목록으로"></a>
+<%--	<a href="${contextPath}/admin/order/adminOrderMain.do"><input type="button" value="목록으로"></a>--%>
+
+	<div>
+		<form action="${contextPath}/admin/order/adminOrderMain.do">
+			<input type="submit" value="목록으로">
+		</form>
+	</div>
 	
 			
 			
