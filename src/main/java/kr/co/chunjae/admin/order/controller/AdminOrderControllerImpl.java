@@ -80,6 +80,8 @@ public class AdminOrderControllerImpl extends BaseController  implements AdminOr
 	@RequestMapping(value="/modifyDeliveryState.do" ,method={RequestMethod.POST})
 	public ResponseEntity modifyDeliveryState(@RequestParam Map<String, String> deliveryMap, 
 			                        HttpServletRequest request, HttpServletResponse response)  throws Exception {
+		System.out.println(deliveryMap.get("orderId"));
+		System.out.println(deliveryMap.get("orderId").getClass());
 		adminOrderService.modifyDeliveryState(deliveryMap);
 		
 		String message = null;

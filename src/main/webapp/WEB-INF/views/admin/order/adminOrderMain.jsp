@@ -125,6 +125,7 @@ function  calcPeriod(search_period){
 }
 
 function fn_modify_order_state(orderId,select_id){
+	console.log(typeof orderId);
 	var s_deliveryState=document.getElementById(select_id);
     var index = s_deliveryState.selectedIndex;
     var value = s_deliveryState[index].value;

@@ -9,6 +9,8 @@
 
 <script  type="text/javascript">
 function fn_modify_order_state(order_id){
+	alert(order_id);
+	console.log(typeof order_id);
 	var s_delivery_state=document.getElementById("s_delivery_state");
     var index = s_delivery_state.selectedIndex;   //선택한 옵션의 인덱스를 구합니다.
     var value = s_delivery_state[index].value;    //선택한 옵션의 값을 구합니다.
@@ -18,13 +20,13 @@ function fn_modify_order_state(order_id){
 		async : false, //false인 경우 동기식으로 처리한다.
 		url : "${contextPath}/admin/order/modifyDeliveryState.do",
 		data : {
-			order_id:order_id,
-			"delivery_state":value
+			orderId:order_id,
+			"deliveryState":value
 		},
 		success : function(data, textStatus) {
 			if(data.trim()=='mod_success'){
 				alert("주문 정보를 수정했습니다.");
-				location.href="${contextPath}/admin/order/orderDetail.do?order_id="+order_id;
+				location.href="${contextPath}/admin/order/orderDetail.do?orderId="+order_id;
 			}else if(data.trim()=='failed'){
 				alert("다시 시도해 주세요.");	
 			}
@@ -249,16 +251,20 @@ function fn_modify_order_state(order_id){
 		</table>
 	</div>
 </form>
-    <div class="clear"></div>
+<%--    <div class="clear"></div>--%>
+<%--	<br>--%>
+<%--	<br>--%>
+<%--	<br>--%>
+<%--		<br>--%>
+<%--		<br> --%>
+<%--		<a href="${contextPath}/main/main.do"> --%>
+<%--		   <IMG width="75" alt="" src="${contextPath}/resources/image/btn_shopping_continue.jpg">--%>
+<%--		</a>--%>
+<%--<div class="clear"></div>		--%>
 	<br>
 	<br>
 	<br>
-		<br>
-		<br> 
-		<a href="${contextPath}/main/main.do"> 
-		   <IMG width="75" alt="" src="${contextPath}/resources/image/btn_shopping_continue.jpg">
-		</a>
-<div class="clear"></div>		
+	<a href="${contextPath}/admin/order/adminOrderMain.do"><input type="button" value="목록으로"></a>
 	
 			
 			
