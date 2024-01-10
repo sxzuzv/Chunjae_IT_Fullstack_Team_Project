@@ -41,13 +41,20 @@
 		}
 	</style>
 	<script type="text/javascript">
+		function changefn() {
+			var order_goods_qty  = document.getElementById("order_goods_qty");
+			var value = (order_goods_qty.options[order_goods_qty.selectedIndex].value);
+			return value;
+		}
 		function add_cart(goods_id) {
+			let cartGoodsQty = changefn();
 			$.ajax({
 				type : "post",
 				async : false, //false인 경우 동기식으로 처리한다.
 				url : "${contextPath}/cart/addGoodsInCart.do",
 				data : {
-					goods_id:goods_id
+					goods_id:goods_id,
+					cartGoodsQty: cartGoodsQty
 
 				},
 				success : function(data, textStatus) {
@@ -145,27 +152,27 @@
 <div id="detail_table">
 	<table>
 		<tbody>
+<%--		<tr>--%>
+<%--			<td class="fixed">정가</td>--%>
+<%--			<td class="active"><span >--%>
+<%--					   <fmt:formatNumber  value="${goods.goodsPrice}" type="number" var="goodsPrice" />--%>
+<%--				         ${goodsPrice}원--%>
+<%--					</span></td>--%>
+<%--		</tr>--%>
 		<tr>
-			<td class="fixed">정가</td>
-			<td class="active"><span >
-					   <fmt:formatNumber  value="${goods.goodsPrice}" type="number" var="goodsPrice" />
-				         ${goodsPrice}원
-					</span></td>
-		</tr>
-		<tr class="dot_line">
 			<td class="fixed">판매가</td>
 			<td class="active"><span >
-					   <fmt:formatNumber  value="${goods.goodsPrice*0.9}" type="number" var="discountedPrice" />
-				         ${discountedPrice}원(10%할인)</span></td>
+					   <fmt:formatNumber  value="${goods.goodsPrice}" type="number" var="goodsPrice" />
+				         ${goodsPrice}원</span></td>
 		</tr>
-		<tr>
+		<%--<tr>
 			<td class="fixed">포인트적립</td>
 			<td class="active">P(10%적립)</td>
 		</tr>
 		<tr class="dot_line">
 			<td class="fixed">포인트 추가적립</td>
 			<td class="fixed">만원이상 구매시 1,000P, 5만원이상 구매시 2,000P추가적립 편의점 배송 이용시 300P 추가적립</td>
-		</tr>
+		</tr>--%>
 		<tr>
 			<td class="fixed">발행일</td>
 			<td class="fixed">
@@ -184,7 +191,17 @@
 		</tr>
 		<tr>
 			<td class="fixed">배송료</td>
-			<td class="fixed"><strong>무료</strong></td>
+			<td class="fixed">
+				<c:choose>
+					<c:when test="goodsDeliveryPrice == 0">
+						<strong>무료</strong>
+					</c:when>
+					<c:otherwise>
+						${goods.goodsDeliveryPrice}원
+					</c:otherwise>
+				</c:choose>
+				
+			</td>
 		</tr>
 		<tr>
 			<td class="fixed">배송안내</td>
@@ -193,17 +210,19 @@
 		</tr>
 		<tr>
 			<td class="fixed">도착예정일</td>
-			<td class="fixed">지금 주문 시 내일 도착 예정</td>
+			<td class="fixed">
+				${goods.goodsDeliveryDate}
+			</td>
 		</tr>
 		<tr>
 			<td class="fixed">수량</td>
 			<td class="fixed">
-				<select style="width: 60px;" id="order_goods_qty">
-					<option>1</option>
-					<option>2</option>
-					<option>3</option>
-					<option>4</option>
-					<option>5</option>
+				<select style="width: 60px;" id="order_goods_qty" onchange="changefn()">
+					<option value="1">1</option>
+					<option value="2">2</option>`
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
 				</select>
 			</td>
 		</tr>
@@ -212,8 +231,6 @@
 	<ul>
 		<li><a class="buy" href="javascript:fn_order_each_goods('${goods.goodsId }','${goods.goodsTitle }','${goods.goodsSalesPrice}','${goods.goodsFileName}');">구매하기 </a></li>
 		<li><a class="cart" href="javascript:add_cart('${goods.goodsId }');">장바구니</a></li>
-
-		<li><a class="wish" href="#">위시리스트</a></li>
 	</ul>
 </div>
 <div class="clear"></div>

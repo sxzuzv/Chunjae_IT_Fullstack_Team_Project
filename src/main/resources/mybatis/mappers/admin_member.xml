@@ -129,8 +129,7 @@
 				del_yn=#{del_yn}
 			</if>
 		</set>
-		where
-		member_id=#{member_id}
+		where member_id=#{member_id}
 	</update>
 </mapper>
 

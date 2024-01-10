@@ -3,6 +3,7 @@ package kr.co.chunjae.admin.order.dao;
 import java.util.ArrayList;
 import java.util.Map;
 
+import lombok.RequiredArgsConstructor;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -11,10 +12,10 @@ import org.springframework.stereotype.Repository;
 import kr.co.chunjae.member.vo.MemberVO;
 import kr.co.chunjae.order.vo.OrderVO;
 
+@RequiredArgsConstructor
 @Repository("adminOrderDAO")
 public class AdminOrderDAOImpl  implements AdminOrderDAO{
-	@Autowired
-	private SqlSession sqlSession;
+	private final SqlSession sqlSession;
 	
 	public ArrayList<OrderVO>selectNewOrderList(Map condMap) throws DataAccessException{
 		ArrayList<OrderVO>  orderList=(ArrayList)sqlSession.selectList("mapper.admin.order.selectNewOrderList",condMap);

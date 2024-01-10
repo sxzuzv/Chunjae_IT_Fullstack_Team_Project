@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -16,10 +17,10 @@ import kr.co.chunjae.order.vo.OrderVO;
 
 
 @Service("adminOrderService")
+@RequiredArgsConstructor
 @Transactional(propagation=Propagation.REQUIRED)
 public class AdminOrderServiceImpl implements AdminOrderService {
-	@Autowired
-	AdminOrderDAO adminOrderDAO;
+	private final AdminOrderDAO adminOrderDAO;
 	
 	public List<OrderVO>listNewOrder(Map condMap) throws Exception{
 		return adminOrderDAO.selectNewOrderList(condMap);

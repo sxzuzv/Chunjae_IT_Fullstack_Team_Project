@@ -2,6 +2,7 @@ package kr.co.chunjae.order.service;
 
 import java.util.List;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,9 +13,10 @@ import kr.co.chunjae.order.vo.OrderVO;
 
 @Service("orderService")
 @Transactional(propagation=Propagation.REQUIRED)
+@RequiredArgsConstructor
 public class OrderServiceImpl implements OrderService {
-	@Autowired
-	OrderDAO orderDAO;
+
+	private final OrderDAO orderDAO;
 	
 	public List<OrderVO> listMyOrderGoods(OrderVO orderVO) throws Exception{
 		List<OrderVO> orderGoodsList;

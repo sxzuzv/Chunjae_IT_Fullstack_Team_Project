@@ -196,23 +196,42 @@ function fn_enable_detail_search(r_search){
 		
 }
 
+<%--function fn_detail_order(orderId){--%>
+<%--	alert(orderId);--%>
+<%--	var frm_delivery_list=document.frm_delivery_list;--%>
+<%--	--%>
+
+<%--	var formObj=document.createElement("form");--%>
+<%--	var orderId = document.createElement("input");--%>
+
+<%--	i_orderId.name="orderId";--%>
+<%--	i_orderId.value=orderId;--%>
+<%--	--%>
+<%--    formObj.appendChild(i_orderId);--%>
+<%--    document.body.appendChild(formObj); --%>
+<%--    formObj.method="post";--%>
+<%--    formObj.action="${contextPath}/admin/order/orderDetail.do";--%>
+<%--    formObj.submit();--%>
+<%--	--%>
+<%--}--%>
+
 function fn_detail_order(orderId){
 	//alert(orderId);
 	var frm_delivery_list=document.frm_delivery_list;
-	
+
 
 	var formObj=document.createElement("form");
-	var orderId = document.createElement("input");
+	var i_orderId = document.createElement("input");
 
 	i_orderId.name="orderId";
 	i_orderId.value=orderId;
-	
-    formObj.appendChild(i_orderId);
-    document.body.appendChild(formObj); 
-    formObj.method="post";
-    formObj.action="${contextPath}/admin/order/orderDetail.do";
-    formObj.submit();
-	
+
+	formObj.appendChild(i_orderId);
+	document.body.appendChild(formObj);
+	formObj.method="post";
+	formObj.action="${contextPath}/admin/order/orderDetail.do";
+	formObj.submit();
+
 }
 
 //상세조회 버튼 클릭 시 수행

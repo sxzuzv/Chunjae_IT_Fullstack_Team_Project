@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import lombok.RequiredArgsConstructor;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -13,10 +14,10 @@ import kr.co.chunjae.goods.vo.GoodsVO;
 import kr.co.chunjae.goods.vo.ImageFileVO;
 import kr.co.chunjae.order.vo.OrderVO;
 
+@RequiredArgsConstructor
 @Repository("adminGoodsDAO")
 public class AdminGoodsDAOImpl  implements AdminGoodsDAO{
-	@Autowired
-	private SqlSession sqlSession;
+	private final SqlSession sqlSession;
 	
 	@Override
 	public int insertNewGoods(Map newGoodsMap) throws DataAccessException {
