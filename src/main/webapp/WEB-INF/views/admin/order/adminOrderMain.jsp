@@ -135,7 +135,7 @@ function fn_modify_order_state(orderId,select_id){
 		async : false,
 		url : "${contextPath}/admin/order/modifyDeliveryState.do",
 		data : {
-			order_id:orderId,
+			orderId:orderId,
 			"deliveryState":value
 		},
 		success : function(data, textStatus) {
