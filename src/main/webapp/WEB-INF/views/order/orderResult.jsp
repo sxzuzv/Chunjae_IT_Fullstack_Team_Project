@@ -85,7 +85,7 @@
         <td>
           ${myOrderInfo.deliveryAddress}
         </td>
-        >
+        
       </TR>
       <TR class="dot_line">
         <TD class="fixed_join">배송 메시지</TD>
