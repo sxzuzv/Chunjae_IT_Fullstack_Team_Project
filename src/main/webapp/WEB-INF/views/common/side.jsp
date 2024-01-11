@@ -16,7 +16,6 @@
 			<li><a href="${contextPath}/admin/goods/adminGoodsMain.do">상품관리</a></li>
 			<li><a href="${contextPath}/admin/order/adminOrderMain.do">주문관리</a></li>
 			<li><a href="${contextPath}/admin/member/adminMemberMain.do">회원관리</a></li>
-			<li><a href="#">배송관리</a></li>
 			<li><a href="#">게시판관리</a></li>
 		</ul>
 	</li>
@@ -26,17 +25,17 @@
 		<h3>주문내역</h3>
 		<ul>
 			<li><a href="${contextPath}/mypage/listMyOrderHistory.do">주문내역/배송 조회</a></li>
-			<li><a href="#">반품/교환 신청 및 조회</a></li>
+<%--			<li><a href="#">반품/교환 신청 및 조회</a></li>--%>
 			<li><a href="${contextPath}/mypage/cancelOrderHistory.do">취소 주문 내역</a></li>
-			<li><a href="#">세금 계산서</a></li>
+<%--			<li><a href="#">세금 계산서</a></li>--%>
 		</ul>
 	</li>
 	<li>
 		<h3>정보내역</h3>
 		<ul>
 			<li><a href="${contextPath}/mypage/myDetailInfo.do">회원정보관리</a></li>
-			<li><a href="#">나의 주소록</a></li>
-			<li><a href="#">개인정보 동의내역</a></li>
+<%--			<li><a href="#">나의 주소록</a></li>--%>
+<%--			<li><a href="#">개인정보 동의내역</a></li>--%>
 			<li><a href="#">회원탈퇴</a></li>
 		</ul>
 	</li>
