@@ -103,7 +103,7 @@ function fn_modify_order_state(order_id){
 					</td>
 				</tr>
 				<tr class="dot_line">
-					<td class="fixed_join">휴대폰 번호</td>
+					<td class="fixed_join">휴대전화</td>
 					<td>
 					  ${deliveryInfo.receiverHp1}-${deliveryInfo.receiverHp2}-${deliveryInfo.receiverHp3}</td>
 				  </tr>
