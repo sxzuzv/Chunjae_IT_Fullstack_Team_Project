@@ -89,7 +89,7 @@
           }
       }
 
-      function fn_order_each_goods(goods_id, goods_title, goods_sales_price, fileName) {
+      function fn_order_each_goods(goods_id, goods_title, goods_sales_price, fileName, goods_delivery_price) {
           var _isLogOn = document.getElementById("isLogOn");
           var isLogOn = _isLogOn.value;
 
@@ -108,17 +108,20 @@
           var i_goods_sales_price = document.createElement("input");
           var i_fileName = document.createElement("input");
           var i_order_goods_qty = document.createElement("input");
+          var i_goods_delivery_price = document.createElement("input");
 
           i_goods_id.name = "goodsId";
           i_goods_title.name = "goodsTitle";
           i_goods_sales_price.name = "goodsSalesPrice";
           i_fileName.name = "goodsFileName";
           i_order_goods_qty.name = "orderGoodsQty";
+          i_goods_delivery_price.name="goodsDeliveryPrice";
 
           i_goods_id.value = goods_id;
           i_order_goods_qty.value = 1;
           i_goods_title.value = goods_title;
           i_goods_sales_price.value = goods_sales_price;
+          i_goods_delivery_price.value=goods_delivery_price;
           i_fileName.value = fileName;
 
           formObj.appendChild(i_goods_id);
@@ -126,6 +129,7 @@
           formObj.appendChild(i_goods_sales_price);
           formObj.appendChild(i_fileName);
           formObj.appendChild(i_order_goods_qty);
+          formObj.appendChild(i_goods_delivery_price);
 
           document.body.appendChild(formObj);
           formObj.method = "post";
@@ -222,16 +226,20 @@
           |${item.goodsPublisher }|<c:out value="${arr[0]}"/>
         </div>
       </td>
-      <td class="price"><span>${item.goodsPrice }원</span><br>
+      <td class="price">
         <strong>
-          <fmt:formatNumber value="${item.goodsPrice*0.9}" type="number" var="discounted_price"/>
-            ${discounted_price}원
-        </strong><br>(10% 할인)
+          <fmt:formatNumber value="${item.goodsPrice}" type="number" var="goods_sales_price"/>
+            ${goods_sales_price}원
+        </strong><br>
       </td>
+      <%-- todo: 배송비 값 받아오기 --%>
+      <input type="hidden" id="h_goods_delivery_price" name="h_goods_delivery_price"
+             value="${item.goodsDeliveryPrice}"/>
+<%--      <c:set var="goods_delivery_price" value="${item.goodsDeliveryPrice}" />--%>
       <td class="buy_btns">
         <UL>
           <li><a href="javascript:add_cart('${item.goodsId }');">장바구니</a></li>
-          <li><a href="javascript:fn_order_each_goods('${item.goodsId }','${item.goodsTitle }','${item.goodsSalesPrice}','${item.goodsFileName}');">구매하기</a></li>
+          <li><a href="javascript:fn_order_each_goods('${item.goodsId }','${item.goodsTitle }','${item.goodsSalesPrice}','${item.goodsFileName}','${item.goodsDeliveryPrice}');">구매하기</a></li>
         </UL>
       </td>
     </tr>
