@@ -289,9 +289,9 @@ function setSmsValue (event) {//sms 체크박스 함수
 </script>
 	<script>
 		const result="${msg}"
-		if(result ==="resSuccess") {
+		if(result ==="modifySuccess") {
 			alert('회원 정보 수정 완료!');
-		} else if(result==="resFail") {
+		} else if(result==="modifyFail") {
 			alert('회원 수정 실패!');
 		}
 	</script>

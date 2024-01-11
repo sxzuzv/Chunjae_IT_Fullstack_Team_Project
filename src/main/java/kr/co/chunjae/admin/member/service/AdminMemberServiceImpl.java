@@ -27,8 +27,12 @@ public class AdminMemberServiceImpl implements AdminMemberService {
 		 return adminMemberDAO.memberDetail(member_id);
 	}
 	
-	public void modifyMemberInfo(HashMap memberMap) throws Exception{
-		 String member_id=(String)memberMap.get("member_id");
-		 adminMemberDAO.modifyMemberInfo(memberMap);
+//	public void modifyMemberInfo(HashMap memberMap) throws Exception{
+//		 String member_id=(String)memberMap.get("member_id");
+//		 adminMemberDAO.modifyMemberInfo(memberMap);
+//	}
+
+	public int modifyMemberInfo(MemberVO memberVO) throws Exception {
+		return adminMemberDAO.modifyMemberInfo(memberVO);
 	}
 }

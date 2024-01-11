@@ -39,7 +39,6 @@ function fn_modify_order_state(order_id){
 		}
 	}); //end ajax		
 }
-
 </script>
 </head>
 <body>
