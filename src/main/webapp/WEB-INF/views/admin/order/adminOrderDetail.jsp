@@ -52,7 +52,7 @@ function fn_modify_order_state(order_id){
 				<td>수량</td>
 				<td>주문 금액</td>
 				<td>배송비</td>
-				<td>예상 적립금</td>
+<%--				<td>예상 적립금</td>--%>
 				<td>주문 금액 합계</td>
 			</tr>
 			<tr>
@@ -71,9 +71,10 @@ function fn_modify_order_state(order_id){
 					<td>
 					  <h2>${item.orderGoodsQty }개</h2>
 					</td>
-					<td><h2>${item.orderGoodsQty *item.goodsSalesPrice}원 (10% 할인)</h2></td>
+<%--					<td><h2>${item.orderGoodsQty *item.goodsSalesPrice}원</h2></td>--%>
+					<td><h2>${item.goodsSalesPrice * item.orderGoodsQty}원</h2></td>
 					<td><h2>0원</h2></td>
-					<td><h2>${1500 *item.orderGoodsQty }원</h2></td>
+<%--					<td><h2>${1500 *item.orderGoodsQty }원</h2></td>--%>
 					<td>
 					  <h2>${item.orderGoodsQty *item.goodsSalesPrice}원</h2>
 					</td>

@@ -95,7 +95,7 @@ function  calcPeriod(search_period){
 			<TBODY>
 				<TR >
 					<TD>
-						<input type="radio" name="r_search"  checked/> 등록일로 조회 &nbsp;&nbsp;&nbsp;
+						<input type="radio" name="r_search"  checked/> 상품 등록일로 조회 &nbsp;&nbsp;&nbsp;
 						<input type="radio" name="r_search" />상세 조회 &nbsp;&nbsp;&nbsp;
 					</TD>
 				</TR>
