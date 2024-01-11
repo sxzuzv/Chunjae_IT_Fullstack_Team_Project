@@ -222,6 +222,7 @@
       var goods_title = "";
       var goods_fileName = "";
 
+      var goods_delivery_price;
       var order_goods_qty;
       var each_goods_price;
       var total_order_goods_price;
@@ -256,6 +257,7 @@
           var h_goods_title = frm.h_goods_title;
           var h_goods_fileName = frm.h_goods_fileName;
           var r_delivery_method = frm.delivery_method;
+          var h_goods_delivery_price = document.getElementById("h_goods_delivery_price");
           var h_order_goods_qty = document.getElementById("h_order_goods_qty");
           var h_total_order_goods_qty = document.getElementById("h_total_order_goods_qty");
           var h_total_sales_price = document.getElementById("h_total_sales_price");
@@ -359,6 +361,7 @@
           var i_pay_method = document.getElementById("pay_method");
 
 //	alert("총주문 금액:"+total_order_goods_price);
+          goods_delivery_price = h_goods_delivery_price.value;
           order_goods_qty = h_order_goods_qty.value;
           //order_total_price=h_order_total_price.value;
 
@@ -523,7 +526,7 @@
       </td>
       <td>
         <h2>
-<%--          <a href="${pageContext.request.contextPath}/goods/goods.do?command=goods_detail&goods_id=${item.goodsId }">${item.goodsTitle }</A>--%>
+            <%--          <a href="${pageContext.request.contextPath}/goods/goods.do?command=goods_detail&goods_id=${item.goodsId }">${item.goodsTitle }</A>--%>
           <a href="${pageContext.request.contextPath}/goods/goodsDetail.do?goods_id=${item.goodsId }">${item.goodsTitle }</a>
           <input type="hidden" id="h_goods_title" name="h_goods_title" value="${item.goodsTitle }"/>
         </h2>
@@ -533,20 +536,24 @@
         <input type="hidden" id="h_order_goods_qty" name="h_order_goods_qty" value="${item.orderGoodsQty}"/>
       </td>
       <td><h2>${item.goodsSalesPrice}원</h2></td>
-        <%-- 배송비 항목 받아와야 함 --%>
-      <td><h2>0원</h2></td>
+      <td><h2>${item.goodsDeliveryPrice}원</h2>
+        <input type="hidden" id="h_goods_delivery_price" name="h_goods_delivery_price"
+               value="${item.goodsDeliveryPrice}"/>
+      </td>
       <td>
-        <h2>${item.goodsSalesPrice * item.orderGoodsQty}원</h2>
+        <h2>${item.goodsSalesPrice * item.orderGoodsQty + item.goodsDeliveryPrice}원</h2>
         <input type="hidden" id="h_each_goods_price" name="h_each_goods_price"
-               value="${item.goodsSalesPrice * item.orderGoodsQty}"/>
+               value="${item.goodsSalesPrice * item.orderGoodsQty + item.goodsDeliveryPrice}"/>
       </td>
     </tr>
     <c:set var="final_total_order_price"
-           value="${final_total_order_price+ item.goodsSalesPrice* item.orderGoodsQty}"/>
+           value="${final_total_order_price+ item.goodsSalesPrice* item.orderGoodsQty + item.goodsDeliveryPrice}"/>
     <c:set var="total_order_price"
-           value="${total_order_price+ item.goodsSalesPrice* item.orderGoodsQty}"/>
+           value="${total_order_price+ item.goodsSalesPrice* item.orderGoodsQty }"/>
     <c:set var="total_order_goods_qty"
-           value="${total_order_goods_qty+item.orderGoodsQty }"/>
+           value="${total_order_goods_qty+item.orderGoodsQty}"/>
+    <c:set var="total_delivery_price"
+           value="${total_delivery_price + item.goodsDeliveryPrice}"/>
     </c:forEach>
     </tbody>
   </table>
@@ -719,15 +726,15 @@
       <td><IMG width="25" alt=""
                src="${pageContext.request.contextPath}/resources/image/plus.jpg"></td>
       <td>
-        <p id="p_totalDelivery">${total_delivery_price }원</p> <input
+        <p id="p_totalDelivery">${total_delivery_price}원</p> <input
               id="h_totalDelivery" type="hidden" value="${total_delivery_price}"/>
       </td>
       <%--<td>
         <img width="25" alt="" src="${pageContext.request.contextPath}/resources/image/minus.jpg"></td>
       <td>--%>
-        <%--<p id="p_totalSalesPrice">${total_discount_price }원</p>
-        <input id="h_total_sales_price" type="hidden" value="${total_discount_price}"/>
-      </td>--%>
+      <%--<p id="p_totalSalesPrice">${total_discount_price }원</p>
+      <input id="h_total_sales_price" type="hidden" value="${total_discount_price}"/>
+    </td>--%>
       <td><img width="25" alt="" src="${pageContext.request.contextPath}/resources/image/equal.jpg"></td>
       <td>
         <p id="p_final_totalPrice">
