@@ -222,6 +222,7 @@
       var goods_title = "";
       var goods_fileName = "";
 
+      var goods_delivery_price;
       var order_goods_qty;
       var each_goods_price;
       var total_order_goods_price;
@@ -256,6 +257,7 @@
           var h_goods_title = frm.h_goods_title;
           var h_goods_fileName = frm.h_goods_fileName;
           var r_delivery_method = frm.delivery_method;
+          var h_goods_delivery_price = document.getElementById("h_goods_delivery_price");
           var h_order_goods_qty = document.getElementById("h_order_goods_qty");
           var h_total_order_goods_qty = document.getElementById("h_total_order_goods_qty");
           var h_total_sales_price = document.getElementById("h_total_sales_price");
@@ -359,6 +361,7 @@
           var i_pay_method = document.getElementById("pay_method");
 
 //	alert("총주문 금액:"+total_order_goods_price);
+          goods_delivery_price = h_goods_fileName.value;
           order_goods_qty = h_order_goods_qty.value;
           //order_total_price=h_order_total_price.value;
 
@@ -384,6 +387,7 @@
 
           var p_order_goods_id = document.getElementById("p_order_goods_id");
           var p_order_goods_title = document.getElementById("p_order_goods_title");
+          // var p_goods_delivery_price = document.getElementById("p_goods_delivery_price");
           var p_order_goods_qty = document.getElementById("p_order_goods_qty");
           var p_total_order_goods_qty = document.getElementById("p_total_order_goods_qty");
           var p_total_order_goods_price = document.getElementById("p_total_order_goods_price");
@@ -399,6 +403,7 @@
 
           p_order_goods_id.innerHTML = goods_id;
           p_order_goods_title.innerHTML = goods_title;
+          // p_goods_delivery_price.innerHTML = goods_delivery_price + "원";
           p_total_order_goods_qty.innerHTML = total_order_goods_qty + "개";
           p_total_order_goods_price.innerHTML = total_order_goods_price + "원";
           p_orderer_name.innerHTML = orderer_name;
@@ -533,20 +538,23 @@
         <input type="hidden" id="h_order_goods_qty" name="h_order_goods_qty" value="${item.orderGoodsQty}"/>
       </td>
       <td><h2>${item.goodsSalesPrice}원</h2></td>
-        <%-- 배송비 항목 받아와야 함 --%>
-      <td><h2>0원</h2></td>
+        <%-- todo: 배송비 항목 받아와야 함 --%>
+<%--        <td><h2>0원</h2>--%>
+        <td><h2>${item.goodsDeliveryPrice}원</h2>
+        <input type="hidden" id="h_goods_delivery_price" name="h_goods_delivery_price" value="${item.goodsDeliveryPrice}"/>
+      </td>
       <td>
-        <h2>${item.goodsSalesPrice * item.orderGoodsQty}원</h2>
+        <h2>${item.goodsSalesPrice * item.orderGoodsQty + item.goodsDeliveryPrice}원</h2>
         <input type="hidden" id="h_each_goods_price" name="h_each_goods_price"
-               value="${item.goodsSalesPrice * item.orderGoodsQty}"/>
+               value="${item.goodsSalesPrice * item.orderGoodsQty + item.goodsDeliveryPrice}"/>
       </td>
     </tr>
     <c:set var="final_total_order_price"
-           value="${final_total_order_price+ item.goodsSalesPrice* item.orderGoodsQty}"/>
+           value="${final_total_order_price+ item.goodsSalesPrice* item.orderGoodsQty + item.goodsDeliveryPrice}"/>
     <c:set var="total_order_price"
-           value="${total_order_price+ item.goodsSalesPrice* item.orderGoodsQty}"/>
+           value="${total_order_price+ item.goodsSalesPrice* item.orderGoodsQty }"/>
     <c:set var="total_order_goods_qty"
-           value="${total_order_goods_qty+item.orderGoodsQty }"/>
+           value="${total_order_goods_qty+item.orderGoodsQty}"/>
     </c:forEach>
     </tbody>
   </table>

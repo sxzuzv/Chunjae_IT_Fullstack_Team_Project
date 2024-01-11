@@ -1,6 +1,7 @@
 package kr.co.chunjae.order.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -34,10 +35,10 @@ public class OrderControllerImpl extends BaseController implements OrderControll
 	@RequestMapping(value="/orderEachGoods.do" ,method = RequestMethod.POST)
 	public String orderEachGoods(@ModelAttribute("orderVO") OrderVO _orderVO,
 			                       HttpServletRequest request)  throws Exception{
-		
+
 		request.setCharacterEncoding("utf-8");
 		HttpSession session=request.getSession();
-		
+
 		Boolean isLogOn=(Boolean)session.getAttribute("isLogOn");
 		String action=(String)session.getAttribute("action");
 
@@ -60,14 +61,14 @@ public class OrderControllerImpl extends BaseController implements OrderControll
 				 orderVO=_orderVO;
 			 }
 		 }
-		
+
 		String viewName=(String)request.getAttribute("viewName");
 
 		List myOrderList=new ArrayList<OrderVO>();
 		myOrderList.add(orderVO);
 
 		MemberVO memberInfo=(MemberVO)session.getAttribute("memberInfo");
-		
+
 		session.setAttribute("myOrderList", myOrderList);
 		session.setAttribute("orderer", memberInfo);
 
@@ -81,10 +82,10 @@ public class OrderControllerImpl extends BaseController implements OrderControll
 		HttpSession session=request.getSession();
 		Map cartMap=(Map)session.getAttribute("cartMap");
 		List myOrderList=new ArrayList<OrderVO>();
-		
+
 		List<GoodsVO> myGoodsList=(List<GoodsVO>)cartMap.get("myGoodsList");
 		MemberVO memberVO=(MemberVO)session.getAttribute("memberInfo");
-		
+
 		for(int i=0; i<cart_goods_qty.length;i++){
 			String[] cart_goods=cart_goods_qty[i].split(":");
 			for(int j = 0; j< myGoodsList.size();j++) {
@@ -110,7 +111,7 @@ public class OrderControllerImpl extends BaseController implements OrderControll
 		session.setAttribute("orderer", memberVO);
 
 		return viewName;
-	}	
+	}
 
 	@RequestMapping(value="/payToOrderGoods.do" ,method = RequestMethod.POST)
 	public String payToOrderGoods(@RequestParam Map<String, String> receiverMap,
@@ -130,7 +131,7 @@ public class OrderControllerImpl extends BaseController implements OrderControll
 			orderVO.setMemberId(member_id);
 			orderVO.setOrdererName(orderer_name);
 			orderVO.setReceiverName(receiverMap.get("receiverName"));
-			
+
 			orderVO.setReceiverHp1(receiverMap.get("receiverHp1"));
 			orderVO.setReceiverHp2(receiverMap.get("receiverHp2"));
 			orderVO.setReceiverHp3(receiverMap.get("receiverHp3"));
