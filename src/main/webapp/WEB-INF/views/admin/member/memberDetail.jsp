@@ -107,128 +107,128 @@ function init(){
     }
 </script>
 <script>
-function fn_modify_member_info(member_id,mod_type){
-	var value;
-	// alert(member_id);
-	// alert("mod_type:"+mod_type);
-		var frm_mod_member=document.frm_mod_member;
-		if(mod_type=='member_pw'){
-			value=frm_mod_member.member_pw.value;
-			//alert("member_pw:"+value);
-		}else if(mod_type=='member_gender'){
-			var member_gender=frm_mod_member.member_gender;
-			for(var i=0; member_gender.length;i++){
-			 	if(member_gender[i].checked){
-					value=member_gender[i].value;
-					break;
-				} 
-			}
-			//alert("member_gender111:"+value);
-			
-		}else if(mod_type=='member_birth'){
-			var member_birth_y=frm_mod_member.member_birth_y;
-			var member_birth_m=frm_mod_member.member_birth_m;
-			var member_birth_d=frm_mod_member.member_birth_d;
-			var member_birth_gn=frm_mod_member.member_birth_gn;
-			
-			for(var i=0; member_birth_y.length;i++){
-			 	if(member_birth_y[i].selected){
-					value_y=member_birth_y[i].value;
-					break;
-				} 
-			}
-			for(var i=0; member_birth_m.length;i++){
-			 	if(member_birth_m[i].selected){
-					value_m=member_birth_m[i].value;
-					break;
-				} 
-			}
-			
-			for(var i=0; member_birth_d.length;i++){
-			 	if(member_birth_d[i].selected){
-					value_d=member_birth_d[i].value;
-					break;
-				} 
-			}
-			
-			//alert("수정 년:"+value_y+","+value_m+","+value_d);
-			for(var i=0; member_birth_gn.length;i++){
-			 	if(member_birth_gn[i].checked){
-					value_gn=member_birth_gn[i].value;
-					break;
-				} 
-			}
-			//alert("생년 양음년 "+value_gn);
-			value=+value_y+","+value_m+","+value_d+","+value_gn;
-		} else if(mod_type=='hp'){
-			var hp1=frm_mod_member.hp1;
-			var hp2=frm_mod_member.hp2;
-			var hp3=frm_mod_member.hp3;
-			var smssts_yn=frm_mod_member.smssts_yn;
-			
-			for(var i=0; hp1.length;i++){
-			 	if(hp1[i].selected){
-					value_hp1=hp1[i].value;
-					break;
-				} 
-			}
-			value_hp2=hp2.value;
-			value_hp3=hp3.value;
-			value_smssts_yn=smssts_yn.checked;
-			
-			value=value_hp1+","+value_hp2+","+value_hp3+","+value_smssts_yn;
-			
-		}else if(mod_type=='email'){
-			var email1=frm_mod_member.email1;
-			var email2=frm_mod_member.email2;
-			var emailsts_yn=frm_mod_member.emailsts_yn;
-			
-			value_email1=email1.value;
-			value_email2=email2.value;
-			value_emailsts_yn=emailsts_yn.checked;
-			
-			value=value_email1+","+value_email2+","+value_emailsts_yn;
-			//alert(value);
-		}else if(mod_type=='address'){
-			var zipcode=frm_mod_member.zipcode;
-			var roadAddress=frm_mod_member.roadAddress;
-			var jibunAddress=frm_mod_member.jibunAddress;
-			var namujiAddress=frm_mod_member.namujiAddress;
-			
-			value_zipcode=zipcode.value;
-			value_roadAddress=roadAddress.value;
-			value_jibunAddress=jibunAddress.value;
-			value_namujiAddress=namujiAddress.value;
-			
-			value=value_zipcode+","+value_roadAddress+","+value_jibunAddress+","+value_namujiAddress;
-		}
-	 
-		$.ajax({
-			type : "post",
-			async : false, //false인 경우 동기식으로 처리한다.
-			url : "${contextPath}/admin/member/modifyMemberInfo.do",
-			data : {
-				member_id:member_id,
-				mod_type:mod_type,
-				value:value,
-			},
-			success : function(data, textStatus) {
-				if(data.trim()=='mod_success'){
-					alert("회원 정보를 수정했습니다.");
-				}else if(data.trim()=='failed'){
-					alert("다시 시도해 주세요.");	
-				}
-				
-			},
-			error : function(data, textStatus) {
-				alert("에러가 발생했습니다."+data);
-			},
-			complete : function(data, textStatus) {
-				//alert("작업을완료 했습니다");
-				
-			}
-		}); //end ajax
-}
+<%--function fn_modify_member_info(member_id,mod_type){--%>
+<%--	var value;--%>
+<%--	// alert(member_id);--%>
+<%--	// alert("mod_type:"+mod_type);--%>
+<%--		var frm_mod_member=document.frm_mod_member;--%>
+<%--		if(mod_type=='member_pw'){--%>
+<%--			value=frm_mod_member.member_pw.value;--%>
+<%--			//alert("member_pw:"+value);--%>
+<%--		}else if(mod_type=='member_gender'){--%>
+<%--			var member_gender=frm_mod_member.member_gender;--%>
+<%--			for(var i=0; member_gender.length;i++){--%>
+<%--			 	if(member_gender[i].checked){--%>
+<%--					value=member_gender[i].value;--%>
+<%--					break;--%>
+<%--				} --%>
+<%--			}--%>
+<%--			//alert("member_gender111:"+value);--%>
+<%--			--%>
+<%--		}else if(mod_type=='member_birth'){--%>
+<%--			var member_birth_y=frm_mod_member.member_birth_y;--%>
+<%--			var member_birth_m=frm_mod_member.member_birth_m;--%>
+<%--			var member_birth_d=frm_mod_member.member_birth_d;--%>
+<%--			var member_birth_gn=frm_mod_member.member_birth_gn;--%>
+<%--			--%>
+<%--			for(var i=0; member_birth_y.length;i++){--%>
+<%--			 	if(member_birth_y[i].selected){--%>
+<%--					value_y=member_birth_y[i].value;--%>
+<%--					break;--%>
+<%--				} --%>
+<%--			}--%>
+<%--			for(var i=0; member_birth_m.length;i++){--%>
+<%--			 	if(member_birth_m[i].selected){--%>
+<%--					value_m=member_birth_m[i].value;--%>
+<%--					break;--%>
+<%--				} --%>
+<%--			}--%>
+<%--			--%>
+<%--			for(var i=0; member_birth_d.length;i++){--%>
+<%--			 	if(member_birth_d[i].selected){--%>
+<%--					value_d=member_birth_d[i].value;--%>
+<%--					break;--%>
+<%--				} --%>
+<%--			}--%>
+<%--			--%>
+<%--			//alert("수정 년:"+value_y+","+value_m+","+value_d);--%>
+<%--			for(var i=0; member_birth_gn.length;i++){--%>
+<%--			 	if(member_birth_gn[i].checked){--%>
+<%--					value_gn=member_birth_gn[i].value;--%>
+<%--					break;--%>
+<%--				} --%>
+<%--			}--%>
+<%--			//alert("생년 양음년 "+value_gn);--%>
+<%--			value=+value_y+","+value_m+","+value_d+","+value_gn;--%>
+<%--		} else if(mod_type=='hp'){--%>
+<%--			var hp1=frm_mod_member.hp1;--%>
+<%--			var hp2=frm_mod_member.hp2;--%>
+<%--			var hp3=frm_mod_member.hp3;--%>
+<%--			var smssts_yn=frm_mod_member.smssts_yn;--%>
+<%--			--%>
+<%--			for(var i=0; hp1.length;i++){--%>
+<%--			 	if(hp1[i].selected){--%>
+<%--					value_hp1=hp1[i].value;--%>
+<%--					break;--%>
+<%--				} --%>
+<%--			}--%>
+<%--			value_hp2=hp2.value;--%>
+<%--			value_hp3=hp3.value;--%>
+<%--			value_smssts_yn=smssts_yn.checked;--%>
+<%--			--%>
+<%--			value=value_hp1+","+value_hp2+","+value_hp3+","+value_smssts_yn;--%>
+<%--			--%>
+<%--		}else if(mod_type=='email'){--%>
+<%--			var email1=frm_mod_member.email1;--%>
+<%--			var email2=frm_mod_member.email2;--%>
+<%--			var emailsts_yn=frm_mod_member.emailsts_yn;--%>
+<%--			--%>
+<%--			value_email1=email1.value;--%>
+<%--			value_email2=email2.value;--%>
+<%--			value_emailsts_yn=emailsts_yn.checked;--%>
+<%--			--%>
+<%--			value=value_email1+","+value_email2+","+value_emailsts_yn;--%>
+<%--			//alert(value);--%>
+<%--		}else if(mod_type=='address'){--%>
+<%--			var zipcode=frm_mod_member.zipcode;--%>
+<%--			var roadAddress=frm_mod_member.roadAddress;--%>
+<%--			var jibunAddress=frm_mod_member.jibunAddress;--%>
+<%--			var namujiAddress=frm_mod_member.namujiAddress;--%>
+<%--			--%>
+<%--			value_zipcode=zipcode.value;--%>
+<%--			value_roadAddress=roadAddress.value;--%>
+<%--			value_jibunAddress=jibunAddress.value;--%>
+<%--			value_namujiAddress=namujiAddress.value;--%>
+<%--			--%>
+<%--			value=value_zipcode+","+value_roadAddress+","+value_jibunAddress+","+value_namujiAddress;--%>
+<%--		}--%>
+<%--	 --%>
+<%--		$.ajax({--%>
+<%--			type : "post",--%>
+<%--			async : false, //false인 경우 동기식으로 처리한다.--%>
+<%--			url : "${contextPath}/admin/member/modifyMemberInfo.do",--%>
+<%--			data : {--%>
+<%--				member_id:member_id,--%>
+<%--				mod_type:mod_type,--%>
+<%--				value:value,--%>
+<%--			},--%>
+<%--			success : function(data, textStatus) {--%>
+<%--				if(data.trim()=='mod_success'){--%>
+<%--					alert("회원 정보를 수정했습니다.");--%>
+<%--				}else if(data.trim()=='failed'){--%>
+<%--					alert("다시 시도해 주세요.");	--%>
+<%--				}--%>
+<%--				--%>
+<%--			},--%>
+<%--			error : function(data, textStatus) {--%>
+<%--				alert("에러가 발생했습니다."+data);--%>
+<%--			},--%>
+<%--			complete : function(data, textStatus) {--%>
+<%--				//alert("작업을완료 했습니다");--%>
+<%--				--%>
+<%--			}--%>
+<%--		}); //end ajax--%>
+<%--}--%>
 
 function fn_delete_member(member_id ,del_yn){
 	var frm_mod_member=document.frm_mod_member;
@@ -262,12 +262,36 @@ document.addEventListener('DOMContentLoaded', function() {//페이지로드후 �
 		}
 	});
 });
+
+function setEmailValue (event) {//이메일 체크박스 함수
+	const checked = !event.target.checked; // true or false
+	const tag = document.getElementById("emailstsYn");
+	if (checked) {
+		event.target.checked = false;
+		tag.value = 'N';
+	} else {
+		event.target.checked = true;
+		tag.value = 'Y';
+	}
+}
+
+function setSmsValue (event) {//sms 체크박스 함수
+	const checked = !event.target.checked;//true or false
+	const tag = document.getElementById("smsstsYn");
+	if (checked) {
+		event.target.checked = false;
+		tag.value = 'N';
+	} else {
+		event.target.checked = true;
+		tag.value = 'Y';
+	}
+}
 </script>
 </head>
 
 <body>
 	<h3>회원 상세 정보</h3>
-<form name="frm_mod_member">	
+<form action="${contextPath}/admin/modifyMemberInfo.do" method="post">
 	<div id="detail_table">
 		<table>
 			<tbody>
@@ -276,27 +300,27 @@ document.addEventListener('DOMContentLoaded', function() {//페이지로드후 �
 					<td>
 						<input name="member_id" type="text" size="20" value="${member_info.memberId }"  disabled/>
 					</td>
-					 <td>
-					  <input type="button" value="수정하기" disabled onClick="fn_modify_member_info('${member_info.memberId }','member_name')" />
-					</td>
+<%--					 <td>--%>
+<%--					  <input type="button" value="수정하기" disabled onClick="fn_modify_member_info('${member_info.memberId }','member_name')" />--%>
+<%--					</td>--%>
 				</tr>
 				<tr class="dot_line">
 					<td class="fixed_join">비밀번호</td>
 					<td>
 					  <input name="member_pw" type="password" size="20" value="${member_info.memberPw }" />
 					</td>
-					<td>
-					  <input type="button" value="수정하기" onClick="fn_modify_member_info('${member_info.memberId }','member_pw')" />
-					</td>
+<%--					<td>--%>
+<%--					  <input type="button" value="수정하기" onClick="fn_modify_member_info('${member_info.memberId }','member_pw')" />--%>
+<%--					</td>--%>
 				</tr>
 				<tr class="dot_line">
 					<td class="fixed_join">이름</td>
 					<td>
 					  <input name="member_name" type="text" size="20" value="${member_info.memberName }"  disabled />
 					 </td>
-					 <td>
-					  <input type="button" value="수정하기" disabled onClick="fn_modify_member_info('${member_info.memberId }','member_name')" />
-					</td>
+<%--					 <td>--%>
+<%--					  <input type="button" value="수정하기" disabled onClick="fn_modify_member_info('${member_info.memberId }','member_name')" />--%>
+<%--					</td>--%>
 				</tr>
 				<tr class="dot_line">
 					<td class="fixed_join">성별</td>
