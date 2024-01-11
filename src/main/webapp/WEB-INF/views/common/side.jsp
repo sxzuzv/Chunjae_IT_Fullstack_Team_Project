@@ -16,7 +16,6 @@
 			<li><a href="${contextPath}/admin/goods/adminGoodsMain.do">상품관리</a></li>
 			<li><a href="${contextPath}/admin/order/adminOrderMain.do">주문관리</a></li>
 			<li><a href="${contextPath}/admin/member/adminMemberMain.do">회원관리</a></li>
-			<li><a href="#">배송관리</a></li>
 			<li><a href="#">게시판관리</a></li>
 		</ul>
 	</li>
@@ -26,17 +25,17 @@
 		<h3>주문내역</h3>
 		<ul>
 			<li><a href="${contextPath}/mypage/listMyOrderHistory.do">주문내역/배송 조회</a></li>
-			<li><a href="#">반품/교환 신청 및 조회</a></li>
+<%--			<li><a href="#">반품/교환 신청 및 조회</a></li>--%>
 			<li><a href="${contextPath}/mypage/cancelOrderHistory.do">취소 주문 내역</a></li>
-			<li><a href="#">세금 계산서</a></li>
+<%--			<li><a href="#">세금 계산서</a></li>--%>
 		</ul>
 	</li>
 	<li>
 		<h3>정보내역</h3>
 		<ul>
 			<li><a href="${contextPath}/mypage/myDetailInfo.do">회원정보관리</a></li>
-			<li><a href="#">나의 주소록</a></li>
-			<li><a href="#">개인정보 동의내역</a></li>
+<%--			<li><a href="#">나의 주소록</a></li>--%>
+<%--			<li><a href="#">개인정보 동의내역</a></li>--%>
 			<li><a href="#">회원탈퇴</a></li>
 		</ul>
 	</li>
@@ -45,25 +44,24 @@
 	<li>
 		<h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;국내외 도서</h3>
 		<ul>
-			<li><a href="${contextPath}/goods/goodsList.do">IT/인터넷</a></li>
-			<li><a href="#">경제/경영</a></li>
-			<li><a href="#">대학교재</a></li>
-			<li><a href="#">자기계발</a></li>
-			<li><a href="#">자연과학/공학</a></li>
-			<li><a href="#">역사/인문학</a></li>
+			<li><a href="${contextPath}/goods/goodsList.do">백엔드</a></li>
+			<li><a href="#">프론트엔드</a></li>
+			<li><a href="#">모바일 앱 개발</a></li>
+			<li><a href="#">알고리즘•자료구조</a></li>
+			<li><a href="#">데이터베이스</a></li>
 		</ul>
 	</li>
-	<li>
-		<h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;음반</h3>
-		<ul>
-			<li><a href="#">가요</a></li>
-			<li><a href="#">록</a></li>
-			<li><a href="#">클래식</a></li>
-			<li><a href="#">뉴에이지</a></li>
-			<li><a href="#">재즈</a></li>
-			<li><a href="#">기타</a></li>
-		</ul>
-	</li>
+<%--	<li>--%>
+<%--		<h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;음반</h3>--%>
+<%--		<ul>--%>
+<%--			<li><a href="#">가요</a></li>--%>
+<%--			<li><a href="#">록</a></li>--%>
+<%--			<li><a href="#">클래식</a></li>--%>
+<%--			<li><a href="#">뉴에이지</a></li>--%>
+<%--			<li><a href="#">재즈</a></li>--%>
+<%--			<li><a href="#">기타</a></li>--%>
+<%--		</ul>--%>
+<%--	</li>--%>
  </c:otherwise>
 </c:choose>	
 </ul>

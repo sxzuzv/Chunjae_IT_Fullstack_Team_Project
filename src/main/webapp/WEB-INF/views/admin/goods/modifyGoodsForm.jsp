@@ -246,17 +246,17 @@ function fn_modify_goods(goods_Id, attribute){
 				</td>
 				
 			</tr>
-			<tr>
-				<td >상품 정가</td>
-				<td><input name="goodsPrice" type="text" size="40" value="${goods.goodsPrice }" /></td>
-				<td>
-				 <input  type="button" value="수정반영"  onClick="fn_modify_goods('${goods.goodsId }','goodsPrice')"/>
-				</td>
-				
-			</tr>
+<%--			<tr>--%>
+<%--				<td >상품 정가</td>--%>
+<%--				<td><input name="goodsPrice" type="text" size="40" value="${goods.goodsPrice }" /></td>--%>
+<%--				<td>--%>
+<%--				 <input  type="button" value="수정반영"  onClick="fn_modify_goods('${goods.goodsId }','goodsPrice')"/>--%>
+<%--				</td>--%>
+<%--				--%>
+<%--			</tr>--%>
 			
 			<tr>
-				<td >상품 판매 가격</td>
+				<td >상품 판매가</td>
 				<td><input name="goodsSalesPrice" type="text" size="40" value="${goods.goodsSalesPrice }" /></td>
 				<td>
 				 <input  type="button" value="수정반영"  onClick="fn_modify_goods('${goods.goodsId }','goodsSalesPrice')"/>
