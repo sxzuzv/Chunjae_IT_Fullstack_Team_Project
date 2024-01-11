@@ -5,6 +5,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -12,7 +13,8 @@ import org.springframework.web.servlet.ModelAndView;
 import kr.co.chunjae.order.vo.OrderVO;
 
 public interface OrderController {
-	public ModelAndView orderEachGoods(@ModelAttribute("orderVO") OrderVO _orderVO, HttpServletRequest request, HttpServletResponse response)  throws Exception;
-	public ModelAndView orderAllCartGoods(@RequestParam String[] cart_goods_qty, HttpServletRequest request, HttpServletResponse response)  throws Exception;
-	public ModelAndView payToOrderGoods(@RequestParam Map<String, String> orderMap, HttpServletRequest request, HttpServletResponse response)  throws Exception;
+	public String orderEachGoods(@ModelAttribute("orderVO") OrderVO _orderVO, HttpServletRequest request)  throws Exception;
+	public String orderAllCartGoods(@RequestParam String[] cart_goods_qty, HttpServletRequest request)  throws Exception;
+	public String payToOrderGoods(@RequestParam Map<String, String> orderMap, HttpServletRequest request, Model model)  throws Exception;
+
 }

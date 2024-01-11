@@ -11,11 +11,13 @@ import javax.servlet.http.HttpSession;
 
 import kr.co.chunjae.common.base.BaseController;
 import kr.co.chunjae.member.vo.MemberVO;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,16 +26,15 @@ import org.springframework.web.servlet.ModelAndView;
 import kr.co.chunjae.admin.member.service.AdminMemberService;
 
 @Controller("adminMemberController")
+@RequiredArgsConstructor
 @RequestMapping(value="/admin/member")
 public class AdminMemberControllerImpl extends BaseController implements AdminMemberController{
-	@Autowired
-	AdminMemberService adminMemberService;
+	private  final AdminMemberService adminMemberService;
 	
 	@RequestMapping(value="/adminMemberMain.do" ,method={RequestMethod.POST,RequestMethod.GET})
-	public ModelAndView adminGoodsMain(@RequestParam Map<String, String> dateMap,
-			                           HttpServletRequest request, HttpServletResponse response)  throws Exception{
+	public String adminGoodsMain(@RequestParam Map<String, String> dateMap,
+			                           HttpServletRequest request, HttpServletResponse response, Model model)  throws Exception{
 		String viewName=(String)request.getAttribute("viewName");
-		ModelAndView mav = new ModelAndView(viewName);
 
 		String fixedSearchPeriod = dateMap.get("fixedSearchPeriod");
 		String section = dateMap.get("section");
@@ -59,30 +60,29 @@ public class AdminMemberControllerImpl extends BaseController implements AdminMe
 		condMap.put("beginDate",beginDate);
 		condMap.put("endDate", endDate);
 		ArrayList<MemberVO> member_list=adminMemberService.listMember(condMap);
-		mav.addObject("member_list", member_list);
+		model.addAttribute("member_list", member_list);
 		
 		String beginDate1[]=beginDate.split("-");
 		String endDate2[]=endDate.split("-");
-		mav.addObject("beginYear",beginDate1[0]);
-		mav.addObject("beginMonth",beginDate1[1]);
-		mav.addObject("beginDay",beginDate1[2]);
-		mav.addObject("endYear",endDate2[0]);
-		mav.addObject("endMonth",endDate2[1]);
-		mav.addObject("endDay",endDate2[2]);
-		
-		mav.addObject("section", section);
-		mav.addObject("pageNum", pageNum);
-		return mav;
+		model.addAttribute("beginYear",beginDate1[0]);
+		model.addAttribute("beginMonth",beginDate1[1]);
+		model.addAttribute("beginDay",beginDate1[2]);
+		model.addAttribute("endYear",endDate2[0]);
+		model.addAttribute("endMonth",endDate2[1]);
+		model.addAttribute("endDay",endDate2[2]);
+
+		model.addAttribute("section", section);
+		model.addAttribute("pageNum", pageNum);
+		return viewName;
 		
 	}
 	@RequestMapping(value="/memberDetail.do" ,method={RequestMethod.POST,RequestMethod.GET})
-	public ModelAndView memberDetail(HttpServletRequest request, HttpServletResponse response)  throws Exception{
+	public String memberDetail(HttpServletRequest request, HttpServletResponse response, Model model)  throws Exception{
 		String viewName=(String)request.getAttribute("viewName");
-		ModelAndView mav = new ModelAndView(viewName);
 		String member_id=request.getParameter("member_id");
 		MemberVO member_info=adminMemberService.memberDetail(member_id);
-		mav.addObject("member_info",member_info);
-		return mav;
+		model.addAttribute("member_info",member_info);
+		return viewName;
 	}
 	
 	@RequestMapping(value="/modifyMemberInfo.do" ,method={RequestMethod.POST,RequestMethod.GET})
@@ -99,7 +99,7 @@ public class AdminMemberControllerImpl extends BaseController implements AdminMe
 			memberMap.put("member_birth_m",val[1]);
 			memberMap.put("member_birth_d",val[2]);
 			memberMap.put("member_birth_gn",val[3]);
-		}else if(mod_type.equals("tel")){
+		}  else if(mod_type.equals("tel")){
 			val=value.split(",");
 			memberMap.put("tel1",val[0]);
 			memberMap.put("tel2",val[1]);
@@ -122,6 +122,8 @@ public class AdminMemberControllerImpl extends BaseController implements AdminMe
 			memberMap.put("roadAddress",val[1]);
 			memberMap.put("jibunAddress", val[2]);
 			memberMap.put("namujiAddress", val[3]);
+		} else {
+			memberMap.put(mod_type, value);
 		}
 
 		memberMap.put("member_id", member_id);
@@ -133,8 +135,8 @@ public class AdminMemberControllerImpl extends BaseController implements AdminMe
 	}
 	
 	@RequestMapping(value="/deleteMember.do" ,method={RequestMethod.POST})
-	public ModelAndView deleteMember(HttpServletRequest request, HttpServletResponse response)  throws Exception {
-		ModelAndView mav = new ModelAndView();
+	public String deleteMember(HttpServletRequest request)  throws Exception {
+		String viewName = "redirect:/admin/member/adminMemberMain.do";
 		HashMap<String,String> memberMap=new HashMap<String,String>();
 		String member_id=request.getParameter("member_id");
 		String del_yn=request.getParameter("del_yn");
@@ -142,8 +144,7 @@ public class AdminMemberControllerImpl extends BaseController implements AdminMe
 		memberMap.put("member_id", member_id);
 		
 		adminMemberService.modifyMemberInfo(memberMap);
-		mav.setViewName("redirect:/admin/member/adminMemberMain.do");
-		return mav;
+		return viewName;
 		
 	}
 		

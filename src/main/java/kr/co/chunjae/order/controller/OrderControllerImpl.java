@@ -1,6 +1,7 @@
 package kr.co.chunjae.order.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -10,8 +11,10 @@ import javax.servlet.http.HttpSession;
 
 import kr.co.chunjae.common.base.BaseController;
 import kr.co.chunjae.member.vo.MemberVO;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -24,29 +27,33 @@ import kr.co.chunjae.order.vo.OrderVO;
 
 @Controller("orderController")
 @RequestMapping(value="/order")
+@RequiredArgsConstructor
 public class OrderControllerImpl extends BaseController implements OrderController {
-	@Autowired
-	OrderService orderService;
-	@Autowired
-	OrderVO orderVO;
-	
+
+	private final OrderService orderService;
+
 	@RequestMapping(value="/orderEachGoods.do" ,method = RequestMethod.POST)
-	public ModelAndView orderEachGoods(@ModelAttribute("orderVO") OrderVO _orderVO,
-			                       HttpServletRequest request, HttpServletResponse response)  throws Exception{
-		
+	public String orderEachGoods(@ModelAttribute("orderVO") OrderVO _orderVO,
+			                       HttpServletRequest request)  throws Exception{
+
 		request.setCharacterEncoding("utf-8");
 		HttpSession session=request.getSession();
-		
+
 		Boolean isLogOn=(Boolean)session.getAttribute("isLogOn");
 		String action=(String)session.getAttribute("action");
+
+		OrderVO orderVO;
+
 		//로그인 여부 체크
 		//이전에 로그인 상태인 경우는 주문과정 진행
 		//로그아웃 상태인 경우 로그인 화면으로 이동
 		if(isLogOn==null || isLogOn==false){
 			session.setAttribute("orderInfo", _orderVO);
 			session.setAttribute("action", "/order/orderEachGoods.do");
-			return new ModelAndView("redirect:/member/loginForm.do");
+
+			return "redirect:/member/loginForm.do";
 		}else{
+
 			 if(action!=null && action.equals("/order/orderEachGoods.do")){
 				orderVO=(OrderVO)session.getAttribute("orderInfo");
 				session.removeAttribute("action");
@@ -54,32 +61,31 @@ public class OrderControllerImpl extends BaseController implements OrderControll
 				 orderVO=_orderVO;
 			 }
 		 }
-		
+
 		String viewName=(String)request.getAttribute("viewName");
-		ModelAndView mav = new ModelAndView(viewName);
-		
+
 		List myOrderList=new ArrayList<OrderVO>();
 		myOrderList.add(orderVO);
 
 		MemberVO memberInfo=(MemberVO)session.getAttribute("memberInfo");
-		
+
 		session.setAttribute("myOrderList", myOrderList);
 		session.setAttribute("orderer", memberInfo);
-		return mav;
+
+		return viewName;
 	}
-	
+
 	@RequestMapping(value="/orderAllCartGoods.do" ,method = RequestMethod.POST)
-	public ModelAndView orderAllCartGoods( @RequestParam("cart_goods_qty")  String[] cart_goods_qty,
-			                 HttpServletRequest request, HttpServletResponse response)  throws Exception{
+	public String orderAllCartGoods( @RequestParam("cart_goods_qty")  String[] cart_goods_qty,
+			                 HttpServletRequest request)  throws Exception{
 		String viewName=(String)request.getAttribute("viewName");
-		ModelAndView mav = new ModelAndView(viewName);
 		HttpSession session=request.getSession();
 		Map cartMap=(Map)session.getAttribute("cartMap");
 		List myOrderList=new ArrayList<OrderVO>();
-		
+
 		List<GoodsVO> myGoodsList=(List<GoodsVO>)cartMap.get("myGoodsList");
 		MemberVO memberVO=(MemberVO)session.getAttribute("memberInfo");
-		
+
 		for(int i=0; i<cart_goods_qty.length;i++){
 			String[] cart_goods=cart_goods_qty[i].split(":");
 			for(int j = 0; j< myGoodsList.size();j++) {
@@ -100,17 +106,18 @@ public class OrderControllerImpl extends BaseController implements OrderControll
 				}
 			}
 		}
+
 		session.setAttribute("myOrderList", myOrderList);
 		session.setAttribute("orderer", memberVO);
-		return mav;
-	}	
-	
+
+		return viewName;
+	}
+
 	@RequestMapping(value="/payToOrderGoods.do" ,method = RequestMethod.POST)
-	public ModelAndView payToOrderGoods(@RequestParam Map<String, String> receiverMap,
-			                       HttpServletRequest request, HttpServletResponse response)  throws Exception{
+	public String payToOrderGoods(@RequestParam Map<String, String> receiverMap,
+								  HttpServletRequest request, Model model)  throws Exception{
 		String viewName=(String)request.getAttribute("viewName");
-		ModelAndView mav = new ModelAndView(viewName);
-		
+
 		HttpSession session=request.getSession();
 		MemberVO memberVO=(MemberVO)session.getAttribute("orderer");
 		String member_id=memberVO.getMemberId();
@@ -124,7 +131,7 @@ public class OrderControllerImpl extends BaseController implements OrderControll
 			orderVO.setMemberId(member_id);
 			orderVO.setOrdererName(orderer_name);
 			orderVO.setReceiverName(receiverMap.get("receiverName"));
-			
+
 			orderVO.setReceiverHp1(receiverMap.get("receiverHp1"));
 			orderVO.setReceiverHp2(receiverMap.get("receiverHp2"));
 			orderVO.setReceiverHp3(receiverMap.get("receiverHp3"));
@@ -137,15 +144,16 @@ public class OrderControllerImpl extends BaseController implements OrderControll
 			orderVO.setCardPayMonth(receiverMap.get("cardPayMonth"));
 			orderVO.setPayOrdererHpNum(receiverMap.get("payOrdererHpNum"));
 			orderVO.setOrdererHp(orderer_hp);
+			orderVO.setGoodsDeliveryPrice(orderVO.getGoodsDeliveryPrice());
 			myOrderList.set(i, orderVO); //각 orderVO에 주문자 정보를 세팅한 후 다시 myOrderList에 저장한다.
 		}//end for
 
 	    orderService.addNewOrder(myOrderList);
 
-		mav.addObject("myOrderInfo",receiverMap);//OrderVO로 주문결과 페이지에  주문자 정보를 표시한다.
-		mav.addObject("myOrderList", myOrderList);
-		return mav;
+		model.addAttribute("myOrderInfo",receiverMap);//OrderVO로 주문결과 페이지에  주문자 정보를 표시한다.
+		model.addAttribute("myOrderList", myOrderList);
+
+		return viewName;
 	}
-	
 
 }

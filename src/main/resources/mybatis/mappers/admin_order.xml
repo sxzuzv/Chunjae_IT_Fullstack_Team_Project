@@ -83,7 +83,7 @@
 			                <if test='search_type=="payOrdererHpNum"'>
 			                   AND pay_orderer_hp_num=#{search_word}
 			                </if>
-			              order by pay_order_time desc
+			              order by pay_order_time desc, order_id asc
 					    ) as t
 					CROSS JOIN (SELECT @ROWNUM:=0) AS dummy
 				) as result
@@ -93,26 +93,26 @@
 	
 <update id="updateDeliveryState" parameterType="java.util.Map" >
 	   update t_shopping_order
-	    <set> 
+	    <set>
 	      <if test=" deliveryState!='' and deliveryState!=null">
 			delivery_state=#{deliveryState}
 	      </if>
 	    </set>
-	    where 
+	    where
 	    order_id=#{orderId}
 	</update>	
 	
     <select id="selectOrderDetail" resultType="OrderVO"   parameterType="int"  >
 	    <![CDATA[
 		    select * from t_shopping_order
-            where order_id=#{orderId}
+            where order_id=#{order_id}
     	]]>
 	</select>	
 	
    <select id="selectOrderer" resultType="memberVO"  parameterType="String"  >
 	    <![CDATA[
 			select * from t_shopping_member 
-			where member_id=#{memberId}
+			where member_id=#{member_Id}
 		]]>
 	</select>	
 </mapper>

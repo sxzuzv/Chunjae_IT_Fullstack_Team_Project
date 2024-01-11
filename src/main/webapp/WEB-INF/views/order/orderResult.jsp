@@ -14,7 +14,7 @@
     <td>수량</td>
     <td>주문금액</td>
     <td>배송비</td>
-    <td>예상적립금</td>
+<%--    <td>예상적립금</td>--%>
     <td>주문금액합계</td>
   </tr>
   <TR>
@@ -34,11 +34,12 @@
     <td>
       <h2>${item.orderGoodsQty }개<h2>
     </td>
-    <td><h2>${item.orderGoodsQty *item.goodsSalesPrice}원 (10% 할인)</h2></td>
-    <td><h2>0원</h2></td>
-    <td><h2>${1500 *item.orderGoodsQty }원</h2></td>
+    <td><h2>${item.orderGoodsQty *item.goodsSalesPrice}원</h2></td>
+      <%-- todo: 배송비 값 받아오기 --%>
+    <td><h2>${item.goodsDeliveryPrice}원</h2></td>
+<%--    <td><h2>${1500 *item.orderGoodsQty }원</h2></td>--%>
     <td>
-      <h2>${item.orderGoodsQty *item.goodsSalesPrice}원</h2>
+      <h2>${item.orderGoodsQty *item.goodsSalesPrice + item.goodsDeliveryPrice}원</h2>
     </td>
   </TR>
   </c:forEach>
@@ -84,7 +85,7 @@
         <td>
           ${myOrderInfo.deliveryAddress}
         </td>
-        >
+        
       </TR>
       <TR class="dot_line">
         <TD class="fixed_join">배송 메시지</TD>
@@ -142,18 +143,20 @@
           ${myOrderInfo.payMethod }
         </TD>
       </TR>
-      <TR class="dot_line">
-        <TD class="fixed_join">결제카드</TD>
-        <TD>
-          ${myOrderInfo.cardComName}
-        </TD>
-      </TR>
-      <TR class="dot_line">
-        <TD class="fixed_join">할부기간</TD>
-        <TD>
-          ${myOrderInfo.cardPayMonth }
-        </TD>
-      </TR>
+        <c:if test="${myOrderInfo.payMethod} == '신용카드'">
+          <TR class="dot_line">
+            <TD class="fixed_join">결제카드</TD>
+            <TD>
+                ${myOrderInfo.cardComName}
+            </TD>
+          </TR>
+          <TR class="dot_line">
+            <TD class="fixed_join">할부기간</TD>
+            <TD>
+                ${myOrderInfo.cardPayMonth }
+            </TD>
+          </TR>
+        </c:if>
       </TBODY>
     </table>
   </DIV>

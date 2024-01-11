@@ -2,7 +2,11 @@ package kr.co.chunjae.order.dao;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
+import kr.co.chunjae.cart.vo.CartVO;
+import kr.co.chunjae.goods.vo.GoodsVO;
+import lombok.RequiredArgsConstructor;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -11,9 +15,10 @@ import org.springframework.stereotype.Repository;
 import kr.co.chunjae.order.vo.OrderVO;
 
 @Repository("orderDAO")
+@RequiredArgsConstructor
 public class OrderDAOImpl implements OrderDAO {
-	@Autowired
-	private SqlSession sqlSession;
+
+	private final SqlSession sqlSession;
 	
 	public List<OrderVO> listMyOrderGoods(OrderVO orderVO) throws DataAccessException{
 		List<OrderVO> orderGoodsList=new ArrayList<OrderVO>();
@@ -22,8 +27,10 @@ public class OrderDAOImpl implements OrderDAO {
 	}
 	
 	public void insertNewOrder(List<OrderVO> myOrderList) throws DataAccessException{
+		int orderId = selectOrderID();
 		for(int i=0; i<myOrderList.size();i++){
 			OrderVO orderVO =(OrderVO)myOrderList.get(i);
+			orderVO.setOrderId(orderId);
 			sqlSession.insert("mapper.order.insertNewOrder",orderVO);
 		}
 		
@@ -43,7 +50,20 @@ public class OrderDAOImpl implements OrderDAO {
 			OrderVO orderVO =(OrderVO)myOrderList.get(i);
 			sqlSession.delete("mapper.order.deleteGoodsFromCart",orderVO);		
 		}
-	}	
+	}
 
+	private int selectOrderID() throws DataAccessException{
+		return sqlSession.selectOne("mapper.order.selectOrderID");
+
+	}
+
+	// 상품 배송료
+	public List<GoodsVO> goodsDeliveryPrice(List<OrderVO> myOrderList) throws DataAccessException {
+
+		List<GoodsVO> goodsDeliveryPrice;
+		goodsDeliveryPrice = sqlSession.selectList("mapper.order.selectGoodsDeliveryPrice",myOrderList);
+
+		return goodsDeliveryPrice;
+	}
 }
 

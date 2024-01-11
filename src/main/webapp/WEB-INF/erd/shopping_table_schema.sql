@@ -7,20 +7,20 @@ CREATE TABLE t_shopping_member
     `member_pw`       varchar(30) NOT NULL comment '비밀번호',
     `member_name`     varchar(50) NOT NULL comment '이름',
     `member_gender`   varchar(10) comment '성별',
-    `member_hp1`       varchar(20) comment '휴대폰번호1',
-    `member_hp2`       varchar(20) comment '휴대폰번호2',
-    `member_hp3`       varchar(20) comment '휴대폰번호3',
+    `member_hp1`      varchar(20) comment '휴대폰번호1',
+    `member_hp2`      varchar(20) comment '휴대폰번호2',
+    `member_hp3`      varchar(20) comment '휴대폰번호3',
     `smssts_yn`       varchar(5) comment '문자수신동의여부',
-    `member_email1`    varchar(20) comment '이메일1',
-    `member_email2`    varchar(20) comment '이메일2',
+    `member_email1`   varchar(20) comment '이메일1',
+    `member_email2`   varchar(20) comment '이메일2',
     `emailsts_yn`     varchar(5) comment '이메일수신동의여부',
     `zipcode`         varchar(20) comment '우편번호',
     `road_address`    varchar(50) comment '도로명',
     `jibun_address`   varchar(50) comment '지번',
     `namuji_address`  varchar(50) comment '나머지주소',
-    `member_birth_y`    varchar(20) comment '생년월일',
-    `member_birth_m`    varchar(20) comment '생년월일',
-    `member_birth_d`    varchar(20) comment '생년월일',
+    `member_birth_y`  varchar(20) comment '생년월일',
+    `member_birth_m`  varchar(20) comment '생년월일',
+    `member_birth_d`  varchar(20) comment '생년월일',
     `member_birth_gn` varchar(20) comment '양력음력',
     `join_date`       date       DEFAULT current_date comment '가입일',
     `del_yn`          varchar(5) default 'n' comment '탈퇴여부'
@@ -28,33 +28,34 @@ CREATE TABLE t_shopping_member
 -- 주문 테이블
 CREATE TABLE t_shopping_order
 (
-    order_seq_num      bigint auto_increment PRIMARY KEY comment '주문상품일련번호',
-    order_id           bigint comment '주문번호',
-    member_id          varchar(20) comment '주문자아이디', -- FK
-    goods_id           bigint comment '상품번호',        -- FK
-    orderer_name       varchar(50) comment '주문자이름',
-    goods_title        varchar(100) comment '상품이름',
-    order_goods_qty    smallint comment '주문수량',
-    goods_sales_price  int comment '상품판매가격',
-    goods_file_name    varchar(60) comment '상품이미지파일이름',
-    receiver_name      varchar(50) comment '수령자이름',
-    receiver_hp1        varchar(20) comment '수령자 휴대폰번호1',
-	receiver_hp2 varchar(20) comment '수령자 휴대폰번호2',
-    receiver_hp3 varchar(20) comment '수령자 휴대폰번호3',
+    order_seq_num        bigint auto_increment PRIMARY KEY comment '주문상품일련번호',
+    order_id             bigint comment '주문번호',
+    member_id            varchar(20) comment '주문자아이디', -- FK
+    goods_id             bigint comment '상품번호',        -- FK
+    orderer_name         varchar(50) comment '주문자이름',
+    goods_title          varchar(100) comment '상품이름',
+    order_goods_qty      smallint comment '주문수량',
+    goods_sales_price    int comment '상품판매가격',
+    goods_file_name      varchar(60) comment '상품이미지파일이름',
+    receiver_name        varchar(50) comment '수령자이름',
+    receiver_hp1         varchar(20) comment '수령자 휴대폰번호1',
+    receiver_hp2         varchar(20) comment '수령자 휴대폰번호2',
+    receiver_hp3         varchar(20) comment '수령자 휴대폰번호3',
 -- 컬럼 삭제 	"receiver_tel1" varchar(20) comment '수령자 유선 전화번호1',
 -- 컬럼 삭제	"receiver_tel2" varchar(20) comment '수령자 유선 전화번호2',
 -- 컬럼 삭제	"receiver_tel3" varchar(20) comment '수령자 유선 전화번호3',
-    delivery_address   varchar(100) comment '배송주소',
-    delivery_method    varchar(40) comment '배송방법',
-    delivery_message   varchar(300) comment '부재시 전달 메시지',
-    gift_wrapping      varchar(20) comment '상품 포장여부',
-    pay_method         varchar(200) comment '결제방법',
-    card_com_name      varchar(50) comment '결제카드회사이름',
-    card_pay_month     varchar(20) comment '할부개월수',
-    pay_orderer_hp_num varchar(20) comment '휴대폰 결재번호',
-    delivery_state     varchar(20) default 'delivery_prepared' comment '상품배송상태',
-    pay_order_time     datetime    default current_time comment '결제시간',
-    orderer_hp         varchar(20) comment '주문자 휴대폰번호'
+    delivery_address     varchar(100) comment '배송주소',
+    delivery_method      varchar(40) comment '배송방법',
+    delivery_message     varchar(300) comment '부재시 전달 메시지',
+    gift_wrapping        varchar(20) comment '상품 포장여부',
+    pay_method           varchar(200) comment '결제방법',
+    card_com_name        varchar(50) comment '결제카드회사이름',
+    card_pay_month       varchar(20) comment '할부개월수',
+    pay_orderer_hp_num   varchar(20) comment '휴대폰 결재번호',
+    delivery_state       varchar(20) default 'delivery_prepared' comment '상품배송상태',
+    pay_order_time       datetime    default current_time comment '결제시간',
+    orderer_hp           varchar(20) comment '주문자 휴대폰번호',
+    goods_delivery_price int comment '배송비'
 );
 -- 상품정보 테이블
 CREATE TABLE t_shopping_goods
@@ -138,10 +139,18 @@ CREATE TABLE member_auth
 -- 더미데이터
 
 -- t_shopping_member
-insert into t_shopping_member(member_id, member_pw, member_name, member_gender, member_hp1, member_hp2, member_hp3, smssts_yn, member_email1, member_email2, emailsts_yn, zipcode, road_address, jibun_address, namuji_address, member_birth_y, member_birth_m, member_birth_d, member_birth_gn) values
-    ('lee', '1212', '이병승', '101', '010','2222','3333','Y','lee','test.com','Y','13547','경기 성남시 분당구 고기로 25(동원동)','경기 성남시 분당구 동원동 79-1','럭키빌딩 101호','2000','5','10','2');
-insert into t_shopping_member(member_id, member_pw, member_name, member_gender, member_hp1, member_hp2 ,member_hp3, smssts_yn, member_email1 ,member_email2, emailsts_yn, zipcode, road_address, jibun_address, namuji_address, member_birth_y, member_birth_m, member_birth_d, member_birth_gn) values
-    ('admin', '1212', '어드민', '101', '010','1111','2222','Y','admin','test.com','Y','06253','서울 강남구 강남대로 298(역삼동)','서울 강남구 역삼동 838','럭키빌딩 101호','2000','5','10','2');
+insert into t_shopping_member(member_id, member_pw, member_name, member_gender, member_hp1, member_hp2, member_hp3,
+                              smssts_yn, member_email1, member_email2, emailsts_yn, zipcode, road_address,
+                              jibun_address, namuji_address, member_birth_y, member_birth_m, member_birth_d,
+                              member_birth_gn)
+values ('lee', '1212', '이병승', '101', '010', '2222', '3333', 'Y', 'lee', 'test.com', 'Y', '13547',
+        '경기 성남시 분당구 고기로 25(동원동)', '경기 성남시 분당구 동원동 79-1', '럭키빌딩 101호', '2000', '5', '10', '2');
+insert into t_shopping_member(member_id, member_pw, member_name, member_gender, member_hp1, member_hp2, member_hp3,
+                              smssts_yn, member_email1, member_email2, emailsts_yn, zipcode, road_address,
+                              jibun_address, namuji_address, member_birth_y, member_birth_m, member_birth_d,
+                              member_birth_gn)
+values ('admin', '1212', '어드민', '101', '010', '1111', '2222', 'Y', 'admin', 'test.com', 'Y', '06253',
+        '서울 강남구 강남대로 298(역삼동)', '서울 강남구 역삼동 838', '럭키빌딩 101호', '2000', '5', '10', '2');
 
 
 -- 상품 정보
@@ -157,11 +166,11 @@ VALUES (334, '포토샵 무작정 따라하기', '민지영, 문수민, 이상호, 앤미디어', '길벗
         '구글코리아에서 소프트웨어 엔지니어로 재직 중이다. 더 좋은 소프트웨어 엔지니어가 되기를 갈망하지만 일과 삶의 균형이 더 중요하다. 겨울에는 주로 스키를 즐긴다.', NULL);
 
 INSERT INTO bookshop.t_goods_detail_image
-(image_id, goods_id, file_name, reg_id, file_type)
-VALUES(299, 334, '포토샵 무작정 따라하기_메인.jpg', 'admin', 'main_image');
+    (image_id, goods_id, file_name, reg_id, file_type)
+VALUES (299, 334, '포토샵 무작정 따라하기_메인.jpg', 'admin', 'main_image');
 INSERT INTO bookshop.t_goods_detail_image
-(image_id, goods_id, file_name, reg_id, file_type)
-VALUES(300, 334, '포토샵 무작정 따라하기_상세1.jpg', 'admin', 'detail_image1');
+    (image_id, goods_id, file_name, reg_id, file_type)
+VALUES (300, 334, '포토샵 무작정 따라하기_상세1.jpg', 'admin', 'detail_image1');
 
 INSERT INTO bookshop.t_shopping_goods
 (goods_id, goods_title, goods_writer, goods_publisher, goods_price, goods_sales_price, goods_published_date,
@@ -171,11 +180,11 @@ VALUES (335, '무작정 따라하기 차트분석', '윤재수', '미래 출판사', 1212, 30000, '
         '차트분석 무작정 따라하기_메인.jpg', 'bestseller', '1212', '1212', '1212', '1212', NULL);
 
 INSERT INTO bookshop.t_goods_detail_image
-(image_id, goods_id, file_name, reg_id, file_type)
-VALUES(301, 335, '차트분석 무작정 따라하기_메인.jpg', 'admin', 'main_image');
+    (image_id, goods_id, file_name, reg_id, file_type)
+VALUES (301, 335, '차트분석 무작정 따라하기_메인.jpg', 'admin', 'main_image');
 INSERT INTO bookshop.t_goods_detail_image
-(image_id, goods_id, file_name, reg_id, file_type)
-VALUES(302, 335, '차트분석 무작정 따라하기_상세1.jpg', 'admin', 'detail_image1');
+    (image_id, goods_id, file_name, reg_id, file_type)
+VALUES (302, 335, '차트분석 무작정 따라하기_상세1.jpg', 'admin', 'detail_image1');
 
 INSERT INTO bookshop.t_shopping_goods
 (goods_id, goods_title, goods_writer, goods_publisher, goods_price, goods_sales_price, goods_published_date,
@@ -184,11 +193,11 @@ INSERT INTO bookshop.t_shopping_goods
 VALUES (336, '짠테크 가계부', '짠돌이 카페', '길벗', 30000, 30000, '2018-10-02', 1212, '1212', 1212, '2018-10-18', '짠테그 가계부_메인.jpg',
         'bestseller', '1212', '1212', '121', '1212', NULL);
 INSERT INTO bookshop.t_goods_detail_image
-(image_id, goods_id, file_name, reg_id, file_type)
-VALUES(303, 336, '짠테그 가계부_메인.jpg', 'admin', 'main_image');
+    (image_id, goods_id, file_name, reg_id, file_type)
+VALUES (303, 336, '짠테그 가계부_메인.jpg', 'admin', 'main_image');
 INSERT INTO bookshop.t_goods_detail_image
-(image_id, goods_id, file_name, reg_id, file_type)
-VALUES(304, 336, '짠테그 가계부_상세1.jpg', 'admin', 'detail_image1');
+    (image_id, goods_id, file_name, reg_id, file_type)
+VALUES (304, 336, '짠테그 가계부_상세1.jpg', 'admin', 'detail_image1');
 
 INSERT INTO bookshop.t_shopping_goods
 (goods_id, goods_title, goods_writer, goods_publisher, goods_price, goods_sales_price, goods_published_date,
@@ -198,11 +207,11 @@ VALUES (337, '케라스로 배우는 딥러닝', '프랑소와 숄레', '국민출판사', 30000, 300
         '케라시_메인.jpg', 'bestseller', '1212', '1221', '1212', '1212', NULL);
 
 INSERT INTO bookshop.t_goods_detail_image
-(image_id, goods_id, file_name, reg_id, file_type)
-VALUES(305, 337, '케라시_메인.jpg', 'admin', 'main_image');
+    (image_id, goods_id, file_name, reg_id, file_type)
+VALUES (305, 337, '케라시_메인.jpg', 'admin', 'main_image');
 INSERT INTO bookshop.t_goods_detail_image
-(image_id, goods_id, file_name, reg_id, file_type)
-VALUES(306, 337, '케라시_상세1.jpg', 'admin', 'detail_image1');
+    (image_id, goods_id, file_name, reg_id, file_type)
+VALUES (306, 337, '케라시_상세1.jpg', 'admin', 'detail_image1');
 
 INSERT INTO bookshop.t_shopping_goods
 (goods_id, goods_title, goods_writer, goods_publisher, goods_price, goods_sales_price, goods_published_date,
@@ -212,11 +221,11 @@ VALUES (338, '컴퓨터 활용능력 2급 실기', '이병승', '길벗', 25000, 25000, '2018-0
         '컴퓨터 활용능력 2급 실기_메인.jpg', 'bestseller', '1212', '1212', '1212', '1212', NULL);
 
 INSERT INTO bookshop.t_goods_detail_image
-(image_id, goods_id, file_name, reg_id, file_type)
-VALUES(307, 338, '컴퓨터 활용능력 2급 실기_메인.jpg', 'admin', 'main_image');
+    (image_id, goods_id, file_name, reg_id, file_type)
+VALUES (307, 338, '컴퓨터 활용능력 2급 실기_메인.jpg', 'admin', 'main_image');
 INSERT INTO bookshop.t_goods_detail_image
-(image_id, goods_id, file_name, reg_id, file_type)
-VALUES(308, 338, '컴퓨터 활용능력 2급 실기_상세1.jpg', 'admin', 'detail_image1');
+    (image_id, goods_id, file_name, reg_id, file_type)
+VALUES (308, 338, '컴퓨터 활용능력 2급 실기_상세1.jpg', 'admin', 'detail_image1');
 
 INSERT INTO bookshop.t_shopping_goods
 (goods_id, goods_title, goods_writer, goods_publisher, goods_price, goods_sales_price, goods_published_date,
@@ -226,11 +235,11 @@ VALUES (339, '시나공 워드 프로세서 실기', '길벗 알엔디', '국민 출판사', 25000, 2
         '시나공 워드프로세서 실기_메인.jpg', 'bestseller', '1212', '1212', '1212', '121', NULL);
 
 INSERT INTO bookshop.t_goods_detail_image
-(image_id, goods_id, file_name, reg_id, file_type)
-VALUES(309, 339, '시나공 워드프로세서 실기_메인.jpg', 'admin', 'main_image');
+    (image_id, goods_id, file_name, reg_id, file_type)
+VALUES (309, 339, '시나공 워드프로세서 실기_메인.jpg', 'admin', 'main_image');
 INSERT INTO bookshop.t_goods_detail_image
-(image_id, goods_id, file_name, reg_id, file_type)
-VALUES(310, 339, '시나공 워드프로세서 실기_상세1.jpg', 'admin', 'detail_image1');
+    (image_id, goods_id, file_name, reg_id, file_type)
+VALUES (310, 339, '시나공 워드프로세서 실기_상세1.jpg', 'admin', 'detail_image1');
 
 INSERT INTO bookshop.t_shopping_goods
 (goods_id, goods_title, goods_writer, goods_publisher, goods_price, goods_sales_price, goods_published_date,
@@ -240,11 +249,11 @@ VALUES (340, '직장인을 위한 엑셀 실무', '홍길동', '서울출판사', 25000, 25000, '2
         '엑셀실무_메인.pg.jpg', 'bestseller', '1212', '1212', '1212', '1212', NULL);
 
 INSERT INTO bookshop.t_goods_detail_image
-(image_id, goods_id, file_name, reg_id, file_type)
-VALUES(311, 340, '엑셀실무_메인.pg.jpg', 'admin', 'main_image');
+    (image_id, goods_id, file_name, reg_id, file_type)
+VALUES (311, 340, '엑셀실무_메인.pg.jpg', 'admin', 'main_image');
 INSERT INTO bookshop.t_goods_detail_image
-(image_id, goods_id, file_name, reg_id, file_type)
-VALUES(312, 340, '엑셀실무_상세1.jpg', 'admin', 'detail_image1');
+    (image_id, goods_id, file_name, reg_id, file_type)
+VALUES (312, 340, '엑셀실무_상세1.jpg', 'admin', 'detail_image1');
 
 INSERT INTO bookshop.t_shopping_goods
 (goods_id, goods_title, goods_writer, goods_publisher, goods_price, goods_sales_price, goods_published_date,
@@ -254,11 +263,11 @@ VALUES (341, '자바스크립트 배우기', '2222', '서울 출판사', 25000, 25000, '2018-1
         '헬로자바스크립트_메인.jpg', 'bestseller', '5656', '56566', '5656', '5656', NULL);
 
 INSERT INTO bookshop.t_goods_detail_image
-(image_id, goods_id, file_name, reg_id, file_type)
-VALUES(313, 341, '헬로자바스크립트_메인.jpg', 'admin', 'main_image');
+    (image_id, goods_id, file_name, reg_id, file_type)
+VALUES (313, 341, '헬로자바스크립트_메인.jpg', 'admin', 'main_image');
 INSERT INTO bookshop.t_goods_detail_image
-(image_id, goods_id, file_name, reg_id, file_type)
-VALUES(314, 341, '모두의 파이선상세이미지1.jpg', 'admin', 'detail_image1');
+    (image_id, goods_id, file_name, reg_id, file_type)
+VALUES (314, 341, '모두의 파이선상세이미지1.jpg', 'admin', 'detail_image1');
 
 INSERT INTO bookshop.t_shopping_goods
 (goods_id, goods_title, goods_writer, goods_publisher, goods_price, goods_sales_price, goods_published_date,
@@ -268,11 +277,11 @@ VALUES (342, '부동산 상식 사전', '백영록', '길벗', 20000, 20000, '2018-10-04', 5
         'bestseller', '555', '555', '555', '555', NULL);
 
 INSERT INTO bookshop.t_goods_detail_image
-(image_id, goods_id, file_name, reg_id, file_type)
-VALUES(315, 342, '부동상 상식사전_메인.jpg', 'admin', 'main_image');
+    (image_id, goods_id, file_name, reg_id, file_type)
+VALUES (315, 342, '부동상 상식사전_메인.jpg', 'admin', 'main_image');
 INSERT INTO bookshop.t_goods_detail_image
-(image_id, goods_id, file_name, reg_id, file_type)
-VALUES(316, 342, '부동상 상식사전_상세1.jpg', 'admin', 'detail_image1');
+    (image_id, goods_id, file_name, reg_id, file_type)
+VALUES (316, 342, '부동상 상식사전_상세1.jpg', 'admin', 'detail_image1');
 
 INSERT INTO bookshop.t_shopping_goods
 (goods_id, goods_title, goods_writer, goods_publisher, goods_price, goods_sales_price, goods_published_date,
@@ -282,17 +291,17 @@ VALUES (343, '기적의 계산법', '이순신', '국민 출판사', 30000, 30000, '2018-10-04
         'steadyseller', '777', '7777', '777', '777', NULL);
 
 INSERT INTO bookshop.t_goods_detail_image
-(image_id, goods_id, file_name, reg_id, file_type)
-VALUES(317, 343, '기적적 계산법_메인.jpg', 'admin', 'main_image');
+    (image_id, goods_id, file_name, reg_id, file_type)
+VALUES (317, 343, '기적적 계산법_메인.jpg', 'admin', 'main_image');
 INSERT INTO bookshop.t_goods_detail_image
-(image_id, goods_id, file_name, reg_id, file_type)
-VALUES(337, 343, '기적적 계산법_상세1.jpg', 'admin', 'uploadFile');
+    (image_id, goods_id, file_name, reg_id, file_type)
+VALUES (337, 343, '기적적 계산법_상세1.jpg', 'admin', 'uploadFile');
 INSERT INTO bookshop.t_goods_detail_image
-(image_id, goods_id, file_name, reg_id, file_type)
-VALUES(338, 343, 'good1_detail_image2.jpg', 'admin', 'uploadFile');
+    (image_id, goods_id, file_name, reg_id, file_type)
+VALUES (338, 343, 'good1_detail_image2.jpg', 'admin', 'uploadFile');
 INSERT INTO bookshop.t_goods_detail_image
-(image_id, goods_id, file_name, reg_id, file_type)
-VALUES(339, 343, 'good1_detail_image3.jpg', 'admin', 'uploadFile');
+    (image_id, goods_id, file_name, reg_id, file_type)
+VALUES (339, 343, 'good1_detail_image3.jpg', 'admin', 'uploadFile');
 
 INSERT INTO bookshop.t_shopping_goods
 (goods_id, goods_title, goods_writer, goods_publisher, goods_price, goods_sales_price, goods_published_date,
@@ -302,11 +311,11 @@ VALUES (344, '초보자를 위한 자바 프로그래밍', '이병승', '인포북', 30000, 27000, 
         'image1.jpg', 'newbook', '7777', '77777', '7777', '7777', NULL);
 
 INSERT INTO bookshop.t_goods_detail_image
-(image_id, goods_id, file_name, reg_id, file_type)
-VALUES(319, 344, 'image1.jpg', 'admin', 'main_image');
+    (image_id, goods_id, file_name, reg_id, file_type)
+VALUES (319, 344, 'image1.jpg', 'admin', 'main_image');
 INSERT INTO bookshop.t_goods_detail_image
-(image_id, goods_id, file_name, reg_id, file_type)
-VALUES(320, 344, 'react_detail1.jpg', 'admin', 'detail_image1');
+    (image_id, goods_id, file_name, reg_id, file_type)
+VALUES (320, 344, 'react_detail1.jpg', 'admin', 'detail_image1');
 
 INSERT INTO bookshop.t_shopping_goods
 (goods_id, goods_title, goods_writer, goods_publisher, goods_price, goods_sales_price, goods_published_date,
@@ -316,11 +325,11 @@ VALUES (345, '리액트를 다루는 기술', '이순신', '민국 출판사', 30000, 30000, '201
         'main_react.jpg', 'newbook', '88', '888888', '888', '888', NULL);
 
 INSERT INTO bookshop.t_goods_detail_image
-(image_id, goods_id, file_name, reg_id, file_type)
-VALUES(321, 345, 'main_react.jpg', 'admin', 'main_image');
+    (image_id, goods_id, file_name, reg_id, file_type)
+VALUES (321, 345, 'main_react.jpg', 'admin', 'main_image');
 INSERT INTO bookshop.t_goods_detail_image
-(image_id, goods_id, file_name, reg_id, file_type)
-VALUES(322, 345, 'detail3.jpg', 'admin', 'detail_image1');
+    (image_id, goods_id, file_name, reg_id, file_type)
+VALUES (322, 345, 'detail3.jpg', 'admin', 'detail_image1');
 
 INSERT INTO bookshop.t_shopping_goods
 (goods_id, goods_title, goods_writer, goods_publisher, goods_price, goods_sales_price, goods_published_date,
@@ -330,11 +339,11 @@ VALUES (346, '여행 일본어', '이길동', '국민 출판사', 30000, 30000, '2018-10-23',
         'on_sale', '8989', '8989', '8989', '8989', NULL);
 
 INSERT INTO bookshop.t_goods_detail_image
-(image_id, goods_id, file_name, reg_id, file_type)
-VALUES(323, 346, '여행 일본어_메인.jpg', 'admin', 'main_image');
+    (image_id, goods_id, file_name, reg_id, file_type)
+VALUES (323, 346, '여행 일본어_메인.jpg', 'admin', 'main_image');
 INSERT INTO bookshop.t_goods_detail_image
-(image_id, goods_id, file_name, reg_id, file_type)
-VALUES(324, 346, '여행 일본어_상세.jpg', 'admin', 'detail_image1');
+    (image_id, goods_id, file_name, reg_id, file_type)
+VALUES (324, 346, '여행 일본어_상세.jpg', 'admin', 'detail_image1');
 
 INSERT INTO bookshop.t_shopping_goods
 (goods_id, goods_title, goods_writer, goods_publisher, goods_price, goods_sales_price, goods_published_date,
@@ -349,11 +358,11 @@ VALUES (347, '가장 빨리 만나는 자바9', '카이 호스트만', '길벗', 30000, 32400, '2
         NULL);
 
 INSERT INTO bookshop.t_goods_detail_image
-(image_id, goods_id, file_name, reg_id, file_type)
-VALUES(325, 347, '가장 빨리 만나는 자바_메인.jpg', 'admin', 'main_image');
+    (image_id, goods_id, file_name, reg_id, file_type)
+VALUES (325, 347, '가장 빨리 만나는 자바_메인.jpg', 'admin', 'main_image');
 INSERT INTO bookshop.t_goods_detail_image
-(image_id, goods_id, file_name, reg_id, file_type)
-VALUES(326, 347, '가장 빨리 만나는 자바_상세1.jpg', 'admin', 'detail_image1');
+    (image_id, goods_id, file_name, reg_id, file_type)
+VALUES (326, 347, '가장 빨리 만나는 자바_상세1.jpg', 'admin', 'detail_image1');
 
 INSERT INTO bookshop.t_shopping_goods
 (goods_id, goods_title, goods_writer, goods_publisher, goods_price, goods_sales_price, goods_published_date,
@@ -368,8 +377,8 @@ VALUES (348, '자바 EE 디자인 패턴', '무라트예네르, 알렉스 시돔', '길벗', 34000, 
         NULL);
 
 INSERT INTO bookshop.t_goods_detail_image
-(image_id, goods_id, file_name, reg_id, file_type)
-VALUES(328, 348, 'Java EE 디자이 패턴_상세1.jpg', 'admin', 'detail_image1');
+    (image_id, goods_id, file_name, reg_id, file_type)
+VALUES (328, 348, 'Java EE 디자이 패턴_상세1.jpg', 'admin', 'detail_image1');
 
 INSERT INTO bookshop.t_shopping_goods
 (goods_id, goods_title, goods_writer, goods_publisher, goods_price, goods_sales_price, goods_published_date,
@@ -384,11 +393,11 @@ VALUES (349, '자바로 배우는 리팩토링', '유키히로시', '길벗', 34000, 30000, '2018
         NULL);
 
 INSERT INTO bookshop.t_goods_detail_image
-(image_id, goods_id, file_name, reg_id, file_type)
-VALUES(330, 349, '자바 리팩토링_메인.jpg', 'admin', 'main_image');
+    (image_id, goods_id, file_name, reg_id, file_type)
+VALUES (330, 349, '자바 리팩토링_메인.jpg', 'admin', 'main_image');
 INSERT INTO bookshop.t_goods_detail_image
-(image_id, goods_id, file_name, reg_id, file_type)
-VALUES(331, 349, '자바 리팩토링_상세1.jpg', 'admin', 'detail_image1');
+    (image_id, goods_id, file_name, reg_id, file_type)
+VALUES (331, 349, '자바 리팩토링_상세1.jpg', 'admin', 'detail_image1');
 
 INSERT INTO bookshop.t_shopping_goods
 (goods_id, goods_title, goods_writer, goods_publisher, goods_price, goods_sales_price, goods_published_date,
@@ -405,11 +414,11 @@ VALUES (350, '유지 보수가 가능한 코딩의 기술-자바편', '주스트 뷔서', '한국 출판�
         '이 책을 읽고 나면 프로그래머는 새로운 객체를 찾아서 만들게 될 것이고, 그것을 프로그래밍화 하는 것이 진정한 객체 지향 프로그래밍이라는 사실을 깨닫게 될 것이다.', NULL);
 
 INSERT INTO bookshop.t_goods_detail_image
-(image_id, goods_id, file_name, reg_id, file_type)
-VALUES(334, 350, '유지보수자바_메인.jpg', 'admin', 'main_image');
+    (image_id, goods_id, file_name, reg_id, file_type)
+VALUES (334, 350, '유지보수자바_메인.jpg', 'admin', 'main_image');
 INSERT INTO bookshop.t_goods_detail_image
-(image_id, goods_id, file_name, reg_id, file_type)
-VALUES(341, 350, '유지보수자바_상세1.jpg', 'admin', 'uploadFile');
+    (image_id, goods_id, file_name, reg_id, file_type)
+VALUES (341, 350, '유지보수자바_상세1.jpg', 'admin', 'uploadFile');
 
 
 INSERT INTO bookshop.t_shopping_goods
@@ -848,9 +857,30 @@ INSERT INTO bookshop.t_goods_detail_image
 VALUES (10409, 409, '클린코드_메인.jpg', 'admin', 'main_image');
 
 -- t_shopping_order
-Insert into t_shopping_order (order_seq_num,order_id,member_id,goods_id,orderer_name,goods_title,order_goods_qty,goods_sales_price,goods_file_name,receiver_name,receiver_hp1,receiver_hp2,receiver_hp3,delivery_address, delivery_method, delivery_message, gift_wrapping, pay_method, card_com_name, card_pay_month, pay_orderer_hp_num, delivery_state, pay_order_time, orderer_hp) values (88,92,'lee',344,'이병승','초보자를 위한 자바프로그래밍',1,30000,'image1.jpg','이병승','010','2222','3333','우편번호:13547 도로명 주소:경기 성남시 분당구 고기로 25 (동원동) [지번 주소:경기 성남시 분당구 동원동 79-1] 럭키빌딩 101호','일반택배',null,'no','신용카드 카드사:삼성, 할부개월수:일시불','삼성','일시불','해당없음','delivery_prepared','2023/12/20','010-2222-3333');
-Insert into t_shopping_order (order_seq_num,order_id,member_id,goods_id,orderer_name,goods_title,order_goods_qty,goods_sales_price,goods_file_name,receiver_name,receiver_hp1,receiver_hp2,receiver_hp3,delivery_address, delivery_method, delivery_message, gift_wrapping, pay_method, card_com_name, card_pay_month, pay_orderer_hp_num, delivery_state, pay_order_time, orderer_hp) values (89,93,'lee',354,'이병승','모두의 딥러닝',1,21600,'모두의 딥러닝_메인.jpg','이병승','010','2222','3333','우편번호:13547 도로명 주소:경기 성남시 분당구 고기로 25 (동원동) [지번 주소:경기 성남시 분당구 동원동 79-1] 럭키빌딩 101호','일반택배',null,'no','신용카드 카드사:삼성, 할부개월수:일시불','삼성','일시불','해당없음','delivering','2023/12/20','010-2222-3333');
-Insert into t_shopping_order (order_seq_num,order_id,member_id,goods_id,orderer_name,goods_title,order_goods_qty,goods_sales_price,goods_file_name,receiver_name,receiver_hp1,receiver_hp2,receiver_hp3,delivery_address, delivery_method, delivery_message, gift_wrapping, pay_method, card_com_name, card_pay_month, pay_orderer_hp_num, delivery_state, pay_order_time, orderer_hp) values (90,94,'lee',354,'이병승','모두의 딥러닝',1,21600,'모두의 딥러닝_메인.jpg','이병승','010','2222','3333','우편번호:13547 도로명 주소:경기 성남시 분당구 고기로 25 (동원동) [지번 주소:경기 성남시 분당구 동원동 79-1] 럭키빌딩 101호','일반택배',null,'no','신용카드 카드사:삼성, 할부개월수:일시불','삼성','일시불','해당없음','delivery_prepared','2023/12/20','010-2222-3333');
+Insert into t_shopping_order (order_seq_num, order_id, member_id, goods_id, orderer_name, goods_title, order_goods_qty,
+                              goods_sales_price, goods_file_name, receiver_name, receiver_hp1, receiver_hp2,
+                              receiver_hp3, delivery_address, delivery_method, delivery_message, gift_wrapping,
+                              pay_method, card_com_name, card_pay_month, pay_orderer_hp_num, delivery_state,
+                              pay_order_time, orderer_hp)
+values (88, 92, 'lee', 344, '이병승', '초보자를 위한 자바프로그래밍', 1, 30000, 'image1.jpg', '이병승', '010', '2222', '3333',
+        '우편번호:13547 도로명 주소:경기 성남시 분당구 고기로 25 (동원동) [지번 주소:경기 성남시 분당구 동원동 79-1] 럭키빌딩 101호', '일반택배', null, 'no',
+        '신용카드 카드사:삼성, 할부개월수:일시불', '삼성', '일시불', '해당없음', 'delivery_prepared', '2023/12/20', '010-2222-3333');
+Insert into t_shopping_order (order_seq_num, order_id, member_id, goods_id, orderer_name, goods_title, order_goods_qty,
+                              goods_sales_price, goods_file_name, receiver_name, receiver_hp1, receiver_hp2,
+                              receiver_hp3, delivery_address, delivery_method, delivery_message, gift_wrapping,
+                              pay_method, card_com_name, card_pay_month, pay_orderer_hp_num, delivery_state,
+                              pay_order_time, orderer_hp)
+values (89, 93, 'lee', 354, '이병승', '모두의 딥러닝', 1, 21600, '모두의 딥러닝_메인.jpg', '이병승', '010', '2222', '3333',
+        '우편번호:13547 도로명 주소:경기 성남시 분당구 고기로 25 (동원동) [지번 주소:경기 성남시 분당구 동원동 79-1] 럭키빌딩 101호', '일반택배', null, 'no',
+        '신용카드 카드사:삼성, 할부개월수:일시불', '삼성', '일시불', '해당없음', 'delivering', '2023/12/20', '010-2222-3333');
+Insert into t_shopping_order (order_seq_num, order_id, member_id, goods_id, orderer_name, goods_title, order_goods_qty,
+                              goods_sales_price, goods_file_name, receiver_name, receiver_hp1, receiver_hp2,
+                              receiver_hp3, delivery_address, delivery_method, delivery_message, gift_wrapping,
+                              pay_method, card_com_name, card_pay_month, pay_orderer_hp_num, delivery_state,
+                              pay_order_time, orderer_hp)
+values (90, 94, 'lee', 354, '이병승', '모두의 딥러닝', 1, 21600, '모두의 딥러닝_메인.jpg', '이병승', '010', '2222', '3333',
+        '우편번호:13547 도로명 주소:경기 성남시 분당구 고기로 25 (동원동) [지번 주소:경기 성남시 분당구 동원동 79-1] 럭키빌딩 101호', '일반택배', null, 'no',
+        '신용카드 카드사:삼성, 할부개월수:일시불', '삼성', '일시불', '해당없음', 'delivery_prepared', '2023/12/20', '010-2222-3333');
 
 -- 게시판 종류 테이블 데이터
 insert into categories(cate, cate_name)

@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -15,9 +16,10 @@ import kr.co.chunjae.goods.vo.ImageFileVO;
 
 @Service("goodsService")
 @Transactional(propagation=Propagation.REQUIRED)
+@RequiredArgsConstructor
 public class GoodsServiceImpl implements GoodsService{
-	@Autowired
-	GoodsDAO goodsDAO;
+
+	private final GoodsDAO goodsDAO;
 	
 	public Map<String,List<GoodsVO>> listGoods() throws Exception {
 		Map<String,List<GoodsVO>> goodsMap=new HashMap<String,List<GoodsVO>>();

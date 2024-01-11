@@ -23,18 +23,18 @@
 
 <BODY>
 <form action="${contextPath}/admin/goods/addNewGoods.do" method="post"  enctype="multipart/form-data">
-		<h1>새상품 등록창</h1>
+		<h1>새 상품 등록</h1>
 <div class="tab_container">
 	<!-- 내용 들어 가는 곳 -->
 	<div class="tab_container" id="container">
 		<ul class="tabs">
-			<li><a href="#tab1">상품정보</a></li>
-			<li><a href="#tab2">상품목차</a></li>
-			<li><a href="#tab3">상품저자소개</a></li>
-			<li><a href="#tab4">상품소개</a></li>
+			<li><a href="#tab1">상품 정보</a></li>
+			<li><a href="#tab2">상품 목차</a></li>
+			<li><a href="#tab3">상품 저자 소개</a></li>
+			<li><a href="#tab4">상품 소개</a></li>
 			<li><a href="#tab5">출판사 상품 평가</a></li>
 			<li><a href="#tab6">추천사</a></li>
-			<li><a href="#tab7">상품이미지</a></li>
+			<li><a href="#tab7">상품 이미지</a></li>
 		</ul>
 		<div class="tab_container">
 			<div class="tab_content" id="tab1">

@@ -41,4 +41,5 @@ public class OrderVO {
 	private int goodsQty;				// 주문 수량
 	private String goodsFileName;		// 상품 이미지 파일 이름
 	private String ordererHp;			// 주문자 휴대폰 번호
+	private int goodsDeliveryPrice;  // 상품 배송료
 }

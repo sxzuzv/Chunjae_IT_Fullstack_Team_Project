@@ -30,10 +30,14 @@ public class MyPageServiceImpl  implements MyPageService{
 		return myPageDAO.selectMyOrderHistoryList(dateMap);
 	}
 	
-	public MemberVO  modifyMyInfo(Map memberMap) throws Exception{
-		 String member_id=(String)memberMap.get("memberId");
-		 myPageDAO.updateMyInfo(memberMap);
-		 return myPageDAO.selectMyDetailInfo(member_id);
+	public MemberVO  modifyMyInfo(//Map memberMap
+								  MemberVO memberVO) throws Exception{
+//		 String member_id=(String)memberMap.get("memberId");
+//		 myPageDAO.updateMyInfo(memberMap);
+		myPageDAO.updateMyInfo(memberVO);
+		String member_id=memberVO.getMemberId();
+		return myPageDAO.selectMyDetailInfo(member_id);
+
 	}
 	
 	public void cancelOrder(String order_id) throws Exception{
@@ -42,4 +46,12 @@ public class MyPageServiceImpl  implements MyPageService{
 	public MemberVO myDetailInfo(String member_id) throws Exception{
 		return myPageDAO.selectMyDetailInfo(member_id);
 	}
+
+	@Override
+	public List<OrderVO> cancelOrderHistory(Map dateMap) throws Exception{
+		return myPageDAO.cancelOrderHistory(dateMap);
+
+	}
+
+
 }

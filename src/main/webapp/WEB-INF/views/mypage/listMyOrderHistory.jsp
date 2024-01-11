@@ -44,14 +44,14 @@ function fn_cancel_order(order_id){
 	<form  method="post">	
 		<table>
 			<tbody>
-				<tr>
-					<td>
-						<input type="radio" name="simple"  checked/> 간단조회 &nbsp;&nbsp;&nbsp;
-						<input type="radio" name="simple" /> 일간  &nbsp;&nbsp;&nbsp;
-						<input type="radio" name="simple" /> 월간
-					</td>
-				</tr>
-				<tr>
+<%--				<tr>--%>
+<%--					<td>--%>
+<%--						<input type="radio" name="simple"  checked/> 간단조회 &nbsp;&nbsp;&nbsp;--%>
+<%--						<input type="radio" name="simple" /> 일간  &nbsp;&nbsp;&nbsp;--%>
+<%--						<input type="radio" name="simple" /> 월간--%>
+<%--					</td>--%>
+<%--				</tr>--%>
+<%--				<tr>--%>
 					<td>
 					  <select name="curYear">
 					    <c:forEach   var="i" begin="0" end="5" >
@@ -113,18 +113,18 @@ function fn_cancel_order(order_id){
 					&nbsp;까지 조회
 					</td>
 				</tr>
-				<tr>
-				  <td>
-				    <select name="search_condition">
-						<option value="2015" checked>전체</option>
-						<option value="2014">수령자</option>
-						<option value="2013">주문자</option>
-						<option value="2012">주문번호</option>
-					</select>
-					<input  type="text"  size="30" />  
-					<input   type="button"  value="조회"/>
-				  </td>
-				</tr>
+<%--				<tr>--%>
+<%--				  <td>--%>
+<%--				    <select name="search_condition">--%>
+<%--						<option value="2015" checked>전체</option>--%>
+<%--						<option value="2014">수령자</option>--%>
+<%--						<option value="2013">주문자</option>--%>
+<%--						<option value="2012">주문번호</option>--%>
+<%--					</select>--%>
+<%--					<input  type="text"  size="30" />  --%>
+<%--					<input   type="button"  value="조회"/>--%>
+<%--				  </td>--%>
+<%--				</tr>--%>
 				<tr>
 				  <td>
 					조회한 기간:<input  type="text"  size="4" value="${beginYear}" />년

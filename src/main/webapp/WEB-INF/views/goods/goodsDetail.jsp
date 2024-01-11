@@ -92,7 +92,7 @@
 			}
 		}
 
-		function fn_order_each_goods(goods_id,goods_title,goods_sales_price,fileName){
+		function fn_order_each_goods(goods_id,goods_title,goods_sales_price,fileName, goods_delivery_price){
 			var _isLogOn=document.getElementById("isLogOn");
 			var isLogOn=_isLogOn.value;
 
@@ -110,17 +110,20 @@
 			var i_goods_sales_price=document.createElement("input");
 			var i_fileName=document.createElement("input");
 			var i_order_goods_qty=document.createElement("input");
+			var i_goods_delivery_price=document.createElement("input");
 
 			i_goods_id.name="goodsId";
 			i_goods_title.name="goodsTitle";
 			i_goods_sales_price.name="goodsSalesPrice";
 			i_fileName.name="goodsFileName";
 			i_order_goods_qty.name="orderGoodsQty";
+			i_goods_delivery_price.name="goodsDeliveryPrice";
 
 			i_goods_id.value=goods_id;
 			i_order_goods_qty.value=order_goods_qty.value;
 			i_goods_title.value=goods_title;
 			i_goods_sales_price.value=goods_sales_price;
+			i_goods_delivery_price.value=goods_delivery_price;
 			i_fileName.value=fileName;
 
 			formObj.appendChild(i_goods_id);
@@ -128,6 +131,7 @@
 			formObj.appendChild(i_goods_sales_price);
 			formObj.appendChild(i_fileName);
 			formObj.appendChild(i_order_goods_qty);
+			formObj.appendChild(i_goods_delivery_price);
 
 			document.body.appendChild(formObj);
 			formObj.method="post";
@@ -152,27 +156,27 @@
 <div id="detail_table">
 	<table>
 		<tbody>
+<%--		<tr>--%>
+<%--			<td class="fixed">정가</td>--%>
+<%--			<td class="active"><span >--%>
+<%--					   <fmt:formatNumber  value="${goods.goodsPrice}" type="number" var="goodsPrice" />--%>
+<%--				         ${goodsPrice}원--%>
+<%--					</span></td>--%>
+<%--		</tr>--%>
 		<tr>
-			<td class="fixed">정가</td>
-			<td class="active"><span >
-					   <fmt:formatNumber  value="${goods.goodsPrice}" type="number" var="goodsPrice" />
-				         ${goodsPrice}원
-					</span></td>
-		</tr>
-		<tr class="dot_line">
 			<td class="fixed">판매가</td>
 			<td class="active"><span >
-					   <fmt:formatNumber  value="${goods.goodsPrice*0.9}" type="number" var="discountedPrice" />
-				         ${discountedPrice}원(10%할인)</span></td>
+					   <fmt:formatNumber  value="${goods.goodsPrice}" type="number" var="goodsPrice" />
+				         ${goodsPrice}원</span></td>
 		</tr>
-		<tr>
+		<%--<tr>
 			<td class="fixed">포인트적립</td>
 			<td class="active">P(10%적립)</td>
 		</tr>
 		<tr class="dot_line">
 			<td class="fixed">포인트 추가적립</td>
 			<td class="fixed">만원이상 구매시 1,000P, 5만원이상 구매시 2,000P추가적립 편의점 배송 이용시 300P 추가적립</td>
-		</tr>
+		</tr>--%>
 		<tr>
 			<td class="fixed">발행일</td>
 			<td class="fixed">
@@ -191,7 +195,17 @@
 		</tr>
 		<tr>
 			<td class="fixed">배송료</td>
-			<td class="fixed"><strong>무료</strong></td>
+			<td class="fixed">
+				<c:choose>
+					<c:when test="${goods.goodsDeliveryPrice}.equals('0') || ${goods.goodsDeliveryPrice} == null">
+						<strong>무료</strong>
+					</c:when>
+					<c:otherwise>
+						${goods.goodsDeliveryPrice}원
+					</c:otherwise>
+				</c:choose>
+				
+			</td>
 		</tr>
 		<tr>
 			<td class="fixed">배송안내</td>
@@ -200,7 +214,9 @@
 		</tr>
 		<tr>
 			<td class="fixed">도착예정일</td>
-			<td class="fixed">지금 주문 시 내일 도착 예정</td>
+			<td class="fixed">
+				${goods.goodsDeliveryDate}
+			</td>
 		</tr>
 		<tr>
 			<td class="fixed">수량</td>
@@ -217,10 +233,8 @@
 		</tbody>
 	</table>
 	<ul>
-		<li><a class="buy" href="javascript:fn_order_each_goods('${goods.goodsId }','${goods.goodsTitle }','${goods.goodsSalesPrice}','${goods.goodsFileName}');">구매하기 </a></li>
+		<li><a class="buy" href="javascript:fn_order_each_goods('${goods.goodsId }','${goods.goodsTitle }','${goods.goodsSalesPrice}','${goods.goodsFileName}','${goods.goodsDeliveryPrice}');">구매하기 </a></li>
 		<li><a class="cart" href="javascript:add_cart('${goods.goodsId }');">장바구니</a></li>
-
-		<li><a class="wish" href="#">위시리스트</a></li>
 	</ul>
 </div>
 <div class="clear"></div>
