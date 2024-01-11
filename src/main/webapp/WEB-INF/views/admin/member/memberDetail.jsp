@@ -338,9 +338,9 @@ function setSmsValue (event) {//sms 체크박스 함수
 					   </c:otherwise>
 					   </c:choose>
 					</td>
-					<td>
-					  <input type="button" value="수정하기" onClick="fn_modify_member_info('${member_info.memberId }','member_gender')" />
-					</td>
+<%--					<td>--%>
+<%--					  <input type="button" value="수정하기" onClick="fn_modify_member_info('${member_info.memberId }','member_gender')" />--%>
+<%--					</td>--%>
 				</tr>
 				<tr class="dot_line">
 					<td class="fixed_join">생년월일</td>
@@ -397,9 +397,9 @@ function setSmsValue (event) {//sms 체크박스 함수
 						</c:otherwise>
 						</c:choose>
 					</td>
-					<td>
-					  <input type="button" value="수정하기" onClick="fn_modify_member_info('${member_info.memberId }','member_birth')" />
-					</td>
+<%--					<td>--%>
+<%--					  <input type="button" value="수정하기" onClick="fn_modify_member_info('${member_info.memberId }','member_birth')" />--%>
+<%--					</td>--%>
 				</tr>
 <%--				<tr class="dot_line">--%>
 <%--					<td class="fixed_join">전화번호</td>--%>
@@ -461,9 +461,9 @@ function setSmsValue (event) {//sms 체크박스 함수
 						</c:otherwise>
 					 </c:choose>	
 				    </td>
-					<td>
-					  <input type="button" value="수정하기" onClick="fn_modify_member_info('${member_info.memberId }','hp')" />
-					</td>	
+<%--					<td>--%>
+<%--					  <input type="button" value="수정하기" onClick="fn_modify_member_info('${member_info.memberId }','hp')" />--%>
+<%--					</td>	--%>
 				</tr>
 				<tr class="dot_line">
 					<td class="fixed_join">이메일(e-mail)</td>
@@ -494,9 +494,9 @@ function setSmsValue (event) {//sms 체크박스 함수
 						</c:otherwise>
 					 </c:choose>
 					</td>
-					<td>
-					  <input type="button" value="수정하기" onClick="fn_modify_member_info('${member_info.memberId }','email')" />
-					</td>
+<%--					<td>--%>
+<%--					  <input type="button" value="수정하기" onClick="fn_modify_member_info('${member_info.memberId }','email')" />--%>
+<%--					</td>--%>
 				</tr>
 				<tr class="dot_line">
 					<td class="fixed_join">주소</td>
@@ -504,15 +504,15 @@ function setSmsValue (event) {//sms 체크박스 함수
 					   <input type="text" id="zipcode" name="zipcode" size=5 value="${member_info.zipcode }" > <a href="javascript:execDaumPostcode()">우편번호 검색</a>
 					  <br>
 					  <p> 
-					   지번 주소:<br><input type="text" id="roadAddress"  name="roadAddress" size="50" value="${member_info.roadAddress }"><br><br>
-					  도로명 주소: <input type="text" id="jibunAddress" name="jibunAddress" size="50" value="${member_info.jibunAddress }"><br><br>
-					  나머지 주소: <input type="text"  name="namujiAddress" size="50" value="${member_info.namujiAddress }" />
+					   지번 주소 : <br><input type="text" id="roadAddress"  name="roadAddress" size="50" value="${member_info.roadAddress }"><br><br>
+					  도로명 주소 : <input type="text" id="jibunAddress" name="jibunAddress" size="50" value="${member_info.jibunAddress }"><br><br>
+					  나머지 주소 : <input type="text"  name="namujiAddress" size="50" value="${member_info.namujiAddress }" />
 					   <span id="guide" style="color:#999"></span>
 					   </p>
 					</td>
-					<td>
-					  <input type="button" value="수정하기" onClick="fn_modify_member_info('${member_info.memberId }','address')" />
-					</td>
+<%--					<td>--%>
+<%--					  <input type="button" value="수정하기" onClick="fn_modify_member_info('${member_info.memberId }','address')" />--%>
+<%--					</td>--%>
 				</tr>
 			</tbody>
 		</table>
@@ -537,8 +537,22 @@ function setSmsValue (event) {//sms 체크박스 함수
 		</tr>
 	</table>
 	</div>
+	<div class="clear" />
+	<table>
+		<tr>
+			<td>
+				<input type="submit" value="수정">
+				<input type="reset" value="초기화">
+			</td>
+		</tr>
+	</table>
 <%--	<input  type="hidden" name="h_tel1" value="${member_info.tel1}" />--%>
-	<input  type="hidden" name="h_hp1" value="${member_info.memberHp1}" />
-</form>	
+<%--	<input  type="hidden" name="h_hp1" value="${member_info.memberHp1}" />--%>
+</form>
+	<div>
+		<form action="${contextPath}/admin/member/adminMemberMain.do">
+			<input type="submit" value="목록으로">
+		</form>
+	</div>
 </body>
 </html>
