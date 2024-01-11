@@ -3,6 +3,7 @@ package kr.co.chunjae.goods.dao;
 import java.util.ArrayList;
 import java.util.List;
 
+import lombok.RequiredArgsConstructor;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -12,9 +13,10 @@ import kr.co.chunjae.goods.vo.GoodsVO;
 import kr.co.chunjae.goods.vo.ImageFileVO;
 
 @Repository("goodsDAO")
+@RequiredArgsConstructor
 public class GoodsDAOImpl  implements GoodsDAO{
-	@Autowired
-	private SqlSession sqlSession;
+
+	private final SqlSession sqlSession;
 
 	@Override
 	public List<GoodsVO> selectGoodsList(String goodsStatus) throws DataAccessException {

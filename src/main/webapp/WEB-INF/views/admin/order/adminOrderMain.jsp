@@ -292,7 +292,7 @@ function fn_detail_search(){
 			<tbody>
 				<tr>
 					<td>
-						<input type="radio" name="r_search_option" value="simple_search" checked onClick="fn_enable_detail_search(this)"/> 간단 조회 &nbsp;&nbsp;&nbsp;
+						<input type="radio" name="r_search_option" value="simple_search" checked onClick="fn_enable_detail_search(this)"/> 주문일자로 조회 &nbsp;&nbsp;&nbsp;
 						<input type="radio" name="r_search_option" value="detail_search"  onClick="fn_enable_detail_search(this)" /> 상세 조회 &nbsp;&nbsp;&nbsp;
 					</td>
 				</tr>

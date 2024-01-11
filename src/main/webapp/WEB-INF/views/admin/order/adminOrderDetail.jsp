@@ -18,13 +18,13 @@ function fn_modify_order_state(order_id){
 		async : false, //false인 경우 동기식으로 처리한다.
 		url : "${contextPath}/admin/order/modifyDeliveryState.do",
 		data : {
-			order_id:order_id,
-			"delivery_state":value
+			orderId:order_id,
+			"deliveryState":value
 		},
 		success : function(data, textStatus) {
 			if(data.trim()=='mod_success'){
 				alert("주문 정보를 수정했습니다.");
-				location.href="${contextPath}/admin/order/orderDetail.do?order_id="+order_id;
+				location.href="${contextPath}/admin/order/orderDetail.do?orderId="+order_id;
 			}else if(data.trim()=='failed'){
 				alert("다시 시도해 주세요.");	
 			}
@@ -52,7 +52,7 @@ function fn_modify_order_state(order_id){
 				<td>수량</td>
 				<td>주문 금액</td>
 				<td>배송비</td>
-				<td>예상 적립금</td>
+<%--				<td>예상 적립금</td>--%>
 				<td>주문 금액 합계</td>
 			</tr>
 			<tr>
@@ -71,9 +71,10 @@ function fn_modify_order_state(order_id){
 					<td>
 					  <h2>${item.orderGoodsQty }개</h2>
 					</td>
-					<td><h2>${item.orderGoodsQty *item.goodsSalesPrice}원 (10% 할인)</h2></td>
+<%--					<td><h2>${item.orderGoodsQty *item.goodsSalesPrice}원</h2></td>--%>
+					<td><h2>${item.goodsSalesPrice * item.orderGoodsQty}원</h2></td>
 					<td><h2>0원</h2></td>
-					<td><h2>${1500 *item.orderGoodsQty }원</h2></td>
+<%--					<td><h2>${1500 *item.orderGoodsQty }원</h2></td>--%>
 					<td>
 					  <h2>${item.orderGoodsQty *item.goodsSalesPrice}원</h2>
 					</td>
@@ -249,16 +250,26 @@ function fn_modify_order_state(order_id){
 		</table>
 	</div>
 </form>
-    <div class="clear"></div>
+<%--    <div class="clear"></div>--%>
+<%--	<br>--%>
+<%--	<br>--%>
+<%--	<br>--%>
+<%--		<br>--%>
+<%--		<br> --%>
+<%--		<a href="${contextPath}/main/main.do"> --%>
+<%--		   <IMG width="75" alt="" src="${contextPath}/resources/image/btn_shopping_continue.jpg">--%>
+<%--		</a>--%>
+<%--<div class="clear"></div>		--%>
 	<br>
 	<br>
 	<br>
-		<br>
-		<br> 
-		<a href="${contextPath}/main/main.do"> 
-		   <IMG width="75" alt="" src="${contextPath}/resources/image/btn_shopping_continue.jpg">
-		</a>
-<div class="clear"></div>		
+<%--	<a href="${contextPath}/admin/order/adminOrderMain.do"><input type="button" value="목록으로"></a>--%>
+
+	<div>
+		<form action="${contextPath}/admin/order/adminOrderMain.do">
+			<input type="submit" value="목록으로">
+		</form>
+	</div>
 	
 			
 			
