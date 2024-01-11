@@ -23,14 +23,10 @@ function test(){
 }
 function init(){
 	var frm_mod_member=document.frm_mod_member;
-	var h_tel1=frm_mod_member.h_tel1;
 	var h_hp1=frm_mod_member.h_hp1;
-	var tel1=h_tel1.value;
 	var hp1=h_hp1.value;
-	
-	var select_tel1=frm_mod_member.tel1;
+
 	var select_hp1=frm_mod_member.hp1;
-	select_tel1.value=tel1;
 	select_hp1.value=hp1;
 }
 
@@ -50,14 +46,10 @@ function test(){
 }
 function init(){
 	var frm_mod_member=document.frm_mod_member;
-	var h_tel1=frm_mod_member.h_tel1;
 	var h_hp1=frm_mod_member.h_hp1;
-	var tel1=h_tel1.value;
 	var hp1=h_hp1.value;
-	
-	var select_tel1=frm_mod_member.tel1;
+
 	var select_hp1=frm_mod_member.hp1;
-	select_tel1.value=tel1;
 	select_hp1.value=hp1;
 }
 </script>
@@ -168,22 +160,7 @@ function fn_modify_member_info(member_id,mod_type){
 			}
 			//alert("생년 양음년 "+value_gn);
 			value=+value_y+","+value_m+","+value_d+","+value_gn;
-		}else if(mod_type=='tel'){
-			var tel1=frm_mod_member.tel1;
-			var tel2=frm_mod_member.tel2;
-			var tel3=frm_mod_member.tel3;
-
-			for(var i=0; tel1.length;i++){
-			 	if(tel1[i].selected){
-					value_tel1=tel1[i].value;
-					break;
-				}
-			}
-			value_tel2=tel2.value;
-			value_tel3=tel3.value;
-
-			value=value_tel1+","+value_tel2+","+value_tel3;
-		}else if(mod_type=='hp'){
+		} else if(mod_type=='hp'){
 			var hp1=frm_mod_member.hp1;
 			var hp2=frm_mod_member.hp2;
 			var hp3=frm_mod_member.hp3;
@@ -342,7 +319,7 @@ document.addEventListener('DOMContentLoaded', function() {//페이지로드후 �
 					</td>
 				</tr>
 				<tr class="dot_line">
-					<td class="fixed_join">법정생년월일</td>
+					<td class="fixed_join">생년월일</td>
 					<td>
 					   <select name="member_birth_y">
 					     <c:forEach var="i" begin="1" end="100">
@@ -400,45 +377,45 @@ document.addEventListener('DOMContentLoaded', function() {//페이지로드후 �
 					  <input type="button" value="수정하기" onClick="fn_modify_member_info('${member_info.memberId }','member_birth')" />
 					</td>
 				</tr>
+<%--				<tr class="dot_line">--%>
+<%--					<td class="fixed_join">전화번호</td>--%>
+<%--					<td>--%>
+<%--					    <select  name="tel1" >--%>
+<%--							<option>없음</option>--%>
+<%--							<option value="02">02</option>--%>
+<%--							<option value="031">031</option>--%>
+<%--							<option value="032">032</option>--%>
+<%--							<option value="033">033</option>--%>
+<%--							<option value="041">041</option>--%>
+<%--							<option value="042">042</option>--%>
+<%--							<option value="043">043</option>--%>
+<%--							<option value="044">044</option>--%>
+<%--							<option value="051">051</option>--%>
+<%--							<option value="052">052</option>--%>
+<%--							<option value="053">053</option>--%>
+<%--							<option value="054">054</option>--%>
+<%--							<option value="055">055</option>--%>
+<%--							<option value="061">061</option>--%>
+<%--							<option value="062">062</option>--%>
+<%--							<option value="063">063</option>--%>
+<%--							<option value="064">064</option>--%>
+<%--							<option value="0502">0502</option>--%>
+<%--							<option value="0503">0503</option>--%>
+<%--							<option value="0505">0505</option>--%>
+<%--							<option value="0506">0506</option>--%>
+<%--							<option value="0507">0507</option>--%>
+<%--							<option value="0508">0508</option>--%>
+<%--							<option value="070">070</option>--%>
+<%--					</select> --%>
+<%--					    - <input type="text" size=4  name="tel2" value="${member_info.memberHp2 }">--%>
+<%--					    - <input type="text" size=4  name="tel3" value="${member_info.memberHp3 }">--%>
+<%--					</td>--%>
+<%--					<td>--%>
+<%--					  <input type="button" value="수정하기" onClick="fn_modify_member_info('${member_info.memberId }','tel')" />--%>
+<%--					</td>--%>
+<%--				</tr>--%>
 				<tr class="dot_line">
-					<td class="fixed_join">전화번호</td>
-					<td>
-					    <select  name="tel1" >
-							<option>없음</option>
-							<option value="02">02</option>
-							<option value="031">031</option>
-							<option value="032">032</option>
-							<option value="033">033</option>
-							<option value="041">041</option>
-							<option value="042">042</option>
-							<option value="043">043</option>
-							<option value="044">044</option>
-							<option value="051">051</option>
-							<option value="052">052</option>
-							<option value="053">053</option>
-							<option value="054">054</option>
-							<option value="055">055</option>
-							<option value="061">061</option>
-							<option value="062">062</option>
-							<option value="063">063</option>
-							<option value="064">064</option>
-							<option value="0502">0502</option>
-							<option value="0503">0503</option>
-							<option value="0505">0505</option>
-							<option value="0506">0506</option>
-							<option value="0507">0507</option>
-							<option value="0508">0508</option>
-							<option value="070">070</option>
-					</select> 
-					    - <input type="text" size=4  name="tel2" value="${member_info.memberHp2 }">
-					    - <input type="text" size=4  name="tel3" value="${member_info.memberHp3 }">
-					</td>
-					<td>
-					  <input type="button" value="수정하기" onClick="fn_modify_member_info('${member_info.memberId }','tel')" />
-					</td>
-				</tr>
-				<tr class="dot_line">
-					<td class="fixed_join">휴대폰번호</td>
+					<td class="fixed_join">휴대전화</td>
 					<td>
 					   <select  name="hp1">
 							<option>없음</option>
