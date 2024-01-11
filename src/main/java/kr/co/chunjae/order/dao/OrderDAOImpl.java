@@ -2,7 +2,10 @@ package kr.co.chunjae.order.dao;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
+import kr.co.chunjae.cart.vo.CartVO;
+import kr.co.chunjae.goods.vo.GoodsVO;
 import lombok.RequiredArgsConstructor;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,5 +57,13 @@ public class OrderDAOImpl implements OrderDAO {
 
 	}
 
+	// 상품 배송료
+	public List<GoodsVO> goodsDeliveryPrice(List<OrderVO> myOrderList) throws DataAccessException {
+
+		List<GoodsVO> goodsDeliveryPrice;
+		goodsDeliveryPrice = sqlSession.selectList("mapper.order.selectGoodsDeliveryPrice",myOrderList);
+
+		return goodsDeliveryPrice;
+	}
 }
 

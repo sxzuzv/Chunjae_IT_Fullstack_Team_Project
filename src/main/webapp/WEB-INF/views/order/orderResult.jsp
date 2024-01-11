@@ -36,10 +36,10 @@
     </td>
     <td><h2>${item.orderGoodsQty *item.goodsSalesPrice}원</h2></td>
       <%-- todo: 배송비 값 받아오기 --%>
-    <td><h2>0원</h2></td>
+    <td><h2>${item.goodsDeliveryPrice}원</h2></td>
 <%--    <td><h2>${1500 *item.orderGoodsQty }원</h2></td>--%>
     <td>
-      <h2>${item.orderGoodsQty *item.goodsSalesPrice}원</h2>
+      <h2>${item.orderGoodsQty *item.goodsSalesPrice + item.goodsDeliveryPrice}원</h2>
     </td>
   </TR>
   </c:forEach>

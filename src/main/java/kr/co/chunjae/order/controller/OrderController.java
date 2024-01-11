@@ -16,4 +16,5 @@ public interface OrderController {
 	public String orderEachGoods(@ModelAttribute("orderVO") OrderVO _orderVO, HttpServletRequest request)  throws Exception;
 	public String orderAllCartGoods(@RequestParam String[] cart_goods_qty, HttpServletRequest request)  throws Exception;
 	public String payToOrderGoods(@RequestParam Map<String, String> orderMap, HttpServletRequest request, Model model)  throws Exception;
+
 }
