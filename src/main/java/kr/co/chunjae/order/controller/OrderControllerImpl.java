@@ -144,6 +144,7 @@ public class OrderControllerImpl extends BaseController implements OrderControll
 			orderVO.setCardPayMonth(receiverMap.get("cardPayMonth"));
 			orderVO.setPayOrdererHpNum(receiverMap.get("payOrdererHpNum"));
 			orderVO.setOrdererHp(orderer_hp);
+			orderVO.setGoodsDeliveryPrice(orderVO.getGoodsDeliveryPrice());
 			myOrderList.set(i, orderVO); //각 orderVO에 주문자 정보를 세팅한 후 다시 myOrderList에 저장한다.
 		}//end for
 

@@ -92,7 +92,7 @@
 			}
 		}
 
-		function fn_order_each_goods(goods_id,goods_title,goods_sales_price,fileName){
+		function fn_order_each_goods(goods_id,goods_title,goods_sales_price,fileName, goods_delivery_price){
 			var _isLogOn=document.getElementById("isLogOn");
 			var isLogOn=_isLogOn.value;
 
@@ -110,17 +110,20 @@
 			var i_goods_sales_price=document.createElement("input");
 			var i_fileName=document.createElement("input");
 			var i_order_goods_qty=document.createElement("input");
+			var i_goods_delivery_price=document.createElement("input");
 
 			i_goods_id.name="goodsId";
 			i_goods_title.name="goodsTitle";
 			i_goods_sales_price.name="goodsSalesPrice";
 			i_fileName.name="goodsFileName";
 			i_order_goods_qty.name="orderGoodsQty";
+			i_goods_delivery_price.name="goodsDeliveryPrice";
 
 			i_goods_id.value=goods_id;
 			i_order_goods_qty.value=order_goods_qty.value;
 			i_goods_title.value=goods_title;
 			i_goods_sales_price.value=goods_sales_price;
+			i_goods_delivery_price.value=goods_delivery_price;
 			i_fileName.value=fileName;
 
 			formObj.appendChild(i_goods_id);
@@ -128,6 +131,7 @@
 			formObj.appendChild(i_goods_sales_price);
 			formObj.appendChild(i_fileName);
 			formObj.appendChild(i_order_goods_qty);
+			formObj.appendChild(i_goods_delivery_price);
 
 			document.body.appendChild(formObj);
 			formObj.method="post";
@@ -193,7 +197,7 @@
 			<td class="fixed">배송료</td>
 			<td class="fixed">
 				<c:choose>
-					<c:when test="goodsDeliveryPrice == 0">
+					<c:when test="${goods.goodsDeliveryPrice}.equals('0') || ${goods.goodsDeliveryPrice} == null">
 						<strong>무료</strong>
 					</c:when>
 					<c:otherwise>
@@ -229,7 +233,7 @@
 		</tbody>
 	</table>
 	<ul>
-		<li><a class="buy" href="javascript:fn_order_each_goods('${goods.goodsId }','${goods.goodsTitle }','${goods.goodsSalesPrice}','${goods.goodsFileName}');">구매하기 </a></li>
+		<li><a class="buy" href="javascript:fn_order_each_goods('${goods.goodsId }','${goods.goodsTitle }','${goods.goodsSalesPrice}','${goods.goodsFileName}','${goods.goodsDeliveryPrice}');">구매하기 </a></li>
 		<li><a class="cart" href="javascript:add_cart('${goods.goodsId }');">장바구니</a></li>
 	</ul>
 </div>
