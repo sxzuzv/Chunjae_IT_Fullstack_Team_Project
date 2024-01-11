@@ -52,17 +52,17 @@
 			<li><a href="#">역사/인문학</a></li>
 		</ul>
 	</li>
-	<li>
-		<h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;음반</h3>
-		<ul>
-			<li><a href="#">가요</a></li>
-			<li><a href="#">록</a></li>
-			<li><a href="#">클래식</a></li>
-			<li><a href="#">뉴에이지</a></li>
-			<li><a href="#">재즈</a></li>
-			<li><a href="#">기타</a></li>
-		</ul>
-	</li>
+<%--	<li>--%>
+<%--		<h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;음반</h3>--%>
+<%--		<ul>--%>
+<%--			<li><a href="#">가요</a></li>--%>
+<%--			<li><a href="#">록</a></li>--%>
+<%--			<li><a href="#">클래식</a></li>--%>
+<%--			<li><a href="#">뉴에이지</a></li>--%>
+<%--			<li><a href="#">재즈</a></li>--%>
+<%--			<li><a href="#">기타</a></li>--%>
+<%--		</ul>--%>
+<%--	</li>--%>
  </c:otherwise>
 </c:choose>	
 </ul>
