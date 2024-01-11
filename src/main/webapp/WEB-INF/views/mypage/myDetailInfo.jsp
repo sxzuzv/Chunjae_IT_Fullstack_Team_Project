@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
  <script>
     function execDaumPostcode() {
         new daum.Postcode({
@@ -41,24 +41,26 @@
                 document.getElementById('zipcode').value = data.zonecode; //5자리 새우편번호 사용
                 document.getElementById('roadAddress').value = fullRoadAddr;
                 document.getElementById('jibunAddress').value = data.jibunAddress;
+				document.getElementById("namujiAddress").focus();
 
                 // 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
-                if(data.autoRoadAddress) {
-                    //예상되는 도로명 주소에 조합형 주소를 추가한다.
-                    var expRoadAddr = data.autoRoadAddress + extraRoadAddr;
-                    document.getElementById('guide').innerHTML = '(예상 도로명 주소 : ' + expRoadAddr + ')';
-
-                } else if(data.autoJibunAddress) {
-                    var expJibunAddr = data.autoJibunAddress;
-                    document.getElementById('guide').innerHTML = '(예상 지번 주소 : ' + expJibunAddr + ')';
-
-                } else {
-                    document.getElementById('guide').innerHTML = '';
-                }
+                // if(data.autoRoadAddress) {
+                //     //예상되는 도로명 주소에 조합형 주소를 추가한다.
+                //     var expRoadAddr = data.autoRoadAddress + extraRoadAddr;
+                //     document.getElementById('guide').innerHTML = '(예상 도로명 주소 : ' + expRoadAddr + ')';
+				//
+                // } else if(data.autoJibunAddress) {
+                //     var expJibunAddr = data.autoJibunAddress;
+                //     document.getElementById('guide').innerHTML = '(예상 지번 주소 : ' + expJibunAddr + ')';
+				//
+                // } else {
+                //     document.getElementById('guide').innerHTML = '';
+                // }
             }
         }).open();
     }
-
+ </script>
+	<script>
    
    window.onload=function()
     {
@@ -407,7 +409,7 @@
 					  <p> 
 					   지번 주소:<br><input type="text" id="roadAddress"  name="roadAddress" size="50" value="${memberInfo.roadAddress }"><br><br>
 					  도로명 주소: <input type="text" id="jibunAddress" name="jibunAddress" size="50" value="${memberInfo.jibunAddress }"><br><br>
-					  나머지 주소: <input type="text"  name="namujiAddress" size="50" value="${memberInfo.namujiAddress }" />
+					  나머지 주소: <input type="text" id="namujiAddress" name="namujiAddress" size="50" value="${memberInfo.namujiAddress }" />
 					   </p>
 					</td>
 <%--					<td>--%>

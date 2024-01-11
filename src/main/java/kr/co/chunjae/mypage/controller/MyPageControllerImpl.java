@@ -1,5 +1,6 @@
 package kr.co.chunjae.mypage.controller;
 
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -8,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j;
 import lombok.extern.log4j.Log4j2;
 import lombok.extern.slf4j.Slf4j;
@@ -30,12 +32,11 @@ import kr.co.chunjae.order.vo.OrderVO;
 
 @Controller("myPageController")
 @RequestMapping(value="/mypage")
+@RequiredArgsConstructor
 public class MyPageControllerImpl extends BaseController  implements MyPageController{
-	@Autowired
-	MyPageService myPageService;
-	@Autowired
-	MemberVO memberVO;
-	
+
+	private final MyPageService myPageService;
+
 	@Override
 	@RequestMapping(value="/myPageMain.do" ,method = RequestMethod.GET)
 	public String myPageMain(@RequestParam(required = false,value="message")  String message,
@@ -45,7 +46,7 @@ public class MyPageControllerImpl extends BaseController  implements MyPageContr
 		session.setAttribute("side_menu", "my_page"); //마이페이지 사이드 메뉴로 설정한다.
 		
 		String viewName=(String)request.getAttribute("viewName");
-		memberVO=(MemberVO)session.getAttribute("memberInfo");
+		MemberVO memberVO=(MemberVO)session.getAttribute("memberInfo");
 		String member_id=memberVO.getMemberId();
 		
 		List<OrderVO> myOrderList=myPageService.listMyOrderGoods(member_id);
@@ -75,7 +76,7 @@ public class MyPageControllerImpl extends BaseController  implements MyPageContr
 			                               HttpServletRequest request, HttpServletResponse response, Model model)  throws Exception {
 		String viewName=(String)request.getAttribute("viewName");
 		HttpSession session=request.getSession();
-		memberVO=(MemberVO)session.getAttribute("memberInfo");
+		MemberVO memberVO=(MemberVO)session.getAttribute("memberInfo");
 		String  member_id=memberVO.getMemberId();
 		
 		String fixedSearchPeriod = dateMap.get("fixedSearchPeriod");
@@ -154,17 +155,15 @@ public class MyPageControllerImpl extends BaseController  implements MyPageContr
 //		}else {
 //			memberMap.put(attribute,value);
 //		}
-		
+
 //		memberMap.put("memberId", memberId);
-		
+
 		//수정된 회원 정보를 다시 세션에 저장한다.
 //		memberVO=(MemberVO)myPageService.modifyMyInfo(memberMap);
 		memberVO = myPageService.modifyMyInfo(memberVO);
-		session.removeAttribute("memberInfo");
-		session.setAttribute("memberInfo", memberVO);
+			session.removeAttribute("memberInfo");
+			session.setAttribute("memberInfo", memberVO);
 
-
-		
 //		String message = null;
 //		ResponseEntity resEntity = null;
 //		HttpHeaders responseHeaders = new HttpHeaders();
@@ -180,7 +179,7 @@ public class MyPageControllerImpl extends BaseController  implements MyPageContr
 										   HttpServletRequest request, HttpServletResponse response, Model model)  throws Exception {
 		String viewName=(String)request.getAttribute("viewName");
 		HttpSession session=request.getSession();
-		memberVO=(MemberVO)session.getAttribute("memberInfo");
+		MemberVO memberVO=(MemberVO)session.getAttribute("memberInfo");
 		String member_id=memberVO.getMemberId();
 
 

@@ -3,6 +3,7 @@ package kr.co.chunjae.mypage.service;
 import java.util.List;
 import java.util.Map;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -14,9 +15,10 @@ import kr.co.chunjae.order.vo.OrderVO;
 
 @Service("myPageService")
 @Transactional(propagation=Propagation.REQUIRED)
+@RequiredArgsConstructor
 public class MyPageServiceImpl  implements MyPageService{
-	@Autowired
-	MyPageDAO myPageDAO;
+
+	private final MyPageDAO myPageDAO;
 
 	public List<OrderVO> listMyOrderGoods(String member_id) throws Exception{
 		return myPageDAO.selectMyOrderGoodsList(member_id);
@@ -30,7 +32,7 @@ public class MyPageServiceImpl  implements MyPageService{
 		return myPageDAO.selectMyOrderHistoryList(dateMap);
 	}
 	
-	public MemberVO  modifyMyInfo(//Map memberMap
+	public MemberVO modifyMyInfo(//Map memberMap
 								  MemberVO memberVO) throws Exception{
 //		 String member_id=(String)memberMap.get("memberId");
 //		 myPageDAO.updateMyInfo(memberMap);
