@@ -22,7 +22,6 @@
           left: 0px;
           width: 100%;
       }
-
       #popup {
           z-index: 3;
           position: fixed;
@@ -34,7 +33,6 @@
           background-color: #ccffff;
           border: 3px solid #87cb42;
       }
-
       #close {
           z-index: 4;
           float: right;
@@ -42,13 +40,21 @@
   </style>
   <script>
       function add_cart(goods_id) {
+
+          var _isLogOn = document.getElementById("isLogOn");
+          var isLogOn = _isLogOn.value;
+
+          if (isLogOn == "false" || isLogOn == '') {
+              alert("로그인 후 주문이 가능합니다!!!");
+          }
+          
           $.ajax({
               type : "post",
               async : false, //false인 경우 동기식으로 처리한다.
               url : "${contextPath}/cart/addGoodsInCart.do",
               data : {
-                  goods_id:goods_id
-
+                  goods_id:goods_id,
+                  cartGoodsQty:1  /* 리스트에서는 상품 수량 조절 기능이 없으므로 1로 임의 설정 */
               },
               success : function(data, textStatus) {
                   //alert(data);
@@ -69,23 +75,20 @@
               }
           }); //end ajax
       }
-      
+
       function imagePopup(type) {
           if (type == 'open') {
               // 팝업창을 연다.
               jQuery('#layer').attr('style', 'visibility:visible');
-
               // 페이지를 가리기위한 레이어 영역의 높이를 페이지 전체의 높이와 같게 한다.
               jQuery('#layer').height(jQuery(document).height());
           }
-
           else if (type == 'close') {
-
               // 팝업창을 닫는다.
               jQuery('#layer').attr('style', 'visibility:hidden');
           }
       }
-      
+
       function fn_order_each_goods(goods_id, goods_title, goods_sales_price, fileName) {
           var _isLogOn = document.getElementById("isLogOn");
           var isLogOn = _isLogOn.value;
@@ -167,12 +170,12 @@
                 </div>
                 <div class="writer">${item.goodsWriter} | ${item.goodsPublisher}</div>
                 <div class="price">
-							<span>
+							<%--<span>
 							  <fmt:formatNumber value="${item.goodsPrice}" type="number" var="goods_price"/>
 		                         ${goods_price}원
-							</span> <br>
-                  <fmt:formatNumber value="${item.goodsPrice*0.9}" type="number" var="discounted_price"/>
-                    ${discounted_price}원(10%할인)
+							</span> <br>--%>
+                  <fmt:formatNumber value="${item.goodsPrice}" type="number" var="goods_price"/>
+                    ${goods_price}원
                 </div>
               </div>
             </li>
@@ -225,12 +228,10 @@
             ${discounted_price}원
         </strong><br>(10% 할인)
       </td>
-      <td><input type="checkbox" value=""></td>
       <td class="buy_btns">
         <UL>
           <li><a href="javascript:add_cart('${item.goodsId }');">장바구니</a></li>
           <li><a href="javascript:fn_order_each_goods('${item.goodsId }','${item.goodsTitle }','${item.goodsSalesPrice}','${item.goodsFileName}');">구매하기</a></li>
-<%--          <li><a href="#">비교하기</a></li>--%>
         </UL>
       </td>
     </tr>

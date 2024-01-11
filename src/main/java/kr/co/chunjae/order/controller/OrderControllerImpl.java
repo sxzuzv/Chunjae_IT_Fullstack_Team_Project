@@ -30,8 +30,7 @@ import kr.co.chunjae.order.vo.OrderVO;
 public class OrderControllerImpl extends BaseController implements OrderController {
 
 	private final OrderService orderService;
-	private OrderVO orderVO;
-	
+
 	@RequestMapping(value="/orderEachGoods.do" ,method = RequestMethod.POST)
 	public String orderEachGoods(@ModelAttribute("orderVO") OrderVO _orderVO,
 			                       HttpServletRequest request)  throws Exception{
@@ -41,6 +40,9 @@ public class OrderControllerImpl extends BaseController implements OrderControll
 		
 		Boolean isLogOn=(Boolean)session.getAttribute("isLogOn");
 		String action=(String)session.getAttribute("action");
+
+		OrderVO orderVO;
+
 		//로그인 여부 체크
 		//이전에 로그인 상태인 경우는 주문과정 진행
 		//로그아웃 상태인 경우 로그인 화면으로 이동
@@ -50,6 +52,7 @@ public class OrderControllerImpl extends BaseController implements OrderControll
 
 			return "redirect:/member/loginForm.do";
 		}else{
+
 			 if(action!=null && action.equals("/order/orderEachGoods.do")){
 				orderVO=(OrderVO)session.getAttribute("orderInfo");
 				session.removeAttribute("action");

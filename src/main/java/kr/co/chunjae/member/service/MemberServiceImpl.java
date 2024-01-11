@@ -2,6 +2,7 @@ package kr.co.chunjae.member.service;
 
 import java.util.Map;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -12,9 +13,10 @@ import kr.co.chunjae.member.vo.MemberVO;
 
 @Service("memberService")
 @Transactional(propagation=Propagation.REQUIRED)
+@RequiredArgsConstructor
 public class MemberServiceImpl implements MemberService {
-	@Autowired
-	MemberDAO memberDAO;
+
+	private final MemberDAO memberDAO;
 	
 	@Override
 	public MemberVO login(Map loginMap) throws Exception{

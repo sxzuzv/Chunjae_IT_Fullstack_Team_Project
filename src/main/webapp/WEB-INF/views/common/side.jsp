@@ -27,7 +27,7 @@
 		<ul>
 			<li><a href="${contextPath}/mypage/listMyOrderHistory.do">주문내역/배송 조회</a></li>
 			<li><a href="#">반품/교환 신청 및 조회</a></li>
-			<li><a href="#">취소 주문 내역</a></li>
+			<li><a href="${contextPath}/mypage/cancelOrderHistory.do">취소 주문 내역</a></li>
 			<li><a href="#">세금 계산서</a></li>
 		</ul>
 	</li>
