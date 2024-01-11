@@ -306,7 +306,9 @@ function setSmsValue (event) {//sms 체크박스 함수
 				<tr class="dot_line">
 					<td class="fixed_join">아이디</td>
 					<td>
-						<input name="memberId" type="text" size="20" value="${member_info.memberId }"  readonly/>
+<%--						<input name="memberId" type="text" size="20" value="${member_info.memberId }"  disabled/>--%>
+						<input type="text" size="20" value="${member_info.memberId}" disabled />
+						<input type="hidden" name="memberId" value="${member_info.memberId}">
 					</td>
 <%--					 <td>--%>
 <%--					  <input type="button" value="수정하기" disabled onClick="fn_modify_member_info('${member_info.memberId }','member_name')" />--%>
@@ -324,7 +326,7 @@ function setSmsValue (event) {//sms 체크박스 함수
 				<tr class="dot_line">
 					<td class="fixed_join">이름</td>
 					<td>
-					  <input name="memberName" type="text" size="20" value="${member_info.memberName }"  readonly />
+					  <input name="memberName" type="text" size="20" value="${member_info.memberName }"  disabled />
 					 </td>
 <%--					 <td>--%>
 <%--					  <input type="button" value="수정하기" disabled onClick="fn_modify_member_info('${member_info.memberId }','member_name')" />--%>
