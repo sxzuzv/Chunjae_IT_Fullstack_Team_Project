@@ -42,7 +42,7 @@
 </c:when>
 <c:otherwise>
 	<li>
-		<h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;국내외 도서</h3>
+		<h3>국내외 도서</h3>
 		<ul>
 			<li><a href="${contextPath}/goods/goodsList.do">백엔드</a></li>
 			<li><a href="#">프론트엔드</a></li>
