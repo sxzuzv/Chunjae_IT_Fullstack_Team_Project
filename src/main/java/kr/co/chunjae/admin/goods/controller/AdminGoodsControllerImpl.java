@@ -112,6 +112,7 @@ public class AdminGoodsControllerImpl extends BaseController  implements AdminGo
 				imageFileVO.setRegId(reg_id);
 			}
 			newGoodsMap.put("imageFileList", imageFileList);
+			newGoodsMap.put("goodsFileName", imageFileList.get(0).getFileName());
 		}
 		
 		String message = null;
@@ -129,8 +130,8 @@ public class AdminGoodsControllerImpl extends BaseController  implements AdminGo
 				}
 			}
 			message= "<script>";
-			message += " alert('새상품을 추가했습니다.');";
-			message +=" location.href='"+multipartRequest.getContextPath()+"/admin/goods/addNewGoodsForm.do';";
+			message += " alert('new book inserted');";
+			message +=" location.href='/admin/goods/adminGoodsMain.do';";
 			message +=("</script>");
 		}catch(Exception e) {
 			if(imageFileList!=null && imageFileList.size()!=0) {
@@ -140,9 +141,9 @@ public class AdminGoodsControllerImpl extends BaseController  implements AdminGo
 					srcFile.delete();
 				}
 			}
-			
+
 			message= "<script>";
-			message += " alert('오류가 발생했습니다. 다시 시도해 주세요');";
+			message += " alert('error, try again');";
 			message +=" location.href='"+multipartRequest.getContextPath()+"/admin/goods/addNewGoodsForm.do';";
 			message +=("</script>");
 			e.printStackTrace();
