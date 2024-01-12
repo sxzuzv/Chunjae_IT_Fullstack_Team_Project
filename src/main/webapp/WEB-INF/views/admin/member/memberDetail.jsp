@@ -90,18 +90,18 @@ function init(){
                 document.getElementById('jibunAddress').value = data.jibunAddress;
 
                 // 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
-                if(data.autoRoadAddress) {
-                    //예상되는 도로명 주소에 조합형 주소를 추가한다.
-                    var expRoadAddr = data.autoRoadAddress + extraRoadAddr;
-                    document.getElementById('guide').innerHTML = '(예상 도로명 주소 : ' + expRoadAddr + ')';
-
-                } else if(data.autoJibunAddress) {
-                    var expJibunAddr = data.autoJibunAddress;
-                    document.getElementById('guide').innerHTML = '(예상 지번 주소 : ' + expJibunAddr + ')';
-
-                } else {
-                    document.getElementById('guide').innerHTML = '';
-                }
+                // if(data.autoRoadAddress) {
+                //     //예상되는 도로명 주소에 조합형 주소를 추가한다.
+                //     var expRoadAddr = data.autoRoadAddress + extraRoadAddr;
+                //     document.getElementById('guide').innerHTML = '(예상 도로명 주소 : ' + expRoadAddr + ')';
+				//
+                // } else if(data.autoJibunAddress) {
+                //     var expJibunAddr = data.autoJibunAddress;
+                //     document.getElementById('guide').innerHTML = '(예상 지번 주소 : ' + expJibunAddr + ')';
+				//
+                // } else {
+                //     document.getElementById('guide').innerHTML = '';
+                // }
             }
         }).open();
     }
@@ -504,7 +504,7 @@ function setSmsValue (event) {//sms 체크박스 함수
 					  <p> 
 					   지번 주소 : <br><input type="text" id="roadAddress"  name="roadAddress" size="50" value="${member_info.roadAddress }"><br><br>
 					  도로명 주소 : <input type="text" id="jibunAddress" name="jibunAddress" size="50" value="${member_info.jibunAddress }"><br><br>
-					  나머지 주소 : <input type="text"  name="namujiAddress" size="50" value="${member_info.namujiAddress }" />
+					  나머지 주소 : <input type="text"  id="namujiAddress" name="namujiAddress" size="50" value="${member_info.namujiAddress }" />
 					   <span id="guide" style="color:#999"></span>
 					   </p>
 					</td>
