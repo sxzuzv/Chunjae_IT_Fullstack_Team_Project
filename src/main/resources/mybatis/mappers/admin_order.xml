@@ -74,23 +74,30 @@
 			       from (
 			              select  *  from t_shopping_order 
 			              where date_format(pay_order_time,'%Y-%m-%d')  between #{beginDate} and #{endDate}
-			                <if test='search_type=="orderId"'>
-			                  AND order_id=#{search_word}
+<!--							<if test='search_type=="all"'>-->
+<!--								AND orderer_name=#{search_word}-->
+<!--							</if>-->
+			                <if test='searchType=="ordererName"'>
+			                  AND orderer_name=#{searchWord}
 			                </if>
-			                <if test='search_type=="ordererName"'>
-			                  AND orderer_name=#{search_word}
-			                </if>
-			                <if test='search_type=="payOrdererHpNum"'>
-			                   AND pay_orderer_hp_num=#{search_word}
-			                </if>
+<!--			       			<if test="searchType=='ordererName'.toString()">-->
+<!--								AND (orderer_name like '%' || #{searchWord} || '%')-->
+<!--							</if>-->
+<!--							</if>-->
+<!--							<if test='search_type=="orderId"'>-->
+<!--								AND order_id=#{search_word}-->
+<!--							</if>-->
+<!--							<if test='search_type=="goodsTitle"'>-->
+<!--								AND pay_orderer_hp_num=#{search_word}-->
+<!--							</if>-->
 			              order by pay_order_time desc, order_id asc
 					    ) as t
 					CROSS JOIN (SELECT @ROWNUM:=0) AS dummy
 				) as result
-			where				
-		recNum between (#{section}-1)*100+ (#{pageNum}-1)*10+1 and (#{section}-1)*100+(#{pageNum})*10				        
+			where
+		recNum between (#{section}-1)*100+ (#{pageNum}-1)*10+1 and (#{section}-1)*100+(#{pageNum})*10
 	</select>
-	
+
 <update id="updateDeliveryState" parameterType="java.util.Map" >
 	   update t_shopping_order
 	    <set>
@@ -100,20 +107,20 @@
 	    </set>
 	    where
 	    order_id=#{orderId}
-	</update>	
-	
+	</update>
+
     <select id="selectOrderDetail" resultType="OrderVO"   parameterType="int"  >
 	    <![CDATA[
 		    select * from t_shopping_order
             where order_id=#{order_id}
     	]]>
-	</select>	
-	
+	</select>
+
    <select id="selectOrderer" resultType="memberVO"  parameterType="String"  >
 	    <![CDATA[
-			select * from t_shopping_member 
+			select * from t_shopping_member
 			where member_id=#{member_Id}
 		]]>
-	</select>	
+	</select>
 </mapper>
 

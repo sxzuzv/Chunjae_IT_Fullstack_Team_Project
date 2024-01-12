@@ -166,14 +166,14 @@ function  calcPeriod(search_period){
 				</TR>
 				<tr>
 				  <td>
-				    <select name="search_condition" disabled >
+				    <select name="search_condition" >
 						<option value="전체" checked>전체</option>
 						<option value="제품번호">상품 번호</option>
 						<option value="제품이름">상품 이름</option>
 						<option value="제조사">제조사</option>
 					</select>
-					<input  type="text"  size="30"  disabled/>  
-					<input   type="button"  value="조회" disabled/>
+					<input  type="text"  size="30" />
+					<input type="button" value="조회" />
 				  </td>
 				</tr>
 				<tr>
