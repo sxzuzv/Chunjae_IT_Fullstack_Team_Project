@@ -5,6 +5,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
 
 
 <html>
@@ -34,7 +35,7 @@ function search_member(search_period){
     formObj.appendChild(i_endDate);
     document.body.appendChild(formObj); 
     formObj.method="get";
-    formObj.action="/bookshop01/admin/member/adminMemberMain.do";
+    formObj.action="${contextPath}/admin/member/adminMemberMain.do";
     formObj.submit();
 }
 
@@ -216,7 +217,6 @@ function fn_detail_search(){
     formObj.method="post";
     formObj.action="/bookshop01/admin/member/memberDetail.do";
     formObj.submit();
-	
 }
 </script>
 </head>
