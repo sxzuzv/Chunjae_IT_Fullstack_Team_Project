@@ -14,6 +14,7 @@
 %>
 <html>
 <head>
+  <link rel="stylesheet" href="${contextPath}/resources/css/comment.css" />
   <style>
       #layer {
           z-index: 2;
@@ -292,6 +293,17 @@
     </div>
     <div class="tab_content" id="tab6">
       <h4>리뷰</h4>
+      <div class = "xans-product-detail">
+        <div id="comment_add">
+          <div class="title">리뷰</div>
+          <div class="input"><textarea id="comContent"></textarea></div>
+          <div class="btn"><button type="button" id="add_btn">댓글등록</button></div>
+          <div id="add_message">&nbsp;</div>
+        </div>
+        <%-- 댓글 목록 출력 영역 --%>
+        <div id="comment_list">
+        </div>
+      </div>
     </div>
   </div>
 </div>
