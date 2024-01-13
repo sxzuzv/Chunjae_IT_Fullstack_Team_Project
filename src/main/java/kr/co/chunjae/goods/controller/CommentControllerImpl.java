@@ -1,9 +1,10 @@
 package kr.co.chunjae.goods.controller;
 
 import kr.co.chunjae.goods.service.CommentService;
-import kr.co.chunjae.goods.service.GoodsService;
 import kr.co.chunjae.goods.vo.CommentVO;
 import lombok.RequiredArgsConstructor;
+
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -14,6 +15,7 @@ import java.util.List;
 @Controller("commentController")
 @RequestMapping(value="/comment")
 @RequiredArgsConstructor
+@Slf4j
 public class CommentControllerImpl implements CommentController {
 
     private final CommentService commentService;
@@ -38,6 +40,19 @@ public class CommentControllerImpl implements CommentController {
     public ResponseEntity<CommentVO> getCommentList(@PathVariable("brdId")int brdId) {
         List<CommentVO> commentLists = commentService.getCommentList(brdId);
         return new ResponseEntity(commentLists, HttpStatus.OK);
+    }
+
+
+    @DeleteMapping(value = "/{articleNo}")
+    public ResponseEntity<String> removeArticle (@PathVariable("articleNo") Integer articleNo) {
+        ResponseEntity<String> resEntity = null;
+        try {
+            log.info(articleNo.toString());
+            resEntity = new ResponseEntity<String>("REMOVE_SECCEEDED", HttpStatus.OK);
+        } catch (Exception e) {
+            resEntity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+        return resEntity;
     }
 
 
