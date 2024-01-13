@@ -14,8 +14,6 @@
 %>
 <head>
   <title>검색 도서 목록 페이지</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
   <style>
       #layer {
           z-index: 2;
@@ -141,64 +139,63 @@
       }
   </script>
 </head>
-<body>
 <hgroup>
-  <h1>컴퓨터와 인터넷</h1>
-  <h2>오늘의 책</h2>
+  <h1>추천 도서</h1>
 </hgroup>
 <section id="new_book">
-  <h3>새로나온 책</h3>
-  <div id="left_scroll">
-    <a href='javascript:slide("left");'><img src="${contextPath}/resources/image/left.gif"></a>
-  </div>
-  <div id="carousel_inner">
-    <ul id="carousel_ul">
-      <c:choose>
-        <c:when test="${ empty goodsList  }">
-          <li>
-            <div id="book_empty">
-              <a><h1>제품이없습니다.</h1></a>
-            </div>
-          </li>
-        </c:when>
-        <c:otherwise>
-          <c:forEach var="item" items="${goodsList }">
-            <li>
-              <div id="book">
-                <a href="${contextPath}/goods/goodsDetail.do?goods_id=${item.goodsId}">
-                  <img width="75" alt=""
-                       src="${contextPath}/thumbnails.do?goods_id=${item.goodsId}&fileName=${item.goodsFileName}">
-                </a>
-                <div class="sort">[컴퓨터 인터넷]</div>
-                <div class="title">
-                  <a href="${contextPath}/goods/goodsDetail.do?goods_id=${item.goodsId }">
-                      ${item.goodsTitle}
-                  </a>
+  <div class="carousel_container">
+    <div class="carousel_content">
+      <div id="left_scroll">
+        <a href='javascript:slide("left");'><img src="${contextPath}/resources/image/left.gif"></span></a>
+      </div>
+      <div id="carousel_inner">
+        <ul id="carousel_ul">
+          <c:choose>
+            <c:when test="${ empty goodsList  }">
+              <li>
+                <div id="book_empty">
+                  <a><h1>제품이없습니다.</h1></a>
                 </div>
-                <div class="writer">${item.goodsWriter} | ${item.goodsPublisher}</div>
-                <div class="price">
-                    <%--<span>
+              </li>
+            </c:when>
+            <c:otherwise>
+              <c:forEach var="item" items="${goodsList }">
+                <li>
+                  <div id="book">
+                    <a href="${contextPath}/goods/goodsDetail.do?goods_id=${item.goodsId}">
+                      <img width="75" alt=""
+                           src="${contextPath}/thumbnails.do?goods_id=${item.goodsId}&fileName=${item.goodsFileName}">
+                    </a>
+                    <div class="sort">[컴퓨터 인터넷]</div>
+                    <div class="title">
+                      <a href="${contextPath}/goods/goodsDetail.do?goods_id=${item.goodsId }">
+                          ${item.goodsTitle}
+                      </a>
+                    </div>
+                    <div class="writer">${item.goodsWriter} | ${item.goodsPublisher}</div>
+                    <div class="price">
+                        <%--<span>
+                          <fmt:formatNumber value="${item.goodsPrice}" type="number" var="goods_price"/>
+                             ${goods_price}원
+                        </span> <br>--%>
                       <fmt:formatNumber value="${item.goodsPrice}" type="number" var="goods_price"/>
-                         ${goods_price}원
-                    </span> <br>--%>
-                  <fmt:formatNumber value="${item.goodsPrice}" type="number" var="goods_price"/>
-                    ${goods_price}원
-                </div>
-              </div>
-            </li>
-          </c:forEach>
-          <li>
-          </li>
-        </c:otherwise>
-      </c:choose>
-    
-    </ul>
+                        ${goods_price}원
+                    </div>
+                  </div>
+                </li>
+              </c:forEach>
+              <li>
+              </li>
+            </c:otherwise>
+          </c:choose>
+        </ul>
+      </div>
+      <div id="right_scroll">
+        <a href='javascript:slide("right");'><img src="${contextPath}/resources/image/right.gif"></span></a>
+      </div>
+      <input id="hidden_auto_slide_seconds" type="hidden" value="0">
+    </div>
   </div>
-  <div id="right_scroll">
-    <a href='javascript:slide("right");'><img src="${contextPath}/resources/image/right.gif"></a>
-  </div>
-  <input id="hidden_auto_slide_seconds" type="hidden" value="0">
-  
   <div class="clear"></div>
 </section>
 <div class="clear"></div>
@@ -221,7 +218,8 @@
       </td>
       <td class="goods_description">
         <h2>
-          <a class="link-dark link-underline link-underline-opacity-0" href="${contextPath}/goods/goodsDetail.do?goods_id=${item.goodsId }">${item.goodsTitle }</a>
+          <a class="link-dark link-underline link-underline-opacity-0"
+             href="${contextPath}/goods/goodsDetail.do?goods_id=${item.goodsId }">${item.goodsTitle }</a>
         </h2>
         <c:set var="goods_pub_date" value="${item.goodsPublishedDate }"/>
         <c:set var="arr" value="${fn:split(goods_pub_date,' ')}"/>
@@ -240,10 +238,14 @@
       <td class="buy_btns">
         <UL>
           <li>
-            <button type="button" class="btn btn-outline-dark" onclick="javascript:add_cart('${item.goodsId }');">장바구니</button>
+            <button type="button" class="btn btn-outline-dark" onclick="javascript:add_cart('${item.goodsId }');">장바구니
+            </button>
           </li>
           <li>
-            <button type="button" class="btn btn-outline-dark" onclick="javascript:fn_order_each_goods('${item.goodsId }','${item.goodsTitle }','${item.goodsSalesPrice}','${item.goodsFileName}','${item.goodsDeliveryPrice}');">구매하기</button>
+            <button type="button" class="btn btn-outline-dark"
+                    onclick="javascript:fn_order_each_goods('${item.goodsId }','${item.goodsTitle }','${item.goodsSalesPrice}','${item.goodsFileName}','${item.goodsDeliveryPrice}');">
+              구매하기
+            </button>
           </li>
         </UL>
       </td>
