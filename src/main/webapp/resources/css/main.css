@@ -250,11 +250,8 @@ article hgroup {
 article h1 {
     padding: 0px 0px 5px;
     letter-spacing: 2px;
-    font-family: "NanumGothic";
-    font-size: 1.1em;
-    /*border-bottom-color: rgb(102, 102, 102);*/
-    /*border-bottom-width: 2px;*/
-    /*border-bottom-style: solid;*/
+    font-size: 1.4em;
+    color: #293B4E;
 }
 
 article h2 {
@@ -266,7 +263,7 @@ article h2 {
 section#new_book {
     padding: 7px 10px;
     border-radius: 10px;
-    border: 1px solid rgb(102, 102, 102);
+    border: 2px solid #1FA393;
     border-image: none;
     width: auto;
     overflow: hidden;
@@ -274,10 +271,21 @@ section#new_book {
     margin-top: 10px;
 }
 
+.carousel_container {
+    display: flex;
+    padding: 0 0.4em;
+}
+
+.carousel_content {
+    height: 100%;
+    display: inline-flex;
+    flex-wrap: nowrap;
+    vertical-align: middle;
+}
+
 section#new_book #carousel_inner {
     width: 725px;
     overflow: hidden;
-    float: left;
 }
 
 section#new_book #carousel_ul {
@@ -298,14 +306,16 @@ section#new_book #carousel_ul li {
 
 section#new_book #left_scroll {
     width: 14px;
-    padding-top: 70px;
+    height: 100%;
     float: left;
+    align-self: center;
 }
 
 section#new_book #right_scroll {
     width: 14px;
-    padding-top: 70px;
-    float: left;
+    height: 100%;
+    float: right;
+    align-self: center;
 }
 
 section#new_book h3 {
@@ -360,7 +370,7 @@ section#new_book #book .title {
 }
 
 section#new_book #book .price {
-    color: rgb(255, 0, 0);
+    color: #DD362A;
     font-weight: bold;
 }
 
@@ -447,7 +457,7 @@ article table#list_view td.price span {
 }
 
 article table#list_view td.price strong {
-    color: rgb(255, 0, 0);
+    color: #DD362A;
     font-weight: bold;
 }
 
@@ -503,9 +513,9 @@ article ul#page_control li a {
 }
 
 article ul#page_control li a:hover {
-    border: 1px solid rgb(255, 0, 0);
+    border: 1px solid #DD362A;
     border-image: none;
-    color: rgb(255, 0, 0);
+    color: #DD362A;
 }
 
 article ul#page_control li a.no_border {
@@ -515,16 +525,16 @@ article ul#page_control li a.no_border {
 }
 
 .active {
-    color: rgb(255, 0, 0);
+    color: #DD362A;
     font-weight: bold;
     font-size: 0.8em;
 }
 
 article ul#page_control li .page_contrl_active {
     background: rgb(255, 255, 255);
-    border: 1px solid rgb(255, 0, 0);
+    border: 1px solid #DD362A;
     border-image: none;
-    color: rgb(255, 0, 0);
+    color: #DD362A;
 }
 
 article h3 {
@@ -865,7 +875,7 @@ footer img {
 
 #sticky {
     flex: auto;
-    width: 80%;
+    width: fit-content;
     justify-self: center;
     padding: 0;
     border-radius: 5px;
@@ -1002,7 +1012,7 @@ footer img {
 }
 
 .list_view td.price strong {
-    color: rgb(255, 0, 0);
+    color: #DD362A;
     font-weight: bold;
 }
 
@@ -1133,8 +1143,8 @@ footer img {
 }
 
 .detail_table ul li a.buy {
-    border-color: rgb(255, 0, 0);
-    color: rgb(255, 0, 0);
+    border-color: #DD362A;
+    color: #DD362A;
     background-image: none;
 }
 
@@ -1243,10 +1253,21 @@ article h1_TITLE {
 #search > #suggest {
     display: none;
     position: absolute;
-    border: 0.1px solid #87cb42;
+    border: 1px solid #1e5da2;
     z-index: 3;
     font-weight: bold;
     background-color: #ffffff;
+}
+
+#suggestList > a {
+    width: 100%;
+    padding: 0.1em;
+    text-decoration: none;
+    color: #666666;
+}
+
+#suggestList > a:hover {
+    color: #1FA393;
 }
 
 .show_row_line {
