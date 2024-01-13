@@ -83,7 +83,7 @@ CREATE TABLE t_shopping_goods
 -- 상품 이미지 정보 테이블
 CREATE TABLE t_goods_detail_image
 (
-    image_id      bigint PRIMARY KEY comment '이미지번호',
+    image_id      bigint AUTO_INCREMENT PRIMARY KEY comment '이미지번호',
     goods_id      bigint      NOT NULL comment '상품번호',
     file_name     varchar(50) NOT NULL comment '이미지파일명',
     reg_id        varchar(20) NOT NULL comment '등록자아이디',

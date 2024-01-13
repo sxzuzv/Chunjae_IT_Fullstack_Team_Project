@@ -23,10 +23,18 @@ public abstract class BaseController  {
 	private static final String CURR_IMAGE_REPO_PATH = "C:\\shopping\\file_repo";
 	
 	protected List<ImageFileVO> upload(MultipartHttpServletRequest multipartRequest) throws Exception{
+		//temp폴더 없을시 생성
+		File temp = new File(CURR_IMAGE_REPO_PATH+"\\"+"temp");
+		if(!temp.exists()){
+			temp.mkdir();
+		}
 		// n개의 파일을 저장할 fileList
 		List<ImageFileVO> fileList= new ArrayList<ImageFileVO>();
-		//
+
+		//getFileNames() 메소드는 폼 요소 중 input 태그에서 file 속성으로 지정된 태그의 name 속성의값,
+		// 즉 file 속성을 가진 파라미터의 이름을 Enumeration 객체 타입으로 반환
 		Iterator<String> fileNames = multipartRequest.getFileNames();
+
 		while(fileNames.hasNext()){
 			// ImageFileVO 타입의 인스턴스를 생성한다.
 			ImageFileVO imageFileVO =new ImageFileVO();
@@ -39,7 +47,6 @@ public abstract class BaseController  {
 			String originalFileName=mFile.getOriginalFilename();
 			imageFileVO.setFileName(originalFileName);
 			fileList.add(imageFileVO);
-
 
 			File file = new File(CURR_IMAGE_REPO_PATH +"\\"+ fileName);
 			if(mFile.getSize()!=0){ //File Null Check

@@ -5,11 +5,6 @@
 
 <mapper namespace="mapper.admin.goods">
 	<insert id="insertNewGoods" parameterType="java.util.Map"   >
-<!--		<selectKey resultType="String" keyProperty="goods_id" order="BEFORE">-->
-<!--	    	select seq_goods_id.nextval from dual-->
-<!--	    </selectKey>-->
-	    
-	    <![CDATA[
 		   insert into t_shopping_goods(
 					goods_id,
                     goods_title,
@@ -22,6 +17,7 @@
 					goods_isbn,
 					goods_delivery_price,
 					goods_delivery_date,
+					goods_file_name,
 					goods_status,
 					goods_intro,
 					goods_writer_intro,
@@ -32,43 +28,39 @@
 					  #{goodsId},
 					  #{goodsTitle},
 					  #{goodsWriter},
-
 					  #{goodsPublisher},
 					  #{goodsPrice},
 					  #{goodsSalesPrice},
 					  #{goodsPublishedDate},
 					  #{goodsTotalPage},
-
 					  #{goodsIsbn},
 					  #{goodsDeliveryPrice},
 					  #{goodsDeliveryDate},
+		       		  #{goodsFileName},
 					  #{goodsStatus},
 					  #{goodsIntro},
 					  #{goodsWriterIntro},
-
-						#{goodsPublisherComment},
+					  #{goodsPublisherComment},
 					  #{goodsRecommendation},
 					  #{goodsContentsOrder}
 		 )
-		]]>
 	</insert>
 
-		<insert id="insertGoodsImageFile" parameterType="imageFileVO"   >
-<!--		<selectKey resultType="int" keyProperty="image_id" order="BEFORE">-->
-<!--	    	select seq_image_id.nextval from dual-->
-<!--	    </selectKey>-->
-	    <![CDATA[
-		   insert into t_goods_detail_image(image_id,
-		                                     goods_id,
-											 file_Name,
-											 reg_id,
-											 file_type)
-							values(#{imageId},
-										 #{goodsId},
-										 #{fileName},
-										 #{regId},
-										 #{fileType} )
-		]]>
+	<select id="selectGoodsId" resultType="int">
+		select max(goods_id)
+		from t_shopping_goods
+	</select>
+
+	<insert id="insertGoodsImageFile" parameterType="imageFileVO"   >
+
+	   insert into t_goods_detail_image(goods_id,
+										 file_Name,
+										 reg_id,
+										 file_type)
+						values(		 #{goodsId},
+									 #{fileName},
+									 #{regId},
+									 #{fileType} )
 	</insert>
 
 	<select id="selectNewGoodsList" resultType="goodsVO"   parameterType="java.util.Map"  >
