@@ -17,7 +17,7 @@ body {
     background-position: top;
     margin: 0px;
     padding: 0px;
-    color: rgb(102, 102, 102);
+    color: #494949;
     font-family: "Dotum", Arial, serif;
     /*font-size: 1em;*/
     background-image: none;
@@ -30,7 +30,7 @@ img {
 }
 
 a {
-    color: rgb(102, 102, 102);
+    color: #494949;
     text-decoration: none;
 }
 
@@ -41,6 +41,11 @@ a:hover {
 
 .clear {
     clear: both;
+}
+
+.clear.clear-main
+{
+    margin-bottom: 200px;
 }
 
 #outer_wrap {
@@ -136,6 +141,7 @@ nav {
 
 nav ul {
     list-style: none;
+    display: inline-block;
 }
 
 nav ul li {
@@ -144,7 +150,6 @@ nav ul li {
 }
 
 nav ul li a {
-    display: block;
     text-decoration: none;
     color: #000;
 }
@@ -186,7 +191,6 @@ aside #banner {
     background-position: left;
     padding: 2px 0px 5px 10px;
     color: rgb(51, 102, 153);
-    font-family: "NanumGothic";
     font-size: 1.2em;
     border-bottom-color: rgb(51, 102, 153);
     border-bottom-width: 1px;
@@ -227,12 +231,16 @@ article {
     z-index: 2;
 }
 
-article #ad_main_banner {
+article #ad_main_banner,
+article #ad_sub_banner
+{
     margin: 10px 0px;
+    width: 100%;
 }
 
-article #ad_sub_banner {
-    margin: 10px 0px;
+article #ad_main_banner img,
+article #ad_sub_banner img {
+    width: 100%;
 }
 
 article hgroup {
@@ -244,9 +252,9 @@ article h1 {
     letter-spacing: 2px;
     font-family: "NanumGothic";
     font-size: 1.1em;
-    border-bottom-color: rgb(102, 102, 102);
-    border-bottom-width: 2px;
-    border-bottom-style: solid;
+    /*border-bottom-color: rgb(102, 102, 102);*/
+    /*border-bottom-width: 2px;*/
+    /*border-bottom-style: solid;*/
 }
 
 article h2 {
@@ -306,7 +314,6 @@ section#new_book h3 {
     padding: 0px 0px 5px;
     height: 24px;
     text-indent: -7000px;
-    background-image: url("../imgs/list_box_title.png");
     background-repeat: no-repeat;
 }
 
@@ -529,13 +536,29 @@ article h4 {
 }
 
 article h3 {
-    color: rgb(0, 153, 255);
-    font-size: 1em;
+    color: #000000;
+    font-size: 1.6em;
+    margin: 0.4em;
+    display: inline-block;
 }
 
 article h4 {
     font-size: 0.8em;
     font-weight: normal;
+    margin: 0.4em;
+    padding-bottom: 0.4em;
+    display: inline-block;
+    vertical-align: bottom;
+}
+
+hr {
+    width: 100%;
+    border: 1px solid #000000;
+}
+
+.detail_info {
+    display: flex;
+    margin-bottom: 150px;
 }
 
 #goods_image {
@@ -544,16 +567,19 @@ article h4 {
 
 #detail_table {
     margin: 10px 0px 0px;
+    justify-content: center;
 }
 
 #goods_image {
     float: left;
+    align-items: center;
 }
 
 #goods_image figure {
     padding: 0px 30px 0px 0px;
     width: auto;
     text-align: center;
+    align-self: center;
 }
 
 #goods_image figure img {
@@ -567,7 +593,7 @@ article h4 {
 #detail_table {
     width: 590px;
     font-size: 0.75em;
-    float: left;
+    float: right;
 }
 
 #detail_table table {
@@ -579,6 +605,12 @@ article h4 {
     border-top-style: solid;
     border-bottom-style: solid;
     border-collapse: collapse;
+    color: #000000;
+}
+
+#detail_table th.fixed {
+    width: 30%;
+    text-align: left;
 }
 
 #detail_table table td {
@@ -598,7 +630,6 @@ article h4 {
 }
 
 #detail_table table td span {
-    font-family: "NanumGothic", Serif;
     font-size: 1.2em;
     font-weight: bold;
 }
@@ -616,72 +647,65 @@ article h4 {
     background: #e1e1ff;
 }
 
+#detail_table .button-container {
+    display: grid;
+    width: 100%;
+    justify-content: center;
+}
+
 #detail_table ul {
     list-style: none;
+    width: 100%;
     margin: 20px 0px 0px;
+    justify-content: center;
+    align-content: center;
 }
 
 #detail_table ul li {
     padding: 0px 10px;
-    float: left;
+    display: inline;
 }
 
-#detail_table ul li a {
-    border-radius: 5px;
-    border: 2px solid rgb(153, 153, 153);
-    border-image: none;
-    width: 150px;
-    height: 25px;
+#detail_table button {
+    border-radius: 10px;
     text-align: center;
-    padding-top: 7px;
-    font-family: "NanumGothic", Serif;
+    padding: 7px 20px;
     font-size: 1.2em;
     font-weight: bold;
-    display: block;
+    background-color: #ffffff;
 }
 
-#detail_table ul li a.buy {
-    background-position: 15px;
-    background-repeat: no-repeat;
+#detail_table .button-buy {
+    border: 2px solid #1e5da2;
 }
 
-#detail_table ul li a.cart {
-    background-position: 15px;
-    background-repeat: no-repeat;
+#detail_table .button-cart {
+    border: 2px solid #666666;
 }
 
-#detail_table ul li a.wish {
-    background-position: 15px;
-    background-repeat: no-repeat;
+#detail_table .button-buy:hover {
+    background-color: #1e5da2;
+    color: #ffffff;
 }
 
-#detail_table ul li a.buy {
-    border-color: rgb(255, 0, 0);
-    color: rgb(255, 0, 0);
-    background-image: url("../imgs/check.png");
+#detail_table .button-cart:hover {
+    background-color: #666666;
+    color: #ffffff;
 }
 
-#detail_table ul li a.cart {
-    background-image: url("../imgs/cart.png");
+#popup .popup-container {
+    margin: 7px 20px;
+    padding-top: 1.4em;
 }
 
-#detail_table ul li a.wish {
-    background-image: url("../imgs/wish.png");
-}
-
-#detail_table ul li a.buy:hover {
-    color: rgb(0, 0, 0);
-    background-color: rgb(255, 204, 0);
-}
-
-#detail_table ul li a.cart:hover {
-    color: rgb(0, 0, 0);
-    background-color: rgb(255, 204, 0);
-}
-
-#detail_table ul li a.wish:hover {
-    color: rgb(0, 0, 0);
-    background-color: rgb(255, 204, 0);
+#popup .button-popup {
+    border: none;
+    border-radius: 15px;
+    text-align: center;
+    padding: 7px 20px;
+    margin-top: 1.2em;
+    background-color: #1e5da2;
+    color: #ffffff;
 }
 
 #container {
@@ -695,7 +719,7 @@ ul.tabs {
     padding: 0px;
     width: 100%;
     height: 32px;
-    border-bottom-color: rgb(255, 0, 0);
+    border-bottom-color: #1e5da2;
     border-bottom-width: 1px;
     border-bottom-style: solid;
     float: left;
@@ -704,7 +728,7 @@ ul.tabs {
 ul.tabs li {
     border-width: 1px;
     border-style: solid;
-    border-color: rgb(153, 153, 153) rgb(153, 153, 153) rgb(255, 0, 0);
+    border-color: rgb(153, 153, 153) rgb(153, 153, 153) #1e5da2;
     margin: 0px 1px;
     padding: 0px;
     border-image: none;
@@ -717,29 +741,38 @@ ul.tabs li {
     background-color: rgb(245, 245, 245);
 }
 
+ul.tabs li:hover {
+    background-color: #1e5da2;
+}
+
 ul.tabs li a {
     padding: 0px 20px;
     color: rgb(0, 0, 0);
-    font-size: 12px;
+    font-size: 1rem;
     font-weight: bold;
     text-decoration: none;
     display: block;
 }
 
 ul.tabs li a:hover {
-    background-color: rgb(202, 228, 255);
+    color: #ffffff;
 }
 
 ul.tabs li.active {
-    background: rgb(255, 255, 255);
-    border-color: rgb(255, 0, 0) rgb(255, 0, 0) rgb(255, 255, 255);
+    background: #ffffff;
+    border-color: #1e5da2 #1e5da2 rgb(255, 255, 255);
     border-bottom-width: 2px;
     border-bottom-style: solid;
 }
 
+ul.tabs li.active a {
+    font-size: 1rem;
+    color: #1e5da2;
+    font-weight: bold;
+}
+
 ul.tabs li.active a:hover {
-    background: rgb(255, 255, 255);
-    border-color: rgb(255, 0, 0) rgb(255, 0, 0) rgb(255, 255, 255);
+    border-color: #1e5da2 #1e5da2 rgb(255, 255, 255);
     border-bottom-width: 2px;
     border-bottom-style: solid;
 }
@@ -761,19 +794,17 @@ ul.tabs li.active a:hover {
     min-height: 400px;
 }
 
+/*
 .tab_content h4 {
-    background-position: left top;
     margin: 10px 0px;
     padding: 20px 0px 5px 35px;
     height: 30px;
     color: rgb(255, 255, 255);
     letter-spacing: 4px;
-    font-family: "NanumGothic", Serif;
     font-size: 16px;
     font-weight: bold;
-    background-image: url("../imgs/h4_back.png");
-    background-repeat: no-repeat;
 }
+*/
 
 .tab_content p {
     margin: 10px 0px 0px;
@@ -790,7 +821,6 @@ ul.tabs li.active a:hover {
     color: rgb(0, 0, 0);
     font-size: 1.2em;
     font-weight: bold;
-    border-bottom-color: rgb(255, 153, 0);
     border-bottom-width: 1px;
     border-bottom-style: solid;
 }
@@ -1066,7 +1096,11 @@ footer img {
 
 .detail_table ul li {
     padding: 0px 10px;
-    float: left;
+    display: inline;
+}
+
+.detail_table button {
+    display: inline;
 }
 
 .detail_table ul li a {
@@ -1088,12 +1122,12 @@ footer img {
     background-repeat: no-repeat;
 }
 
-.detail_table ul li a.cart {
+.detail_table ul li a.buy {
     background-position: 15px;
     background-repeat: no-repeat;
 }
 
-.detail_table ul li a.wish {
+.detail_table ul li a.cart {
     background-position: 15px;
     background-repeat: no-repeat;
 }
@@ -1101,15 +1135,11 @@ footer img {
 .detail_table ul li a.buy {
     border-color: rgb(255, 0, 0);
     color: rgb(255, 0, 0);
-    background-image: url("../imgs/check.png");
+    background-image: none;
 }
 
 .detail_table ul li a.cart {
-    background-image: url("../imgs/cart.png");
-}
-
-.detail_table ul li a.wish {
-    background-image: url("../imgs/wish.png");
+    background-image: none;
 }
 
 .detail_table ul li a.buy:hover {
@@ -1118,11 +1148,6 @@ footer img {
 }
 
 .detail_table ul li a.cart:hover {
-    color: rgb(0, 0, 0);
-    background-color: rgb(255, 204, 0);
-}
-
-#detail_table ul li a.wish:hover {
     color: rgb(0, 0, 0);
     background-color: rgb(255, 204, 0);
 }
@@ -1143,19 +1168,24 @@ article h1_TITLE {
     font-size: 0.75em;
 }
 
+.book_container {
+    margin-bottom: 4em;
+}
+
 .main_book h3 {
+    display: block;
     margin: 0px 0px 5px;
     padding: 0px 0px 5px;
     color: rgb(51, 102, 153);
     text-transform: uppercase;
-    font-family: "NanumGothic";
-    font-size: 1.2em;
+    font-size: 1.6em;
     border-bottom-color: rgb(51, 102, 153);
     border-bottom-width: 1px;
     border-bottom-style: solid;
 }
 
 .main_book .book {
+    margin: 0.2em;
     padding-top: 10px;
     border-radius: 10px;
     background-position: right;
@@ -1166,6 +1196,7 @@ article h1_TITLE {
     text-align: center;
     float: left;
     background-image: none;
+    word-break: auto-phrase;
 }
 
 .main_book .book img {
