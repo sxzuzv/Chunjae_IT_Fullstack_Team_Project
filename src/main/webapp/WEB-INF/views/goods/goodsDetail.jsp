@@ -145,7 +145,7 @@
   <h1>컴퓨터와 인터넷</h1>
   <h2>국내외 도서 &gt; 컴퓨터와 인터넷 &gt; 웹 개발</h2>
   <h3>${goods.goodsTitle }</h3>
-  <h4>${goods.goodsWriter} &nbsp;저| ${goods.goodsPublisher}</h4>
+  <h4>${goods.goodsWriter} &nbsp;저 | ${goods.goodsPublisher}</h4>
   <hr>
 </hgroup>
 <div class="detail_info">
@@ -156,98 +156,100 @@
     </figure>
   </div>
   <div id="detail_table">
-    <table>
-      <tbody>
-      <%--		<tr>--%>
-      <%--			<td class="fixed">정가</td>--%>
-      <%--			<td class="active"><span >--%>
-      <%--					   <fmt:formatNumber  value="${goods.goodsPrice}" type="number" var="goodsPrice" />--%>
-      <%--				         ${goodsPrice}원--%>
-      <%--					</span></td>--%>
-      <%--		</tr>--%>
-      <tr>
-        <th class="fixed">판매가</th>
-        <td class="active"><span>
+    <div class="detail_table_content">
+      <table>
+        <tbody>
+        <%--		<tr>--%>
+        <%--			<td class="fixed">정가</td>--%>
+        <%--			<td class="active"><span >--%>
+        <%--					   <fmt:formatNumber  value="${goods.goodsPrice}" type="number" var="goodsPrice" />--%>
+        <%--				         ${goodsPrice}원--%>
+        <%--					</span></td>--%>
+        <%--		</tr>--%>
+        <tr>
+          <th class="fixed">판매가</th>
+          <td class="active"><span>
 					   <fmt:formatNumber value="${goods.goodsPrice}" type="number" var="goodsPrice"/>
 				         ${goodsPrice}원</span></td>
-      </tr>
-      <%--<tr>
-          <td class="fixed">포인트적립</td>
-          <td class="active">P(10%적립)</td>
-      </tr>
-      <tr class="dot_line">
-          <td class="fixed">포인트 추가적립</td>
-          <td class="fixed">만원이상 구매시 1,000P, 5만원이상 구매시 2,000P추가적립 편의점 배송 이용시 300P 추가적립</td>
-      </tr>--%>
-      <tr>
-        <th class="fixed">발행일</th>
-        <td class="fixed">
-          <c:set var="pub_date" value="${goods.goodsPublishedDate}"/>
-          <c:set var="arr" value="${fn:split(pub_date,' ')}"/>
-          <c:out value="${arr[0]}"/>
-        </td>
-      </tr>
-      <tr>
-        <th class="fixed">페이지 수</th>
-        <td class="fixed">${goods.goodsTotalPage}쪽</td>
-      </tr>
-      <tr class="dot_line">
-        <th class="fixed">ISBN</th>
-        <td class="fixed">${goods.goodsIsbn}</td>
-      </tr>
-      <tr>
-        <th class="fixed">배송료</th>
-        <td class="fixed">
-          <c:choose>
-            <c:when test="${goods.goodsDeliveryPrice}.equals('0') || ${goods.goodsDeliveryPrice} == null">
-              <strong>무료</strong>
-            </c:when>
-            <c:otherwise>
-              ${goods.goodsDeliveryPrice}원
-            </c:otherwise>
-          </c:choose>
-        
-        </td>
-      </tr>
-      <tr>
-        <th class="fixed">배송안내</th>
-        <td class="fixed"><strong>[당일배송]</strong> 당일배송 서비스 시작!<br> <strong>[휴일배송]</strong>
-          휴일에도 배송받는 Bookshop
-        </TD>
-      </tr>
-      <tr>
-        <th class="fixed">도착예정일</th>
-        <td class="fixed">
-          ${goods.goodsDeliveryDate}
-        </td>
-      </tr>
-      <tr>
-        <th class="fixed">수량</th>
-        <td class="fixed">
-          <select style="width: 60px;" id="order_goods_qty" onchange="changefn()">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            `
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-          </select>
-        </td>
-      </tr>
-      </tbody>
-    </table>
-    <div class="button-container">
-      <ul>
-        <li>
-          <button type="button" class="button-buy"
-                  onclick="fn_order_each_goods('${goods.goodsId }','${goods.goodsTitle }','${goods.goodsSalesPrice}','${goods.goodsFileName}','${goods.goodsDeliveryPrice}');">
-            구매하기
-          </button>
-        </li>
-        <li>
-          <button type="button" class="button-cart" onclick="add_cart('${goods.goodsId }');">장바구니</button>
-        </li>
-      </ul>
+        </tr>
+        <%--<tr>
+            <td class="fixed">포인트적립</td>
+            <td class="active">P(10%적립)</td>
+        </tr>
+        <tr class="dot_line">
+            <td class="fixed">포인트 추가적립</td>
+            <td class="fixed">만원이상 구매시 1,000P, 5만원이상 구매시 2,000P추가적립 편의점 배송 이용시 300P 추가적립</td>
+        </tr>--%>
+        <tr>
+          <th class="fixed">발행일</th>
+          <td class="fixed">
+            <c:set var="pub_date" value="${goods.goodsPublishedDate}"/>
+            <c:set var="arr" value="${fn:split(pub_date,' ')}"/>
+            <c:out value="${arr[0]}"/>
+          </td>
+        </tr>
+        <tr>
+          <th class="fixed">페이지 수</th>
+          <td class="fixed">${goods.goodsTotalPage}쪽</td>
+        </tr>
+        <tr class="dot_line">
+          <th class="fixed">ISBN</th>
+          <td class="fixed">${goods.goodsIsbn}</td>
+        </tr>
+        <tr>
+          <th class="fixed">배송료</th>
+          <td class="fixed">
+            <c:choose>
+              <c:when test="${goods.goodsDeliveryPrice}.equals('0') || ${goods.goodsDeliveryPrice} == null">
+                <strong>무료</strong>
+              </c:when>
+              <c:otherwise>
+                ${goods.goodsDeliveryPrice}원
+              </c:otherwise>
+            </c:choose>
+          
+          </td>
+        </tr>
+        <tr>
+          <th class="fixed">배송안내</th>
+          <td class="fixed"><strong>[당일배송]</strong> 당일배송 서비스 시작!<br> <strong>[휴일배송]</strong>
+            휴일에도 배송받는 Bookshop
+          </TD>
+        </tr>
+        <tr>
+          <th class="fixed">도착예정일</th>
+          <td class="fixed">
+            ${goods.goodsDeliveryDate}
+          </td>
+        </tr>
+        <tr>
+          <th class="fixed">수량</th>
+          <td class="fixed">
+            <select style="width: 60px;" id="order_goods_qty" onchange="changefn()">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              `
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+      <div class="button-container">
+        <ul>
+          <li>
+            <button type="button" class="button-buy"
+                    onclick="fn_order_each_goods('${goods.goodsId }','${goods.goodsTitle }','${goods.goodsSalesPrice}','${goods.goodsFileName}','${goods.goodsDeliveryPrice}');">
+              구매하기
+            </button>
+          </li>
+          <li>
+            <button type="button" class="button-cart" onclick="add_cart('${goods.goodsId }');">장바구니</button>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </div>
@@ -264,34 +266,27 @@
     <li><a href="#tab6">리뷰</a></li>
   </ul>
   <div class="tab_container">
-    <div class="tab_content" id="tab1">
-<%--      <h4>책소개</h4>--%>
+    <div class="tab_content" id="tab1">  <%-- 책 소개--%>
       <p>${fn:replace(goods.goodsIntro,crcn,br)}</p>
       <c:forEach var="image" items="${imageList }">
         <img
                 src="${contextPath}/download.do?goods_id=${goods.goodsId}&fileName=${image.fileName}">
       </c:forEach>
     </div>
-    <div class="tab_content" id="tab2">
-      <h4>저자소개</h4>
+    <div class="tab_content" id="tab2">  <%-- 저자 소개 --%>
       <div class="writer">저자 : ${goods.goodsWriter}</div>
       <p>${fn:replace(goods.goodsWriterIntro,crcn,br) }</p>
-    
     </div>
-    <div class="tab_content" id="tab3">
-      <h4>책목차</h4>
+    <div class="tab_content" id="tab3">  <%-- 책 목차 --%>
       <p>${fn:replace(goods.goodsContentsOrder,crcn,br)}</p>
     </div>
-    <div class="tab_content" id="tab4">
-      <h4>출판사서평</h4>
+    <div class="tab_content" id="tab4">  <%-- 출판사 서평 --%>
       <p>${fn:replace(goods.goodsPublisherComment ,crcn,br)}</p>
     </div>
-    <div class="tab_content" id="tab5">
-      <h4>추천사</h4>
+    <div class="tab_content" id="tab5">  <%-- 추천사 --%>
       <p>${fn:replace(goods.goodsRecommendation,crcn,br) }</p>
     </div>
-    <div class="tab_content" id="tab6">
-      <h4>리뷰</h4>
+    <div class="tab_content" id="tab6">  <%-- 리뷰 --%>
     </div>
   </div>
 </div>
@@ -309,7 +304,7 @@
         <input class="button-popup" type="submit" value="장바구니 보기">
       </form>
     </div>
-    
+
 </body>
 </html>
 <input type="hidden" name="isLogOn" id="isLogOn" value="${isLogOn}"/>
