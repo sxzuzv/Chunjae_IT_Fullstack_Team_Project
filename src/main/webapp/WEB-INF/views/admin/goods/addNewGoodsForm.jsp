@@ -8,15 +8,26 @@
 <meta charset="utf-8">
 <head>
 <script type="text/javascript">
-  var cnt=0;
+  var cnt=1;
+
   function fn_addFile(){
-	  if(cnt ==0){
-		  $("#d_file").append("<br>"+"<input  type='file' name='main_image'  />");	  
+	  if(cnt <= 3){
+		  $("#d_file").append("<p id = 'detail_image"+cnt+"' >상세 이미지 "+cnt+": "+
+				  "<input type='file' name='detail_image"+cnt+"'> " +
+				  "<a href='javascript:fn_removeFileButton("+cnt+")'> X </a>"+
+				  "</p><br>");
 	  }else{
-		  $("#d_file").append("<br>"+"<input  type='file' name='detail_image"+cnt+"' />");
+		  alert('상세 이미지는 3개까지 추가 가능합니다')
 	  }
   	
   	cnt++;
+  }
+
+  function fn_removeFileButton(i) {
+	  $('#detail_image'+i).remove();
+	  if(cnt>0){
+		  cnt--;
+	  }
   }
 </script>    
 </head>
@@ -166,17 +177,12 @@
 			</div>
 			<div class="tab_content" id="tab7">
 				<h4>상품 이미지</h4>
-				<table >
-					<tr>
-						<td align="right">이미지 파일 첨부</td>
-			            
-			            <td  align="left"> <input type="button"  value="파일 추가" onClick="fn_addFile()"/></td>
-			            <td>
-				            <div id="d_file">
-				            </div>
-			            </td>
-					</tr>
-				</table>
+
+				<STRONG>메인 이미지</strong>: <input type="file" name="main_image"><br>
+				<input type="button"  value="상세 이미지 추가" onClick="fn_addFile()"/><br>
+				<div id="d_file">
+
+				</div>
 			</div>
 		</div>
 	</div>

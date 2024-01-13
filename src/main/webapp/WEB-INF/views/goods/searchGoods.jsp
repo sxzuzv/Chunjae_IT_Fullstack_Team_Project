@@ -14,6 +14,8 @@
 %>
 <head>
   <title>검색 도서 목록 페이지</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
   <style>
       #layer {
           z-index: 2;
@@ -22,6 +24,7 @@
           left: 0px;
           width: 100%;
       }
+
       #popup {
           z-index: 3;
           position: fixed;
@@ -33,6 +36,7 @@
           background-color: #ccffff;
           border: 3px solid #87cb42;
       }
+
       #close {
           z-index: 4;
           float: right;
@@ -47,30 +51,30 @@
           if (isLogOn == "false" || isLogOn == '') {
               alert("로그인 후 주문이 가능합니다!!!");
           }
-          
+
           $.ajax({
-              type : "post",
-              async : false, //false인 경우 동기식으로 처리한다.
-              url : "${contextPath}/cart/addGoodsInCart.do",
-              data : {
-                  goods_id:goods_id,
-                  cartGoodsQty:1  /* 리스트에서는 상품 수량 조절 기능이 없으므로 1로 임의 설정 */
+              type: "post",
+              async: false, //false인 경우 동기식으로 처리한다.
+              url: "${contextPath}/cart/addGoodsInCart.do",
+              data: {
+                  goods_id: goods_id,
+                  cartGoodsQty: 1  /* 리스트에서는 상품 수량 조절 기능이 없으므로 1로 임의 설정 */
               },
-              success : function(data, textStatus) {
+              success: function (data, textStatus) {
                   //alert(data);
                   //	$('#message').append(data);
-                  if(data.trim()=='add_success'){
+                  if (data.trim() == 'add_success') {
                       // alert("장바구니에 상품을 추가했습니다.")
                       imagePopup('open', '.layer01');
                       imagePopup('open');
-                  }else if(data.trim()=='already_existed'){
+                  } else if (data.trim() == 'already_existed') {
                       alert("이미 카트에 등록된 상품입니다.");
                   }
               },
-              error : function(data, textStatus) {
-                  alert("에러가 발생했습니다."+data);
+              error: function (data, textStatus) {
+                  alert("에러가 발생했습니다." + data);
               },
-              complete : function(data, textStatus) {
+              complete: function (data, textStatus) {
                   //alert("작업을완료 했습니다");
               }
           }); //end ajax
@@ -82,8 +86,7 @@
               jQuery('#layer').attr('style', 'visibility:visible');
               // 페이지를 가리기위한 레이어 영역의 높이를 페이지 전체의 높이와 같게 한다.
               jQuery('#layer').height(jQuery(document).height());
-          }
-          else if (type == 'close') {
+          } else if (type == 'close') {
               // 팝업창을 닫는다.
               jQuery('#layer').attr('style', 'visibility:hidden');
           }
@@ -115,13 +118,13 @@
           i_goods_sales_price.name = "goodsSalesPrice";
           i_fileName.name = "goodsFileName";
           i_order_goods_qty.name = "orderGoodsQty";
-          i_goods_delivery_price.name="goodsDeliveryPrice";
+          i_goods_delivery_price.name = "goodsDeliveryPrice";
 
           i_goods_id.value = goods_id;
           i_order_goods_qty.value = 1;
           i_goods_title.value = goods_title;
           i_goods_sales_price.value = goods_sales_price;
-          i_goods_delivery_price.value=goods_delivery_price;
+          i_goods_delivery_price.value = goods_delivery_price;
           i_fileName.value = fileName;
 
           formObj.appendChild(i_goods_id);
@@ -174,10 +177,10 @@
                 </div>
                 <div class="writer">${item.goodsWriter} | ${item.goodsPublisher}</div>
                 <div class="price">
-							<%--<span>
-							  <fmt:formatNumber value="${item.goodsPrice}" type="number" var="goods_price"/>
-		                         ${goods_price}원
-							</span> <br>--%>
+                    <%--<span>
+                      <fmt:formatNumber value="${item.goodsPrice}" type="number" var="goods_price"/>
+                         ${goods_price}원
+                    </span> <br>--%>
                   <fmt:formatNumber value="${item.goodsPrice}" type="number" var="goods_price"/>
                     ${goods_price}원
                 </div>
@@ -206,7 +209,7 @@
     <li><a style="border: currentColor; border-image: none;" href="#">최근 등록</a></li>
   </ul>
 </div>
-<table id="list_view">
+<table id="list_view" class="table table-hover">
   <tbody>
   <c:forEach var="item" items="${goodsList }">
     <tr>
@@ -218,7 +221,7 @@
       </td>
       <td class="goods_description">
         <h2>
-          <a href="${contextPath}/goods/goodsDetail.do?goods_id=${item.goodsId }">${item.goodsTitle }</a>
+          <a class="link-dark link-underline link-underline-opacity-0" href="${contextPath}/goods/goodsDetail.do?goods_id=${item.goodsId }">${item.goodsTitle }</a>
         </h2>
         <c:set var="goods_pub_date" value="${item.goodsPublishedDate }"/>
         <c:set var="arr" value="${fn:split(goods_pub_date,' ')}"/>
@@ -232,14 +235,16 @@
             ${goods_sales_price}원
         </strong><br>
       </td>
-      <%-- todo: 배송비 값 받아오기 --%>
       <input type="hidden" id="h_goods_delivery_price" name="h_goods_delivery_price"
              value="${item.goodsDeliveryPrice}"/>
-<%--      <c:set var="goods_delivery_price" value="${item.goodsDeliveryPrice}" />--%>
       <td class="buy_btns">
         <UL>
-          <li><a href="javascript:add_cart('${item.goodsId }');">장바구니</a></li>
-          <li><a href="javascript:fn_order_each_goods('${item.goodsId }','${item.goodsTitle }','${item.goodsSalesPrice}','${item.goodsFileName}','${item.goodsDeliveryPrice}');">구매하기</a></li>
+          <li>
+            <button type="button" class="btn btn-outline-dark" onclick="javascript:add_cart('${item.goodsId }');">장바구니</button>
+          </li>
+          <li>
+            <button type="button" class="btn btn-outline-dark" onclick="javascript:fn_order_each_goods('${item.goodsId }','${item.goodsTitle }','${item.goodsSalesPrice}','${item.goodsFileName}','${item.goodsDeliveryPrice}');">구매하기</button>
+          </li>
         </UL>
       </td>
     </tr>
@@ -270,9 +275,9 @@
   <div id="popup">
     <!-- 팝업창 닫기 버튼 -->
     <a href="javascript:" onClick="javascript:imagePopup('close', '.layer01');"> <img
-            src="${contextPath}/resources/image/close.png" id="close" />
-    </a> <br /> <font size="12" id="contents">장바구니에 담았습니다.</font><br>
-    <form   action='${contextPath}/cart/myCartList.do'  >
-      <input  type="submit" value="장바구니 보기">
+            src="${contextPath}/resources/image/close.png" id="close"/>
+    </a> <br/> <font size="12" id="contents">장바구니에 담았습니다.</font><br>
+    <form action='${contextPath}/cart/myCartList.do'>
+      <input type="submit" value="장바구니 보기">
     </form>
-<input type="hidden" name="isLogOn" id="isLogOn" value="${isLogOn}"/>
+    <input type="hidden" name="isLogOn" id="isLogOn" value="${isLogOn}"/>
