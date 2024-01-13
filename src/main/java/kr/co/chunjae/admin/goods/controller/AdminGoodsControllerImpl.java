@@ -104,7 +104,7 @@ public class AdminGoodsControllerImpl extends BaseController  implements AdminGo
 		HttpSession session = multipartRequest.getSession();
 		MemberVO memberVO = (MemberVO) session.getAttribute("memberInfo");
 		String reg_id = memberVO.getMemberId();
-		
+
 		
 		List<ImageFileVO> imageFileList =upload(multipartRequest);
 		if(imageFileList!= null && imageFileList.size()!=0) {
@@ -119,6 +119,9 @@ public class AdminGoodsControllerImpl extends BaseController  implements AdminGo
 		ResponseEntity resEntity = null;
 		HttpHeaders responseHeaders = new HttpHeaders();
 		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
+
+
+
 		try {
 			int goods_id = adminGoodsService.addNewGoods(newGoodsMap);
 			if(imageFileList!=null && imageFileList.size()!=0) {
@@ -138,7 +141,7 @@ public class AdminGoodsControllerImpl extends BaseController  implements AdminGo
 				for(ImageFileVO  imageFileVO:imageFileList) {
 					imageFileName = imageFileVO.getFileName();
 					File srcFile = new File(CURR_IMAGE_REPO_PATH+"\\"+"temp"+"\\"+imageFileName);
-					srcFile.delete();
+					srcFile.delete(); //temp에 파일이 없는 경우는 temp폴더까지 삭제됨
 				}
 			}
 
