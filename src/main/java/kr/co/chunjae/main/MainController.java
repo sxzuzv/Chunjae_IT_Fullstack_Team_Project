@@ -7,10 +7,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -21,9 +23,15 @@ import kr.co.chunjae.goods.vo.GoodsVO;
 
 @Controller("mainController")
 @EnableAspectJAutoProxy
+@RequiredArgsConstructor
 public class MainController extends BaseController {
-	@Autowired
-	private GoodsService goodsService;
+
+	private final GoodsService goodsService;
+
+	@RequestMapping({"/",""})
+	public String firstPage(){
+		return "redirect:/main/main.do";
+	}
 
 	@RequestMapping(value= "/main/main.do" ,method={RequestMethod.POST,RequestMethod.GET})
 	public String main(HttpServletRequest request, HttpServletResponse response, Model model) throws Exception{
