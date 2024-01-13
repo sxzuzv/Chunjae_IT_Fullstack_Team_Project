@@ -9,6 +9,7 @@
 <head>
 <script type="text/javascript">
   var cnt=1;
+
   function fn_addFile(){
 	  if(cnt <= 3){
 		  $("#d_file").append("<p id = 'detail_image"+cnt+"' >상세 이미지 "+cnt+": "+
@@ -21,17 +22,12 @@
   	
   	cnt++;
   }
-  function fn_removeFileButton(i) {
-	  if (i==1){
-		  $("#detail_image1").remove();
-	  }else if(i==2){
-		  $("#detail_image2").remove();
-	  }else if(i==3){
-		  $("#detail_image3").remove();
-	  }else{
-		  alert('잘못된 요청입니다')
-	  }
 
+  function fn_removeFileButton(i) {
+	  $('#detail_image'+i).remove();
+	  if(cnt>0){
+		  cnt--;
+	  }
   }
 </script>    
 </head>

@@ -191,7 +191,7 @@ public class AdminGoodsControllerImpl extends BaseController  implements AdminGo
 	public void modifyGoodsImageInfo(MultipartHttpServletRequest multipartRequest, HttpServletResponse response)  throws Exception {
 		System.out.println("modifyGoodsImageInfo");
 		multipartRequest.setCharacterEncoding("utf-8");
-		response.setContentType("text/html; charset=utf-8");
+		response.setContentType("text/html; charset=UTF-8");
 		String imageFileName=null;
 		
 		Map goodsMap = new HashMap();
@@ -248,7 +248,7 @@ public class AdminGoodsControllerImpl extends BaseController  implements AdminGo
 			throws Exception {
 		System.out.println("addNewGoodsImage");
 		multipartRequest.setCharacterEncoding("utf-8");
-		response.setContentType("text/html; charset=utf-8");
+		response.setContentType("text/html; charset=UTF-8");
 		String imageFileName=null;
 		
 		Map goodsMap = new HashMap();
