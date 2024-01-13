@@ -1,16 +1,23 @@
 package kr.co.chunjae.member.controller;
 
+import java.io.PrintWriter;
+import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import lombok.RequiredArgsConstructor;
+import org.apache.tiles.request.Request;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -32,6 +39,8 @@ import kr.co.chunjae.member.vo.MemberVO;
 public class MemberControllerImpl extends BaseController implements MemberController{
 
 	private final MemberService memberService;
+
+	private final JavaMailSender mailSender;
 
 	@Override
 	@RequestMapping(value="/login.do" ,method = RequestMethod.POST)
@@ -84,7 +93,7 @@ public class MemberControllerImpl extends BaseController implements MemberContro
 	
 	@Override
 	@RequestMapping(value="/addMember.do" ,method = RequestMethod.POST)
-	public ResponseEntity addMember(@Validated @ModelAttribute("memberVO") MemberVO _memberVO,
+	public ResponseEntity addMember(@Validated @ModelAttribute("memberVO") MemberVO memberVO,
 									HttpServletRequest request, HttpServletResponse response) throws Exception {
 		response.setContentType("text/html; charset=UTF-8");
 		request.setCharacterEncoding("utf-8");
@@ -93,7 +102,7 @@ public class MemberControllerImpl extends BaseController implements MemberContro
 		HttpHeaders responseHeaders = new HttpHeaders();
 		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
 		try {
-		    memberService.addMember(_memberVO);
+		    memberService.addMember(memberVO);
 		    message  = "<script>";
 		    message +=" alert('회원 가입을 마쳤습니다.로그인창으로 이동합니다.');";
 		    message += " location.href='"+request.getContextPath()+"/member/loginForm.do';";
@@ -118,4 +127,102 @@ public class MemberControllerImpl extends BaseController implements MemberContro
 		resEntity =new ResponseEntity(result, HttpStatus.OK);
 		return resEntity;
 	}
+
+
+	@Override
+	@RequestMapping(value="/pwFindForm.do", method = RequestMethod.GET)
+	public String passwordFind(HttpServletRequest request){
+		String viewName=(String)request.getAttribute("viewName");
+		return viewName;
+	}
+
+	@Override
+	@RequestMapping(value="/pwFind.do", method = RequestMethod.POST)
+	public String pwAuth(@RequestParam Map<String, String> authMap, HttpSession session, HttpServletRequest request, HttpServletResponse response,Model model) {
+
+		//아이디, 이름, 이메일로 비교
+		MemberVO memberVO = memberService.authPwMember(authMap);
+		System.out.println(memberVO);
+
+		if (memberVO != null) {//폼에서 받은 정보가 db와 일치할때
+			//인증번호 생성
+			Random r = new Random();
+			int num = r.nextInt(999999);
+			session.setAttribute("memberId", memberVO.getMemberId());
+			//메일내용
+			String setfrom = "jaehyuck1996@naver.com"; // naver
+			String tomail = memberVO.getMemberEmail1() + "@" + memberVO.getMemberEmail2();
+			String title = "[북토피아] 비밀번호변경 인증 이메일 입니다.";
+			String content = System.getProperty("line.separator") + "안녕하세요 회원님" + System.getProperty("line.separator")
+					+ "비밀번호찾기(변경) 인증번호는 " + num + " 입니다." + System.getProperty("line.separator"); //
+			try {//메일보내기
+				MimeMessage message = mailSender.createMimeMessage();
+				MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "utf-8");
+
+				messageHelper.setFrom(setfrom);
+				messageHelper.setTo(tomail);
+				messageHelper.setSubject(title);
+				messageHelper.setText(content);
+
+				mailSender.send(message);
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
+			}
+			model.addAttribute("num", num);
+			return "/member/pwAuthForm";
+		} else {//일치하는 정보가 없을때
+			return "/member/pwFindForm";
+		}
+	}
+
+	@RequestMapping(value="/pwAuth.do", method = RequestMethod.POST)
+	public String pwAuth(@RequestParam("emailAuth") String emailAuth,
+						 @RequestParam("num") String num, Model model, HttpServletResponse response) throws Exception {
+		if(emailAuth.equals(num)) {
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('인증번호가 일치합니다.');</script>");
+			out.flush();
+			return "/member/pwChangeForm";
+
+		}else{
+			model.addAttribute("num", num);
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('인증번호가 다릅니다. 다시 입력해주세요.');</script>");
+			out.flush();
+			return "/member/pwAuthForm";
+
+		}
+
+
+
+	}
+
+	@RequestMapping(value="/pwChange.do", method=RequestMethod.POST)
+	public String pwChange(@ModelAttribute MemberVO memberVO, HttpSession session, HttpServletResponse response, Model model) throws Exception{
+		System.out.println("session id: "+session.getAttribute("memberId"));
+		int result = memberService.pwChange(memberVO);
+
+		if (result == 1) {
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('비밀번호가 재설정 되었습니다.');</script>");
+			out.flush();
+
+			return "/member/loginForm";
+
+		} else {
+			System.out.println("pw_update" + result);
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('비밀번호가 다릅니다. 다시 입력해주세요.');</script>");
+			out.flush();
+
+			return "/member/pwChangeForm";
+		}
+
+	}
+
 }
+

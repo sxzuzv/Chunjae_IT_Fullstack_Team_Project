@@ -160,9 +160,14 @@ public class MyPageControllerImpl extends BaseController  implements MyPageContr
 
 		//수정된 회원 정보를 다시 세션에 저장한다.
 //		memberVO=(MemberVO)myPageService.modifyMyInfo(memberMap);
-		memberVO = myPageService.modifyMyInfo(memberVO);
+		if(memberVO != null) {
+			memberVO = myPageService.modifyMyInfo(memberVO);
 			session.removeAttribute("memberInfo");
 			session.setAttribute("memberInfo", memberVO);
+			return "redirect:/mypage/myDetailInfo.do";
+		}else{
+			return "redirect:/mypage/myDetailInfo.do";
+		}
 
 //		String message = null;
 //		ResponseEntity resEntity = null;
@@ -170,7 +175,6 @@ public class MyPageControllerImpl extends BaseController  implements MyPageContr
 //		message  = "mod_success";
 //		resEntity =new ResponseEntity(message, responseHeaders, HttpStatus.OK);
 //		return resEntity;
-		return "redirect:/mypage/myDetailInfo.do";
 	}
 
 	@Override

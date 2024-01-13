@@ -31,6 +31,14 @@ public class MemberDAOImpl  implements MemberDAO{
 		String result =  sqlSession.selectOne("mapper.member.selectOverlappedID",id);
 		return result;
 	}
-	
-	
+
+	@Override
+	public MemberVO authPwMember(Map<String, String> authMap) {
+		return sqlSession.selectOne("mapper.member.authPwMember", authMap);
+	}
+
+	@Override
+	public int pwChange(MemberVO memberVO) throws DataAccessException {
+		return sqlSession.update("mapper.member.pwChange", memberVO);
+	}
 }

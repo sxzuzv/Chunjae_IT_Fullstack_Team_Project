@@ -32,4 +32,14 @@ public class MemberServiceImpl implements MemberService {
 	public String overlapped(String id) throws Exception{
 		return memberDAO.selectOverlappedID(id);
 	}
+
+	@Override
+	public MemberVO authPwMember(Map<String, String> authMap) {
+		return memberDAO.authPwMember(authMap);
+	}
+
+	@Override
+	public int pwChange(MemberVO memberVO) {
+		return memberDAO.pwChange(memberVO);
+	}
 }

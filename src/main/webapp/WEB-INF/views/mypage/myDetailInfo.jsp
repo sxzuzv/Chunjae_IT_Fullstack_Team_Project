@@ -426,8 +426,7 @@
 			<td >
 				<input type="submit"  value="수정">
 				<input  type="reset"  value="다시입력">
-				<input type="hidden" name="command"  value="modify_my_info" /> 
-				<input name="btn_cancel_member" type="button"  value="수정 취소">
+				<input type="button"  value="수정 취소" onclick="location.href='/mypage/myPageMain.do'">
 			</td>
 		</tr>
 	</table>
