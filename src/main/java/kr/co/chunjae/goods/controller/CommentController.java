@@ -9,5 +9,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 public interface CommentController {
 
-	public ResponseEntity<String> addComment(@PathVariable("brdId")Integer brdId, @RequestBody CommentVO commentVO) throws Exception;
+	public ResponseEntity<String> addComment(@PathVariable("brdId") int brdId, @RequestBody CommentVO commentVO) throws Exception;
+
+	public ResponseEntity<CommentVO> getCommentList(@PathVariable("brdId")int brdId) throws Exception;
+
+	public ResponseEntity<String> removeArticle (@PathVariable("comId") int comId) throws Exception;
+
 }

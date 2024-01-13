@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @Controller("commentController")
 @RequestMapping(value="/comment")
@@ -22,11 +23,9 @@ public class CommentControllerImpl implements CommentController {
 
     @PostMapping("/addComment.do/{brdId}")
     public ResponseEntity<String> addComment(
-            @PathVariable("brdId")Integer brdId, @RequestBody CommentVO commentVO) {
+            @PathVariable("brdId") int brdId, @RequestBody CommentVO commentVO) {
         ResponseEntity<String> resEntity = null;
         try {
-            System.out.println("===========================");
-            System.out.println(commentVO);
             int result = commentService.insertWriteComment(commentVO);
             resEntity = new ResponseEntity<String>("ADD_SECCEEDED", HttpStatus.OK);
         } catch (Exception e) {
@@ -43,11 +42,12 @@ public class CommentControllerImpl implements CommentController {
     }
 
 
-    @DeleteMapping(value = "/{articleNo}")
-    public ResponseEntity<String> removeArticle (@PathVariable("articleNo") Integer articleNo) {
+    @DeleteMapping("/deleteComment.do/{comId}")
+    public ResponseEntity<String> removeArticle (@PathVariable("comId") int comId) {
         ResponseEntity<String> resEntity = null;
         try {
-            log.info(articleNo.toString());
+            log.info(String.valueOf(comId));
+            int result = commentService.deleteComment(comId);
             resEntity = new ResponseEntity<String>("REMOVE_SECCEEDED", HttpStatus.OK);
         } catch (Exception e) {
             resEntity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
@@ -55,5 +55,33 @@ public class CommentControllerImpl implements CommentController {
         return resEntity;
     }
 
+    @PutMapping("/updateComment.do/{comId}")
+    public ResponseEntity<String> modComment(
+            @PathVariable("comId")Integer comId, @RequestBody CommentVO commentVO) {
+        ResponseEntity<String> resEntity = null;
+        try {
+            int result = commentService.updateComment(commentVO);  // 게시물 수정
+            resEntity = new ResponseEntity<String>("MOD_SECCEEDED", HttpStatus.OK);
+        } catch (Exception e) {
+            resEntity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+        return resEntity;
+    }
+
+    @GetMapping("/checkMember.do/{comId}/{memberId}")
+    public ResponseEntity<String> checkMember(@PathVariable Map<Integer, String> checkMap) {
+        ResponseEntity<String> resEntity = null;
+        try {
+            int result = commentService.checkMember(checkMap);  //댓글 작성자 일치여부 체크
+            if(result == 1) {
+                resEntity = new ResponseEntity<String>("ACCESS_OK", HttpStatus.OK);
+            }else{
+                resEntity = new ResponseEntity<String>("WRONG_ACCESS", HttpStatus.FORBIDDEN);
+            }
+        } catch (Exception e) {
+            resEntity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+        return resEntity;
+    }
 
 }
