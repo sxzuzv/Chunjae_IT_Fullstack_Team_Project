@@ -335,7 +335,6 @@
 		$.ajax({
 			type: "GET",
 			url: "${contextPath}/comment/commentList.do/${goods.goodsId}",
-			dataType: "Json",
 			success: function(commentArray) {
 
 				// 댓글 출력목록의 초기화
@@ -404,10 +403,8 @@
 
 				// ajax기능으로 요청 및 응답처리
 				$.ajax({
-					type: "POST",
-					url: "${contextPath}/comment/deleteComment.do",
-					data: "comId=" + comId,  // QueryString형태로 전달
-					dataType: "Json",
+					type: "DELETE",
+					url: "${contextPath}/comment/deleteComment.do/${comId}",
 					success: function(result) {
 						// 삭제 성공시 댓글목록을 다시 불러온다.
 						loadComment();
