@@ -3,6 +3,7 @@ package kr.co.chunjae.goods.vo;
 import lombok.*;
 
 
+import javax.validation.constraints.Pattern;
 import java.sql.Date;
 
 @Getter
@@ -10,6 +11,7 @@ import java.sql.Date;
 @ToString
 @NoArgsConstructor
 public class GoodsVO {
+
 	private int goodsId;					// 상품 번호
 	private String goodsTitle;				// 상품 제목
 	private String goodsWriter;				// 저자명
@@ -18,7 +20,10 @@ public class GoodsVO {
 	private int    goodsSalesPrice;			// 상품 판매가
 	private Date    goodsPublishedDate;		// 상품 출판일
 	private int    goodsTotalPage;			// 상품 총 페이지 수
+
+	@Pattern(regexp="ISBN[1-9]+", message="ISBN345(1~9자)형식으로 입력해주세요")
 	private String goodsIsbn;				// ISBN
+
 	private String goodsDeliveryPrice;		// 배송비
 	private Date goodsDeliveryDate;			// 상품 배송일
 	private String goodsFileName;			// 이미지 파일명
