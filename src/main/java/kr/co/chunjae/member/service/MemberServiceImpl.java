@@ -42,4 +42,9 @@ public class MemberServiceImpl implements MemberService {
 	public int pwChange(MemberVO memberVO) {
 		return memberDAO.pwChange(memberVO);
 	}
+
+	@Override
+	public MemberVO idFind(Map<String, String> authMap) {
+		return memberDAO.idFind(authMap);
+	}
 }

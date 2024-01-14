@@ -164,7 +164,11 @@ public class MyPageControllerImpl extends BaseController  implements MyPageContr
 			memberVO = myPageService.modifyMyInfo(memberVO);
 			session.removeAttribute("memberInfo");
 			session.setAttribute("memberInfo", memberVO);
-			return "redirect:/mypage/myDetailInfo.do";
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('회원정보 수정완료.');</script>");
+			out.flush();
+			return "/mypage/myDetailInfo";
 		}else{
 			return "redirect:/mypage/myDetailInfo.do";
 		}

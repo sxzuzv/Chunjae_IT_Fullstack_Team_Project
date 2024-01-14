@@ -6,11 +6,13 @@ import java.util.Map;
 import java.util.Random;
 
 import javax.mail.internet.MimeMessage;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.collections.functors.ExceptionPredicate;
 import org.apache.tiles.request.Request;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -42,10 +44,27 @@ public class MemberControllerImpl extends BaseController implements MemberContro
 
 	private final JavaMailSender mailSender;
 
+
+	@Override
+	@RequestMapping(value="/loginForm.do" ,method = RequestMethod.GET)
+	public String loginForm(HttpServletRequest request) throws Exception{
+		String viewName=(String)request.getAttribute("viewName");
+		String memberId = "";
+		Cookie[] cookies = request.getCookies();
+		for(Cookie cookie : cookies) {
+			if (cookie.getName().equals("rememberId")) {
+				memberId = cookie.getValue();
+			}
+		}
+		request.setAttribute("rememberId", memberId);
+		return viewName;
+	}
+
 	@Override
 	@RequestMapping(value="/login.do" ,method = RequestMethod.POST)
 	public String login(@RequestParam Map<String, String> loginMap,
-			                  HttpServletRequest request, Model model) throws Exception {
+						@RequestParam(value="rememberId", required = false) String rememberId,
+			                  HttpServletRequest request,HttpServletResponse response, Model model) throws Exception {
 		String viewname = "";
 		MemberVO memberVO=memberService.login(loginMap);
 
@@ -54,6 +73,17 @@ public class MemberControllerImpl extends BaseController implements MemberContro
 			session=request.getSession();
 			session.setAttribute("isLogOn", true);
 			session.setAttribute("memberInfo",memberVO);
+
+			//쿠키생성
+			Cookie cookie = new Cookie("rememberId" , memberVO.getMemberId());
+			if(rememberId != null) {
+				cookie.setMaxAge((60*60*2));
+			}else{
+				cookie.setMaxAge(0);
+			}
+			response.addCookie(cookie);
+
+
 			
 			String action=(String)session.getAttribute("action");
 			//action을 통해서 로그인되었을 경우 넘어갈수 있게함 로그인이 안되었을경우 튕기게함
@@ -138,7 +168,7 @@ public class MemberControllerImpl extends BaseController implements MemberContro
 
 	@Override
 	@RequestMapping(value="/pwFind.do", method = RequestMethod.POST)
-	public String pwAuth(@RequestParam Map<String, String> authMap, HttpSession session, HttpServletRequest request, HttpServletResponse response,Model model) {
+	public String pwAuth(@RequestParam Map<String, String> authMap, HttpSession session, HttpServletRequest request, HttpServletResponse response,Model model) throws Exception{
 
 		//아이디, 이름, 이메일로 비교
 		MemberVO memberVO = memberService.authPwMember(authMap);
@@ -169,8 +199,16 @@ public class MemberControllerImpl extends BaseController implements MemberContro
 				System.out.println(e.getMessage());
 			}
 			model.addAttribute("num", num);
+            response.setContentType("text/html; charset=UTF-8");
+            PrintWriter out = response.getWriter();
+            out.println("<script>alert('이메일로 인증번호를 전송했습니다.');</script>");
+            out.flush();
 			return "/member/pwAuthForm";
 		} else {//일치하는 정보가 없을때
+            response.setContentType("text/html; charset=UTF-8");
+            PrintWriter out = response.getWriter();
+            out.println("<script>alert('일치하는 정보가 없습니다. 정보를 다시입력해 주세요.');</script>");
+            out.flush();
 			return "/member/pwFindForm";
 		}
 	}
@@ -181,7 +219,7 @@ public class MemberControllerImpl extends BaseController implements MemberContro
 		if(emailAuth.equals(num)) {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
-			out.println("<script>alert('인증번호가 일치합니다.');</script>");
+			out.println("<script>alert('인증번호가 일치합니다. 비밀번호 변경화면으로 이동합니다');</script>");
 			out.flush();
 			return "/member/pwChangeForm";
 
@@ -194,8 +232,6 @@ public class MemberControllerImpl extends BaseController implements MemberContro
 			return "/member/pwAuthForm";
 
 		}
-
-
 
 	}
 
@@ -213,7 +249,6 @@ public class MemberControllerImpl extends BaseController implements MemberContro
 			return "/member/loginForm";
 
 		} else {
-			System.out.println("pw_update" + result);
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>alert('비밀번호가 다릅니다. 다시 입력해주세요.');</script>");
@@ -224,5 +259,28 @@ public class MemberControllerImpl extends BaseController implements MemberContro
 
 	}
 
+	@Override
+	@RequestMapping(value="/idFindForm.do", method = RequestMethod.GET)
+	public String idFindForm(HttpServletRequest request){
+		String viewName=(String)request.getAttribute("viewName");
+		return viewName;
+	}
+
+	@Override
+	@RequestMapping(value="/idFind.do", method = RequestMethod.POST)
+	public String idFind(@RequestParam Map<String, String> authMap,HttpServletResponse response, Model model) throws Exception {
+		MemberVO memberVO = memberService.idFind(authMap);
+        if(memberVO != null){
+            model.addAttribute("memberId", memberVO.getMemberId());
+            return "/member/idFindComplete";
+        }else{
+            response.setContentType("text/html; charset=UTF-8");
+            PrintWriter out = response.getWriter();
+            out.println("<script>alert('정보와 일치하는 아이디가 없습니다.');</script>");
+            out.flush();
+            return "/member/idFindForm";
+        }
+
+	}
 }
 

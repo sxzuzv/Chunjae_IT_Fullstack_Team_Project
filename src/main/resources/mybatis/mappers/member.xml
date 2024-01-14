@@ -65,14 +65,13 @@ member_hp1, member_hp2, member_hp3, smssts_yn, member_email1, member_email2, ema
    ]]>      
   </insert>
 
-	<select id="authPwMember" parameterType="java.util.Map" resultType="memberVO">
-
+	<select id="authMember" parameterType="java.util.Map" resultType="memberVO">
 		select * from t_shopping_member
-		where member_email1=#{memberEmail1}
-		and member_email2=#{memberEmail2}
-		and member_name=#{memberName}
-		and member_id=#{memberId}
-
+		where
+			member_email1=#{memberEmail1}
+			and member_email2=#{memberEmail2}
+			and member_name=#{memberName}
+			and member_id=#{memberId}
 	</select>
 
 	<update id="pwChange" parameterType="memberVO">
@@ -80,4 +79,14 @@ member_hp1, member_hp2, member_hp3, smssts_yn, member_email1, member_email2, ema
 		set member_pw=#{memberPw}
 		where member_id=#{memberId}
 	</update>
+
+	<select id="authId" parameterType="java.util.Map" resultType="memberVO">
+		select * from t_shopping_member
+		where
+			member_name=#{memberName}
+			and member_hp1=#{memberHp1}
+			and member_hp2=#{memberHp2}
+			and member_hp3=#{memberHp3}
+
+	</select>
 </mapper>

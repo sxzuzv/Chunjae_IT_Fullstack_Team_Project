@@ -34,11 +34,16 @@ public class MemberDAOImpl  implements MemberDAO{
 
 	@Override
 	public MemberVO authPwMember(Map<String, String> authMap) {
-		return sqlSession.selectOne("mapper.member.authPwMember", authMap);
+		return sqlSession.selectOne("mapper.member.authMember", authMap);
 	}
 
 	@Override
 	public int pwChange(MemberVO memberVO) throws DataAccessException {
 		return sqlSession.update("mapper.member.pwChange", memberVO);
+	}
+
+	@Override
+	public MemberVO idFind(Map<String, String> authMap) throws DataAccessException {
+		return sqlSession.selectOne("mapper.member.authId", authMap);
 	}
 }

@@ -27,6 +27,16 @@
         <put-attribute name="title" value="회원 가입 페이지" />
         <put-attribute name="body" value="/WEB-INF/views/member/pwChangeForm.jsp" />
     </definition>
+
+    <definition name="/member/idFindForm" extends="baseLayout">
+        <put-attribute name="title" value="회원 가입 페이지" />
+        <put-attribute name="body" value="/WEB-INF/views/member/idFindForm.jsp" />
+    </definition>
+
+    <definition name="/member/idFindComplete" extends="baseLayout">
+        <put-attribute name="title" value="회원 가입 페이지" />
+        <put-attribute name="body" value="/WEB-INF/views/member/idFindComplete.jsp" />
+    </definition>
   
 </tiles-definitions>
 
