@@ -1,19 +1,22 @@
 package kr.co.chunjae.admin.goods.controller;
 
-import java.util.Map;
+import kr.co.chunjae.goods.vo.GoodsVO;
+import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
-import org.springframework.web.servlet.ModelAndView;
+import javax.validation.Valid;
+import java.util.Map;
 
 public interface AdminGoodsController {
 	public String adminGoodsMain(@RequestParam Map<String, String> dateMap, HttpServletRequest request, HttpServletResponse response, Model model)  throws Exception;
-	public ResponseEntity addNewGoods(MultipartHttpServletRequest multipartRequest, HttpServletResponse response)  throws Exception;
+	public String addNewGoods(@Valid @ModelAttribute GoodsVO goodsVO, BindingResult bindingResult,
+							  MultipartHttpServletRequest multipartRequest, HttpServletResponse response)  throws Exception;
 	public ResponseEntity modifyGoodsInfo(@RequestParam("goods_id") String goods_id,
                                           @RequestParam("mod_type") String mod_type,
                                           @RequestParam("value") String value,

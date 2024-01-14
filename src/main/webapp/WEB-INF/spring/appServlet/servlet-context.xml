@@ -44,12 +44,6 @@
        <beans:property name="defaultEncoding" value="utf-8" />
     </beans:bean>
 
-<!--	&lt;!&ndash; Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory &ndash;&gt;-->
-<!--	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">-->
-<!--		<beans:property name="prefix" value="/WEB-INF/views/" />-->
-<!--		<beans:property name="suffix" value=".jsp" />-->
-<!--	</beans:bean>-->
-
 	<beans:bean id="mailSender"
 		  class="org.springframework.mail.javamail.JavaMailSenderImpl">
 		<beans:property name="host" value="smtp.naver.com" />
@@ -72,5 +66,5 @@
 			</beans:props>
 		</beans:property>
 	</beans:bean>
- 
+	
 </beans:beans>

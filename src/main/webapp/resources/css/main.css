@@ -17,7 +17,7 @@ body {
     background-position: top;
     margin: 0px;
     padding: 0px;
-    color: rgb(102, 102, 102);
+    color: #494949;
     font-family: "Dotum", Arial, serif;
     /*font-size: 1em;*/
     background-image: none;
@@ -30,7 +30,7 @@ img {
 }
 
 a {
-    color: rgb(102, 102, 102);
+    color: #494949;
     text-decoration: none;
 }
 
@@ -41,6 +41,11 @@ a:hover {
 
 .clear {
     clear: both;
+}
+
+.clear.clear-main
+{
+    margin-bottom: 200px;
 }
 
 #outer_wrap {
@@ -119,6 +124,10 @@ header #search .btn1 {
     font-size: 16px;
 }
 
+header #search .btn1:hover {
+    opacity: 90%;
+}
+
 .flexbox {
     display: flex;
     grid-row: 2/3;
@@ -136,6 +145,7 @@ nav {
 
 nav ul {
     list-style: none;
+    display: inline-block;
 }
 
 nav ul li {
@@ -144,7 +154,6 @@ nav ul li {
 }
 
 nav ul li a {
-    display: block;
     text-decoration: none;
     color: #000;
 }
@@ -186,7 +195,6 @@ aside #banner {
     background-position: left;
     padding: 2px 0px 5px 10px;
     color: rgb(51, 102, 153);
-    font-family: "NanumGothic";
     font-size: 1.2em;
     border-bottom-color: rgb(51, 102, 153);
     border-bottom-width: 1px;
@@ -227,12 +235,16 @@ article {
     z-index: 2;
 }
 
-article #ad_main_banner {
+article #ad_main_banner,
+article #ad_sub_banner
+{
     margin: 10px 0px;
+    width: 100%;
 }
 
-article #ad_sub_banner {
-    margin: 10px 0px;
+article #ad_main_banner img,
+article #ad_sub_banner img {
+    width: 100%;
 }
 
 article hgroup {
@@ -242,11 +254,8 @@ article hgroup {
 article h1 {
     padding: 0px 0px 5px;
     letter-spacing: 2px;
-    font-family: "NanumGothic";
-    font-size: 1.1em;
-    border-bottom-color: rgb(102, 102, 102);
-    border-bottom-width: 2px;
-    border-bottom-style: solid;
+    font-size: 1.4em;
+    color: #494949;
 }
 
 article h2 {
@@ -258,7 +267,7 @@ article h2 {
 section#new_book {
     padding: 7px 10px;
     border-radius: 10px;
-    border: 1px solid rgb(102, 102, 102);
+    border: 2px solid #1FA393;
     border-image: none;
     width: auto;
     overflow: hidden;
@@ -266,10 +275,24 @@ section#new_book {
     margin-top: 10px;
 }
 
+.carousel_container {
+    display: flex;
+    padding: 0 0.4em;
+}
+
+.carousel_content {
+    width: 100%;
+    height: 100%;
+    display: inline-flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    vertical-align: middle;
+}
+
 section#new_book #carousel_inner {
-    width: 725px;
+    max-width: 800px;
+    text-align: center;
     overflow: hidden;
-    float: left;
 }
 
 section#new_book #carousel_ul {
@@ -290,14 +313,16 @@ section#new_book #carousel_ul li {
 
 section#new_book #left_scroll {
     width: 14px;
-    padding-top: 70px;
+    height: 100%;
     float: left;
+    align-self: center;
 }
 
 section#new_book #right_scroll {
     width: 14px;
-    padding-top: 70px;
-    float: left;
+    height: 100%;
+    float: right;
+    align-self: center;
 }
 
 section#new_book h3 {
@@ -306,14 +331,19 @@ section#new_book h3 {
     padding: 0px 0px 5px;
     height: 24px;
     text-indent: -7000px;
-    background-image: url("../imgs/list_box_title.png");
     background-repeat: no-repeat;
 }
 
 section#new_book #book {
     width: 135px;
+    padding-top: 1em;
+    border-radius: 10px;
     text-align: center;
     float: left;
+    word-break: auto-phrase;
+}
+section#new_book #book:hover {
+    background-color: #f6f5f5;
 }
 
 section#new_book #book img {
@@ -327,6 +357,8 @@ section#new_bookr .no_back#book {
 section#new_book #book .sort {
     margin: 0px;
     padding: 2px 0px;
+    font-size: 0.75em;
+    color: #1FA393;
 }
 
 section#new_book #book .title {
@@ -337,10 +369,18 @@ section#new_book #book .title {
 section#new_book #book .writer {
     margin: 0px;
     padding: 2px 0px;
+    font-size: 0.8em;
+    vertical-align: middle;
 }
-
+section#new_book #book .writer span {
+    margin: inherit;
+    padding: inherit;
+    font-size: inherit;
+    vertical-align: inherit;
+    color: #666666;
+}
 section#new_book #book .price {
-    margin: 0px;
+    margin: 0.1em 0 1em;
     padding: 2px 0px;
 }
 
@@ -353,7 +393,7 @@ section#new_book #book .title {
 }
 
 section#new_book #book .price {
-    color: rgb(255, 0, 0);
+    color: #1FA393;
     font-weight: bold;
 }
 
@@ -397,6 +437,9 @@ article table#list_view {
     border-collapse: collapse;
 }
 
+article table#list_view tr:hover {
+    background-color: #f6f5f5;
+}
 
 article table#list_view td {
     margin: 0px;
@@ -407,22 +450,26 @@ article table#list_view td {
 }
 
 article table#list_view h2 {
+    margin: 0.2em 0;
     padding: 0px 0px 2px;
-    font-size: 1.2em;
+    font-size: 1em;
     font-weight: bold;
+    color: #000000;
+}
+
+article table#list_view .writer_press {
+    padding: 0 0 2px;
+    font-size: 0.8em;
+    color: #666666;
 }
 
 article table#list_view td.goods_image {
-    width: 80px;
+    width: 12%;
+    text-align: center;
 }
 
 article table#list_view td.goods_description {
-    width: 500px;
-    padding-left: 5px;
-}
-
-article table#list_view td.goods_description .writer_press {
-    padding: 2px 5px;
+    padding-left: 1em;
     color: #5F5F5F;
 }
 
@@ -430,23 +477,17 @@ article table#list_view td.goods_description p {
     line-height: 1.2em;
 }
 
-article table#list_view td.price {
-    padding: 0px 0px 0px 10px;
-    width: 70px;
-}
-
-article table#list_view td.price span {
-    text-decoration: line-through;
-}
-
-article table#list_view td.price strong {
-    color: rgb(255, 0, 0);
+article table#list_view .price {
+    margin-top: 0.1em;
+    font-size: 1em;
     font-weight: bold;
+    color: #1FA393;
 }
 
 article table#list_view td.buy_btns {
-    width: max-content;
-    padding-left: 5px;
+    width: fit-content;
+    padding: 5px;
+    text-align: center;
 }
 
 article table#list_view td.buy_btns ul {
@@ -457,18 +498,35 @@ article table#list_view td.buy_btns ul li {
     margin: 5px 0px;
 }
 
-article table#list_view td.buy_btns ul li a {
-    padding: 5px 12px;
-    border-radius: 3px;
-    border: 1px solid rgb(153, 153, 153);
-    border-image: none;
-    text-align: center;
-    display: block;
+article table#list_view td.buy_btns ul li button {
+    width: 60%;
+    padding: 0.4em 1em;
+    font-size: 0.75em;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
 }
 
-article table#list_view td.buy_btns ul li a:hover {
-    color: rgb(255, 255, 255);
-    background-color: rgb(0, 51, 102);
+article table#list_view td.buy_btns ul li .btn_cart {
+    border: 1px solid #1e5da2;
+    background-color: #1e5da2;
+    color: #ffffff;
+}
+
+article table#list_view td.buy_btns ul li .btn_buy {
+    border: 1px solid #666666;
+    background-color: #f6f5f5;
+    color: #000000;
+}
+
+article table#list_view td.buy_btns ul li .btn_cart:hover {
+    opacity: 90%;
+}
+
+article table#list_view td.buy_btns ul li .btn_buy:hover {
+    background-color: #ffffff;
+    color: #666666;
+    font-weight: bold;
 }
 
 article #page_wrap {
@@ -496,9 +554,9 @@ article ul#page_control li a {
 }
 
 article ul#page_control li a:hover {
-    border: 1px solid rgb(255, 0, 0);
+    border: 1px solid #1FA393;
     border-image: none;
-    color: rgb(255, 0, 0);
+    color: #1FA393;
 }
 
 article ul#page_control li a.no_border {
@@ -508,16 +566,25 @@ article ul#page_control li a.no_border {
 }
 
 .active {
-    color: rgb(255, 0, 0);
+    color: #1FA393;
     font-weight: bold;
     font-size: 0.8em;
 }
 
+#sorting ul li a.active {
+    color: #1e5da2;
+    font-weight: bold;
+}
+
+#sorting ul li a.active:hover {
+    opacity: 90%;
+}
+
 article ul#page_control li .page_contrl_active {
     background: rgb(255, 255, 255);
-    border: 1px solid rgb(255, 0, 0);
+    border: 1px solid #1FA393;
     border-image: none;
-    color: rgb(255, 0, 0);
+    color: #1FA393;
 }
 
 article h3 {
@@ -529,13 +596,31 @@ article h4 {
 }
 
 article h3 {
-    color: rgb(0, 153, 255);
-    font-size: 1em;
+    color: #000000;
+    font-size: 1.6em;
+    margin: 0.4em;
+    display: inline-block;
 }
 
 article h4 {
     font-size: 0.8em;
     font-weight: normal;
+    margin: 0.4em;
+    padding-bottom: 0.4em;
+    display: inline-block;
+    vertical-align: bottom;
+}
+
+hr {
+    width: 100%;
+    border: 1px solid #000000;
+}
+
+.detail_info {
+    display: flex;
+    width: 100%;
+    margin-bottom: 150px;
+    padding: 0;
 }
 
 #goods_image {
@@ -543,17 +628,27 @@ article h4 {
 }
 
 #detail_table {
-    margin: 10px 0px 0px;
+    width: 100%;
+    margin: 10px 5px;
+    justify-content: center;
+}
+
+.detail_table_content {
+    width: 100%;
+    margin: 0;
+    padding: 0;
 }
 
 #goods_image {
     float: left;
+    align-items: center;
 }
 
 #goods_image figure {
     padding: 0px 30px 0px 0px;
     width: auto;
     text-align: center;
+    align-self: center;
 }
 
 #goods_image figure img {
@@ -565,13 +660,13 @@ article h4 {
 }
 
 #detail_table {
-    width: 590px;
+    width: 100%;
     font-size: 0.75em;
-    float: left;
+    float: right;
 }
 
 #detail_table table {
-    width: 95%;
+    width: 100%;
     border-top-color: rgb(51, 51, 51);
     border-bottom-color: rgb(51, 51, 51);
     border-top-width: 2px;
@@ -579,9 +674,17 @@ article h4 {
     border-top-style: solid;
     border-bottom-style: solid;
     border-collapse: collapse;
+    color: #000000;
+}
+
+#detail_table th.fixed {
+    width: 30%;
+    padding-left: 0.4em;
+    text-align: left;
 }
 
 #detail_table table td {
+    width: 100%;
     padding: 7px 0px 7px 10px;
 }
 
@@ -598,9 +701,12 @@ article h4 {
 }
 
 #detail_table table td span {
-    font-family: "NanumGothic", Serif;
     font-size: 1.2em;
     font-weight: bold;
+}
+
+#detail_table table td.active {
+    color: #1FA393;
 }
 
 #detail_table table td.fixed {
@@ -616,72 +722,65 @@ article h4 {
     background: #e1e1ff;
 }
 
+#detail_table .button-container {
+    display: grid;
+    width: 100%;
+    justify-content: center;
+}
+
 #detail_table ul {
     list-style: none;
+    width: 100%;
     margin: 20px 0px 0px;
+    justify-content: center;
+    align-content: center;
 }
 
 #detail_table ul li {
     padding: 0px 10px;
-    float: left;
+    display: inline;
 }
 
-#detail_table ul li a {
-    border-radius: 5px;
-    border: 2px solid rgb(153, 153, 153);
-    border-image: none;
-    width: 150px;
-    height: 25px;
+#detail_table button {
+    border-radius: 10px;
     text-align: center;
-    padding-top: 7px;
-    font-family: "NanumGothic", Serif;
+    padding: 7px 20px;
     font-size: 1.2em;
     font-weight: bold;
-    display: block;
+    background-color: #ffffff;
 }
 
-#detail_table ul li a.buy {
-    background-position: 15px;
-    background-repeat: no-repeat;
+#detail_table .button-buy {
+    border: 2px solid #1e5da2;
 }
 
-#detail_table ul li a.cart {
-    background-position: 15px;
-    background-repeat: no-repeat;
+#detail_table .button-cart {
+    border: 2px solid #666666;
 }
 
-#detail_table ul li a.wish {
-    background-position: 15px;
-    background-repeat: no-repeat;
+#detail_table .button-buy:hover {
+    background-color: #1e5da2;
+    color: #ffffff;
 }
 
-#detail_table ul li a.buy {
-    border-color: rgb(255, 0, 0);
-    color: rgb(255, 0, 0);
-    background-image: url("../imgs/check.png");
+#detail_table .button-cart:hover {
+    background-color: #666666;
+    color: #ffffff;
 }
 
-#detail_table ul li a.cart {
-    background-image: url("../imgs/cart.png");
+#popup .popup-container {
+    margin: 7px 20px;
+    padding-top: 1.4em;
 }
 
-#detail_table ul li a.wish {
-    background-image: url("../imgs/wish.png");
-}
-
-#detail_table ul li a.buy:hover {
-    color: rgb(0, 0, 0);
-    background-color: rgb(255, 204, 0);
-}
-
-#detail_table ul li a.cart:hover {
-    color: rgb(0, 0, 0);
-    background-color: rgb(255, 204, 0);
-}
-
-#detail_table ul li a.wish:hover {
-    color: rgb(0, 0, 0);
-    background-color: rgb(255, 204, 0);
+#popup .button-popup {
+    border: none;
+    border-radius: 15px;
+    text-align: center;
+    padding: 7px 20px;
+    margin-top: 1.2em;
+    background-color: #1e5da2;
+    color: #ffffff;
 }
 
 #container {
@@ -695,7 +794,7 @@ ul.tabs {
     padding: 0px;
     width: 100%;
     height: 32px;
-    border-bottom-color: rgb(255, 0, 0);
+    border-bottom-color: #1e5da2;
     border-bottom-width: 1px;
     border-bottom-style: solid;
     float: left;
@@ -704,7 +803,7 @@ ul.tabs {
 ul.tabs li {
     border-width: 1px;
     border-style: solid;
-    border-color: rgb(153, 153, 153) rgb(153, 153, 153) rgb(255, 0, 0);
+    border-color: rgb(153, 153, 153) rgb(153, 153, 153) #1e5da2;
     margin: 0px 1px;
     padding: 0px;
     border-image: none;
@@ -717,29 +816,38 @@ ul.tabs li {
     background-color: rgb(245, 245, 245);
 }
 
+ul.tabs li:hover {
+    background-color: #1e5da2;
+}
+
 ul.tabs li a {
     padding: 0px 20px;
     color: rgb(0, 0, 0);
-    font-size: 12px;
+    font-size: 1rem;
     font-weight: bold;
     text-decoration: none;
     display: block;
 }
 
 ul.tabs li a:hover {
-    background-color: rgb(202, 228, 255);
+    color: #ffffff;
 }
 
 ul.tabs li.active {
-    background: rgb(255, 255, 255);
-    border-color: rgb(255, 0, 0) rgb(255, 0, 0) rgb(255, 255, 255);
+    background: #ffffff;
+    border-color: #1e5da2 #1e5da2 rgb(255, 255, 255);
     border-bottom-width: 2px;
     border-bottom-style: solid;
 }
 
+ul.tabs li.active a {
+    font-size: 1rem;
+    color: #1e5da2;
+    font-weight: bold;
+}
+
 ul.tabs li.active a:hover {
-    background: rgb(255, 255, 255);
-    border-color: rgb(255, 0, 0) rgb(255, 0, 0) rgb(255, 255, 255);
+    border-color: #1e5da2 #1e5da2 rgb(255, 255, 255);
     border-bottom-width: 2px;
     border-bottom-style: solid;
 }
@@ -761,19 +869,17 @@ ul.tabs li.active a:hover {
     min-height: 400px;
 }
 
+/*
 .tab_content h4 {
-    background-position: left top;
     margin: 10px 0px;
     padding: 20px 0px 5px 35px;
     height: 30px;
     color: rgb(255, 255, 255);
     letter-spacing: 4px;
-    font-family: "NanumGothic", Serif;
     font-size: 16px;
     font-weight: bold;
-    background-image: url("../imgs/h4_back.png");
-    background-repeat: no-repeat;
 }
+*/
 
 .tab_content p {
     margin: 10px 0px 0px;
@@ -790,7 +896,6 @@ ul.tabs li.active a:hover {
     color: rgb(0, 0, 0);
     font-size: 1.2em;
     font-weight: bold;
-    border-bottom-color: rgb(255, 153, 0);
     border-bottom-width: 1px;
     border-bottom-style: solid;
 }
@@ -835,7 +940,7 @@ footer img {
 
 #sticky {
     flex: auto;
-    width: 80%;
+    width: fit-content;
     justify-self: center;
     padding: 0;
     border-radius: 5px;
@@ -885,6 +990,11 @@ footer img {
     padding: 5px 0px;
     border-radius: 5px;
     text-align: center;
+}
+
+#sticky ul strong {
+    font-size: 0.8em;
+    text-wrap: nowrap;
 }
 
 #sticky .recent h3 {
@@ -972,7 +1082,7 @@ footer img {
 }
 
 .list_view td.price strong {
-    color: rgb(255, 0, 0);
+    color: #DD362A;
     font-weight: bold;
 }
 
@@ -1066,7 +1176,11 @@ footer img {
 
 .detail_table ul li {
     padding: 0px 10px;
-    float: left;
+    display: inline;
+}
+
+.detail_table button {
+    display: inline;
 }
 
 .detail_table ul li a {
@@ -1088,28 +1202,24 @@ footer img {
     background-repeat: no-repeat;
 }
 
-.detail_table ul li a.cart {
+.detail_table ul li a.buy {
     background-position: 15px;
     background-repeat: no-repeat;
 }
 
-.detail_table ul li a.wish {
+.detail_table ul li a.cart {
     background-position: 15px;
     background-repeat: no-repeat;
 }
 
 .detail_table ul li a.buy {
-    border-color: rgb(255, 0, 0);
-    color: rgb(255, 0, 0);
-    background-image: url("../imgs/check.png");
+    border-color: #DD362A;
+    color: #DD362A;
+    background-image: none;
 }
 
 .detail_table ul li a.cart {
-    background-image: url("../imgs/cart.png");
-}
-
-.detail_table ul li a.wish {
-    background-image: url("../imgs/wish.png");
+    background-image: none;
 }
 
 .detail_table ul li a.buy:hover {
@@ -1118,11 +1228,6 @@ footer img {
 }
 
 .detail_table ul li a.cart:hover {
-    color: rgb(0, 0, 0);
-    background-color: rgb(255, 204, 0);
-}
-
-#detail_table ul li a.wish:hover {
     color: rgb(0, 0, 0);
     background-color: rgb(255, 204, 0);
 }
@@ -1143,19 +1248,24 @@ article h1_TITLE {
     font-size: 0.75em;
 }
 
+.book_container {
+    margin-bottom: 4em;
+}
+
 .main_book h3 {
+    display: block;
     margin: 0px 0px 5px;
     padding: 0px 0px 5px;
     color: rgb(51, 102, 153);
     text-transform: uppercase;
-    font-family: "NanumGothic";
-    font-size: 1.2em;
+    font-size: 1.6em;
     border-bottom-color: rgb(51, 102, 153);
     border-bottom-width: 1px;
     border-bottom-style: solid;
 }
 
 .main_book .book {
+    margin: 0.2em;
     padding-top: 10px;
     border-radius: 10px;
     background-position: right;
@@ -1166,6 +1276,7 @@ article h1_TITLE {
     text-align: center;
     float: left;
     background-image: none;
+    word-break: auto-phrase;
 }
 
 .main_book .book img {
@@ -1212,10 +1323,21 @@ article h1_TITLE {
 #search > #suggest {
     display: none;
     position: absolute;
-    border: 0.1px solid #87cb42;
+    border: 1px solid #1e5da2;
     z-index: 3;
     font-weight: bold;
     background-color: #ffffff;
+}
+
+#suggestList > a {
+    width: 100%;
+    padding: 0.1em;
+    text-decoration: none;
+    color: #666666;
+}
+
+#suggestList > a:hover {
+    color: #1FA393;
 }
 
 .show_row_line {
