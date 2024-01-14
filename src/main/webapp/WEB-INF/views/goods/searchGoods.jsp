@@ -172,7 +172,7 @@
                           ${item.goodsTitle}
                       </a>
                     </div>
-                    <div class="writer">${item.goodsWriter} | ${item.goodsPublisher}</div>
+                    <div class="writer">${item.goodsWriter} | <span>${item.goodsPublisher}</span></div>
                     <div class="price">
                         <%--<span>
                           <fmt:formatNumber value="${item.goodsPrice}" type="number" var="goods_price"/>
@@ -217,32 +217,32 @@
         </a>
       </td>
       <td class="goods_description">
-        <h2>
-          <a class="link-dark link-underline link-underline-opacity-0"
-             href="${contextPath}/goods/goodsDetail.do?goods_id=${item.goodsId }">${item.goodsTitle }</a>
-        </h2>
-        <c:set var="goods_pub_date" value="${item.goodsPublishedDate }"/>
-        <c:set var="arr" value="${fn:split(goods_pub_date,' ')}"/>
-        <div class="writer_press">${item.goodsWriter } 저
-          |${item.goodsPublisher }|<c:out value="${arr[0]}"/>
-        </div>
-      </td>
-      <td class="price">
-        <strong>
-          <fmt:formatNumber value="${item.goodsPrice}" type="number" var="goods_sales_price"/>
-            ${goods_sales_price}원
-        </strong><br>
+        <a class="link-dark link-underline link-underline-opacity-0"
+           href="${contextPath}/goods/goodsDetail.do?goods_id=${item.goodsId }">
+          <h2>
+              ${item.goodsTitle }
+          </h2>
+          <c:set var="goods_pub_date" value="${item.goodsPublishedDate }"/>
+          <c:set var="arr" value="${fn:split(goods_pub_date,' ')}"/>
+          <div class="writer_press">${item.goodsWriter } · ${item.goodsPublisher }
+            · <c:out value="${arr[0]}"/>
+          </div>
+          <div class="price">
+            <fmt:formatNumber value="${item.goodsPrice}" type="number" var="goods_sales_price"/>
+              ${goods_sales_price}원
+          </div>
+        </a>
       </td>
       <input type="hidden" id="h_goods_delivery_price" name="h_goods_delivery_price"
              value="${item.goodsDeliveryPrice}"/>
       <td class="buy_btns">
         <UL>
           <li>
-            <button type="button" class="btn btn-outline-dark" onclick="javascript:add_cart('${item.goodsId }');">장바구니
+            <button type="button" class="btn_cart" onclick="javascript:add_cart('${item.goodsId }');">장바구니
             </button>
           </li>
           <li>
-            <button type="button" class="btn btn-outline-dark"
+            <button type="button" class="btn_buy"
                     onclick="javascript:fn_order_each_goods('${item.goodsId }','${item.goodsTitle }','${item.goodsSalesPrice}','${item.goodsFileName}','${item.goodsDeliveryPrice}');">
               구매하기
             </button>
