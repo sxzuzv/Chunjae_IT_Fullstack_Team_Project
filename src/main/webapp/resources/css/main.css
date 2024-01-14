@@ -124,6 +124,10 @@ header #search .btn1 {
     font-size: 16px;
 }
 
+header #search .btn1:hover {
+    opacity: 90%;
+}
+
 .flexbox {
     display: flex;
     grid-row: 2/3;
@@ -251,7 +255,7 @@ article h1 {
     padding: 0px 0px 5px;
     letter-spacing: 2px;
     font-size: 1.4em;
-    color: #293B4E;
+    color: #494949;
 }
 
 article h2 {
@@ -277,14 +281,17 @@ section#new_book {
 }
 
 .carousel_content {
+    width: 100%;
     height: 100%;
     display: inline-flex;
     flex-wrap: nowrap;
+    justify-content: space-between;
     vertical-align: middle;
 }
 
 section#new_book #carousel_inner {
-    width: 725px;
+    max-width: 800px;
+    text-align: center;
     overflow: hidden;
 }
 
@@ -329,8 +336,14 @@ section#new_book h3 {
 
 section#new_book #book {
     width: 135px;
+    padding-top: 1em;
+    border-radius: 10px;
     text-align: center;
     float: left;
+    word-break: auto-phrase;
+}
+section#new_book #book:hover {
+    background-color: #f6f5f5;
 }
 
 section#new_book #book img {
@@ -344,6 +357,8 @@ section#new_bookr .no_back#book {
 section#new_book #book .sort {
     margin: 0px;
     padding: 2px 0px;
+    font-size: 0.75em;
+    color: #1FA393;
 }
 
 section#new_book #book .title {
@@ -354,10 +369,18 @@ section#new_book #book .title {
 section#new_book #book .writer {
     margin: 0px;
     padding: 2px 0px;
+    font-size: 0.8em;
+    vertical-align: middle;
 }
-
+section#new_book #book .writer span {
+    margin: inherit;
+    padding: inherit;
+    font-size: inherit;
+    vertical-align: inherit;
+    color: #666666;
+}
 section#new_book #book .price {
-    margin: 0px;
+    margin: 0.1em 0 1em;
     padding: 2px 0px;
 }
 
@@ -370,7 +393,7 @@ section#new_book #book .title {
 }
 
 section#new_book #book .price {
-    color: #DD362A;
+    color: #1FA393;
     font-weight: bold;
 }
 
@@ -414,6 +437,9 @@ article table#list_view {
     border-collapse: collapse;
 }
 
+article table#list_view tr:hover {
+    background-color: #f6f5f5;
+}
 
 article table#list_view td {
     margin: 0px;
@@ -424,22 +450,26 @@ article table#list_view td {
 }
 
 article table#list_view h2 {
+    margin: 0.2em 0;
     padding: 0px 0px 2px;
-    font-size: 1.2em;
+    font-size: 1em;
     font-weight: bold;
+    color: #000000;
+}
+
+article table#list_view .writer_press {
+    padding: 0 0 2px;
+    font-size: 0.8em;
+    color: #666666;
 }
 
 article table#list_view td.goods_image {
-    width: 80px;
+    width: 12%;
+    text-align: center;
 }
 
 article table#list_view td.goods_description {
-    width: 500px;
-    padding-left: 5px;
-}
-
-article table#list_view td.goods_description .writer_press {
-    padding: 2px 5px;
+    padding-left: 1em;
     color: #5F5F5F;
 }
 
@@ -447,23 +477,17 @@ article table#list_view td.goods_description p {
     line-height: 1.2em;
 }
 
-article table#list_view td.price {
-    padding: 0px 0px 0px 10px;
-    width: 70px;
-}
-
-article table#list_view td.price span {
-    text-decoration: line-through;
-}
-
-article table#list_view td.price strong {
-    color: #DD362A;
+article table#list_view .price {
+    margin-top: 0.1em;
+    font-size: 1em;
     font-weight: bold;
+    color: #1FA393;
 }
 
 article table#list_view td.buy_btns {
-    width: max-content;
-    padding-left: 5px;
+    width: fit-content;
+    padding: 5px;
+    text-align: center;
 }
 
 article table#list_view td.buy_btns ul {
@@ -474,18 +498,35 @@ article table#list_view td.buy_btns ul li {
     margin: 5px 0px;
 }
 
-article table#list_view td.buy_btns ul li a {
-    padding: 5px 12px;
-    border-radius: 3px;
-    border: 1px solid rgb(153, 153, 153);
-    border-image: none;
-    text-align: center;
-    display: block;
+article table#list_view td.buy_btns ul li button {
+    width: 60%;
+    padding: 0.4em 1em;
+    font-size: 0.75em;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
 }
 
-article table#list_view td.buy_btns ul li a:hover {
-    color: rgb(255, 255, 255);
-    background-color: rgb(0, 51, 102);
+article table#list_view td.buy_btns ul li .btn_cart {
+    border: 1px solid #1e5da2;
+    background-color: #1e5da2;
+    color: #ffffff;
+}
+
+article table#list_view td.buy_btns ul li .btn_buy {
+    border: 1px solid #666666;
+    background-color: #f6f5f5;
+    color: #000000;
+}
+
+article table#list_view td.buy_btns ul li .btn_cart:hover {
+    opacity: 90%;
+}
+
+article table#list_view td.buy_btns ul li .btn_buy:hover {
+    background-color: #ffffff;
+    color: #666666;
+    font-weight: bold;
 }
 
 article #page_wrap {
@@ -513,9 +554,9 @@ article ul#page_control li a {
 }
 
 article ul#page_control li a:hover {
-    border: 1px solid #DD362A;
+    border: 1px solid #1FA393;
     border-image: none;
-    color: #DD362A;
+    color: #1FA393;
 }
 
 article ul#page_control li a.no_border {
@@ -525,16 +566,25 @@ article ul#page_control li a.no_border {
 }
 
 .active {
-    color: #DD362A;
+    color: #1FA393;
     font-weight: bold;
     font-size: 0.8em;
 }
 
+#sorting ul li a.active {
+    color: #1e5da2;
+    font-weight: bold;
+}
+
+#sorting ul li a.active:hover {
+    opacity: 90%;
+}
+
 article ul#page_control li .page_contrl_active {
     background: rgb(255, 255, 255);
-    border: 1px solid #DD362A;
+    border: 1px solid #1FA393;
     border-image: none;
-    color: #DD362A;
+    color: #1FA393;
 }
 
 article h3 {
@@ -568,7 +618,9 @@ hr {
 
 .detail_info {
     display: flex;
+    width: 100%;
     margin-bottom: 150px;
+    padding: 0;
 }
 
 #goods_image {
@@ -576,8 +628,15 @@ hr {
 }
 
 #detail_table {
-    margin: 10px 0px 0px;
+    width: 100%;
+    margin: 10px 5px;
     justify-content: center;
+}
+
+.detail_table_content {
+    width: 100%;
+    margin: 0;
+    padding: 0;
 }
 
 #goods_image {
@@ -601,13 +660,13 @@ hr {
 }
 
 #detail_table {
-    width: 590px;
+    width: 100%;
     font-size: 0.75em;
     float: right;
 }
 
 #detail_table table {
-    width: 95%;
+    width: 100%;
     border-top-color: rgb(51, 51, 51);
     border-bottom-color: rgb(51, 51, 51);
     border-top-width: 2px;
@@ -620,10 +679,12 @@ hr {
 
 #detail_table th.fixed {
     width: 30%;
+    padding-left: 0.4em;
     text-align: left;
 }
 
 #detail_table table td {
+    width: 100%;
     padding: 7px 0px 7px 10px;
 }
 
@@ -642,6 +703,10 @@ hr {
 #detail_table table td span {
     font-size: 1.2em;
     font-weight: bold;
+}
+
+#detail_table table td.active {
+    color: #1FA393;
 }
 
 #detail_table table td.fixed {
@@ -925,6 +990,11 @@ footer img {
     padding: 5px 0px;
     border-radius: 5px;
     text-align: center;
+}
+
+#sticky ul strong {
+    font-size: 0.8em;
+    text-wrap: nowrap;
 }
 
 #sticky .recent h3 {
