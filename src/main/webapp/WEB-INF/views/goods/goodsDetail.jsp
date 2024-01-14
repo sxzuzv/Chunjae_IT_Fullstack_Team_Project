@@ -14,6 +14,7 @@
 %>
 <html>
 <head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <link rel="stylesheet" href="${contextPath}/resources/css/comment.css" />
   <style>
       #layer {
@@ -302,6 +303,7 @@
         </div>
         <%-- 댓글 목록 출력 영역 --%>
         <div id="comment_list">
+
         </div>
       </div>
     </div>
@@ -393,40 +395,57 @@
 						alert("댓글 작성시 에러발생");
 					}
 				});
-			});
+            });
 
 	// [댓글삭제] 클릭시 호출될 이벤트핸들러 함수 등록
-	$("#comment_list").on("click", "button:contains('삭제')",
-			function() {
+    $("#comment_list").on("click", "button:contains('삭제')", function() {
 				// 삭제할 댓글의 고유번호(num)를 가져온다.
 				var comId = $(this).parent().attr("num");
 
 				// ajax기능으로 요청 및 응답처리
 				$.ajax({
 					type: "DELETE",
-					url: "${contextPath}/comment/deleteComment.do/${comId}",
+					url: "${contextPath}/comment/deleteComment.do/"+comId,
 					success: function(result) {
 						// 삭제 성공시 댓글목록을 다시 불러온다.
+                        alert("삭제되었습니다.");
 						loadComment();
 					},
 					error: function() {
 						alert("삭제시 에러발생");
 					}
 				});
-			});
+    });
 
 	// [댓글수정] 클릭시 호출될 이벤트핸들러 함수 등록
 	$("#comment_list").on("click", "button:contains('수정')", function() {
-		// 수정할 댓글의 고유번호(num)와 내용을 가져온다.
-		var comId = $(this).parent().attr("num");
-		var comContent = $(this).parent().find("#comContent").text();
+      // 수정할 댓글의 고유번호(num)를 가져온다
+      var comId = $(this).parent().attr("num");
+      //사용자 체크
+      $.ajax({
+        type: "GET",
+        url: "${contextPath}/comment/checkMember.do/"+comId+"/${memberInfo.memberId}",
+        success: function(ACCESS_OK) {
+          //통과시 하단 코드 이어서 수행
+        },
+        error: function() {
 
-		// 수정할 댓글의 내용을 textarea 태그로 바꾼다.
-		$(this).parent().html("<textarea id='editContent' rows='3' cols='50'>"+comContent+"</textarea><br><br>" +
-				"<button id='save_btn'>저장</button>&nbsp;<button id='cancel_btn'>취소</button>");
+          alert("접근권한이 없습니다");
+          //함수 리턴으로 전체 종료, 하단 코드는 실행되지 않음
+          return;
+        }
+      });
 
-		// [저장] 버튼에 수정할 댓글의 고유번호를 속성으로 부여한다.
-		$("#save_btn").attr("num", comId);
+      //수정할 댓글의 내용을 가져온다.
+      var comContent = $(this).parent().find("#comContent").text();
+
+      // 수정할 댓글의 내용을 textarea 태그로 바꾼다.
+      $(this).parent().html("<textarea id='editContent' rows='3' cols='50'>"+comContent+"</textarea><br><br>" +
+              "<button id='save_btn'>저장</button>&nbsp;<button id='cancel_btn'>취소</button>");
+
+      // [저장] 버튼에 수정할 댓글의 고유번호를 속성으로 부여한다.
+      $("#save_btn").attr("num", comId);
+
 	});
 
 	// [저장] 클릭시 호출될 이벤트핸들러 함수 등록
@@ -441,15 +460,21 @@
 			$("#editContent").focus();
 			return;
 		}
+        //수정할 정보, 사용자 아이디
+        var comment = {
+          comId:comId,
+          comContent:comContent
+        };
 
 		// ajax기능으로 요청 및 응답처리
 		$.ajax({
-			type: "POST",
-			url: "${contextPath}/comment/updateComment.do",
-			data: "comId=" + comId + "&comContent=" + comContent,  // QueryString형태로 전달
-			dataType: "Json",
+			type: "PUT",
+			url: "${contextPath}/comment/updateComment.do/"+comId,
+            data: JSON.stringify(comment),
+            contentType : 'application/json; charset=utf-8',
 			success: function(result) {
 				// 수정 성공시 댓글목록을 다시 불러온다.
+                alert("수정되었습니다.");
 				loadComment();
 			},
 			error: function() {

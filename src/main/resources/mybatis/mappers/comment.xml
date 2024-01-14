@@ -18,7 +18,7 @@
         order by com_id desc
     </select>
 
-    <delete id="deleteComment">
+    <delete id="deleteComment" parameterType="int">
         delete
         from board_comment
         where com_id = #{comId}
@@ -31,4 +31,9 @@
         where com_id = #{comId}
     </update>
 
+    <select id="selectCommentCheck" parameterType="map" resultType="int">
+        SELECT count(com_id)
+        FROM board_comment
+        WHERE com_id=#{comId} and member_id=#{memberId}
+    </select>
 </mapper>
