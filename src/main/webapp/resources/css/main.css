@@ -1029,11 +1029,18 @@ footer img {
     width: 100%;
     color: rgb(51, 51, 51);
     font-size: 0.75em;
-    margin-top: 20px;
+    margin: 12px 0 6em;
     border-top-color: rgb(51, 51, 51);
     border-top-width: 2px;
     border-top-style: solid;
     border-collapse: collapse;
+    text-align: center;
+}
+
+.list_view thead tr {
+    background-color: #1e5da2;
+    color: #ffffff;
+    font-weight: 600;
 }
 
 .list_view tr {
@@ -1046,7 +1053,7 @@ footer img {
 
 .list_view td {
     margin: 0px;
-    padding: 10px 0px;
+    padding: 10px 0.4em;
     border-bottom-color: rgb(153, 153, 153);
     border-bottom-width: 1px;
     border-bottom-style: dotted;
@@ -1054,8 +1061,12 @@ footer img {
 
 .list_view h2 {
     padding: 0px 0px 2px;
-    font-size: 1.2em;
+    font-size: 1em;
     font-weight: bold;
+}
+
+.list_view .list_title {
+    text-align: left;
 }
 
 .list_view td.goods_image {
@@ -1117,18 +1128,50 @@ footer img {
     background-color: rgb(0, 51, 102);
 }
 
-.detail_table {
-    margin: 20px 0px 0px;
+.destination_info h2,
+.payment_info h2 {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin: 1em 0;
+    color: #494949;
+}
+
+.destination_info .customer_info table {
+    margin: 1em auto 4em;
+}
+
+.destination_info .customer_info table {
+    width: 100%;
+    float: left;
+    border-top-color: rgb(51, 51, 51);
+    border-bottom-color: rgb(51, 51, 51);
+    border-top-width: 2px;
+    border-bottom-width: 1px;
+    border-top-style: solid;
+    border-bottom-style: solid;
+    border-collapse: collapse;
+}
+
+.customer_info table th {
+    width: 4em;
+    padding: 0.4em 0.8em;
+    background-color: #e8eef6;
+}
+
+.customer_info table td {
+    padding: 0.4em 0.8em;
 }
 
 .detail_table {
-    width: 590px;
+    width: 100%;
     font-size: 0.75em;
     float: left;
+    margin: 12px 0 6em;
 }
 
 .detail_table table {
-    width: 95%;
+    width: 100%;
+    float: left;
     border-top-color: rgb(51, 51, 51);
     border-bottom-color: rgb(51, 51, 51);
     border-top-width: 2px;
@@ -1155,7 +1198,6 @@ footer img {
 }
 
 .detail_table table td span {
-    font-family: "NanumGothic";
     font-size: 1.2em;
     font-weight: bold;
 }
@@ -1165,12 +1207,61 @@ footer img {
     font-weight: bold;
 }
 
-
 .detail_table table td.fixed_join {
     width: 110px;
     font-weight: bold;
-    color: #0000cc;
-    background: #e1e1ff;
+    color: #494949;
+    background-color: #e8eef6;
+}
+
+.detail_table td p {
+    margin: 0.6em 0;
+}
+
+.detail_table td label {
+    padding-left: 0.2em;
+    padding-right: 3em;
+}
+
+.customer_info td input,
+.detail_table td input {
+    padding: 0.1em 0.3em;
+}
+
+.customer_info td #orderer_name,
+.detail_table td #receiver_name {
+    width: 10em;
+}
+
+.customer_info td.orderer_hp input,
+.detail_table input#hp2,
+.detail_table input#hp3 {
+    width: 5em;
+}
+
+.detail_table input#zipcode {
+    width: 5em;
+    margin-right: 1em;
+}
+
+.detail_table .address_info {
+    border: none;
+}
+
+.detail_table .address_info label {
+    font-size: 0.9em;
+    padding-right: 1em;
+}
+
+.payment_info tr.fixed {
+    background-color: #1e5da2;
+    color: #ffffff;
+}
+
+.payment_info td.symbol {
+    font-weight: bolder;
+    font-size: 1.5em;
+    color: #494949;
 }
 
 .detail_table ul {
@@ -1185,6 +1276,18 @@ footer img {
 
 .detail_table button {
     display: inline;
+    padding: 0.2em 0.6em;
+    text-align: center;
+    color: #494949;
+    font-size: 0.9em;
+    border: 1px solid #666666;
+    border-radius: 2px;
+    background-color: #f6f5f5;
+}
+
+.detail_table button:hover {
+    background-color: #ffffff;
+    color: #494949;
 }
 
 .detail_table ul li a {
