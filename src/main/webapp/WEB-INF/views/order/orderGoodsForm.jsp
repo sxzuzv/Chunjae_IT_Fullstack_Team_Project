@@ -14,8 +14,8 @@
 <c:set var="total_order_goods_qty" value="0"/>
 <!-- 총할인금액 -->
 <c:set var="total_discount_price" value="0"/>
-<!-- 총 배송비 -->
-<c:set var="total_delivery_price" value="0"/>
+<%--<!-- 총 배송비 -->--%>
+<%--<c:set var="total_delivery_price" value="0"/>--%>
 
 <head>
   <style>
@@ -539,7 +539,7 @@
       </td>
       <td><h2>${item.goodsSalesPrice}원</h2></td>
       <td><h2>${item.goodsDeliveryPrice}원</h2>
-        <input type="hidden" id="h_goods_delivery_price" name="h_goods_delivery_price"
+        <input type="hidden" id="goods_delivery_price" name="goods_delivery_price"
                value="${item.goodsDeliveryPrice}"/>
       </td>
         <%-- 주문금액 합계 = 주문금액 + 배송비 --%>
@@ -550,19 +550,21 @@
       </td>
     </tr>
     <c:set var="final_total_order_price"
-           value="${final_total_order_price+ item.goodsSalesPrice* item.orderGoodsQty + item.goodsDeliveryPrice}"/>
+           value="${final_total_order_price+ item.goodsSalesPrice* item.orderGoodsQty }"/>
     <c:set var="total_order_price"
            value="${total_order_price+ item.goodsSalesPrice* item.orderGoodsQty }"/>
     <c:set var="total_order_goods_qty"
            value="${total_order_goods_qty+item.orderGoodsQty}"/>
-    <c:set var="total_delivery_price"
-           value="${total_delivery_price + item.goodsDeliveryPrice}"/>
+<%--    <c:set var="total_delivery_price"--%>
+<%--           value="${total_delivery_price + item.goodsDeliveryPrice}"/>--%>
     </c:forEach>
     </tbody>
   </table>
   <div class="clear"></div>
   
+
   <%-- 배송지 정보 테이블 --%>
+  <tr><h3>* 도서의 배송비는 주문한 도서 중 가장 높은 가격의 배송비로 일괄 적용됩니다. *</h3></tr>
   <H1>2.배송지 정보</H1>
   <div class="destination_info">
     <div class="customer_info">
@@ -793,8 +795,7 @@
             <input type="radio" id="cellphone" name="pay_method" value="휴대폰결제" onClick="fn_pay_phone()">
             <label for="cellphone">휴대폰 결제</label>
           </td>
-        </tr>
-        
+        </tr>        
         <tr class="solid_line">
           <th>간편결제</th>
           <td>

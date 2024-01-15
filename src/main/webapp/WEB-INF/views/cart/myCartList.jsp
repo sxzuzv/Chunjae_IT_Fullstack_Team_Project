@@ -150,6 +150,7 @@
             //	alert("모두 주문하기");
             var order_goods_qty;
             var order_goods_id;
+            var goods_delivery_price;
             var objForm = document.frm_order_all_cart;
             var cart_goods_qty = objForm.cart_goods_qty;
             var h_order_each_goods_qty = objForm.h_order_each_goods_qty;
@@ -162,13 +163,13 @@
                 for (var i = 0; i < length; i++) {
                     if (checked_goods[i].checked == true) {
                         order_goods_id = checked_goods[i].value;
+                        goods_delivery_price = checked_goods[i].value;
                         order_goods_qty = changefn(order_goods_id);
                         cart_goods_qty[i].value = "";
                         cart_goods_qty[i].value = order_goods_id + ":" + order_goods_qty;
                     }
                 }
             } else {
-                order_goods_id = checked_goods.value;
                 order_goods_qty = changefn(order_goods_id);
                 cart_goods_qty.value = order_goods_id + ":" + order_goods_qty;
                 //alert(select_goods_qty.value);
@@ -215,8 +216,11 @@
             <c:forEach var="item" items="${myGoodsList }" varStatus="cnt">
                 <c:set var="cart_goods_qty" value="${myCartList[cnt.count-1].cartGoodsQty }" />
                 <c:set var="cart_id" value="${myCartList[cnt.count-1].cartId }" />
-            <td><input type="checkbox" name="checked_goods" checked value="${item.goodsId }"
-                       onClick="calcGoodsPrice(${item.goodsSalesPrice },this)"></td>
+                <c:set var="goods_delivery_price" value="${myGoodsList[cnt.count-1].goodsDeliveryPrice}" />
+            <td>
+                <input type="checkbox" name="checked_goods" checked value="${item.goodsId }"
+                       onClick="calcGoodsPrice(${item.goodsSalesPrice },this)">
+            </td>
             <td class="goods_image">
                 <a href="${contextPath}/goods/goodsDetail.do?goods_id=${item.goodsId }">
                     <img width="75" alt=""
@@ -313,7 +317,7 @@
         </td>
         <td>
             <p id="p_totalDeliveryPrice">${maxDeliveryPrice }원 </p>
-            <input id="h_totalDeliveryPrice" type="hidden" value="${maxDeliveryPrice}" />
+            <input id="h_totalDeliveryPrice" type="hidden" name="maxDeliveryPrice" value="${maxDeliveryPrice}" />
         </td>
         <td>
             <img width="25" alt="" src="${contextPath}/resources/image/equal.jpg">

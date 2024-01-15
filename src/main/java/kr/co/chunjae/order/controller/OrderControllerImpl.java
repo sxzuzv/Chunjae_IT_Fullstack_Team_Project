@@ -76,7 +76,7 @@ public class OrderControllerImpl extends BaseController implements OrderControll
 	}
 
 	@RequestMapping(value="/orderAllCartGoods.do" ,method = RequestMethod.POST)
-	public String orderAllCartGoods( @RequestParam("cart_goods_qty")  String[] cart_goods_qty,
+	public String orderAllCartGoods( @RequestParam("cart_goods_qty")  String[] cart_goods_qty, @RequestParam("maxDeliveryPrice") int maxPrice, Model model,
 			                 HttpServletRequest request)  throws Exception{
 		String viewName=(String)request.getAttribute("viewName");
 		HttpSession session=request.getSession();
@@ -96,17 +96,19 @@ public class OrderControllerImpl extends BaseController implements OrderControll
 					String goods_title=goodsVO.getGoodsTitle();
 					int goods_sales_price=goodsVO.getGoodsSalesPrice();
 					String goods_fileName=goodsVO.getGoodsFileName();
+					int goods_delivery_price= Integer.parseInt(goodsVO.getGoodsDeliveryPrice());
 					_orderVO.setGoodsId(goodsId);
 					_orderVO.setGoodsTitle(goods_title);
 					_orderVO.setGoodsSalesPrice(goods_sales_price);
 					_orderVO.setGoodsFileName(goods_fileName);
 					_orderVO.setOrderGoodsQty(Integer.parseInt(cart_goods[1]));
+					_orderVO.setGoodsDeliveryPrice(goods_delivery_price);
 					myOrderList.add(_orderVO);
 					break;
 				}
 			}
 		}
-
+		model.addAttribute("total_delivery_price", maxPrice);
 		session.setAttribute("myOrderList", myOrderList);
 		session.setAttribute("orderer", memberVO);
 
