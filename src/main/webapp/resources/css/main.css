@@ -43,9 +43,8 @@ a:hover {
     clear: both;
 }
 
-.clear.clear-main
-{
-    margin-bottom: 200px;
+.clear.clear-main {
+    margin-bottom: 6em;
 }
 
 #outer_wrap {
@@ -135,6 +134,7 @@ header #search .btn1:hover {
 
 aside {
     flex: auto;
+    max-width: fit-content;
 }
 
 nav {
@@ -221,7 +221,7 @@ article {
 
 .blank {
     flex: 100%;
-    justify-content: center;
+    justify-content: right;
     max-width: 200px;
     height: 100%;
     background-image: url("/resources/image/FFFFFF.png");
@@ -236,8 +236,7 @@ article {
 }
 
 article #ad_main_banner,
-article #ad_sub_banner
-{
+article #ad_sub_banner {
     margin: 10px 0px;
     width: 100%;
 }
@@ -342,6 +341,7 @@ section#new_book #book {
     float: left;
     word-break: auto-phrase;
 }
+
 section#new_book #book:hover {
     background-color: #f6f5f5;
 }
@@ -372,6 +372,7 @@ section#new_book #book .writer {
     font-size: 0.8em;
     vertical-align: middle;
 }
+
 section#new_book #book .writer span {
     margin: inherit;
     padding: inherit;
@@ -379,6 +380,7 @@ section#new_book #book .writer span {
     vertical-align: inherit;
     color: #666666;
 }
+
 section#new_book #book .price {
     margin: 0.1em 0 1em;
     padding: 2px 0px;
@@ -530,15 +532,15 @@ article table#list_view td.buy_btns ul li .btn_buy:hover {
 }
 
 article #page_wrap {
-    margin: 10px auto 50px;
-    padding: 0px;
-    width: 400px;
+    margin: 4em auto 4em;
+    width: fit-content;
 }
 
 article ul#page_control {
     list-style: none;
     padding: 0px;
     font-size: 11px;
+    text-wrap: nowrap;
 }
 
 article ul#page_control li {
@@ -771,16 +773,36 @@ hr {
 #popup .popup-container {
     margin: 7px 20px;
     padding-top: 1.4em;
+    height: fit-content;
 }
 
+#popup .detail_table {
+    height: fit-content;
+    margin-bottom: 0.4em;
+}
 #popup .button-popup {
     border: none;
     border-radius: 15px;
-    text-align: center;
-    padding: 7px 20px;
-    margin-top: 1.2em;
+    padding: 0.4em 1.6em;
+    margin-top: 2em;
+    margin-bottom: 4em;
     background-color: #1e5da2;
     color: #ffffff;
+    font-size: 1.3em;
+    font-weight: bold;
+}
+
+#popup .button-popup:hover {
+    opacity: 90%;
+}
+
+#popup .popup-container h1 {
+    font-size: 1.6em;
+    margin-bottom: 0.4em;
+}
+
+#popup .detail_table td {
+    width: fit-content;
 }
 
 #container {
@@ -904,10 +926,11 @@ footer {
     grid-row: 3/4;
     grid-column: 1/4;
     background-position: top;
-    margin: 10px 0px 0px;
+    margin: 10em 0px 0px;
     font-size: 0.75em;
     background-repeat: repeat-x;
     background-color: #f6f6f6;
+    color: #666666;
 }
 
 footer ul {
@@ -928,8 +951,9 @@ footer ul li.no_line {
 
 footer ul li a {
     padding: 5px 15px;
-    font-size: 1.1em;
+    font-size: 0.8em;
     display: block;
+    color: #666666;
 }
 
 footer img {
@@ -1025,11 +1049,18 @@ footer img {
     width: 100%;
     color: rgb(51, 51, 51);
     font-size: 0.75em;
-    margin-top: 20px;
+    margin: 12px 0 6em;
     border-top-color: rgb(51, 51, 51);
     border-top-width: 2px;
     border-top-style: solid;
     border-collapse: collapse;
+    text-align: center;
+}
+
+.list_view thead tr {
+    background-color: #1e5da2;
+    color: #ffffff;
+    font-weight: 600;
 }
 
 .list_view tr {
@@ -1042,7 +1073,7 @@ footer img {
 
 .list_view td {
     margin: 0px;
-    padding: 10px 0px;
+    padding: 10px 0.4em;
     border-bottom-color: rgb(153, 153, 153);
     border-bottom-width: 1px;
     border-bottom-style: dotted;
@@ -1050,8 +1081,12 @@ footer img {
 
 .list_view h2 {
     padding: 0px 0px 2px;
-    font-size: 1.2em;
+    font-size: 1em;
     font-weight: bold;
+}
+
+.list_view .list_title {
+    text-align: left;
 }
 
 .list_view td.goods_image {
@@ -1113,18 +1148,50 @@ footer img {
     background-color: rgb(0, 51, 102);
 }
 
-.detail_table {
-    margin: 20px 0px 0px;
+.destination_info h2,
+.payment_info h2 {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin: 1em 0;
+    color: #494949;
+}
+
+.destination_info .customer_info table {
+    margin: 1em auto 4em;
+}
+
+.destination_info .customer_info table {
+    width: 100%;
+    float: left;
+    border-top-color: rgb(51, 51, 51);
+    border-bottom-color: rgb(51, 51, 51);
+    border-top-width: 2px;
+    border-bottom-width: 1px;
+    border-top-style: solid;
+    border-bottom-style: solid;
+    border-collapse: collapse;
+}
+
+.customer_info table th {
+    width: 4em;
+    padding: 0.4em 0.8em;
+    background-color: #e8eef6;
+}
+
+.customer_info table td {
+    padding: 0.4em 0.8em;
 }
 
 .detail_table {
-    width: 590px;
+    width: 100%;
     font-size: 0.75em;
     float: left;
+    margin: 12px 0 6em;
 }
 
 .detail_table table {
-    width: 95%;
+    width: 100%;
+    float: left;
     border-top-color: rgb(51, 51, 51);
     border-bottom-color: rgb(51, 51, 51);
     border-top-width: 2px;
@@ -1151,7 +1218,6 @@ footer img {
 }
 
 .detail_table table td span {
-    font-family: "NanumGothic";
     font-size: 1.2em;
     font-weight: bold;
 }
@@ -1161,12 +1227,102 @@ footer img {
     font-weight: bold;
 }
 
-
 .detail_table table td.fixed_join {
     width: 110px;
     font-weight: bold;
-    color: #0000cc;
-    background: #e1e1ff;
+    color: #494949;
+    background-color: #e8eef6;
+}
+
+.detail_table td p {
+    margin: 0.6em 0;
+}
+
+.detail_table td label {
+    padding-left: 0.2em;
+    padding-right: 3em;
+}
+
+.customer_info td input,
+.detail_table td input {
+    padding: 0.1em 0.3em;
+}
+
+.customer_info td #orderer_name,
+.detail_table td #receiver_name {
+    width: 10em;
+}
+
+.customer_info td.orderer_hp input,
+.detail_table input#hp2,
+.detail_table input#hp3 {
+    width: 5em;
+}
+
+.detail_table input#zipcode {
+    width: 5em;
+    margin-right: 1em;
+}
+
+.detail_table .address_info {
+    border: none;
+}
+
+.detail_table .address_info label {
+    font-size: 0.9em;
+    padding-right: 1em;
+}
+
+.payment_info tr.fixed {
+    background-color: #1e5da2;
+    color: #ffffff;
+}
+
+.payment_info td.symbol {
+    font-weight: bolder;
+    font-size: 1.5em;
+    color: #494949;
+}
+
+.payment_info .detail_table th {
+    padding: 0.1em 0.3em;
+    width: 6.5em;
+    background-color: #e8eef6;
+}
+
+section#center {
+    text-align: center;
+}
+
+section#center .btn {
+    padding: 0.7em 1.5em;
+    border-radius: 12px;
+    border: 2px solid #1e5da2;
+    font-weight: bold;
+    text-align: center;
+}
+
+section#center .btn-primary {
+    margin-right: 2em;
+    border-color: #1e5da2;
+    background-color: #1e5da2;
+    color: #ffffff;
+}
+
+section#center .btn-light {
+    border: none;
+    background-color: #f6f5f5;
+    color: #494949;
+}
+
+section#center .btn-primary:hover {
+    opacity: 90%;
+}
+
+section#center .btn-light:hover {
+    border: 1px solid #666666;
+    background-color: #ffffff;
+    color: #666666;
 }
 
 .detail_table ul {
@@ -1181,6 +1337,22 @@ footer img {
 
 .detail_table button {
     display: inline;
+    padding: 0.2em 0.6em;
+    text-align: center;
+    color: #494949;
+    font-size: 0.9em;
+    border: 1px solid #666666;
+    border-radius: 2px;
+    background-color: #f6f5f5;
+}
+
+.detail_table button:hover {
+    background-color: #ffffff;
+    color: #494949;
+}
+
+.payment_info .detail_table {
+
 }
 
 .detail_table ul li a {
@@ -1249,7 +1421,7 @@ article h1_TITLE {
 }
 
 .book_container {
-    margin-bottom: 4em;
+    margin-bottom: 2.2em;
 }
 
 .main_book h3 {
