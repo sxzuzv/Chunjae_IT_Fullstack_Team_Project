@@ -4,6 +4,7 @@ package kr.co.chunjae.mypage.dao;
 import java.util.List;
 import java.util.Map;
 
+import lombok.RequiredArgsConstructor;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -13,9 +14,10 @@ import kr.co.chunjae.member.vo.MemberVO;
 import kr.co.chunjae.order.vo.OrderVO;
 
 @Repository("myPageDAO")
+@RequiredArgsConstructor
 public class MyPageDAOImpl implements MyPageDAO{
-	@Autowired
-	private SqlSession sqlSession;
+
+	private final SqlSession sqlSession;
 	
 	public List<OrderVO> selectMyOrderGoodsList(String member_id) throws DataAccessException{
 		List<OrderVO> orderGoodsList=(List)sqlSession.selectList("mapper.mypage.selectMyOrderGoodsList",member_id);
