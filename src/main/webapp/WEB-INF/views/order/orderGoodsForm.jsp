@@ -569,7 +569,7 @@
       <h2>[ 주문자 정보 확인 ]</h2>
       <table>
         <tbody>
-        <tr>
+        <tr class="dot_line">
           <th>이름</th>
           <td>
             <input type="text" id="orderer_name" value="${orderer.memberName}" size="15"/>
@@ -581,12 +581,13 @@
             - <input size="10px" type="text" value="${orderer.memberHp3}">
           </td>
         </tr>
-        <%--      <tr class="dot_line">--%>
-        <%--        <td><h2>이메일</h2></td>--%>
-        <%--        <td>--%>
-        <%--          <input type="text" value="${orderer.memberEmail}" size="15"/>--%>
-        <%--        </td>--%>
-        <%--      </tr>--%>
+        <tr>
+          <th>이메일</th>
+          <td colspan="3">
+            <input type="text" value="${orderer.memberEmail1}">
+            @ <input type="text" value="${orderer.memberEmail2}">
+          </td>
+        </tr>
         </tbody>
       </table>
     </div>

@@ -1310,7 +1310,7 @@ section#center .btn-primary {
 }
 
 section#center .btn-light {
-    border-color: #666666;
+    border: none;
     background-color: #f6f5f5;
     color: #494949;
 }
@@ -1320,6 +1320,7 @@ section#center .btn-primary:hover {
 }
 
 section#center .btn-light:hover {
+    border: 1px solid #666666;
     background-color: #ffffff;
     color: #666666;
 }
