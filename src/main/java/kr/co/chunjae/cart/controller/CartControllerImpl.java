@@ -36,9 +36,12 @@ public class CartControllerImpl extends BaseController implements CartController
 	public String myCartMain(HttpServletRequest request, Model model)  throws Exception {
 		String viewName=(String)request.getAttribute("viewName");
 		HttpSession session=request.getSession();
+		// memberinfo라고 하는 회원 정보를 세션에서 가져옴
 		MemberVO memberVO=(MemberVO)session.getAttribute("memberInfo");
 		String memberId=memberVO.getMemberId();
+		// memberid를 cartVO에 설정
 		cartVO.setMemberId(memberId);
+		// memberId에 따른 카트리스트를 Map형태로 조회
 		Map<String ,List> cartMap=cartService.myCartList(cartVO);
 //		model.addAttribute("cartMap", cartMap);
 		session.setAttribute("cartMap", cartMap);//장바구니 목록 화면에서 상품 주문 시 사용하기 위해서 장바구니 목록을 세션에 저장한다.

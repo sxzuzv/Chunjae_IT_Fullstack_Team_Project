@@ -14,16 +14,16 @@ import kr.co.chunjae.goods.vo.GoodsVO;
 public class CartDAOImpl  implements  CartDAO{
 	@Autowired
 	private SqlSession sqlSession;
-	
+	// 반환된 cartList는 selectCartList를 통해 서비스로 감
 	public List<CartVO> selectCartList(CartVO cartVO) throws DataAccessException {
 		List<CartVO> cartList =(List)sqlSession.selectList("mapper.cart.selectCartList",cartVO);
 		return cartList;
 	}
 
+	// 반환된 myGoodsList는 selectGoodsList를 통해 서비스로 감
 	public List<GoodsVO> selectGoodsList(List<CartVO> cartList) throws DataAccessException {
 		
-		List<GoodsVO> myGoodsList;
-		myGoodsList = sqlSession.selectList("mapper.cart.selectGoodsList",cartList);
+		List<GoodsVO> myGoodsList = sqlSession.selectList("mapper.cart.selectGoodsList",cartList);
 		return myGoodsList;
 	}
 	public boolean selectCountInCart(CartVO cartVO) throws DataAccessException {
