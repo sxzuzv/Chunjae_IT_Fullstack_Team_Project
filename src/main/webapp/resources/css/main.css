@@ -1264,6 +1264,12 @@ footer img {
     color: #494949;
 }
 
+.payment_info .detail_table th {
+    padding: 0.1em 0.3em;
+    width: 6.5em;
+    background-color: #e8eef6;
+}
+
 .detail_table ul {
     list-style: none;
     margin: 20px 0px 0px;
@@ -1288,6 +1294,10 @@ footer img {
 .detail_table button:hover {
     background-color: #ffffff;
     color: #494949;
+}
+
+.payment_info .detail_table {
+
 }
 
 .detail_table ul li a {

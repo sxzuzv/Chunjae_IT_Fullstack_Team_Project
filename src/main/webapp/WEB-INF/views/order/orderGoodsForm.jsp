@@ -45,7 +45,6 @@
           float: right;
       }
   </style>
-  
   <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
   <script>
       function execDaumPostcode() {
@@ -189,18 +188,20 @@
       }
 
       function fn_pay_phone() {
-
-
           var e_card = document.getElementById("tr_pay_card");
+          var e_installment = document.getElementById("tr_pay_installment")
           var e_phone = document.getElementById("tr_pay_phone");
           e_card.style.visibility = "hidden";
+          e_installment.style.visibility = "hidden";
           e_phone.style.visibility = "visible";
       }
 
       function fn_pay_card() {
           var e_card = document.getElementById("tr_pay_card");
+          var e_installment = document.getElementById("tr_pay_installment")
           var e_phone = document.getElementById("tr_pay_phone");
           e_card.style.visibility = "visible";
+          e_installment.style.visibility = "visible";
           e_phone.style.visibility = "hidden";
       }
 
@@ -774,31 +775,43 @@
     <div class="detail_table">
       <table>
         <tbody>
-        <tr>
+        <tr class="dot_line">
+          <th>카드 결제</th>
           <td>
-            <input type="radio" id="credit_card" name="pay_method" value="신용카드" onClick="fn_pay_card()" checked>신용카드
-            &nbsp;&nbsp;&nbsp;
-            <input type="radio" name="pay_method" value="제휴 신용카드">제휴 신용카드 &nbsp;&nbsp;&nbsp;
-            <input type="radio" name="pay_method" value="실시간 계좌이체">실시간 계좌이체 &nbsp;&nbsp;&nbsp;
-            <input type="radio" name="pay_method" value="무통장 입금">무통장 입금 &nbsp;&nbsp;&nbsp;
+            <input type="radio" id="credit_card" name="pay_method" value="신용카드" onClick="fn_pay_card()" checked>
+            <label for="credit_card">신용카드</label>
+            <input type="radio" id="credit_affiliation" name="pay_method" value="제휴 신용카드" onClick="fn_pay_card()">
+            <label for="credit_affiliation">제휴 신용카드</label>
           </td>
         </tr>
-        <tr>
+        <tr class="dot_line">
+          <th>현금 결제</th>
           <td>
-            <input type="radio" id="cellphone" name="pay_method" value="휴대폰결제" onClick="fn_pay_phone()">휴대폰 결제 &nbsp;&nbsp;&nbsp;
-            <input type="radio" id="kakao_pay" name="pay_method" value="카카오페이(간편결제)">카카오페이(간편결제) &nbsp;&nbsp;&nbsp;
-            <input type="radio" id="pay_now" name="pay_method" value="페이나우(간편결제)">페이나우(간편결제) &nbsp;&nbsp;&nbsp;
-            <input type="radio" id="payco" name="pay_method" value="페이코(간편결제)">페이코(간편결제) &nbsp;&nbsp;&nbsp;
+            <input type="radio" id="transfer_realtime" name="pay_method" value="실시간 계좌이체">
+            <label for="transfer_realtime">실시간 계좌이체</label>
+            <input type="radio" id="deposits" name="pay_method" value="무통장 입금">
+            <label for="deposits">무통장 입금</label>
+            <input type="radio" id="cellphone" name="pay_method" value="휴대폰결제" onClick="fn_pay_phone()">
+            <label for="cellphone">휴대폰 결제</label>
           </td>
         </tr>
-        <tr>
+        
+        <tr class="solid_line">
+          <th>간편결제</th>
           <td>
-            <input type="radio" name="pay_method" value="직접입금">직접입금&nbsp;&nbsp;&nbsp;
+            <input type="radio" id="kakao_pay" name="pay_method" value="카카오페이(간편결제)">
+            <label for="kakao_pay">카카오페이</label>
+            <input type="radio" id="pay_now" name="pay_method" value="페이나우(간편결제)">
+            <label for="pay_now">페이나우</label>
+            <input type="radio" id="payco" name="pay_method" value="페이코(간편결제)">
+            <label for="payco">페이코</label>
+            <input type="radio" id="direct_deposits" name="pay_method" value="직접입금">
+            <label for="direct_deposits">직접입금</label>
           </td>
         </tr>
-        <tr id="tr_pay_card">
+        <tr id="tr_pay_card" class="dot_line" style="visibility: hidden">
+          <th>카드 선택</th>
           <td>
-            <strong>카드 선택</strong>:&nbsp;&nbsp;&nbsp;
             <select id="card_com_name" name="card_com_name">
               <option value="삼성" selected>삼성</option>
               <option value="하나SK">하나SK</option>
@@ -810,8 +823,10 @@
               <option value="시티">시티</option>
               <option value="NH농협">NH농협</option>
             </select>
-            <br><Br>
-            <strong>할부 기간:</strong> &nbsp;&nbsp;&nbsp;
+          </td>
+        <tr id="tr_pay_installment" style="visibility: hidden">
+          <th>할부 기간</th>
+          <td>
             <select id="card_pay_month" name="card_pay_month">
               <option value="일시불" selected>일시불</option>
               <option value="2개월">2개월</option>
@@ -823,8 +838,8 @@
           </td>
         </tr>
         <tr id="tr_pay_phone" style="visibility:hidden">
+          <th>휴대폰 결제 번호</th>
           <td>
-            <strong>휴대폰 번호 입력: </strong>
             <input type="text" size="5" value="" id="pay_order_tel1" name="pay_order_tel1"/>-
             <input type="text" size="5" value="" id="pay_order_tel2" name="pay_order_tel2"/>-
             <input type="text" size="5" value="" id="pay_order_tel3" name="pay_order_tel3"/>
@@ -834,19 +849,19 @@
       </table>
     </div>
   </div>
-
 </form>
 <div class="clear"></div>
 <br>
 <br>
 <br>
 <section id="center">
-  <br>
-  <br> <a href="javascript:fn_show_order_detail();">
-  <img width="125" alt="" src="${contextPath}/resources/image/btn_gulje.jpg">
-</a> <a href="${contextPath}/main/main.do">
-  <img width="75" alt="" src="${contextPath}/resources/image/btn_shoping_continue.jpg">
-</a>
+  <button type="button" class="btn btn-primary">결제하기</button>
+  <a href="javascript:fn_show_order_detail();">
+    <img width="125" alt="" src="${contextPath}/resources/image/btn_gulje.jpg">
+  </a>
+  <a href="${contextPath}/main/main.do">
+    <img width="75" alt="" src="${contextPath}/resources/image/btn_shoping_continue.jpg">
+  </a>
   
   <div class="clear"></div>
   <div id="layer" style="visibility:hidden">
