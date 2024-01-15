@@ -28,16 +28,14 @@
           /* background-color:rgba(0,0,0,0.8); */
       }
 
-      #popup_order_detail {
+      #popup {
           z-index: 3;
           position: fixed;
           text-align: center;
-          left: 10%;
-          top: 0%;
-          width: 60%;
-          height: 100%;
-          background-color: #ccff99;
-          border: 2px solid #0000ff;
+          left: 30%;
+          width: fit-content;
+          background-color: #ffffff;
+          border: 1px solid #1e5da2;
       }
 
       #close {
@@ -851,145 +849,137 @@
   </div>
 </form>
 <div class="clear"></div>
-<br>
-<br>
-<br>
 <section id="center">
-  <button type="button" class="btn btn-primary">결제하기</button>
-  <a href="javascript:fn_show_order_detail();">
-    <img width="125" alt="" src="${contextPath}/resources/image/btn_gulje.jpg">
-  </a>
-  <a href="${contextPath}/main/main.do">
-    <img width="75" alt="" src="${contextPath}/resources/image/btn_shoping_continue.jpg">
-  </a>
+  <button type="button" class="btn btn-primary" onclick="javascript:fn_show_order_detail();">결제하기</button>
+  <button type="button" class="btn btn-light" onclick="location.href='${contextPath}/main/main.do'">
+    쇼핑 계속하기
+  </button>
   
   <div class="clear"></div>
   <div id="layer" style="visibility:hidden">
     <!-- visibility:hidden 으로 설정하여 해당 div안의 모든것들을 가려둔다. -->
-    <div id="popup_order_detail">
+    <div id="popup">
       <!-- 팝업창 닫기 버튼 -->
       <a href="javascript:" onClick="javascript:imagePopup('close', '.layer01');">
         <img src="${contextPath}/resources/image/close.png" id="close"/>
       </a>
-      <br/>
-      <div class="detail_table">
-        <h1>최종 주문 사항</h1>
-        <table>
-          <tbody align=left>
-          <tr>
-            <td width=200px>
-              주문상품번호:
-            </td>
-            <td>
-              <p id="p_order_goods_id"> 주문번호 </p>
-            </td>
-          </tr>
-          <tr>
-            <td width=200px>
-              주문상품명:
-            </td>
-            <td>
-              <p id="p_order_goods_title"> 주문 상품명 </p>
-            </td>
-          </tr>
-          <tr>
-            <td width=200px>
-              주문상품개수:
-            </td>
-            <td>
-              <p id="p_total_order_goods_qty"> 주문 상품개수 </p>
-            </td>
-          </tr>
-          <tr>
-            <td width=200px>
-              주문금액합계:
-            </td>
-            <td>
-              <p id="p_total_order_goods_price">주문금액합계</p>
-            </td>
-          </tr>
-          <tr>
-            <td width=200px>
-              주문자:
-            </td>
-            <td>
-              <p id="p_orderer_name"> 주문자 이름</p>
-            </td>
-          </tr>
-          <tr>
-            <td width=200px>
-              받는사람:
-            </td>
-            <td>
-              <p id="p_receiver_name">받는사람이름</p>
-            </td>
-          </tr>
-          <tr>
-            <td width=200px>
-              배송방법:
-            </td>
-            <td>
-              <p id="p_delivery_method">배송방법</p>
-            </td>
-          </tr>
-          <tr>
-            <td width=200px>
-              받는사람 휴대폰번호:
-            </td>
-            <td>
-              <p id="p_receiver_hp_num"></p>
-            </td>
-          </tr>
-          <%--<tr>
-            <td width=200px>
-              받는사람 유선번화번호:
-            </td>
-            <td>
-              <p id="p_receiver_tel_num">배송방법</p>
-            </td>
-          </tr>--%>
-          <tr>
-            <td width=200px>
-              배송주소:
-            </td>
-            <td align=left>
-              <p id="p_delivery_address">배송주소</p>
-            </td>
-          </tr>
-          <tr>
-            <td width=200px>
-              배송메시지:
-            </td>
-            <td align=left>
-              <p id="p_delivery_message">배송메시지</p>
-            </td>
-          </tr>
-          <tr>
-            <td width=200px>
-              선물포장 여부:
-            </td>
-            <td align=left>
-              <p id="p_gift_wrapping">선물포장</p>
-            </td>
-          </tr>
-          <tr>
-            <td width=200px>
-              결제방법:
-            </td>
-            <td align=left>
-              <p id="p_pay_method">결제방법</p>
-            </td>
-          </tr>
-          <tr>
-            <td colspan=2 align=center>
-              <input name="btn_process_pay_order" type="button" onClick="fn_process_pay_order()" value="최종결제하기">
-            </td>
-          </tr>
-          </tbody>
-        </table>
+      <div class="popup-container">
+        <div class="detail_table">
+          <h1>최종 주문 사항</h1>
+          <table>
+            <tbody>
+            <tr>
+              <td>
+                주문상품번호:
+              </td>
+              <td>
+                <p id="p_order_goods_id"> 주문번호 </p>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                주문상품명:
+              </td>
+              <td>
+                <p id="p_order_goods_title"> 주문 상품명 </p>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                주문상품개수:
+              </td>
+              <td>
+                <p id="p_total_order_goods_qty"> 주문 상품개수 </p>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                주문금액합계:
+              </td>
+              <td>
+                <p id="p_total_order_goods_price">주문금액합계</p>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                주문자:
+              </td>
+              <td>
+                <p id="p_orderer_name"> 주문자 이름</p>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                받는사람:
+              </td>
+              <td>
+                <p id="p_receiver_name">받는사람이름</p>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                배송방법:
+              </td>
+              <td>
+                <p id="p_delivery_method">배송방법</p>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                받는사람 휴대폰번호:
+              </td>
+              <td>
+                <p id="p_receiver_hp_num"></p>
+              </td>
+            </tr>
+            <%--<tr>
+              <td width=200px>
+                받는사람 유선번화번호:
+              </td>
+              <td>
+                <p id="p_receiver_tel_num">배송방법</p>
+              </td>
+            </tr>--%>
+            <tr>
+              <td>
+                배송주소:
+              </td>
+              <td>
+                <p id="p_delivery_address">배송주소</p>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                배송메시지:
+              </td>
+              <td>
+                <p id="p_delivery_message">배송메시지</p>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                선물포장 여부:
+              </td>
+              <td>
+                <p id="p_gift_wrapping">선물포장</p>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                결제방법:
+              </td>
+              <td>
+                <p id="p_pay_method">결제방법</p>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+          <button type="button" class="button-popup" name="btn_process_pay_order" onclick="fn_process_pay_order()">
+            최종결제하기
+          </button>
+        </div>
       </div>
       <div class="clear"></div>
-      <br>
     </div>
   </div>
 </section>

@@ -773,16 +773,36 @@ hr {
 #popup .popup-container {
     margin: 7px 20px;
     padding-top: 1.4em;
+    height: fit-content;
 }
 
+#popup .detail_table {
+    height: fit-content;
+    margin-bottom: 0.4em;
+}
 #popup .button-popup {
     border: none;
     border-radius: 15px;
-    text-align: center;
-    padding: 7px 20px;
-    margin-top: 1.2em;
+    padding: 0.4em 1.6em;
+    margin-top: 2em;
+    margin-bottom: 4em;
     background-color: #1e5da2;
     color: #ffffff;
+    font-size: 1.3em;
+    font-weight: bold;
+}
+
+#popup .button-popup:hover {
+    opacity: 90%;
+}
+
+#popup .popup-container h1 {
+    font-size: 1.6em;
+    margin-bottom: 0.4em;
+}
+
+#popup .detail_table td {
+    width: fit-content;
 }
 
 #container {
@@ -1268,6 +1288,40 @@ footer img {
     padding: 0.1em 0.3em;
     width: 6.5em;
     background-color: #e8eef6;
+}
+
+section#center {
+    text-align: center;
+}
+
+section#center .btn {
+    padding: 0.7em 1.5em;
+    border-radius: 12px;
+    border: 2px solid #1e5da2;
+    font-weight: bold;
+    text-align: center;
+}
+
+section#center .btn-primary {
+    margin-right: 2em;
+    border-color: #1e5da2;
+    background-color: #1e5da2;
+    color: #ffffff;
+}
+
+section#center .btn-light {
+    border-color: #666666;
+    background-color: #f6f5f5;
+    color: #494949;
+}
+
+section#center .btn-primary:hover {
+    opacity: 90%;
+}
+
+section#center .btn-light:hover {
+    background-color: #ffffff;
+    color: #666666;
 }
 
 .detail_table ul {
