@@ -3,6 +3,7 @@ package kr.co.chunjae.goods.dao;
 import java.util.ArrayList;
 import java.util.List;
 
+import kr.co.chunjae.goods.vo.CommentVO;
 import lombok.RequiredArgsConstructor;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +36,7 @@ public class GoodsDAOImpl  implements GoodsDAO{
 		ArrayList list=(ArrayList)sqlSession.selectList("mapper.goods.selectGoodsBySearchWord",searchWord);
 		 return list;
 	}
-	
+
 	@Override
 	public GoodsVO selectGoodsDetail(String goodsId) throws DataAccessException{
 		GoodsVO goodsVO=(GoodsVO)sqlSession.selectOne("mapper.goods.selectGoodsDetail",goodsId);
@@ -47,5 +48,16 @@ public class GoodsDAOImpl  implements GoodsDAO{
 		List<ImageFileVO> imageList=(ArrayList)sqlSession.selectList("mapper.goods.selectGoodsDetailImage",goodsId);
 		return imageList;
 	}
-	
+
+	@Override
+	public int insertWriteComment(CommentVO commentVO) throws DataAccessException {
+		return sqlSession.insert("mapper.comment.insertWriteComment",commentVO);
+	}
+
+	@Override
+	public List selectCommentList(int brdId) throws DataAccessException {
+		List<CommentVO> commentList= sqlSession.selectList("mapper.comment.selectCommentList", brdId);
+		return commentList;
+	}
+
 }

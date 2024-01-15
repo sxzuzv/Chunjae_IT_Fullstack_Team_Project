@@ -1,0 +1,97 @@
+/* 폼 전체를 감싸는 div의 스타일 */
+#comment_add {
+    width: 100%; /* 폼의 너비 */
+    margin: 0 auto; /* 폼을 가운데 정렬 */
+    border: 1px solid #ccc; /* 폼의 테두리 */
+    padding: 20px; /* 폼의 여백 */
+    background-color: #f0f0f0; /* 폼의 배경색 */
+
+}
+
+/* 댓글내용을 입력하는 textarea의 스타일 */
+#comContent {
+    width: 100%; /* textarea의 너비를 부모 요소의 너비에 맞춤 */
+    height: 100px; /* textarea의 높이 */
+    border: 1px solid #ccc; /* textarea의 테두리 */
+    resize: none; /* textarea의 크기 조절 기능을 없앰 */
+    font-family: Arial, sans-serif; /* textarea의 폰트 */
+    font-size: 16px; /* textarea의 글자 크기 */
+    padding: 10px; /* textarea의 여백 */
+}
+
+#editContent {
+    width: 100%; /* textarea의 너비를 부모 요소의 너비에 맞춤 */
+    height: 100px; /* textarea의 높이 */
+    border: 1px solid #ccc; /* textarea의 테두리 */
+    resize: none; /* textarea의 크기 조절 기능을 없앰 */
+    font-family: Arial, sans-serif; /* textarea의 폰트 */
+    font-size: 16px; /* textarea의 글자 크기 */
+    padding: 10px; /* textarea의 여백 */
+}
+
+/* 댓글등록 버튼의 스타일 */
+#add_btn {
+    width: 100px; /* 버튼의 너비 */
+    height: 30px; /* 버튼의 높이 */
+    background-color: #0e4d90; /* 버튼의 배경색 */
+    color: white; /* 버튼의 글자색 */
+    border: none; /* 버튼의 테두리를 없앰 */
+    cursor: pointer; /* 버튼에 마우스를 올리면 커서 모양이 바뀜 */
+    display: block; /* 버튼을 오른쪽으로 정렬 */
+}
+
+/* 댓글목록을 출력하는 div의 스타일 */
+#comment_list {
+    width: 100%; /* div의 너비 */
+    margin: 20px auto; /* div를 가운데 정렬하고 위아래 여백을 줌 */
+    padding: 10px; /* div의 여백 */
+}
+
+/* 각 댓글을 감싸는 div의 스타일 */
+.comment {
+    margin: 10px; /* div의 여백 */
+    padding: 10px; /* div의 여백 */
+    background-color: white; /* div의 배경색 */
+}
+
+/* 댓글의 작성자와 날짜를 보여주는 div의 스타일 */
+.comment-info {
+    display: flex; /* div를 가로로 정렬 */
+    align-items: center; /* div의 내용을 수직으로 가운데 정렬 */
+    margin-bottom: 10px; /* div의 아래 여백 */
+}
+
+/* 댓글의 작성자를 보여주는 span의 스타일 */
+.comment-user {
+    font-weight: bold; /* span의 글자를 굵게 */
+    margin-right: 10px; /* span의 오른쪽 여백 */
+}
+
+/* 댓글의 날짜를 보여주는 span의 스타일 */
+.comment-date {
+    font-size: 14px; /* span의 글자 크기 */
+    color: #999; /* span의 글자 색 */
+}
+
+/* 댓글의 내용을 보여주는 div의 스타일 */
+.comment-content {
+    font-family: Arial, sans-serif; /* div의 폰트 */
+    font-size: 16px; /* div의 글자 크기 */
+    line-height: 1.5; /* div의 줄 간격 */
+    white-space: pre-wrap; /* div의 줄 바꿈을 유지 */
+}
+
+/* 댓글의 수정, 삭제 버튼을 감싸는 div의 스타일 */
+.comment-action {
+    display: flex; /* div를 가로로 정렬 */
+    justify-content: flex-end; /* div의 내용을 오른쪽으로 정렬 */
+    margin-top: 10px; /* div의 위 여백 */
+}
+
+/* 댓글의 수정, 삭제 버튼의 공통 스타일 */
+.comment button {
+    width: 50px; /* 버튼의 너비 */
+    height: 30px; /* 버튼의 높이 */
+    border: none; /* 버튼의 테두리를 없앰 */
+    cursor: pointer; /* 버튼에 마우스를 올리면 커서 모양이 바뀜 */
+}
