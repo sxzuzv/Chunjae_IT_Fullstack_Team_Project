@@ -1071,6 +1071,12 @@ footer img {
     border-bottom-style: dotted;
 }
 
+.list_view tr.solid_line {
+    border-bottom-color: rgb(102, 102, 102);
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+}
+
 .list_view td {
     margin: 0px;
     padding: 10px 0.4em;
@@ -1083,6 +1089,11 @@ footer img {
     padding: 0px 0px 2px;
     font-size: 1em;
     font-weight: bold;
+}
+
+.list_view td.delivery_help {
+    color: #DD362A;
+    font-size: 0.75em;
 }
 
 .list_view .list_title {

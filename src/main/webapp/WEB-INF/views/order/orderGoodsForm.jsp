@@ -550,21 +550,19 @@
       </td>
     </tr>
     <c:set var="final_total_order_price"
-           value="${final_total_order_price+ item.goodsSalesPrice* item.orderGoodsQty }"/>
+           value="${final_total_order_price+ item.goodsSalesPrice* item.orderGoodsQty + item.goodsDeliveryPrice}"/>
     <c:set var="total_order_price"
            value="${total_order_price+ item.goodsSalesPrice* item.orderGoodsQty }"/>
     <c:set var="total_order_goods_qty"
            value="${total_order_goods_qty+item.orderGoodsQty}"/>
-<%--    <c:set var="total_delivery_price"--%>
-<%--           value="${total_delivery_price + item.goodsDeliveryPrice}"/>--%>
+    <c:set var="total_delivery_price"
+           value="${total_delivery_price + item.goodsDeliveryPrice}"/>
     </c:forEach>
     </tbody>
   </table>
   <div class="clear"></div>
   
-
   <%-- 배송지 정보 테이블 --%>
-  <tr><h3>* 도서의 배송비는 주문한 도서 중 가장 높은 가격의 배송비로 일괄 적용됩니다. *</h3></tr>
   <H1>2.배송지 정보</H1>
   <div class="destination_info">
     <div class="customer_info">
@@ -767,6 +765,11 @@
           <p id="p_final_totalPrice">
             <font size="15">${final_total_order_price }원 </font>
           </p> <input id="h_final_total_Price" type="hidden" value="${final_total_order_price}"/>
+        </td>
+      </tr>
+      <tr class="solid_line">
+        <td colspan="6" class="delivery_help">
+          * 도서의 배송비는 주문한 도서 중 가장 높은 가격의 배송비로 일괄 적용됩니다. *
         </td>
       </tr>
       </tbody>
