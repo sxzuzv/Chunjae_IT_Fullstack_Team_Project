@@ -20,8 +20,8 @@ public class AdminGoodsDAOImpl  implements AdminGoodsDAO{
 	private final SqlSession sqlSession;
 	
 	@Override
-	public int insertNewGoods(Map newGoodsMap) throws DataAccessException {
-		sqlSession.insert("mapper.admin.goods.insertNewGoods",newGoodsMap);
+	public int insertNewGoods(GoodsVO goodsVO) throws DataAccessException {
+		sqlSession.insert("mapper.admin.goods.insertNewGoods", goodsVO);
 		return sqlSession.selectOne("mapper.admin.goods.selectGoodsId");
 	}
 	

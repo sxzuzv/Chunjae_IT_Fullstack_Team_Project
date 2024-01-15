@@ -25,7 +25,8 @@ public class AdminGoodsServiceImpl implements AdminGoodsService {
 	
 	@Override
 	public int addNewGoods(Map newGoodsMap) throws Exception{
-		int goodsId = adminGoodsDAO.insertNewGoods(newGoodsMap);
+		int goodsId = adminGoodsDAO.insertNewGoods((GoodsVO) newGoodsMap.get("goodsVO"));
+		//다중 이미지에 대해 goodsId 동일하게 처리
 		ArrayList<ImageFileVO> imageFileList = (ArrayList)newGoodsMap.get("imageFileList");
 		for(ImageFileVO imageFileVO : imageFileList) {
 			imageFileVO.setGoodsId(goodsId);

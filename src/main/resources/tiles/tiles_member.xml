@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE tiles-definitions PUBLIC
-       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 <tiles-definitions>
 	  <definition name="/member/loginForm" extends="baseLayout">
@@ -12,6 +12,31 @@
          <put-attribute name="title" value="회원 가입 페이지" />
          <put-attribute name="body" value="/WEB-INF/views/member/memberForm.jsp" />
       </definition>
+
+    <definition name="/member/pwFindForm" extends="baseLayout">
+        <put-attribute name="title" value="회원 가입 페이지" />
+        <put-attribute name="body" value="/WEB-INF/views/member/pwFindForm.jsp" />
+    </definition>
+
+    <definition name="/member/pwAuthForm" extends="baseLayout">
+        <put-attribute name="title" value="회원 가입 페이지" />
+        <put-attribute name="body" value="/WEB-INF/views/member/pwAuthForm.jsp" />
+    </definition>
+
+    <definition name="/member/pwChangeForm" extends="baseLayout">
+        <put-attribute name="title" value="회원 가입 페이지" />
+        <put-attribute name="body" value="/WEB-INF/views/member/pwChangeForm.jsp" />
+    </definition>
+
+    <definition name="/member/idFindForm" extends="baseLayout">
+        <put-attribute name="title" value="회원 가입 페이지" />
+        <put-attribute name="body" value="/WEB-INF/views/member/idFindForm.jsp" />
+    </definition>
+
+    <definition name="/member/idFindComplete" extends="baseLayout">
+        <put-attribute name="title" value="회원 가입 페이지" />
+        <put-attribute name="body" value="/WEB-INF/views/member/idFindComplete.jsp" />
+    </definition>
   
 </tiles-definitions>
 

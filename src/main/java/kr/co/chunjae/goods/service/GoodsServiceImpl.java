@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import kr.co.chunjae.goods.vo.CommentVO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -51,6 +52,7 @@ public class GoodsServiceImpl implements GoodsService{
 		List goodsList=goodsDAO.selectGoodsBySearchWord(searchWord);
 		return goodsList;
 	}
-	
-	
+
+
+
 }
