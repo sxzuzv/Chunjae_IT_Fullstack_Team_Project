@@ -27,16 +27,17 @@
           z-index: 3;
           position: fixed;
           text-align: center;
+          text-wrap: nowrap;
+          vertical-align: middle;
           left: 50%;
           top: 45%;
-          width: 300px;
-          height: 200px;
-          background-color: #ccffff;
-          border: 3px solid #87cb42;
+          padding-bottom: 20px;
+          background-color: #ffffff;
+          border: 1px solid #666666;
       }
 
       #close {
-          z-index: 4;
+          /*z-index: 4;*/
           float: right;
       }
   </style>
@@ -278,8 +279,11 @@
     <!-- 팝업창 닫기 버튼 -->
     <a href="javascript:" onClick="javascript:imagePopup('close', '.layer01');"> <img
             src="${contextPath}/resources/image/close.png" id="close"/>
-    </a> <br/> <font size="12" id="contents">장바구니에 담았습니다.</font><br>
+    </a>
+    <div class="popup-container">
+      <p id="contents">장바구니에 담았습니다.</p>
+    </div>
     <form action='${contextPath}/cart/myCartList.do'>
-      <input type="submit" value="장바구니 보기">
+      <input class="button-popup" type="submit" value="장바구니 보기">
     </form>
     <input type="hidden" name="isLogOn" id="isLogOn" value="${isLogOn}"/>
