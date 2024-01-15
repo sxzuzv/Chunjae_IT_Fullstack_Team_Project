@@ -14,8 +14,8 @@
 <c:set var="total_order_goods_qty" value="0"/>
 <!-- 총할인금액 -->
 <c:set var="total_discount_price" value="0"/>
-<!-- 총 배송비 -->
-<c:set var="total_delivery_price" value="0"/>
+<%--<!-- 총 배송비 -->--%>
+<%--<c:set var="total_delivery_price" value="0"/>--%>
 
 <head>
   <style>
@@ -537,7 +537,7 @@
       </td>
       <td><h2>${item.goodsSalesPrice}원</h2></td>
       <td><h2>${item.goodsDeliveryPrice}원</h2>
-        <input type="hidden" id="h_goods_delivery_price" name="h_goods_delivery_price"
+        <input type="hidden" id="goods_delivery_price" name="goods_delivery_price"
                value="${item.goodsDeliveryPrice}"/>
       </td>
       <td>
@@ -547,19 +547,20 @@
       </td>
     </tr>
     <c:set var="final_total_order_price"
-           value="${final_total_order_price+ item.goodsSalesPrice* item.orderGoodsQty + item.goodsDeliveryPrice}"/>
+           value="${final_total_order_price+ item.goodsSalesPrice* item.orderGoodsQty }"/>
     <c:set var="total_order_price"
            value="${total_order_price+ item.goodsSalesPrice* item.orderGoodsQty }"/>
     <c:set var="total_order_goods_qty"
            value="${total_order_goods_qty+item.orderGoodsQty}"/>
-    <c:set var="total_delivery_price"
-           value="${total_delivery_price + item.goodsDeliveryPrice}"/>
+<%--    <c:set var="total_delivery_price"--%>
+<%--           value="${total_delivery_price + item.goodsDeliveryPrice}"/>--%>
     </c:forEach>
     </tbody>
   </table>
   <div class="clear"></div>
   
   <br>
+  <tr><h3>* 도서의 배송비는 주문한 도서 중 가장 높은 가격의 배송비로 일괄 적용됩니다. *</h3></tr>
   <br>
   <H1>2.배송지 정보</H1>
   <DIV class="detail_table">
@@ -738,8 +739,8 @@
       <td><img width="25" alt="" src="${pageContext.request.contextPath}/resources/image/equal.jpg"></td>
       <td>
         <p id="p_final_totalPrice">
-          <font size="15">${final_total_order_price }원 </font>
-        </p> <input id="h_final_total_Price" type="hidden" value="${final_total_order_price}"/>
+          <font size="15">${final_total_order_price + total_delivery_price }원 </font>
+        </p> <input id="h_final_total_Price" type="hidden" value="${final_total_order_price + total_delivery_price }"/>
       </td>
     </tr>
     </tbody>

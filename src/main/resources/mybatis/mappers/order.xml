@@ -120,4 +120,14 @@
         from t_shopping_order
     </select>
 
+    <select id="selectGoodsDeliveryPrice" resultType="int">
+        <![CDATA[
+        SELECT sg.goods_delivery_price
+        FROM t_shopping_order so
+                 JOIN t_shopping_goods sg ON so.goods_id = sg.goods_id
+        WHERE so.order_id = #{orderId}
+        ]]>
+    </select>
+
+
 </mapper>
