@@ -539,7 +539,7 @@
       </td>
       <td><h2>${item.goodsSalesPrice}원</h2></td>
       <td><h2>${item.goodsDeliveryPrice}원</h2>
-        <input type="hidden" id="goods_delivery_price" name="goods_delivery_price"
+        <input type="hidden" id="h_goods_delivery_price" name="goods_delivery_price"
                value="${item.goodsDeliveryPrice}"/>
       </td>
         <%-- 주문금액 합계 = 주문금액 + 배송비 --%>
