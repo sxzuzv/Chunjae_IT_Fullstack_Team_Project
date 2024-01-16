@@ -428,7 +428,7 @@ function fn_detail_search(){
 				<td>휴대폰 번호</td>
 				<td>주소</td>
 				<td>가입일</td>
-				<td>탈퇴 여부</td>
+<%--				<td>탈퇴 여부</td>--%>
 			</tr>
    <c:choose>
      <c:when test="${empty member_list}">			
@@ -463,16 +463,16 @@ function fn_detail_search(){
 					   <c:set var="arr" value="${fn:split(join_date,' ')}" />
 					   <strong><c:out value="${arr[0]}" /></strong>
 				    </td>
-				    <td width=10%>
-				       <c:choose>
-				         <c:when test="${item.delYn=='N' }">
-				           <strong>활동 중</strong>
-				         </c:when>
-				         <c:otherwise>
-				           <strong>탈퇴</strong>
-				         </c:otherwise>
-				       </c:choose>
-				    </td>
+<%--				    <td width=10%>--%>
+<%--				       <c:choose>--%>
+<%--				         <c:when test="${item.delYn=='N' }">--%>
+<%--				           <strong>활동 중</strong>--%>
+<%--				         </c:when>--%>
+<%--				         <c:otherwise>--%>
+<%--				           <strong>탈퇴</strong>--%>
+<%--				         </c:otherwise>--%>
+<%--				       </c:choose>--%>
+<%--				    </td>--%>
 				</tr>
 		</c:forEach>
 	</c:otherwise>

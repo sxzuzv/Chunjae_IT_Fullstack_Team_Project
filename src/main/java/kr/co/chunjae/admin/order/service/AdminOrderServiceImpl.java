@@ -41,4 +41,8 @@ public class AdminOrderServiceImpl implements AdminOrderService {
 		orderMap.put("orderer", orderer);
 		return orderMap;
 	}
+
+	public List<OrderVO> detailOrder(HashMap<String, Object> condMap) throws Exception {
+		return adminOrderDAO.detailOrder(condMap);
+	}
 }

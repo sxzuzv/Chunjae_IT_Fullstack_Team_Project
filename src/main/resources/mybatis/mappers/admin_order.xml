@@ -72,14 +72,14 @@
 		  select * from (
 			    select @ROWNUM:=@ROWNUM+1 as recNum,t.*
 			       from (
-			              select  *  from t_shopping_order 
+			              select  *  from t_shopping_order
 			              where date_format(pay_order_time,'%Y-%m-%d')  between #{beginDate} and #{endDate}
 <!--							<if test='search_type=="all"'>-->
 <!--								AND orderer_name=#{search_word}-->
 <!--							</if>-->
-			                <if test='searchType=="ordererName"'>
-			                  AND orderer_name=#{searchWord}
-			                </if>
+<!--			                <if test='searchType=="ordererName"'>-->
+<!--			                  AND orderer_name=#{searchWord}-->
+<!--			                </if>-->
 <!--			       			<if test="searchType=='ordererName'.toString()">-->
 <!--								AND (orderer_name like '%' || #{searchWord} || '%')-->
 <!--							</if>-->
@@ -98,7 +98,7 @@
 		recNum between (#{section}-1)*100+ (#{pageNum}-1)*10+1 and (#{section}-1)*100+(#{pageNum})*10
 	</select>
 
-<update id="updateDeliveryState" parameterType="java.util.Map" >
+	<update id="updateDeliveryState" parameterType="java.util.Map" >
 	   update t_shopping_order
 	    <set>
 	      <if test=" deliveryState!='' and deliveryState!=null">
@@ -121,6 +121,39 @@
 			select * from t_shopping_member
 			where member_id=#{member_Id}
 		]]>
+	</select>
+
+<!--	<select id="detailOrder" resultType="OrderVO" parameterType="java.util.HashMap">-->
+<!--		SELECT * FROM (-->
+<!--						  SELECT @ROWNUM:=@ROWNUM+1 AS recNum, t.*-->
+<!--						  FROM (-->
+<!--							  SELECT * FROM t_shopping_order-->
+<!--							  WHERE DATE_FORMAT(pay_order_time, '%Y-%m-%d') BETWEEN #{beginDate} AND #{endDate}-->
+<!--							  AND (-->
+<!--							  (#{searchType} = 'ordererName' AND orderer_name LIKE CONCAT('%', #{searchWord}, '%'))-->
+<!--							  OR (#{searchType} = 'orderId' AND order_id LIKE CONCAT('%', #{searchWord}, '%'))-->
+<!--							  OR (#{searchType} = 'goodsTitle' AND goods_title LIKE CONCAT('%', #{searchWord}, '%'))-->
+<!--							  )-->
+<!--							  ORDER BY pay_order_time DESC, order_id ASC-->
+<!--							  ) AS t-->
+<!--							  CROSS JOIN (SELECT @ROWNUM:=0) AS dummy-->
+<!--					  ) AS result-->
+<!--		WHERE recNum BETWEEN (#{section}-1)*100 + (#{pageNum}-1)*10 + 1 AND (#{section}-1)*100 + (#{pageNum})*10;-->
+<!--	</select>-->
+
+	<select id="detailOrder" resultType="OrderVO" parameterType="java.util.HashMap">
+		SELECT * FROM (
+			SELECT (@ROWNUM := @ROWNUM + 1) AS recNum, t.*
+			FROM (
+				SELECT * FROM t_shopping_order
+				WHERE
+					(#{searchType} = 'ordererName' AND orderer_name LIKE CONCAT('%', #{searchWord}, '%'))
+				OR (#{searchType} = 'goodsTitle' AND goods_title LIKE CONCAT('%', #{searchWord}, '%'))
+				) t
+				CROSS JOIN (SELECT @ROWNUM := 0) AS dummy
+				ORDER BY pay_order_time DESC, order_id ASC
+				) AS result
+			WHERE recNum BETWEEN (#{section}-1)*100 + (#{pageNum}-1)*10 + 1 AND (#{section}-1)*100 + (#{pageNum})*10;
 	</select>
 </mapper>
 
