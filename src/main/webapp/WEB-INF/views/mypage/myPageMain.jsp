@@ -41,7 +41,9 @@
 </head>
 
 <h1>기본 배송지 정보
-  <a href="${contextPath}/mypage/myDetailInfo.do"> <img src="${contextPath}/resources/image/btn_more_see.jpg"/> </a>
+  <button onclick="location.href='${contextPath}/mypage/myDetailInfo.do'"
+          class="view_more">더보기 <span>&raquo;</span>
+  </button>
 </h1>
 <div class="default_orderer_info">
   <p>
@@ -68,8 +70,13 @@
   </p>
 </div>
 <h1>최근주문내역
-  <A href="${contextPath}/mypage/listMyOrderHistory.do"> <IMG src="${contextPath}/resources/image/btn_more_see.jpg">
-  </A>
+  <%--<A href="${contextPath}/mypage/listMyOrderHistory.do">
+    <IMG src="${contextPath}/resources/image/btn_more_see.jpg">
+  </A>--%>
+  <button onclick="location.href='${contextPath}/mypage/listMyOrderHistory.do'"
+          class="view_more">
+    더보기 <span>&raquo;</span>
+  </button>
 </h1>
 <table class="list_view">
   <thead>
