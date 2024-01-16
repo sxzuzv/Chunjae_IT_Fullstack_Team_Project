@@ -151,7 +151,7 @@ section#center input[type=reset]:hover {
     text-align: center;
 }
 
-table.list_view thead tr {
+.list_view thead tr {
     padding: 0.3em;
     background-color: #1e5da2;
     color: #ffffff;
@@ -210,6 +210,28 @@ table.list_view thead tr {
 }
 
 .list_view input.cancel_available:hover {
+    background-color: #ffffff;
+    color: #494949;
+}
+
+form[name="form_order"] h2 {
+    margin: 0.4em 0;
+}
+
+.customer_info table tr:nth-child(even) {
+    border-top: 1px dotted #494949;
+    border-margin: 1px dotted #494949;
+}
+
+button.redirect_main {
+    padding: 0.3em 1em;
+    font-size: 1em;
+    background-color: #f6f5f5;
+    border: 1px solid #666666;
+    border-radius: 5px;
+}
+
+button.redirect_main:hover {
     background-color: #ffffff;
     color: #494949;
 }
