@@ -34,7 +34,7 @@ public class OrderControllerImpl extends BaseController implements OrderControll
 
 	@RequestMapping(value="/orderEachGoods.do" ,method = RequestMethod.POST)
 	public String orderEachGoods(@ModelAttribute("orderVO") OrderVO _orderVO,
-			                       HttpServletRequest request)  throws Exception{
+			                       HttpServletRequest request, Model model)  throws Exception{
 
 		request.setCharacterEncoding("utf-8");
 		HttpSession session=request.getSession();
@@ -63,12 +63,13 @@ public class OrderControllerImpl extends BaseController implements OrderControll
 		 }
 
 		String viewName=(String)request.getAttribute("viewName");
-
+		int maxPrice = orderVO.getGoodsDeliveryPrice();
 		List myOrderList=new ArrayList<OrderVO>();
 		myOrderList.add(orderVO);
 
 		MemberVO memberInfo=(MemberVO)session.getAttribute("memberInfo");
 
+		model.addAttribute("total_delivery_price", maxPrice);
 		session.setAttribute("myOrderList", myOrderList);
 		session.setAttribute("orderer", memberInfo);
 
