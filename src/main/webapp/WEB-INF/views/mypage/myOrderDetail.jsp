@@ -15,7 +15,7 @@
 				<td>수량</td>
 				<td>주문금액</td>
 				<td>배송비</td>
-				<td>예상적립금</td>
+<%--				<td>예상적립금</td>--%>
 				<td>주문금액합계</td>
 			</tr>
 			<c:forEach var="item" items="${myOrderList }">
@@ -35,9 +35,9 @@
 					<td>
 					  <h2>${item.orderGoodsQty }개<h2>
 					</td>
-					<td><h2>${item.orderGoodsQty *item.goodsSalesPrice}원 (10% 할인)</h2></td>
-					<td><h2>0원</h2></td>
-					<td><h2>${1500 *item.orderGoodsQty }원</h2></td>
+					<td><h2>${item.orderGoodsQty *item.goodsSalesPrice}원</h2></td>
+					<td><h2>${item.goodsDeliveryPrice}원</h2></td>
+<%--					<td><h2>${1500 *item.orderGoodsQty }원</h2></td>--%>
 					<td>
 					  <h2>${item.orderGoodsQty *item.goodsSalesPrice}원</h2>
 					</td>
