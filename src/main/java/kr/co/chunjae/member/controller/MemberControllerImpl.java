@@ -39,7 +39,7 @@ public class MemberControllerImpl extends BaseController implements MemberContro
 
 	@Override
 	@RequestMapping(value="/loginForm.do" ,method = RequestMethod.GET)
-	public String loginForm(HttpServletRequest request) throws Exception{
+	public String loginForm(HttpServletRequest request, String error, String logout, Model model) throws Exception{
 		String viewName=(String)request.getAttribute("viewName");
 		String memberId = "";
 		Cookie[] cookies = request.getCookies();
@@ -47,6 +47,13 @@ public class MemberControllerImpl extends BaseController implements MemberContro
 			if (cookie.getName().equals("rememberId")) {
 				memberId = cookie.getValue();
 			}
+		}
+		if (error != null) {
+			model.addAttribute("error", "Login Error Check Your Account");
+		}
+
+		if (logout != null) {
+			model.addAttribute("logout", "Logout!!");
 		}
 		request.setAttribute("rememberId", memberId);
 		return viewName;

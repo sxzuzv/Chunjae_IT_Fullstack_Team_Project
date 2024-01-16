@@ -21,8 +21,10 @@
 </head>
 <body>
 <H3>회원 로그인 창</H3>
+<h2><c:out value="${error}"/></h2>
+<h2><c:out value="${logout}"/></h2>
 <DIV id="detail_table">
-  <form action="${contextPath}/member/login.do" method="post" class="frmLogin">
+  <form action="/login" method="post" class="frmLogin">
     <table>
       <tbody>
       <tr class="dot_line">

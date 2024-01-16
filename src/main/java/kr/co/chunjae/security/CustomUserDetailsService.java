@@ -17,12 +17,12 @@ public class CustomUserDetailsService implements UserDetailsService {
   @Setter(onMethod_ = { @Autowired })
   private SecurityMemberMapper memberMapper;
   @Override
-  public UserDetails loadUserByUsername(String userName)
+  public UserDetails loadUserByUsername(String memberId)
           throws UsernameNotFoundException {
 
-    log.warn("Load User By UserName : " + userName);
+    log.warn("Load User By memberId : " + memberId);
     // userName means userid
-    MemberVO vo = memberMapper.read(userName);
+    MemberVO vo = memberMapper.read(memberId);
     log.warn("queried by member mapper: " + vo);
     return vo == null ? null : new CustomUser(vo);
   }
