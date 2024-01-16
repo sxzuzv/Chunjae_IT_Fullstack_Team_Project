@@ -1,0 +1,96 @@
+#detail_table {
+    color: #494949;
+    margin-bottom: 4em;
+}
+
+.frmMyDetailInfo #detail_table th {
+    background-color: #e8eef6;
+    color: #494949;
+    width: 6.6em;
+}
+
+.frmMyDetailInfo #detail_table td {
+    width: auto;
+}
+
+#detail_table input[type=text],
+#detail_table input[type=password] {
+    padding: 0.1em 0.4em;
+    margin-right: 1em;
+}
+
+#detail_table label {
+    padding-left: 0.2em;
+    padding-right: 3em;
+}
+
+#detail_table input#btnOverlapped,
+#detail_table button.search_zipcode {
+    display: inline;
+    padding: 0.2em 0.6em;
+    text-align: center;
+    color: #494949;
+    font-size: 0.9em;
+    font-weight: 400;
+    border: 1px solid #666666;
+    border-radius: 2px;
+    background-color: #f6f5f5;
+}
+
+#detail_table input#btnOverlapped:hover,
+#detail_table button.search_zipcode:hover {
+    background-color: #ffffff;
+    color: #666666;
+}
+
+#detail_table select {
+    padding: 0.1em 0.2em;
+    margin-right: 0.2em;
+}
+
+.address_info p {
+    margin: 0.4em auto;
+    display: grid;
+    grid-template-columns: 7em auto;
+}
+
+#detail_table td.address_info p label {
+    font-size: 0.9em;
+    margin: 0.2em 0.4em;
+    padding: 0;
+}
+
+section#center input {
+    padding: 0.4em 1em;
+    border-radius: 5px;
+    font-size: 0.9em;
+}
+
+section#center input[type=submit] {
+    margin-right: 0.4em;
+    border: 1px solid #1e5da2;
+    background-color: #1e5da2;
+    color: #ffffff;
+}
+
+section#center input[type=reset] {
+    margin-right: 0.4em;
+    border: 1px solid #666666;
+    background-color: #f6f5f5;
+}
+
+section#center input[type=button] {
+    border: 1px solid #494949;
+    background-color: #494949;
+    color: #ffffff;
+}
+
+section#center input:hover {
+    opacity: 90%;
+}
+
+section#center input[type=reset]:hover {
+    opacity: unset;
+    background-color: #ffffff;
+    color: #666666;
+}
