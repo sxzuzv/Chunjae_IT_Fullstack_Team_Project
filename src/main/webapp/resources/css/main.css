@@ -593,10 +593,6 @@ article ul#page_control li .page_contrl_active {
     color: #1FA393;
 }
 
-article h3 {
-    margin: 5px 0px;
-}
-
 article h4 {
     margin: 5px 0px;
 }
@@ -604,7 +600,7 @@ article h4 {
 article h3 {
     color: #000000;
     font-size: 1.6em;
-    margin: 0.4em;
+    margin: 0.4em 0;
     display: inline-block;
 }
 
@@ -826,17 +822,119 @@ hr {
     border-top: 2px solid #494949;
     border-bottom: 1px solid #494949;
 }
+
 #detail_table .frmLogin table th {
     width: 8em;
     background-color: #e8eef6;
     padding-left: 1em;
 }
+
 #detail_table .frmLogin table td {
     width: auto;
 }
+
 #detail_table .frmLogin table input {
     padding: 0.2em 0.4em;
 }
+
+/* 회원가입 입력 폼 */
+.frmMember #detail_table {
+    color: #494949;
+    margin-bottom: 4em;
+}
+
+.frmMember #detail_table th {
+    background-color: #e8eef6;
+    color: #494949;
+    width: 6.6em;
+}
+
+.frmMember #detail_table td {
+    width: auto;
+}
+
+.frmMember #detail_table input[type=text],
+.frmMember #detail_table input[type=password] {
+    padding: 0.1em 0.4em;
+    margin-right: 1em;
+}
+
+.frmMember #detail_table label {
+    padding-left: 0.2em;
+    padding-right: 3em;
+}
+
+.frmMember #detail_table input#btnOverlapped,
+.frmMember #detail_table button.search_zipcode {
+    display: inline;
+    padding: 0.2em 0.6em;
+    text-align: center;
+    color: #494949;
+    font-size: 0.9em;
+    font-weight: 400;
+    border: 1px solid #666666;
+    border-radius: 2px;
+    background-color: #f6f5f5;
+}
+
+.frmMember #detail_table input#btnOverlapped:hover,
+.frmMember #detail_table button.search_zipcode:hover {
+    background-color: #ffffff;
+    color: #666666;
+}
+
+.frmMember #detail_table select {
+    padding: 0.1em 0.2em;
+    margin-right: 0.2em;
+}
+
+.frmMember .address_info p {
+    margin: 0.4em auto;
+    display: grid;
+    grid-template-columns: 7em auto;
+}
+
+.frmMember #detail_table td.address_info p label {
+    font-size: 0.9em;
+    margin: 0.2em 0.4em;
+    padding: 0;
+}
+
+.frmMember section#center input {
+    padding: 0.4em 1em;
+    border-radius: 5px;
+    font-size: 0.9em;
+}
+
+.frmMember section#center input[type=submit] {
+    margin-right: 0.4em;
+    border: 1px solid #1e5da2;
+    background-color: #1e5da2;
+    color: #ffffff;
+}
+
+.frmMember section#center input[type=reset] {
+    margin-right: 0.4em;
+    border: 1px solid #666666;
+    background-color: #f6f5f5;
+}
+
+.frmMember section#center input[type=button] {
+    border: 1px solid #494949;
+    background-color: #494949;
+    color: #ffffff;
+}
+
+.frmMember section#center input:hover {
+    opacity: 90%;
+}
+
+.frmMember section#center input[type=reset]:hover {
+    opacity: unset;
+    background-color: #ffffff;
+    color: #666666;
+}
+
 #popup .popup-container {
     margin: 7px 20px;
     padding-top: 1.4em;

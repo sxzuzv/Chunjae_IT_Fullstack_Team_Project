@@ -684,12 +684,12 @@
             </p>
             <table class="address_info">
               <tr>
-                <td><label for="roadAddress">지번 주소</label></td>
+                <td><label for="roadAddress">도로명 주소</label></td>
                 <td><input type="text" id="roadAddress" name="roadAddress" size="50" value="${orderer.roadAddress }"/>
                 </td>
               </tr>
               <tr>
-                <td><label for="jibunAddress">도로명 주소</label></td>
+                <td><label for="jibunAddress">지번 주소</label></td>
                 <td><input type="text" id="jibunAddress" name="jibunAddress" size="50"
                            value="${orderer.jibunAddress }"/></td>
               </tr>
