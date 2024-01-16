@@ -15,7 +15,7 @@
     <script type="text/javascript">
         function calcGoodsPrice(bookPrice, obj, index) {
             var totalPrice, final_total_price, totalNum;
-            var goods_qty = document.getElementById("select_goods_qty");
+            var goods_qty = document.getElementById("slt" + index); // 수정된 부분
             alert("총 상품금액" + goods_qty.value);
             var p_totalNum = document.getElementById("p_totalNum");
             var p_totalPrice = document.getElementById("p_totalPrice");
@@ -28,20 +28,13 @@
                 alert("체크 했음")
 
                 totalNum = Number(h_totalNum.value) + Number(goods_qty.value);
-                alert("1111totalNum:" + totalNum);
                 totalPrice = Number(h_totalPrice.value) + Number(goods_qty.value * bookPrice);
-                alert("2222totalPrice:" + totalPrice);
                 final_total_price = totalPrice + Number(h_totalDelivery.value);
-                alert("3333final_total_price:" + final_total_price);
 
             } else {
-                alert("555h_totalNum.value:" + h_totalNum.value);
                 totalNum = Number(h_totalNum.value) - Number(goods_qty.value);
-                alert("666totalNum:" + totalNum);
                 totalPrice = Number(h_totalPrice.value) - Number(goods_qty.value) * bookPrice;
-                alert("777totalPrice=" + totalPrice);
                 final_total_price = totalPrice - Number(h_totalDelivery.value);
-                alert("888final_total_price:" + final_total_price);
             }
 
             h_totalNum.value = totalNum;
@@ -187,7 +180,7 @@
 <table class="list_view">
     <tbody align=center>
     <tr style="background:#33ff00">
-        <td class="fixed">구분</td>
+        <td class="fixed"></td>
         <td colspan=2 class="fixed">상품명</td>
         <td>판매가</td>
         <td></td>
@@ -213,13 +206,13 @@
     <tr>
 
         <form name="frm_order_all_cart">
-            <c:forEach var="item" items="${myGoodsList }" varStatus="cnt">
-                <c:set var="cart_goods_qty" value="${myCartList[cnt.count-1].cartGoodsQty }" />
-                <c:set var="cart_id" value="${myCartList[cnt.count-1].cartId }" />
-                <c:set var="goods_delivery_price" value="${myGoodsList[cnt.count-1].goodsDeliveryPrice}" />
+            <c:forEach var="item" items="${myGoodsList}" varStatus="cnt">
+                <c:set var="cart_goods_qty" value="${myCartList[cnt.index].cartGoodsQty}" />
+                <c:set var="cart_id" value="${myCartList[cnt.index].cartId}" />
+                <c:set var="goods_delivery_price" value="${item.goodsDeliveryPrice}" />
             <td>
                 <input type="checkbox" name="checked_goods" checked value="${item.goodsId }"
-                       onClick="calcGoodsPrice(${item.goodsSalesPrice },this)">
+                       onClick="calcGoodsPrice(${item.goodsSalesPrice },this)" style="display: none">
             </td>
             <td class="goods_image">
                 <a href="${contextPath}/goods/goodsDetail.do?goods_id=${item.goodsId }">
@@ -237,11 +230,9 @@
             <td>
             </td>
             <td>
-                <select style="width: 60px;" id="slt${item.goodsId}"
-                        onchange="changefn(${item.goodsId})">
+                <select style="width: 60px;" id="slt${item.goodsId}" onchange="changefn(${item.goodsId})">
                     <c:forEach var="qty" begin="1" end="5">
-                        <option value="${qty}" <c:if test="${cart_goods_qty eq qty}">selected</c:if>
-                        >${qty}</option>
+                        <option value="${qty}" <c:if test="${cart_goods_qty eq qty}">selected</c:if>>${qty}</option>
                     </c:forEach>
                 </select>
                 <input type="hidden" id="cart_goods_qty" name="cart_goods_qty">
