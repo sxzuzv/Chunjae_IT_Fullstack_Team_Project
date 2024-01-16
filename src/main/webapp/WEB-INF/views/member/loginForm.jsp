@@ -28,24 +28,29 @@ function result(){
 			<TBODY>
 				<TR class="dot_line">
 					<TD class="fixed_join">아이디</TD>
-					<TD><input name="memberId" type="text" size="20" /></TD>
+					<TD><input name="memberId" type="text" value="${rememberId}" /></TD>
+
 				</TR>
 				<TR class="solid_line">
 					<TD class="fixed_join">비밀번호</TD>
 					<TD><input name="memberPw" type="password" size="20" /></TD>
 				</TR>
+				<tr>
+				<TD><input type="checkbox" name="rememberId" ${rememberId != "" ? 'checked' : ''}/>아이디 저장</TD>
+				</tr>
 			</TBODY>
 		</TABLE>
 		<br><br>
 		<INPUT	type="submit" value="로그인"> 
-		<INPUT type="button" value="초기화">
+		<INPUT type="reset" value="초기화">
 		
 		<Br><br>
-		   <a href="#">아이디 찾기</a>  | 
-		   <a href="#">비밀번호 찾기</a> | 
+		   <a href="${contextPath}/member/idFindForm.do">아이디 찾기</a>  |
+		   <a href="${contextPath}/member/pwFindForm.do">비밀번호 찾기</a> |
 		   <a href="${contextPath}/member/memberForm.do">회원가입</a>    |
 		   <a href="#">고객 센터</a>
 					   
-	</form>		
+	</form>
+	</DIV>
 </body>
 </html>

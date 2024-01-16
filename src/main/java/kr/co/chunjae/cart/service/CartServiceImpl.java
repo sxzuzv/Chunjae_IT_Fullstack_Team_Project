@@ -18,13 +18,15 @@ import kr.co.chunjae.goods.vo.GoodsVO;
 public class CartServiceImpl  implements CartService{
 	@Autowired
 	CartDAO cartDAO;
-	
+
+	// 순서대로 되어있는 List형식의 값을 Map 형식으로 cartMap에 저장
 	public Map<String ,List> myCartList(CartVO cartVO) throws Exception{
 		Map<String,List> cartMap=new HashMap<String,List>();
 		List<CartVO> myCartList=cartDAO.selectCartList(cartVO);
 		if(myCartList.size()==0){ //카트에 저장된 상품이없는 경우
 			return null;
 		}
+		// 카트맵에 두가지 리스트 저장 후 반환
 		List<GoodsVO> myGoodsList=cartDAO.selectGoodsList(myCartList);
 		cartMap.put("myCartList", myCartList);
 		cartMap.put("myGoodsList",myGoodsList);

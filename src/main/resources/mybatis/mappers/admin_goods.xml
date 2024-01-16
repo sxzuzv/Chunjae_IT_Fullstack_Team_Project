@@ -4,7 +4,7 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="mapper.admin.goods">
-	<insert id="insertNewGoods" parameterType="java.util.Map"   >
+	<insert id="insertNewGoods" parameterType="goodsVO"   >
 		   insert into t_shopping_goods(
 					goods_id,
                     goods_title,
@@ -206,9 +206,9 @@
 		goods_id=#{goodsId} and image_id=#{imageId}
 	</update>
 	
-	<delete id="deleteGoodsImage" parameterType="String">
+	<delete id="deleteGoodsImage" parameterType="int">
 	  delete from t_goods_detail_image
-	  where image_id=#{imageId}
+	  where image_id=#{image_id}
 	</delete>
 	
 <update id="updateOrderGoods" parameterType="java.util.HashMap" >

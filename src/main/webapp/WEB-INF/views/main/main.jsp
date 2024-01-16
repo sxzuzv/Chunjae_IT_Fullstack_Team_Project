@@ -40,7 +40,7 @@
     </c:if>
   </c:forEach>
 </div>
-<div class="clear"></div>
+<div class="clear clear-main"></div>
 <div id="ad_sub_banner">
   <img width="770" height="117" src="${contextPath}/resources/image/sub_banner01.jpg">
 </div>
@@ -68,8 +68,7 @@
     </c:if>
   </c:forEach>
 </div>
-
-<div class="clear"></div>
+<div class="clear clear-main"></div>
 <div id="ad_sub_banner">
   <img width="770" height="117" src="${contextPath}/resources/image/sub_banner02.jpg">
 </div>

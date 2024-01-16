@@ -1,38 +1,37 @@
 package kr.co.chunjae.admin.goods.controller;
 
+import kr.co.chunjae.admin.goods.service.AdminGoodsService;
+import kr.co.chunjae.common.base.BaseController;
+import kr.co.chunjae.goods.vo.GoodsVO;
+import kr.co.chunjae.goods.vo.ImageFileVO;
+import kr.co.chunjae.member.vo.MemberVO;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.io.FileUtils;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 import java.io.File;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
-import lombok.RequiredArgsConstructor;
-import org.apache.commons.io.FileUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
-import org.springframework.web.servlet.ModelAndView;
-
-import kr.co.chunjae.admin.goods.service.AdminGoodsService;
-import kr.co.chunjae.common.base.BaseController;
-import kr.co.chunjae.goods.vo.GoodsVO;
-import kr.co.chunjae.goods.vo.ImageFileVO;
-import kr.co.chunjae.member.vo.MemberVO;
-
 @Controller("adminGoodsController")
 @RequiredArgsConstructor
 @RequestMapping(value="/admin/goods")
+@Slf4j
 public class AdminGoodsControllerImpl extends BaseController  implements AdminGoodsController{
 	private static final String CURR_IMAGE_REPO_PATH = "C:\\shopping\\file_repo";
 	private final AdminGoodsService adminGoodsService;
@@ -85,43 +84,56 @@ public class AdminGoodsControllerImpl extends BaseController  implements AdminGo
 		
 	}
 	
+	@GetMapping("/addNewGoodsForm.do")
+	public String getaddNewGoods(@ModelAttribute GoodsVO goodsVO, HttpServletRequest request){
+		String viewName=(String)request.getAttribute("viewName");
+		return viewName;
+	}
 
 	
-	@RequestMapping(value="/addNewGoods.do" ,method={RequestMethod.POST})
-	public ResponseEntity addNewGoods(MultipartHttpServletRequest multipartRequest, HttpServletResponse response)  throws Exception {
-		multipartRequest.setCharacterEncoding("utf-8");
-		response.setContentType("text/html; charset=UTF-8");
-		String imageFileName=null;
-		
-		Map newGoodsMap = new HashMap();
-		Enumeration enu=multipartRequest.getParameterNames();
-		while(enu.hasMoreElements()){
-			String name=(String)enu.nextElement();
-			String value=multipartRequest.getParameter(name);
-			newGoodsMap.put(name,value);
+	@PostMapping("/addNewGoods.do")
+	public String addNewGoods(@Valid @ModelAttribute GoodsVO goodsVO, BindingResult bindingResult,
+							  MultipartHttpServletRequest multipartRequest, HttpServletResponse response)  throws Exception {
+		String message = null;
+		if (bindingResult.hasErrors()) {
+			log.info("goodsVO has errors!");
+			bindingResult.addError(new FieldError("goodsVO", "globalError",
+					"모든 값을 입력해주세요"));
+
+			return "/admin/goods/addNewGoodsForm";
 		}
-		
+
+		multipartRequest.setCharacterEncoding("utf-8");
+		String imageFileName=null;
+
+
+		//책 내용과 이미지를 동시 처리하기 위해 Map 변수 선언
+		Map newGoodsMap = new HashMap();
+
+		//작성자 아이디 추출
 		HttpSession session = multipartRequest.getSession();
 		MemberVO memberVO = (MemberVO) session.getAttribute("memberInfo");
 		String reg_id = memberVO.getMemberId();
 
-		
+		//common쪽 사용자정의 upload 메소드로 imageFileList 반환
 		List<ImageFileVO> imageFileList =upload(multipartRequest);
 		if(imageFileList!= null && imageFileList.size()!=0) {
 			for(ImageFileVO imageFileVO : imageFileList) {
 				imageFileVO.setRegId(reg_id);
 			}
 			newGoodsMap.put("imageFileList", imageFileList);
-			newGoodsMap.put("goodsFileName", imageFileList.get(0).getFileName());
+
+			goodsVO.setGoodsFileName(imageFileList.get(0).getFileName());
+			newGoodsMap.put("goodsVO", goodsVO);
 		}
 		
-		String message = null;
+
 		ResponseEntity resEntity = null;
 		HttpHeaders responseHeaders = new HttpHeaders();
 		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
 
 
-
+		//파일 옮기기 실패시 실패 메시지 출력
 		try {
 			int goods_id = adminGoodsService.addNewGoods(newGoodsMap);
 			if(imageFileList!=null && imageFileList.size()!=0) {
@@ -133,7 +145,7 @@ public class AdminGoodsControllerImpl extends BaseController  implements AdminGo
 				}
 			}
 			message= "<script>";
-			message += " alert('new book inserted');";
+			message += " alert('신규도서가 정상 등록되었습니다.');";
 			message +=" location.href='/admin/goods/adminGoodsMain.do';";
 			message +=("</script>");
 		}catch(Exception e) {
@@ -146,13 +158,15 @@ public class AdminGoodsControllerImpl extends BaseController  implements AdminGo
 			}
 
 			message= "<script>";
-			message += " alert('error, try again');";
+			message += " alert('상품등록중 오류가 발생했습니다.');";
 			message +=" location.href='"+multipartRequest.getContextPath()+"/admin/goods/addNewGoodsForm.do';";
 			message +=("</script>");
 			e.printStackTrace();
 		}
-		resEntity =new ResponseEntity(message, responseHeaders, HttpStatus.OK);
-		return resEntity;
+
+//		response.setContentType("text/html; charset=UTF-8");
+//		resEntity =new ResponseEntity(message, responseHeaders, HttpStatus.OK);
+		return "/admin/goods/addNewGoodsForm";
 	}
 	
 	@RequestMapping(value="/modifyGoodsForm.do" ,method={RequestMethod.GET,RequestMethod.POST})
@@ -191,7 +205,7 @@ public class AdminGoodsControllerImpl extends BaseController  implements AdminGo
 	public void modifyGoodsImageInfo(MultipartHttpServletRequest multipartRequest, HttpServletResponse response)  throws Exception {
 		System.out.println("modifyGoodsImageInfo");
 		multipartRequest.setCharacterEncoding("utf-8");
-		response.setContentType("text/html; charset=utf-8");
+		response.setContentType("text/html; charset=UTF-8");
 		String imageFileName=null;
 		
 		Map goodsMap = new HashMap();
@@ -248,7 +262,7 @@ public class AdminGoodsControllerImpl extends BaseController  implements AdminGo
 			throws Exception {
 		System.out.println("addNewGoodsImage");
 		multipartRequest.setCharacterEncoding("utf-8");
-		response.setContentType("text/html; charset=utf-8");
+		response.setContentType("text/html; charset=UTF-8");
 		String imageFileName=null;
 		
 		Map goodsMap = new HashMap();
