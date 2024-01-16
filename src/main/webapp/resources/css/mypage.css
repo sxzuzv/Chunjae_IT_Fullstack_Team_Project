@@ -1,3 +1,11 @@
+/* 정보 수정 페이지 */
+article h1 {
+    color: #000000;
+    font-size: 1.6em;
+    margin: 0.4em 0;
+    display: inline-block;
+}
+/* 정보 수정 */
 #detail_table {
     color: #494949;
     margin-bottom: 4em;
@@ -93,4 +101,182 @@ section#center input[type=reset]:hover {
     opacity: unset;
     background-color: #ffffff;
     color: #666666;
+}
+/* 마이페이지 메인 */
+/* 기본 배송지 정보 */
+.default_orderer_info {
+    display: block;
+    width: 100%;
+    padding: 0.2em 0.4em;
+    margin-bottom: 4em;
+    border-top: 2px solid #494949;
+    border-bottom: 1px solid #494949;
+    border-collapse: collapse;
+}
+.default_orderer_info p {
+    padding: 0.4em 0;
+    display: grid;
+    grid-template-columns: 6em auto;
+}
+
+.default_orderer_info p span.info_caption {
+    grid-column: 1/2;
+    font-weight: bold;
+}
+
+.default_orderer_info span.info_value {
+    grid-column: 2/3;
+}
+
+.default_orderer_info p:nth-child(even) {
+    border-top: 1px dotted #494949;
+    border-bottom: 1px dotted #494949;
+}
+
+.default_orderer_info th {
+    text-align: left;
+    width: 4em;
+}
+
+/* 최근 주문 내역 */
+.list_view {
+    width: 100%;
+    color: rgb(51, 51, 51);
+    font-size: 0.75em;
+    margin: 12px 0 6em;
+    border-top-color: rgb(51, 51, 51);
+    border-top-width: 2px;
+    border-top-style: solid;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+.list_view thead tr {
+    background-color: #1e5da2;
+    color: #ffffff;
+    font-size: 1em;
+}
+
+.list_view tr {
+    margin: 0px;
+    padding: 10px 0px;
+    border-bottom-color: rgb(153, 153, 153);
+    border-bottom-width: 1px;
+    border-bottom-style: dotted;
+}
+
+.list_view tr.solid_line {
+    border-bottom-color: rgb(102, 102, 102);
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+}
+
+.list_view td {
+    margin: 0px;
+    padding: 10px 0.4em;
+    border-bottom-color: rgb(153, 153, 153);
+    border-bottom-width: 1px;
+    border-bottom-style: dotted;
+}
+
+.list_view h2 {
+    padding: 0px 0px 2px;
+    font-size: 1em;
+    font-weight: bold;
+}
+
+.list_view input.cancel_unavailable {
+    padding: 0.1em 0.4em;
+    border-radius: 2px;
+    border: 1px solid #c2c2c2;
+    background-color: #c2c2c2;
+    color: #494949;
+    cursor: not-allowed;
+}
+
+.list_view input.cancel_unavailable:hover {
+    background-color: #c2c2c2;
+    color: #494949;
+}
+
+.list_view input.cancel_available {
+    padding: 0.1em 0.4em;
+    border-radius: 2px;
+    background-color: #f6f5f5;
+    border: 1px solid #666666;
+    color: #666666;
+    cursor: pointer;
+}
+
+.list_view input.cancel_available:hover {
+    background-color: #ffffff;
+    color: #494949;
+}
+
+.list_view td.delivery_help {
+    color: #DD362A;
+    font-size: 0.75em;
+}
+
+.list_view .list_title {
+    text-align: left;
+}
+
+.list_view td.goods_image {
+    width: 80px;
+}
+
+.list_view td.goods_description {
+    width: 500px;
+    padding-left: 5px;
+}
+
+.list_view td.goods_description .writer_press {
+    padding: 2px 5px;
+    color: rgb(51, 102, 255);
+}
+
+.list_view td.goods_description p {
+    line-height: 1.2em;
+}
+
+.list_view td.price {
+    padding: 0px 0px 0px 10px;
+    width: 70px;
+}
+
+.list_view td.price span {
+    text-decoration: line-through;
+}
+
+.list_view td.price strong {
+    color: #DD362A;
+    font-weight: bold;
+}
+
+.list_view td.buy_btns {
+    width: 80px;
+    padding-left: 5px;
+}
+
+.list_view td.buy_btns ul {
+    list-style: none;
+}
+
+.list_view td.buy_btns ul li {
+    margin: 5px 0px;
+}
+
+.list_view td.buy_btns ul li a {
+    padding: 5px 12px;
+    border-radius: 3px;
+    border: 1px solid rgb(153, 153, 153);
+    border-image: none;
+    text-align: center;
+    display: block;
+}
+
+.list_view td.buy_btns ul li a:hover {
+    color: rgb(255, 255, 255);
+    background-color: rgb(0, 51, 102);
 }
