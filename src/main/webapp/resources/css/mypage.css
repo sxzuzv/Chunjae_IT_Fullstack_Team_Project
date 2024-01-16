@@ -166,7 +166,8 @@ section#center input[type=reset]:hover {
     border-bottom-style: dotted;
 }
 
-.list_view tr.solid_line {
+.list_view tr.solid_line,
+.list_view tr:last-child {
     border-bottom-color: rgb(102, 102, 102);
     border-bottom-width: 1px;
     border-bottom-style: solid;
@@ -220,7 +221,7 @@ form[name="form_order"] h2 {
 
 .customer_info table tr:nth-child(even) {
     border-top: 1px dotted #494949;
-    border-margin: 1px dotted #494949;
+    border-bottom: 1px dotted #494949;
 }
 
 button.redirect_main {
@@ -250,8 +251,35 @@ button.view_more span {
     font-size: 0.6em;
 }
 
+/* 주문 상세 페이지 */
+/* 기간 조회 폼 */
+table.search_option {
+    margin: 0.2em 0 1em;
+}
 
+table.search_option td {
+    padding: 0.2em 2em 0.2em 0;
+}
 
+table.search_option a.btn_search {
+    font-size: 0.75em;
+    padding: 0.2em 0.4em;
+    margin-right: 0.4em;
+    border-radius: 5px;
+    border: 1px solid #666666;
+    background-color: #f6f5f5;
+    color: #666666;
+    cursor: pointer;
+}
+
+table.search_option a.btn_search:last-child {
+    margin-right: 0.8em;
+}
+
+table.search_option a.btn_search:hover {
+    background-color: #ffffff;
+    font-weight: bold;
+}
 
 
 .list_view td.delivery_help {
