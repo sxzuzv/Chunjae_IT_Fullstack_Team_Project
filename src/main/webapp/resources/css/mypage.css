@@ -251,7 +251,7 @@ button.view_more span {
     font-size: 0.6em;
 }
 
-/* 주문 상세 페이지 */
+/* 주문 내역 페이지 */
 /* 기간 조회 폼 */
 table.search_option {
     margin: 0.2em 0 1em;
@@ -261,9 +261,27 @@ table.search_option td {
     padding: 0.2em 2em 0.2em 0;
 }
 
+table.search_option label {
+    padding-left: 0.2em;
+    padding-right: 3em;
+}
+
+table.search_option input[type="button"] {
+    padding: 0.1em 0.6em;
+    border-radius: 2px;
+    border: 1px solid #666666;
+    background-color: #f6f5f5;
+    color: #666666;
+}
+
+table.search_option input[type="button"]:hover {
+    background-color: #ffffff;
+    color: #494949;
+}
+
 table.search_option a.btn_search {
-    font-size: 0.75em;
     padding: 0.2em 0.4em;
+    font-size: 0.75em;
     margin-right: 0.4em;
     border-radius: 5px;
     border: 1px solid #666666;
@@ -280,6 +298,11 @@ table.search_option a.btn_search:hover {
     background-color: #ffffff;
     font-weight: bold;
 }
+
+
+
+
+
 
 
 .list_view td.delivery_help {
