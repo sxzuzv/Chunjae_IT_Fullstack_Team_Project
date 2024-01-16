@@ -72,7 +72,7 @@ function fn_modify_order_state(order_id){
 					</td>
 <%--					<td><h2>${item.orderGoodsQty *item.goodsSalesPrice}원</h2></td>--%>
 					<td><h2>${item.goodsSalesPrice * item.orderGoodsQty}원</h2></td>
-					<td><h2>0원</h2></td>
+					<td><h2>${item.goodsDeliveryPrice}</h2></td>
 <%--					<td><h2>${1500 *item.orderGoodsQty }원</h2></td>--%>
 					<td>
 					  <h2>${item.orderGoodsQty *item.goodsSalesPrice}원</h2>
