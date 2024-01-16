@@ -13,7 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 import kr.co.chunjae.order.vo.OrderVO;
 
 public interface OrderController {
-	public String orderEachGoods(@ModelAttribute("orderVO") OrderVO _orderVO, HttpServletRequest request)  throws Exception;
+	public String orderEachGoods(@ModelAttribute("orderVO") OrderVO _orderVO, HttpServletRequest request, Model model)  throws Exception;
 	public String orderAllCartGoods(@RequestParam String[] cart_goods_qty, @RequestParam("maxDeliveryPrice") int maxPrice, Model model, HttpServletRequest request)  throws Exception;
 	public String payToOrderGoods(@RequestParam Map<String, String> orderMap, HttpServletRequest request, Model model)  throws Exception;
 
