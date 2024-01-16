@@ -42,7 +42,7 @@ public class AdminOrderServiceImpl implements AdminOrderService {
 		return orderMap;
 	}
 
-	
-	
-
+	public List<OrderVO> detailOrder(HashMap<String, Object> condMap) throws Exception {
+		return adminOrderDAO.detailOrder(condMap);
+	}
 }

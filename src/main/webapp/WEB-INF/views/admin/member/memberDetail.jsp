@@ -90,18 +90,18 @@ function init(){
                 document.getElementById('jibunAddress').value = data.jibunAddress;
 
                 // 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
-                if(data.autoRoadAddress) {
-                    //예상되는 도로명 주소에 조합형 주소를 추가한다.
-                    var expRoadAddr = data.autoRoadAddress + extraRoadAddr;
-                    document.getElementById('guide').innerHTML = '(예상 도로명 주소 : ' + expRoadAddr + ')';
-
-                } else if(data.autoJibunAddress) {
-                    var expJibunAddr = data.autoJibunAddress;
-                    document.getElementById('guide').innerHTML = '(예상 지번 주소 : ' + expJibunAddr + ')';
-
-                } else {
-                    document.getElementById('guide').innerHTML = '';
-                }
+                // if(data.autoRoadAddress) {
+                //     //예상되는 도로명 주소에 조합형 주소를 추가한다.
+                //     var expRoadAddr = data.autoRoadAddress + extraRoadAddr;
+                //     document.getElementById('guide').innerHTML = '(예상 도로명 주소 : ' + expRoadAddr + ')';
+				//
+                // } else if(data.autoJibunAddress) {
+                //     var expJibunAddr = data.autoJibunAddress;
+                //     document.getElementById('guide').innerHTML = '(예상 지번 주소 : ' + expJibunAddr + ')';
+				//
+                // } else {
+                //     document.getElementById('guide').innerHTML = '';
+                // }
             }
         }).open();
     }
@@ -287,18 +287,28 @@ function setSmsValue (event) {//sms 체크박스 함수
 	}
 }
 </script>
+	<script>
+		const result="${msg}"
+		if(result ==="modifySuccess") {
+			alert('회원 정보 수정 완료!');
+		} else if(result==="modifyFail") {
+			alert('회원 수정 실패!');
+		}
+	</script>
 </head>
 
 <body>
 	<h3>회원 상세 정보</h3>
-<form action="${contextPath}/admin/modifyMemberInfo.do" method="post">
+<form action="${contextPath}/admin/member/modifyMemberInfo.do" method="post">
 	<div id="detail_table">
 		<table>
 			<tbody>
 				<tr class="dot_line">
 					<td class="fixed_join">아이디</td>
 					<td>
-						<input name="member_id" type="text" size="20" value="${member_info.memberId }"  disabled/>
+<%--						<input name="memberId" type="text" size="20" value="${member_info.memberId }"  disabled/>--%>
+						<input type="text" size="20" value="${member_info.memberId}" disabled />
+						<input type="hidden" name="memberId" value="${member_info.memberId}">
 					</td>
 <%--					 <td>--%>
 <%--					  <input type="button" value="수정하기" disabled onClick="fn_modify_member_info('${member_info.memberId }','member_name')" />--%>
@@ -307,7 +317,7 @@ function setSmsValue (event) {//sms 체크박스 함수
 				<tr class="dot_line">
 					<td class="fixed_join">비밀번호</td>
 					<td>
-					  <input name="member_pw" type="password" size="20" value="${member_info.memberPw }" />
+					  <input name="memberPw" type="password" size="20" value="${member_info.memberPw }" />
 					</td>
 <%--					<td>--%>
 <%--					  <input type="button" value="수정하기" onClick="fn_modify_member_info('${member_info.memberId }','member_pw')" />--%>
@@ -316,7 +326,7 @@ function setSmsValue (event) {//sms 체크박스 함수
 				<tr class="dot_line">
 					<td class="fixed_join">이름</td>
 					<td>
-					  <input name="member_name" type="text" size="20" value="${member_info.memberName }"  disabled />
+					  <input name="memberName" type="text" size="20" value="${member_info.memberName }"  disabled />
 					 </td>
 <%--					 <td>--%>
 <%--					  <input type="button" value="수정하기" disabled onClick="fn_modify_member_info('${member_info.memberId }','member_name')" />--%>
@@ -327,25 +337,25 @@ function setSmsValue (event) {//sms 체크박스 함수
 					<td>
 					  <c:choose >
 					    <c:when test="${member_info.memberGender =='101' }">
-					      <input type="radio" name="member_gender" value="102" />
+					      <input type="radio" name="memberGender" value="102" />
 						  여성&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					   <input type="radio" name="member_gender" value="101" checked />남성
+					   <input type="radio" name="memberGender" value="101" checked />남성
 					    </c:when>
 					    <c:otherwise>
-					      <input type="radio" name="member_gender" value="102"  checked />
+					      <input type="radio" name="memberGender" value="102"  checked />
 						   여성&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					      <input type="radio" name="member_gender" value="101"  />남성
+					      <input type="radio" name="memberGender" value="101"  />남성
 					   </c:otherwise>
 					   </c:choose>
 					</td>
-					<td>
-					  <input type="button" value="수정하기" onClick="fn_modify_member_info('${member_info.memberId }','member_gender')" />
-					</td>
+<%--					<td>--%>
+<%--					  <input type="button" value="수정하기" onClick="fn_modify_member_info('${member_info.memberId }','member_gender')" />--%>
+<%--					</td>--%>
 				</tr>
 				<tr class="dot_line">
 					<td class="fixed_join">생년월일</td>
 					<td>
-					   <select name="member_birth_y">
+					   <select name="memberBirthY">
 					     <c:forEach var="i" begin="1" end="100">
 					       <c:choose>
 					         <c:when test="${member_info.memberBirthY==1920+i }">
@@ -357,7 +367,7 @@ function setSmsValue (event) {//sms 체크박스 함수
 							</c:choose>
 					   	</c:forEach>
 					</select>년 
-					<select name="member_birth_m" >
+					<select name="memberBirthM" >
 						<c:forEach var="i" begin="1" end="12">
 					       <c:choose>
 					         <c:when test="${member_info.memberBirthM==i }">
@@ -370,7 +380,7 @@ function setSmsValue (event) {//sms 체크박스 함수
 					   	</c:forEach>
 					</select>월 
 					
-					<select name="member_birth_d">
+					<select name="memberBirthD">
 							<c:forEach var="i" begin="1" end="31">
 					       <c:choose>
 					         <c:when test="${member_info.memberBirthD==i }">
@@ -386,20 +396,20 @@ function setSmsValue (event) {//sms 체크박스 함수
 					   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					   <c:choose>
 					    <c:when test="${member_info.memberBirthGn=='2' }">
-					  <input type="radio" name="member_birth_gn" value="2" checked />양력
+					  <input type="radio" name="memberBirthGn" value="2" checked />양력
 						&nbsp;&nbsp;&nbsp; 
-						<input type="radio"  name="member_birth_gn" value="1" />음력
+						<input type="radio"  name="memberBirthGn" value="1" />음력
 						</c:when>
 						<c:otherwise>
-						  <input type="radio" name="member_birth_gn" value="2" />양력
+						  <input type="radio" name="memberBirthGn" value="2" />양력
 						   &nbsp;&nbsp;&nbsp; 
-						<input type="radio"  name="member_birth_gn" value="1" checked  />음력
+						<input type="radio"  name="memberBirthGn" value="1" checked  />음력
 						</c:otherwise>
 						</c:choose>
 					</td>
-					<td>
-					  <input type="button" value="수정하기" onClick="fn_modify_member_info('${member_info.memberId }','member_birth')" />
-					</td>
+<%--					<td>--%>
+<%--					  <input type="button" value="수정하기" onClick="fn_modify_member_info('${member_info.memberId }','member_birth')" />--%>
+<%--					</td>--%>
 				</tr>
 <%--				<tr class="dot_line">--%>
 <%--					<td class="fixed_join">전화번호</td>--%>
@@ -441,7 +451,7 @@ function setSmsValue (event) {//sms 체크박스 함수
 				<tr class="dot_line">
 					<td class="fixed_join">휴대전화</td>
 					<td>
-					   <select  name="hp1">
+					   <select  name="memberHp1">
 							<option>없음</option>
 							<option selected value="010">010</option>
 							<option value="011">011</option>
@@ -450,25 +460,19 @@ function setSmsValue (event) {//sms 체크박스 함수
 							<option value="018">018</option>
 							<option value="019">019</option>
 					</select> 
-					 - <input type="text" name="hp2" size=4 value="${member_info.memberHp2 }">
-					 - <input type="text"name="hp3"  size=4 value="${member_info.memberHp3 }"><br> <br>
-					 <c:choose> 
-					   <c:when test="${member_info.smsstsYn=='true' }">
-					     <input type="checkbox"  name="smssts_yn" value="Y" checked /> 쇼핑몰에서 발송하는 SMS 소식을 수신합니다.
-						</c:when>
-						<c:otherwise>
-						  <input type="checkbox"  name="smssts_yn" value="N"  /> 쇼핑몰에서 발송하는 SMS 소식을 수신합니다.
-						</c:otherwise>
-					 </c:choose>	
+					 - <input type="text" name="memberHp2" size=4 value="${member_info.memberHp2 }">
+					 - <input type="text"name="memberHp3"  size=4 value="${member_info.memberHp3 }"><br> <br>
+						<input type="checkbox"  onchange="setSmsValue(event)"   ${member_info.smsstsYn == 'Y' ? 'checked' : ''} />
+						<input type="hidden" id="smsstsYn" name="smsstsYn" value="${member_info.smsstsYn}"/> 쇼핑몰에서 발송하는 SMS 소식을 수신합니다.
 				    </td>
-					<td>
-					  <input type="button" value="수정하기" onClick="fn_modify_member_info('${member_info.memberId }','hp')" />
-					</td>	
+<%--					<td>--%>
+<%--					  <input type="button" value="수정하기" onClick="fn_modify_member_info('${member_info.memberId }','hp')" />--%>
+<%--					</td>	--%>
 				</tr>
 				<tr class="dot_line">
 					<td class="fixed_join">이메일(e-mail)</td>
 					<td>
-					   <input type="text" name="email1" size=10 value="${member_info.memberEmail1 }" /> @ <input type="text" size=10  name="email2" value="${member_info.memberEmail2 }" id="domaintxt"/>
+					   <input type="text" name="memberEmail1" size=10 value="${member_info.memberEmail1 }" /> @ <input type="text" size=10  name="email2" value="${member_info.memberEmail2 }" id="domaintxt"/>
 <%--					   <select name="select_email2" onChange=""  title="직접입력">--%>
 						<select id="domainlist" title="직접입력">
 <%--							<option value="non">직접입력</option>--%>
@@ -484,19 +488,13 @@ function setSmsValue (event) {//sms 체크박스 함수
 							<option value="empal.com">empal.com</option>
 							<option value="korea.com">korea.com</option>
 							<option value="freechal.com">freechal.com</option>
-					</select><Br><br> 
-					<c:choose> 
-					   <c:when test="${member_info.emailstsYn=='true' }">
-					     <input type="checkbox" name="emailsts_yn"  value="Y" checked /> 쇼핑몰에서 발송하는 e-mail을 수신합니다.
-						</c:when>
-						<c:otherwise>
-						  <input type="checkbox" name="emailsts_yn"  value="N"  /> 쇼핑몰에서 발송하는 e-mail을 수신합니다.
-						</c:otherwise>
-					 </c:choose>
+					</select><Br><br>
+						<input type="checkbox" onchange="setEmailValue(event)" ${member_info.emailstsYn == 'Y' ? 'checked' : ''} /> 쇼핑몰에서 발송하는 e-mail을 수신합니다.
+						<input type="hidden" id="emailstsYn" name="emailstsYn"  value="${member_info.emailstsYn}"/>
 					</td>
-					<td>
-					  <input type="button" value="수정하기" onClick="fn_modify_member_info('${member_info.memberId }','email')" />
-					</td>
+<%--					<td>--%>
+<%--					  <input type="button" value="수정하기" onClick="fn_modify_member_info('${member_info.memberId }','email')" />--%>
+<%--					</td>--%>
 				</tr>
 				<tr class="dot_line">
 					<td class="fixed_join">주소</td>
@@ -504,15 +502,15 @@ function setSmsValue (event) {//sms 체크박스 함수
 					   <input type="text" id="zipcode" name="zipcode" size=5 value="${member_info.zipcode }" > <a href="javascript:execDaumPostcode()">우편번호 검색</a>
 					  <br>
 					  <p> 
-					   지번 주소:<br><input type="text" id="roadAddress"  name="roadAddress" size="50" value="${member_info.roadAddress }"><br><br>
-					  도로명 주소: <input type="text" id="jibunAddress" name="jibunAddress" size="50" value="${member_info.jibunAddress }"><br><br>
-					  나머지 주소: <input type="text"  name="namujiAddress" size="50" value="${member_info.namujiAddress }" />
+					   지번 주소 : <br><input type="text" id="roadAddress"  name="roadAddress" size="50" value="${member_info.roadAddress }"><br><br>
+					  도로명 주소 : <input type="text" id="jibunAddress" name="jibunAddress" size="50" value="${member_info.jibunAddress }"><br><br>
+					  나머지 주소 : <input type="text"  id="namujiAddress" name="namujiAddress" size="50" value="${member_info.namujiAddress }" />
 					   <span id="guide" style="color:#999"></span>
 					   </p>
 					</td>
-					<td>
-					  <input type="button" value="수정하기" onClick="fn_modify_member_info('${member_info.memberId }','address')" />
-					</td>
+<%--					<td>--%>
+<%--					  <input type="button" value="수정하기" onClick="fn_modify_member_info('${member_info.memberId }','address')" />--%>
+<%--					</td>--%>
 				</tr>
 			</tbody>
 		</table>
@@ -537,8 +535,22 @@ function setSmsValue (event) {//sms 체크박스 함수
 		</tr>
 	</table>
 	</div>
+	<div class="clear" />
+	<table>
+		<tr>
+			<td>
+				<input type="submit" value="수정">
+				<input type="reset" value="초기화">
+			</td>
+		</tr>
+	</table>
 <%--	<input  type="hidden" name="h_tel1" value="${member_info.tel1}" />--%>
-	<input  type="hidden" name="h_hp1" value="${member_info.memberHp1}" />
-</form>	
+<%--	<input  type="hidden" name="h_hp1" value="${member_info.memberHp1}" />--%>
+</form>
+	<div>
+		<form action="${contextPath}/admin/member/adminMemberMain.do">
+			<input type="submit" value="목록으로">
+		</form>
+	</div>
 </body>
 </html>
