@@ -90,6 +90,10 @@ header #head_link li {
     float: left;
 }
 
+header #head_link a.nav-link:hover {
+    color: #797979;
+}
+
 #head_link .no_line {
     border-right-color: currentColor;
     border-right-width: medium;
@@ -679,6 +683,51 @@ hr {
     color: #000000;
 }
 
+/* 로그인 폼 - 버튼 및 링크 */
+#detail_table .frmLogin table {
+    margin-bottom: 2em;
+}
+
+.login_btns {
+    text-align: center;
+    margin-bottom: 4.5em;
+}
+
+.login_btns input {
+    width: 4.5em;
+    padding: 0.25em 0.6em;
+    text-align: center;
+    font-size: 1em;
+    border-radius: 5px;
+    border: 1px solid;
+    color: #494949;
+}
+
+.login_btns input.login_btn {
+    margin-right: 0.4em;
+    border: 1px solid #1e5da2;
+    background-color: #1e5da2;
+    color: #ffffff;
+}
+
+.login_btns input.reset_btn {
+    border: 1px solid #666666;
+    background-color: #f6f5f5;
+}
+
+.login_btns input.login_btn:hover {
+    opacity: 90%;
+}
+
+.login_btns input.reset_btn:hover {
+    background-color: #ffffff;
+    color: #494949;
+}
+
+.frmLogin ul li a:hover {
+    color: #797979;
+}
+
 #detail_table th.fixed {
     width: 30%;
     padding-left: 0.4em;
@@ -770,6 +819,24 @@ hr {
     color: #ffffff;
 }
 
+/* 로그인 폼 - 아이디, 비밀번호 입력 테이블 */
+#detail_table .frmLogin table {
+    width: 100%;
+    text-align: left;
+    border-top: 2px solid #494949;
+    border-bottom: 1px solid #494949;
+}
+#detail_table .frmLogin table th {
+    width: 8em;
+    background-color: #e8eef6;
+    padding-left: 1em;
+}
+#detail_table .frmLogin table td {
+    width: auto;
+}
+#detail_table .frmLogin table input {
+    padding: 0.2em 0.4em;
+}
 #popup .popup-container {
     margin: 7px 20px;
     padding-top: 1.4em;
@@ -1408,7 +1475,7 @@ footer img {
 
 .payment_info .detail_table th {
     padding: 0.1em 0.3em;
-    width: 6.5em;
+    width: 8em;
     background-color: #e8eef6;
 }
 

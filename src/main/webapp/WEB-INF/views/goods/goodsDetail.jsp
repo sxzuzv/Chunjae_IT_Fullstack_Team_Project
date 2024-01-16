@@ -146,7 +146,7 @@
 <hgroup>
   <h1>컴퓨터와 인터넷</h1>
   <h2>국내외 도서 &gt; 컴퓨터와 인터넷 &gt; 웹 개발</h2>
-  <h3>${goods.goodsTitle }</h3>
+  <h3 style="margin: 0.6em 1em 0.4em 0;">${goods.goodsTitle }</h3>
   <h4>${goods.goodsWriter} &nbsp;저 | ${goods.goodsPublisher}</h4>
   <hr>
 </hgroup>
