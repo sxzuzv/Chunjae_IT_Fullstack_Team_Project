@@ -37,6 +37,12 @@
 	  </mvc:interceptor>
 	 </mvc:interceptors>
 
+	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
+	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<beans:property name="prefix" value="/WEB-INF/views/" />
+		<beans:property name="suffix" value=".jsp" />
+	</beans:bean>
+
 	<beans:bean id= "messageSource"
 				class="org.springframework.context.support.ResourceBundleMessageSource">
 		<beans:property name="basename" value="messages"/>

@@ -4,7 +4,7 @@ use bookshop;
 CREATE TABLE t_shopping_member
 (
     `member_id`       varchar(20) PRIMARY KEY comment '회원아이디',
-    `member_pw`       varchar(30) NOT NULL comment '비밀번호',
+    `member_pw`       varchar(100) NOT NULL comment '비밀번호',
     `member_name`     varchar(50) NOT NULL comment '이름',
     `member_gender`   varchar(10) comment '성별',
     `member_hp1`      varchar(20) comment '휴대폰번호1',
@@ -151,6 +151,8 @@ insert into t_shopping_member(member_id, member_pw, member_name, member_gender, 
                               member_birth_gn)
 values ('admin', '1212', '어드민', '101', '010', '1111', '2222', 'Y', 'admin', 'test.com', 'Y', '06253',
         '서울 강남구 강남대로 298(역삼동)', '서울 강남구 역삼동 838', '럭키빌딩 101호', '2000', '5', '10', '2');
+
+
 
 
 -- 상품 정보
