@@ -90,6 +90,10 @@ header #head_link li {
     float: left;
 }
 
+header #head_link a.nav-link:hover {
+    color: #797979;
+}
+
 #head_link .no_line {
     border-right-color: currentColor;
     border-right-width: medium;
@@ -589,10 +593,6 @@ article ul#page_control li .page_contrl_active {
     color: #1FA393;
 }
 
-article h3 {
-    margin: 5px 0px;
-}
-
 article h4 {
     margin: 5px 0px;
 }
@@ -600,7 +600,7 @@ article h4 {
 article h3 {
     color: #000000;
     font-size: 1.6em;
-    margin: 0.4em;
+    margin: 0.4em 0;
     display: inline-block;
 }
 
@@ -677,6 +677,51 @@ hr {
     border-bottom-style: solid;
     border-collapse: collapse;
     color: #000000;
+}
+
+/* 로그인 폼 - 버튼 및 링크 */
+#detail_table .frmLogin table {
+    margin-bottom: 2em;
+}
+
+.login_btns {
+    text-align: center;
+    margin-bottom: 4.5em;
+}
+
+.login_btns input {
+    width: 4.5em;
+    padding: 0.25em 0.6em;
+    text-align: center;
+    font-size: 1em;
+    border-radius: 5px;
+    border: 1px solid;
+    color: #494949;
+}
+
+.login_btns input.login_btn {
+    margin-right: 0.4em;
+    border: 1px solid #1e5da2;
+    background-color: #1e5da2;
+    color: #ffffff;
+}
+
+.login_btns input.reset_btn {
+    border: 1px solid #666666;
+    background-color: #f6f5f5;
+}
+
+.login_btns input.login_btn:hover {
+    opacity: 90%;
+}
+
+.login_btns input.reset_btn:hover {
+    background-color: #ffffff;
+    color: #494949;
+}
+
+.frmLogin ul li a:hover {
+    color: #797979;
 }
 
 #detail_table th.fixed {
@@ -770,6 +815,126 @@ hr {
     color: #ffffff;
 }
 
+/* 로그인 폼 - 아이디, 비밀번호 입력 테이블 */
+#detail_table .frmLogin table {
+    width: 100%;
+    text-align: left;
+    border-top: 2px solid #494949;
+    border-bottom: 1px solid #494949;
+}
+
+#detail_table .frmLogin table th {
+    width: 8em;
+    background-color: #e8eef6;
+    padding-left: 1em;
+}
+
+#detail_table .frmLogin table td {
+    width: auto;
+}
+
+#detail_table .frmLogin table input {
+    padding: 0.2em 0.4em;
+}
+
+/* 회원가입 입력 폼 */
+.frmMember #detail_table {
+    color: #494949;
+    margin-bottom: 4em;
+}
+
+.frmMember #detail_table th {
+    background-color: #e8eef6;
+    color: #494949;
+    width: 6.6em;
+}
+
+.frmMember #detail_table td {
+    width: auto;
+}
+
+.frmMember #detail_table input[type=text],
+.frmMember #detail_table input[type=password] {
+    padding: 0.1em 0.4em;
+    margin-right: 1em;
+}
+
+.frmMember #detail_table label {
+    padding-left: 0.2em;
+    padding-right: 3em;
+}
+
+.frmMember #detail_table input#btnOverlapped,
+.frmMember #detail_table button.search_zipcode {
+    display: inline;
+    padding: 0.2em 0.6em;
+    text-align: center;
+    color: #494949;
+    font-size: 0.9em;
+    font-weight: 400;
+    border: 1px solid #666666;
+    border-radius: 2px;
+    background-color: #f6f5f5;
+}
+
+.frmMember #detail_table input#btnOverlapped:hover,
+.frmMember #detail_table button.search_zipcode:hover {
+    background-color: #ffffff;
+    color: #666666;
+}
+
+.frmMember #detail_table select {
+    padding: 0.1em 0.2em;
+    margin-right: 0.2em;
+}
+
+.frmMember .address_info p {
+    margin: 0.4em auto;
+    display: grid;
+    grid-template-columns: 7em auto;
+}
+
+.frmMember #detail_table td.address_info p label {
+    font-size: 0.9em;
+    margin: 0.2em 0.4em;
+    padding: 0;
+}
+
+.frmMember section#center input {
+    padding: 0.4em 1em;
+    border-radius: 5px;
+    font-size: 0.9em;
+}
+
+.frmMember section#center input[type=submit] {
+    margin-right: 0.4em;
+    border: 1px solid #1e5da2;
+    background-color: #1e5da2;
+    color: #ffffff;
+}
+
+.frmMember section#center input[type=reset] {
+    margin-right: 0.4em;
+    border: 1px solid #666666;
+    background-color: #f6f5f5;
+}
+
+.frmMember section#center input[type=button] {
+    border: 1px solid #494949;
+    background-color: #494949;
+    color: #ffffff;
+}
+
+.frmMember section#center input:hover {
+    opacity: 90%;
+}
+
+.frmMember section#center input[type=reset]:hover {
+    opacity: unset;
+    background-color: #ffffff;
+    color: #666666;
+}
+
 #popup .popup-container {
     margin: 7px 20px;
     padding-top: 1.4em;
@@ -780,6 +945,7 @@ hr {
     height: fit-content;
     margin-bottom: 0.4em;
 }
+
 #popup .button-popup {
     border: none;
     border-radius: 15px;
@@ -920,6 +1086,116 @@ ul.tabs li.active a:hover {
     font-weight: bold;
     border-bottom-width: 1px;
     border-bottom-style: solid;
+}
+
+.tab_content .xans-product-detail {
+    margin: 0;
+    padding-top: 1em;
+}
+
+.xans-product-detail #comment_add {
+    width: 90%;
+    padding-top: 0.75em;
+    padding-bottom: 4em;
+}
+
+.tab_content #comment_add .title p {
+    font-size: 1em;
+    font-weight: bold;
+    margin-bottom: 1.2em;
+}
+
+.tab_content #comment_add .input {
+    margin: 0.6em auto;
+}
+
+.tab_content #comment_add .btn {
+    float: right;
+}
+
+.tab_content #comment_add .btn button {
+    display: block;
+    margin-top: 0.3em;
+    padding: 0.3em 1em;
+    border: none;
+    border-radius: 2px;
+    background-color: #1e5da2;
+    color: white;
+    cursor: pointer;
+}
+
+.xans-product-detail #comment_list {
+    position: relative;
+    width: 105%;
+    margin: 0 auto;
+    float: left;
+    right: 1.2em;
+}
+
+.tab_content .comment {
+    margin: 0;
+    padding-top: 1.4em;
+    padding-bottom: 4em;
+    border-bottom: 1px dotted #666666;
+    color: #494949;
+    font-size: 0.9em;
+}
+
+.tab_content .comment h3 {
+    display: inline;
+    font-size: 1.1em;
+    font-weight: bold;
+    letter-spacing: 1px;
+    color: #293B4E;
+    margin-left: 0;
+    margin-right: 1em;
+}
+
+.tab_content .comment #comContent {
+    display: block;
+    width: 95%;
+    height: fit-content;
+    border: 1px solid #666666;
+    background-color: #ffffff;
+    resize: none;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    margin: 0.8em 0 1.4em 0;
+    padding: 10px;
+}
+
+.tab_content .comment button {
+    float: right;
+    width: 4em;
+    padding: 0.4em;
+    margin-right: 0.2em;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+.tab_content .comment button.edit_btn, #save_btn {
+    margin-right: 0.4em;
+    background-color: #1e5da2;
+    color: #ffffff;
+}
+
+.tab_content .comment button.delete_btn, #cancel_btn {
+    background-color: #666666;
+    color: #ffffff;
+}
+
+.tab_content .comment:nth-child(even) {
+    background-color: #e8eef6;
+}
+
+.tab_content .comment:first-child {
+    border-top: 1px dotted #666666;
+}
+
+.tab_content .comment:last-child {
+    margin-bottom: 0;
+    border-bottom: none;
 }
 
 footer {
@@ -1297,7 +1573,7 @@ footer img {
 
 .payment_info .detail_table th {
     padding: 0.1em 0.3em;
-    width: 6.5em;
+    width: 8em;
     background-color: #e8eef6;
 }
 

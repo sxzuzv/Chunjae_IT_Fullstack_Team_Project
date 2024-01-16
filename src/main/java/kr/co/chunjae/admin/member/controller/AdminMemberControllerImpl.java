@@ -18,12 +18,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.chunjae.admin.member.service.AdminMemberService;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller("adminMemberController")
 @RequiredArgsConstructor
@@ -85,53 +87,67 @@ public class AdminMemberControllerImpl extends BaseController implements AdminMe
 		return viewName;
 	}
 	
-	@RequestMapping(value="/modifyMemberInfo.do" ,method={RequestMethod.POST,RequestMethod.GET})
-	public void modifyMemberInfo(HttpServletRequest request, HttpServletResponse response)  throws Exception{
-		HashMap<String,String> memberMap=new HashMap<String,String>();
-		String val[]=null;
-		PrintWriter pw=response.getWriter();
-		String member_id=request.getParameter("member_id");
-		String mod_type=request.getParameter("mod_type");
-		String value =request.getParameter("value");
-		if(mod_type.equals("member_birth")){
-			val=value.split(",");
-			memberMap.put("member_birth_y",val[0]);
-			memberMap.put("member_birth_m",val[1]);
-			memberMap.put("member_birth_d",val[2]);
-			memberMap.put("member_birth_gn",val[3]);
-		}  else if(mod_type.equals("tel")){
-			val=value.split(",");
-			memberMap.put("tel1",val[0]);
-			memberMap.put("tel2",val[1]);
-			memberMap.put("tel3",val[2]);
+//	@RequestMapping(value="/modifyMemberInfo.do" ,method={RequestMethod.POST,RequestMethod.GET})
+//	public void modifyMemberInfo(HttpServletRequest request, HttpServletResponse response)  throws Exception{
+//		HashMap<String,String> memberMap=new HashMap<String,String>();
+//		String val[]=null;
+//		PrintWriter pw=response.getWriter();
+//		String member_id=request.getParameter("member_id");
+//		String mod_type=request.getParameter("mod_type");
+//		String value =request.getParameter("value");
+//		if(mod_type.equals("member_birth")){
+//			val=value.split(",");
+//			memberMap.put("member_birth_y",val[0]);
+//			memberMap.put("member_birth_m",val[1]);
+//			memberMap.put("member_birth_d",val[2]);
+//			memberMap.put("member_birth_gn",val[3]);
+//		}  else if(mod_type.equals("tel")){
+//			val=value.split(",");
+//			memberMap.put("tel1",val[0]);
+//			memberMap.put("tel2",val[1]);
+//			memberMap.put("tel3",val[2]);
+//
+//		}else if(mod_type.equals("hp")){
+//			val=value.split(",");
+//			memberMap.put("hp1",val[0]);
+//			memberMap.put("hp2",val[1]);
+//			memberMap.put("hp3",val[2]);
+//			memberMap.put("smssts_yn", val[3]);
+//		}else if(mod_type.equals("email")){
+//			val=value.split(",");
+//			memberMap.put("email1",val[0]);
+//			memberMap.put("email2",val[1]);
+//			memberMap.put("emailsts_yn", val[2]);
+//		}else if(mod_type.equals("address")){
+//			val=value.split(",");
+//			memberMap.put("zipcode",val[0]);
+//			memberMap.put("roadAddress",val[1]);
+//			memberMap.put("jibunAddress", val[2]);
+//			memberMap.put("namujiAddress", val[3]);
+//		} else {
+//			memberMap.put(mod_type, value);
+//		}
+//
+//		memberMap.put("member_id", member_id);
+//
+//		adminMemberService.modifyMemberInfo(memberMap);
+//		pw.print("mod_success");
+//		pw.close();
+//
+//	}
 
-		}else if(mod_type.equals("hp")){
-			val=value.split(",");
-			memberMap.put("hp1",val[0]);
-			memberMap.put("hp2",val[1]);
-			memberMap.put("hp3",val[2]);
-			memberMap.put("smssts_yn", val[3]);
-		}else if(mod_type.equals("email")){
-			val=value.split(",");
-			memberMap.put("email1",val[0]);
-			memberMap.put("email2",val[1]);
-			memberMap.put("emailsts_yn", val[2]);
-		}else if(mod_type.equals("address")){
-			val=value.split(",");
-			memberMap.put("zipcode",val[0]);
-			memberMap.put("roadAddress",val[1]);
-			memberMap.put("jibunAddress", val[2]);
-			memberMap.put("namujiAddress", val[3]);
+	@RequestMapping(value = "/modifyMemberInfo.do", method={RequestMethod.POST,RequestMethod.GET})
+	public String modifyMemberInfo(@ModelAttribute("memberVO") MemberVO memberVO, RedirectAttributes ra, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String memberId = memberVO.getMemberId();
+		int result = adminMemberService.modifyMemberInfo(memberVO);
+
+		if (result > 0) {
+			ra.addFlashAttribute("msg", "modifySuccess");
 		} else {
-			memberMap.put(mod_type, value);
+			ra.addFlashAttribute("msg", "modifyFail");
 		}
 
-		memberMap.put("member_id", member_id);
-
-		adminMemberService.modifyMemberInfo(memberMap);
-		pw.print("mod_success");
-		pw.close();
-
+		return "redirect:/admin/member/memberDetail.do?member_id=" + memberId;
 	}
 	
 	@RequestMapping(value="/deleteMember.do" ,method={RequestMethod.POST})
@@ -143,7 +159,7 @@ public class AdminMemberControllerImpl extends BaseController implements AdminMe
 		memberMap.put("del_yn", del_yn);
 		memberMap.put("member_id", member_id);
 		
-		adminMemberService.modifyMemberInfo(memberMap);
+//		adminMemberService.modifyMemberInfo(memberMap);
 		return viewName;
 		
 	}

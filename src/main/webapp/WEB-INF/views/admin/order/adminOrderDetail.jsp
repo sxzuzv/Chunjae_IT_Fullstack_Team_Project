@@ -39,7 +39,6 @@ function fn_modify_order_state(order_id){
 		}
 	}); //end ajax		
 }
-
 </script>
 </head>
 <body>
@@ -73,7 +72,7 @@ function fn_modify_order_state(order_id){
 					</td>
 <%--					<td><h2>${item.orderGoodsQty *item.goodsSalesPrice}원</h2></td>--%>
 					<td><h2>${item.goodsSalesPrice * item.orderGoodsQty}원</h2></td>
-					<td><h2>0원</h2></td>
+					<td><h2>${item.goodsDeliveryPrice}</h2></td>
 <%--					<td><h2>${1500 *item.orderGoodsQty }원</h2></td>--%>
 					<td>
 					  <h2>${item.orderGoodsQty *item.goodsSalesPrice}원</h2>
@@ -104,7 +103,7 @@ function fn_modify_order_state(order_id){
 					</td>
 				</tr>
 				<tr class="dot_line">
-					<td class="fixed_join">휴대폰 번호</td>
+					<td class="fixed_join">휴대전화</td>
 					<td>
 					  ${deliveryInfo.receiverHp1}-${deliveryInfo.receiverHp2}-${deliveryInfo.receiverHp3}</td>
 				  </tr>

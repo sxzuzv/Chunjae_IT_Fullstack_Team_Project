@@ -5,6 +5,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
 
 
 <html>
@@ -34,7 +35,7 @@ function search_member(search_period){
     formObj.appendChild(i_endDate);
     document.body.appendChild(formObj); 
     formObj.method="get";
-    formObj.action="/bookshop01/admin/member/adminMemberMain.do";
+    formObj.action="${contextPath}/admin/member/adminMemberMain.do";
     formObj.submit();
 }
 
@@ -216,7 +217,6 @@ function fn_detail_search(){
     formObj.method="post";
     formObj.action="/bookshop01/admin/member/memberDetail.do";
     formObj.submit();
-	
 }
 </script>
 </head>
@@ -428,7 +428,7 @@ function fn_detail_search(){
 				<td>휴대폰 번호</td>
 				<td>주소</td>
 				<td>가입일</td>
-				<td>탈퇴 여부</td>
+<%--				<td>탈퇴 여부</td>--%>
 			</tr>
    <c:choose>
      <c:when test="${empty member_list}">			
@@ -463,16 +463,16 @@ function fn_detail_search(){
 					   <c:set var="arr" value="${fn:split(join_date,' ')}" />
 					   <strong><c:out value="${arr[0]}" /></strong>
 				    </td>
-				    <td width=10%>
-				       <c:choose>
-				         <c:when test="${item.delYn=='N' }">
-				           <strong>활동 중</strong>
-				         </c:when>
-				         <c:otherwise>
-				           <strong>탈퇴</strong>
-				         </c:otherwise>
-				       </c:choose>
-				    </td>
+<%--				    <td width=10%>--%>
+<%--				       <c:choose>--%>
+<%--				         <c:when test="${item.delYn=='N' }">--%>
+<%--				           <strong>활동 중</strong>--%>
+<%--				         </c:when>--%>
+<%--				         <c:otherwise>--%>
+<%--				           <strong>탈퇴</strong>--%>
+<%--				         </c:otherwise>--%>
+<%--				       </c:choose>--%>
+<%--				    </td>--%>
 				</tr>
 		</c:forEach>
 	</c:otherwise>
