@@ -9,12 +9,12 @@
 <TABLE class="list_view">
   <thead>
   <tr>
-    <td>주문번호</td>
-    <td colspan=2 class="fixed">주문상품명</td>
+    <td>주문 번호</td>
+    <td colspan=2 class="fixed">주문 상품명</td>
     <td>수량</td>
-    <td>주문금액</td>
+    <td>주문 금액</td>
     <td>배송비</td>
-    <td>주문금액합계</td>
+    <td>주문 금액 합계</td>
   </tr>
   </thead>
   <TR>
@@ -32,7 +32,7 @@
       </h2>
     </TD>
     <td>
-      <h2>${item.orderGoodsQty }개<h2>
+      <h2>${item.orderGoodsQty }개</h2>
     </td>
     <td><h2>${item.orderGoodsQty *item.goodsSalesPrice}원</h2></td>
       <%-- todo: 배송비 값 받아오기 --%>

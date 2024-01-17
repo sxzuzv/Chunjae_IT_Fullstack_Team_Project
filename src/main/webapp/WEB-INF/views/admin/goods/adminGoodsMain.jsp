@@ -9,7 +9,8 @@
 <head>
 <meta charset="utf-8">
 <script>
-function search_goods_list(fixeSearchPeriod){
+// function search_goods_list(fixedSearchPeriod){
+	function search_goods_list(searchPeriod){
 	var formObj=document.createElement("form");
 	var i_fixedSearch_period = document.createElement("input");
 	i_fixedSearch_period.name="fixedSearchPeriod";
@@ -86,6 +87,8 @@ function  calcPeriod(search_period){
 	//alert(beginDate+","+endDate);
 	return beginDate+","+endDate;
 }
+
+
 </script>
 </head>
 <body>
@@ -163,22 +166,21 @@ function  calcPeriod(search_period){
 				</TR>
 				<tr>
 				  <td>
-				    <select name="search_condition" disabled >
+				    <select name="search_condition" >
 						<option value="전체" checked>전체</option>
 						<option value="제품번호">상품 번호</option>
 						<option value="제품이름">상품 이름</option>
 						<option value="제조사">제조사</option>
 					</select>
-					<input  type="text"  size="30"  disabled/>  
-					<input   type="button"  value="조회" disabled/>
+					<input  type="text"  size="30" />
+					<input type="button" value="조회" />
 				  </td>
 				</tr>
 				<tr>
 				  <td>
 					조회한 기간:<input  type="text"  size="4" value="${beginYear}" />년
 							<input  type="text"  size="4" value="${beginMonth}"/>월	
-							 <input  type="text"  size="4" value="${beginDay}"/>일	
-							 &nbsp; ~
+							 <input  type="text"  size="4" value="${beginDay}"/>일 ~
 							<input  type="text"  size="4" value="${endYear }" />년 
 							<input  type="text"  size="4" value="${endMonth }"/>월	
 							 <input  type="text"  size="4" value="${endDay }"/>일							 

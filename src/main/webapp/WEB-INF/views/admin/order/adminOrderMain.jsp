@@ -9,6 +9,7 @@
 <c:choose>
 <c:when test='${not empty order_goods_list}'>
 <script  type="text/javascript">
+    var radioVar;
 window.onload=function()
 {
 	init();
@@ -33,29 +34,43 @@ function init(){
 </c:when>
 </c:choose>
 <script>
-function search_order_history(search_period){	
-	temp=calcPeriod(search_period);
-	var date=temp.split(",");
-	beginDate=date[0];
-	endDate=date[1];
-	
-    
+function search_order_history(search_period){
+
+	// temp=calcPeriod(search_period);
+	// var date=temp.split(",");
+	// var beginDate=date[0];
+	// var endDate=date[1];
+
+	<%--var formObj=document.createElement("form");--%>
+	<%--var i_command = document.createElement("input");--%>
+	<%--var i_beginDate = document.createElement("input");--%>
+	<%--var i_endDate = document.createElement("input");--%>
+
+	<%--i_beginDate.name="beginDate";--%>
+	<%--i_beginDate.value=beginDate;--%>
+	<%--i_endDate.name="endDate";--%>
+	<%--i_endDate.value=endDate;--%>
+
+    <%--formObj.appendChild(i_beginDate);--%>
+    <%--formObj.appendChild(i_endDate);--%>
+    <%--document.body.appendChild(formObj);--%>
+    <%--formObj.method="get";--%>
+    <%--formObj.action="${contextPath}/admin/order/adminOrderMain.do";--%>
+    <%--formObj.submit();--%>
+
 	var formObj=document.createElement("form");
-	var i_command = document.createElement("input");
-	var i_beginDate = document.createElement("input"); 
+	var i_fixedSearch_period = document.createElement("input");
+	var i_beginDate = document.createElement("input");
 	var i_endDate = document.createElement("input");
-    
-	i_beginDate.name="beginDate";
-	i_beginDate.value=beginDate;
-	i_endDate.name="endDate";
-	i_endDate.value=endDate;
-	
-    formObj.appendChild(i_beginDate);
-    formObj.appendChild(i_endDate);
-    document.body.appendChild(formObj); 
-    formObj.method="get";
-    formObj.action="${contextPath}/admin/order/adminOrderMain.do";
-    formObj.submit();
+
+	i_fixedSearch_period.name="fixedSearchPeriod";
+	i_fixedSearch_period.value=search_period;
+
+	formObj.appendChild(i_fixedSearch_period);
+	document.body.appendChild(formObj);
+	formObj.method="get";
+	formObj.action="${contextPath}/admin/order/adminOrderMain.do";
+	formObj.submit();
 }
 
 
@@ -157,43 +172,88 @@ function fn_modify_order_state(orderId,select_id){
 	}); //end ajax		
 }
 
+// 라디오 버튼(주문일자로 조회 or 상세 조회) 선택 상태에 따른 검색 조건 활성화
 function fn_enable_detail_search(r_search){
 	var frm_delivery_list=document.frm_delivery_list;
+
+
 	t_beginYear=frm_delivery_list.beginYear;
 	t_beginMonth=frm_delivery_list.beginMonth;
 	t_beginDay=frm_delivery_list.beginDay;
-	t_endYear=frm_delivery_list.endYear;
-	t_endMonth=frm_delivery_list.endMonth;
-	t_endDay=frm_delivery_list.endDay;
-	s_search_type=frm_delivery_list.s_search_type;
-	t_search_word=frm_delivery_list.t_search_word;
-	btn_search=frm_delivery_list.btn_search;
-	
+	endYear = frm_delivery_list.endYear;
+	endMonth = frm_delivery_list.endMonth;
+	endDay = frm_delivery_list.endDay;
+
+	var frm_search_order=document.frm_search_order;
+	s_search_type = frm_search_order.s_search_type;
+	s_search_word = frm_search_order.s_search_word;
+	btn_search = frm_search_order.btn_search;
+
+
+	// s_search_type=frm_delivery_list.s_search_type;
+	// t_search_word=frm_delivery_list.t_search_word;
+	// btn_search=frm_delivery_list.btn_search;
+
+	// '상세 조회' 옵션 선택 시
 	if(r_search.value=='detail_search'){
 		//alert(r_search.value);
-		t_beginYear.disabled=false;
-		t_beginMonth.disabled=false;
-		t_beginDay.disabled=false;
-		t_endYear.disabled=false;
-		t_endMonth.disabled=false;
-		t_endDay.disabled=false;
-		
-		s_search_type.disabled=false;
-		t_search_word.disabled=false;
-		btn_search.disabled=false;
-	}else{
 		t_beginYear.disabled=true;
 		t_beginMonth.disabled=true;
 		t_beginDay.disabled=true;
-		t_endYear.disabled=true;
-		t_endMonth.disabled=true;
-		t_endDay.disabled=true;
+		endYear.disabled=true;
+		endMonth.disabled=true;
+		endDay.disabled=true;
 		
-		s_search_type.disabled=true;
-		t_search_word.disabled=true;
-		btn_search.disabled=true;
+		// s_search_type.disabled=false;
+		// t_search_word.disabled=false;
+		// btn_search.disabled=false;
+
+		document.getElementById("curYear").disabled = true;
+		document.getElementById("curMonth").disabled = true;
+		document.getElementById("curDay").disabled = true;
+
+
+		s_search_type.disabled = false;
+		s_search_word.disabled = false;
+		btn_search.disabled = false;
+		// document.getElementById("d_curYear").disabled = false;
+		// document.getElementById("d_curMonth").disabled = false;
+		// document.getElementById("d_curDay").disabled = false;
+		// document.getElementById("d_endYear").disabled = false;
+		// document.getElementById("d_endMonth").disabled = false;
+		// document.getElementById("d_endDay").disabled = false;
+		// document.getElementById("s_search_type").disabled = false;
+		// document.getElementById("s_search_word").disabled = false;
+		// document.getElementById("btn_search").disabled = false;
+
+	}else { // '주문일자로 조회' 선택 시
+		t_beginYear.disabled=false;
+		t_beginMonth.disabled=false;
+		t_beginDay.disabled=false;
+		endYear.disabled=false;
+		endMonth.disabled=false;
+		endDay.disabled=false;
+
+		// s_search_type.disabled=true;
+		// t_search_word.disabled=true;
+		// btn_search.disabled=true;
+		document.getElementById("curYear").disabled = false;
+		document.getElementById("curMonth").disabled = false;
+		document.getElementById("curDay").disabled = false;
+
+		s_search_type.disabled = true;
+		s_search_word.disabled = true;
+		btn_search.disabled = true;
+		// document.getElementById("d_curYear").disabled = true;
+		// document.getElementById("d_curMonth").disabled = true;
+		// document.getElementById("d_curDay").disabled = true;
+		// document.getElementById("d_endYear").disabled = true;
+		// document.getElementById("d_endMonth").disabled = true;
+		// document.getElementById("d_endDay").disabled = true;
+		// document.getElementById("s_search_type").disabled = true;
+		// document.getElementById("s_search_word").disabled = true;
+		// document.getElementById("btn_search").disabled = true;
 	}
-		
 }
 
 <%--function fn_detail_order(orderId){--%>
@@ -234,71 +294,190 @@ function fn_detail_order(orderId){
 
 }
 
+// 상세 조회 검색 조건 유지
+// $(document).ready(function(){
+// 	$('#s_search_type').change(typeChange);
+// })
+//
+// function typeChange() {
+// 	var s_search_type = $('#s_search_type option:selected').val();
+// 	$('input#s_search_word').val(s_search_type);
+// }
+
 //상세조회 버튼 클릭 시 수행
 function fn_detail_search(){
-	var frm_delivery_list=document.frm_delivery_list;
-	
-	beginYear=frm_delivery_list.beginYear.value;
-	beginMonth=frm_delivery_list.beginMonth.value;
-	beginDay=frm_delivery_list.beginDay.value;
-	endYear=frm_delivery_list.endYear.value;
-	endMonth=frm_delivery_list.endMonth.value;
-	endDay=frm_delivery_list.endDay.value;
-	search_type=frm_delivery_list.s_search_type.value;
-	search_word=frm_delivery_list.t_search_word.value;
+    // radioVar = $('input[name=r_search_option]:checked').val(); // value = detail_search
+    // alert(radioVar);
+    //
+    // $(function () {
+    //     $(radioVar == 'detail_search').prop("selected", true);
+    // })
+	// var frm_delivery_list=document.frm_delivery_list;
+	// var frm_search_order=document.frm_search_order;
+
+	// beginYear=frm_delivery_list.beginYear.value;
+	// beginMonth=frm_delivery_list.beginMonth.value;
+	// beginDay=frm_delivery_list.beginDay.value;
+	// endYear=frm_delivery_list.endYear.value;
+	// endMonth=frm_delivery_list.endMonth.value;
+	// endDay=frm_delivery_list.endDay.value;
+	// search_type=frm_delivery_list.s_search_type.value;
+
+	// s_search_type = document.getElementById("s_search_type");
+	// search_type = (s_search_type.options[s_search_type.selectedIndex].value);
+	// search_word=frm_delivery_list.t_search_word.value;
+
+	var s_search_type = document.getElementById("s_search_type");
+	var search_type = s_search_type.value;
+
+	var s_search_word = document.getElementById("s_search_word");
+	var search_word = s_search_word.value;
+	// search_type = s_search_type.value;
+	// search_word = frm_search_order.s_search_word.value;
 
 	var formObj=document.createElement("form");
-	var i_command = document.createElement("input");
-	var i_beginDate = document.createElement("input"); 
-	var i_endDate = document.createElement("input");
+	// var i_command = document.createElement("input");
+	// var i_beginDate = document.createElement("input");
+	// var i_endDate = document.createElement("input");
 	var i_search_type = document.createElement("input");
 	var i_search_word = document.createElement("input");
-    
+
 	//alert("beginYear:"+beginYear);
 	//alert("endDay:"+endDay);
 	//alert("search_type:"+search_type);
 	//alert("search_word:"+search_word);
-	
-    i_command.name="command";
-    i_beginDate.name="beginDate";
-    i_endDate.name="endDate";
+
+    // i_command.name="command";
+    // i_beginDate.name="beginDate";
+    // i_endDate.name="endDate";
     i_search_type.name="search_type";
     i_search_word.name="search_word";
-    
-    i_command.value="list_detail_order_goods";
-	i_beginDate.value=beginYear+"-"+beginMonth+"-"+beginDay;
-    i_endDate.value=endYear+"-"+endMonth+"-"+endDay;
+
+    // i_command.value="list_detail_order_goods";
+	// i_beginDate.value=beginYear+"-"+beginMonth+"-"+beginDay;
+    // i_endDate.value=endYear+"-"+endMonth+"-"+endDay;
     i_search_type.value=search_type;
     i_search_word.value=search_word;
-	
-    formObj.appendChild(i_command);
-    formObj.appendChild(i_beginDate);
-    formObj.appendChild(i_endDate);
+
+    // formObj.appendChild(i_command);
+    // formObj.appendChild(i_beginDate);
+    // formObj.appendChild(i_endDate);
     formObj.appendChild(i_search_type);
     formObj.appendChild(i_search_word);
-    document.body.appendChild(formObj); 
+    document.body.appendChild(formObj);
     formObj.method="post";
     formObj.action="${contextPath}/admin/order/detailOrder.do";
     formObj.submit();
-    //alert("submit");
-	
+
+
+	alert(i_search_type.value);
+	alert(i_search_word.value);
+
+	alert("submit");
 }
+
+	<%--function fn_detail_search() {--%>
+	<%--	var formObj=document.createElement("form");--%>
+	<%--	var i_fixedSearch_period = document.createElement("input");--%>
+	<%--	var i_search_word = document.createElement("input");--%>
+	<%--	var i_search_type = document.createElement("input");--%>
+	<%--	var i_beginDate = document.createElement("input");--%>
+	<%--	var i_endDate = document.createElement("input");--%>
+
+	<%--	s_search_type = document.getElementById("s_search_type");--%>
+	<%--	search_type = s_search_type.value;--%>
+
+	<%--	s_search_word = document.getElementById("s_search_word");--%>
+	<%--	search_word = s_search_word.value;--%>
+
+	<%--	i_fixedSearch_period.name="fixedSearchPeriod";--%>
+	<%--	i_fixedSearch_period.value=search_period;--%>
+
+	<%--	i_search_type.name="search_type";--%>
+	<%--	i_search_type.value=search_type;--%>
+	<%--	alert(i_search_type.value);--%>
+	<%--	alert(i_search_word.value);--%>
+	<%--	i_search_word.name="search_word";--%>
+	<%--	i_search_word.value=search_word;--%>
+
+	<%--	formObj.appendChild(i_search_type);--%>
+	<%--	formObj.appendChild(i_search_word);--%>
+	<%--	formObj.appendChild(i_fixedSearch_period);--%>
+	<%--	document.body.appendChild(formObj);--%>
+	<%--	formObj.method="get";--%>
+	<%--	formObj.action="${contextPath}/admin/order/adminOrderMain.do";--%>
+	<%--	formObj.submit();--%>
+	<%--}--%>
+
+<%--$(document).ready(function() {--%>
+<%--    $("#btn_search").click(function() {--%>
+<%--        $.ajax({--%>
+<%--            url : '${contextPath}/admin/order/detailOrder.do',--%>
+<%--            type : 'POST',--%>
+<%--            data : $("#frm_search_order").serialize(),--%>
+<%--            success : function(obg) {--%>
+<%--                console.log(obj);--%>
+<%--            },--%>
+<%--            error : function(e) {--%>
+<%--                console.log(e);--%>
+<%--            }--%>
+<%--        });--%>
+<%--    });--%>
+<%--});--%>
+
+$(document).ready(function () {
+	$("#btn_search").click(function () {
+		var frm_search_order = document.frm_search_order;
+		search_type = frm_search_order.s_search_type.value;
+		search_word = frm_search_order.s_search_word.value;
+
+		<%--$.ajax({--%>
+		<%--	url : '${contextPath}/admin/order/detailOrder.do',--%>
+		<%--	type : 'POST',--%>
+		<%--	data : {searchType : search_type, searchWord : search_word},--%>
+		<%--	success: function (obj) {--%>
+		<%--		console.log(obj);--%>
+		<%--	},--%>
+		<%--	error: function (e) {--%>
+		<%--		console.log(e);--%>
+		<%--	}--%>
+		<%--});--%>
+		$.ajax({
+			url: '${contextPath}/admin/order/detailOrder.do',
+			type: 'POST',
+			contentType: 'application/json',
+			data: JSON.stringify({ searchType: search_type, searchWord: search_word }),
+			success: function (response) {
+				console.log(response);
+			},
+			error: function (e) {
+				console.log(e);
+			}
+		});
+	});
+});
+
 </script>
+
 </head>
 <body>
 	<H3>주문 조회</H3>
-	<form name="frm_delivery_list" action="${contextPath }/admin/admin.do" method="post">	
-		<table   >
-			<tbody>
+	<input type="radio" name="r_search_option" value="simple_search" checked onClick="fn_enable_detail_search(this)"/> 주문일자로 조회 &nbsp;&nbsp;&nbsp;
+	<input type="radio" name="r_search_option" value="detail_search"  onClick="fn_enable_detail_search(this)" /> 상세 조회 &nbsp;
+<%--	<input type="radio" name="r_search_option" value="simple_search" checked onClick="fn_enable_detail_search(this)"/> 주문일자로 조회 &nbsp;&nbsp;&nbsp;--%>
+<%--	<input type="radio" name="r_search_option" value="detail_search"  onClick="fn_enable_detail_search(this)" /> 상세 조회 &nbsp;&nbsp;&nbsp;--%>
+	<form name="frm_delivery_list" action="${contextPath}/admin/order/adminOrderMain.do" method="post">
+		<table>
+<%--				<tr>--%>
+<%--					<td>--%>
+<%--						<input type="radio" name="r_search_option" value="simple_search" checked onClick="fn_enable_detail_search(this)"/> 주문일자로 조회 &nbsp;&nbsp;&nbsp;--%>
+<%--						<input type="radio" name="r_search_option" value="detail_search"  onClick="fn_enable_detail_search(this)" /> 상세 조회 &nbsp;&nbsp;&nbsp;--%>
+<%--					</td>--%>
+<%--				</tr>--%>
 				<tr>
 					<td>
-						<input type="radio" name="r_search_option" value="simple_search" checked onClick="fn_enable_detail_search(this)"/> 주문일자로 조회 &nbsp;&nbsp;&nbsp;
-						<input type="radio" name="r_search_option" value="detail_search"  onClick="fn_enable_detail_search(this)" /> 상세 조회 &nbsp;&nbsp;&nbsp;
-					</td>
-				</tr>
-				<tr>
-					<td>
-					  <select name="curYear">
+<%--						<input type="hidden" name="endYear" value="${endYear}" />--%>
+					  <select id="curYear" name="curYear">
 					     <c:forEach   var="i" begin="0" end="5">
 					      <c:choose>
 					        <c:when test="${endYear==endYear-i}">
@@ -309,7 +488,9 @@ function fn_detail_search(){
 					        </c:otherwise>
 					      </c:choose>
 					    </c:forEach>
-					</select>년 <select name="curMonth" >
+					</select>년
+<%--						<input type="hidden" name="endMonth" value="${endMonth}" />--%>
+						<select id="curMonth" name="curMonth" >
 						 <c:forEach   var="i" begin="1" end="12">
 					      <c:choose>
 					        <c:when test="${endMonth==i }">
@@ -321,8 +502,9 @@ function fn_detail_search(){
 					      </c:choose>
 					    </c:forEach>					
 					</select>월
-					
-					 <select name="curDay">
+
+<%--						<input type="hidden" name="endDay" value="${endDay}" />--%>
+					 <select id="curDay" name="curDay">
 					  <c:forEach   var="i" begin="1" end="31">
 					      <c:choose>
 					        <c:when test="${endDay==i }">
@@ -333,8 +515,8 @@ function fn_detail_search(){
 					        </c:otherwise>
 					      </c:choose>
 					    </c:forEach>	
-					</select>일  &nbsp;이전&nbsp;&nbsp;&nbsp;&nbsp; 
-					<a href="javascript:search_order_history('today')">
+					</select>일  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<a href="javascript:search_order_history('today')">
 					   <img   src="${contextPath}/resources/image/btn_search_one_day.jpg">
 					</a>
 					<a href="javascript:search_order_history('one_week')">
@@ -355,134 +537,242 @@ function fn_detail_search(){
 					<a href="javascript:search_order_history('four_month')">
 					   <img   src="${contextPath}/resources/image/btn_search_4_month.jpg">
 					</a>
-					&nbsp;까지 조회
+					&nbsp;이전까지 조회
 					</td>
 				</tr>
-				
 				<tr>
-				  <td>
-					조회 기간:
-					<select name="beginYear" disabled>
-					 <c:forEach   var="i" begin="0" end="5">
-					      <c:choose>
-					        <c:when test="${beginYear==beginYear-i }">
-					          <option value="${beginYear-i }" selected>${beginYear-i  }</option>
-					        </c:when>
-					        <c:otherwise>
-					          <option value="${beginYear-i }">${beginYear-i }</option>
-					        </c:otherwise>
-					      </c:choose>
-					    </c:forEach>
-					</select>년 
-					<select name="beginMonth" disabled >
-						 <c:forEach   var="i" begin="1" end="12">
-					      <c:choose>
-					        <c:when test="${beginMonth==i }">
-					          <option value="${i }"  selected>${i }</option>
-					        </c:when>
-					        <c:otherwise>
-					          <c:choose>
-					            <c:when test="${i <10 }">
-					              <option value="0${i }">0${i }</option>
-					            </c:when>
-					            <c:otherwise>
-					            <option value="${i }">${i }</option>
-					            </c:otherwise>
-					          </c:choose>
-					        </c:otherwise>
-					      </c:choose>
-					    </c:forEach>					
-					</select>월
-					 <select name="beginDay" disabled >
-					  <c:forEach   var="i" begin="1" end="31">
-					      <c:choose>
-					        <c:when test="${beginDay==i }">
-					          <option value="${i }"  selected>${i }</option>
-					        </c:when>
-					        <c:otherwise>
-					          <c:choose>
-					            <c:when test="${i <10 }">
-					              <option value="0${i }">0${i }</option>
-					            </c:when>
-					            <c:otherwise>
-					            <option value="${i }">${i }</option>
-					            </c:otherwise>
-					          </c:choose>
-					        </c:otherwise>
-					      </c:choose>
-					    </c:forEach>	
-					</select>일  &nbsp; ~
-					
-					<select name="endYear" disabled >
-					 <c:forEach   var="i" begin="0" end="5">
-					      <c:choose>
-					        <c:when test="${endYear==endYear-i }">
-					          <option value="${2016-i }" selected>${2016-i  }</option>
-					        </c:when>
-					        <c:otherwise>
-					          <option value="${2016-i }">${2016-i }</option>
-					        </c:otherwise>
-					      </c:choose>
-					    </c:forEach>
-					</select>년 
-					<select name="endMonth" disabled >
-						 <c:forEach   var="i" begin="1" end="12">
-					      <c:choose>
-					        <c:when test="${endMonth==i }">
-					          <option value="${i }"  selected>${i }</option>
-					        </c:when>
-					        <c:otherwise>
-					          <c:choose>
-					            <c:when test="${i <10 }">
-					              <option value="0${i }">0${i }</option>
-					            </c:when>
-					            <c:otherwise>
-					            <option value="${i }">${i }</option>
-					            </c:otherwise>
-					          </c:choose>
-					        </c:otherwise>
-					      </c:choose>
-					    </c:forEach>					
-					</select>월
-					 <select name="endDay" disabled >
-					  <c:forEach   var="i" begin="1" end="31">
-					      <c:choose>
-					        <c:when test="${endDay==i }">
-					          <option value="${i }"  selected>${i }</option>
-					        </c:when>
-					        <c:otherwise>
-					          <c:choose>
-					            <c:when test="${i <10 }">
-					              <option value="0${i }">0${i }</option>
-					            </c:when>
-					            <c:otherwise>
-					            <option value="${i }">${i }</option>
-					            </c:otherwise>
-					          </c:choose>
-					        </c:otherwise>
-					      </c:choose>
-					    </c:forEach>	
-					</select>
-												 
-				  </td>
+					<td>
+<%--						<input type="hidden" name="beginYear" value="${beginYear}" />--%>
+<%--						<input type="hidden" name="beginMonth" value="${beginMonth}" />--%>
+<%--						<input type="hidden" name="beginDay" value="${beginDay}" />--%>
+
+						조회 기간 : <input  type="text" name="beginYear" size="4" value="${beginYear}" />년
+						<input  type="text"  size="4" name="beginMonth" value="${beginMonth}"/>월
+						<input  type="text"  size="4" name="beginDay" value="${beginDay}"/>일 ~
+						<input  type="text"  size="4" name="endYear" value="${endYear }" />년
+						<input  type="text"  size="4" name="endMonth" value="${endMonth }"/>월
+						<input  type="text"  size="4" name="endDay" value="${endDay }"/>일
+					</td>
 				</tr>
-				<tr>
-				  <td>
-				    <select name="s_search_type" disabled >
-						<option value="all" checked>전체</option>
+	</form>
+	<form name="frm_search_order" action="${contextPath}/admin/order/detailOrder.do" method="post">
+		<table>
+			<%--			<tr>--%>
+			<%--				주문일자 기간 선택 :--%>
+			<%--				<input type="hidden" name="d_curYear" value="${endYear}" />--%>
+			<%--				<select id="d_curYear" name="d_curYear" disabled>--%>
+			<%--					<option value="none" selected disabled hidden="">연도</option>--%>
+			<%--					<option value="2024">2024</option>--%>
+			<%--					<option value="2023">2023</option>--%>
+			<%--					<option value="2022">2022</option>--%>
+			<%--					<c:forEach   var="i" begin="0" end="5">--%>
+			<%--						<c:choose>--%>
+			<%--							<c:when test="${endYear==endYear-i}">--%>
+			<%--								<option value="${endYear }" selected>${endYear  }</option>--%>
+			<%--							</c:when>--%>
+			<%--							<c:otherwise>--%>
+			<%--								<option value="${endYear-i }">${endYear-i }</option>--%>
+			<%--							</c:otherwise>--%>
+			<%--						</c:choose>--%>
+			<%--					</c:forEach>--%>
+			<%--				</select>년--%>
+			<%--				<input type="hidden" name="d_curMonth" value="${endMonth}" />--%>
+			<%--				<select id="d_curMonth" name="d_curMonth" disabled>--%>
+			<%--					<option value="none" selected hidden="">월</option>--%>
+			<%--					<option value="01">1</option>--%>
+			<%--					<option value="02">2</option>--%>
+			<%--					<option value="03">3</option>--%>
+			<%--					<option value="04">4</option>--%>
+			<%--					<option value="05">5</option>--%>
+			<%--					<option value="06">6</option>--%>
+			<%--					<option value="07">7</option>--%>
+			<%--					<option value="08">8</option>--%>
+			<%--					<option value="09">9</option>--%>
+			<%--					<option value="10">10</option>--%>
+			<%--					<option value="11">11</option>--%>
+			<%--					<option value="12">12</option>--%>
+			<%--					<c:forEach   var="i" begin="1" end="12">--%>
+			<%--						<c:choose>--%>
+			<%--							<c:when test="${endMonth==i }">--%>
+			<%--								<option value="${i }"  selected>${i }</option>--%>
+			<%--							</c:when>--%>
+			<%--							<c:otherwise>--%>
+			<%--								<option value="${i }">${i }</option>--%>
+			<%--							</c:otherwise>--%>
+			<%--						</c:choose>--%>
+			<%--					</c:forEach>--%>
+			<%--				</select>월--%>
+
+			<%--				<input type="hidden" name="d_curDay" value="${endDay}" />--%>
+			<%--				<select id="d_curDay" name="d_curDay" disabled>--%>
+			<%--					<option value="none" selected hidden="">일</option>--%>
+			<%--					<option value="01">1</option>--%>
+			<%--					<option value="02">2</option>--%>
+			<%--					<option value="03">3</option>--%>
+			<%--					<option value="04">4</option>--%>
+			<%--					<option value="05">5</option>--%>
+			<%--					<option value="06">6</option>--%>
+			<%--					<option value="07">7</option>--%>
+			<%--					<option value="08">8</option>--%>
+			<%--					<option value="09">9</option>--%>
+			<%--					<option value="10">10</option>--%>
+			<%--					<option value="11">11</option>--%>
+			<%--					<option value="12">12</option>--%>
+			<%--					<option value="13">13</option>--%>
+			<%--					<option value="14">14</option>--%>
+			<%--					<option value="15">15</option>--%>
+			<%--					<option value="16">16</option>--%>
+			<%--					<option value="17">17</option>--%>
+			<%--					<option value="18">18</option>--%>
+			<%--					<option value="19">19</option>--%>
+			<%--					<option value="20">20</option>--%>
+			<%--					<option value="21">21</option>--%>
+			<%--					<option value="22">22</option>--%>
+			<%--					<option value="23">23</option>--%>
+			<%--					<option value="24">24</option>--%>
+			<%--					<option value="25">25</option>--%>
+			<%--					<option value="26">26</option>--%>
+			<%--					<option value="27">27</option>--%>
+			<%--					<option value="28">28</option>--%>
+			<%--					<option value="29">29</option>--%>
+			<%--					<option value="30">30</option>--%>
+			<%--					<option value="31">31</option>--%>
+			<%--					<c:forEach   var="i" begin="1" end="31">--%>
+			<%--						<c:choose>--%>
+			<%--							<c:when test="${endDay==i }">--%>
+			<%--								<option value="${i }"  selected>${i }</option>--%>
+			<%--							</c:when>--%>
+			<%--							<c:otherwise>--%>
+			<%--								<option value="${i }">${i }</option>--%>
+			<%--							</c:otherwise>--%>
+			<%--						</c:choose>--%>
+			<%--					</c:forEach>--%>
+			<%--				</select>일 ~--%>
+			<%--				<input type="hidden" name="d_endYear" value="${endYear}" />--%>
+			<%--				<select id="d_endYear" name="d_endYear" disabled>--%>
+			<%--					<option value="none" selected disabled hidden="">연도</option>--%>
+			<%--					<option value="2024">2024</option>--%>
+			<%--					<option value="2023">2023</option>--%>
+			<%--					<option value="2022">2022</option>--%>
+			<%--&lt;%&ndash;					<c:forEach   var="i" begin="0" end="5">&ndash;%&gt;--%>
+			<%--						<c:choose>--%>
+			<%--							<c:when test="${endYear==endYear-i}">--%>
+			<%--								<option value="${endYear }" selected>${endYear  }</option>--%>
+			<%--							</c:when>--%>
+			<%--							<c:otherwise>--%>
+			<%--								<option value="${endYear-i }">${endYear-i }</option>--%>
+			<%--							</c:otherwise>--%>
+			<%--						</c:choose>--%>
+			<%--					</c:forEach>--%>
+			<%--				</select>년--%>
+			<%--				<input type="hidden" name="d_endMonth" value="${endMonth}" />--%>
+			<%--				<select id="d_endMonth" name="d_endMonth" disabled>--%>
+			<%--					<option value="none" selected hidden="">월</option>--%>
+			<%--					<option value="01">1</option>--%>
+			<%--					<option value="02">2</option>--%>
+			<%--					<option value="03">3</option>--%>
+			<%--					<option value="04">4</option>--%>
+			<%--					<option value="05">5</option>--%>
+			<%--					<option value="06">6</option>--%>
+			<%--					<option value="07">7</option>--%>
+			<%--					<option value="08">8</option>--%>
+			<%--					<option value="09">9</option>--%>
+			<%--					<option value="10">10</option>--%>
+			<%--					<option value="11">11</option>--%>
+			<%--					<option value="12">12</option>--%>
+			<%--					<c:forEach   var="i" begin="1" end="12">--%>
+			<%--						<c:choose>--%>
+			<%--							<c:when test="${endMonth==i }">--%>
+			<%--								<option value="${i }"  selected>${i }</option>--%>
+			<%--							</c:when>--%>
+			<%--							<c:otherwise>--%>
+			<%--								<option value="${i }">${i }</option>--%>
+			<%--							</c:otherwise>--%>
+			<%--						</c:choose>--%>
+			<%--					</c:forEach>--%>
+			<%--				</select>월--%>
+
+			<%--				<input type="hidden" name="d_endDay" value="${endDay}" />--%>
+			<%--				<select id="d_endDay" name="d_endDay" disabled>--%>
+			<%--					<option value="none" selected hidden="">일</option>--%>
+			<%--					<option value="01">1</option>--%>
+			<%--					<option value="02">2</option>--%>
+			<%--					<option value="03">3</option>--%>
+			<%--					<option value="04">4</option>--%>
+			<%--					<option value="05">5</option>--%>
+			<%--					<option value="06">6</option>--%>
+			<%--					<option value="07">7</option>--%>
+			<%--					<option value="08">8</option>--%>
+			<%--					<option value="09">9</option>--%>
+			<%--					<option value="10">10</option>--%>
+			<%--					<option value="11">11</option>--%>
+			<%--					<option value="12">12</option>--%>
+			<%--					<option value="13">13</option>--%>
+			<%--					<option value="14">14</option>--%>
+			<%--					<option value="15">15</option>--%>
+			<%--					<option value="16">16</option>--%>
+			<%--					<option value="17">17</option>--%>
+			<%--					<option value="18">18</option>--%>
+			<%--					<option value="19">19</option>--%>
+			<%--					<option value="20">20</option>--%>
+			<%--					<option value="21">21</option>--%>
+			<%--					<option value="22">22</option>--%>
+			<%--					<option value="23">23</option>--%>
+			<%--					<option value="24">24</option>--%>
+			<%--					<option value="25">25</option>--%>
+			<%--					<option value="26">26</option>--%>
+			<%--					<option value="27">27</option>--%>
+			<%--					<option value="28">28</option>--%>
+			<%--					<option value="29">29</option>--%>
+			<%--					<option value="30">30</option>--%>
+			<%--					<option value="31">31</option>--%>
+			<%--					<c:forEach   var="i" begin="1" end="31">--%>
+			<%--						<c:choose>--%>
+			<%--							<c:when test="${endDay==i }">--%>
+			<%--								<option value="${i }"  selected>${i }</option>--%>
+			<%--							</c:when>--%>
+			<%--							<c:otherwise>--%>
+			<%--								<option value="${i }">${i }</option>--%>
+			<%--							</c:otherwise>--%>
+			<%--						</c:choose>--%>
+			<%--					</c:forEach>--%>
+			<%--				</select>일--%>
+			<tr>
+				<td>
+					<select id="s_search_type" name="s_search_type" disabled>
+						<%--						<option value="all" checked>전체</option>--%>
 						<option value="ordererName">주문자 이름</option>
-						<option value="orderId">주문자 아이디</option>
-						<option value="ordererHp">주문자 휴대폰 번호</option>
+<%--						<option value="orderId">주문자 아이디</option>--%>
+<%--							<option value="ordererHp">주문자 휴대폰 번호</option>--%>
 						<option value="goodsTitle">주문 상품 품명</option>
 					</select>
-					<input  type="text"  size="30" name="t_search_word" disabled />  
-					<input   type="button"  value="조회" name="btn_search" onClick="fn_detail_search()" disabled  />
-				  </td>
-				</tr>				
-			</tbody>
+					<input type="text" size="30" id="s_search_word" name="s_search_word" value="${searchWord}" disabled />
+					<%--					<button name="btn_search" id="btn_search" onclick=fn_detail_search()>조회</button>--%>
+					<button name="btn_search" id="btn_search" disabled>조회</button>
+				</td>
+			</tr>
 		</table>
-		<div class="clear">
-	</div>
+	</form>
+	<%--		</table>--%>
+<%--	</form>--%>
+<%--	<form name="frm_search_order" action="${contextPath}/admin/order/adminOrderMain.do" method="post">--%>
+<%--		<table>--%>
+<%--			<tr>--%>
+<%--			  <td>--%>
+<%--				<select id="s_search_type" name="s_search_type" disabled>--%>
+<%--					<option value="all" checked>전체</option>--%>
+<%--					<option value="ordererName">주문자 이름</option>--%>
+<%--					<option value="orderId">주문자 아이디</option>--%>
+<%--	&lt;%&ndash;						<option value="ordererHp">주문자 휴대폰 번호</option>&ndash;%&gt;--%>
+<%--					<option value="goodsTitle">주문 상품 품명</option>--%>
+<%--				</select>--%>
+<%--				<input type="text" size="30" id="s_search_word" name="s_search_word" disabled />--%>
+<%--				  <button name="btn_search" id="btn_search" onclick=fn_detail_search()>조회</button>--%>
+<%--			  </td>--%>
+<%--			</tr>--%>
+<%--		</table>--%>
+<%--	</form>--%>
+<div class="clear"></div>
 	
 <div class="clear"></div>
 <table class="list_view">
@@ -605,7 +895,6 @@ function fn_detail_search(){
         </tr>  		   
 		</tbody>
 	</table>
-  </form>   	
 	<div class="clear"></div>
 </body>
 </html>

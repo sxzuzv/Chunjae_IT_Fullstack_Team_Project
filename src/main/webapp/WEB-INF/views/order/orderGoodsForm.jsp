@@ -15,7 +15,7 @@
 <!-- 총할인금액 -->
 <c:set var="total_discount_price" value="0"/>
 <%--<!-- 총 배송비 -->--%>
-<%--<c:set var="total_delivery_price" value="0"/>--%>
+<%--<c:set var="total_delivery_price" value="0" />--%>
 
 <head>
   <style>
@@ -45,6 +45,14 @@
   </style>
   <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
   <script>
+    var final_total_order_price = 0;
+
+    function finalPrice(total_order_price, total_delivery_price) {
+      final_total_order_price = total_order_price + total_delivery_price;
+
+      document.getElementById("p_final_totalPrice").innerHTML = final_total_order_price+"원";
+    }
+
       function execDaumPostcode() {
           new daum.Postcode({
               oncomplete: function (data) {
@@ -399,10 +407,15 @@
           var p_gift_wrapping = document.getElementById("p_gift_wrapping");
           var p_pay_method = document.getElementById("p_pay_method");
 
+          <%--var total_order_price = ${total_order_price};--%>
+          var total_delivery_price = ${total_delivery_price};
+          var total = parseInt(total_order_goods_price) + total_delivery_price;
+
           p_order_goods_id.innerHTML = goods_id;
           p_order_goods_title.innerHTML = goods_title;
           p_total_order_goods_qty.innerHTML = total_order_goods_qty + "개";
-          p_total_order_goods_price.innerHTML = total_order_goods_price + "원";
+          // p_total_order_goods_price.innerHTML = total_order_goods_price + "원";
+          p_total_order_goods_price.innerHTML = total + "원";
           p_orderer_name.innerHTML = orderer_name;
           p_receiver_name.innerHTML = receiver_name;
           p_delivery_method.innerHTML = delivery_method;
@@ -550,13 +563,13 @@
       </td>
     </tr>
     <c:set var="final_total_order_price"
-           value="${final_total_order_price+ item.goodsSalesPrice* item.orderGoodsQty + item.goodsDeliveryPrice}"/>
+           value="${final_total_order_price+ item.goodsSalesPrice* item.orderGoodsQty }"/>
     <c:set var="total_order_price"
            value="${total_order_price+ item.goodsSalesPrice* item.orderGoodsQty }"/>
     <c:set var="total_order_goods_qty"
            value="${total_order_goods_qty+item.orderGoodsQty}"/>
     <c:set var="total_delivery_price"
-           value="${total_delivery_price + item.goodsDeliveryPrice}"/>
+           value="${total_delivery_price}"/>
     </c:forEach>
     </tbody>
   </table>
@@ -742,10 +755,12 @@
       </tr>
       <tr cellpadding=40 align=center>
         <td id="">
+          <%-- 총 상품 수 --%>
           <p id="p_totalNum">${total_order_goods_qty}개</p>
           <input id="h_total_order_goods_qty" type="hidden" value="${total_order_goods_qty}"/>
         </td>
         <td>
+          <%-- 총 상품 금액--%>
           <p id="p_totalPrice">${total_order_price}원</p> <input
                 id="h_totalPrice" type="hidden" value="${total_order_price}"/>
         </td>
@@ -754,6 +769,7 @@
           &#43;
         </td>
         <td>
+          <%-- 총 배송비 --%>
           <p id="p_totalDelivery">${total_delivery_price}원</p> <input
                 id="h_totalDelivery" type="hidden" value="${total_delivery_price}"/>
         </td>
@@ -763,7 +779,9 @@
         </td>
         <td>
           <p id="p_final_totalPrice">
-            <font size="15">${final_total_order_price }원 </font>
+            <%-- 최종 결제 금액 --%>
+            <script>finalPrice(${total_order_price}, ${total_delivery_price})</script>
+<%--            <font size="15">${final_total_order_price }원 </font>--%>
           </p> <input id="h_final_total_Price" type="hidden" value="${final_total_order_price}"/>
         </td>
       </tr>

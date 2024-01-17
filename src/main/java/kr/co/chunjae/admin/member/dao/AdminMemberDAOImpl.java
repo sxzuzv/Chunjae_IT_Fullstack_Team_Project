@@ -1,5 +1,6 @@
 package kr.co.chunjae.admin.member.dao;
 
+import java.lang.reflect.Member;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -12,7 +13,7 @@ import org.springframework.stereotype.Repository;
 
 @RequiredArgsConstructor
 @Repository("adminMemberDao")
-public class AdminMemberDAOImpl  implements AdminMemberDAO{
+public class AdminMemberDAOImpl implements AdminMemberDAO{
 	private final SqlSession sqlSession;
 	
 	public ArrayList<MemberVO> listMember(HashMap condMap) throws DataAccessException{
@@ -25,8 +26,12 @@ public class AdminMemberDAOImpl  implements AdminMemberDAO{
 		return memberBean;
 	}
 	
-	public void modifyMemberInfo(HashMap memberMap) throws DataAccessException{
-		sqlSession.update("mapper.admin.member.modifyMemberInfo",memberMap);
+//	public void modifyMemberInfo(HashMap memberMap) throws DataAccessException{
+//		sqlSession.update("mapper.admin.member.modifyMemberInfo",memberMap);
+//	}
+
+	public int modifyMemberInfo(MemberVO memberVO) throws DataAccessException {
+		return sqlSession.update("mapper.admin.member.modifyMemberInfo", memberVO);
 	}
 	
 	

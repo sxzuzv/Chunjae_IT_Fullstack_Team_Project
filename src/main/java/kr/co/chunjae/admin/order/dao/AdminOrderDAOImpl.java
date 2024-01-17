@@ -1,6 +1,8 @@
 package kr.co.chunjae.admin.order.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import lombok.RequiredArgsConstructor;
@@ -35,6 +37,11 @@ public class AdminOrderDAOImpl  implements AdminOrderDAO{
 		MemberVO orderer=(MemberVO)sqlSession.selectOne("mapper.admin.order.selectOrderer",member_id);
 		return orderer;
 		
+	}
+
+	public ArrayList<OrderVO> detailOrder(HashMap<String, Object> condMap) throws DataAccessException {
+		ArrayList<OrderVO> detailOrderList = (ArrayList)sqlSession.selectList("mapper.admin.order.detailOrder", condMap);
+		return detailOrderList;
 	}
 
 }

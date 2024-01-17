@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.admin.notice">
+
+    <insert id="noticeSave" parameterType="NoticeVo">
+        insert into board(title, content)
+        values (#{title}, #{content})
+    </insert>
+
+    <select id="listAllNoticeBoard" resultType="NoticeVo">
+        select brd_id, title, content, reg_date
+        from board order by brd_id desc
+    </select>
+
+    <select id="findById" parameterType="Integer" resultType="NoticeVO">
+        select brd_id, title, content, reg_date
+        from board where brd_id=#{brdId}
+    </select>
+
+    <select id="update" parameterType="NoticeVO">
+        update board set title = #{title}, content = #{content}
+        where brd_id = #{brdId}
+    </select>
+
+    <select id="delete" parameterType="Integer">
+        delete from board where brd_id =#{brdId}
+    </select>
+
+    <select id="noticeCount" resultType="Integer">
+        select count(brd_id) from board
+    </select>
+</mapper>
