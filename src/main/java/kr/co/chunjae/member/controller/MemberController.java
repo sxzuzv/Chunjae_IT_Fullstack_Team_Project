@@ -14,10 +14,7 @@ import java.util.Map;
 public interface MemberController {
 
 	public String loginForm(HttpServletRequest request, String error, String logout, Model model) throws Exception;
-	public String login(@RequestParam Map<String, String> loginMap,
-						@RequestParam("rememberId") String rememberId,
-						HttpServletRequest request,HttpServletResponse response, Model model) throws Exception;
-	public String logout(HttpServletRequest request, HttpServletResponse response) throws Exception;
+
 	public ResponseEntity  addMember(@ModelAttribute("member") MemberVO member,
                                      HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ResponseEntity   overlapped(@RequestParam("id") String id, HttpServletRequest request, HttpServletResponse response) throws Exception;

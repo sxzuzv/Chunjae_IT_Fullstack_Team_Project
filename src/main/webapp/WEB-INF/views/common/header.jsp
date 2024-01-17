@@ -4,6 +4,7 @@
 %>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <script type="text/javascript">
     var loopSearch = true;
@@ -98,10 +99,9 @@
         </c:otherwise>
       </c:choose>
       <li class="nav-item"><a class="nav-link" href="#">고객센터</a></li>
-      <c:if test="${isLogOn==true and memberInfo.memberId =='admin' }">
+      <sec:authorize access="hasRole('ROLE_ADMIN')">
         <li class="no_line nav-item"><a class="nav-link" href="${contextPath}/admin/goods/adminGoodsMain.do">관리자</a></li>
-      </c:if>
-    
+      </sec:authorize>
     </ul>
   </div>
   <br>
