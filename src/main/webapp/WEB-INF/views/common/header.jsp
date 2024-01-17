@@ -84,7 +84,10 @@
     <ul class="nav-menu">
       <c:choose>
         <c:when test="${isLogOn==true and not empty memberInfo }">
-          <li class="nav-item"><a class="nav-link" href="${contextPath}/member/logout.do">로그아웃</a></li>
+          <form id="logout" action="/logout" method="POST">
+            <input name="${_csrf.parameterName}" type="hidden" value="${_csrf.token}"/>
+          </form>
+          <li class="nav-item"><a class="nav-link" onclick="document.getElementById('logout').submit();">로그아웃</a></li>
           <li class="nav-item"><a class="nav-link" href="${contextPath}/mypage/myPageMain.do">마이페이지</a></li>
           <li class="nav-item"><a class="nav-link" href="${contextPath}/cart/myCartList.do">장바구니</a></li>
           <li class="nav-item"><a class="nav-link" href="${contextPath}/mypage/listMyOrderHistory.do">주문배송</a></li>
