@@ -21,17 +21,22 @@
 </head>
 <body>
 <H3>회원 로그인 창</H3>
+<h2><c:out value="${error}"/></h2>
+<h2><c:out value="${logout}"/></h2>
 <DIV id="detail_table">
-  <form action="${contextPath}/member/login.do" method="post" class="frmLogin">
+  <form action="/login" method="post" class="frmLogin">
     <table>
       <tbody>
       <tr class="dot_line">
         <th class="fixed_join">아이디</th>
-        <td><input name="memberId" type="text" value="${rememberId}"/></td>
+<%--        <td><input name="memberId" type="text" value="${rememberId}"/></td>--%>
+        <td>    <input type='text' name='username' value=''>
+        </td>
       </tr>
       <tr class="solid_line">
         <th class="fixed_join">비밀번호</th>
-        <td><input name="memberPw" type="password"/></td>
+<%--        <td><input name="memberPw" type="password"/></td>--%>
+        <td><input type='password' name='password' value=''></td>
       </tr>
       <tr>
         <td>

@@ -81,7 +81,8 @@
 
 				<tr>
 					<td >제품 판매 가격</td>
-					<td><input name="goodsSalesPrice" type="text" size="40" /></td>
+					<td><form:input path="goodsSalesPrice" type="number" size="40" /></td>
+					<td><form:errors path="goodsSalesPrice" cssClass="text-danger"/></td>
 				</tr>
 
 
@@ -102,7 +103,7 @@
 
 				<tr>
 					<td >ISBN</td>
-					<td><input name="goodsIsbn" type="text" size="40" /></td>
+					<td><form:input path="goodsIsbn" type="text" size="40" /></td>
 					<td><form:errors path="goodsIsbn" cssClass="text-danger"/></td>
 				</tr>
 				<tr>

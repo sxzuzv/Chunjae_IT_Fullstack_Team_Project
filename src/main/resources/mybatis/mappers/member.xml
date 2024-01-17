@@ -34,6 +34,19 @@
 <!--		<result property="namujiAddress" column="namujiAddress" />-->
 <!--		<result property="joinDate" column="joinDate" />-->
 <!--	</resultMap>-->
+	<resultMap type="MemberVO" id="memberMap">
+		<id property="memberId" column="member_id"/>
+		<result property="memberId" column="member_id"/>
+		<result property="memberPw" column="member_pw"/>
+		<result property="memberName" column="member_name"/>
+		<collection property="authList" resultMap="authMap">
+		</collection>
+	</resultMap>
+
+	<resultMap type="AuthVO" id="authMap">
+		<result property="memberId" column="member_id"/>
+		<result property="auth" column="auth"/>
+	</resultMap>
 
 	<select id="login" resultType="memberVO"  parameterType="java.util.Map"  >
 	    <![CDATA[
@@ -89,4 +102,6 @@ member_hp1, member_hp2, member_hp3, smssts_yn, member_email1, member_email2, ema
 			and member_hp3=#{memberHp3}
 
 	</select>
+
+
 </mapper>

@@ -6,9 +6,8 @@ import lombok.Setter;
 import lombok.ToString;
 import org.springframework.stereotype.Component;
 
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
+import java.util.List;
+
 
 
 @Getter
@@ -46,5 +45,7 @@ public class MemberVO {
 	private String namujiAddress;	// 나머지 주소
 	private String joinDate;		// 가입일
 	private String delYn;			// 탈퇴 여부
+
+	private List<AuthVO> authList;
 }
 

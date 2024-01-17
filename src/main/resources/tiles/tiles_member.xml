@@ -37,6 +37,11 @@
         <put-attribute name="title" value="회원 가입 페이지" />
         <put-attribute name="body" value="/WEB-INF/views/member/idFindComplete.jsp" />
     </definition>
+
+    <definition name="/member/accessError" extends="baseLayout">
+        <put-attribute name="title" value="접근 오류 페이지" />
+        <put-attribute name="body" value="/WEB-INF/views/member/accessError.jsp" />
+    </definition>
   
 </tiles-definitions>
 
