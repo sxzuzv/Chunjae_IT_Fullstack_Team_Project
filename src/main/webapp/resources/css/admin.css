@@ -194,6 +194,18 @@ table.search_option a.btn_search:hover {
     text-align: right;
 }
 
+/* 회원 상세 정보 - 주소 테이블 */
+.address_info p {
+    margin: 0.4em auto;
+    display: grid;
+    grid-template-columns: 7em auto;
+}
+
+.address_info p label {
+    font-size: 0.9em;
+    margin: 0.2em 0.4em;
+    padding: 0;
+}
 
 /* 버튼 */
 .list_view input[value='배송 수정'] {
@@ -214,6 +226,52 @@ input[value='목록으로'] {
 input[value='목록으로']:hover {
     background-color: #ffffff;
     color: #494949;
+}
+
+a.search_zipcode {
+    display: inline;
+    padding: 0.2em 0.6em;
+    text-align: center;
+    color: #494949;
+    font-size: 0.9em;
+    border: 1px solid #666666;
+    border-radius: 2px;
+    background-color: #f6f5f5;
+}
+
+section#center input {
+    padding: 0.4em 1em;
+    border-radius: 5px;
+    font-size: 0.9em;
+}
+
+section#center input[type=submit] {
+    margin-right: 0.4em;
+    border: 1px solid #1e5da2;
+    background-color: #1e5da2;
+    color: #ffffff;
+}
+
+section#center input[type=reset] {
+    margin-right: 0.4em;
+    border: 1px solid #666666;
+    background-color: #f6f5f5;
+}
+
+section#center input[type=button] {
+    border: 1px solid #494949;
+    background-color: #494949;
+    color: #ffffff;
+}
+
+section#center input:hover {
+    opacity: 90%;
+}
+
+section#center input[type=reset]:hover {
+    opacity: unset;
+    background-color: #ffffff;
+    color: #666666;
 }
 
 /* 페이징 버튼 */
