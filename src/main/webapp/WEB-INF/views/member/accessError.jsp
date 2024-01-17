@@ -13,11 +13,12 @@
 <h1>Access Denied Page</h1>
 
 
-<h2><c:out value="${SPRING_SECURITY_403_EXCEPTION.getMessage()}"/></h2>
+<h1><c:out value="${SPRING_SECURITY_403_EXCEPTION.getMessage()}"/></h1>
 
-<h2><c:out value="${msg}"/></h2>
-
-
+<h1><c:out value="${msg}"/></h1>
+<div>
+    <button type="button" onclick="location.href='/main/main.do'">홈으로 돌아가기</button>
+</div>
 </ul>
 </body>
 </html>
