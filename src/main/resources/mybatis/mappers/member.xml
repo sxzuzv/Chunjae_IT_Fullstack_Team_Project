@@ -103,13 +103,5 @@ member_hp1, member_hp2, member_hp3, smssts_yn, member_email1, member_email2, ema
 
 	</select>
 
-	<select id="read" resultMap="memberMap">
-		SELECT
-			mem.member_id, member_pw, member_name, auth
-		FROM
-			t_shopping_member mem LEFT OUTER JOIN member_auth auth on mem.member_id = auth.member_id
-		WHERE mem.member_id = #{memberId}
-	</select>
-
 
 </mapper>

@@ -27,5 +27,13 @@
 		WHERE mem.member_id = #{memberId}
 	</select>
 
+	<select id="login" resultType="memberVO"  parameterType="string"  >
+	    <![CDATA[
+		select * from t_shopping_member
+		where member_id=#{username}
+
+		]]>
+	</select>
+
 
 </mapper>

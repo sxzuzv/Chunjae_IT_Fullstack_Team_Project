@@ -42,14 +42,14 @@ public class MemberControllerImpl extends BaseController implements MemberContro
 	public String loginForm(HttpServletRequest request, String error, String logout, Model model) throws Exception{
 		String viewName=(String)request.getAttribute("viewName");
 		String memberId = "";
-		Cookie[] cookies = request.getCookies();
-		for(Cookie cookie : cookies) {
-			if (cookie.getName().equals("rememberId")) {
-				memberId = cookie.getValue();
-			}
-		}
+//		Cookie[] cookies = request.getCookies();
+//		for(Cookie cookie : cookies) {
+//			if (cookie.getName().equals("rememberId")) {
+//				memberId = cookie.getValue();
+//			}
+//		}
 		if (error != null) {
-			model.addAttribute("error", "Login Error Check Your Account");
+			model.addAttribute("error", "아이디나 비밀번호를 확인해 주세요");
 		}
 
 		if (logout != null) {
