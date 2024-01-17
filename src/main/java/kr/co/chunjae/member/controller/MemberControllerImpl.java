@@ -290,5 +290,11 @@ public class MemberControllerImpl extends BaseController implements MemberContro
 		return "accessError";
 	}
 
+	@GetMapping("/customLogout")
+	public String doLogout(){
+		log.info("custom Logout");
+		return "customLogout";
+	}
+
 }
 
