@@ -461,115 +461,115 @@
 
 </head>
 <body>
-<h1>주문 조회</h1>
-<table class="search_option" style="margin-bottom: 0">
-  <tr>
-    <td>
-      <input type="radio" name="r_search_option" value="simple_search" id="simple_search" checked
-             onClick="fn_enable_detail_search(this)"/>
-      <label for="simple_search">주문일자로 조회</label>
-      <input type="radio" name="r_search_option" value="detail_search" id="detail_search"
-             onClick="fn_enable_detail_search(this)"/>
-      <label for="detail_search">상세 조회</label>
-    </td>
-  </tr>
-</table>
+<h1>주문 관리</h1>
+<%--<table class="search_option" style="margin-bottom: 0">--%>
+<%--  <tr>--%>
+<%--    <td>--%>
+<%--      <input type="radio" name="r_search_option" value="simple_search" id="simple_search" checked--%>
+<%--             onClick="fn_enable_detail_search(this)"/>--%>
+<%--      <label for="simple_search">주문일자로 조회</label>--%>
+<%--      <input type="radio" name="r_search_option" value="detail_search" id="detail_search"--%>
+<%--             onClick="fn_enable_detail_search(this)"/>--%>
+<%--      <label for="detail_search">상세 조회</label>--%>
+<%--    </td>--%>
+<%--  </tr>--%>
+<%--</table>--%>
 
 <%--	<input type="radio" name="r_search_option" value="simple_search" checked onClick="fn_enable_detail_search(this)"/> 주문일자로 조회 &nbsp;&nbsp;&nbsp;--%>
 <%--	<input type="radio" name="r_search_option" value="detail_search"  onClick="fn_enable_detail_search(this)" /> 상세 조회 &nbsp;&nbsp;&nbsp;--%>
-<form name="frm_delivery_list" action="${contextPath}/admin/order/adminOrderMain.do" method="post">
-  <table class="search_option">
+<%--<form name="frm_delivery_list" action="${contextPath}/admin/order/adminOrderMain.do" method="post">--%>
+<%--  <table class="search_option">--%>
     <%--				<tr>--%>
     <%--					<td>--%>
     <%--						<input type="radio" name="r_search_option" value="simple_search" checked onClick="fn_enable_detail_search(this)"/> 주문일자로 조회 &nbsp;&nbsp;&nbsp;--%>
     <%--						<input type="radio" name="r_search_option" value="detail_search"  onClick="fn_enable_detail_search(this)" /> 상세 조회 &nbsp;&nbsp;&nbsp;--%>
     <%--					</td>--%>
     <%--				</tr>--%>
-    <tr>
-      <td>
-        <%--						<input type="hidden" name="endYear" value="${endYear}" />--%>
-        <select id="curYear" name="curYear">
-          <c:forEach var="i" begin="0" end="5">
-            <c:choose>
-              <c:when test="${endYear==endYear-i}">
-                <option value="${endYear }" selected>${endYear  }</option>
-              </c:when>
-              <c:otherwise>
-                <option value="${endYear-i }">${endYear-i }</option>
-              </c:otherwise>
-            </c:choose>
-          </c:forEach>
-        </select>년
-        <%--						<input type="hidden" name="endMonth" value="${endMonth}" />--%>
-        <select id="curMonth" name="curMonth">
-          <c:forEach var="i" begin="1" end="12">
-            <c:choose>
-              <c:when test="${endMonth==i }">
-                <option value="${i }" selected>${i }</option>
-              </c:when>
-              <c:otherwise>
-                <option value="${i }">${i }</option>
-              </c:otherwise>
-            </c:choose>
-          </c:forEach>
-        </select>월
+<%--    <tr>--%>
+<%--      <td>--%>
+<%--        &lt;%&ndash;						<input type="hidden" name="endYear" value="${endYear}" />&ndash;%&gt;--%>
+<%--        <select id="curYear" name="curYear">--%>
+<%--          <c:forEach var="i" begin="0" end="5">--%>
+<%--            <c:choose>--%>
+<%--              <c:when test="${endYear==endYear-i}">--%>
+<%--                <option value="${endYear }" selected>${endYear  }</option>--%>
+<%--              </c:when>--%>
+<%--              <c:otherwise>--%>
+<%--                <option value="${endYear-i }">${endYear-i }</option>--%>
+<%--              </c:otherwise>--%>
+<%--            </c:choose>--%>
+<%--          </c:forEach>--%>
+<%--        </select>년--%>
+<%--        &lt;%&ndash;						<input type="hidden" name="endMonth" value="${endMonth}" />&ndash;%&gt;--%>
+<%--        <select id="curMonth" name="curMonth">--%>
+<%--          <c:forEach var="i" begin="1" end="12">--%>
+<%--            <c:choose>--%>
+<%--              <c:when test="${endMonth==i }">--%>
+<%--                <option value="${i }" selected>${i }</option>--%>
+<%--              </c:when>--%>
+<%--              <c:otherwise>--%>
+<%--                <option value="${i }">${i }</option>--%>
+<%--              </c:otherwise>--%>
+<%--            </c:choose>--%>
+<%--          </c:forEach>--%>
+<%--        </select>월--%>
         
         <%--						<input type="hidden" name="endDay" value="${endDay}" />--%>
-        <select id="curDay" name="curDay">
-          <c:forEach var="i" begin="1" end="31">
-            <c:choose>
-              <c:when test="${endDay==i }">
-                <option value="${i }" selected>${i }</option>
-              </c:when>
-              <c:otherwise>
-                <option value="${i }">${i }</option>
-              </c:otherwise>
-            </c:choose>
-          </c:forEach>
-        </select>일
-      </td>
-      <td>
-        <a class="btn_search" href="javascript:search_order_history('today')">
-          당일
-        </a>
-        <a class="btn_search" href="javascript:search_order_history('one_week')">
-          1주
-        </a>
-        <a class="btn_search" href="javascript:search_order_history('two_week')">
-          2주
-        </a>
-        <a class="btn_search" href="javascript:search_order_history('one_month')">
-          1개월
-        </a>
-        <a class="btn_search" href="javascript:search_order_history('two_month')">
-          2개월
-        </a>
-        <a class="btn_search" href="javascript:search_order_history('three_month')">
-          3개월
-        </a>
-        <a class="btn_search" href="javascript:search_order_history('four_month')">
-          4개월
-        </a>
-        이전까지 조회
-      </td>
-    </tr>
-    <tr>
-      <td colspan="2">
+<%--        <select id="curDay" name="curDay">--%>
+<%--          <c:forEach var="i" begin="1" end="31">--%>
+<%--            <c:choose>--%>
+<%--              <c:when test="${endDay==i }">--%>
+<%--                <option value="${i }" selected>${i }</option>--%>
+<%--              </c:when>--%>
+<%--              <c:otherwise>--%>
+<%--                <option value="${i }">${i }</option>--%>
+<%--              </c:otherwise>--%>
+<%--            </c:choose>--%>
+<%--          </c:forEach>--%>
+<%--        </select>일--%>
+<%--      </td>--%>
+<%--      <td>--%>
+<%--        <a class="btn_search" href="javascript:search_order_history('today')">--%>
+<%--          당일--%>
+<%--        </a>--%>
+<%--        <a class="btn_search" href="javascript:search_order_history('one_week')">--%>
+<%--          1주--%>
+<%--        </a>--%>
+<%--        <a class="btn_search" href="javascript:search_order_history('two_week')">--%>
+<%--          2주--%>
+<%--        </a>--%>
+<%--        <a class="btn_search" href="javascript:search_order_history('one_month')">--%>
+<%--          1개월--%>
+<%--        </a>--%>
+<%--        <a class="btn_search" href="javascript:search_order_history('two_month')">--%>
+<%--          2개월--%>
+<%--        </a>--%>
+<%--        <a class="btn_search" href="javascript:search_order_history('three_month')">--%>
+<%--          3개월--%>
+<%--        </a>--%>
+<%--        <a class="btn_search" href="javascript:search_order_history('four_month')">--%>
+<%--          4개월--%>
+<%--        </a>--%>
+<%--        이전까지 조회--%>
+<%--      </td>--%>
+<%--    </tr>--%>
+<%--    <tr>--%>
+<%--      <td colspan="2">--%>
         <%--						<input type="hidden" name="beginYear" value="${beginYear}" />--%>
         <%--						<input type="hidden" name="beginMonth" value="${beginMonth}" />--%>
         <%--						<input type="hidden" name="beginDay" value="${beginDay}" />--%>
         
-        조회 기간 : <input type="text" name="beginYear" size="4" value="${beginYear}"/>년
-        <input type="text" size="4" name="beginMonth" value="${beginMonth}"/>월
-        <input type="text" size="4" name="beginDay" value="${beginDay}"/>일 ~
-        <input type="text" size="4" name="endYear" value="${endYear }"/>년
-        <input type="text" size="4" name="endMonth" value="${endMonth }"/>월
-        <input type="text" size="4" name="endDay" value="${endDay }"/>일
-      </td>
-    </tr>
-</form>
-<form name="frm_search_order" action="${contextPath}/admin/order/detailOrder.do" method="post">
-  <table class="search_option">
+<%--        조회 기간 : <input type="text" name="beginYear" size="4" value="${beginYear}"/>년--%>
+<%--        <input type="text" size="4" name="beginMonth" value="${beginMonth}"/>월--%>
+<%--        <input type="text" size="4" name="beginDay" value="${beginDay}"/>일 ~--%>
+<%--        <input type="text" size="4" name="endYear" value="${endYear }"/>년--%>
+<%--        <input type="text" size="4" name="endMonth" value="${endMonth }"/>월--%>
+<%--        <input type="text" size="4" name="endDay" value="${endDay }"/>일--%>
+<%--      </td>--%>
+<%--    </tr>--%>
+<%--</form>--%>
+<%--<form name="frm_search_order" action="${contextPath}/admin/order/detailOrder.do" method="post">--%>
+<%--  <table class="search_option">--%>
     <%--			<tr>--%>
     <%--				주문일자 기간 선택 :--%>
     <%--				<input type="hidden" name="d_curYear" value="${endYear}" />--%>
@@ -750,22 +750,22 @@
     <%--						</c:choose>--%>
     <%--					</c:forEach>--%>
     <%--				</select>일--%>
-    <tr>
-      <td>
-        <select id="s_search_type" name="s_search_type" disabled>
-          <%--						<option value="all" checked>전체</option>--%>
-          <option value="ordererName">주문자 이름</option>
-          <%--						<option value="orderId">주문자 아이디</option>--%>
-          <%--							<option value="ordererHp">주문자 휴대폰 번호</option>--%>
-          <option value="goodsTitle">주문 상품 품명</option>
-        </select>
-        <input type="text" size="30" id="s_search_word" name="s_search_word" value="${searchWord}" disabled/>
-        <%--					<button name="btn_search" id="btn_search" onclick=fn_detail_search()>조회</button>--%>
-        <button name="btn_search" id="btn_search" disabled>조회</button>
-      </td>
-    </tr>
-  </table>
-</form>
+<%--    <tr>--%>
+<%--      <td>--%>
+<%--        <select id="s_search_type" name="s_search_type" disabled>--%>
+<%--          &lt;%&ndash;						<option value="all" checked>전체</option>&ndash;%&gt;--%>
+<%--          <option value="ordererName">주문자 이름</option>--%>
+<%--          &lt;%&ndash;						<option value="orderId">주문자 아이디</option>&ndash;%&gt;--%>
+<%--          &lt;%&ndash;							<option value="ordererHp">주문자 휴대폰 번호</option>&ndash;%&gt;--%>
+<%--          <option value="goodsTitle">주문 상품 품명</option>--%>
+<%--        </select>--%>
+<%--        <input type="text" size="30" id="s_search_word" name="s_search_word" value="${searchWord}" disabled/>--%>
+<%--        &lt;%&ndash;					<button name="btn_search" id="btn_search" onclick=fn_detail_search()>조회</button>&ndash;%&gt;--%>
+<%--        <button name="btn_search" id="btn_search" disabled>조회</button>--%>
+<%--      </td>--%>
+<%--    </tr>--%>
+<%--  </table>--%>
+<%--</form>--%>
 <%--		</table>--%>
 <%--	</form>--%>
 <%--	<form name="frm_search_order" action="${contextPath}/admin/order/adminOrderMain.do" method="post">--%>
