@@ -40,6 +40,8 @@
         <input type="hidden" name="cate" value="1">
     </table>
     <input type="submit" value="저장" />
+    <input type="reset" value="초기화">
+    <a href="${contextPath}/admin/notice/noticeList.do"><input type="button" value="목록으로"></a>
 </form>
 </body>
 <script>
