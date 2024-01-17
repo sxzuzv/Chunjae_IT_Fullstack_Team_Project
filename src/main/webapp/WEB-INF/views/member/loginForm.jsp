@@ -29,11 +29,14 @@
       <tbody>
       <tr class="dot_line">
         <th class="fixed_join">아이디</th>
-        <td><input name="memberId" type="text" value="${rememberId}"/></td>
+<%--        <td><input name="memberId" type="text" value="${rememberId}"/></td>--%>
+        <td>    <input type='text' name='username' value=''>
+        </td>
       </tr>
       <tr class="solid_line">
         <th class="fixed_join">비밀번호</th>
-        <td><input name="memberPw" type="password"/></td>
+<%--        <td><input name="memberPw" type="password"/></td>--%>
+        <td><input type='password' name='password' value=''></td>
       </tr>
       <tr>
         <td>
