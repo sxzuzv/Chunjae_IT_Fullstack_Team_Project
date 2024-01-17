@@ -136,6 +136,17 @@ CREATE TABLE member_auth
     auth      varchar(20) not null comment '권한명'
 );
 
+CREATE TABLE persistent_logins
+(
+    username varchar(64) NOT null,
+    series varchar(64) PRIMARY KEY,
+    token varchar(64) NOT null,
+    last_used timestamp NOT null
+);
+
+
+
+
 -- 더미데이터
 
 -- t_shopping_member
