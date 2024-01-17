@@ -7,6 +7,8 @@ import java.util.List;
 
 public interface NoticeService {
     public void noticeWrite(NoticeVO noticeVO);
+    public void updateViewCnt(Long brdId);
+    public NoticeVO noticeDetail(Long brdId);
     public List<NoticeVO> paging(int page);
     public pageVO pagingParam(int page);
 }

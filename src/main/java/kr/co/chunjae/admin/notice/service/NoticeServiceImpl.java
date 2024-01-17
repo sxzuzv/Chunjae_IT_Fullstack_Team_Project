@@ -22,6 +22,16 @@ public class NoticeServiceImpl implements NoticeService {
         noticeDAO.noticeWrite(noticeVO);
     }
 
+    @Override
+    public void updateViewCnt(Long brdId) {
+        noticeDAO.updateViewCnt(brdId);
+    }
+
+    @Override
+    public NoticeVO noticeDetail(Long brdId) {
+        return noticeDAO.noticeDetail(brdId);
+    }
+
     // 페이징 : 특정 페이지에 해당하는 게시글 목록만을 출력한다.
     int pageLimit = 10; // 한 페이지당 보여주는 글 개수
     int blockLimit = 3; // 페이지 하단에 보여주는 페이지 번호의 개수

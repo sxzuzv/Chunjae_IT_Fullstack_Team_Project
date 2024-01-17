@@ -9,6 +9,18 @@
         values('관리자', #{title}, #{content}, 1)
     </insert>
 
+    <update id="updateViewCnt" parameterType="Long">
+        update board
+        set view_cnt = view_cnt + 1
+        where brd_id = #{brdId}
+    </update>
+
+    <select id="noticeDetail" parameterType="Long" resultType="noticeVO">
+        select title, member_id, reg_date, view_cnt, content
+        from board
+        where brd_id = #{brdId}
+    </select>
+
     <select id="pagingNoticeList" parameterType="java.util.Map" resultType="noticeVO">
         select brd_id, title, member_id, reg_date, view_cnt
         from board

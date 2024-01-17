@@ -21,6 +21,7 @@ import java.util.List;
 public class NoticeControllerImpl {
     private final NoticeService noticeService;
 
+    // 게시글 작성 화면을 출력한다.
     @GetMapping("/noticeWrite.do")
     public String writeForm(HttpServletRequest request) {
         String viewName=(String)request.getAttribute("viewName");
@@ -28,12 +29,33 @@ public class NoticeControllerImpl {
         return viewName;
     }
 
+    // 사용자가 입력한 데이터를 DataBase에 저장한다.
     @PostMapping("/noticeWrite.do")
     public String noticeWrite(@ModelAttribute NoticeVO noticeVO, HttpServletRequest request) {
         noticeService.noticeWrite(noticeVO);
 
         return "redirect:/admin/notice/noticeList.do";
     }
+
+    // 게시글 번호를 클릭할 시, 상세 내용을 출력한다.
+    // 조회수 계산 기능을 적용하며, '목록보기' 시 직전에 보고 있던 페이지 번호로 돌아간다.
+    @GetMapping("/noticeDetail.do")
+    public String noticeDetail(@RequestParam("brd_id") Long brdId, @RequestParam(value = "page", required = false, defaultValue = "1") int page, HttpServletRequest request, Model model) {
+        String viewName=(String)request.getAttribute("viewName");
+
+        // 조회수(view_cnt) 기능을 적용한다.
+        noticeService.updateViewCnt(brdId);
+
+        // 선택된 게시글 번호에 대한 상세 내용을 추출하여 저장한다.
+        NoticeVO noticeVO = noticeService.noticeDetail(brdId);
+
+        model.addAttribute("noticeDetail", noticeVO);
+        // '목록보기' 시 활용할 직전 페이지 번호를 모델에 저장한다.
+        model.addAttribute("page", page);
+
+        return viewName;
+    }
+
 
     // 전체 게시글 리스트를 출력한다. (페이징 적용 O)
     // 페이징 : 전체 게시글 리스트 보기 시, 페이징을 적용한다.
