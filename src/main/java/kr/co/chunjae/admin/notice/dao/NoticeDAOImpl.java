@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 @Repository
 @RequiredArgsConstructor
@@ -17,6 +18,16 @@ public class NoticeDAOImpl implements NoticeDAO {
     public int noticeSave(NoticeVO noticeVO) {
         return sqlSession.insert("mapper.admin.notice.noticeSave", noticeVO);
     }
+
+    public List<NoticeVO> findAll() {
+        return sqlSession.selectList("mapper.admin.notice.findAll");
+    }
+
+    public List<NoticeVO> paging(Map<String, Integer> pagingParams) {
+        return sqlSession.selectList("mapper.admin.notice.noticePageList", pagingParams);
+    }
+
+
 
     @Override
     public List<NoticeVO> listNoticeBoard(int brdId) {
