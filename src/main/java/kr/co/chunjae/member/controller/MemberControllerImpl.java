@@ -286,14 +286,8 @@ public class MemberControllerImpl extends BaseController implements MemberContro
 	@GetMapping("/accessError")
 	public String accessDenied(Authentication auth, Model model){
 		log.info("access Denied : " + auth);
-		model.addAttribute("msg", "Access Denied");
-		return "accessError";
-	}
-
-	@GetMapping("/customLogout")
-	public String doLogout(){
-		log.info("custom Logout");
-		return "customLogout";
+		model.addAttribute("msg", "잘못된 접근입니다.");
+		return "/member/accessError";
 	}
 
 }
