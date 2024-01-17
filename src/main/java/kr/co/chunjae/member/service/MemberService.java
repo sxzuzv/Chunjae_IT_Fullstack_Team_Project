@@ -1,8 +1,10 @@
 package kr.co.chunjae.member.service;
 
-import java.util.Map;
-
 import kr.co.chunjae.member.vo.MemberVO;
+import org.springframework.security.core.Authentication;
+import org.springframework.ui.Model;
+
+import java.util.Map;
 
 public interface MemberService {
 	public MemberVO login(Map loginMap) throws Exception;
@@ -12,4 +14,8 @@ public interface MemberService {
     public int pwChange(MemberVO memberVO);
 
 	public MemberVO idFind(Map<String, String> authMap);
+
+	public void addAuth(String memberId);
+
+
 }

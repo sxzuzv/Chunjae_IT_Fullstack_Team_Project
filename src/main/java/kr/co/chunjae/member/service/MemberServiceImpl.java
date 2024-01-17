@@ -1,15 +1,13 @@
 package kr.co.chunjae.member.service;
 
-import java.util.Map;
-
+import kr.co.chunjae.member.dao.MemberDAO;
+import kr.co.chunjae.member.vo.MemberVO;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import kr.co.chunjae.member.dao.MemberDAO;
-import kr.co.chunjae.member.vo.MemberVO;
+import java.util.Map;
 
 @Service("memberService")
 @Transactional(propagation=Propagation.REQUIRED)
@@ -46,5 +44,10 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public MemberVO idFind(Map<String, String> authMap) {
 		return memberDAO.idFind(authMap);
+	}
+
+	@Override
+	public void addAuth(String memberId) {
+		memberDAO.insertAuth(memberId);
 	}
 }

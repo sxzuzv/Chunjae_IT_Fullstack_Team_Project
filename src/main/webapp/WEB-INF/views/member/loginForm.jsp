@@ -40,8 +40,8 @@
       </tr>
       <tr>
         <td>
-          <input type="checkbox" id="rememberId" name="rememberId" ${rememberId != "" ? 'checked' : ''}/>
-          <label for="rememberId">아이디 저장</label>
+          <input type="checkbox" id="rememberId" name='remember-me'/>
+          <label for="rememberId">로그인 상태 유지</label>
         </td>
       </tr>
       </tbody>

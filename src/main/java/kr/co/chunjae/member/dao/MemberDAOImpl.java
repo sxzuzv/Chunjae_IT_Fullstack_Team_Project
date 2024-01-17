@@ -1,13 +1,12 @@
 package kr.co.chunjae.member.dao;
 
-import java.util.Map;
-
+import kr.co.chunjae.member.vo.MemberVO;
 import lombok.RequiredArgsConstructor;
 import org.apache.ibatis.session.SqlSession;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
-import kr.co.chunjae.member.vo.MemberVO;
+
+import java.util.Map;
 
 @Repository("memberDAO")
 @RequiredArgsConstructor
@@ -45,5 +44,10 @@ public class MemberDAOImpl  implements MemberDAO{
 	@Override
 	public MemberVO idFind(Map<String, String> authMap) throws DataAccessException {
 		return sqlSession.selectOne("mapper.member.authId", authMap);
+	}
+
+	@Override
+	public void insertAuth(String memberId) {
+		sqlSession.insert("mapper.member.insertAuth", memberId);
 	}
 }
