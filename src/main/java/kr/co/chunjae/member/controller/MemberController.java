@@ -2,6 +2,7 @@ package kr.co.chunjae.member.controller;
 
 import kr.co.chunjae.member.vo.MemberVO;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -23,4 +24,6 @@ public interface MemberController {
 	public String idFindForm(HttpServletRequest request) throws Exception;
 
 	public String idFind(@RequestParam Map<String, String> authMap,HttpServletResponse response, Model model) throws Exception;
+
+	public String accessDenied(Authentication auth, Model model);
 }
