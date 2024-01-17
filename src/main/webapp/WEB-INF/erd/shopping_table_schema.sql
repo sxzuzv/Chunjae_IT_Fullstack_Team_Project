@@ -4,7 +4,7 @@ use bookshop;
 CREATE TABLE t_shopping_member
 (
     `member_id`       varchar(20) PRIMARY KEY comment '회원아이디',
-    `member_pw`       varchar(30) NOT NULL comment '비밀번호',
+    `member_pw`       varchar(100) NOT NULL comment '비밀번호',
     `member_name`     varchar(50) NOT NULL comment '이름',
     `member_gender`   varchar(10) comment '성별',
     `member_hp1`      varchar(20) comment '휴대폰번호1',
@@ -143,15 +143,19 @@ insert into t_shopping_member(member_id, member_pw, member_name, member_gender, 
                               smssts_yn, member_email1, member_email2, emailsts_yn, zipcode, road_address,
                               jibun_address, namuji_address, member_birth_y, member_birth_m, member_birth_d,
                               member_birth_gn)
-values ('lee', '1212', '이병승', '101', '010', '2222', '3333', 'Y', 'lee', 'test.com', 'Y', '13547',
+values ('lee', '$2a$10$cK/aCrSp5wgcM9hVOV1O9O4/2wfCbucd02vZrJhDlnpYB.biF9GKy', '이병승', '101', '010', '2222', '3333', 'Y', 'lee', 'test.com', 'Y', '13547',
         '경기 성남시 분당구 고기로 25(동원동)', '경기 성남시 분당구 동원동 79-1', '럭키빌딩 101호', '2000', '5', '10', '2');
 insert into t_shopping_member(member_id, member_pw, member_name, member_gender, member_hp1, member_hp2, member_hp3,
                               smssts_yn, member_email1, member_email2, emailsts_yn, zipcode, road_address,
                               jibun_address, namuji_address, member_birth_y, member_birth_m, member_birth_d,
                               member_birth_gn)
-values ('admin', '1212', '어드민', '101', '010', '1111', '2222', 'Y', 'admin', 'test.com', 'Y', '06253',
+values ('admin', '$2a$10$cK/aCrSp5wgcM9hVOV1O9O4/2wfCbucd02vZrJhDlnpYB.biF9GKy', '어드민', '101', '010', '1111', '2222', 'Y', 'admin', 'test.com', 'Y', '06253',
         '서울 강남구 강남대로 298(역삼동)', '서울 강남구 역삼동 838', '럭키빌딩 101호', '2000', '5', '10', '2');
 
+
+insert INTO member_auth values ('admin', 'ROLE_ADMIN');
+insert INTO member_auth values ('admin', 'ROLE_MEMBER');
+insert INTO member_auth values ('lee', 'ROLE_MEMBER');
 
 -- 상품 정보
 INSERT INTO bookshop.t_shopping_goods

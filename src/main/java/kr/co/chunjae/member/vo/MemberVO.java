@@ -6,6 +6,8 @@ import lombok.Setter;
 import lombok.ToString;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 
 @Getter
 @Setter
@@ -34,5 +36,7 @@ public class MemberVO {
 	private String namujiAddress;	// 나머지 주소
 	private String joinDate;		// 가입일
 	private String delYn;			// 탈퇴 여부
+
+	private List<AuthVO> authList;
 }
 

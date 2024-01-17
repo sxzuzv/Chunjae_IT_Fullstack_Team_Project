@@ -10,7 +10,7 @@
 	<properties>
 		<java-version>11</java-version>
 		<org.springframework-version>5.3.29</org.springframework-version>
-		<security.version>5.6.9</security.version>
+		<security.version>5.0.8.RELEASE</security.version>
 		<org.aspectj-version>1.9.6</org.aspectj-version>
 		<org.slf4j-version>1.7.25</org.slf4j-version>
 	</properties>
@@ -42,6 +42,21 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-tx</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
 			<version>${org.springframework-version}</version>
 		</dependency>
 
@@ -360,12 +375,4 @@
             </plugin>
         </plugins>
     </build>
-    
-    <!-- 오라클 드라이버 라이센스 얻어오는 구문 -->
-    <repositories>
-       <repository>
-           <id>mesir-repo</id>
-           <url>http://mesir.googlecode.com/svn/trunk/mavenrepo</url>
-       </repository>
-      </repositories>    
 </project>
