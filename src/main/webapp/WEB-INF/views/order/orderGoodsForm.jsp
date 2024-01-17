@@ -407,10 +407,15 @@
           var p_gift_wrapping = document.getElementById("p_gift_wrapping");
           var p_pay_method = document.getElementById("p_pay_method");
 
+          <%--var total_order_price = ${total_order_price};--%>
+          var total_delivery_price = ${total_delivery_price};
+          var total = parseInt(total_order_goods_price) + total_delivery_price;
+
           p_order_goods_id.innerHTML = goods_id;
           p_order_goods_title.innerHTML = goods_title;
           p_total_order_goods_qty.innerHTML = total_order_goods_qty + "개";
-          p_total_order_goods_price.innerHTML = total_order_goods_price + "원";
+          // p_total_order_goods_price.innerHTML = total_order_goods_price + "원";
+          p_total_order_goods_price.innerHTML = total + "원";
           p_orderer_name.innerHTML = orderer_name;
           p_receiver_name.innerHTML = receiver_name;
           p_delivery_method.innerHTML = delivery_method;
