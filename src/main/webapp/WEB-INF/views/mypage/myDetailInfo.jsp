@@ -415,19 +415,19 @@
         <td class="address_info">
           <div class="zipcode">
             <input type="text" id="zipcode" name="zipcode" size=5 value="${memberInfo.zipcode }">
-            <button class="search_zipcode" onclick="javascript:execDaumPostcode()">우편번호검색</button>
+            <button class="search_zipcode"><a href="javascript:execDaumPostcode()">우편번호검색</a></button>
           </div>
           <p>
             <label for="roadAddress">도로명 주소</label>
-            <input type="text" id="roadAddress" name="roadAddress" size="50">
+            <input type="text" id="roadAddress" name="roadAddress" size="50" value="${memberInfo.roadAddress }">
           </p>
           <p>
             <label for="jibunAddress">지번 주소</label>
-            <input type="text" id="jibunAddress" name="jibunAddress" size="50">
+            <input type="text" id="jibunAddress" name="jibunAddress" size="50" value="${memberInfo.jibunAddress }">
           </p>
           <p>
             <label for="namujiAddress">나머지 주소</label>
-            <input type="text" id="namujiAddress" name="namujiAddress" size="50">
+            <input type="text" id="namujiAddress" name="namujiAddress" size="50" value="${memberInfo.namujiAddress }">
           </p>
         </td>
         <%--					<td>--%>

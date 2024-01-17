@@ -10,7 +10,6 @@
   <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
   <script>
 
-
       function execDaumPostcode() {
           new daum.Postcode({
               oncomplete: function (data) {
@@ -258,7 +257,7 @@
         <td class="address_info">
           <div class="zipcode">
             <input type="text" id="zipcode" name="zipcode" size="10">
-            <button class="search_zipcode" onclick="javascript:execDaumPostcode()">우편번호검색</button>
+            <button class="search_zipcode"><a href="javascript:execDaumPostcode()">우편번호검색</a></button>
           </div>
           <p>
             <label for="roadAddress">도로명 주소</label>
