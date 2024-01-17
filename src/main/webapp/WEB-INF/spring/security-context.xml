@@ -8,26 +8,22 @@
 
 	<bean id="customAccessDenied" class="kr.co.chunjae.security.CustomAccessDeniedHandler"></bean>
 	<bean id="CustomLoginSuccessHandler" class="kr.co.chunjae.security.CustomLoginSuccessHandler"></bean>
-	<bean id="CustomPasswordEncoder" class="kr.co.chunjae.security.CustomNoOpPasswordEncoder"></bean>
 	<bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"></bean>
 	<bean id="customUserDatailsService" class="kr.co.chunjae.security.CustomUserDetailsService"></bean>
 
 	<security:http>
 
 		<security:intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')"/>
-		<!--        <security:form-login login-page ="/customLogin" />-->
+
 		<security:form-login login-page="/member/loginForm.do" authentication-success-handler-ref="CustomLoginSuccessHandler"/>
 		<security:access-denied-handler ref="customAccessDenied" />
 		<security:csrf disabled="true"/>
 				<security:logout logout-success-url="/main/main.do" invalidate-session="true" delete-cookies="remember-me,JSESSION_ID" />
-		<!--		<security:remember-me data-source-ref="dataSource" token-validity-seconds="604800" />-->
+				<security:remember-me data-source-ref="dataSource" token-validity-seconds="7200" />
 	</security:http>
 
 	<security:authentication-manager>
 		<security:authentication-provider user-service-ref="customUserDatailsService">
-			<!--            <security:jdbc-user-service data-source-ref="dataSource"-->
-			<!--                                        users-by-username-query="select userid, userpw, enabled from tbl_member where userid = ?"-->
-			<!--                                        authorities-by-username-query="select userid, auth from tbl_member_auth where userid = ? "/>-->
 			<security:password-encoder ref="bcryptPasswordEncoder"/>
 		</security:authentication-provider>
 	</security:authentication-manager>

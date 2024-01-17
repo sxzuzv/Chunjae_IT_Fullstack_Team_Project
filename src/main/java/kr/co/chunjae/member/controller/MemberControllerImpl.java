@@ -4,20 +4,22 @@ import kr.co.chunjae.common.base.BaseController;
 import kr.co.chunjae.member.service.MemberService;
 import kr.co.chunjae.member.vo.MemberVO;
 import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.mail.internet.MimeMessage;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -35,6 +37,9 @@ public class MemberControllerImpl extends BaseController implements MemberContro
 	private final MemberService memberService;
 
 	private final JavaMailSender mailSender;
+
+	@Setter(onMethod_ = @Autowired)
+	private PasswordEncoder pwencoder;
 
 
 	@Override
@@ -59,66 +64,66 @@ public class MemberControllerImpl extends BaseController implements MemberContro
 		return viewName;
 	}
 
-	@Override
-	@RequestMapping(value="/login.do" ,method = RequestMethod.POST)
-	public String login(@RequestParam Map<String, String> loginMap,
-						@RequestParam(value="rememberId", required = false) String rememberId,
-			                  HttpServletRequest request,HttpServletResponse response, Model model) throws Exception {
-		String viewname = "";
-		MemberVO memberVO=memberService.login(loginMap);
-
-		if(memberVO!= null && memberVO.getMemberId()!=null){
-			HttpSession session=request.getSession();
-			session=request.getSession();
-			session.setAttribute("isLogOn", true);
-			session.setAttribute("memberInfo",memberVO);
-
-			//쿠키생성
-			Cookie cookie = new Cookie("rememberId" , memberVO.getMemberId());
-			if(rememberId != null) {
-				cookie.setMaxAge((60*60*2));
-			}else{
-				cookie.setMaxAge(0);
-			}
-			response.addCookie(cookie);
-
-
-			
-			String action=(String)session.getAttribute("action");
-			//action을 통해서 로그인되었을 경우 넘어갈수 있게함 로그인이 안되었을경우 튕기게함
-			if(action!=null && action.equals("/order/orderEachGoods.do")){
-				viewname = "forward:"+action;
-			}else{
-				viewname = "redirect:/main/main.do";
-			}
-			
-			
-			
-		}else{
-			String message="아이디나  비밀번호가 틀립니다. 다시 로그인해주세요";
-			model.addAttribute("message", message);
-			viewname = "/member/loginForm";
-		}
-		if (memberVO != null) {
-			// 세션에 저장된 MemberVO 객체가 null이 아닌 경우
-			// MemberVO 객체에 저장된 정보 출력 또는 로깅
-			System.out.println("Member ID: " + memberVO.getMemberId());
-			// 필요한 다른 정보들도 출력 또는 로깅
-		} else {
-			// 세션에 MemberInfo 객체가 없는 경우 또는 null인 경우
-			System.out.println("No member info found in the session.");
-		}
-		return viewname;
-	}
+//	@Override
+//	@RequestMapping(value="/login.do" ,method = RequestMethod.POST)
+//	public String login(@RequestParam Map<String, String> loginMap,
+//						@RequestParam(value="rememberId", required = false) String rememberId,
+//			                  HttpServletRequest request,HttpServletResponse response, Model model) throws Exception {
+//		String viewname = "";
+//		MemberVO memberVO=memberService.login(loginMap);
+//
+//		if(memberVO!= null && memberVO.getMemberId()!=null){
+//			HttpSession session=request.getSession();
+//			session=request.getSession();
+//			session.setAttribute("isLogOn", true);
+//			session.setAttribute("memberInfo",memberVO);
+//
+//			//쿠키생성
+//			Cookie cookie = new Cookie("rememberId" , memberVO.getMemberId());
+//			if(rememberId != null) {
+//				cookie.setMaxAge((60*60*2));
+//			}else{
+//				cookie.setMaxAge(0);
+//			}
+//			response.addCookie(cookie);
+//
+//
+//
+//			String action=(String)session.getAttribute("action");
+//			//action을 통해서 로그인되었을 경우 넘어갈수 있게함 로그인이 안되었을경우 튕기게함
+//			if(action!=null && action.equals("/order/orderEachGoods.do")){
+//				viewname = "forward:"+action;
+//			}else{
+//				viewname = "redirect:/main/main.do";
+//			}
+//
+//
+//
+//		}else{
+//			String message="아이디나  비밀번호가 틀립니다. 다시 로그인해주세요";
+//			model.addAttribute("message", message);
+//			viewname = "/member/loginForm";
+//		}
+//		if (memberVO != null) {
+//			// 세션에 저장된 MemberVO 객체가 null이 아닌 경우
+//			// MemberVO 객체에 저장된 정보 출력 또는 로깅
+//			System.out.println("Member ID: " + memberVO.getMemberId());
+//			// 필요한 다른 정보들도 출력 또는 로깅
+//		} else {
+//			// 세션에 MemberInfo 객체가 없는 경우 또는 null인 경우
+//			System.out.println("No member info found in the session.");
+//		}
+//		return viewname;
+//	}
 	
-	@Override
-	@RequestMapping(value="/logout.do" ,method = RequestMethod.GET)
-	public String logout(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		HttpSession session=request.getSession();
-		session.setAttribute("isLogOn", false);
-		session.removeAttribute("memberInfo");
-		return "redirect:/main/main.do";
-	}
+//	@Override
+//	@RequestMapping(value="/logout.do" ,method = RequestMethod.GET)
+//	public String logout(HttpServletRequest request, HttpServletResponse response) throws Exception {
+//		HttpSession session=request.getSession();
+//		session.setAttribute("isLogOn", false);
+//		session.removeAttribute("memberInfo");
+//		return "redirect:/main/main.do";
+//	}
 	
 	@Override
 	@RequestMapping(value="/addMember.do" ,method = RequestMethod.POST)
@@ -129,9 +134,17 @@ public class MemberControllerImpl extends BaseController implements MemberContro
 		String message = null;
 		ResponseEntity resEntity = null;
 		HttpHeaders responseHeaders = new HttpHeaders();
+
+		//비밀번호 암호화
+		String pw = memberVO.getMemberPw();
+		memberVO.setMemberPw(pwencoder.encode(pw));
+
+
 		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
 		try {
 		    memberService.addMember(memberVO);
+				//auth 테이블에 일반 멤버 권한 삽입
+				memberService.addAuth(memberVO.getMemberId());
 		    message  = "<script>";
 		    message +=" alert('회원 가입을 마쳤습니다.로그인창으로 이동합니다.');";
 		    message += " location.href='"+request.getContextPath()+"/member/loginForm.do';";
