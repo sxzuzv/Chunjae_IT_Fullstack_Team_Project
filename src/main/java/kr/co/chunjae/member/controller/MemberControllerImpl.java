@@ -135,13 +135,16 @@ public class MemberControllerImpl extends BaseController implements MemberContro
 		ResponseEntity resEntity = null;
 		HttpHeaders responseHeaders = new HttpHeaders();
 
-		//암호화
+		//비밀번호 암호화
 		String pw = memberVO.getMemberPw();
-		memberVO.setMemberId(pwencoder.encode(pw));
+		memberVO.setMemberPw(pwencoder.encode(pw));
+
 
 		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
 		try {
 		    memberService.addMember(memberVO);
+				//auth 테이블에 일반 멤버 권한 삽입
+				memberService.addAuth(memberVO.getMemberId());
 		    message  = "<script>";
 		    message +=" alert('회원 가입을 마쳤습니다.로그인창으로 이동합니다.');";
 		    message += " location.href='"+request.getContextPath()+"/member/loginForm.do';";
