@@ -164,9 +164,11 @@
                   }
               }
           } else {
-              order_goods_qty = changefn(order_goods_id);
-              cart_goods_qty.value = order_goods_id + ":" + order_goods_qty;
-              //alert(select_goods_qty.value);
+
+            order_goods_id=checked_goods.value;
+            order_goods_qty=changefn(order_goods_id);
+            cart_goods_qty.value=order_goods_id+":"+order_goods_qty;
+            
           }
 
           objForm.method = "post";
