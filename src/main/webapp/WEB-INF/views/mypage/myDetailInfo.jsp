@@ -253,18 +253,18 @@
       <tr class="dot_line">
         <th class="fixed_join">아이디</th>
         <td>
-          <form:input path="memberId" type="text" size="20" value="${memberInfo.memberId }" readonly="true"/>
-          <form:errors path="memberId" cssClass="text-danger" />
+          <input name="memberId" type="text" size="20" value="${memberInfo.memberId }" readonly/>
+
         </td>
       </tr>
       <tr class="dot_line">
-        <th class="fixed_join">비밀번호</th>
-        <td>
+<%--        <th class="fixed_join">비밀번호</th>--%>
+<%--        <td>--%>
 
-          <form:input path="memberPw" type="password" size="20" value="${memberInfo.memberPw }"/>
-          <form:errors path="memberPw" cssClass="text-danger" />
+<%--          <form:input path="memberPw" type="password" size="20" value="새 비밀번호를 입력하세요"/>--%>
+<%--          <form:errors path="memberPw" cssClass="text-danger" cssStyle="font-size: 10px"/>--%>
 
-        </td>
+<%--        </td>--%>
         <%--					<td>--%>
 
 
@@ -363,17 +363,26 @@
       <tr class="dot_line">
         <th class="fixed_join">휴대폰번호</th>
         <td>
-          <select name="memberHp1" id="hp1">
-            <option>없음</option>
+        <div style="display: flex">
+          <div>
+          <form:select path="memberHp1" id="hp1">
+<%--            <option>없음</option>--%>
             <option value="010">010</option>
             <option value="011">011</option>
             <option value="016">016</option>
             <option value="017">017</option>
             <option value="018">018</option>
             <option value="019">019</option>
-          </select>
+          </form:select>
           - <form:input path="memberHp2" type="text" size="4" value="${memberInfo.memberHp2 }"/>
-          - <input type="text" name="memberHp3" size=4 value="${memberInfo.memberHp3 }"><form:errors path="memberHp2" cssClass="text-danger"/><br> <br>
+          - <form:input path="memberHp3" type="text" size="4" value="${memberInfo.memberHp3 }"/>
+          </div>
+          <div>
+            <div><form:errors path="memberHp1" cssClass="text-danger" cssStyle="font-size: 13px"/></div>
+            <div><form:errors path="memberHp2" cssClass="text-danger" cssStyle="font-size: 13px"/></div>
+            <div><form:errors path="memberHp3" cssClass="text-danger" cssStyle="font-size: 13px"/></div>
+          </div>
+          </div>
           <input type="checkbox" onchange="setSmsValue(event)"   ${memberInfo.smsstsYn == 'Y' ? 'checked' : ''} />
           <input type="hidden" id="smsstsYn" name="smsstsYn" value="${memberInfo.smsstsYn}"/> 쇼핑몰에서 발송하는 SMS 소식을 수신합니다.
         </td>
@@ -384,11 +393,12 @@
       <tr class="dot_line">
         <th class="fixed_join">이메일<br>(e-mail)</th>
         <td>
+          <div style="display: flex">
+            <div>
           <form:input path="memberEmail1" type="text"  size="10" value="${memberInfo.memberEmail1 }"/> @ <form:input path="memberEmail2" type="text"
                                                                                                         size="10"
                                                                                                         value="${memberInfo.memberEmail2 }"
                                                                                                         id="domaintxt"/>
-          <form:errors path="memberEmail1" cssClass="text-danger"/> <form:errors path="memberEmail2" cssClass="text-danger"/>
           <select id="domainlist" title="직접입력">
             <option value="type">직접입력</option>
             <option value="hanmail.net">hanmail.net</option>
@@ -402,7 +412,13 @@
             <option value="empal.com">empal.com</option>
             <option value="korea.com">korea.com</option>
             <option value="freechal.com">freechal.com</option>
-          </select><Br><br>
+          </select><Br>
+            </div>
+          <div>
+          <div><form:errors path="memberEmail1" cssClass="text-danger" cssStyle="font-size: 13px"/></div>
+            <div><form:errors path="memberEmail2" cssClass="text-danger" cssStyle="font-size: 13px"/></div>
+          </div>
+          </div>
           <input type="checkbox" onchange="setEmailValue(event)" ${memberInfo.emailstsYn == 'Y' ? 'checked' : ''} />
           쇼핑몰에서 발송하는 e-mail을 수신합니다.
           <input type="hidden" id="emailstsYn" name="emailstsYn" value="${memberInfo.emailstsYn}"/>
