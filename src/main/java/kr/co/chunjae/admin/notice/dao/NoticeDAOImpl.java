@@ -30,6 +30,11 @@ public class NoticeDAOImpl implements NoticeDAO {
     }
 
     @Override
+    public void updateNotice(NoticeVO noticeVO) {
+        sqlSession.update("mapper.admin.notice.updateNotice", noticeVO);
+    }
+
+    @Override
     public List<NoticeVO> paging(Map<String, Integer> pagingParams) {
         return sqlSession.selectList("mapper.admin.notice.pagingNoticeList", pagingParams);
     }

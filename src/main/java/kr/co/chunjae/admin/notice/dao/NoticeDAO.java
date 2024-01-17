@@ -12,4 +12,6 @@ public interface NoticeDAO {
 
     public NoticeVO noticeDetail(Long brdId);
     public List<NoticeVO> paging(Map<String, Integer> pagingParams);
+
+    public void updateNotice(NoticeVO noticeVO);
 }

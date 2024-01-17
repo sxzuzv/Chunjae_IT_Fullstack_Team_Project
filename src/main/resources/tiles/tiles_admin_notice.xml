@@ -10,12 +10,17 @@
     </definition>
 
     <definition name="/admin/notice/noticeList" extends="baseLayout">
-        <put-attribute name="title" value="공지사항 페이지" />
+        <put-attribute name="title" value="공지사항 메인 페이지" />
         <put-attribute name="body" value="/WEB-INF/views/admin/notice/main.jsp" />
     </definition>
 
     <definition name="/admin/notice/noticeDetail" extends="baseLayout">
-        <put-attribute name="title" value="공지사항 페이지" />
+        <put-attribute name="title" value="공지사항 상세 보기 페이지" />
         <put-attribute name="body" value="/WEB-INF/views/admin/notice/detail.jsp" />
+    </definition>
+
+    <definition name="/admin/notice/noticeUpdate" extends="baseLayout">
+        <put-attribute name="title" value="공지사항 수정 페이지" />
+        <put-attribute name="body" value="/WEB-INF/views/admin/notice/update.jsp" />
     </definition>
 </tiles-definitions>

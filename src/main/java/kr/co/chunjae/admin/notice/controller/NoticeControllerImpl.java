@@ -29,7 +29,7 @@ public class NoticeControllerImpl {
         return viewName;
     }
 
-    // 사용자가 입력한 데이터를 DataBase에 저장한다.
+    // 사용자가 입력한 데이터를 저장한다.
     @PostMapping("/noticeWrite.do")
     public String noticeWrite(@ModelAttribute NoticeVO noticeVO, HttpServletRequest request) {
         noticeService.noticeWrite(noticeVO);
@@ -54,6 +54,33 @@ public class NoticeControllerImpl {
         model.addAttribute("page", page);
 
         return viewName;
+    }
+
+    // 게시글 수정 페이지 진입 시, 기존 게시글 내용을 출력한다.
+    @GetMapping("/noticeUpdate.do")
+    public String noticeUpdateForm(@RequestParam("brd_id") Long brdId, HttpServletRequest request, Model model) {
+        String viewName=(String)request.getAttribute("viewName");
+
+        NoticeVO noticeVO = noticeService.noticeDetail(brdId);
+
+        model.addAttribute("noticeDetail", noticeVO);
+
+        return viewName;
+    }
+
+    // 사용자가 수정한 내용을 저장하고, 전체 게시글 목록으로 돌아간다.
+    @PostMapping("/noticeUpdate.do")
+    public String noticeUpdate(@ModelAttribute NoticeVO noticeVO, Model model) {
+        // 사용자가 수정한 내용을 DataBase에 반영한다.
+        noticeService.updateNotice(noticeVO);
+
+        Long brdId = noticeVO.getBrdId();
+        System.out.println(brdId);
+        NoticeVO updateNotice = noticeService.noticeDetail(brdId);
+
+//        model.addAttribute("noticeDetail", updateNotice);
+
+        return "redirect:/admin/notice/noticeList.do";
     }
 
 

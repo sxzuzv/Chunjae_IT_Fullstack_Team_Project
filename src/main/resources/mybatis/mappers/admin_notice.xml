@@ -16,10 +16,16 @@
     </update>
 
     <select id="noticeDetail" parameterType="Long" resultType="noticeVO">
-        select title, member_id, reg_date, view_cnt, content
+        select brd_id, title, member_id, reg_date, view_cnt, content
         from board
         where brd_id = #{brdId}
     </select>
+
+    <update id="updateNotice" parameterType="noticeVO">
+        update board
+        set title = #{title}, content = #{content}
+        where brd_id = #{brdId}
+    </update>
 
     <select id="pagingNoticeList" parameterType="java.util.Map" resultType="noticeVO">
         select brd_id, title, member_id, reg_date, view_cnt
