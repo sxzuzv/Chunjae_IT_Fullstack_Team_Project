@@ -19,7 +19,7 @@
 		<security:form-login login-page="/member/loginForm.do" authentication-success-handler-ref="CustomLoginSuccessHandler"/>
 		<security:access-denied-handler ref="customAccessDenied" />
 		<security:csrf disabled="true"/>
-		<!--		<security:logout logout-success-url="/customLogout" invalidate-session="true" delete-cookies="remember-me,JSESSION_ID" />-->
+				<security:logout logout-success-url="/main/main.do" invalidate-session="true" delete-cookies="remember-me,JSESSION_ID" />
 		<!--		<security:remember-me data-source-ref="dataSource" token-validity-seconds="604800" />-->
 	</security:http>
 
