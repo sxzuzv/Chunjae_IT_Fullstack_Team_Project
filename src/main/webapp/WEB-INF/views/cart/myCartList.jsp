@@ -164,9 +164,11 @@
                   }
               }
           } else {
-              order_goods_qty = changefn(order_goods_id);
-              cart_goods_qty.value = order_goods_id + ":" + order_goods_qty;
-              //alert(select_goods_qty.value);
+
+            order_goods_id=checked_goods.value;
+            order_goods_qty=changefn(order_goods_id);
+            cart_goods_qty.value=order_goods_id+":"+order_goods_qty;
+
           }
 
           objForm.method = "post";
@@ -231,7 +233,7 @@
       <td>
       </td>
       <td>
-        <select style="width: 60px;" id="slt${item.goodsId}" onchange="changefn(${item.goodsId})">
+        <select style="width: 60px;" id="slt${item.goodsId}">
           <c:forEach var="qty" begin="1" end="5">
             <option value="${qty}" <c:if test="${cart_goods_qty eq qty}">selected</c:if>>${qty}</option>
           </c:forEach>
