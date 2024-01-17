@@ -1,7 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
 <html>
 <head>
@@ -64,7 +63,7 @@
             </c:when>
             <%-- 첫 번째 페이지가 아닌 경우에는 [이전]을 클릭하면 현재 페이지에서 1만큼 작은 페이지를 요청한다. --%>
             <c:otherwise>
-                <a href="/admin/notice/paging?page=${paging.page-1}">[이전]</a>
+                <a href="${contextPath}/admin/notice/noticeList.do?page=${paging.page-1}">[이전]</a>
             </c:otherwise>
         </c:choose>
 
@@ -78,7 +77,7 @@
 
                 <%-- 요청한 페이지가 아닌 번호의 경우, 클릭 시 해당하는 페이지로 이동 가능하도록 링크 처리한다. --%>
                 <c:otherwise>
-                    <a href="/admin/notice/paging?page=${i}">${i}</a>
+                    <a href="${contextPath}/admin/notice/noticeList.do?page=${i}">${i}</a>
                 </c:otherwise>
             </c:choose>
         </c:forEach>
@@ -91,12 +90,12 @@
             </c:when>
             <%-- 현재 페이지가 전체 페이지 보다 작을 경우, [다음]을 클릭할 시 현재 페이지에서 1만큼 큰 페이지를 요청한다. --%>
             <c:otherwise>
-                <a href="/admin/notice/paging?page=${paging.page+1}">[다음]</a>
+                <a href="${contextPath}/admin/notice/noticeList.do?page=${paging.page+1}">[다음]</a>
             </c:otherwise>
         </c:choose>
     </div>
     <div>
-        <a href="${contextPath}/admin/notice/noticeWrite"><input type="button" value="글쓰기"></a>
+        <a href="${pageContext}/admin/notice/noticeWrite"><input type="button" value="글쓰기"></a>
     </div>
 </body>
 </html>

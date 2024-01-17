@@ -7,6 +7,5 @@ import javax.servlet.http.HttpServletRequest;
 
 public interface NoticeController {
     public String writeForm(HttpServletRequest request);
-    public String noticeListMain(HttpServletRequest request, Model model);
-    public String paging(@RequestParam(value = "page", required = false, defaultValue = "1") int page, HttpServletRequest request, Model model);
+    public String noticePageList(@RequestParam(value = "page", required = false, defaultValue = "1") int page, HttpServletRequest request, Model model);
 }

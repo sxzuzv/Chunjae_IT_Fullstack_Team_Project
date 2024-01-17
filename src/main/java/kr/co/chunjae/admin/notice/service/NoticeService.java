@@ -17,8 +17,6 @@ public interface NoticeService {
 
     public void update(NoticeVO noticeVO);
 
-    public List<NoticeVO> findAll();
-
     public List<NoticeVO> paging(int page);
 
     public pageVO pagingParam(int page);

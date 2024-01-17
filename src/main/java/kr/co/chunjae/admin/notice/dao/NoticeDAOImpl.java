@@ -19,15 +19,15 @@ public class NoticeDAOImpl implements NoticeDAO {
         return sqlSession.insert("mapper.admin.notice.noticeSave", noticeVO);
     }
 
-    public List<NoticeVO> findAll() {
-        return sqlSession.selectList("mapper.admin.notice.findAll");
-    }
-
+    @Override
     public List<NoticeVO> paging(Map<String, Integer> pagingParams) {
-        return sqlSession.selectList("mapper.admin.notice.noticePageList", pagingParams);
+        return sqlSession.selectList("mapper.admin.notice.pagingNoticeList", pagingParams);
     }
 
-
+    @Override
+    public int noticeCount() {
+        return sqlSession.selectOne("mapper.admin.notice.noticeCount");
+    }
 
     @Override
     public List<NoticeVO> listNoticeBoard(int brdId) {
@@ -48,10 +48,5 @@ public class NoticeDAOImpl implements NoticeDAO {
     public void delete(int brdId) {
         sqlSession.delete("mapper.admin.notice.delete", brdId);
 
-    }
-
-    @Override
-    public int noticeCount() {
-        return sqlSession.selectOne("mapper.admin.notice.noticeCount");
     }
 }

@@ -19,8 +19,5 @@ public interface NoticeDAO {
 
     public int noticeCount();
 
-
-    public List<NoticeVO> findAll();
-
     public List<NoticeVO> paging(Map<String, Integer> pagingParams);
 }

@@ -10,16 +10,11 @@
 <!--        values (#{title}, #{content})-->
 <!--    </insert>-->
 
-    <select id="findAll" resultType="noticeVO">
+    <select id="pagingNoticeList" parameterType="java.util.Map" resultType="noticeVO">
         select brd_id, title, member_id, reg_date, view_cnt
         from board
-        where cate = 1;
-    </select>
-
-    <select id="noticePageList" parameterType="java.util.Map" resultType="noticeVO">
-        select brd_id, title, member_id, reg_date, view_cnt
-        from board
-        order by desc limit #{start}, #{limit}
+        where cate = 1
+        order by brd_id desc limit #{start}, #{limit}
     </select>
 
     <select id="noticeCount" resultType="Integer">
