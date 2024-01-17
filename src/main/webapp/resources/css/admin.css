@@ -149,12 +149,71 @@ table.search_option a.btn_search:hover {
     font-weight: bold;
 }
 
+
+.detail_table tr {
+    min-height: 1em;
+}
+
+.detail_table tr:nth-child(even) {
+    border-top: 1px dotted #666666;
+    border-bottom: 1px dotted #666666;
+}
+
+.detail_table th {
+    background-color: #e8eef6;
+    padding: 0.3em 0.4em;
+    width: 6em;
+}
+
+.customer_info td input {
+    margin: 0;
+}
+
+.delivery_status {
+    display: flex;
+    justify-content: space-between;
+    height: 4em;
+    padding: 0;
+    border-bottom: 2px solid #000000;
+    margin-bottom: 6em;
+}
+
+.delivery_status h1 {
+    width: 70%;
+    height: fit-content;
+    margin-bottom: 0;
+}
+
+.delivery_status .detail_table table {
+    border: none;
+    width: fit-content;
+}
+
+.delivery_status .detail_table table td {
+    max-width: 6em;
+    text-align: right;
+}
+
+
 /* 버튼 */
 .list_view input[value='배송 수정'] {
     padding: 0.1em 0.3em;
     background-color: #f6f5f5;
     border: 1px solid #666666;
     border-radius: 2px;
+}
+
+input[value='목록으로'] {
+    padding: 0.3em 1em;
+    font-size: 1em;
+    background-color: #f6f5f5;
+    border: 1px solid #666666;
+    border-radius: 5px;
+}
+
+input[value='목록으로']:hover {
+    background-color: #ffffff;
+    color: #494949;
 }
 
 /* 페이징 버튼 */
@@ -177,4 +236,3 @@ table.search_option a.btn_search:hover {
 .page_controller a:hover {
     color: #1FA393;
 }
-
