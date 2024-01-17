@@ -7,7 +7,9 @@ import lombok.ToString;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 
 @Getter
