@@ -95,4 +95,9 @@ public class NoticeServiceImpl implements NoticeService {
 
         return pageVO;
     }
+
+    @Override
+    public void deleteNotice(Long brdId) {
+        noticeDAO.deleteNotice(brdId);
+    }
 }

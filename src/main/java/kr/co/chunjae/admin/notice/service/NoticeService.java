@@ -12,4 +12,5 @@ public interface NoticeService {
     public List<NoticeVO> paging(int page);
     public pageVO pagingParam(int page);
     public void updateNotice(NoticeVO noticeVO);
+    public void deleteNotice(Long brdId);
 }

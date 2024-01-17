@@ -49,8 +49,14 @@
     <%-- '삭제' 버튼 클릭 시 실행된다. --%>
     const noticeDelete = () => {
         const brdId = ${noticeDetail.brdId};
-        location.href = "${contextPath}/admin/notice/noticeDelete.do?brd_id=" + brdId;
 
+        if (confirm("게시글을 삭제하시겠습니까?")) {
+            alert("게시글이 삭제되었습니다.");
+            location.href = "${contextPath}/admin/notice/noticeDelete.do?brd_id=" + brdId;
+        } else {
+            alert("게시글 삭제를 취소합니다.");
+            location.href = "${contextPath}/admin/notice/noticeDetail.do?brd_id=${noticeDetail.brdId}"
+        }
     }
 
     <%-- '목록으로' 버튼 클릭 시 직전에 보고 있던 페이지 화면으로 돌아간다. --%>

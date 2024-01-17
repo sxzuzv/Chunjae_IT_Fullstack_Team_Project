@@ -13,4 +13,5 @@ public interface NoticeController {
     public String noticeDetail(@RequestParam("brd_id") Long brdId, @RequestParam(value = "page", required = false, defaultValue = "1") int page, HttpServletRequest request, Model model);
     public String noticeUpdateForm(@RequestParam("brd_id") Long brdId, HttpServletRequest request, Model model);
     public String noticeUpdate(@ModelAttribute NoticeVO noticeVO, HttpServletRequest request, Model model);
+    public String deleteNotice(@RequestParam("brd_id") Long brdId);
 }

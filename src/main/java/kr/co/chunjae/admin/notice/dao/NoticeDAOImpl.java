@@ -43,4 +43,9 @@ public class NoticeDAOImpl implements NoticeDAO {
     public int noticeCount() {
         return sqlSession.selectOne("mapper.admin.notice.noticeCount");
     }
+
+    @Override
+    public void deleteNotice(Long brdId) {
+        sqlSession.delete("mapper.admin.notice.deleteNotice", brdId);
+    }
 }

@@ -38,4 +38,8 @@
         select count(*)
         from board;
     </select>
+
+    <delete id="deleteNotice" parameterType="Long">
+        delete from board where brd_id = #{brdId}
+    </delete>
 </mapper>

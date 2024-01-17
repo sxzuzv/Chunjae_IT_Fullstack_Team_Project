@@ -107,4 +107,13 @@ public class NoticeControllerImpl {
         return viewName;
     }
 
+    // 특정 번호의 게시글을 삭제한다.
+    @GetMapping("/noticeDelete.do")
+    public String deleteNotice(@RequestParam("brd_id") Long brdId) {
+        noticeService.deleteNotice(brdId);
+
+        return "redirect:/admin/notice/noticeList.do";
+    }
+
+
 }
