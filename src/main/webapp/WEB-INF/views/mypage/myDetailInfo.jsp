@@ -2,6 +2,7 @@
          pageEncoding="utf-8"
          isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html >
 <html>
@@ -245,25 +246,28 @@
 
 <body>
 <h3>내 상세 정보</h3>
-<form action="${contextPath}/mypage/modifyMyInfo.do" method="post" class="frmMyDetailInfo">
+<form:form modelAttribute="memberVO" action="${contextPath}/mypage/modifyMyInfo.do" method="post" class="frmMyDetailInfo">
   <div id="detail_table">
     <table>
       <tbody>
       <tr class="dot_line">
         <th class="fixed_join">아이디</th>
         <td>
-          <input name="memberId" type="text" size="20" value="${memberInfo.memberId }" readonly/>
-        
-        </td>
-        <td>
+          <form:input path="memberId" type="text" size="20" value="${memberInfo.memberId }" readonly="true"/>
+          <form:errors path="memberId" cssClass="text-danger" />
         </td>
       </tr>
       <tr class="dot_line">
         <th class="fixed_join">비밀번호</th>
         <td>
-          <input name="memberPw" type="password" size="20" value="${memberInfo.memberPw }"/>
+
+          <form:input path="memberPw" type="password" size="20" value="${memberInfo.memberPw }"/>
+          <form:errors path="memberPw" cssClass="text-danger" />
+
         </td>
         <%--					<td>--%>
+
+
         <%--					  <input type="button" value="수정하기" onClick="fn_modify_member_info('memberPw')" />--%>
         <%--					</td>--%>
       </tr>
@@ -368,12 +372,10 @@
             <option value="018">018</option>
             <option value="019">019</option>
           </select>
-          - <input type="text" name="memberHp2" size=4 value="${memberInfo.memberHp2 }">
-          - <input type="text" name="memberHp3" size=4 value="${memberInfo.memberHp3 }"><br> <br>
+          - <form:input path="memberHp2" type="text" size="4" value="${memberInfo.memberHp2 }"/>
+          - <input type="text" name="memberHp3" size=4 value="${memberInfo.memberHp3 }"><form:errors path="memberHp2" cssClass="text-danger"/><br> <br>
           <input type="checkbox" onchange="setSmsValue(event)"   ${memberInfo.smsstsYn == 'Y' ? 'checked' : ''} />
           <input type="hidden" id="smsstsYn" name="smsstsYn" value="${memberInfo.smsstsYn}"/> 쇼핑몰에서 발송하는 SMS 소식을 수신합니다.
-        
-        
         </td>
         <%--					<td>--%>
         <%--					  <input type="button" value="수정하기" onClick="fn_modify_member_info('memberHp')" />--%>
@@ -382,11 +384,11 @@
       <tr class="dot_line">
         <th class="fixed_join">이메일<br>(e-mail)</th>
         <td>
-          <input type="text" name="memberEmail1" size=10 value="${memberInfo.memberEmail1 }"/> @ <input type="text"
-                                                                                                        size=10
-                                                                                                        name="memberEmail2"
+          <form:input path="memberEmail1" type="text"  size="10" value="${memberInfo.memberEmail1 }"/> @ <form:input path="memberEmail2" type="text"
+                                                                                                        size="10"
                                                                                                         value="${memberInfo.memberEmail2 }"
                                                                                                         id="domaintxt"/>
+          <form:errors path="memberEmail1" cssClass="text-danger"/> <form:errors path="memberEmail2" cssClass="text-danger"/>
           <select id="domainlist" title="직접입력">
             <option value="type">직접입력</option>
             <option value="hanmail.net">hanmail.net</option>
@@ -445,6 +447,6 @@
     </section>
   </div>
   <input type="hidden" name="h_hp1" value="${memberInfo.memberHp1}"/>
-</form>
+</form:form>
 </body>
 </html>
