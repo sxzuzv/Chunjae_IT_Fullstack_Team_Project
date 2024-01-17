@@ -154,7 +154,8 @@ values ('admin', '$2a$10$cK/aCrSp5wgcM9hVOV1O9O4/2wfCbucd02vZrJhDlnpYB.biF9GKy',
 
 
 insert INTO member_auth values ('admin', 'ROLE_ADMIN');
-
+insert INTO member_auth values ('admin', 'ROLE_MEMBER');
+insert INTO member_auth values ('lee', 'ROLE_MEMBER');
 
 -- 상품 정보
 INSERT INTO bookshop.t_shopping_goods
