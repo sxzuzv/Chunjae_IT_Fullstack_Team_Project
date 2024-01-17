@@ -173,7 +173,7 @@
         <a class="btn_search" href="javascript:search_order_history('four_month')">
           4개월
         </a>
-        &nbsp;까지 조회
+        까지 조회
       </TD>
     </TR>
     <tr>
@@ -204,7 +204,7 @@
   </DIV>
 </form>
 <DIV class="clear"></DIV>
-<TABLE class="list_view">
+<TABLE class="list_view admin_goods_list">
   <thead>
   <tr>
     <td>상품 번호</td>

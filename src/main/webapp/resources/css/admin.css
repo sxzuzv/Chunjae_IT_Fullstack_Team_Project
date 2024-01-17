@@ -5,6 +5,11 @@ article h1 {
     display: inline-block;
 }
 
+select, input[type=text] {
+    padding: 0.1em 0.2em;
+    margin-right: 0.2em;
+}
+
 /* 관리자 메인 - 타이틀 */
 .admin_main_title {
     display: flex;
@@ -45,7 +50,8 @@ table.search_option label {
     padding-right: 3em;
 }
 
-table.search_option input[type="button"] {
+table.search_option input[type="button"],
+#btn_search {
     padding: 0.1em 0.6em;
     border-radius: 2px;
     border: 1px solid #666666;
@@ -53,7 +59,8 @@ table.search_option input[type="button"] {
     color: #666666;
 }
 
-table.search_option input[type="button"]:hover {
+table.search_option input[type="button"]:hover,
+#btn_search:hover {
     background-color: #ffffff;
     color: #494949;
 }
@@ -98,6 +105,10 @@ table.search_option a.btn_search:hover {
     font-size: 1em;
 }
 
+.list_view tbody tr {
+    /*background-color: #ffffff;*/
+}
+
 .list_view tr {
     margin: 0px;
     padding: 10px 0px;
@@ -106,8 +117,13 @@ table.search_option a.btn_search:hover {
     border-bottom-style: dotted;
 }
 
-.list_view tbody tr:hover {
+.list_view.admin_goods_list tbody tr:hover {
     background-color: #f6f5f5;
+}
+
+.list_view.order_history tbody tr:hover {
+    opacity: 80%;
+    color: #000000;
 }
 
 .list_view tr:last-child {
@@ -127,6 +143,18 @@ table.search_option a.btn_search:hover {
 
 .list_view a:hover {
     color: #1FA393;
+}
+
+.list_view.order_history a:hover {
+    font-weight: bold;
+}
+
+/* 버튼 */
+.list_view input[value='배송 수정'] {
+    padding: 0.1em 0.3em;
+    background-color: #f6f5f5;
+    border: 1px solid #666666;
+    border-radius: 2px;
 }
 
 /* 페이징 버튼 */
