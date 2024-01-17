@@ -1,43 +1,35 @@
 package kr.co.chunjae.member.controller;
 
-import java.io.PrintWriter;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Random;
+import kr.co.chunjae.common.base.BaseController;
+import kr.co.chunjae.member.service.MemberService;
+import kr.co.chunjae.member.vo.MemberVO;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.security.core.Authentication;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import lombok.RequiredArgsConstructor;
-import org.apache.commons.collections.functors.ExceptionPredicate;
-import org.apache.tiles.request.Request;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.MimeMessageHelper;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
-
-import kr.co.chunjae.common.base.BaseController;
-import kr.co.chunjae.member.service.MemberService;
-import kr.co.chunjae.member.vo.MemberVO;
+import java.io.PrintWriter;
+import java.util.Map;
+import java.util.Random;
 
 
 @Controller("memberController")
 @RequestMapping(value="/member")
 @RequiredArgsConstructor
+@Slf4j
 public class MemberControllerImpl extends BaseController implements MemberController{
 
 	private final MemberService memberService;
@@ -47,14 +39,21 @@ public class MemberControllerImpl extends BaseController implements MemberContro
 
 	@Override
 	@RequestMapping(value="/loginForm.do" ,method = RequestMethod.GET)
-	public String loginForm(HttpServletRequest request) throws Exception{
+	public String loginForm(HttpServletRequest request, String error, String logout, Model model) throws Exception{
 		String viewName=(String)request.getAttribute("viewName");
 		String memberId = "";
-		Cookie[] cookies = request.getCookies();
-		for(Cookie cookie : cookies) {
-			if (cookie.getName().equals("rememberId")) {
-				memberId = cookie.getValue();
-			}
+//		Cookie[] cookies = request.getCookies();
+//		for(Cookie cookie : cookies) {
+//			if (cookie.getName().equals("rememberId")) {
+//				memberId = cookie.getValue();
+//			}
+//		}
+		if (error != null) {
+			model.addAttribute("error", "아이디나 비밀번호를 확인해 주세요");
+		}
+
+		if (logout != null) {
+			model.addAttribute("logout", "Logout!!");
 		}
 		request.setAttribute("rememberId", memberId);
 		return viewName;
@@ -282,5 +281,14 @@ public class MemberControllerImpl extends BaseController implements MemberContro
         }
 
 	}
+
+
+	@GetMapping("/accessError")
+	public String accessDenied(Authentication auth, Model model){
+		log.info("access Denied : " + auth);
+		model.addAttribute("msg", "Access Denied");
+		return "accessError";
+	}
+
 }
 

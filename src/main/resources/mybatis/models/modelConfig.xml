@@ -11,6 +11,7 @@
     <typeAlias type="kr.co.chunjae.goods.vo.ImageFileVO" alias="imageFileVO" />
     <typeAlias type="kr.co.chunjae.goods.vo.CommentVO" alias="commentVO" />
     <typeAlias type="kr.co.chunjae.member.vo.MemberVO" alias="memberVO" />
+    <typeAlias type="kr.co.chunjae.member.vo.AuthVO" alias="authVO" />
     <typeAlias type="kr.co.chunjae.cart.vo.CartVO" alias="cartVO" />
     <typeAlias type="kr.co.chunjae.order.vo.OrderVO" alias="orderVO" />
     <typeAlias type="kr.co.chunjae.mypage.vo.MyPageVO" alias="mypageVO" />
