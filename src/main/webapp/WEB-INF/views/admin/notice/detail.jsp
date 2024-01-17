@@ -2,7 +2,7 @@
 <c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
 <html>
 <head>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<%--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>--%>
     <title>공지사항</title>
 </head>
 <body>
@@ -55,8 +55,8 @@
 
     <%-- '목록으로' 버튼 클릭 시 직전에 보고 있던 페이지 화면으로 돌아간다. --%>
     const noticeList = () => {
-        const page = '${page}';
-        location.href = "${contextPath}/admin/notice/noticeList.do?page=" + page;
+        const changePage = '${page}';
+        location.href = "${contextPath}/admin/notice/noticeList.do?page=" + changePage;
     }
 </script>
 </html>

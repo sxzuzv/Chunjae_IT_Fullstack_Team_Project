@@ -32,7 +32,7 @@
                 <c:forEach var="noticeList" items="${noticeList}">
                     <tr>
                         <td width="20%" align="center">
-                            <a href="${contextPath}/admin/notice/noticeDetail.do?brd_id=${noticeList.brdId}">
+                            <a href="${contextPath}/admin/notice/noticeDetail.do?page=${paging.page}&brd_id=${noticeList.brdId}">
                                 <strong>${noticeList.brdId}</strong>
                             </a>
                         </td>
