@@ -3,17 +3,16 @@ package kr.co.chunjae.admin.notice.controller;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import kr.co.chunjae.admin.notice.service.NoticeService;
 import kr.co.chunjae.admin.notice.vo.NoticeVO;
+import kr.co.chunjae.member.vo.MemberVO;
 import kr.co.chunjae.page.pageVO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -22,11 +21,18 @@ import java.util.List;
 public class NoticeControllerImpl {
     private final NoticeService noticeService;
 
-    @GetMapping("/noticeWrite")
+    @GetMapping("/noticeWrite.do")
     public String writeForm(HttpServletRequest request) {
         String viewName=(String)request.getAttribute("viewName");
 
         return viewName;
+    }
+
+    @PostMapping("/noticeWrite.do")
+    public String noticeWrite(@ModelAttribute NoticeVO noticeVO, HttpServletRequest request) {
+        noticeService.noticeWrite(noticeVO);
+
+        return "redirect:/admin/notice/noticeList.do";
     }
 
     // 전체 게시글 리스트를 출력한다. (페이징 적용 O)

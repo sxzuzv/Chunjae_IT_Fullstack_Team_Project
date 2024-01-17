@@ -15,8 +15,8 @@ public class NoticeDAOImpl implements NoticeDAO {
     private final SqlSession sqlSession;
 
     @Override
-    public int noticeSave(NoticeVO noticeVO) {
-        return sqlSession.insert("mapper.admin.notice.noticeSave", noticeVO);
+    public void noticeWrite(NoticeVO noticeVO) {
+        sqlSession.insert("mapper.admin.notice.noticeWrite", noticeVO);
     }
 
     @Override
@@ -27,26 +27,5 @@ public class NoticeDAOImpl implements NoticeDAO {
     @Override
     public int noticeCount() {
         return sqlSession.selectOne("mapper.admin.notice.noticeCount");
-    }
-
-    @Override
-    public List<NoticeVO> listNoticeBoard(int brdId) {
-        return sqlSession.selectList("mapper.admin.notice.listAllNoticeBoard", brdId);
-    }
-
-    @Override
-    public NoticeVO findById(int brdId) {
-        return sqlSession.selectOne("mapper.admin.notice.findById", brdId);
-    }
-
-    @Override
-    public void update(NoticeVO noticeVO) {
-        sqlSession.update("mapper.admin.notice.update", noticeVO);
-    }
-
-    @Override
-    public void delete(int brdId) {
-        sqlSession.delete("mapper.admin.notice.delete", brdId);
-
     }
 }

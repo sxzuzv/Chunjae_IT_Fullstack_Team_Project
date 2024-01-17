@@ -95,7 +95,7 @@
         </c:choose>
     </div>
     <div>
-        <a href="${pageContext}/admin/notice/noticeWrite"><input type="button" value="글쓰기"></a>
+        <a href="${contextPath}/admin/notice/noticeWrite.do"><input type="button" value="글쓰기"></a>
     </div>
 </body>
 </html>

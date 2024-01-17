@@ -18,8 +18,8 @@ public class NoticeServiceImpl implements NoticeService {
     private final NoticeDAO noticeDAO;
 
     @Override
-    public int noticeSave(NoticeVO noticeVO) {
-        return noticeDAO.noticeSave(noticeVO);
+    public void noticeWrite(NoticeVO noticeVO) {
+        noticeDAO.noticeWrite(noticeVO);
     }
 
     // 페이징 : 특정 페이지에 해당하는 게시글 목록만을 출력한다.
@@ -79,25 +79,5 @@ public class NoticeServiceImpl implements NoticeService {
         pageVO.setEndPage(endPage);
 
         return pageVO;
-    }
-
-    @Override
-    public List<NoticeVO> listNoticeBoard(int brdId) {
-        return noticeDAO.listNoticeBoard(brdId);
-    }
-
-    @Override
-    public NoticeVO findById(int brdId) {
-        return noticeDAO.findById(brdId);
-    }
-
-    @Override
-    public void delete(int brdId) {
-        noticeDAO.delete(brdId);
-    }
-
-    @Override
-    public void update(NoticeVO noticeVO) {
-        noticeDAO.update(noticeVO);
     }
 }
