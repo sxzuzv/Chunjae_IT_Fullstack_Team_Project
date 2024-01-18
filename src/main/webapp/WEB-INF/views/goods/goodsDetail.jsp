@@ -313,7 +313,7 @@
         <%-- 댓글 작성 영역 --%>
         <div id="comment_add">
           <div class="title"><p>리뷰 작성하기</p></div>
-          <div class="input"><textarea id="comContent"></textarea></div>
+          <div class="input"><textarea id="comContent" maxlength="500" required></textarea></div>
           <div class="btn">
             <button type="button" id="add_btn">댓글등록</button>
           </div>
