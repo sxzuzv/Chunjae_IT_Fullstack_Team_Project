@@ -1,0 +1,48 @@
+article {
+    text-align: center;
+}
+
+.message_container {
+    margin: auto;
+    max-width: 60%;
+    min-width: 40%;
+    background-color: #fbfbfb;
+    border: 1px solid #AAA;
+    border-bottom: 1px solid #888;
+    border-radius: 3px;
+    color: #494949;
+    box-shadow: 0px 2px 2px #AAA;
+    padding: 20px;
+    word-break: auto-phrase;
+}
+
+.error_title {
+    font-size: 2.5em;
+    font-weight: bold;
+    color: #1FA393;
+}
+
+.error_message p {
+    margin: 0 auto 1.4em;
+    font-size: 1.6em;
+    font-weight: bold;
+    color: #666666;
+}
+
+.message_container hr {
+    diplay: block;
+    border: none;
+    border-bottom: 1px dashed #ccc;
+    margin: 1em 0 1.4em;
+}
+
+button {
+    padding: 0.75em 1.3em;
+    font-size: 1.3em;
+    font-weight: bold;
+    border-radius: 50px;
+    border: 1px solid #1FA393;
+    background-color: #1FA393;
+    color: #ffffff;
+    cursor: pointer;
+}
