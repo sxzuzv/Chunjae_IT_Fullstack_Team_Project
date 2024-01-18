@@ -41,6 +41,7 @@ public class MyPageControllerImpl extends BaseController  implements MyPageContr
 
 	private final MyPageService myPageService;
 
+
 	@Override
 	@RequestMapping(value="/myPageMain.do" ,method = RequestMethod.GET)
 	public String myPageMain(@RequestParam(required = false,value="message")  String message,
@@ -166,10 +167,12 @@ public class MyPageControllerImpl extends BaseController  implements MyPageContr
 		//수정된 회원 정보를 다시 세션에 저장한다.
 //		memberVO=(MemberVO)myPageService.modifyMyInfo(memberMap);
 
+
 		if(result.hasErrors()){
 			result.addError(new FieldError("memberVO", "globalError", "제대로된 값을 입력해 주세요"));
 			return "/mypage/myDetailInfo";
 		}
+
 
 		if(memberVO != null) {
 			MemberVO updateVO = myPageService.modifyMyInfo(memberVO);
@@ -181,6 +184,10 @@ public class MyPageControllerImpl extends BaseController  implements MyPageContr
 			out.flush();
 			return "/mypage/myDetailInfo";
 		}else{
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('회원정보 수정실패.');</script>");
+			out.flush();
 			return "redirect:/mypage/myDetailInfo.do";
 		}
 

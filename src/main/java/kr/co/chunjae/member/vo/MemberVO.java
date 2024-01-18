@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
+
 
 
 @Getter
@@ -20,6 +20,7 @@ import javax.validation.constraints.Size;
 public class MemberVO {
 	@Pattern(regexp = "^[A-Za-z]{1}[A-Za-z0-9]{4,16}$" ,message = "아이디는 4~16자리. 영어와 숫자만 입력해주세요")
 	private String memberId;		// 회원 아이디
+	@NotNull
 	@Pattern(regexp = "(?=.*[0-9])(?=.*[a-zA-Z])(?=.*\\W)(?=\\S+$).{8,16}" ,message = "비밀번호는 8~16자리 영문 대 소문자, 숫자 , 특수문자를 사용하세요")
 	private String memberPw;		// 비밀번호
 	@Pattern(regexp = "[가-힣]{2,15}$", message = "한글을 입력하세요")
@@ -43,8 +44,11 @@ public class MemberVO {
 	private String emailstsYn;		// 이메일 수신 동의 여부
 	@Pattern(regexp = "\\d{5}", message="5자리 숫자를 입력 하세요")
 	private String zipcode;			// 우편번호
+	@Pattern(regexp = "^[0-9가-힣 ,()-]{3,50}$", message ="주소를 입력해주세요")
 	private String roadAddress;		// 도로명
+	@Pattern(regexp = "^[0-9가-힣 ,()-]{3,50}$", message ="주소를 입력해주세요")
 	private String jibunAddress;	// 지번
+	@Pattern(regexp = "^[0-9가-힣 ,()-]{3,50}$", message ="주소를 입력해주세요")
 	private String namujiAddress;	// 나머지 주소
 	private String joinDate;		// 가입일
 	private String delYn;			// 탈퇴 여부

@@ -64,7 +64,6 @@
   </script>
   <script>
       function fn_overlapped() {
-          let idcheck=false;
           var _id = $("#member_id").val();
           var pattern = /^[A-Za-z]{1}[A-Za-z0-9]{4,19}$/;//아이디 중복확인시 정규표현식 정의
           if (_id == '') {
@@ -132,33 +131,25 @@
       }
 
       function setEmailValue(event) {//이메일 체크박스 함수
-          const checked = !event.target.checked; // true or false
-          const tag = document.getElementById("emailstsYn");
-          if (checked) {
-              event.target.checked = false;
-              tag.value = 'N';
-          } else {
-              event.target.checked = true;
-              tag.value = 'Y';
-          }
-      }
-
-      const submitCheckFunc = function () {
-        if (idCheck === true) {
-          return true;
+        const checked = !event.target.checked; // true or false
+        const tag = document.getElementById("emailstsYn");
+        if (checked) {
+          event.target.checked = false;
+          tag.value = 'N';
         } else {
-          alert('아이디 검사에 실패해서 회원가입할 수 없습니다\n아이디 중복검사를 해주세요')
-          return false;
+          event.target.checked = true;
+          tag.value = 'Y';
         }
       }
-  
+
+
   
   </script>
 </head>
 <body>
 <h3>필수입력사항</h3>
 <form:form modelAttribute="memberVO" action="${contextPath}/member/addMember.do" method="post"
-           class="frmMember" onsubmit="return submitCheckFunc()">
+           class="frmMember">
   <div id="detail_table">
     <table>
       <tbody>
@@ -297,20 +288,22 @@
         <td class="address_info">
           <div class="zipcode">
             <form:input path="zipcode" type="text" id="zipcode" size="10"/>
-            <button class="search_zipcode"><a href="javascript:execDaumPostcode()">우편번호검색</a></button>
-            <div><form:errors path="zipcode" cssClass="text-danger" cssStyle="font-size: 13px;color: red"/></div>
+            <button class="search_zipcode"><a href="javascript:execDaumPostcode()">우편번호검색</a></button><form:errors path="zipcode" cssStyle="font-size: 13px;color: red"/>
           </div>
           <p>
             <label for="roadAddress">도로명 주소</label>
-            <input type="text" id="roadAddress" name="roadAddress" size="50">
+            <form:input path="roadAddress" type="text" id="roadAddress" maxlength="50"/>
+          <div><form:errors path="roadAddress" cssStyle="font-size: 13px; color:red"/></div>
           </p>
           <p>
             <label for="jibunAddress">지번 주소</label>
-            <input type="text" id="jibunAddress" name="jibunAddress" size="50">
+            <form:input path="jibunAddress" type="text" id="jibunAddress"  maxlength="50"/>
+          <div><form:errors path="jibunAddress" cssStyle="font-size: 13px; color:red"/></div>
           </p>
           <p>
             <label for="namujiAddress">나머지 주소</label>
-            <input type="text" id="namujiAddress" name="namujiAddress" size="50">
+            <form:input path="namujiAddress" type="text" id="namujiAddress"  maxlength="50"/>
+          <div><form:errors path="namujiAddress" cssStyle="font-size: 13px; color:red"/></div>
           </p>
         </td>
       </tr>

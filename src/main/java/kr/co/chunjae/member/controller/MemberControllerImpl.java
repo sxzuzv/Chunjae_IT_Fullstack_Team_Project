@@ -132,11 +132,11 @@ public class MemberControllerImpl extends BaseController implements MemberContro
 	@RequestMapping(value="/addMember.do" ,method = RequestMethod.POST)
 	public String addMember(@Valid @ModelAttribute("memberVO") MemberVO memberVO, BindingResult result,
 									HttpServletRequest request, HttpServletResponse response) throws Exception {
-		response.setContentType("text/html; charset=UTF-8");
-		request.setCharacterEncoding("utf-8");
-		String message = null;
-		ResponseEntity resEntity = null;
-		HttpHeaders responseHeaders = new HttpHeaders();
+//		response.setContentType("text/html; charset=UTF-8");
+//		request.setCharacterEncoding("utf-8");
+//		String message = null;
+//		ResponseEntity resEntity = null;
+//		HttpHeaders responseHeaders = new HttpHeaders();
 
 		if(result.hasErrors()){
 			result.addError(new FieldError("memberVO", "globalError",
@@ -148,25 +148,35 @@ public class MemberControllerImpl extends BaseController implements MemberContro
 		memberVO.setMemberPw(pwencoder.encode(pw));
 
 
-		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
-		try {
-		    memberService.addMember(memberVO);
+//		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
+//		try {
+		   int newresult = memberService.addMember(memberVO);
+		   if(newresult >0){
 				//auth 테이블에 일반 멤버 권한 삽입
 				memberService.addAuth(memberVO.getMemberId());
-		    message  = "<script>";
-		    message +=" alert('회원 가입을 마쳤습니다.로그인창으로 이동합니다.');";
-		    message += " location.href='"+request.getContextPath()+"/member/loginForm.do';";
-		    message += " </script>";
+			   response.setContentType("text/html; charset=UTF-8");
+			   PrintWriter out = response.getWriter();
+			   out.println("<script>alert('회원가입에 성공했습니다. 로그인화면으로 이동합니다.');</script>");
+			   out.flush();
+			   return "/member/loginForm";
+		   }else {
+			   return "/member/memberForm";
+		   }
 
-		}catch(Exception e) {
-			message  = "<script>";
-		    message +=" alert('작업 중 오류가 발생했습니다. 다시 시도해 주세요');";
-		    message += " location.href='"+request.getContextPath()+"/member/memberForm.do';";
-		    message += " </script>";
-			e.printStackTrace();
-		}
+//		    message  = "<script>";
+//		    message +=" alert('회원 가입을 마쳤습니다.로그인창으로 이동합니다.');";
+//		    message += " location.href='"+request.getContextPath()+"/member/loginForm.do';";
+//		    message += " </script>";
+
+//		}catch(Exception e) {
+//			message  = "<script>";
+//		    message +=" alert('작업 중 오류가 발생했습니다. 다시 시도해 주세요');";
+//		    message += " location.href='"+request.getContextPath()+"/member/memberForm.do';";
+//		    message += " </script>";
+//			e.printStackTrace();
+//		}
 //		resEntity =new ResponseEntity(message, responseHeaders, HttpStatus.OK);
-		return "/member/loginForm";
+
 	}
 	
 	@Override

@@ -253,15 +253,15 @@
       <tr class="dot_line">
         <th class="fixed_join">아이디</th>
         <td>
-          <input name="memberId" type="text" size="20" value="${memberInfo.memberId }" readonly/>
-
+          <form:input path="memberId" type="text" size="20" value="${memberInfo.memberId }" readonly="true"/>
+          <form:errors path="memberId" cssStyle="font-size: 13px; color: red" />
         </td>
       </tr>
       <tr class="dot_line">
 <%--        <th class="fixed_join">비밀번호</th>--%>
 <%--        <td>--%>
 
-<%--          <form:input path="memberPw" type="password" size="20" value="새 비밀번호를 입력하세요"/>--%>
+          <form:input path="memberPw" type="hidden" size="20" value="1234choi@@"/>
 <%--          <form:errors path="memberPw" cssClass="text-danger" cssStyle="font-size: 10px"/>--%>
 
 <%--        </td>--%>
@@ -274,7 +274,8 @@
       <tr class="dot_line">
         <th class="fixed_join">이름</th>
         <td>
-          <input name="memberName" type="text" size="20" value="${memberInfo.memberName }" readonly/>
+          <form:input path="memberName" type="text" size="20" value="${memberInfo.memberName }" readonly="true"/>
+          <form:errors path="memberName" cssStyle="font-size: 13px; color: red" />
         </td>
         <td>
         </td>
@@ -378,9 +379,9 @@
           - <form:input path="memberHp3" type="text" size="4" value="${memberInfo.memberHp3 }"/>
           </div>
           <div>
-            <div><form:errors path="memberHp1" cssClass="text-danger" cssStyle="font-size: 13px"/></div>
-            <div><form:errors path="memberHp2" cssClass="text-danger" cssStyle="font-size: 13px"/></div>
-            <div><form:errors path="memberHp3" cssClass="text-danger" cssStyle="font-size: 13px"/></div>
+            <div><form:errors path="memberHp1" cssStyle="font-size: 13px; color: red" /></div>
+            <div><form:errors path="memberHp2" cssStyle="font-size: 13px; color: red" /></div>
+            <div><form:errors path="memberHp3" cssStyle="font-size: 13px; color: red" /></div>
           </div>
           </div>
           <input type="checkbox" onchange="setSmsValue(event)"   ${memberInfo.smsstsYn == 'Y' ? 'checked' : ''} />
@@ -415,8 +416,8 @@
           </select><Br>
             </div>
           <div>
-          <div><form:errors path="memberEmail1" cssClass="text-danger" cssStyle="font-size: 13px"/></div>
-            <div><form:errors path="memberEmail2" cssClass="text-danger" cssStyle="font-size: 13px"/></div>
+          <div><form:errors path="memberEmail1" cssStyle="font-size: 13px; color: red" /></div>
+            <div><form:errors path="memberEmail2" cssStyle="font-size: 13px; color: red" /></div>
           </div>
           </div>
           <input type="checkbox" onchange="setEmailValue(event)" ${memberInfo.emailstsYn == 'Y' ? 'checked' : ''} />
@@ -432,22 +433,25 @@
         <th class="fixed_join">주소</th>
         <td class="address_info">
           <div class="zipcode">
-            <form:input type="text" id="zipcode" path="zipcode" size="5" value="${memberInfo.zipcode }"/>
+            <form:input path="zipcode" type="text" id="zipcode"  size="5" value="${memberInfo.zipcode }"/>
             <button class="search_zipcode"><a href="javascript:execDaumPostcode()">우편번호검색</a></button>
-            <div><form:errors path="zipcode" cssClass="text-danger" cssStyle="font-size: 13px"/></div>
+            <form:errors path="zipcode" cssClass="text-danger" cssStyle="font-size: 13px"/>
 
           </div>
           <p>
             <label for="roadAddress">도로명 주소</label>
-            <input type="text" id="roadAddress" name="roadAddress" size="50" value="${memberInfo.roadAddress }">
+            <form:input path="roadAddress" type="text" id="roadAddress"  size="50" value="${memberInfo.roadAddress }"/>
+              <div><form:errors path="roadAddress" cssStyle="font-size: 13px; color:red"/></div>
           </p>
           <p>
             <label for="jibunAddress">지번 주소</label>
-            <input type="text" id="jibunAddress" name="jibunAddress" size="50" value="${memberInfo.jibunAddress }">
+            <form:input path="jibunAddress" type="text" id="jibunAddress" size="50" value="${memberInfo.jibunAddress }"/>
+              <div><form:errors path="jibunAddress" cssStyle="font-size: 13px; color:red"/></div>
           </p>
           <p>
             <label for="namujiAddress">나머지 주소</label>
-            <input type="text" id="namujiAddress" name="namujiAddress" size="50" value="${memberInfo.namujiAddress }">
+            <form:input path="namujiAddress" type="text" id="namujiAddress"  size="50" value="${memberInfo.namujiAddress }"/>
+              <div><form:errors path="namujiAddress" cssStyle="font-size: 13px; color:red"/></div>
           </p>
         </td>
         <%--					<td>--%>
