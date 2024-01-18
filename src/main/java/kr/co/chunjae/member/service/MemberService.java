@@ -8,7 +8,7 @@ import java.util.Map;
 
 public interface MemberService {
 	public MemberVO login(Map loginMap) throws Exception;
-	public void addMember(MemberVO memberVO) throws Exception;
+	public int addMember(MemberVO memberVO) throws Exception;
 	public String overlapped(String id) throws Exception;
     public MemberVO authPwMember(Map<String, String> authMap);
     public int pwChange(MemberVO memberVO);
