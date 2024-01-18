@@ -77,7 +77,7 @@ CREATE TABLE t_shopping_goods
     goods_writer_intro      varchar(2000) comment '저자소개',
     goods_publisher_comment varchar(2000) comment '출판사평',
     goods_recommendation    varchar(2000) comment '상품추천사',
-    goods_contents_order    longtext comment '목차',
+    goods_contents_order    varchar(2000) comment '목차',
     goods_entered_date      date          NOT NULL DEFAULT current_date comment '상품입고일',
     goods_cate_main         int           null comment '도서 중분류'
 );
