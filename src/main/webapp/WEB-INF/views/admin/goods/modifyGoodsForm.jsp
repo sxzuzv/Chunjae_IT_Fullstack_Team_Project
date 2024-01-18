@@ -58,6 +58,8 @@ function fn_modify_goods(goods_Id, attribute){
 		value=frm_mod_goods.goodsDeliveryDate.value;
 	}else if(attribute=='goodsStatus'){
 		value=frm_mod_goods.goodsStatus.value;
+	}else if(attribute=='goodsCateMain'){
+		value=frm_mod_goods.goodsCateMain.value;
 	}else if(attribute=='goodsContentsOrder'){
 		value=frm_mod_goods.goodsContentsOrder.value;
 	}else if(attribute=='goodsWriterIntro'){
@@ -339,6 +341,21 @@ function fn_modify_goods(goods_Id, attribute){
 				</td>
 			</tr>
 			<tr>
+				<td >제품 카테고리</td>
+				<td>
+					<select name="goodsCateMain">
+						<option value=1 selected>백엔드</option>
+						<option value=2 >프론트엔드</option>
+						<option value=3 >모바일 앱 개발</option>
+						<option value=4 >알고리즘?자료구조</option>
+						<option value=5 >데이터베이스</option>
+					</select>
+				</td>
+				<td>
+					<input  type="button" value="수정반영"  onClick="fn_modify_goods('${goods.goodsId }','goodsCateMain')"/>
+				</td>
+			</tr>
+			<tr>
 			 <td colspan=3>
 			   <br>
 			 </td>
@@ -350,9 +367,7 @@ function fn_modify_goods(goods_Id, attribute){
 				<table>	
 				<tr>
 					<td >상품 목차</td>
-					<td><textarea  rows="100" cols="80" name="goodsContentsOrder">
-					  ${goods.goodsContentsOrder }
-					</textarea>
+					<td><textarea rows="100" cols="80" name="goodsContentsOrder">${goods.goodsContentsOrder }</textarea>
 					</td>
 					<td>
 					&nbsp;&nbsp;&nbsp;&nbsp;

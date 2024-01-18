@@ -1,31 +1,29 @@
 package kr.co.chunjae.goods.controller;
 
-import java.io.PrintWriter;
-import java.util.*;
+import kr.co.chunjae.common.base.BaseController;
+import kr.co.chunjae.goods.service.GoodsService;
+import kr.co.chunjae.goods.vo.GoodsVO;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import net.sf.json.JSONObject;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import kr.co.chunjae.common.base.BaseController;
-import kr.co.chunjae.goods.vo.CommentVO;
-import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
-
-import kr.co.chunjae.goods.service.GoodsService;
-import kr.co.chunjae.goods.vo.GoodsVO;
-
-import net.sf.json.JSONObject;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 
 @Controller("goodsController")
 @RequestMapping(value="/goods")
 @RequiredArgsConstructor
+@Slf4j
 public class GoodsControllerImpl extends BaseController implements GoodsController {
 
 	private final GoodsService goodsService;
@@ -66,6 +64,31 @@ public class GoodsControllerImpl extends BaseController implements GoodsControll
 			                       HttpServletRequest request, Model model) throws Exception{
 		String viewName=(String)request.getAttribute("viewName");
 		List<GoodsVO> goodsList=goodsService.searchGoods(searchWord);
+		model.addAttribute("title", searchWord);
+		model.addAttribute("goodsList", goodsList);
+		return viewName;
+	}
+
+	@RequestMapping(value="/cateGoods.do" ,method = RequestMethod.GET)
+	public String cateGoods(@RequestParam("cateMain") String cateMain,
+														HttpServletRequest request, Model model) throws Exception{
+		String viewName=(String)request.getAttribute("viewName");
+		List<GoodsVO> goodsList=goodsService.cateGoods(cateMain);
+		String title = "";
+		if(cateMain.equals("1")){
+			title = "백엔드";
+		}else if(cateMain.equals("2")){
+			title = "프론트엔드";
+		}else if(cateMain.equals("3")){
+			title = "모바일 앱 개발";
+		}else if(cateMain.equals("4")){
+			title = "알고리즘•자료구조";
+		}else if(cateMain.equals("5")){
+			title = "데이터베이스";
+		}else{
+
+		}
+		model.addAttribute("title", title);
 		model.addAttribute("goodsList", goodsList);
 		return viewName;
 	}
