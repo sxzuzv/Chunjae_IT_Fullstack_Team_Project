@@ -15,15 +15,15 @@
         <tbody>
             <tr>
                 <td class="detail_list" id="detail_brd_id" align="center"><strong>번호</strong></td>
-                <td class="detail_content" align="center">${noticeDetail.brdId}</td>
+                <td class="detail_content">${noticeDetail.brdId}</td>
                 <td class="detail_list" id="detail_view_cnt" align="center"><strong>조회수</strong></td>
-                <td class="detail_content" align="center">${noticeDetail.viewCnt}</td>
+                <td class="detail_content">${noticeDetail.viewCnt}</td>
             </tr>
             <tr>
                 <td class="detail_list" id="detail_member_id" align="center"><strong>작성자</strong></td>
-                <td class="detail_content" align="center">${noticeDetail.memberId}</td>
+                <td class="detail_content">${noticeDetail.memberId}</td>
                 <td class="detail_list" id="detail_reg_date" align="center"><strong>작성일</strong></td>
-                <td class="detail_content" align="center">${noticeDetail.regDate}</td>
+                <td class="detail_content">${noticeDetail.regDate}</td>
             </tr>
             <tr>
                 <td id="detail_title" align="center"><strong>제목</strong></td>
