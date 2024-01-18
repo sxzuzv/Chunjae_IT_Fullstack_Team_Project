@@ -328,7 +328,7 @@
           </tr>
           <tr>
             <td>상품 판매가</td>
-            <td><input name="goodsSalesPrice" type="number" size="40" value="${goods.goodsPrice }"/></td>
+            <td><input name="goodsSalesPrice" type="number" size="40" value="${goods.goodsSalesPrice }"/></td>
             <td>
               <input type="button" value="수정반영" onClick="fn_modify_goods('${goods.goodsId }','goodsSalesPrice')"/>
             </td>
