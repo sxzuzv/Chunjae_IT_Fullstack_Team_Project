@@ -426,7 +426,7 @@
   </div>
   
   <div class="clear"></div>
-  <table class="list_view">
+  <table class="list_view member_list">
     <thead>
     <tr>
       <td class="fixed">회원 아이디</td>
