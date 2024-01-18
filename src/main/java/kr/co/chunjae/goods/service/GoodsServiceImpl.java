@@ -1,19 +1,16 @@
 package kr.co.chunjae.goods.service;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import kr.co.chunjae.goods.vo.CommentVO;
+import kr.co.chunjae.goods.dao.GoodsDAO;
+import kr.co.chunjae.goods.vo.GoodsVO;
+import kr.co.chunjae.goods.vo.ImageFileVO;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import kr.co.chunjae.goods.dao.GoodsDAO;
-import kr.co.chunjae.goods.vo.GoodsVO;
-import kr.co.chunjae.goods.vo.ImageFileVO;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Service("goodsService")
 @Transactional(propagation=Propagation.REQUIRED)
@@ -53,6 +50,11 @@ public class GoodsServiceImpl implements GoodsService{
 		return goodsList;
 	}
 
+	@Override
+	public List<GoodsVO> cateGoods(String cateMain) {
+		List goodsList=goodsDAO.selectGoodsByCateMain(cateMain);
+		return goodsList;
+	}
 
 
 }
