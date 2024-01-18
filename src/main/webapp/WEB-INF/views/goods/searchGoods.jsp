@@ -176,7 +176,6 @@
                       <img width="75" alt=""
                            src="${contextPath}/thumbnails.do?goods_id=${item.goodsId}&fileName=${item.goodsFileName}">
                     </a>
-                    <div class="sort">[컴퓨터 인터넷]</div>
                     <div class="title">
                       <a href="${contextPath}/goods/goodsDetail.do?goods_id=${item.goodsId }">
                           ${item.goodsTitle}
