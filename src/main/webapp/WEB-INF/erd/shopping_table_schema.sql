@@ -1000,6 +1000,38 @@ VALUES (64, '답변입니다.', 'admin');
 INSERT INTO board_comment(brd_id, com_content, member_id)
 VALUES (65, '답변입니다.', 'admin');
 
+-- 게시판 테이블 더미 데이터
+-- cate 1) '공지사항' (관리자 작성)
+INSERT INTO board(member_id, title, content, cate)
+VALUES ('관리자', '무료배송 가능 주문금액 변경 안내', '공지사항입니다.', 1);
+INSERT INTO board(member_id, title, content, cate)
+VALUES ('관리자', '신정 출고 일정 및 고객센터 휴무 안내', '공지사항입니다.', 1);
+INSERT INTO board(member_id, title, content, cate)
+VALUES ('관리자', '내부 점검으로 인한 출고 일정 안내', '공지사항입니다.', 1);
+INSERT INTO board(member_id, title, content, cate)
+VALUES ('관리자', '위탁 배달원 휴무로 인한 배송 지연 안내', '공지사항입니다.', 1);
+INSERT INTO board(member_id, title, content, cate)
+VALUES ('관리자', '개인정보처리방침 개정 사전 안내', '공지사항입니다.', 1);
+INSERT INTO board(member_id, title, content, cate)
+VALUES ('관리자', '판매 종료 도서 안내', '공지사항입니다.', 1);
+INSERT INTO board(member_id, title, content, cate)
+VALUES ('관리자', '품절 도서 재입고 안내', '공지사항입니다.', 1);
+INSERT INTO board(member_id, title, content, cate)
+VALUES ('관리자', '물류 내부 점검으로 인한 출고 지연 안내', '공지사항입니다.', 1);
+INSERT INTO board(member_id, title, content, cate)
+VALUES ('관리자', '신도서 입고 안내', '공지사항입니다.', 1);
+INSERT INTO board(member_id, title, content, cate)
+VALUES ('관리자', '도서 상태 불량에 대한 처리 안내', '공지사항입니다.', 1);
+INSERT INTO board(member_id, title, content, cate)
+VALUES ('관리자', '내부 점검으로 인한 출고 일정 안내', '공지사항입니다.', 1);
+INSERT INTO board(member_id, title, content, cate)
+VALUES ('관리자', '판매 종료 도서 안내', '공지사항입니다.', 1);
+INSERT INTO board(member_id, title, content, cate)
+VALUES ('관리자', '위탁 배달원 휴무로 인한 배송 지연 안내', '공지사항입니다.', 1);
+INSERT INTO board(member_id, title, content, cate)
+VALUES ('관리자', '무료배송 가능 주문금액 변경 안내', '공지사항입니다.', 1);
+INSERT INTO board(member_id, title, content, cate)
+VALUES ('관리자', '신년 이벤트 당첨자 발표', '2024 용의 해, 새해 복 많이 받으세요. 신년 이벤트 당첨자를 발표합니다. 아래의 휴대폰 번호를 확인해주세요.', 1);
 
 -- 주문테이블 연관관계 설정
 --
