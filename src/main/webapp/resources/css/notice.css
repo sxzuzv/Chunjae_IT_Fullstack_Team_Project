@@ -174,12 +174,14 @@ section#center input[type=submit] {
     border: 1px solid #1e5da2;
     background-color: #1e5da2;
     color: #ffffff;
+    font-size: 1.0em;
 }
 
 section#center input[type=reset] {
     margin-right: 0.4em;
     border: 1px solid #666666;
     background-color: #f6f5f5;
+    font-size: 1.0em;
 }
 
 section#center input[type=button] {
@@ -217,4 +219,68 @@ section#center input[type=reset]:hover {
 
 .page_controller a:hover {
     color: #1FA393;
+}
+
+/* 공지사항 - 게시글 수정 */
+.update_table {
+    width: 100%;
+    border-top: solid 2px #1e5da2;
+}
+
+.update_table tbody tr:nth-child(1) {
+    border-bottom: 1px solid #000; /* 실선 색상 및 굵기를 조절할 수 있습니다. */
+}
+
+.update_table tr .update_list {
+    background-color: #e8eef6;
+    min-height: 1em;
+    font-weight: bold;
+    height: 2.0em;
+}
+
+.update_table #update_title {
+    background-color: #e8eef6;
+    min-height: 1em;
+    font-weight: bold;
+    height: 2.5em;
+}
+
+.update_table .update_content {
+    width: 19em;
+}
+
+.update_table #content {
+    height: 20em;
+}
+
+.update_table tr input[type="text"] {
+    width: 100%;
+    height: auto;
+    border: none;
+}
+
+.update_table tr #title {
+    font-weight: bold;
+}
+
+.update_table tr input[name="content"] {
+    border: none;
+    vertical-align: middle;
+    width: 100%;
+    max-width: 100%;
+    height: 19em;
+    min-height: 100px; /* Set a minimum height if needed */
+    resize: none; /* Disable textarea resizing by the user */
+}
+
+.detail_table th {
+    background-color: #e8eef6;
+    padding: 0.3em 0.4em;
+    width: 6em;
+}
+
+section#center input {
+    padding: 0.4em 1em;
+    border-radius: 5px;
+    font-size: 0.9em;
 }

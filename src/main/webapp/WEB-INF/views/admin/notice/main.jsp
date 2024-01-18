@@ -11,10 +11,12 @@
     <div class="notice_main_title">
         <h1>공지사항</h1>
         <div id="write">
-            <a href="${contextPath}/admin/notice/noticeWrite.do"><input type="button" onclick="" value="게시글 작성"></a>
+<%--            <a href="${contextPath}/admin/notice/noticeWrite.do"><input type="button" onclick="" value="게시글 작성"></a>--%>
+            <form action="${contextPath}/admin/notice/noticeWrite.do">
+                <input type="submit" value="게시글 작성">
+            </form>
         </div>
     </div>
-    <br>
     <table class="notice_list">
         <thead>
         <tr>
@@ -38,12 +40,12 @@
                 <c:forEach var="noticeList" items="${noticeList}">
                     <tr>
                         <td width="10%" align="center">
-                            <a href="${contextPath}/admin/notice/noticeDetail.do?page=${paging.page}&brd_id=${noticeList.brdId}">
                                 <strong>${noticeList.brdId}</strong>
-                            </a>
                         </td>
                         <td width="40%" align="left">
+                            <a href="${contextPath}/admin/notice/noticeDetail.do?page=${paging.page}&brd_id=${noticeList.brdId}">
                             <strong>${noticeList.title}</strong>
+                            </a>
                         </td>
                         <td width="20%" align="center">
                             <strong>${noticeList.memberId}</strong>
@@ -68,11 +70,11 @@
                 <c:choose>
                     <%-- 현재 페이지가 첫 번째 페이지면 [이전]을 텍스트 처리한다. ([이전]은 링크되지 않는 단순 텍스트이다.) --%>
                     <c:when test="${paging.page <= 1}">
-                        <span>[이전]</span>
+                        <span>previous</span>
                     </c:when>
                     <%-- 첫 번째 페이지가 아닌 경우에는 [이전]을 클릭하면 현재 페이지에서 1만큼 작은 페이지를 요청한다. --%>
                     <c:otherwise>
-                        <a href="${contextPath}/admin/notice/noticeList.do?page=${paging.page-1}">[이전]</a>
+                        <a href="${contextPath}/admin/notice/noticeList.do?page=${paging.page-1}">previous</a>
                     </c:otherwise>
                 </c:choose>
 
@@ -95,11 +97,11 @@
                     <%-- 현재 페이지가 마지막 페이지(표현 가능 최대 페이지)이면 [다음]을 텍스트 처리한다. ([다음]은 링크되지 않는 단순 텍스트이다.) --%>
                     <%-- 현재 페이지 >= 전체 페이지 --%>
                     <c:when test="${paging.page>=paging.maxPage}">
-                        <span>[다음]</span>
+                        <span>next</span>
                     </c:when>
                     <%-- 현재 페이지가 전체 페이지 보다 작을 경우, [다음]을 클릭할 시 현재 페이지에서 1만큼 큰 페이지를 요청한다. --%>
                     <c:otherwise>
-                        <a href="${contextPath}/admin/notice/noticeList.do?page=${paging.page+1}">[다음]</a>
+                        <a href="${contextPath}/admin/notice/noticeList.do?page=${paging.page+1}">next</a>
                     </c:otherwise>
                 </c:choose>
             </td>
