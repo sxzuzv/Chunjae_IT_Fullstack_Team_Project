@@ -1,4 +1,11 @@
-/* 관리자 메인 - 타이틀 */
+article h1 {
+    color: #000000;
+    font-size: 1.6em;
+    margin: 0.4em 0;
+    /*display: inline-block;*/
+}
+
+/* 공지사항 메인 - 타이틀 */
 .notice_main_title {
     display: flex;
     justify-content: space-between;
@@ -30,6 +37,7 @@
     border-top-width: 2px;
     border-top-style: solid;
     border-collapse: collapse;
+    font-weight: bold;
     text-align: center;
 }
 
@@ -51,6 +59,143 @@
 
 .notice_list a:hover {
     color: #1FA393;
+}
+
+
+section#center button[class="notice_update"] {
+    margin-right: 0.4em;
+    border: 1px solid #1e5da2;
+    background-color: #1e5da2;
+    color: #ffffff;
+    padding: 0.4em 1em;
+    border-radius: 5px;
+    font-size: 1.0em;
+}
+
+section#center button[class="notice_delete"] {
+    margin-right: 0.4em;
+    border: 1px solid #666666;
+    background-color: #DD362A;
+    padding: 0.4em 1em;
+    color: #ffffff;
+    border-radius: 5px;
+    font-size: 1.0em;
+}
+
+button[class="move_notice"] {
+    padding: 0.3em 1em;
+    font-size: 1em;
+    background-color: #f6f5f5;
+    border: 1px solid #666666;
+    border-radius: 5px;
+}
+
+button[class="move_notice"]:hover {
+    background-color: #ffffff;
+    color: #494949;
+    cursor: pointer;
+}
+
+section#center button:hover {
+    cursor: pointer;
+    opacity: 90%;
+}
+
+.button {
+    align-items: center;
+}
+
+.notice_button:hover {
+    background-color: #f6f5f5;
+    font-weight: bold;
+}
+
+
+/* 공지사항  - 게시글 상세 보기 */
+.detail_table {
+    border-top: solid 2px #1e5da2;
+}
+
+.detail_table tbody tr:nth-child(1) {
+    border-bottom: 1px solid #000; /* 실선 색상 및 굵기를 조절할 수 있습니다. */
+}
+
+.detail_table .detail_list {
+    background-color: #e8eef6;
+    min-height: 1em;
+    font-weight: bold;
+    height: 2.0em;
+}
+
+.detail_table #detail_title {
+    background-color: #e8eef6;
+    min-height: 1em;
+    font-weight: bold;
+    height: 2.5em;
+}
+
+.detail_table .detail_content {
+    width: 19em;
+}
+
+.detail_table #content {
+    height: 20em;
+}
+
+.detail_table tr #title {
+    font-weight: bold;
+}
+
+#content {
+    border: none;
+    vertical-align: middle;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    min-height: 100px; /* Set a minimum height if needed */
+    resize: none; /* Disable textarea resizing by the user */
+}
+
+.detail_table th {
+    background-color: #e8eef6;
+    padding: 0.3em 0.4em;
+    width: 6em;
+}
+
+section#center input {
+    padding: 0.4em 1em;
+    border-radius: 5px;
+    font-size: 0.9em;
+}
+
+/* 공지사항 - 게시글 상세 보기 버튼 */
+section#center input[type=submit] {
+    margin-right: 0.4em;
+    border: 1px solid #1e5da2;
+    background-color: #1e5da2;
+    color: #ffffff;
+}
+
+section#center input[type=reset] {
+    margin-right: 0.4em;
+    border: 1px solid #666666;
+    background-color: #f6f5f5;
+}
+
+section#center input[type=button] {
+    border: 1px solid #494949;
+    background-color: #494949;
+    color: #ffffff;
+}
+
+section#center input:hover {
+    opacity: 90%;
+}
+
+section#center input[type=reset]:hover {
+    opacity: unset;
+    background-color: #ffffff;
+    color: #666666;
 }
 
 /* 페이징 버튼 */
