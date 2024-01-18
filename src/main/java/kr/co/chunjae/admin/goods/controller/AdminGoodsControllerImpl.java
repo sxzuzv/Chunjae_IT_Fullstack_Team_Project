@@ -127,14 +127,10 @@ public class AdminGoodsControllerImpl extends BaseController  implements AdminGo
 			goodsVO.setGoodsFileName(imageFileList.get(0).getFileName());
 			newGoodsMap.put("goodsVO", goodsVO);
 		}
-		
-
-		ResponseEntity resEntity = null;
-		HttpHeaders responseHeaders = new HttpHeaders();
-		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
 
 
-		//파일 옮기기 실패시 실패 메시지 출력
+
+		//파일 옮기기 실패시 실패로그 출력
 		try {
 			int goods_id = adminGoodsService.addNewGoods(newGoodsMap);
 			if(imageFileList!=null && imageFileList.size()!=0) {
@@ -145,10 +141,6 @@ public class AdminGoodsControllerImpl extends BaseController  implements AdminGo
 					FileUtils.moveFileToDirectory(srcFile, destDir,true);
 				}
 			}
-			message= "<script>";
-			message += " alert('신규도서가 정상 등록되었습니다.');";
-			message +=" location.href='/admin/goods/adminGoodsMain.do';";
-			message +=("</script>");
 		}catch(Exception e) {
 			if(imageFileList!=null && imageFileList.size()!=0) {
 				for(ImageFileVO  imageFileVO:imageFileList) {
@@ -157,17 +149,12 @@ public class AdminGoodsControllerImpl extends BaseController  implements AdminGo
 					srcFile.delete(); //temp에 파일이 없는 경우는 temp폴더까지 삭제됨
 				}
 			}
-
-			message= "<script>";
-			message += " alert('상품등록중 오류가 발생했습니다.');";
-			message +=" location.href='"+multipartRequest.getContextPath()+"/admin/goods/addNewGoodsForm.do';";
-			message +=("</script>");
 			e.printStackTrace();
 		}
 
 //		response.setContentType("text/html; charset=UTF-8");
 //		resEntity =new ResponseEntity(message, responseHeaders, HttpStatus.OK);
-		return "/admin/goods/addNewGoodsForm";
+		return "redirect:/admin/goods/adminGoodsMain.do";
 	}
 	
 	@RequestMapping(value="/modifyGoodsForm.do" ,method={RequestMethod.GET,RequestMethod.POST})
