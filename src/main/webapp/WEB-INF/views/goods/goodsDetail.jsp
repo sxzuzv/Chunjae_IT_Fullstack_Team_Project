@@ -144,8 +144,28 @@
 </head>
 <body>
 <hgroup>
-  <h1>컴퓨터와 인터넷</h1>
-  <h2>국내외 도서 &gt; 컴퓨터와 인터넷 &gt; 웹 개발</h2>
+  <%--  <h1>컴퓨터와 인터넷</h1>--%>
+  <h2>국내외 도서 &gt;
+    <%-- 중분류 코드에 따라 해당 분류명을 출력한다. --%>
+    <c:if test="${goods.goodsCateMain == 1}">
+      <a href="#">백엔드</a>
+    </c:if>
+    <c:if test="${goods.goodsCateMain == 2}">
+      <a href="#">프론트엔드</a>
+    </c:if>
+    <c:if test="${goods.goodsCateMain == 3}">
+      <a href="#">모바일 앱 개발</a>
+    </c:if>
+    <c:if test="${goods.goodsCateMain == 4}">
+      <a href="#">알고리즘·자료구조</a>
+    </c:if>
+    <c:if test="${goods.goodsCateMain == 5}">
+      <a href="#">데이터베이스</a>
+    </c:if>
+    <c:if test="${goods.goodsCateMain == 0 || goods.goodsCateMain == null}">
+      기타
+    </c:if>
+  </h2>
   <h3 style="margin: 0.6em 1em 0.4em 0;">${goods.goodsTitle }</h3>
   <h4>${goods.goodsWriter} &nbsp;저 | ${goods.goodsPublisher}</h4>
   <hr>
