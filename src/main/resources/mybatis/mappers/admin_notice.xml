@@ -4,22 +4,34 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="mapper.admin.notice">
+    <insert id="noticeWrite" parameterType="noticeVO">
+        insert into board (member_id, title, content, cate)
+        values('관리자', #{title}, #{content}, 1)
+    </insert>
 
-<!--    <insert id="noticeSave" parameterType="NoticeVo">-->
-<!--        insert into board(title, content)-->
-<!--        values (#{title}, #{content})-->
-<!--    </insert>-->
+    <update id="updateViewCnt" parameterType="Long">
+        update board
+        set view_cnt = view_cnt + 1
+        where brd_id = #{brdId}
+    </update>
 
-    <select id="findAll" resultType="noticeVO">
-        select brd_id, title, member_id, reg_date, view_cnt
+    <select id="noticeDetail" parameterType="Long" resultType="noticeVO">
+        select brd_id, title, member_id, reg_date, view_cnt, content
         from board
-        where cate = 1;
+        where brd_id = #{brdId}
     </select>
 
-    <select id="noticePageList" parameterType="java.util.Map" resultType="noticeVO">
+    <update id="updateNotice" parameterType="noticeVO">
+        update board
+        set title = #{title}, content = #{content}
+        where brd_id = #{brdId}
+    </update>
+
+    <select id="pagingNoticeList" parameterType="java.util.Map" resultType="noticeVO">
         select brd_id, title, member_id, reg_date, view_cnt
         from board
-        order by desc limit #{start}, #{limit}
+        where cate = 1
+        order by brd_id desc limit #{start}, #{limit}
     </select>
 
     <select id="noticeCount" resultType="Integer">
@@ -27,26 +39,7 @@
         from board;
     </select>
 
-<!--    <select id="listAllNoticeBoard" resultType="NoticeVo">-->
-<!--        select brd_id, title, content, reg_date-->
-<!--        from board order by brd_id desc-->
-<!--    </select>-->
-
-<!--    <select id="findById" parameterType="Integer" resultType="NoticeVO">-->
-<!--        select brd_id, title, content, reg_date-->
-<!--        from board where brd_id=#{brdId}-->
-<!--    </select>-->
-
-<!--    <select id="update" parameterType="NoticeVO">-->
-<!--        update board set title = #{title}, content = #{content}-->
-<!--        where brd_id = #{brdId}-->
-<!--    </select>-->
-
-<!--    <select id="delete" parameterType="Integer">-->
-<!--        delete from board where brd_id =#{brdId}-->
-<!--    </select>-->
-
-<!--    <select id="noticeCount" resultType="Integer">-->
-<!--        select count(brd_id) from board-->
-<!--    </select>-->
+    <delete id="deleteNotice" parameterType="Long">
+        delete from board where brd_id = #{brdId}
+    </delete>
 </mapper>

@@ -1,29 +1,23 @@
 package kr.co.chunjae.order.controller;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
 import kr.co.chunjae.common.base.BaseController;
+import kr.co.chunjae.goods.vo.GoodsVO;
 import kr.co.chunjae.member.vo.MemberVO;
+import kr.co.chunjae.order.service.OrderService;
+import kr.co.chunjae.order.vo.OrderVO;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 
-import kr.co.chunjae.goods.vo.GoodsVO;
-import kr.co.chunjae.order.service.OrderService;
-import kr.co.chunjae.order.vo.OrderVO;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 @Controller("orderController")
 @RequestMapping(value="/order")
@@ -97,7 +91,7 @@ public class OrderControllerImpl extends BaseController implements OrderControll
 					String goods_title=goodsVO.getGoodsTitle();
 					int goods_sales_price=goodsVO.getGoodsSalesPrice();
 					String goods_fileName=goodsVO.getGoodsFileName();
-					int goods_delivery_price= Integer.parseInt(goodsVO.getGoodsDeliveryPrice());
+					int goods_delivery_price= goodsVO.getGoodsDeliveryPrice();
 					_orderVO.setGoodsId(goodsId);
 					_orderVO.setGoodsTitle(goods_title);
 					_orderVO.setGoodsSalesPrice(goods_sales_price);

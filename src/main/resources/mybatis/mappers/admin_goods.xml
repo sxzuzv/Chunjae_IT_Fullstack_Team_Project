@@ -23,7 +23,8 @@
 					goods_writer_intro,
 					goods_publisher_comment,
 					goods_recommendation,
-				  	goods_contents_order)
+				  	goods_contents_order,
+					goods_cate_main)
 		values(
 					  #{goodsId},
 					  #{goodsTitle},
@@ -42,7 +43,8 @@
 					  #{goodsWriterIntro},
 					  #{goodsPublisherComment},
 					  #{goodsRecommendation},
-					  #{goodsContentsOrder}
+					  #{goodsContentsOrder},
+					  #{goodsCateMain}
 		 )
 	</insert>
 
@@ -178,6 +180,9 @@
 	      </if>
 	      <if test=' goodsStatus!="" and goodsStatus!=null'>
 	        goods_status=#{goodsStatus}
+	      </if>
+	      <if test=' goodsCateMain!="" and goodsCateMain!=null'>
+	        goods_cate_main=#{goodsCateMain}
 	      </if>
 	      <if test=' goodsWriterIntro!="" and goodsWriterIntro!=null'>
 	        goods_writer_intro=#{goodsWriterIntro}

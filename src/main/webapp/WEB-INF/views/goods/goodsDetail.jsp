@@ -51,6 +51,15 @@
       }
 
       function add_cart(goods_id) {
+
+        var _isLogOn = document.getElementById("isLogOn");
+        var isLogOn = _isLogOn.value;
+
+        if (isLogOn == "false" || isLogOn == '') {
+          alert("로그인 후 주문이 가능합니다!!!");
+          window.location.href="${contextPath}/member/loginForm.do";
+        }
+
           let cartGoodsQty = changefn();
           $.ajax({
               type: "post",
@@ -72,7 +81,6 @@
 
               },
               error: function (data, textStatus) {
-                  alert("에러가 발생했습니다." + data);
               },
               complete: function (data, textStatus) {
                   //alert("작업을완료 했습니다");
@@ -144,8 +152,28 @@
 </head>
 <body>
 <hgroup>
-  <h1>컴퓨터와 인터넷</h1>
-  <h2>국내외 도서 &gt; 컴퓨터와 인터넷 &gt; 웹 개발</h2>
+  <%--  <h1>컴퓨터와 인터넷</h1>--%>
+  <h2>국내외 도서 &gt;
+    <%-- 중분류 코드에 따라 해당 분류명을 출력한다. --%>
+    <c:if test="${goods.goodsCateMain == 1}">
+      백엔드
+    </c:if>
+    <c:if test="${goods.goodsCateMain == 2}">
+      프론트엔드
+    </c:if>
+    <c:if test="${goods.goodsCateMain == 3}">
+      모바일 앱 개발
+    </c:if>
+    <c:if test="${goods.goodsCateMain == 4}">
+      알고리즘·자료구조
+    </c:if>
+    <c:if test="${goods.goodsCateMain == 5}">
+      데이터베이스
+    </c:if>
+    <c:if test="${goods.goodsCateMain == 0 || goods.goodsCateMain == null}">
+      기타
+    </c:if>
+  </h2>
   <h3 style="margin: 0.6em 1em 0.4em 0;">${goods.goodsTitle }</h3>
   <h4>${goods.goodsWriter} &nbsp;저 | ${goods.goodsPublisher}</h4>
   <hr>
@@ -293,7 +321,7 @@
         <%-- 댓글 작성 영역 --%>
         <div id="comment_add">
           <div class="title"><p>리뷰 작성하기</p></div>
-          <div class="input"><textarea id="comContent"></textarea></div>
+          <div class="input"><textarea id="comContent" maxlength="500" required></textarea></div>
           <div class="btn">
             <button type="button" id="add_btn">댓글등록</button>
           </div>
