@@ -152,8 +152,6 @@ public class AdminGoodsControllerImpl extends BaseController  implements AdminGo
 			e.printStackTrace();
 		}
 
-//		response.setContentType("text/html; charset=UTF-8");
-//		resEntity =new ResponseEntity(message, responseHeaders, HttpStatus.OK);
 		return "redirect:/admin/goods/adminGoodsMain.do";
 	}
 	
