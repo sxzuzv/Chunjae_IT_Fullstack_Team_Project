@@ -121,7 +121,7 @@
 
 	<select id="selectGoodsDetail" resultType="goodsVO"   parameterType="int"  >
 	    <![CDATA[
-		     select g.*,date_format(g.goods_published_date,'%Y-%m-%d') as goods_published_date, d.file_name
+		     select g.*, date_format(g.goods_published_date,'%Y-%m-%d') as goods_published_date, d.file_name
 		     from t_shopping_goods g, t_goods_detail_image d
 	        where g.goods_id=d.goods_id
 	        and d.file_type='main_image'

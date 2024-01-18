@@ -98,7 +98,7 @@
           <li class="nav-item"><a class="nav-link" href="${contextPath}/member/memberForm.do">회원가입</a></li>
         </sec:authorize>
 
-      <li class="nav-item"><a class="nav-link" href="#">고객센터</a></li>
+      <li class="nav-item"><a class="nav-link" href="${contextPath}/notice/noticeList.do">공지사항</a></li>
 
       <sec:authorize access="hasRole('ROLE_ADMIN')">
         <li class="no_line nav-item"><a class="nav-link" href="${contextPath}/admin/goods/adminGoodsMain.do">관리자</a></li>

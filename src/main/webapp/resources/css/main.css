@@ -694,7 +694,7 @@ hr {
 }
 
 .login_btns input {
-    width: 4.5em;
+    /*width: 4.5em;*/
     padding: 0.25em 0.6em;
     text-align: center;
     font-size: 1em;
