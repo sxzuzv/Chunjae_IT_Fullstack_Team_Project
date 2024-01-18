@@ -140,7 +140,7 @@
 					<table>
 					 <tr>
 						<td >책 목차</td>
-						<td><textarea  rows="100" cols="80" name="goodsContentsOrder"></textarea></td>
+						<td><textarea rows="100" cols="80" name="goodsContentsOrder"></textarea></td>
 					</tr>
 					</table>
 				</div>
@@ -149,7 +149,7 @@
 					 <table>
 					 <tr>
 						<td>제품 저자 소개</td>
-						<td><textarea  rows="100" cols="80" name="goodsWriterIntro"></textarea></td>
+						<td><textarea rows="100" cols="80" name="goodsWriterIntro"></textarea></td>
 					</tr>
 				   </table>
 				</div>
