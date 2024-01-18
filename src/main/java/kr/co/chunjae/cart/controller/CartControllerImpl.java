@@ -47,24 +47,25 @@ public class CartControllerImpl extends BaseController implements CartController
 		session.setAttribute("cartMap", cartMap);//장바구니 목록 화면에서 상품 주문 시 사용하기 위해서 장바구니 목록을 세션에 저장한다.
 		return viewName;
 	}
-	@RequestMapping(value="/addGoodsInCart.do" ,method = RequestMethod.POST,produces = "application/text; charset=utf8")
-	public  @ResponseBody String addGoodsInCart(@RequestParam("goods_id") int goodsId, @RequestParam("cartGoodsQty") int cartGoodsQty,
-												HttpServletRequest request, HttpServletResponse response)  throws Exception{
-		HttpSession session=request.getSession();
-		MemberVO memberVO=(MemberVO)session.getAttribute("memberInfo");
-		String memberId=memberVO.getMemberId();
-
+	// 카트에 상품 추가
+	@RequestMapping(value="/addGoodsInCart.do" ,method = RequestMethod.POST, produces = "application/text; charset=utf8")
+	public @ResponseBody String addGoodsInCart(@RequestParam("goods_id") int goodsId, @RequestParam("cartGoodsQty") int cartGoodsQty,
+											   HttpServletRequest request, HttpServletResponse response)  throws Exception {
+		// 세션에서 회원 정보 가져오기
+		HttpSession session = request.getSession();
+		MemberVO memberVO = (MemberVO) session.getAttribute("memberInfo");
+		String memberId = memberVO.getMemberId();
+		// 카트에 추가할 상품 정보 설정
 		cartVO.setMemberId(memberId);
-		//카트 등록전에 이미 등록된 제품인지 판별한다.
 		cartVO.setGoodsId(goodsId);
-		cartVO.setMemberId(memberId);
 		cartVO.setCartGoodsQty(cartGoodsQty);
-
-		boolean isAreadyExisted=cartService.findCartGoods(cartVO);
-		System.out.println("isAreadyExisted:"+isAreadyExisted);
-		if(isAreadyExisted==true){
+		// 이미 카트에 존재하는 상품인지 확인
+		boolean isAlreadyExisted = cartService.findCartGoods(cartVO);
+		System.out.println("isAlreadyExisted:" + isAlreadyExisted);
+		if (isAlreadyExisted) {
 			return "already_existed";
-		}else{
+		} else {
+			// 카트에 상품 추가
 			cartService.addGoodsInCart(cartVO);
 			return "add_success";
 		}
@@ -74,28 +75,36 @@ public class CartControllerImpl extends BaseController implements CartController
 	public @ResponseBody String  modifyCartQty(@RequestParam("goods_id") int goodsId,
 											   @RequestParam("cart_goods_qty") int cartGoodsQty,
 											   HttpServletRequest request, HttpServletResponse response)  throws Exception{
+		// 세션값 불러옴
 		HttpSession session=request.getSession();
+		// memberInfo 속성 값 불러와서 memberVO에 저장
 		MemberVO memberVO=(MemberVO)session.getAttribute("memberInfo");
+		//회원 ID를 불러와서
 		String memberId=memberVO.getMemberId();
+		// 값을 설정
 		cartVO.setGoodsId(goodsId);
 		cartVO.setMemberId(memberId);
 		cartVO.setCartGoodsQty(cartGoodsQty);
+		//결과 반환
 		boolean result=cartService.modifyCartQty(cartVO);
 
+		// 성공 시 modify_success 반환
 		if(result==true){
 			return "modify_success";
 		}else{
 			return "modify_failed";
 		}
-
 	}
 
+	// 카트에서 상품 삭제
 	@RequestMapping(value="/removeCartGoods.do" ,method = RequestMethod.POST)
 	public String removeCartGoods(@RequestParam("cart_id") int cartId,
-										HttpServletRequest request, Model model)  throws Exception{
-
+								  HttpServletRequest request, Model model)  throws Exception {
+		// 모델에 cart_id 추가
 		model.addAttribute("cart_id", cartId);
+		// 카트에서 상품 삭제
 		cartService.removeCartGoods(cartId);
+		// 장바구니 목록 조회 페이지로 리다이렉트
 		return "redirect:/cart/myCartList.do";
 	}
 }
