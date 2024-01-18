@@ -10,6 +10,10 @@ select, input[type=text] {
     margin-right: 0.2em;
 }
 
+.clear {
+    clear: both;
+}
+
 /* 관리자 메인 - 타이틀 */
 .admin_main_title {
     display: flex;
@@ -84,6 +88,7 @@ table.search_option a.btn_search:hover {
     background-color: #ffffff;
     font-weight: bold;
 }
+/* 기간 조회 폼 끝 ==================== */
 
 /* 리스트 테이블 */
 .list_view {
@@ -117,7 +122,8 @@ table.search_option a.btn_search:hover {
     border-bottom-style: dotted;
 }
 
-.list_view.admin_goods_list tbody tr:hover {
+.list_view.admin_goods_list tbody tr:hover,
+.list_view.member_list tbody tr:hover {
     background-color: #f6f5f5;
 }
 
@@ -145,11 +151,12 @@ table.search_option a.btn_search:hover {
     color: #1FA393;
 }
 
-.list_view.order_history a:hover {
+.list_view a:hover {
     font-weight: bold;
 }
+/* 리스트 테이블 끝 ====================== */
 
-
+/* 디테일 테이블 */
 .detail_table tr {
     min-height: 1em;
 }
@@ -163,6 +170,39 @@ table.search_option a.btn_search:hover {
     background-color: #e8eef6;
     padding: 0.3em 0.4em;
     width: 6em;
+}
+
+/* 등록 및 수정 폼 */
+.detail_table th {
+    font-weight: normal;
+    width: 8em;
+}
+.detail_table td.text_container {
+    width: auto;
+    padding: 0;
+}
+.detail_table td.text_container textarea {
+    width: 100%;
+    resize: none;
+    padding: 2em 1em;
+    outline-color: #666666;
+}
+
+.detail_table td.button-container {
+    padding-top: 1em;
+    text-align: right;
+}
+/* 등록 및 수정 - 이미지 */
+.preview_container {
+    width: 200px;
+    display: grid;
+    grid-template-rows: 2fr auto;
+    text-align: center;
+}
+
+#tab7 tr td input {
+    margin-top: 1em;
+    margin-bottom: 2em;
 }
 
 .customer_info td input {
@@ -207,13 +247,71 @@ table.search_option a.btn_search:hover {
     padding: 0;
 }
 
+/* 상품 상세 정보 - 등록 및 수정 테이블 */
+#tab1 .detail_table tr {
+    padding: 0.2em 0.3em;
+}
+
+#tab1 .detail_table tr:nth-child(even) {
+    border-top: 1px dotted #666666;
+    border-bottom: 1px dotted #666666;
+}
+
+#tab1 .detail_table tr:last-child {
+    border-bottom: 1px solid #666666;
+}
+
+#tab1 .detail_table th {
+    width: 8em;
+    text-align: left;
+    background-color: #ffffff;
+    font-weight: normal;
+}
+
+#tab1 .detail_table td input {
+    margin: 0.1em 0;
+}
+
 /* 버튼 */
-.list_view input[value='배송 수정'] {
+.list_view input[value='배송 수정'],
+.detail_table input[value='수정반영'],
+.detail_table input[value='이미지 파일 추가하기'] {
     padding: 0.1em 0.3em;
     background-color: #f6f5f5;
     border: 1px solid #666666;
     border-radius: 2px;
+    cursor: pointer;
 }
+
+.list_view input[value='배송 수정']:hover,
+.detail_table input[value='수정반영']:hover,
+.detail_table input[value='이미지 파일 추가하기']:hover {
+    background-color: #ffffff;
+}
+
+#tab7 input[value='수정'] {
+    padding: 0.1em 0.3em;
+    margin-right: 0.3em;
+    border-radius: 2px;
+    border: 1px solid #1e5da2;
+    background-color: #1e5da2;
+    color: #ffffff;
+}
+
+#tab7 input[value='삭제'] {
+    padding: 0.1em 0.3em;
+    margin-right: 0.3em;
+    border-radius: 2px;
+    border: 1px solid #494949;
+    background-color: #494949;
+    color: #ffffff;
+}
+
+#tab7 input[value='수정']:hover,
+#tab7 input[value='삭제']:hover {
+    opacity: 90%;
+}
+
 
 input[value='목록으로'] {
     padding: 0.3em 1em;
