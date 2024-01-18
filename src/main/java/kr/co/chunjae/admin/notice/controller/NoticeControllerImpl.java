@@ -80,7 +80,7 @@ public class NoticeControllerImpl {
 
 //        model.addAttribute("noticeDetail", updateNotice);
 
-        return "redirect:/admin/notice/noticeList.do";
+        return "redirect:/admin/notice/noticeDetail.do?brd_id="+ brdId;
     }
 
 
