@@ -129,6 +129,18 @@
 					</td>
 				</tr>
 				<tr>
+					<td >제품 카테고리</td>
+					<td>
+						<select name="goodsCateMain">
+							<option value=1 selected>백엔드</option>
+							<option value=2 >프론트엔드</option>
+							<option value=3 >모바일 앱 개발</option>
+							<option value=4 >알고리즘•자료구조</option>
+							<option value=5 >데이터베이스</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
 				 <td>
 				   <br>
 				 </td>
