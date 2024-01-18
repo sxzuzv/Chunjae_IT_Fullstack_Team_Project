@@ -350,9 +350,7 @@ function fn_modify_goods(goods_Id, attribute){
 				<table>	
 				<tr>
 					<td >상품 목차</td>
-					<td><textarea  rows="100" cols="80" name="goodsContentsOrder">
-					  ${goods.goodsContentsOrder }
-					</textarea>
+					<td><textarea rows="100" cols="80" name="goodsContentsOrder">${goods.goodsContentsOrder }</textarea>
 					</td>
 					<td>
 					&nbsp;&nbsp;&nbsp;&nbsp;
