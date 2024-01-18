@@ -262,8 +262,8 @@
           <option value="018">018</option>
           <option value="019">019</option>
         </form:select>
-          - <form:input path="memberHp2" size="10px" type="text" />
-          - <form:input path="memberHp3" size="10px" type="text" /><br> <br>
+          - <form:input path="memberHp2" size="10px" type="text" maxlength="4"/>
+          - <form:input path="memberHp3" size="10px" type="text" maxlength="4"/><br> <br>
         </div>
         <div>
           <div><form:errors path="memberHp1" cssStyle="font-size: 13px; color: red"/></div>
@@ -310,7 +310,7 @@
         <th class="fixed_join">주소</th>
         <td class="address_info">
           <div class="zipcode">
-            <form:input path="zipcode" type="text" id="zipcode" size="10"/>
+            <form:input path="zipcode" type="text" id="zipcode" size="10" maxlength="5"/>
             <button class="search_zipcode"><a href="javascript:execDaumPostcode()">우편번호검색</a></button><form:errors path="zipcode" cssStyle="font-size: 13px;color: red"/>
           </div>
           <p>
