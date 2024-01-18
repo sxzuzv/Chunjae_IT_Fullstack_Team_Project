@@ -51,6 +51,15 @@
       }
 
       function add_cart(goods_id) {
+
+        var _isLogOn = document.getElementById("isLogOn");
+        var isLogOn = _isLogOn.value;
+
+        if (isLogOn == "false" || isLogOn == '') {
+          alert("로그인 후 주문이 가능합니다!!!");
+          window.location.href="${contextPath}/member/loginForm.do";
+        }
+
           let cartGoodsQty = changefn();
           $.ajax({
               type: "post",
@@ -72,7 +81,6 @@
 
               },
               error: function (data, textStatus) {
-                  alert("에러가 발생했습니다." + data);
               },
               complete: function (data, textStatus) {
                   //alert("작업을완료 했습니다");

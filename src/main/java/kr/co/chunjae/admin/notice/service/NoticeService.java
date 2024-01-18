@@ -6,20 +6,11 @@ import kr.co.chunjae.page.pageVO;
 import java.util.List;
 
 public interface NoticeService {
-
-    public int noticeSave(NoticeVO noticeVO);
-
-    public List<NoticeVO> listNoticeBoard(int brdId);
-
-    public NoticeVO findById (int brdId);
-
-    public void delete(int brdId);
-
-    public void update(NoticeVO noticeVO);
-
-    public List<NoticeVO> findAll();
-
+    public void noticeWrite(NoticeVO noticeVO);
+    public void updateViewCnt(Long brdId);
+    public NoticeVO noticeDetail(Long brdId);
     public List<NoticeVO> paging(int page);
-
     public pageVO pagingParam(int page);
+    public void updateNotice(NoticeVO noticeVO);
+    public void deleteNotice(Long brdId);
 }
