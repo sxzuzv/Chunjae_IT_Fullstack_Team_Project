@@ -1,6 +1,7 @@
 package kr.co.chunjae.mypage.controller;
 
 import java.io.PrintWriter;
+import java.lang.reflect.Member;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -8,6 +9,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -19,6 +21,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -36,6 +40,7 @@ import kr.co.chunjae.order.vo.OrderVO;
 public class MyPageControllerImpl extends BaseController  implements MyPageController{
 
 	private final MyPageService myPageService;
+
 
 	@Override
 	@RequestMapping(value="/myPageMain.do" ,method = RequestMethod.GET)
@@ -115,15 +120,16 @@ public class MyPageControllerImpl extends BaseController  implements MyPageContr
 	
 	@Override
 	@RequestMapping(value="/myDetailInfo.do" ,method = RequestMethod.GET)
-	public String myDetailInfo(HttpServletRequest request, HttpServletResponse response)  throws Exception {
+	public String myDetailInfo(@ModelAttribute MemberVO memberVO, HttpServletRequest request, HttpServletResponse response)  throws Exception {
 		String viewName=(String)request.getAttribute("viewName");
 		return viewName;
 	}	
 	
 	@Override
 	@RequestMapping(value="/modifyMyInfo.do" ,method = RequestMethod.POST)
+
 	public String modifyMyInfo(//@RequestParam("attribute")  String attribute,@RequestParam("value")  String value,
-									   @ModelAttribute("memberVO") MemberVO memberVO, HttpServletRequest request, HttpServletResponse response)  throws Exception {
+							   @Valid @ModelAttribute MemberVO memberVO, BindingResult result, HttpServletRequest request, HttpServletResponse response)  throws Exception {
 //		Map<String,String> memberMap=new HashMap<String,String>();
 //		String val[]=null;
 		HttpSession session=request.getSession();
@@ -160,16 +166,28 @@ public class MyPageControllerImpl extends BaseController  implements MyPageContr
 
 		//수정된 회원 정보를 다시 세션에 저장한다.
 //		memberVO=(MemberVO)myPageService.modifyMyInfo(memberMap);
+
+
+		if(result.hasErrors()){
+			result.addError(new FieldError("memberVO", "globalError", "제대로된 값을 입력해 주세요"));
+			return "/mypage/myDetailInfo";
+		}
+
+
 		if(memberVO != null) {
-			memberVO = myPageService.modifyMyInfo(memberVO);
+			MemberVO updateVO = myPageService.modifyMyInfo(memberVO);
 			session.removeAttribute("memberInfo");
-			session.setAttribute("memberInfo", memberVO);
+			session.setAttribute("memberInfo", updateVO);
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>alert('회원정보 수정완료.');</script>");
 			out.flush();
 			return "/mypage/myDetailInfo";
 		}else{
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('회원정보 수정실패.');</script>");
+			out.flush();
 			return "redirect:/mypage/myDetailInfo.do";
 		}
 

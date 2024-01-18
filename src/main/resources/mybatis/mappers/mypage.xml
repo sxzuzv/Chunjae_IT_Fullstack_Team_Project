@@ -117,7 +117,7 @@
 <!--			      <if test=" namujiAddress!='' and namujiAddress!=null">-->
 <!--			         namuji_address=#{namujiAddress}-->
 <!--			      </if>-->
-				   member_pw=#{memberPw},member_gender=#{memberGender},member_birth_y=#{memberBirthY},member_birth_m=#{memberBirthM},member_birth_d=#{memberBirthD},member_birth_d=#{memberBirthD},member_birth_gn=#{memberBirthGn},
+				  member_gender=#{memberGender},member_birth_y=#{memberBirthY},member_birth_m=#{memberBirthM},member_birth_d=#{memberBirthD},member_birth_d=#{memberBirthD},member_birth_gn=#{memberBirthGn},
 				   member_hp1=#{memberHp1},member_hp2=#{memberHp2}, member_hp3=#{memberHp3},smssts_yn=#{smsstsYn}, member_email1=#{memberEmail1},member_email2=#{memberEmail2}, emailsts_yn=#{emailstsYn},
 				   zipcode=#{zipcode},road_address=#{roadAddress},jibun_address=#{jibunAddress}, namuji_address=#{namujiAddress}
 		where
