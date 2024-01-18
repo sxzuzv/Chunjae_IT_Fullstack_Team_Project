@@ -10,16 +10,16 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("/notice")
 public class userNoticeControllerImpl {
     private final userNoticeService noticeService;
 
     // 게시글 번호를 클릭할 시, 상세 내용을 출력한다.
     // 조회수 계산 기능을 적용하며, '목록보기' 시 직전에 보고 있던 페이지 번호로 돌아간다.
-    @GetMapping("/noticeDetail.do")
+    @GetMapping("/notice/noticeDetail.do")
     public String noticeDetail(@RequestParam("brd_id") Long brdId, @RequestParam(value = "page", required = false, defaultValue = "1") int page, HttpServletRequest request, Model model) {
         String viewName=(String)request.getAttribute("viewName");
 
@@ -40,7 +40,7 @@ public class userNoticeControllerImpl {
     // 페이징 : 전체 게시글 리스트 보기 시, 페이징을 적용한다.
     // 초기 리스트 출력 시, 1 페이지를 보여준다.
     // paging() : /admin/notice/paging?page='페이지 번호'에 대한 요청을 처리한다.
-    @GetMapping("/noticeList.do")
+    @GetMapping("/notice/noticeList.do")
     public String pagingNoticeList(@RequestParam(value = "page", required = false, defaultValue = "1") int page, HttpServletRequest request, Model model) {
         String viewName=(String)request.getAttribute("viewName");
 
@@ -58,5 +58,4 @@ public class userNoticeControllerImpl {
         
         return viewName;
     }
-
 }

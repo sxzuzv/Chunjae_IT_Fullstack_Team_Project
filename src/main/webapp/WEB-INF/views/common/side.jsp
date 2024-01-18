@@ -36,7 +36,7 @@
 			<li><a href="${contextPath}/mypage/myDetailInfo.do">회원정보관리</a></li>
 <%--			<li><a href="#">나의 주소록</a></li>--%>
 <%--			<li><a href="#">개인정보 동의내역</a></li>--%>
-			<li><a href="#">회원탈퇴</a></li>
+<%--			<li><a href="#">회원탈퇴</a></li>--%>
 		</ul>
 	</li>
 </c:when>
@@ -69,15 +69,6 @@
 <div class="clear"></div>
 <div id="banner">
 	<a href="#"><img width="190" height="163" src="${contextPath}/resources/image/n-pay.jpg"> </a>
-</div>
-<DIV id="notice">
-	<H2>공지사항</H2>
-	<UL>
-	
-	<c:forEach  var="i" begin="1" end="5" step="1">
-		<li><a href="#">공지사항입니다.${ i}</a></li>
-	</c:forEach>
-	</ul>
 </div>
 
 

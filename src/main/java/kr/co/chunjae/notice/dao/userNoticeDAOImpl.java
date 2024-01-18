@@ -33,5 +33,4 @@ public class userNoticeDAOImpl implements userNoticeDAO {
     public int noticeCount() {
         return sqlSession.selectOne("mapper.notice.noticeCount");
     }
-
 }

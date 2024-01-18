@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import kr.co.chunjae.notice.dao.userNoticeDAO;
+import kr.co.chunjae.notice.service.userNoticeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
@@ -27,6 +29,7 @@ import kr.co.chunjae.goods.vo.GoodsVO;
 public class MainController extends BaseController {
 
 	private final GoodsService goodsService;
+	private final userNoticeService userNoticeService;
 
 	@RequestMapping({"/",""})
 	public String firstPage(){
