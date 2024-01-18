@@ -399,7 +399,7 @@
                                                                                                         size="10"
                                                                                                         value="${memberInfo.memberEmail2 }"
                                                                                                         id="domaintxt"/>
-          <select id="domainlist" title="직접입력">
+          <select id="domainlist" title="선택하세요">
             <option value="type">직접입력</option>
             <option value="hanmail.net">hanmail.net</option>
             <option value="naver.com">naver.com</option>
@@ -432,8 +432,10 @@
         <th class="fixed_join">주소</th>
         <td class="address_info">
           <div class="zipcode">
-            <input type="text" id="zipcode" name="zipcode" size=5 value="${memberInfo.zipcode }">
+            <form:input type="text" id="zipcode" path="zipcode" size="5" value="${memberInfo.zipcode }"/>
             <button class="search_zipcode"><a href="javascript:execDaumPostcode()">우편번호검색</a></button>
+            <div><form:errors path="zipcode" cssClass="text-danger" cssStyle="font-size: 13px"/></div>
+
           </div>
           <p>
             <label for="roadAddress">도로명 주소</label>
