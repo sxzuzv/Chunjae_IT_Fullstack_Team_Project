@@ -2,6 +2,7 @@
          pageEncoding="utf-8"
          isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html >
 <html>
@@ -9,7 +10,6 @@
   <meta charset="utf-8">
   <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
   <script>
-
 
       function execDaumPostcode() {
           new daum.Postcode({
@@ -65,15 +65,15 @@
   <script>
       function fn_overlapped() {
           var _id = $("#member_id").val();
-          var pattern = /^[A-Za-z]{1}[A-Za-z0-9]{3,19}$/;//아이디 중복확인시 정규표현식 정의
+          var pattern = /^[A-Za-z]{1}[A-Za-z0-9]{4,19}$/;//아이디 중복확인시 정규표현식 정의
           if (_id == '') {
               alert("ID를 입력하세요");
               return;
           }
-          // else if(!pattern.test(_id)){//정규표현식이랑 비교
-          // 	alert("4~20자리 영(대,소), 숫자를 입력하세요 첫글자는 숫자 사용불가능합니다.")
-          // 	return;
-          // }
+          else if(!pattern.test(_id)){//정규표현식이랑 비교
+          	alert(" 아이디는 4~16자리. 영어와 숫자로 입력해주세요. 첫글자는 대문자 불가능합니다")
+          	return;
+          }
           $.ajax({
               type: "post",
               async: false,
@@ -86,12 +86,15 @@
                       // $('#btnOverlapped').prop("disabled", true); 아이디가 사용가능할시 잠가버리는기능
                       // $('#_member_id').prop("disabled", true); 아이디가 사용가능할시 잠가버리는기능
                       $('#member_id').val(_id);
+                      idcheck = true;
                   } else {
                       alert("사용할 수 없는 ID입니다.");
+                      idcheck=false;
                   }
               },
               error: function (data, textStatus) {
                   alert("에러가 발생했습니다.");
+                  idcheck=false;
               },
               complete: function (data, textStatus) {
                   //alert("작업을완료 했습니다");
@@ -128,40 +131,47 @@
       }
 
       function setEmailValue(event) {//이메일 체크박스 함수
-          const checked = !event.target.checked; // true or false
-          const tag = document.getElementById("emailstsYn");
-          if (checked) {
-              event.target.checked = false;
-              tag.value = 'N';
-          } else {
-              event.target.checked = true;
-              tag.value = 'Y';
-          }
+        const checked = !event.target.checked; // true or false
+        const tag = document.getElementById("emailstsYn");
+        if (checked) {
+          event.target.checked = false;
+          tag.value = 'N';
+        } else {
+          event.target.checked = true;
+          tag.value = 'Y';
+        }
       }
-  
+
+
   
   </script>
 </head>
 <body>
 <h3>필수입력사항</h3>
-<form action="${contextPath}/member/addMember.do" method="post" class="frmMember">
+<form:form modelAttribute="memberVO" action="${contextPath}/member/addMember.do" method="post"
+           class="frmMember">
   <div id="detail_table">
     <table>
       <tbody>
       <tr class="dot_line">
         <th class="fixed_join">아이디</th>
         <td>
-          <input type="text" name="memberId" id="member_id" size="20"/>
+          <form:input path="memberId" type="text" id="member_id" size="20"/>
           <input type="button" id="btnOverlapped" value="중복체크" onClick="fn_overlapped()"/>
+          <form:errors path="memberId" cssStyle="font-size: 13px; color: red" />
         </td>
       </tr>
       <tr class="dot_line">
         <th class="fixed_join">비밀번호</th>
-        <td><input name="memberPw" type="password" size="20"/></td>
+        <td><form:input path="memberPw" type="password" size="20"/>
+        <form:errors path="memberPw" cssStyle="font-size: 13px; color: red" />
+        </td>
       </tr>
       <tr class="dot_line">
         <th class="fixed_join">이름</th>
-        <td><input name="memberName" type="text" size="20"/></td>
+        <td><form:input path="memberName" type="text" size="20"/>
+          <form:errors path="memberName" cssStyle="font-size: 13px; color: red" />
+        </td>
       </tr>
       <tr class="dot_line">
         <th class="fixed_join">성별</th>
@@ -217,25 +227,39 @@
       </tr>
       <tr class="dot_line">
         <th class="fixed_join">휴대폰번호</th>
-        <td><select name="memberHp1">
-          <option>없음</option>
+        <td>
+        <div style="display: flex">
+        <div>
+        <form:select path="memberHp1">
+<%--          <option>없음</option>--%>
           <option selected value="010">010</option>
           <option value="011">011</option>
           <option value="016">016</option>
           <option value="017">017</option>
           <option value="018">018</option>
           <option value="019">019</option>
-        </select> - <input size="10px" type="text" name="memberHp2"> - <input size="10px" type="text"
-                                                                              name="memberHp3"><br> <br>
+        </form:select>
+          - <form:input path="memberHp2" size="10px" type="text" />
+          - <form:input path="memberHp3" size="10px" type="text" /><br> <br>
+        </div>
+        <div>
+          <div><form:errors path="memberHp1" cssStyle="font-size: 13px; color: red"/></div>
+          <div><form:errors path="memberHp2" cssStyle="font-size: 13px; color: red"/></div>
+          <div><form:errors path="memberHp3" cssStyle="font-size: 13px; color: red"/></div>
+        </div>
+        </div>
           <input type="checkbox" onchange="setSmsValue(event)" checked/>
           <input type="hidden" id="smsstsYn" name="smsstsYn" value="Y"/>쇼핑몰에서 발송하는 SMS 소식을 수신합니다.
         </td>
       </tr>
       <tr class="dot_line">
         <th class="fixed_join">이메일<br>(e-mail)</th>
-        <td><input size="10px" type="text" name="memberEmail1"/> @ <input size="10px" type="text" name="memberEmail2"
+        <td>
+          <div style="display: flex">
+          <div>
+          <form:input path="memberEmail1" size="10px" type="text"/> @ <form:input path="memberEmail2" size="10px" type="text"
                                                                           id="domaintxt"/>
-          <select id="domainlist" title="직접입력">
+          <select id="domainlist" title="선택하세요">
             <option value="type">직접입력</option>
             <option value="hanmail.net">hanmail.net</option>
             <option value="naver.com">naver.com</option>
@@ -248,7 +272,13 @@
             <option value="empal.com">empal.com</option>
             <option value="korea.com">korea.com</option>
             <option value="freechal.com">freechal.com</option>
-          </select><br><br>
+          </select><br>
+          </div>
+          <div>
+            <div><form:errors path="memberEmail1" cssClass="text-danger" cssStyle="font-size: 13px; color:red"/></div>
+            <div><form:errors path="memberEmail2" cssClass="text-danger" cssStyle="font-size: 13px; color:red"/></div>
+          </div>
+        </div>
           <input type="checkbox" onchange="setEmailValue(event)" checked/>
           <input type="hidden" id="emailstsYn" name="emailstsYn" value="Y"/>쇼핑몰에서 발송하는 e-mail을 수신합니다.
         </td>
@@ -257,20 +287,23 @@
         <th class="fixed_join">주소</th>
         <td class="address_info">
           <div class="zipcode">
-            <input type="text" id="zipcode" name="zipcode" size="10">
-            <button class="search_zipcode" onclick="javascript:execDaumPostcode()">우편번호검색</button>
+            <form:input path="zipcode" type="text" id="zipcode" size="10"/>
+            <button class="search_zipcode"><a href="javascript:execDaumPostcode()">우편번호검색</a></button><form:errors path="zipcode" cssStyle="font-size: 13px;color: red"/>
           </div>
           <p>
             <label for="roadAddress">도로명 주소</label>
-            <input type="text" id="roadAddress" name="roadAddress" size="50">
+            <form:input path="roadAddress" type="text" id="roadAddress" maxlength="50"/>
+          <div><form:errors path="roadAddress" cssStyle="font-size: 13px; color:red"/></div>
           </p>
           <p>
             <label for="jibunAddress">지번 주소</label>
-            <input type="text" id="jibunAddress" name="jibunAddress" size="50">
+            <form:input path="jibunAddress" type="text" id="jibunAddress"  maxlength="50"/>
+          <div><form:errors path="jibunAddress" cssStyle="font-size: 13px; color:red"/></div>
           </p>
           <p>
             <label for="namujiAddress">나머지 주소</label>
-            <input type="text" id="namujiAddress" name="namujiAddress" size="50">
+            <form:input path="namujiAddress" type="text" id="namujiAddress"  maxlength="50"/>
+          <div><form:errors path="namujiAddress" cssStyle="font-size: 13px; color:red"/></div>
           </p>
         </td>
       </tr>
@@ -284,6 +317,6 @@
       <input type="button" value="취소" onclick="location.href='/main/main.do'"/>
     </section>
   </div>
-</form>
+</form:form>
 </body>
 </html>
