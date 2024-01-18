@@ -83,6 +83,16 @@
         order by goods_entered_date desc
 		]]>
 	</select>
-	
+
+	<select id="selectGoodsByCateMain" resultType="goodsVO"   parameterType="String"  >
+     <![CDATA[
+		select g.*, d.file_name from t_shopping_goods g, t_goods_detail_image d
+		where g.goods_id=d.goods_id
+		  and d.file_type='main_image'
+		  and g.goods_cate_main=#{goodsCateMain}
+		order by g.goods_entered_date desc
+		]]>
+	</select>
+
 
 </mapper>

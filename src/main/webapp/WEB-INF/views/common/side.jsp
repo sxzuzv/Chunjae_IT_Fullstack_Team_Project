@@ -44,11 +44,11 @@
 	<li>
 		<h3>국내외 도서</h3>
 		<ul>
-			<li><a href="${contextPath}/goods/goodsList.do">백엔드</a></li>
-			<li><a href="#">프론트엔드</a></li>
-			<li><a href="#">모바일 앱 개발</a></li>
-			<li><a href="#">알고리즘•자료구조</a></li>
-			<li><a href="#">데이터베이스</a></li>
+			<li><a href="${contextPath}/goods/cateGoods.do?cateMain=1">백엔드</a></li>
+			<li><a href="${contextPath}/goods/cateGoods.do?cateMain=2">프론트엔드</a></li>
+			<li><a href="${contextPath}/goods/cateGoods.do?cateMain=3">모바일 앱 개발</a></li>
+			<li><a href="${contextPath}/goods/cateGoods.do?cateMain=4">알고리즘•자료구조</a></li>
+			<li><a href="${contextPath}/goods/cateGoods.do?cateMain=5">데이터베이스</a></li>
 		</ul>
 	</li>
 <%--	<li>--%>
