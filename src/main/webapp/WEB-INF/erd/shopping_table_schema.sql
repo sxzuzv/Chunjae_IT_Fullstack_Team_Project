@@ -5,7 +5,7 @@ CREATE TABLE t_shopping_member
 (
     `member_id`       varchar(20) PRIMARY KEY comment '회원아이디',
     `member_pw`       varchar(100) NOT NULL comment '비밀번호',
-    `member_name`     varchar(50) NOT NULL comment '이름',
+    `member_name`     varchar(50)  NOT NULL comment '이름',
     `member_gender`   varchar(10) comment '성별',
     `member_hp1`      varchar(20) comment '휴대폰번호1',
     `member_hp2`      varchar(20) comment '휴대폰번호2',
@@ -77,8 +77,9 @@ CREATE TABLE t_shopping_goods
     goods_writer_intro      varchar(2000) comment '저자소개',
     goods_publisher_comment varchar(2000) comment '출판사평',
     goods_recommendation    varchar(2000) comment '상품추천사',
-    goods_contents_order    longtext comment '목차',
-    goods_entered_date      date          NOT NULL DEFAULT current_date comment '상품입고일'
+    goods_contents_order    varchar(2000) comment '목차',
+    goods_entered_date      date          NOT NULL DEFAULT current_date comment '상품입고일',
+    goods_cate_main         int           null comment '도서 중분류'
 );
 -- 상품 이미지 정보 테이블
 CREATE TABLE t_goods_detail_image
@@ -154,31 +155,36 @@ insert into t_shopping_member(member_id, member_pw, member_name, member_gender, 
                               smssts_yn, member_email1, member_email2, emailsts_yn, zipcode, road_address,
                               jibun_address, namuji_address, member_birth_y, member_birth_m, member_birth_d,
                               member_birth_gn)
-values ('lee', '$2a$10$cK/aCrSp5wgcM9hVOV1O9O4/2wfCbucd02vZrJhDlnpYB.biF9GKy', '이병승', '101', '010', '2222', '3333', 'Y', 'lee', 'test.com', 'Y', '13547',
+values ('lee', '$2a$10$cK/aCrSp5wgcM9hVOV1O9O4/2wfCbucd02vZrJhDlnpYB.biF9GKy', '이병승', '101', '010', '2222', '3333', 'Y',
+        'lee', 'test.com', 'Y', '13547',
         '경기 성남시 분당구 고기로 25(동원동)', '경기 성남시 분당구 동원동 79-1', '럭키빌딩 101호', '2000', '5', '10', '2');
 insert into t_shopping_member(member_id, member_pw, member_name, member_gender, member_hp1, member_hp2, member_hp3,
                               smssts_yn, member_email1, member_email2, emailsts_yn, zipcode, road_address,
                               jibun_address, namuji_address, member_birth_y, member_birth_m, member_birth_d,
                               member_birth_gn)
-values ('admin', '$2a$10$cK/aCrSp5wgcM9hVOV1O9O4/2wfCbucd02vZrJhDlnpYB.biF9GKy', '어드민', '101', '010', '1111', '2222', 'Y', 'admin', 'test.com', 'Y', '06253',
+values ('admin', '$2a$10$cK/aCrSp5wgcM9hVOV1O9O4/2wfCbucd02vZrJhDlnpYB.biF9GKy', '어드민', '101', '010', '1111', '2222',
+        'Y', 'admin', 'test.com', 'Y', '06253',
         '서울 강남구 강남대로 298(역삼동)', '서울 강남구 역삼동 838', '럭키빌딩 101호', '2000', '5', '10', '2');
 
 
-insert INTO member_auth values ('admin', 'ROLE_ADMIN');
-insert INTO member_auth values ('admin', 'ROLE_MEMBER');
-insert INTO member_auth values ('lee', 'ROLE_MEMBER');
+insert INTO member_auth
+values ('admin', 'ROLE_ADMIN');
+insert INTO member_auth
+values ('admin', 'ROLE_MEMBER');
+insert INTO member_auth
+values ('lee', 'ROLE_MEMBER');
 
 -- 상품 정보
 INSERT INTO bookshop.t_shopping_goods
 (goods_id, goods_title, goods_writer, goods_publisher, goods_price, goods_sales_price, goods_published_date,
  goods_total_page, goods_isbn, goods_delivery_price, goods_delivery_date, goods_file_name, goods_status, goods_intro,
- goods_writer_intro, goods_publisher_comment, goods_recommendation, goods_contents_order)
+ goods_writer_intro, goods_publisher_comment, goods_recommendation, goods_contents_order, goods_cate_main)
 VALUES (334, '포토샵 무작정 따라하기', '민지영, 문수민, 이상호, 앤미디어', '길벗', 34000, 30000, '2018-10-02', 1111, '12122222', 2000,
         '2018-10-17', '포토샵 무작정 따라하기_메인.jpg', 'bestseller',
         '구글코리아에서 소프트웨어 엔지니어로 재직 중이다. 더 좋은 소프트웨어 엔지니어가 되기를 갈망하지만 일과 삶의 균형이 더 중요하다. 겨울에는 주로 스키를 즐긴다.',
         '구글코리아에서 소프트웨어 엔지니어로 재직 중이다. 더 좋은 소프트웨어 엔지니어가 되기를 갈망하지만 일과 삶의 균형이 더 중요하다. 겨울에는 주로 스키를 즐긴다.',
         '구글코리아에서 소프트웨어 엔지니어로 재직 중이다. 더 좋은 소프트웨어 엔지니어가 되기를 갈망하지만 일과 삶의 균형이 더 중요하다. 겨울에는 주로 스키를 즐긴다.',
-        '구글코리아에서 소프트웨어 엔지니어로 재직 중이다. 더 좋은 소프트웨어 엔지니어가 되기를 갈망하지만 일과 삶의 균형이 더 중요하다. 겨울에는 주로 스키를 즐긴다.', NULL);
+        '구글코리아에서 소프트웨어 엔지니어로 재직 중이다. 더 좋은 소프트웨어 엔지니어가 되기를 갈망하지만 일과 삶의 균형이 더 중요하다. 겨울에는 주로 스키를 즐긴다.', NULL, 2);
 
 INSERT INTO bookshop.t_goods_detail_image
     (image_id, goods_id, file_name, reg_id, file_type)
@@ -190,9 +196,9 @@ VALUES (300, 334, '포토샵 무작정 따라하기_상세1.jpg', 'admin', 'detail_image1');
 INSERT INTO bookshop.t_shopping_goods
 (goods_id, goods_title, goods_writer, goods_publisher, goods_price, goods_sales_price, goods_published_date,
  goods_total_page, goods_isbn, goods_delivery_price, goods_delivery_date, goods_file_name, goods_status, goods_intro,
- goods_writer_intro, goods_publisher_comment, goods_recommendation, goods_contents_order)
+ goods_writer_intro, goods_publisher_comment, goods_recommendation, goods_contents_order, goods_cate_main)
 VALUES (335, '무작정 따라하기 차트분석', '윤재수', '미래 출판사', 1212, 30000, '2018-10-02', 12, '1212', 2000, '2018-10-24',
-        '차트분석 무작정 따라하기_메인.jpg', 'bestseller', '1212', '1212', '1212', '1212', NULL);
+        '차트분석 무작정 따라하기_메인.jpg', 'bestseller', '1212', '1212', '1212', '1212', NULL, 5);
 
 INSERT INTO bookshop.t_goods_detail_image
     (image_id, goods_id, file_name, reg_id, file_type)
@@ -204,22 +210,9 @@ VALUES (302, 335, '차트분석 무작정 따라하기_상세1.jpg', 'admin', 'detail_image1'
 INSERT INTO bookshop.t_shopping_goods
 (goods_id, goods_title, goods_writer, goods_publisher, goods_price, goods_sales_price, goods_published_date,
  goods_total_page, goods_isbn, goods_delivery_price, goods_delivery_date, goods_file_name, goods_status, goods_intro,
- goods_writer_intro, goods_publisher_comment, goods_recommendation, goods_contents_order)
-VALUES (336, '짠테크 가계부', '짠돌이 카페', '길벗', 30000, 30000, '2018-10-02', 1212, '1212', 1212, '2018-10-18', '짠테그 가계부_메인.jpg',
-        'bestseller', '1212', '1212', '121', '1212', NULL);
-INSERT INTO bookshop.t_goods_detail_image
-    (image_id, goods_id, file_name, reg_id, file_type)
-VALUES (303, 336, '짠테그 가계부_메인.jpg', 'admin', 'main_image');
-INSERT INTO bookshop.t_goods_detail_image
-    (image_id, goods_id, file_name, reg_id, file_type)
-VALUES (304, 336, '짠테그 가계부_상세1.jpg', 'admin', 'detail_image1');
-
-INSERT INTO bookshop.t_shopping_goods
-(goods_id, goods_title, goods_writer, goods_publisher, goods_price, goods_sales_price, goods_published_date,
- goods_total_page, goods_isbn, goods_delivery_price, goods_delivery_date, goods_file_name, goods_status, goods_intro,
- goods_writer_intro, goods_publisher_comment, goods_recommendation, goods_contents_order)
+ goods_writer_intro, goods_publisher_comment, goods_recommendation, goods_contents_order, goods_cate_main)
 VALUES (337, '케라스로 배우는 딥러닝', '프랑소와 숄레', '국민출판사', 30000, 30000, '2018-10-02', 1212, '1212', 1212, '2018-10-19',
-        '케라시_메인.jpg', 'bestseller', '1212', '1221', '1212', '1212', NULL);
+        '케라시_메인.jpg', 'bestseller', '1212', '1221', '1212', '1212', NULL, 4);
 
 INSERT INTO bookshop.t_goods_detail_image
     (image_id, goods_id, file_name, reg_id, file_type)
@@ -231,9 +224,9 @@ VALUES (306, 337, '케라시_상세1.jpg', 'admin', 'detail_image1');
 INSERT INTO bookshop.t_shopping_goods
 (goods_id, goods_title, goods_writer, goods_publisher, goods_price, goods_sales_price, goods_published_date,
  goods_total_page, goods_isbn, goods_delivery_price, goods_delivery_date, goods_file_name, goods_status, goods_intro,
- goods_writer_intro, goods_publisher_comment, goods_recommendation, goods_contents_order)
+ goods_writer_intro, goods_publisher_comment, goods_recommendation, goods_contents_order, goods_cate_main)
 VALUES (338, '컴퓨터 활용능력 2급 실기', '이병승', '길벗', 25000, 25000, '2018-08-08', 1212, '1212', 1212, '2018-10-26',
-        '컴퓨터 활용능력 2급 실기_메인.jpg', 'bestseller', '1212', '1212', '1212', '1212', NULL);
+        '컴퓨터 활용능력 2급 실기_메인.jpg', 'bestseller', '1212', '1212', '1212', '1212', NULL, NULL);
 
 INSERT INTO bookshop.t_goods_detail_image
     (image_id, goods_id, file_name, reg_id, file_type)
@@ -245,9 +238,9 @@ VALUES (308, 338, '컴퓨터 활용능력 2급 실기_상세1.jpg', 'admin', 'detail_image1'
 INSERT INTO bookshop.t_shopping_goods
 (goods_id, goods_title, goods_writer, goods_publisher, goods_price, goods_sales_price, goods_published_date,
  goods_total_page, goods_isbn, goods_delivery_price, goods_delivery_date, goods_file_name, goods_status, goods_intro,
- goods_writer_intro, goods_publisher_comment, goods_recommendation, goods_contents_order)
+ goods_writer_intro, goods_publisher_comment, goods_recommendation, goods_contents_order, goods_cate_main)
 VALUES (339, '시나공 워드 프로세서 실기', '길벗 알엔디', '국민 출판사', 25000, 25000, '2018-10-29', 1212, '1212', 1212, '2018-10-25',
-        '시나공 워드프로세서 실기_메인.jpg', 'bestseller', '1212', '1212', '1212', '121', NULL);
+        '시나공 워드프로세서 실기_메인.jpg', 'bestseller', '1212', '1212', '1212', '121', NULL, NULL);
 
 INSERT INTO bookshop.t_goods_detail_image
     (image_id, goods_id, file_name, reg_id, file_type)
@@ -259,9 +252,9 @@ VALUES (310, 339, '시나공 워드프로세서 실기_상세1.jpg', 'admin', 'detail_image1'
 INSERT INTO bookshop.t_shopping_goods
 (goods_id, goods_title, goods_writer, goods_publisher, goods_price, goods_sales_price, goods_published_date,
  goods_total_page, goods_isbn, goods_delivery_price, goods_delivery_date, goods_file_name, goods_status, goods_intro,
- goods_writer_intro, goods_publisher_comment, goods_recommendation, goods_contents_order)
+ goods_writer_intro, goods_publisher_comment, goods_recommendation, goods_contents_order, goods_cate_main)
 VALUES (340, '직장인을 위한 엑셀 실무', '홍길동', '서울출판사', 25000, 25000, '2018-10-17', 1212, '1212', 1212, '2018-10-25',
-        '엑셀실무_메인.pg.jpg', 'bestseller', '1212', '1212', '1212', '1212', NULL);
+        '엑셀실무_메인.pg.jpg', 'bestseller', '1212', '1212', '1212', '1212', NULL, 5);
 
 INSERT INTO bookshop.t_goods_detail_image
     (image_id, goods_id, file_name, reg_id, file_type)
@@ -273,9 +266,9 @@ VALUES (312, 340, '엑셀실무_상세1.jpg', 'admin', 'detail_image1');
 INSERT INTO bookshop.t_shopping_goods
 (goods_id, goods_title, goods_writer, goods_publisher, goods_price, goods_sales_price, goods_published_date,
  goods_total_page, goods_isbn, goods_delivery_price, goods_delivery_date, goods_file_name, goods_status, goods_intro,
- goods_writer_intro, goods_publisher_comment, goods_recommendation, goods_contents_order)
+ goods_writer_intro, goods_publisher_comment, goods_recommendation, goods_contents_order, goods_cate_main)
 VALUES (341, '자바스크립트 배우기', '2222', '서울 출판사', 25000, 25000, '2018-10-18', 2222, '2222', 2222, '2018-10-18',
-        '헬로자바스크립트_메인.jpg', 'bestseller', '5656', '56566', '5656', '5656', NULL);
+        '헬로자바스크립트_메인.jpg', 'bestseller', '5656', '56566', '5656', '5656', NULL, 2);
 
 INSERT INTO bookshop.t_goods_detail_image
     (image_id, goods_id, file_name, reg_id, file_type)
@@ -287,43 +280,9 @@ VALUES (314, 341, '모두의 파이선상세이미지1.jpg', 'admin', 'detail_image1');
 INSERT INTO bookshop.t_shopping_goods
 (goods_id, goods_title, goods_writer, goods_publisher, goods_price, goods_sales_price, goods_published_date,
  goods_total_page, goods_isbn, goods_delivery_price, goods_delivery_date, goods_file_name, goods_status, goods_intro,
- goods_writer_intro, goods_publisher_comment, goods_recommendation, goods_contents_order)
-VALUES (342, '부동산 상식 사전', '백영록', '길벗', 20000, 20000, '2018-10-04', 555, '555', 555, '2018-10-11', '부동상 상식사전_메인.jpg',
-        'bestseller', '555', '555', '555', '555', NULL);
-
-INSERT INTO bookshop.t_goods_detail_image
-    (image_id, goods_id, file_name, reg_id, file_type)
-VALUES (315, 342, '부동상 상식사전_메인.jpg', 'admin', 'main_image');
-INSERT INTO bookshop.t_goods_detail_image
-    (image_id, goods_id, file_name, reg_id, file_type)
-VALUES (316, 342, '부동상 상식사전_상세1.jpg', 'admin', 'detail_image1');
-
-INSERT INTO bookshop.t_shopping_goods
-(goods_id, goods_title, goods_writer, goods_publisher, goods_price, goods_sales_price, goods_published_date,
- goods_total_page, goods_isbn, goods_delivery_price, goods_delivery_date, goods_file_name, goods_status, goods_intro,
- goods_writer_intro, goods_publisher_comment, goods_recommendation, goods_contents_order)
-VALUES (343, '기적의 계산법', '이순신', '국민 출판사', 30000, 30000, '2018-10-04', 990, '777', 2000, '2018-11-22', '기적적 계산법_메인.jpg',
-        'steadyseller', '777', '7777', '777', '777', NULL);
-
-INSERT INTO bookshop.t_goods_detail_image
-    (image_id, goods_id, file_name, reg_id, file_type)
-VALUES (317, 343, '기적적 계산법_메인.jpg', 'admin', 'main_image');
-INSERT INTO bookshop.t_goods_detail_image
-    (image_id, goods_id, file_name, reg_id, file_type)
-VALUES (337, 343, '기적적 계산법_상세1.jpg', 'admin', 'uploadFile');
-INSERT INTO bookshop.t_goods_detail_image
-    (image_id, goods_id, file_name, reg_id, file_type)
-VALUES (338, 343, 'good1_detail_image2.jpg', 'admin', 'uploadFile');
-INSERT INTO bookshop.t_goods_detail_image
-    (image_id, goods_id, file_name, reg_id, file_type)
-VALUES (339, 343, 'good1_detail_image3.jpg', 'admin', 'uploadFile');
-
-INSERT INTO bookshop.t_shopping_goods
-(goods_id, goods_title, goods_writer, goods_publisher, goods_price, goods_sales_price, goods_published_date,
- goods_total_page, goods_isbn, goods_delivery_price, goods_delivery_date, goods_file_name, goods_status, goods_intro,
- goods_writer_intro, goods_publisher_comment, goods_recommendation, goods_contents_order)
+ goods_writer_intro, goods_publisher_comment, goods_recommendation, goods_contents_order, goods_cate_main)
 VALUES (344, '초보자를 위한 자바 프로그래밍', '이병승', '인포북', 30000, 27000, '2018-10-02', 996, '2323454566778', 2000, '2018-10-18',
-        'image1.jpg', 'newbook', '7777', '77777', '7777', '7777', NULL);
+        'image1.jpg', 'newbook', '7777', '77777', '7777', '7777', NULL, 1);
 
 INSERT INTO bookshop.t_goods_detail_image
     (image_id, goods_id, file_name, reg_id, file_type)
@@ -335,42 +294,14 @@ VALUES (320, 344, 'react_detail1.jpg', 'admin', 'detail_image1');
 INSERT INTO bookshop.t_shopping_goods
 (goods_id, goods_title, goods_writer, goods_publisher, goods_price, goods_sales_price, goods_published_date,
  goods_total_page, goods_isbn, goods_delivery_price, goods_delivery_date, goods_file_name, goods_status, goods_intro,
- goods_writer_intro, goods_publisher_comment, goods_recommendation, goods_contents_order)
-VALUES (345, '리액트를 다루는 기술', '이순신', '민국 출판사', 30000, 30000, '2018-10-12', 888, '8888', 888, '2018-10-18',
-        'main_react.jpg', 'newbook', '88', '888888', '888', '888', NULL);
-
-INSERT INTO bookshop.t_goods_detail_image
-    (image_id, goods_id, file_name, reg_id, file_type)
-VALUES (321, 345, 'main_react.jpg', 'admin', 'main_image');
-INSERT INTO bookshop.t_goods_detail_image
-    (image_id, goods_id, file_name, reg_id, file_type)
-VALUES (322, 345, 'detail3.jpg', 'admin', 'detail_image1');
-
-INSERT INTO bookshop.t_shopping_goods
-(goods_id, goods_title, goods_writer, goods_publisher, goods_price, goods_sales_price, goods_published_date,
- goods_total_page, goods_isbn, goods_delivery_price, goods_delivery_date, goods_file_name, goods_status, goods_intro,
- goods_writer_intro, goods_publisher_comment, goods_recommendation, goods_contents_order)
-VALUES (346, '여행 일본어', '이길동', '국민 출판사', 30000, 30000, '2018-10-23', 8989, '8989', 8989, '2018-10-18', '여행 일본어_메인.jpg',
-        'on_sale', '8989', '8989', '8989', '8989', NULL);
-
-INSERT INTO bookshop.t_goods_detail_image
-    (image_id, goods_id, file_name, reg_id, file_type)
-VALUES (323, 346, '여행 일본어_메인.jpg', 'admin', 'main_image');
-INSERT INTO bookshop.t_goods_detail_image
-    (image_id, goods_id, file_name, reg_id, file_type)
-VALUES (324, 346, '여행 일본어_상세.jpg', 'admin', 'detail_image1');
-
-INSERT INTO bookshop.t_shopping_goods
-(goods_id, goods_title, goods_writer, goods_publisher, goods_price, goods_sales_price, goods_published_date,
- goods_total_page, goods_isbn, goods_delivery_price, goods_delivery_date, goods_file_name, goods_status, goods_intro,
- goods_writer_intro, goods_publisher_comment, goods_recommendation, goods_contents_order)
+ goods_writer_intro, goods_publisher_comment, goods_recommendation, goods_contents_order, goods_cate_main)
 VALUES (347, '가장 빨리 만나는 자바9', '카이 호스트만', '길벗', 30000, 32400, '2018-10-17', 1111, '1212121', 2000, '2018-10-22',
         '가장 빨리 만나는 자바_메인.jpg', 'steadyseller', '첫 번째 단계는 프로그래밍 기초 과정이다.
 : 객체 지향 프로그래밍을 잘하기 위해서는 우선 기존 프로그래밍 언어의 발전과 프로그래밍의 특징을 잘 알아야 한다. 그리고 자바 또한 기존 언어에서 사용하는 개념이나 기능을 그대로 사용하기 때문에 가장 먼저 프로그래밍의 기본적인 특징이나 기능을 학습할 필요가 있다.',
         NULL, '첫 번째 단계는 프로그래밍 기초 과정이다.
 : 객체 지향 프로그래밍을 잘하기 위해서는 우선 기존 프로그래밍 언어의 발전과 프로그래밍의 특징을 잘 알아야 한다. 그리고 자바 또한 기존 언어에서 사용하는 개념이나 기능을 그대로 사용하기 때문에 가장 먼저 프로그래밍의 기본적인 특징이나 기능을 학습할 필요가 있다.', '첫 번째 단계는 프로그래밍 기초 과정이다.
 : 객체 지향 프로그래밍을 잘하기 위해서는 우선 기존 프로그래밍 언어의 발전과 프로그래밍의 특징을 잘 알아야 한다. 그리고 자바 또한 기존 언어에서 사용하는 개념이나 기능을 그대로 사용하기 때문에 가장 먼저 프로그래밍의 기본적인 특징이나 기능을 학습할 필요가 있다.',
-        NULL);
+        NULL, 1);
 
 INSERT INTO bookshop.t_goods_detail_image
     (image_id, goods_id, file_name, reg_id, file_type)
@@ -382,14 +313,14 @@ VALUES (326, 347, '가장 빨리 만나는 자바_상세1.jpg', 'admin', 'detail_image1');
 INSERT INTO bookshop.t_shopping_goods
 (goods_id, goods_title, goods_writer, goods_publisher, goods_price, goods_sales_price, goods_published_date,
  goods_total_page, goods_isbn, goods_delivery_price, goods_delivery_date, goods_file_name, goods_status, goods_intro,
- goods_writer_intro, goods_publisher_comment, goods_recommendation, goods_contents_order)
+ goods_writer_intro, goods_publisher_comment, goods_recommendation, goods_contents_order, goods_cate_main)
 VALUES (348, '자바 EE 디자인 패턴', '무라트예네르, 알렉스 시돔', '길벗', 34000, 30000, '2018-10-18', 1212, '12122222', 2000, '2018-10-24',
         'Java EE 디자이 패턴_메인.jpg', 'on_sale', '첫 번째 단계는 프로그래밍 기초 과정이다.
 : 객체 지향 프로그래밍을 잘하기 위해서는 우선 기존 프로그래밍 언어의 발전과 프로그래밍의 특징을 잘 알아야 한다. 그리고 자바 또한 기존 언어에서 사용하는 개념이나 기능을 그대로 사용하기 때문에 가장 먼저 프로그래밍의 기본적인 특징이나 기능을 학습할 필요가 있다.', '첫 번째 단계는 프로그래밍 기초 과정이다.
 : 객체 지향 프로그래밍을 잘하기 위해서는 우선 기존 프로그래밍 언어의 발전과 프로그래밍의 특징을 잘 알아야 한다. 그리고 자바 또한 기존 언어에서 사용하는 개념이나 기능을 그대로 사용하기 때문에 가장 먼저 프로그래밍의 기본적인 특징이나 기능을 학습할 필요가 있다.', '첫 번째 단계는 프로그래밍 기초 과정이다.
 : 객체 지향 프로그래밍을 잘하기 위해서는 우선 기존 프로그래밍 언어의 발전과 프로그래밍의 특징을 잘 알아야 한다. 그리고 자바 또한 기존 언어에서 사용하는 개념이나 기능을 그대로 사용하기 때문에 가장 먼저 프로그래밍의 기본적인 특징이나 기능을 학습할 필요가 있다.', '첫 번째 단계는 프로그래밍 기초 과정이다.
 : 객체 지향 프로그래밍을 잘하기 위해서는 우선 기존 프로그래밍 언어의 발전과 프로그래밍의 특징을 잘 알아야 한다. 그리고 자바 또한 기존 언어에서 사용하는 개념이나 기능을 그대로 사용하기 때문에 가장 먼저 프로그래밍의 기본적인 특징이나 기능을 학습할 필요가 있다.',
-        NULL);
+        NULL, 1);
 
 INSERT INTO bookshop.t_goods_detail_image
     (image_id, goods_id, file_name, reg_id, file_type)
@@ -398,14 +329,14 @@ VALUES (328, 348, 'Java EE 디자이 패턴_상세1.jpg', 'admin', 'detail_image1');
 INSERT INTO bookshop.t_shopping_goods
 (goods_id, goods_title, goods_writer, goods_publisher, goods_price, goods_sales_price, goods_published_date,
  goods_total_page, goods_isbn, goods_delivery_price, goods_delivery_date, goods_file_name, goods_status, goods_intro,
- goods_writer_intro, goods_publisher_comment, goods_recommendation, goods_contents_order)
+ goods_writer_intro, goods_publisher_comment, goods_recommendation, goods_contents_order, goods_cate_main)
 VALUES (349, '자바로 배우는 리팩토링', '유키히로시', '길벗', 34000, 30000, '2018-10-02', 1111, '12122222', 2000, '2018-10-25',
         '자바 리팩토링_메인.jpg', 'on_sale',
         '저자가 오랜 기간 실무에서 습득한 이론 및 평소에 관심이 있던 분야와 학원 강의 중 입문자들이 첫 프로그래밍을 배웠을 때의 낮선 부분과 수업을 진행하면서 어려웠던 여러 가지의 시행착오를 바탕으로 자바를 처음 배우는 입문자가 쉽게 자신의 아이디어를 발휘하여 개발할 수 있게 구성하여 집필했다.',
         '저자가 오랜 기간 실무에서 습득한 이론 및 평소에 관심이 있던 분야와 학원 강의 중 입문자들이 첫 프로그래밍을 배웠을 때의 낮선 부분과 수업을 진행하면서 어려웠던 여러 가지의 시행착오를 바탕으로 자바를 처음 배우는 입문자가 쉽게 자신의 아이디어를 발휘하여 개발할 수 있게 구성하여 집필했다.',
         '저자가 오랜 기간 실무에서 습득한 이론 및 평소에 관심이 있던 분야와 학원 강의 중 입문자들이 첫 프로그래밍을 배웠을 때의 낮선 부분과 수업을 진행하면서 어려웠던 여러 가지의 시행착오를 바탕으로 자바를 처음 배우는 입문자가 쉽게 자신의 아이디어를 발휘하여 개발할 수 있게 구성하여 집필했다.',
         '저자가 오랜 기간 실무에서 습득한 이론 및 평소에 관심이 있던 분야와 학원 강의 중 입문자들이 첫 프로그래밍을 배웠을 때의 낮선 부분과 수업을 진행하면서 어려웠던 여러 가지의 시행착오를 바탕으로 자바를 처음 배우는 입문자가 쉽게 자신의 아이디어를 발휘하여 개발할 수 있게 구성하여 집필했다.',
-        NULL);
+        NULL, 1);
 
 INSERT INTO bookshop.t_goods_detail_image
     (image_id, goods_id, file_name, reg_id, file_type)
@@ -417,7 +348,7 @@ VALUES (331, 349, '자바 리팩토링_상세1.jpg', 'admin', 'detail_image1');
 INSERT INTO bookshop.t_shopping_goods
 (goods_id, goods_title, goods_writer, goods_publisher, goods_price, goods_sales_price, goods_published_date,
  goods_total_page, goods_isbn, goods_delivery_price, goods_delivery_date, goods_file_name, goods_status, goods_intro,
- goods_writer_intro, goods_publisher_comment, goods_recommendation, goods_contents_order)
+ goods_writer_intro, goods_publisher_comment, goods_recommendation, goods_contents_order, goods_cate_main)
 VALUES (350, '유지 보수가 가능한 코딩의 기술-자바편', '주스트 뷔서', '한국 출판사', 35000, 32000, '2018-10-20', 1000, '2323222323', 2000,
         '2018-10-22', '유지보수자바_메인.jpg', 'steadyseller',
         '이 책을 읽고 나면 프로그래머는 새로운 객체를 찾아서 만들게 될 것이고, 그것을 프로그래밍화 하는 것이 진정한 객체 지향 프로그래밍이라는 사실을 깨닫게 될 것이다.', '저자가 오랜 기간 실무에서 습득한 이론 및 평소에 관심이 있던 분야와 학원 강의 중 입문자들이 첫 프로그래밍을 배웠을 때의 낮선 부분과 수업을 진행하면서 어려웠던 여러 가지의 시행착오를 바탕으로 자바를 처음 배우는 입문자가 쉽게 자신의 아이디어를 발휘하여 개발할 수 있게 구성하여 집필했다.
@@ -426,7 +357,7 @@ VALUES (350, '유지 보수가 가능한 코딩의 기술-자바편', '주스트 뷔서', '한국 출판�
 - 벤처 기업에서 다양한 소프트웨어 개발 참여
 - 대기업의 시스템 통합 작업에 관련된 소프트웨어 개발 참여
 - IT프로그래밍 학원에서 강의', '이 책을 읽고 나면 프로그래머는 새로운 객체를 찾아서 만들게 될 것이고, 그것을 프로그래밍화 하는 것이 진정한 객체 지향 프로그래밍이라는 사실을 깨닫게 될 것이다.',
-        '이 책을 읽고 나면 프로그래머는 새로운 객체를 찾아서 만들게 될 것이고, 그것을 프로그래밍화 하는 것이 진정한 객체 지향 프로그래밍이라는 사실을 깨닫게 될 것이다.', NULL);
+        '이 책을 읽고 나면 프로그래머는 새로운 객체를 찾아서 만들게 될 것이고, 그것을 프로그래밍화 하는 것이 진정한 객체 지향 프로그래밍이라는 사실을 깨닫게 될 것이다.', NULL, 1);
 
 INSERT INTO bookshop.t_goods_detail_image
     (image_id, goods_id, file_name, reg_id, file_type)
@@ -439,9 +370,9 @@ VALUES (341, 350, '유지보수자바_상세1.jpg', 'admin', 'uploadFile');
 INSERT INTO bookshop.t_shopping_goods
 (goods_id, goods_title, goods_writer, goods_publisher, goods_price, goods_sales_price, goods_published_date,
  goods_total_page, goods_isbn, goods_delivery_price, goods_delivery_date, goods_file_name, goods_status, goods_intro,
- goods_writer_intro, goods_publisher_comment, goods_recommendation, goods_contents_order)
+ goods_writer_intro, goods_publisher_comment, goods_recommendation, goods_contents_order, goods_cate_main)
 VALUES (354, '모두의 딥러닝', '이병승', '인포북', 27000, 21600, '2018-10-02', 996, '2323454566778', 2000, '2018-10-18',
-        '모두의 딥러닝_메인.jpg', 'newbook', '7777', '77777', '7777', '7777', NULL);
+        '모두의 딥러닝_메인.jpg', 'newbook', '7777', '77777', '7777', '7777', NULL, 4);
 
 INSERT INTO bookshop.t_goods_detail_image
     (image_id, goods_id, file_name, reg_id, file_type)
@@ -453,7 +384,7 @@ VALUES (343, 354, '모두의 딥러닝_상세.jpg', 'admin', 'detail_image1');
 INSERT INTO bookshop.t_shopping_goods
 (goods_id, goods_title, goods_writer, goods_publisher, goods_price, goods_sales_price, goods_published_date,
  goods_total_page, goods_isbn, goods_delivery_price, goods_delivery_date, goods_file_name, goods_status, goods_intro,
- goods_writer_intro, goods_publisher_comment, goods_recommendation, goods_contents_order)
+ goods_writer_intro, goods_publisher_comment, goods_recommendation, goods_contents_order, goods_cate_main)
 VALUES (356, '마인크래프트 무작정 따라하기', '신윤철,이상민', '길벗', 14000, 12000, '2018-10-02', 245, '12122222', 2000, '2018-10-10',
         '마인_메인.jpg', 'bestseller', '마인크래프트를 이용해 코딩을 배울 수 있다는 이야기를 들어 본 적 있나요?
 마이크로소프트(Microsoft)에서 만든 블록형 코딩 도구인 메이크코드(MakeCode)를 마인크래프트와 연결해 보세요. 메이크코드에서 만든 코드를 마인크래프트 월드에 적용할 수 있습니다. 또한, 장애물 파괴나 벽돌 쌓기 등 건축물을 지을 때 피할 수 없었던 반복 작업도, 메이크코드의 명령 블록을 이용하면 한번에 뚝딱 자동화할 수 있습니다.
@@ -464,7 +395,7 @@ VALUES (356, '마인크래프트 무작정 따라하기', '신윤철,이상민', '길벗', 14000, 120
 《마인크래프트 게임 제작 무작정 따라하기》는 아이들이 좋아하는 마인크래프트를 활용해 코딩을 쉽고 재미있게 익힐 수 있게 차근차근 도와주는 책입니다. 미래의 게임 프로그래머 또는 공학도를 꿈꾸는 아이라면 《마인크래프트 게임 제작 무작정 따라하기》와 함께 컴퓨팅 사고력, 창의성, 도전 정신을 키워 보세요!', '마인크래프트를 이용해 코딩을 배울 수 있다는 이야기를 들어 본 적 있나요?
 마이크로소프트(Microsoft)에서 만든 블록형 코딩 도구인 메이크코드(MakeCode)를 마인크래프트와 연결해 보세요. 메이크코드에서 만든 코드를 마인크래프트 월드에 적용할 수 있습니다. 또한, 장애물 파괴나 벽돌 쌓기 등 건축물을 지을 때 피할 수 없었던 반복 작업도, 메이크코드의 명령 블록을 이용하면 한번에 뚝딱 자동화할 수 있습니다.
 《마인크래프트 게임 제작 무작정 따라하기》는 아이들이 좋아하는 마인크래프트를 활용해 코딩을 쉽고 재미있게 익힐 수 있게 차근차근 도와주는 책입니다. 미래의 게임 프로그래머 또는 공학도를 꿈꾸는 아이라면 《마인크래프트 게임 제작 무작정 따라하기》와 함께 컴퓨팅 사고력, 창의성, 도전 정신을 키워 보세요!',
-        NULL);
+        NULL, 3);
 
 INSERT INTO bookshop.t_goods_detail_image
     (image_id, goods_id, file_name, reg_id, file_type)
@@ -473,54 +404,7 @@ VALUES (345, 356, '마인_메인.jpg', 'admin', 'main_image');
 INSERT INTO bookshop.t_shopping_goods
 (goods_id, goods_title, goods_writer, goods_publisher, goods_price, goods_sales_price, goods_published_date,
  goods_total_page, goods_isbn, goods_delivery_price, goods_delivery_date, goods_file_name, goods_status, goods_intro,
- goods_writer_intro, goods_publisher_comment, goods_recommendation, goods_contents_order)
-VALUES (394, '무작정 따라가기 홍콩 마카오', '김수정, 김승남', '인포북스', 30000, 27000, '2015-10-16', 1000, '121212', 2000, '2018-10-18',
-        '무작정 따라가기 홍콩 마카오.jpg', 'bestseller', '이 책을 읽고 나면 프로그래머는 새로운 객체를 찾아서 만들게 될 것이고, 그것을 프로그래밍화 하는 것이 진정한 객체 지향 프로그래밍이라는 사실을 깨닫게 될 것이다.
-
-객체 지향 프로그래밍이란 사람을 ‘주체(subject)’라 하고, 주체가 바라본 대상(사람, 사물, 객체)을 ‘객체(object)’라고 한다. 사람이 일상적으로 보고, 느끼고, 생각하는 관점에서 프로그래밍을 하는 방식이다.
-
-자바를 처음 접하는 사람은 다소 생소한 개념이 나오지만 반복해서 학습을 하다 보면 어느새 프로그래밍에 입문할 수 있다는 사실을 깨닫게 될 것이다. 각 장의 끝에는 연습문제를 두어 독학하기에 적합하다. 또한 저자의 카페(http://cafe.naver.com/standardjava)에서는 이 책의 내용이 담긴 동영상 강좌를 무료로 제공한다.', '저자가 오랜 기간 실무에서 습득한 이론 및 평소에 관심이 있던 분야와 학원 강의 중 입문자들이 첫 프로그래밍을 배웠을 때의 낮선 부분과 수업을 진행하면서 어려웠던 여러 가지의 시행착오를 바탕으로 자바를 처음 배우는 입문자가 쉽게 자신의 아이디어를 발휘하여 개발할 수 있게 구성하여 집필했다.
-
-- 전자공학과 졸업
-- 벤처 기업에서 다양한 소프트웨어 개발 참여
-- 대기업의 시스템 통합 작업에 관련된 소프트웨어 개발 참여
-- IT프로그래밍 학원에서 강의
-
-※저자카페 : http://cafe.naver.com/standardjava', '이 책의 삼 단계 학습 방법
-
-첫 번째 단계는 프로그래밍 기초 과정이다.
-: 객체 지향 프로그래밍을 잘하기 위해서는 우선 기존 프로그래밍 언어의 발전과 프로그래밍의 특징을 잘 알아야 한다. 그리고 자바 또한 기존 언어에서 사용하는 개념이나 기능을 그대로 사용하기 때문에 가장 먼저 프로그래밍의 기본적인 특징이나 기능을 학습할 필요가 있다.
-
-두 번째 단계는 자바의 객체 지향 개념에 대해 배운다.
-: C언어는 컴퓨터의 수행 과정을 흉내 낸 절차적 언어이다. 이러한 절차적 언어를 하는데 있어 여러 가지 단점들이 나타났다. 대표적으로는 소스 코드의 재사용이다. 지금의 응용 프로그램은 초기에 비해 규모도 커지고 개발 기간도 많이 소모된다. 자바는 기존 기능의 재사용성, 설계의 용이성, 관리의 편리성 등의 이유로 많이 찾고 있다. 이 단계의 핵심은 재사용성 및 프로그래밍 설계와 관련된 객체 지향 개념에 대해 학습한다.
-
-세 번째 단계는 API의 기능을 각 장별로 학습한다.
-: 자바는 약 20년이 넘었기 때문에 이전에 자바로 프로그래밍을 하면서 다른 프로그램에서 많이 사용하는 기능을 미리 자바에서 클래스로 만들어서 제공한다. 이를 API(Application Program Interface)라고 하며, 이 단계의 과정은 사실 다른 언어에서도 지원한다. 그러나 자바는 앞에서 말한 바와 같이 객체 지향 언어이므로 이 모든 API 기능이 객체 지향 개념을 적용하여 제공되고 있다. 따라서 자바의 API를 잘 사용하려면 앞의 객체 지향 개념을 잘 숙지해야 한다.', '이 책의 삼 단계 학습 방법
-
-첫 번째 단계는 프로그래밍 기초 과정이다.
-: 객체 지향 프로그래밍을 잘하기 위해서는 우선 기존 프로그래밍 언어의 발전과 프로그래밍의 특징을 잘 알아야 한다. 그리고 자바 또한 기존 언어에서 사용하는 개념이나 기능을 그대로 사용하기 때문에 가장 먼저 프로그래밍의 기본적인 특징이나 기능을 학습할 필요가 있다.
-
-두 번째 단계는 자바의 객체 지향 개념에 대해 배운다.
-: C언어는 컴퓨터의 수행 과정을 흉내 낸 절차적 언어이다. 이러한 절차적 언어를 하는데 있어 여러 가지 단점들이 나타났다. 대표적으로는 소스 코드의 재사용이다. 지금의 응용 프로그램은 초기에 비해 규모도 커지고 개발 기간도 많이 소모된다. 자바는 기존 기능의 재사용성, 설계의 용이성, 관리의 편리성 등의 이유로 많이 찾고 있다. 이 단계의 핵심은 재사용성 및 프로그래밍 설계와 관련된 객체 지향 개념에 대해 학습한다.
-
-세 번째 단계는 API의 기능을 각 장별로 학습한다.
-: 자바는 약 20년이 넘었기 때문에 이전에 자바로 프로그래밍을 하면서 다른 프로그램에서 많이 사용하는 기능을 미리 자바에서 클래스로 만들어서 제공한다. 이를 API(Application Program Interface)라고 하며, 이 단계의 과정은 사실 다른 언어에서도 지원한다. 그러나 자바는 앞에서 말한 바와 같이 객체 지향 언어이므로 이 모든 API 기능이 객체 지향 개념을 적용하여 제공되고 있다. 따라서 자바의 API를 잘 사용하려면 앞의 객체 지향 개념을 잘 숙지해야 한다.',
-        NULL);
-
-INSERT INTO bookshop.t_goods_detail_image
-    (image_id, goods_id, file_name, reg_id, file_type)
-VALUES (346, 394, '무작정 따라가기 홍콩 마카오.jpg', 'admin', 'main_image');
-INSERT INTO bookshop.t_goods_detail_image
-    (image_id, goods_id, file_name, reg_id, file_type)
-VALUES (347, 394, '무작정 따라가기 홍콩 마카오_상세.jpg', 'admin', 'detail_image1');
-INSERT INTO bookshop.t_goods_detail_image
-    (image_id, goods_id, file_name, reg_id, file_type)
-VALUES (348, 394, 'detail2.jpg', 'admin', 'detail_image2');
-
-INSERT INTO bookshop.t_shopping_goods
-(goods_id, goods_title, goods_writer, goods_publisher, goods_price, goods_sales_price, goods_published_date,
- goods_total_page, goods_isbn, goods_delivery_price, goods_delivery_date, goods_file_name, goods_status, goods_intro,
- goods_writer_intro, goods_publisher_comment, goods_recommendation, goods_contents_order)
+ goods_writer_intro, goods_publisher_comment, goods_recommendation, goods_contents_order, goods_cate_main)
 VALUES (395, '모두의 파이썬', '이승찬', '길벗', 12000, 10800, '2016-05-09', 200, '9791186978894', 2000, '2018-10-18', 'image2.jpg',
         'bestseller', '프로그래밍을 한 번도 해본 적이 없어도 괜찮다. 파이썬이 무엇인지 몰라도 상관 없다. 《모두의 파이썬》은 어려운 개념과 복잡한 이론 설명은 최대한 줄이고, 초보자가 프로그래밍을 쉽게 배울 수 있도록 짧고 간단한 예제로 내용을 구성했다. 처음부터 모든 것을 다 이해하지 못해도 괜찮다. 프로그램을 따라서 입력하고, 실행 결과를 확인하며, 책에서 알려주는 대로 에러를 수정해 보자. 어느새 파이썬 프로그램으로 멋진 그림을 그리고, 계산을 하고, 간단한 게임을 만들고, 수학 문제를 푸는 자신을 발견하게 될 것이다. 《모두의 파이썬》으로 남녀노소 누구나 즐겁게 프로그래밍을 시작해 보자!
 
@@ -571,7 +455,7 @@ VALUES (395, '모두의 파이썬', '이승찬', '길벗', 12000, 10800, '2016-05-09', 200,
 
 중학교 수준의 간단한 수학 문제를 파이썬 프로그램으로 만들어서 풀어 본다. 수학과 프로그래밍의 연관 관계를 배울 수 있으며 파이썬이 어떻게 활용되는지 알 수 있다.
 
- 만든 이 코멘트', NULL);
+ 만든 이 코멘트', NULL, 3);
 
 INSERT INTO bookshop.t_goods_detail_image
     (image_id, goods_id, file_name, reg_id, file_type)
@@ -584,7 +468,7 @@ VALUES (350, 395, '모두의 파이선상세이미지1.jpg', 'admin', 'detail_image1');
 INSERT INTO bookshop.t_shopping_goods
 (goods_id, goods_title, goods_writer, goods_publisher, goods_price, goods_sales_price, goods_published_date,
  goods_total_page, goods_isbn, goods_delivery_price, goods_delivery_date, goods_file_name, goods_status, goods_intro,
- goods_writer_intro, goods_publisher_comment, goods_recommendation, goods_contents_order)
+ goods_writer_intro, goods_publisher_comment, goods_recommendation, goods_contents_order, goods_cate_main)
 VALUES (397, '리액트를 다루는 기술', '김민준', '길벗', 32000, 32000, '2018-08-01', 688, '9791160505238', 2000, '2018-10-17',
         'main_react.jpg', 'bestseller', '리액트에 대한 기본 지식이 없는 상태에서도 쉽게 이해할 수 있도록 꼼꼼하게 설명되어 있습니다. 또한, 실제 실무에서 어떻게 사용되는지 상세히 알려줍니다.
 
@@ -610,7 +494,7 @@ VALUES (397, '리액트를 다루는 기술', '김민준', '길벗', 32000, 32000, '2018-08-01
 조용진_스타트업 모두의 캠퍼스 개발자
 
 문법적인 설명뿐만 아니라 사용하는 개념과 왜 그 개념이 도입될 수밖에 없는지를 이해하는 것이 중요하다고 생각합니다. 이 책은 그 점이 좋았습니다.
-신형진_연세대학교 대학원생', NULL);
+신형진_연세대학교 대학원생', NULL, 2);
 
 INSERT INTO bookshop.t_goods_detail_image
     (image_id, goods_id, file_name, reg_id, file_type)
@@ -622,7 +506,7 @@ VALUES (352, 397, 'react_detail1.jpg', 'admin', 'detail_image1');
 INSERT INTO bookshop.t_shopping_goods
 (goods_id, goods_title, goods_writer, goods_publisher, goods_price, goods_sales_price, goods_published_date,
  goods_total_page, goods_isbn, goods_delivery_price, goods_delivery_date, goods_file_name, goods_status, goods_intro,
- goods_writer_intro, goods_publisher_comment, goods_recommendation, goods_contents_order)
+ goods_writer_intro, goods_publisher_comment, goods_recommendation, goods_contents_order, goods_cate_main)
 VALUES (398, 'Try! helloworld 자바스크립트', '김용록', '길벗', 22000, 19800, '2018-05-22', 336, '9791160504736', 2000,
         '2018-10-17', '헬로자바스크립트_메인.jpg', 'bestseller',
         '자바스크립트는 문법이 간결하고 프로그램 설치가 간편하여 첫 프로그래밍 언어로 인기가 높다. 또한, 웹 프로그래밍부터 응용 프로그램 개발까지 활용 범위도 넓다. 이 책은 무료 학습 서비스(동영상+온라인 실습)를 제공하는 프로그래머스(programmers.co.kr) 사이트의 인기 강좌 ‘자바스크립트 기초’와 ‘웹 프런트엔드 기초’를 책으로 엮은 것이다. 책의 설명만으로도 학습하는 데 무리가 없지만, 저자 동영상 강의를 함께 보면 학습 효율이 더욱 높아질 것이다. 또한, 배운 내용을 바로 온라인 사이트에서 실습할 수 있다. 하루 한 강, 매일 15분이면 어느새 자바스크립트 프로그래밍에 익숙해진 자신을 발견하게 될 것이다.',
@@ -638,7 +522,7 @@ VALUES (398, 'Try! helloworld 자바스크립트', '김용록', '길벗', 22000, 19800, '20
 
 # 코딩 실습 22개 + 정답 수록
 배운 내용을 바로 확인하고 점검할 수 있는 실습 문제와 정답을 수록했다. 프로그래머스 사이트(http://programmers.co.kr)에서 직접 코드를 입력하고 실행해보면서 배운 내용을 훈련할 수 있다.',
-        NULL);
+        NULL, 2);
 
 INSERT INTO bookshop.t_goods_detail_image
     (image_id, goods_id, file_name, reg_id, file_type)
@@ -651,7 +535,7 @@ VALUES (354, 398, '헬로자바스크립트_상세1.jpg', 'admin', 'detail_image1');
 INSERT INTO bookshop.t_shopping_goods
 (goods_id, goods_title, goods_writer, goods_publisher, goods_price, goods_sales_price, goods_published_date,
  goods_total_page, goods_isbn, goods_delivery_price, goods_delivery_date, goods_file_name, goods_status, goods_intro,
- goods_writer_intro, goods_publisher_comment, goods_recommendation, goods_contents_order)
+ goods_writer_intro, goods_publisher_comment, goods_recommendation, goods_contents_order, goods_cate_main)
 VALUES (400, '진짜 쓰는 실무 엑셀', '오빠두(전진권)', '제이펍', 21000, 18900, '2022-02-15', 508, '9791191600704', 0, '2024-01-05',
         '실무엑셀_메인.jpg', 'bestseller', '대기업 직장 생활 10년의 실무 노하우와 엑셀 유튜브 채널을 운영하면서 들은 수많은 직장인의 고민을 해결할 수 있는 다양한 엑셀 비법을 담았다. ‘진짜 쓰는 실무 엑셀’ 한 권이면 빠른 일 처리로 워라밸을 실현하고, 일잘러로 거듭날 수 있다!
 오랜 시간 엑셀은 수많은 발전을 거듭하였고, Office 365에서 Microsoft 365로 브랜드명을 변경하기까지 다양한 기능, 특히 동적 배열 함수가 추가되면서 매크로를 사용하지 않고도 많은 부분을 해결할 수 있도록 개선되었다. 이 책에서 소개하는 제대로 된 실무 활용 기능을 익힌다면 방대한 데이터에서 특정 자료를 취합하고 분석하기, 분석된 자료를 한눈에 보기 좋게 시각화하기, 반복되는 작업을 효율적으로 개선하기 등 회사에서 원하는 엑셀 사용 능력을 충분히 뛰어넘을 수 있을 것이다.',
@@ -668,7 +552,7 @@ CHAPTER 05 데이터 정리부터 데이터 필터링까지
 CHAPTER 06 데이터 자동화 및 분석을 위한 표 & 피벗 테이블
 CHAPTER 07 엑셀 활용의 10%를 채워 줄 기본 & 필수 함수 익히기
 CHAPTER 08 실무에서 필요한 엑셀 데이터 시각화의 모든 것
-APPENDIX 한 걸음 더');
+APPENDIX 한 걸음 더', 5);
 
 INSERT INTO bookshop.t_goods_detail_image
     (image_id, goods_id, file_name, reg_id, file_type)
@@ -680,7 +564,7 @@ VALUES (11400, 400, '실무엑셀_상세1.jpg', 'admin', 'detail_image1');
 INSERT INTO bookshop.t_shopping_goods
 (goods_id, goods_title, goods_writer, goods_publisher, goods_price, goods_sales_price, goods_published_date,
  goods_total_page, goods_isbn, goods_delivery_price, goods_delivery_date, goods_file_name, goods_status, goods_intro,
- goods_writer_intro, goods_publisher_comment, goods_recommendation, goods_contents_order)
+ goods_writer_intro, goods_publisher_comment, goods_recommendation, goods_contents_order, goods_cate_main)
 VALUES (401, '개발자 오늘도 마음 튼튼하게 성장하기', '피오다르 서재나베츠 · 이미령 번역', '길벗', 27500, 24750, '2023-12-13', 380, '9791140707591', 0,
         '2024-01-05', '개발자마음성장_메인.jpg', 'newbook', '당신을 둘러싼 보이지 않는 전쟁이 벌어지고 있다
 그리고 이 전쟁은 당신의 경력을 파괴하고 있다
@@ -700,7 +584,7 @@ VALUES (401, '개발자 오늘도 마음 튼튼하게 성장하기', '피오다르 서재나베츠 · 이�
 7 수도자 정신은 성공적인 프로그래머가 되는 데 어떤 도움을 주는가
 8 마이크로태스크로 미루는 습관 극복하기
 9 지적확인 환호응답 - 존에 쉽게 들어가는 일본 기법
-10 뽀모도로와 타이머로 더 쉽게 일하기');
+10 뽀모도로와 타이머로 더 쉽게 일하기', NULL);
 
 INSERT INTO bookshop.t_goods_detail_image
     (image_id, goods_id, file_name, reg_id, file_type)
@@ -712,7 +596,7 @@ VALUES (11401, 401, '개발자마음성장_상세.jpg', 'admin', 'detail_image1');
 INSERT INTO bookshop.t_shopping_goods
 (goods_id, goods_title, goods_writer, goods_publisher, goods_price, goods_sales_price, goods_published_date,
  goods_total_page, goods_isbn, goods_delivery_price, goods_delivery_date, goods_file_name, goods_status, goods_intro,
- goods_writer_intro, goods_publisher_comment, goods_recommendation, goods_contents_order)
+ goods_writer_intro, goods_publisher_comment, goods_recommendation, goods_contents_order, goods_cate_main)
 VALUES (402, 'IT 세계의 괴물들(아무나 이해할 수 있는 IT 이야기)', '아무준수', '생능북스', 19800, 17820, '2024-01-10', 416, '9791192932361', 0,
         '2024-01-03', 'monsters_메인.jpg', 'newbook', '지금까지 이런 책은 없었다!
 첫 페이지를 넘기는 순간, 디지털 세상에 빠져드는 완벽한 몰입도를 선사할 것이다!
@@ -722,7 +606,7 @@ VALUES (402, 'IT 세계의 괴물들(아무나 이해할 수 있는 IT 이야기)', '아무준수', '�
 낯설지만 친숙한
 디지털 세상을 캐릭터로 이해하자!
 이 책은 글쓴이가 종종 취미로 IT 기술을 캐릭터화시켜 인스타그램에 올리던 개그 만화를 책으로 엮은 것입니다. 이 책을 통해 글쓴이가 말해주는 디지털 세상의 괴물들(?)은 무엇이 있는지 쉽게 이해할 수 있고, 우리가 모르고 지나쳐서 큰 사고로 유발(예 : 자동차 급발진)되는 것은 없었는지 등을 알 수 있습니다. 꼭 한 번은 편하게 읽으며 공감을 얻었으면 하는 바람입니다.',
-        NULL, NULL);
+        NULL, NULL, NULL);
 
 INSERT INTO bookshop.t_goods_detail_image
     (image_id, goods_id, file_name, reg_id, file_type)
@@ -734,7 +618,7 @@ VALUES (11402, 402, 'monsters_상세.jpg', 'admin', 'detail_image1');
 INSERT INTO bookshop.t_shopping_goods
 (goods_id, goods_title, goods_writer, goods_publisher, goods_price, goods_sales_price, goods_published_date,
  goods_total_page, goods_isbn, goods_delivery_price, goods_delivery_date, goods_file_name, goods_status, goods_intro,
- goods_writer_intro, goods_publisher_comment, goods_recommendation, goods_contents_order)
+ goods_writer_intro, goods_publisher_comment, goods_recommendation, goods_contents_order, goods_cate_main)
 VALUES (403, 'AWS 교과서', '김원일 , 서종호 , 김석필 ', '길벗', 38000, 34200, '2023-10-20', 480, '9791140706662', 0, '2024-01-03',
         'AWS 교과서_메인.jpg', 'bestseller', '이론과 실습으로 배우는 AWS!
 입문자에게 딱 맞는 구성으로 시작해보자!
@@ -791,7 +675,7 @@ AWS는 점유율 1위에 달하는 클라우드 서비스 플랫폼으로, 전 세계에 걸친 광범위한 클
 11장 워드프레스 이중화
 11.1 실습 소개
 11.2 실습 1 AWS 서비스를 활용한 워드프레스 구성하기
-11.3 실습 2 확장성과 안정성을 고려한 워드프레스 구성하기');
+11.3 실습 2 확장성과 안정성을 고려한 워드프레스 구성하기', 1);
 
 INSERT INTO bookshop.t_goods_detail_image
     (image_id, goods_id, file_name, reg_id, file_type)
@@ -803,7 +687,7 @@ VALUES (11403, 403, 'AWS 교과서_상세.jpg', 'admin', 'detail_image1');
 INSERT INTO bookshop.t_shopping_goods
 (goods_id, goods_title, goods_writer, goods_publisher, goods_price, goods_sales_price, goods_published_date,
  goods_total_page, goods_isbn, goods_delivery_price, goods_delivery_date, goods_file_name, goods_status, goods_intro,
- goods_writer_intro, goods_publisher_comment, goods_recommendation, goods_contents_order)
+ goods_writer_intro, goods_publisher_comment, goods_recommendation, goods_contents_order, goods_cate_main)
 VALUES (404, 'CODE', '찰스 펫졸드 저자(글) · 김현규 번역', '인사이트', 35000, 31500, '2023-12-22', 624, '9788966264285', 0, '2024-01-03',
         'CODE_메인.jpg', 'newbook', '23년 만에 돌아온 컴퓨터 공학 분야의 필독서!
 20년이 넘는 세월 동안 컴퓨터 공학 분야의 필독서로서 많은 독자를 열광하게 만든 《CODE》가 새로운 컴퓨팅 시대에 맞춰 개정되었습니다. 컴퓨터 내부의 비밀스러운 이야기들을 담은 이 책은 잘 짜인 일러스트와 이해하기 쉬운 설명을 통해서 컴퓨터에 대한 수수께끼를 풀어냅니다. 손전등, 검은 고양이, 시소, 폴 리비어의 질주를 통해서 컴퓨팅에 대해 배울 수 있으며, 인간의 독창성과 소통에 대한 충동이 우리가 지금 사용하는 모든 전자 장치에 어떤 영향을 끼쳤는지 확인할 수 있습니다.', '(Charles Petzold)
@@ -845,7 +729,7 @@ Chapter 24 루프, 분기, 그리고 호출
 Chapter 25 주변 장치들
 Chapter 26 운영체제
 Chapter 27 코딩
-Chapter 28 월드 브레인');
+Chapter 28 월드 브레인', 4);
 
 INSERT INTO bookshop.t_goods_detail_image
     (image_id, goods_id, file_name, reg_id, file_type)
@@ -854,7 +738,7 @@ VALUES (10404, 404, 'CODE_메인.jpg', 'admin', 'main_image');
 INSERT INTO bookshop.t_shopping_goods
 (goods_id, goods_title, goods_writer, goods_publisher, goods_price, goods_sales_price, goods_published_date,
  goods_total_page, goods_isbn, goods_delivery_price, goods_delivery_date, goods_file_name, goods_status, goods_intro,
- goods_writer_intro, goods_publisher_comment, goods_recommendation, goods_contents_order)
+ goods_writer_intro, goods_publisher_comment, goods_recommendation, goods_contents_order, goods_cate_main)
 VALUES (409, 'Clean Code(클린 코드)', '로버트 C. 마틴', '인사이트', 33000, 29700, '2013-12-14', 584, '9788966260959', 0,
         '2024-01-03', '클린코드_메인.jpg', 'steadyseller', '프로그래머, 소프트웨어 공학도, 프로젝트 관리자, 팀 리더, 시스템 분석가에게 도움이 될
 더 나은 코드를 만드는 책
@@ -865,7 +749,7 @@ VALUES (409, 'Clean Code(클린 코드)', '로버트 C. 마틴', '인사이트', 33000, 29700
 -. 좋은 이름, 좋은 함수, 좋은 객체, 좋은 클래스를 작성하는 방법
 -. 가독성이 높아지도록 코드 형식을 맞추는 방법
 -. 코드 논리를 흩뜨리지 않고서 오류 처리를 완벽하게 구현하는 방법
--. 단위 테스트와 테스트 주도 개발을 적용하는 방법', NULL, NULL);
+-. 단위 테스트와 테스트 주도 개발을 적용하는 방법', NULL, NULL, 1);
 
 INSERT INTO bookshop.t_goods_detail_image
     (image_id, goods_id, file_name, reg_id, file_type)
@@ -1127,6 +1011,38 @@ VALUES (64, '답변입니다.', 'admin');
 INSERT INTO board_comment(brd_id, com_content, member_id)
 VALUES (65, '답변입니다.', 'admin');
 
+-- 게시판 테이블 더미 데이터
+-- cate 1) '공지사항' (관리자 작성)
+INSERT INTO board(member_id, title, content, cate)
+VALUES ('관리자', '무료배송 가능 주문금액 변경 안내', '공지사항입니다.', 1);
+INSERT INTO board(member_id, title, content, cate)
+VALUES ('관리자', '신정 출고 일정 및 고객센터 휴무 안내', '공지사항입니다.', 1);
+INSERT INTO board(member_id, title, content, cate)
+VALUES ('관리자', '내부 점검으로 인한 출고 일정 안내', '공지사항입니다.', 1);
+INSERT INTO board(member_id, title, content, cate)
+VALUES ('관리자', '위탁 배달원 휴무로 인한 배송 지연 안내', '공지사항입니다.', 1);
+INSERT INTO board(member_id, title, content, cate)
+VALUES ('관리자', '개인정보처리방침 개정 사전 안내', '공지사항입니다.', 1);
+INSERT INTO board(member_id, title, content, cate)
+VALUES ('관리자', '판매 종료 도서 안내', '공지사항입니다.', 1);
+INSERT INTO board(member_id, title, content, cate)
+VALUES ('관리자', '품절 도서 재입고 안내', '공지사항입니다.', 1);
+INSERT INTO board(member_id, title, content, cate)
+VALUES ('관리자', '물류 내부 점검으로 인한 출고 지연 안내', '공지사항입니다.', 1);
+INSERT INTO board(member_id, title, content, cate)
+VALUES ('관리자', '신도서 입고 안내', '공지사항입니다.', 1);
+INSERT INTO board(member_id, title, content, cate)
+VALUES ('관리자', '도서 상태 불량에 대한 처리 안내', '공지사항입니다.', 1);
+INSERT INTO board(member_id, title, content, cate)
+VALUES ('관리자', '내부 점검으로 인한 출고 일정 안내', '공지사항입니다.', 1);
+INSERT INTO board(member_id, title, content, cate)
+VALUES ('관리자', '판매 종료 도서 안내', '공지사항입니다.', 1);
+INSERT INTO board(member_id, title, content, cate)
+VALUES ('관리자', '위탁 배달원 휴무로 인한 배송 지연 안내', '공지사항입니다.', 1);
+INSERT INTO board(member_id, title, content, cate)
+VALUES ('관리자', '무료배송 가능 주문금액 변경 안내', '공지사항입니다.', 1);
+INSERT INTO board(member_id, title, content, cate)
+VALUES ('관리자', '신년 이벤트 당첨자 발표', '2024 용의 해, 새해 복 많이 받으세요. 신년 이벤트 당첨자를 발표합니다. 아래의 휴대폰 번호를 확인해주세요.', 1);
 
 -- 주문테이블 연관관계 설정
 --

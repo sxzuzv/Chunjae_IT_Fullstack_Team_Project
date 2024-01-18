@@ -140,9 +140,18 @@
       }
   </script>
 </head>
-<hgroup>
-  <h1>추천 도서</h1>
-</hgroup>
+<c:choose>
+  <c:when test="${ empty goodsList  }">
+    <hgroup>
+      <h1>추천 도서</h1>
+    </hgroup>
+  </c:when>
+  <c:otherwise>
+    <hgroup>
+      <h1>${title}: 추천 도서</h1>
+    </hgroup>
+  </c:otherwise>
+</c:choose>
 <section id="new_book">
   <div class="carousel_container">
     <div class="carousel_content">
