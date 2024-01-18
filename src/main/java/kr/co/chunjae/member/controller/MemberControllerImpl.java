@@ -234,7 +234,7 @@ public class MemberControllerImpl extends BaseController implements MemberContro
             out.println("<script>alert('이메일로 인증번호를 전송했습니다.');</script>");
             out.flush();
 			return "/member/pwAuthForm";
-		} else {//일치하는 정보가 없을때
+		} else {//아이디, 이름, 이메일과 일치하는 정보가 없을때
             response.setContentType("text/html; charset=UTF-8");
             PrintWriter out = response.getWriter();
             out.println("<script>alert('일치하는 정보가 없습니다. 정보를 다시입력해 주세요.');</script>");

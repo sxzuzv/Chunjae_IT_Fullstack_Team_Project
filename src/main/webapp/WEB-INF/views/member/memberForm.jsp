@@ -9,6 +9,7 @@
 <head>
   <meta charset="utf-8">
   <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
   <script>
 
       function execDaumPostcode() {
@@ -63,17 +64,31 @@
       }
   </script>
   <script>
+    let idcheck=false;
+    function submitCheck() {
+      // idcheck가 true인지 확인
+      if (idcheck) {
+        // true일 경우 폼 제출
+        return true;
+      } else {
+        // false일 경우 알림 메시지 등을 표시하거나 다른 작업을 수행할 수 있습니다.
+        alert("아이디 중복 확인을 해주세요.");
+        return false;
+      }
+    }
       function fn_overlapped() {
-          var _id = $("#member_id").val();
-          var pattern = /^[A-Za-z]{1}[A-Za-z0-9]{4,19}$/;//아이디 중복확인시 정규표현식 정의
-          if (_id == '') {
-              alert("ID를 입력하세요");
-              return;
-          }
-          else if(!pattern.test(_id)){//정규표현식이랑 비교
-          	alert(" 아이디는 4~16자리. 영어와 숫자로 입력해주세요. 첫글자는 대문자 불가능합니다")
-          	return;
-          }
+        var _id = $("#member_id").val();
+        var pattern = /^[A-Za-z]{1}[A-Za-z0-9]{4,19}$/;
+
+        if (!pattern.test(_id)) {
+          // 아이디 패턴이 맞지 않을 때의 처리
+          $('.id_ok').css("display", "none");
+          $('.id_already').css("display", "none");
+          $('.id_valid').css("display", "inline-block");
+          return;
+        }else{
+          $('.id_valid').css("display", "none");
+        }
           $.ajax({
               type: "post",
               async: false,
@@ -82,13 +97,17 @@
               data: {id: _id},
               success: function (data, textStatus) {
                   if (data == 'false') {
-                      alert("사용할 수 있는 ID입니다.");
                       // $('#btnOverlapped').prop("disabled", true); 아이디가 사용가능할시 잠가버리는기능
                       // $('#_member_id').prop("disabled", true); 아이디가 사용가능할시 잠가버리는기능
+                      $('.id_ok').css("display","inline-block");
+                      $('.id_already').css("display", "none");
                       $('#member_id').val(_id);
-                      idcheck = true;
+                      idcheck=true;
+
                   } else {
-                      alert("사용할 수 없는 ID입니다.");
+                      $('.id_already').css("display","inline-block");
+                      $('.id_ok').css("display", "none");
+                      $('#id').val('');
                       idcheck=false;
                   }
               },
@@ -97,13 +116,14 @@
                   idcheck=false;
               },
               complete: function (data, textStatus) {
-                  //alert("작업을완료 했습니다");
+                 //alert("작업을완료 했습니다");
               }
           });  //end ajax
       }
 
 
       document.addEventListener('DOMContentLoaded', function () {//페이지로드후 실행
+        fn_overlapped();
           const domainListEl = document.querySelector('#domainlist');//도메인 리스트 정의
           const domainInputEl = document.querySelector('#domaintxt');//직접입력 도메인 정의
 
@@ -149,21 +169,24 @@
 <body>
 <h3>필수입력사항</h3>
 <form:form modelAttribute="memberVO" action="${contextPath}/member/addMember.do" method="post"
-           class="frmMember">
+           class="frmMember" onsubmit="return submitCheck()">
   <div id="detail_table">
     <table>
       <tbody>
       <tr class="dot_line">
         <th class="fixed_join">아이디</th>
         <td>
-          <form:input path="memberId" type="text" id="member_id" size="20"/>
-          <input type="button" id="btnOverlapped" value="중복체크" onClick="fn_overlapped()"/>
+          <form:input path="memberId" type="text" id="member_id" maxlength="16" oninput="fn_overlapped()"/>
+<%--          <input type="button" id="btnOverlapped" value="중복체크" oninput="fn_overlapped()"/>--%>
+          <span class="id_ok" style="display: none; color:#008000; font-size: 13px;">사용 가능한 아이디입니다.</span>
+          <span class="id_already" style="display: none; color:#6A82FB; font-size: 13px;">누군가 이 아이디를 사용하고 있어요.</span>
+          <span class="id_valid" style="display: none; color:black; font-size: 13px;">아이디는 5~16자리. 영어와 숫자로 입력해주세요.</span>
           <form:errors path="memberId" cssStyle="font-size: 13px; color: red" />
         </td>
       </tr>
       <tr class="dot_line">
         <th class="fixed_join">비밀번호</th>
-        <td><form:input path="memberPw" type="password" size="20"/>
+        <td><form:input path="memberPw" type="password" maxlength="16"/>
         <form:errors path="memberPw" cssStyle="font-size: 13px; color: red" />
         </td>
       </tr>
@@ -312,7 +335,7 @@
   </div>
   <div class="clear">
     <section id="center">
-      <input type="submit" value="회원 가입">
+      <input type="submit" value="회원 가입" >
       <input type="reset" value="다시입력">
       <input type="button" value="취소" onclick="location.href='/main/main.do'"/>
     </section>
