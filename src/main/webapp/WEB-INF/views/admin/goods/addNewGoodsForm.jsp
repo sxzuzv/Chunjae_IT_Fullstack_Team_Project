@@ -30,6 +30,10 @@
 		  cnt--;
 	  }
   }
+//goodsSalesPrice 항목 미제거로 인해 임시로 goodsPrice입력과 동일하게 설정
+  function fn_setGoodsSalesPrice(){
+	  document.querySelector("#goodsSalesPrice").value = document.querySelector("#goodsPrice").value;
+  }
 </script>    
 </head>
 
@@ -63,28 +67,26 @@
 	<%--			</tr>--%>
 				<tr >
 					<td >제품 이름</td>
-					<td><input name="goodsTitle" type="text" size="40" /></td>
+					<td><form:input path="goodsTitle" type="text" size="40" /></td>
+					<td><form:errors path="goodsTitle" cssStyle="color: red"/></td>
 				</tr>
 
 				<tr>
 					<td >저자</td>
-					<td><input name="goodsWriter" type="text" size="40" /></td>
+					<td><form:input path="goodsWriter" type="text" size="40" /></td>
+					<td><form:errors path="goodsWriter" cssStyle="color: red"/></td>
 				</tr>
 				<tr>
 					<td >출판사</td>
-					<td><input name="goodsPublisher" type="text" size="40" /></td>
+					<td><form:input path="goodsPublisher" type="text" size="40" /></td>
+					<td><form:errors path="goodsPublisher" cssStyle="color: red"/></td>
 				</tr>
-				<tr>
-					<td >제품 정가</td>
-					<td><input name="goodsPrice" type="text" size="40" /></td>
-				</tr>
-
 				<tr>
 					<td >제품 판매 가격</td>
-					<td><form:input path="goodsSalesPrice" type="number" size="40" /></td>
-					<td><form:errors path="goodsSalesPrice" cssClass="text-danger"/></td>
+					<td><form:input path="goodsPrice" type="number" size="40" onchange="fn_setGoodsSalesPrice()" id="goodsPrice"/></td>
+					<td><form:errors path="goodsPrice" cssStyle="color: red"/></td>
+					<form:input path="goodsSalesPrice" type="hidden" size="40" id="goodsSalesPrice" value="" />
 				</tr>
-
 
 	<%--			<tr>--%>
 	<%--				<td >제품 구매 포인트</td>--%>
@@ -93,26 +95,29 @@
 
 				<tr>
 					<td >제품 출판일</td>
-					<td><input  name="goodsPublishedDate"  type="date" size="40" /></td>
+					<td><form:input path="goodsPublishedDate"  type="date" size="40" /></td>
 				</tr>
 
 				<tr>
 					<td >제품 총 페이지 수</td>
-					<td><input name="goodsTotalPage" type="text" size="40" /></td>
+					<td><form:input path="goodsTotalPage" type="number" /></td>
+					<td><form:errors path="goodsTotalPage" cssStyle="color: red"/></td>
 				</tr>
 
 				<tr>
 					<td >ISBN</td>
 					<td><form:input path="goodsIsbn" type="text" size="40" /></td>
-					<td><form:errors path="goodsIsbn" cssClass="text-danger"/></td>
+					<td><form:errors path="goodsIsbn" cssStyle="color: red" /></td>
 				</tr>
 				<tr>
 					<td >제품 배송비</td>
-					<td><input name="goodsDeliveryPrice" type="text" size="40" /></td>
+					<td><form:input path="goodsDeliveryPrice" type="number" size="40" /></td>
+					<td><form:errors path="goodsDeliveryPrice" cssStyle="color: red" /></td>
+
 				</tr>
 				<tr>
 					<td >제품 도착 예정일</td>
-					<td><input name="goodsDeliveryDate"  type="date" size="40" /></td>
+					<td><form:input path="goodsDeliveryDate"  type="date" size="40" /></td>
 				</tr>
 
 				<tr>
@@ -152,7 +157,8 @@
 					<table>
 					 <tr>
 						<td >책 목차</td>
-						<td><textarea rows="100" cols="80" name="goodsContentsOrder"></textarea></td>
+						 <td><form:errors path="goodsContentsOrder" cssStyle="color: red"/></td>
+						 <td><form:textarea rows="100" cols="80" path="goodsContentsOrder" /></td>
 					</tr>
 					</table>
 				</div>
@@ -161,7 +167,8 @@
 					 <table>
 					 <tr>
 						<td>제품 저자 소개</td>
-						<td><textarea rows="100" cols="80" name="goodsWriterIntro"></textarea></td>
+						 <td><form:errors path="goodsWriterIntro" cssStyle="color: red"/></td>
+						 <td><form:textarea rows="100" cols="80" path="goodsWriterIntro" /></td>
 					</tr>
 				   </table>
 				</div>
@@ -170,7 +177,8 @@
 					<table>
 						<tr>
 							<td >제품 소개</td>
-							<td><textarea  rows="100" cols="80" name="goodsIntro"></textarea></td>
+							<td><form:errors path="goodsIntro" cssStyle="color: red"/></td>
+							<td><form:textarea rows="100" cols="80" path="goodsIntro" /></td>
 						</tr>
 					</table>
 				</div>
@@ -179,7 +187,8 @@
 					<table>
 					 <tr>
 						<td>출판사 제품 평가</td>
-						<td><textarea  rows="100" cols="80" name="goodsPublisherComment"></textarea></td>
+						 <td><form:errors path="goodsPublisherComment" cssStyle="color: red"/></td>
+						 <td><form:textarea rows="100" cols="80" path="goodsPublisherComment" /></td>
 					</tr>
 				</table>
 				</div>
@@ -188,7 +197,8 @@
 					 <table>
 						 <tr>
 						   <td>추천사</td>
-							<td><textarea  rows="100" cols="80" name="goodsRecommendation"></textarea></td>
+							 <td><form:errors path="goodsRecommendation" cssStyle="color: red"/></td>
+							 <td><form:textarea  rows="100" cols="80" path="goodsRecommendation" /></td>
 						</tr>
 					</table>
 				</div>
