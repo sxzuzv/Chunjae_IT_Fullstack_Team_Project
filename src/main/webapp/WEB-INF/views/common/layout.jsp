@@ -25,7 +25,7 @@
       // 슬라이드
       $(document).ready(function () {
           $('#ad_main_banner').bjqs({
-              'width': 775,
+              'width': 960,
               'height': 145,
               'showMarkers': true,
               'showControls': false,
