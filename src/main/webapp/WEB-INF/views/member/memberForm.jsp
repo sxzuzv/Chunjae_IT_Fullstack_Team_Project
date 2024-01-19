@@ -71,8 +71,8 @@
         // true일 경우 폼 제출
         return true;
       } else {
-        // false일 경우 알림 메시지 등을 표시하거나 다른 작업을 수행할 수 있습니다.
-        alert("아이디 중복 확인을 해주세요.");
+        // false일 경우 알림 메시지 표시
+        alert("아이디를 다시 확인 해주세요.");
         return false;
       }
     }
@@ -95,10 +95,8 @@
               url: "${contextPath}/member/overlapped.do",
               dataType: "text",
               data: {id: _id},
-              success: function (data, textStatus) {
+              success: function (data) {
                   if (data == 'false') {
-                      // $('#btnOverlapped').prop("disabled", true); 아이디가 사용가능할시 잠가버리는기능
-                      // $('#_member_id').prop("disabled", true); 아이디가 사용가능할시 잠가버리는기능
                       $('.id_ok').css("display","inline-block");
                       $('.id_already').css("display", "none");
                       $('#member_id').val(_id);
@@ -111,13 +109,11 @@
                       idcheck=false;
                   }
               },
-              error: function (data, textStatus) {
+              error: function (data) {
                   alert("에러가 발생했습니다.");
                   idcheck=false;
               },
-              complete: function (data, textStatus) {
-                 //alert("작업을완료 했습니다");
-              }
+
           });  //end ajax
       }
 
@@ -311,7 +307,7 @@
         <td class="address_info">
           <div class="zipcode">
             <form:input path="zipcode" type="text" id="zipcode" size="10" maxlength="5"/>
-            <button class="search_zipcode"><a href="javascript:execDaumPostcode()">우편번호검색</a></button><form:errors path="zipcode" cssStyle="font-size: 13px;color: red"/>
+            <button class="search_zipcode"><a href="javascript:execDaumPostcode()">우편번호검색</a></button><form:errors path="zipcode" cssStyle="font-size: 13px; color: red; margin-left: 5px"/>
           </div>
           <p>
             <label for="roadAddress">도로명 주소</label>

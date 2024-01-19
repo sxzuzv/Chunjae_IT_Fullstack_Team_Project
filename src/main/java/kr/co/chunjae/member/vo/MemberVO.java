@@ -18,12 +18,12 @@ import javax.validation.constraints.Pattern;
 @NoArgsConstructor
 @Component("memberVO")
 public class MemberVO {
-	@Pattern(regexp = "^[A-Za-z]{1}[A-Za-z0-9]{4,16}$" ,message = "아이디는 4~16자리. 영어와 숫자만 입력해주세요")
+	@Pattern(regexp = "^[A-Za-z]{1}[A-Za-z0-9]{4,16}$" ,message = "아이디는 5~16자리. 영어와 숫자만 입력해주세요")
 	private String memberId;		// 회원 아이디
 	@NotNull
 	@Pattern(regexp = "(?=.*[0-9])(?=.*[a-zA-Z])(?=.*\\W)(?=\\S+$).{8,16}" ,message = "비밀번호는 8~16자리 영문 대 소문자, 숫자 , 특수문자를 사용하세요")
 	private String memberPw;		// 비밀번호
-	@Pattern(regexp = "[가-힣]{2,15}$", message = "한글을 입력하세요")
+	@Pattern(regexp = "[가-힣]{2,15}$", message = "한글이름을 입력하세요")
 	private String memberName;		// 이름
 	private String memberGender;	// 성별
 	private String memberBirthY;	// 생년월일 : 연도
@@ -53,5 +53,6 @@ public class MemberVO {
 	private String joinDate;		// 가입일
 	private String delYn;			// 탈퇴 여부
 	private List<AuthVO> authList;
+
 }
 
