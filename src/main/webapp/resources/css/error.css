@@ -47,3 +47,9 @@ input[type=button] {
     color: #ffffff;
     cursor: pointer;
 }
+
+table.error_message tr td input[type=button] {
+    padding: 0.3em 1em;
+    font-size: 1em;
+    margin: 1.2em auto;
+}

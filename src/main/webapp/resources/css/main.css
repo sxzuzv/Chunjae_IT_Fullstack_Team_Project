@@ -1208,9 +1208,10 @@ footer {
     background-position: top;
     margin: 10em 0px 0px;
     font-size: 0.75em;
-    background-repeat: repeat-x;
     background-color: #f6f6f6;
     color: #666666;
+    height: fit-content;
+    border-top: 1px solid #e6e6e6;
 }
 
 footer ul {
