@@ -1,28 +1,45 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"
-    isELIgnored="false"    
-    %>
-<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>    
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
-<ul>
-	<li><a href="#">회사소개</a></li>
-	<li><a href="#">이용약관</a></li>
-	<li><a href="#">개인정보취급방침</a></li>
-	<li><a href="#">제휴/도서홍보</a></li>
-	<li><a href="#">광고센터</a></li>
-	<li><a href="#">고객만족센터</a></li>
-	<li class="no_line"><a href="#">찾아오시는길</a></li>
-</ul>
-<div class="clear"></div>
-<a href="#"><img width="147px"  height="62px" alt="Booktopia" src="${contextPath}/resources/image/Booktopia_Logo2.jpg" /></a>
-<div style="padding-left:200px">
-	 ㈜북토피아 <br>
-	 대표이사: 이병승   <br>
-	 주소 : 우편번호 03133 서울시 종로구 종로3 <br>  
-	 사업자등록번호 : 102-81-11111 <br>
-	 서울특별시 통신판매업신고번호 : 제 666호 ▶사업자정보확인   개인정보보호최고책임자 : 김길동 privacy@google.co.kr <br>
-	 대표전화 : 1544-1544 (발신자 부담전화)   팩스 : 0502-977-7777 (지역번호공통) <br>
-	 COPYRIGHT(C) 북토피아 BOOK CENTRE ALL RIGHTS RESERVED.
+         pageEncoding="utf-8"
+         isELIgnored="false"
+%>
+<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+<link rel="stylesheet" href="/resources/css/footer.css">
+<div class="wrapper">
+  <div class="logo-container">
+    <a href="#"><img width="204px" height="158px" alt="IT 전문 도서 쇼핑몰 CHACK-IT"
+                     src="${contextPath}/resources/image/logo-removebg-preview.png"/></a>
+  </div>
+  <div class="text-container">
+    <div class="inner">
+      <div class="content-detail">
+        <br>
+        <p>Project CHACK-IT</p>
+        <p>
+          <a href="https://github.com/Jincheol-11">권진철 · </a>
+          <a href="https://github.com/sxzuzv">신수진 · </a>
+          <a href="https://github.com/Lzynee">이양진 · </a>
+          <a href="https://github.com/cyj083386">최영주 · </a>
+          <a href="https://github.com/Jaehyuk-96">최재혁</a>
+        </p>
+        <p>천재IT교육센터 자바 풀스택 3기 | 2024-01-02 ~ 2024-01-19</p>
+        <p>COPYRIGHT(C) PROJECT CHACK-IT ALL RIGHTS RESERVED.</p>
+      </div>
+      <div class="content-workspace">
+        <br>
+        <div class="workspace">
+          <a href="https://github.com/ChunjaeBookShop/BookShop">
+              <img width="70px" height="70px" src="/resources/image/github-mark.png" alt="team Github">
+          </a>
+        </div>
+        <div class="workspace">
+          <a href="https://www.notion.so/Code-Convention-38bd7a9a56694c75b113bfd3b756e806?pvs=4">
+              <img width="70px" height="70px" src="/resources/image/Notion-logo.svg-removebg-preview.png" alt="team Notion">
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-
+</div>

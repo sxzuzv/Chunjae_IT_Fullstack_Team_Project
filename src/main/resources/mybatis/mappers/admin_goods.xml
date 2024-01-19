@@ -86,7 +86,7 @@
 			             		 goods_published_date
 			              from t_shopping_goods
 			                where  date_format(goods_entered_date,'%Y-%m-%d')  between #{beginDate} and #{endDate}
-			               order by goods_entered_date desc, goods_id desc
+			               order by goods_id desc
 					    ) as innerquery
 			       cross join (select @rowNum := 0) as dummy
 				) as outerquery
