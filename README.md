@@ -59,90 +59,95 @@
 
 ## 🖥️ 구현 화면
 ### ▼ 메인 화면
-![메인화면](https://github.com/Chunjae3Team/teacherFleaMarket/assets/106226864/bc1ad732-aeda-44a3-9380-317c866eda49)
+![메인화면](https://github.com/ChunjaeBookShop/CHACK-IT/assets/106226864/e1fc3fe6-af5f-4a02-a73b-74ab90bb12ae)
 
 <br>
 
 ### ▼ 공통
 #### ① 로그인·로그아웃 <br>
-  ![로그인·로그아웃](https://github.com/Chunjae3Team/teacherFleaMarket/assets/106226864/bc1ad732-aeda-44a3-9380-317c866eda49)
+  ![로그인·로그아웃](https://github.com/ChunjaeBookShop/CHACK-IT/assets/106226864/ada36c6c-efec-4b08-8704-512deb0bf424)
 #### ② 아이디·비밀번호 찾기 <br>
-  ![아이디·비밀번호 찾기](https://github.com/Chunjae3Team/teacherFleaMarket/assets/106226864/bc1ad732-aeda-44a3-9380-317c866eda49)
+  ![아이디·비밀번호 찾기](https://github.com/ChunjaeBookShop/CHACK-IT/assets/106226864/c867b06b-0935-47da-95e2-0fc1be25c8ae)
+  ![비밀번호 찾기](https://github.com/ChunjaeBookShop/CHACK-IT/assets/106226864/099d4fd5-2f5c-42f3-9cd4-b7e4f3bc3dd3)
 #### ③ 아이디·비밀번호 찾기 시 Email 전송 <br>
-  ![아이디·비밀번호 찾기 시 Email 전송](https://github.com/Chunjae3Team/teacherFleaMarket/assets/106226864/bc1ad732-aeda-44a3-9380-317c866eda49)
+  ![아이디·비밀번호 찾기 시 Email 전송](https://github.com/ChunjaeBookShop/CHACK-IT/assets/106226864/b489e1b2-8b81-47eb-998d-489740732e96)
 
 <br>
 
 ### ▼ 상품 - 회원
 #### ① 상품 구매 <br>
-![상품 구매](https://github.com/Chunjae3Team/teacherFleaMarket/assets/106226864/bc1ad732-aeda-44a3-9380-317c866eda49)
+![상품 구매](https://github.com/ChunjaeBookShop/CHACK-IT/assets/106226864/228cb905-6d09-4c6e-8a60-158333a07f6b)
 #### ② 장바구니 이용 <br>
-![장바구니 이용](https://github.com/Chunjae3Team/teacherFleaMarket/assets/106226864/bc1ad732-aeda-44a3-9380-317c866eda49)
+![장바구니 이용](https://github.com/ChunjaeBookShop/CHACK-IT/assets/106226864/b01cc790-5ed2-4988-8cc5-5aa7315a68a3)
   <br><br>
 
 ### ▼ 상품 - 관리자
-#### ① 상품 등록 <br>
-![상품 등록](https://github.com/Chunjae3Team/teacherFleaMarket/assets/106226864/bc1ad732-aeda-44a3-9380-317c866eda49)
+#### ① 상품 등록 (각 필드에 유효성 검사 적용) <br>
+![상품 등록](https://github.com/ChunjaeBookShop/CHACK-IT/assets/106226864/07957c39-dd59-4296-8f6a-461dc97762d4)
 #### ② 전체 상품 내역 조회 <br>
-![전체 상품 내역 조회](https://github.com/Chunjae3Team/teacherFleaMarket/assets/106226864/bc1ad732-aeda-44a3-9380-317c866eda49)
+![전체 상품 내역 조회](https://github.com/ChunjaeBookShop/CHACK-IT/assets/106226864/13dd7efa-381c-4eb6-b289-d5ed9e938b4e)
 #### ③ 상품 상세 정보 조회 <br>
-![상품 상세 정보 조회](https://github.com/Chunjae3Team/teacherFleaMarket/assets/106226864/bc1ad732-aeda-44a3-9380-317c866eda49)
+![상품 상세 정보 조회](https://github.com/ChunjaeBookShop/CHACK-IT/assets/106226864/32de633a-023f-46b9-8563-d35a85a648dd)
 #### ④ 상품 정보 수정 <br>
-![상품 정보 수정](https://github.com/Chunjae3Team/teacherFleaMarket/assets/106226864/bc1ad732-aeda-44a3-9380-317c866eda49)
+![상품 정보 수정](https://github.com/ChunjaeBookShop/CHACK-IT/assets/106226864/cf589d2e-dcea-4995-8b48-db3cc0135ff7)
 <br><br>
 
 ### ▼ 주문·배송 - 회원
 #### ① 주문·배송 내역 조회 <br>
-![주문·배송 내역 조회](https://github.com/Chunjae3Team/teacherFleaMarket/assets/106226864/bc1ad732-aeda-44a3-9380-317c866eda49)
+![주문·배송 내역 조회](https://github.com/ChunjaeBookShop/CHACK-IT/assets/106226864/75017664-ce16-4d98-bbd0-ebf5325a8d6b)
 #### ② 주문 취소 <br>
-![주문 취소](https://github.com/Chunjae3Team/teacherFleaMarket/assets/106226864/bc1ad732-aeda-44a3-9380-317c866eda49)
+![주문 취소](https://github.com/ChunjaeBookShop/CHACK-IT/assets/106226864/a488671e-ceff-41fe-b195-249bae0ffca4)
 #### ③ 취소 주문 내역 조회 <br>
-![취소 주문 내역 조회](https://github.com/Chunjae3Team/teacherFleaMarket/assets/106226864/bc1ad732-aeda-44a3-9380-317c866eda49)
+![취소 주문 내역 조회](https://github.com/ChunjaeBookShop/CHACK-IT/assets/106226864/abcc20dc-7863-46cb-85d9-41d383e69d63)
 <br><br>
 
 ### ▼ 주문·배송 - 관리자
 #### ① 전체 주문·배송 내역 조회 <br>
-![전체 주문·배송 내역 조회](https://github.com/Chunjae3Team/teacherFleaMarket/assets/106226864/bc1ad732-aeda-44a3-9380-317c866eda49)
+![전체 주문·배송 내역 조회](https://github.com/ChunjaeBookShop/CHACK-IT/assets/106226864/cea131aa-399a-46b6-bf4b-759d46f6db0e)
 #### ② 주문 상세 정보 조회 <br>
-![주문 상세 정보 조회](https://github.com/Chunjae3Team/teacherFleaMarket/assets/106226864/bc1ad732-aeda-44a3-9380-317c866eda49)
+![주문 상세 정보 조회](https://github.com/ChunjaeBookShop/CHACK-IT/assets/106226864/e7141fd8-0cda-4490-aedc-db8eb3fcc1e0)
 #### ③ 배송 상태 수정 <br>
-![배송 상태 수정](https://github.com/Chunjae3Team/teacherFleaMarket/assets/106226864/bc1ad732-aeda-44a3-9380-317c866eda49)
+![배송 상태 수정](https://github.com/ChunjaeBookShop/CHACK-IT/assets/106226864/184a26b6-46c6-4e52-8413-681407448125)
+![배송 상태 수정 02](https://github.com/ChunjaeBookShop/CHACK-IT/assets/106226864/ef929f9f-84fe-4a70-ab13-0c92918be095)
 <br><br>
 
 ### ▼ 회원 - 회원
-#### ① 회원가입 <br>
-![회원가입](https://github.com/Chunjae3Team/teacherFleaMarket/assets/106226864/bc1ad732-aeda-44a3-9380-317c866eda49)
+#### ① 회원가입 (각 필드에 유효성 검사 적용) <br>
+![회원가입](https://github.com/ChunjaeBookShop/CHACK-IT/assets/106226864/d8318477-a31b-4446-9cb4-00401057f132)
 #### ② 개인정보 수정 <br>
-![개인정보 수정](https://github.com/Chunjae3Team/teacherFleaMarket/assets/106226864/bc1ad732-aeda-44a3-9380-317c866eda49)
+![개인정보 수정](https://github.com/ChunjaeBookShop/CHACK-IT/assets/106226864/f4847d16-7130-4acb-b617-5b0ad4b13edc)
 <br><br>
 
 ### ▼ 회원 - 관리자
 #### ① 전체 회원 조회 <br>
-![전체 회원 조회](https://github.com/Chunjae3Team/teacherFleaMarket/assets/106226864/bc1ad732-aeda-44a3-9380-317c866eda49)
+![전체 회원 조회](https://github.com/ChunjaeBookShop/CHACK-IT/assets/106226864/2185a7f2-15dc-43a7-8674-e58b4d386417)
 #### ② 회원 상세 정보 조회 <br>
-![원 상세 정보 조회](https://github.com/Chunjae3Team/teacherFleaMarket/assets/106226864/bc1ad732-aeda-44a3-9380-317c866eda49)
+![회원 상세 정보 조회](https://github.com/ChunjaeBookShop/CHACK-IT/assets/106226864/e6ff031d-6adb-4cf7-a4d5-fff6309fecd5)
 #### ③ 회원 정보 수정 <br>
-![회원 정보 수정](https://github.com/Chunjae3Team/teacherFleaMarket/assets/106226864/bc1ad732-aeda-44a3-9380-317c866eda49)
+![회원 정보 수정](https://github.com/ChunjaeBookShop/CHACK-IT/assets/106226864/f1b767c9-e994-429e-8b3f-a96b8e4de512)
 #### ④ 개인정보 수정 <br>
-![개인정보 수정](https://github.com/Chunjae3Team/teacherFleaMarket/assets/106226864/bc1ad732-aeda-44a3-9380-317c866eda49)
+![개인정보 수정](https://github.com/ChunjaeBookShop/CHACK-IT/assets/106226864/cfd41c1e-5341-48e7-ae35-2696b68f2cc0)
 <br><br>
 
 ### ▼ 공지사항 - 회원
 #### ① 게시글 목록 조회 <br>
-![게시글 목록 조회](https://github.com/Chunjae3Team/teacherFleaMarket/assets/106226864/bc1ad732-aeda-44a3-9380-317c866eda49)
+![게시글 목록 조회](https://github.com/ChunjaeBookShop/CHACK-IT/assets/106226864/3d55d8b5-9e12-49ba-8b56-3676b73fb43d)
 #### ② 게시글 상세 보기 <br>
-![게시글 상세 보기](https://github.com/Chunjae3Team/teacherFleaMarket/assets/106226864/bc1ad732-aeda-44a3-9380-317c866eda49)
+![게시글 상세 보기](https://github.com/ChunjaeBookShop/CHACK-IT/assets/106226864/8b45f405-7841-46f5-9a7d-b929991eaf1c)
 <br><br>
 
 ### ▼ 공지사항 - 관리자
 #### ① 게시글 작성 <br>
-![게시글 작성](https://github.com/Chunjae3Team/teacherFleaMarket/assets/106226864/bc1ad732-aeda-44a3-9380-317c866eda49)
+![게시글 작성](https://github.com/ChunjaeBookShop/CHACK-IT/assets/106226864/ede0dd44-572f-4a1e-a7f3-d3b71e2496bb)
 #### ② 게시글 목록 조회 <br>
-![게시글 목록 조회](https://github.com/Chunjae3Team/teacherFleaMarket/assets/106226864/bc1ad732-aeda-44a3-9380-317c866eda49)
+![게시글 목록 조회](https://github.com/ChunjaeBookShop/CHACK-IT/assets/106226864/d1b96ede-91b9-4d7c-8146-045c1f55006c)
 #### ③ 게시글 상세 보기 <br>
-![게시글 상세 보기](https://github.com/Chunjae3Team/teacherFleaMarket/assets/106226864/bc1ad732-aeda-44a3-9380-317c866eda49)
+![게시글 상세 보기](https://github.com/ChunjaeBookShop/CHACK-IT/assets/106226864/6833b31b-b626-4433-8aea-aa7a0cf28d93)
 #### ④ 게시글 수정 <br>
-![게시글 수정](https://github.com/Chunjae3Team/teacherFleaMarket/assets/106226864/bc1ad732-aeda-44a3-9380-317c866eda49)
+![게시글 수정](https://github.com/ChunjaeBookShop/CHACK-IT/assets/106226864/ceb1d4dc-2cbb-4a9d-b478-393b598944f5)
+![게시글 수정 02](https://github.com/ChunjaeBookShop/CHACK-IT/assets/106226864/37088ebf-ae39-4986-91a5-b79f4aa0564f)
 #### ⑤ 게시글 삭제 <br>
-![게시글 삭제](https://github.com/Chunjae3Team/teacherFleaMarket/assets/106226864/bc1ad732-aeda-44a3-9380-317c866eda49)
+![게시글 삭제](https://github.com/ChunjaeBookShop/CHACK-IT/assets/106226864/1357d4c7-6589-46bb-82a6-a805214162b4)
+![공지사항 게시글 삭제 02](https://github.com/ChunjaeBookShop/CHACK-IT/assets/106226864/118d8816-2d45-472c-b6d2-5c67b152d9ad)
+![공지사항 게시글 삭제 03](https://github.com/ChunjaeBookShop/CHACK-IT/assets/106226864/c3e0cb43-edda-4ce4-b5b0-c88717b62436)
 <br><br>
