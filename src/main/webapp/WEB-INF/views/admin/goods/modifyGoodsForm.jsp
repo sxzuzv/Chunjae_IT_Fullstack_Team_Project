@@ -18,10 +18,17 @@
 
         function init(){
             var frm_mod_goods=document.frm_mod_goods;
+
             var h_goods_status=frm_mod_goods.h_goods_status;
             var goods_status=h_goods_status.value;
-            var select_goods_status=frm_mod_goods.goodsStatus;
-            select_goods_status.value=goods_status;
+            $('#goodsStatus').val(goods_status).prop("selected",true);
+
+            var h_cate_main=frm_mod_goods.h_cate_main;
+            var cate_main=h_cate_main.value;
+            $('#goodsCateMain').val(cate_main).prop("selected",true);
+
+
+
         }
     </script>
   </c:when>
@@ -205,30 +212,10 @@
     <DIV class="tab_container">
       <DIV class="tab_content" id="tab1">
         <table class="detail_table">
-          <%--			<tr >--%>
-          <%--				<td width=200 >상품 분류</td>--%>
-          <%--				<td width=500>--%>
-          <%--				  <select name="goods_sort">--%>
-          <%--					<c:choose>--%>
-          <%--				      <c:when test="${goods.goods_sort=='컴퓨터와 인터넷' }">--%>
-          <%--						<option value="컴퓨터와 인터넷" selected>컴퓨터와 인터넷 </option>--%>
-          <%--				  	    <option value="디지털 기기">디지털 기기  </option>--%>
-          <%--				  	  </c:when>--%>
-          <%--				  	  <c:when test="${goods.goods_sort=='디지털 기기' }">--%>
-          <%--						<option value="컴퓨터와 인터넷" >컴퓨터와 인터넷 </option>--%>
-          <%--				  	    <option value="디지털 기기" selected>디지털 기기  </option>--%>
-          <%--				  	  </c:when>--%>
-          <%--				  	</c:choose>--%>
-          <%--					</select>--%>
-          <%--				</td>--%>
-          <%--				<td >--%>
-          <%--				 <input  type="button" value="수정반영"  onClick="fn_modify_goods('${goods.goods_id }','goods_sort')"/>--%>
-          <%--				</td>--%>
-          <%--			</tr>--%>
           <tr>
             <td >상품 종류</td>
             <td>
-              <select name="goodsStatus">
+              <select name="goodsStatus" id="goodsStatus">
                 <option value="bestseller"  >베스트셀러</option>
                 <option value="steadyseller" >스테디셀러</option>
                 <option value="newbook" >신간</option>
@@ -236,7 +223,7 @@
                 <option value="buy_out"  selected>품절</option>
                 <option value="out_of_print" >절판</option>
               </select>
-              <input  type="hidden" name="h_goods_status" value="${goods.goodsStatus }"/>
+              <input type="hidden" name="h_goods_status" value="${goods.goodsStatus }"/>
             </td>
             <td>
               <input  type="button" value="수정반영"  onClick="fn_modify_goods('${goods.goodsId }','goodsStatus')"/>
@@ -245,12 +232,13 @@
           <tr>
             <td >상품 카테고리</td>
             <td>
-              <select name="goodsCateMain">
+              <select name="goodsCateMain" id="goodsCateMain">
                 <option value=1 selected>백엔드</option>
                 <option value=2 >프론트엔드</option>
                 <option value=3 >모바일 앱 개발</option>
                 <option value=4 >알고리즘?자료구조</option>
                 <option value=5 >데이터베이스</option>
+                <input type="hidden" name="h_cate_main" value="${goods.goodsCateMain }"/>
               </select>
             </td>
             <td>
