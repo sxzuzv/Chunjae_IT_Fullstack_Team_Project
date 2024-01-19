@@ -14,12 +14,12 @@
       </definition>
 
     <definition name="/member/pwFindForm" extends="baseLayout">
-        <put-attribute name="title" value="회원 가입 페이지" />
+        <put-attribute name="title" value="비밀번호 찾기 페이지" />
         <put-attribute name="body" value="/WEB-INF/views/member/pwFindForm.jsp" />
     </definition>
 
     <definition name="/member/pwAuthForm" extends="baseLayout">
-        <put-attribute name="title" value="회원 가입 페이지" />
+        <put-attribute name="title" value="인증번호 입력" />
         <put-attribute name="body" value="/WEB-INF/views/member/pwAuthForm.jsp" />
     </definition>
 

@@ -53,4 +53,9 @@ public class MyPageDAOImpl implements MyPageDAO{
 		List<OrderVO> myCancelList = sqlSession.selectList("mapper.mypage.cancelOrderHistory", dateMap);
 		return myCancelList;
 	}
+
+	@Override
+	public int pwChange(MemberVO memberVO) {
+		return sqlSession.update("mapper.member.pwChange",memberVO);
+	}
 }

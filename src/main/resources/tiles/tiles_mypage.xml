@@ -20,8 +20,12 @@
        <put-attribute name="body" value="/WEB-INF/views/mypage/myDetailInfo.jsp" />
      </definition>
     <definition name="/mypage/cancelOrderHistory" extends="baseLayout">
-        <put-attribute name="title" value="내 정보 상세 페이지" />
+        <put-attribute name="title" value="취소주문내역" />
         <put-attribute name="body" value="/WEB-INF/views/mypage/cancelOrderHistory.jsp" />
+    </definition>
+    <definition name="/mypage/myPwChange" extends="baseLayout">
+        <put-attribute name="title" value="비밀번호 변경" />
+        <put-attribute name="body" value="/WEB-INF/views/mypage/myPwChange.jsp" />
     </definition>
 </tiles-definitions>
 
