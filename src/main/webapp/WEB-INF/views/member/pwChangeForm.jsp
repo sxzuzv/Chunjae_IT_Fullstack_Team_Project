@@ -19,8 +19,12 @@
     <table>
         <tr>
             <input type="hidden" name ="memberId" value="${memberId}">
-            <td>비밀번호</td>
+            <th>비밀번호</th>
+        </tr>
+        <tr>
             <td><input type="password" name="memberPw"  placeholder="비밀번호" maxlength="15"></td>
+        </tr>
+        <tr>
             <td><input type="password" name="memberPw2"  placeholder="비밀번호 확인" maxlength="15"></td>
         </tr>
         <tr>
@@ -28,6 +32,6 @@
         </tr>
         </div>
     </table>
-
+</form>
 </body>
 </html>

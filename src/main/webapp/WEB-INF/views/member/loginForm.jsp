@@ -56,8 +56,8 @@
       <li><a href="${contextPath}/member/pwFindForm.do">비밀번호 찾기</a></li>
       |
       <li><a href="${contextPath}/member/memberForm.do">회원가입</a></li>
-      |
-      <li><a href="#">고객 센터</a></li>
+<%--      |--%>
+<%--      <li><a href="#">고객 센터</a></li>--%>
     </ul>
   </form>
 </DIV>

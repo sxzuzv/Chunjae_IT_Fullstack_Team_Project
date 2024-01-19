@@ -46,6 +46,11 @@
     </tr>
   </c:forEach>
   </tbody>
+  <tr>
+    <td>
+      <strong>* 도서의 배송비는 주문한 도서 중 가장 높은 가격의 배송비로 일괄 적용됩니다. *</strong>
+    </td>
+  </tr>
 </table>
 <div class="clear"></div>
 <form name="form_order">
