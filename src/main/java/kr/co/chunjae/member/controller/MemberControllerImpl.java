@@ -188,7 +188,7 @@ public class MemberControllerImpl extends BaseController implements MemberContro
 			//메일내용
 			String setfrom = "jaehyuck1996@naver.com"; // naver
 			String tomail = memberVO.getMemberEmail1() + "@" + memberVO.getMemberEmail2();
-			String title = "[북토피아] 비밀번호변경 인증 이메일 입니다.";
+			String title = "[책잇] 비밀번호변경 인증 이메일 입니다.";
 			String content = System.getProperty("line.separator") + "안녕하세요 회원님" + System.getProperty("line.separator")
 					+ "비밀번호찾기(변경) 인증번호는 " + num + " 입니다." + System.getProperty("line.separator"); //
 			try {//메일보내기

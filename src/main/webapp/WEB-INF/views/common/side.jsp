@@ -34,7 +34,7 @@
 		<h3>정보내역</h3>
 		<ul>
 			<li><a href="${contextPath}/mypage/myDetailInfo.do">회원정보관리</a></li>
-<%--			<li><a href="#">나의 주소록</a></li>--%>
+			<li><a href="${contextPath}/mypage/myPwChange.do">비밀번호 변경</a></li>
 <%--			<li><a href="#">개인정보 동의내역</a></li>--%>
 <%--			<li><a href="#">회원탈퇴</a></li>--%>
 		</ul>

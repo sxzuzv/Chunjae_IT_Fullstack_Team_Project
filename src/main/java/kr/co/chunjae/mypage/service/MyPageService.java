@@ -15,4 +15,6 @@ public interface MyPageService{
 	public void cancelOrder(String order_id) throws Exception;
 	public MemberVO myDetailInfo(String member_id) throws Exception;
 	public List<OrderVO> cancelOrderHistory(Map dateMap) throws Exception;
+
+    public int pwChange(MemberVO memberVO);
 }

@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 import lombok.extern.log4j.Log4j2;
 import lombok.extern.slf4j.Slf4j;
@@ -19,6 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -40,6 +42,9 @@ import kr.co.chunjae.order.vo.OrderVO;
 public class MyPageControllerImpl extends BaseController  implements MyPageController{
 
 	private final MyPageService myPageService;
+
+	@Setter(onMethod_ = @Autowired)
+	private PasswordEncoder pwencoder;
 
 
 	@Override
@@ -230,6 +235,32 @@ public class MyPageControllerImpl extends BaseController  implements MyPageContr
 		model.addAttribute("endDay",endDate1[2]);
 		model.addAttribute("myCancelList", myCancelList);
 		return viewName;
+	}
+
+	@RequestMapping(value="/pwChange.do", method=RequestMethod.POST)
+	public String pwChange(@ModelAttribute MemberVO memberVO, HttpServletResponse response) throws Exception{
+		//비밀번호 수정시 암호화
+		String pw = memberVO.getMemberPw();
+		memberVO.setMemberPw(pwencoder.encode(pw));
+		int result = myPageService.pwChange(memberVO);
+
+		if (result == 1) {
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('비밀번호가 재설정 되었습니다.');</script>");
+			out.flush();
+
+			return "/mypage/myPageMain";
+
+		} else {
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('비밀번호가 다릅니다. 다시 입력해주세요.');</script>");
+			out.flush();
+
+			return "/mypage/myPwChange";
+		}
+
 	}
 
 

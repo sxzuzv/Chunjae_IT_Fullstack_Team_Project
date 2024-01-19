@@ -18,4 +18,6 @@ public interface MyPageDAO {
 	public void updateMyOrderCancel(String order_id) throws DataAccessException;
 
     public List<OrderVO> cancelOrderHistory(Map dateMap) throws DataAccessException;
+
+    public int pwChange(MemberVO memberVO);
 }

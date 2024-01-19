@@ -55,5 +55,8 @@ public class MyPageServiceImpl  implements MyPageService{
 
 	}
 
-
+	@Override
+	public int pwChange(MemberVO memberVO) {
+		return myPageDAO.pwChange(memberVO);
+	}
 }
