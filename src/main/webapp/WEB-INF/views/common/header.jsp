@@ -77,7 +77,7 @@
 <body>
 <div id="logo">
   <a href="${contextPath}/main/main.do">
-    <img width="176" height="80" alt="booktopia" src="${contextPath}/resources/image/Booktopia_Logo.jpg">
+    <img width="200" height="100" alt="booktopia" src="${contextPath}/resources/image/logo.png">
   </a>
 </div>
 <div class="head_content">
