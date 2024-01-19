@@ -140,11 +140,12 @@
       }
 
       function fn_modify_order_state(orderId, select_id) {
+          // HTML의 selectbox에서 선택한 배송 상태를 가져온다.
           var s_deliveryState = document.getElementById(select_id);
           var index = s_deliveryState.selectedIndex;
           var value = s_deliveryState[index].value;
-          //console.log("value: "+value );
 
+          // 주문별 배송 상태 수정을 위해 서버에 AJAX 요청을 수행한다.
           $.ajax({
               type: "post",
               async: false,
@@ -153,23 +154,26 @@
                   orderId: orderId,
                   "deliveryState": value
               },
+              // AJAX 요청에 대한 서버의 응답을 처리한다.
               success: function (data, textStatus) {
+                  // 주문 상태 수정 성공 시, 알림창 표시 후 지정 경로로 이동한다.
                   if (data.trim() == 'mod_success') {
                       alert("주문 정보를 수정했습니다.");
                       location.href = "${contextPath}/admin/order/adminOrderMain.do";
-                  } else if (data.trim() == 'failed') {
+                  } else if (data.trim() == 'failed') { // 주문 상태 수정 실패 시, 알림창을 표시한다.
                       alert("다시 시도해 주세요.");
                   }
 
               },
+              // AJAX 요청 중에 발생하는 오류를 처리한다.
               error: function (data, textStatus) {
                   alert("에러가 발생했습니다." + data);
               },
+              // AJAX 요청이 완료된 후 정리 혹은 추가 작업을 수행한다. (주석 처리)
               complete: function (data, textStatus) {
-                  //alert("작업을완료 했습니다");
-
+                  //alert("작업을 완료했습니다.");
               }
-          }); //end ajax
+          }); // end ajax
       }
 
       // 라디오 버튼(주문일자로 조회 or 상세 조회) 선택 상태에 따른 검색 조건 활성화
