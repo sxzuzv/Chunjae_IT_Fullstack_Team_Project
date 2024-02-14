@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.chunjae.classarchive.mapper.thumbnail.ThumbnailMapper">
+
+
+    <insert id="insert">
+        insert into tb_thumbnail
+            (con_id, original_file, s3_file, file_path)
+        values (#{conId}, #{ofileName}, #{s3FileName}, #{filePath})
+    </insert>
+
+
+    <select id="getThumbnailKeyName" resultType="String">
+        select concat(file_path, s3_file) as keyName
+        from tb_thumbnail
+        where con_id = #{id}
+    </select>
+
+    <delete id="delete">
+        delete from tb_thumbnail
+        where con_id = #{id}
+    </delete>
+
+    <insert id="iconPackThumb">
+        insert into tb_pack_thumbnail
+            (pack_id, original_file, s3_file, file_path)
+        values (#{packId}, #{originalFile}, #{s3File}, #{filePath})
+    </insert>
+
+    <update id="updateIconPackThumb" parameterType="PackThumbnailDTO">
+        update tb_pack_thumbnail
+        set original_file = #{originalFile}, s3_file = #{s3File}, file_path = #{filePath}
+        where pack_id = #{packId}
+    </update>
+
+    <select id="getThumbById" parameterType="Long" resultType="PackThumbnailDTO">
+        select original_file, s3_file, file_path
+        from tb_pack_thumbnail
+        where pack_id = #{iconId}
+    </select>
+
+</mapper>

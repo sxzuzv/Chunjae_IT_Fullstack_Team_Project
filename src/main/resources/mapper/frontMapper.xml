@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.chunjae.classarchive.mapper.front.FrontMapper">
+    <resultMap id="listResult" type="ContentsDTO">
+        <id property="id" column="id" />
+        <result property="writerId" column="writer_id" />
+        <result property="showFlag" column="show_flag" />
+        <result property="title" column="title" />
+        <result property="regDate" column="reg_date" />
+        <result property="typeName" column="typeName" />
+        <result property="category" column="category" />
+        <result property="keyword" column="keyword" />
+        <association property="thumbnailDTO" javaType="ThumbnailDTO" columnPrefix="th_">
+            <result property="s3FileName" column="s3FileName" />
+            <result property="filePath" column="filePath" />
+        </association>
+    </resultMap>
+
+
+    <resultMap id="recConGroups" type="java.util.HashMap">
+        <id property="id" column="id" />
+        <result property="writerId" column="writer_id" />
+        <result property="title" column="title" />
+        <result property="showFlag" column="show_flag" />
+        <result property="groupOrder" column="group_order" />
+        <result property="deleteFlag" column="delete_flag" />
+        <result property="regDate" column="reg_date" />
+<!--        <result property="conId" column="con_id" />-->
+        <result property="allKeyword" column="all_keyword" />
+        <collection property="thumbnail"  resultMap="thumbnailMap" javaType="java.util.List" columnPrefix="th_"/>
+    </resultMap>
+    <resultMap id="thumbnailMap" type="java.util.Map">
+        <result property="conId" column="conId" />
+        <result property="s3FileName" column="s3FileName" />
+        <result property="filePath" column="filePath" />
+        <result property="originalFile" column="original_file" />
+    </resultMap>
+
+    <select id="getContentType" resultType="hashmap">
+        SELECT
+            id, name
+        FROM
+            tb_contents_type
+    </select>
+
+    <select id="searchContents" parameterType="hashmap" resultMap="listResult">
+        SELECT
+            tc.id,
+            tc.writer_id,
+            tc.type_id,
+            tc.cate_id,
+            tc.title,
+            tc.original_file,
+            tc.s3_file,
+            tc.show_flag,
+            tc.free_flag,
+            tc.delete_flag,
+            tc.keyword,
+            tc.reg_date,
+            tc.reference,
+            tc.category,
+            tc.reference_url,
+            tc.reference_etc,
+            tc.file_path,
+            tc.modifier_id,
+            tc.modify_date,
+            tt.s3_file as th_s3FileName,
+            tt.file_path as th_filePath
+        FROM
+            tb_contents tc
+        LEFT JOIN tb_thumbnail tt ON tc.id = tt.con_id
+        WHERE
+        1=1
+<!--        <if test="searchKeyword != null and !searchKeyword.equals('')">-->
+<!--            AND tc.title LIKE CONCAT('%', #{searchKeyword},'%')-->
+<!--            AND tc.keyword LIKE CONCAT('%', #{searchKeyword},'%')-->
+<!--        </if>-->
+        <if test="keyword != null and !keyword.equals('')">
+            AND (tc.title REGEXP #{keyword}
+                OR tc.keyword REGEXP #{keyword})
+        </if>
+        <if test="searchContentType != null and !searchContentType.equals('')">
+            AND tc.type_id = #{searchContentType}
+        </if>
+    </select>
+
+    <select id="searchContentById" parameterType="hashmap" resultMap="listResult">
+        SELECT
+            tc.id,
+            tc.writer_id,
+            tc.type_id,
+            tc.cate_id,
+            tc.title,
+            tc.original_file,
+            tc.s3_file,
+            tc.show_flag,
+            tc.free_flag,
+            tc.delete_flag,
+            tc.keyword,
+            tc.reg_date,
+            tc.reference,
+            tc.reference_url,
+            tc.reference_etc,
+            tc.file_path,
+            tc.modifier_id,
+            tc.modify_date,
+            tc.category,
+            tt.s3_file as th_s3FileName,
+            tt.file_path as th_filePath
+        FROM
+            tb_contents tc
+        LEFT JOIN tb_thumbnail tt ON tc.id = tt.con_id
+        WHERE
+        1=1
+        <if test="id != null and !id.equals('')">
+            AND tc.id = #{id}
+        </if>
+    </select>
+
+    <select id="selectIconPack" resultType="hashmap">
+        select
+            tip.id
+             , tip.title
+             , tip.show_flag
+             , tpt.original_file
+             , tpt.s3_file
+             , tpt.file_path
+             , tpt.types
+        from
+            tb_icon_package tip
+        left join tb_pack_thumbnail tpt
+            on tip.id = tpt.pack_id
+            and tpt.delete_flag = 0
+        where
+            tip.show_flag = 1
+          and tip.delete_flag = 0
+        order by
+            reg_date desc
+    </select>
+
+
+    <select id="selectRecConGroup" resultMap="recConGroups">
+        SELECT
+            tcg.id
+             , tcg.writer_id
+             , tcg.title
+             , tcg.show_flag
+             , tcg.group_order
+             , tcg.delete_flag
+             , tcg.reg_date
+             , tcgd.con_id as th_conId
+             , tcga.all_keyword
+             , tt.s3_file as th_s3FileName
+             , tt.file_path as th_filePath
+             , tt.original_file as th_originalFile
+        FROM
+            tb_contents_group tcg
+            LEFT JOIN tb_contents_group_detail tcgd ON
+                tcg.id = tcgd.group_id
+            LEFT JOIN tb_contents tc ON tc.id = tcgd.con_id
+            AND tc.delete_flag = 0
+            LEFT JOIN tb_thumbnail tt ON tc.id = tt.con_id
+            LEFT JOIN tb_contents_group_all tcga  ON tcg.id = tcga.group_id
+        WHERE tcg.show_flag = 1
+          AND tcg.delete_flag = 0
+        ORDER BY tcg.group_order ASC
+    </select>
+
+    <select id="selectRecKeyword" resultType="hashmap">
+        SELECT
+            tmk.id
+             , tmk.keyword
+             , tmk.keyword_order
+        FROM
+            tb_main_keyword tmk
+        WHERE show_flag = 1
+          AND delete_flag = 0
+        ORDER BY tmk.keyword_order ASC
+    </select>
+</mapper>

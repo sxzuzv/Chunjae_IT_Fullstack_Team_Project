@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.chunjae.classarchive.mapper.contents.ContentsMapper">
+
+
+    <resultMap id="listResult" type="ContentsDTO">
+    		<result property="id" column="id" />
+            <result property="writerId" column="writer_id" />
+    		<result property="showFlag" column="show_flag" />
+    		<result property="title" column="title" />
+            <result property="regDate" column="reg_date" />
+            <result property="typeName" column="typeName" />
+            <association property="thumbnailDTO" javaType="ThumbnailDTO" columnPrefix="th_">
+                <result property="s3FileName" column="s3FileName" />
+                <result property="filePath" column="filePath" />
+            </association>
+    </resultMap>
+
+    <resultMap id="detailResult" type="ContentsDTO">
+        <result property="id" column="id" />
+        <result property="freeFlag" column="free_flag" />
+        <result property="showFlag" column="show_flag" />
+        <result property="title" column="title" />
+        <result property="keyword" column="keyword" />
+        <result property="reference" column="reference" />
+        <result property="referenceUrl" column="reference_url" />
+        <result property="referenceEtc" column="reference_etc" />
+        <result property="regDate" column="reg_date" />
+        <result property="typeName" column="typeName" />
+        <result property="typeId" column="type_id" />
+        <result property="ofileName" column="ofileName" />
+        <result property="s3FileName" column="s3FileName" />
+        <result property="filePath" column="filePath" />
+        <result property="category" column="category" />
+        <association property="thumbnailDTO" javaType="ThumbnailDTO" columnPrefix="th_">
+            <result property="ofileName" column="ofileName" />
+            <result property="s3FileName" column="s3FileName" />
+            <result property="filePath" column="filePath" />
+        </association>
+    </resultMap>
+
+    <select id="listAll" resultMap="listResult">
+        select con.id as id, writer_id, show_flag, title, reg_date, name as typeName,
+            th.s3_file as th_s3FileName, th.file_path as th_filePath
+        from tb_contents AS con
+                 LEFT JOIN tb_contents_type AS tp
+                           ON con.type_id = tp.id
+                 LEFT JOIN tb_thumbnail AS th
+                           ON con.id = th.con_id
+        order by con.id desc
+    </select>
+
+    <insert id="insert">
+        insert into tb_contents
+            (writer_id, type_Id, category, free_flag, show_flag, title, keyword,
+             original_file, s3_file, file_path, reference, reference_url, reference_etc)
+        values (1, #{typeId}, #{category}, #{freeFlag}, #{showFlag}, #{title}, #{keyword},
+            #{ofileName}, #{s3FileName}, #{filePath}, #{reference}, #{referenceUrl}, #{referenceEtc})
+    </insert>
+
+    <select id="getContentsFileById" resultType="java.util.Map">
+        select file_path, original_file, s3_file
+        from tb_contents
+        where id = #{id}
+    </select>
+
+    <select id="selectContentsId" resultType="Long">
+        select max(id) from tb_contents
+    </select>
+
+    <select id="selectContentsById" resultMap="detailResult">
+        <![CDATA[
+        select con.id as id, free_flag, show_flag, title, keyword, reference, reference_etc, reference_url, reg_date,
+               type_id, name as typeName,
+               con.original_file as ofileName,
+               con.s3_file as s3FileName, con.file_path as filePath,
+               con.category,
+               th.original_file as th_ofileName,
+               th.s3_file as th_s3FileName, th.file_path as th_filePath
+        from tb_contents AS con
+                 LEFT JOIN tb_contents_type AS tp
+                           ON con.type_id = tp.id
+                 LEFT JOIN tb_thumbnail AS th
+                           ON con.id = th.con_id
+        where con.id = #{id}
+        ]]>
+    </select>
+
+    <select id="getContentsKeyName" resultType="String">
+        select concat(file_path, s3_file) as keyName
+        from tb_contents
+        where id = #{id}
+    </select>
+
+    <select id="getFileName" resultType="String">
+        select original_file
+        from tb_contents
+        where id = #{id}
+    </select>
+
+
+    <update id="update">
+        update tb_contents
+        set free_flag = #{freeFlag}, show_flag = #{showFlag}, title = #{title}, keyword = #{keyword},
+            reference = #{reference}, reference_etc = #{referenceEtc}, reference_url = #{referenceUrl}, type_id = #{typeId},
+            category = #{category}
+        where id = #{id}
+    </update>
+
+    <update id="updateWithFile">
+        update tb_contents
+        set free_flag = #{freeFlag}, show_flag = #{showFlag}, title = #{title}, keyword = #{keyword},
+            reference = #{reference}, reference_etc = #{referenceEtc}, reference_url = #{referenceUrl}, type_id = #{typeId},
+            original_file = #{ofileName}, s3_file = #{s3FileName}, file_path = #{filePath}, category = #{category}
+        where id = #{id}
+    </update>
+
+    <!-- 페이징 리스트 출력 -->
+    <select id="paging" resultMap="listResult">
+        select con.id as id, writer_id, show_flag, title, reg_date, name as typeName,
+               th.s3_file as th_s3FileName, th.file_path as th_filePath
+        from tb_contents AS con
+                 LEFT JOIN tb_contents_type AS tp
+                           ON con.type_id = tp.id
+                 LEFT JOIN tb_thumbnail AS th
+                           ON con.id = th.con_id
+        where con.delete_flag = 0
+        order by con.id desc
+        limit #{pagingStart}, #{pageLimit}
+    </select>
+
+    <!-- 글의 총 개수 -->
+    <select id="contentsCount" resultType="int">
+        select count(*) from tb_contents
+    </select>
+
+    <select id="searchAndPaging" resultMap="listResult">
+        select con.id as id, writer_id, show_flag, title, reg_date, name as typeName,
+               th.s3_file as th_s3FileName, th.file_path as th_filePath
+        from tb_contents AS con
+                 LEFT JOIN tb_contents_type AS tp
+                           ON con.type_id = tp.id
+                 LEFT JOIN tb_thumbnail AS th
+                           ON con.id = th.con_id
+        where con.delete_flag = 0
+            and reg_date between #{startDate} and DATE_ADD(#{endDate}, INTERVAL 1 DAY)
+            and title like CONCAT('%',#{searchWord},'%')
+        order by id desc
+            limit #{pagingParams.pagingStart}, #{pagingParams.pageLimit}
+    </select>
+
+    <select id="searchContentsCount" resultType="int">
+        select count(*) from tb_contents
+        where reg_date between #{startDate} and DATE_ADD(#{endDate}, INTERVAL 1 DAY)
+    </select>
+
+
+</mapper>

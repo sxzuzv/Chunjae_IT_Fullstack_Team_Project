@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.chunjae.classarchive.mapper.recommend.RecommendMapper">
+
+    <select id="getAll" resultType="KeywordListDTO">
+        select mk.id, mk.writer_id, mk.keyword, mk.keyword_order, mk.show_flag, mk.delete_flag, mk.reg_date, m.member_id
+        from tb_main_keyword mk
+        join tb_member m on mk.writer_id = m.id
+        where mk.delete_flag = 0
+
+    </select>
+
+    <insert id="addKeyword" parameterType="KeywordListDTO">
+        insert into tb_main_keyword (writer_id, keyword, keyword_order, show_flag) values
+        (#{writerId}, #{keywords}, #{keywordOrder}, #{showFlag})
+    </insert>
+
+    <select id="getKeywordOrder" resultType="java.lang.Integer">
+        select max(keyword_order)+1 from tb_main_keyword
+        where delete_flag=0;
+    </select>
+
+    <update id="deleteKeyword" parameterType="Long">
+        update tb_main_keyword set delete_flag = 1 where id=#{id}
+    </update>
+
+    <update id="deleteAllKeyword">
+        update tb_main_keyword set delete_flag = 1;
+    </update>
+
+    <select id="getAllContent" resultType="ContentsListDTO">
+        select cg.id, cg.writer_id, cg.title, cg.show_flag, cg.group_order, cg.delete_flag, cg.reg_date, cg.modifier_id,
+               cg.modify_date, m.member_id
+        from tb_contents_group cg
+        join tb_member m on cg.writer_id = m.id
+        where cg.delete_flag = 0
+        order by group_order asc
+    </select>
+
+    <insert id="recContentsAdd" parameterType="ContentsAddDTO">
+        insert into tb_contents_group (writer_id, title, show_flag, group_order) values(#{writerId}, #{title}, #{showFlag}, #{groupOrder})
+        <selectKey keyProperty="id" order="AFTER" resultType="Long">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+    </insert>
+
+    <insert id="recContentsKeyAdd" parameterType="ContentsAddDTO">
+        insert into tb_contents_group_all (group_id, all_keyword) values (#{id}, #{keywords})
+    </insert>
+
+    <insert id="recContentsIdAdd" parameterType="ContentsAddDTO">
+        INSERT INTO tb_contents_group_detail (group_id, con_id)
+        VALUES
+        <foreach collection="conId" item="cid" separator=",">
+            (#{id}, #{cid})
+        </foreach>
+    </insert>
+
+    <select id="searchContents" parameterType="String" resultType="ContentsDTO">
+        select id, title
+        from tb_contents
+        where type_id = 1 and keyword LIKE CONCAT('%', #{keyword}, '%')
+    </select>
+
+    <select id="searchAllContents" resultType="ContentsDTO">
+        select id, title
+        from tb_contents
+        where type_id = 1
+    </select>
+
+
+    <select id="detail" parameterType="Long" resultType="contentsAddDTO">
+        SELECT cg.id, cg.title, cg.show_flag, cga.all_keyword AS keywords, GROUP_CONCAT(cgd.con_id) AS conIds
+        FROM tb_contents_group cg
+                 LEFT OUTER JOIN tb_contents_group_all cga ON cg.id = cga.group_id
+                 LEFT OUTER JOIN tb_contents_group_detail cgd ON cg.id = cgd.group_id
+        WHERE cga.group_id = #{id} and cgd.group_id = #{id}
+    </select>
+
+    <select id="getContentsOrder" resultType="java.lang.Integer">
+        select max(group_order)+1 from tb_contents_group
+        where delete_flag=0;
+    </select>
+
+    <delete id="deleteDetail" >
+        delete from tb_contents_group_detail where group_id = #{id}
+    </delete>
+
+    <update id="updateConGroup" parameterType="contentsAddDTO">
+        update tb_contents_group set title = #{title}, show_flag = #{showFlag} where id = #{id}
+    </update>
+
+    <update id="updateConKeyword" parameterType="contentsAddDTO">
+        update tb_contents_group_all set all_keyword = (#{keywords}) where group_id = #{id}
+    </update>
+
+    <update id="recConDelete" parameterType="Long">
+
+        update tb_contents_group set delete_flag = 1
+        where id = #{id}
+    </update>
+
+</mapper>
+
+
+
+        <!--    <select id="getAll" resultType="KeywordListDTO">-->
+        <!--   <![CDATA[-->
+        <!--        SELECT m.id, m.show_flag, GROUP_CONCAT(s.keyword) AS keywords-->
+        <!--        FROM tb_main_keyword m-->
+        <!--                 LEFT JOIN tb_main_keyword_detail s ON m.id = s.group_id-->
+        <!--        where m.delete_flag = 1-->
+        <!--        GROUP BY m.id-->
+        <!--        order by m.id desc;-->
+        <!--        ]]>-->
+        <!--    </select>-->
+
+        <!--    <insert id="addKeyword" parameterType="java.util.Map">-->
+        <!--        insert into tb_main_keyword_detail (group_id, keyword) values (#{groupId}, #{keyword})-->
+
+        <!--    </insert>-->
+
+        <!--    <select id="getGroupId" resultType="Long">-->
+        <!--        select max(id) from tb_main_keyword-->
+        <!--    </select>-->
+
+        <!--    <insert id="addFlag" parameterType="boolean">-->
+        <!--        insert into tb_main_keyword (show_flag) values (#{showFlag})-->
+        <!--    </insert>-->
+
