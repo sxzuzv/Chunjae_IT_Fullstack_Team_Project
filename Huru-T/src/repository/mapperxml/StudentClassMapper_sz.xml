@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="repository.mapper.StudentClassMapper_sz">
+    <!-- student_class에서 입력받은 학생 아이디에 해당하는 수업 아이디를 모두 뽑아낸다. -->
+    <!-- resultType = SQL 쿼리의 실행 결과를 매핑할 결과 타입을 의미한다. -->
+    <select id="existClass" resultType="dao.StudentClassDAO">
+        select class_id
+        from student_class
+        where student_id = #{student_id}
+    </select>
+</mapper>

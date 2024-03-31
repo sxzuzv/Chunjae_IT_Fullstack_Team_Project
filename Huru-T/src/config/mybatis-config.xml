@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <settings>
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+    </settings>
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="org.mariadb.jdbc.Driver"/>
+                <property name="url" value="jdbc:mariadb://localhost:3306/huruTDB"/>
+                <property name="username" value="root"/>
+                <property name="password" value="12345"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+            <!-- jy -->
+        <mapper resource="repository/mapperxml/ClassMapper_jy.xml"/>
+        <mapper resource="repository/mapperxml/QuestionMapper_jy.xml"/>
+        <mapper resource="repository/mapperxml/LessonMapper_jy.xml"/>
+
+            
+            <!-- jh -->
+        <mapper resource="repository/mapperxml/AnswerMapper_jh.xml" />
+        <mapper resource="repository/mapperxml/ClassMapper_jh.xml" />
+        <mapper resource="repository/mapperxml/LessonMapper_jh.xml" />
+        <mapper resource="repository/mapperxml/StudentClassMapper_jh.xml" />
+        <mapper resource="repository/mapperxml/StudentLessonMapper_jh.xml" />
+        <mapper resource="repository/mapperxml/StudentMapper_jh.xml" />
+            <!-- sz -->
+
+        <mapper resource="repository/mapperxml/ClassMapper_sz.xml"/>
+        <mapper resource="repository/mapperxml/purchaseClassMapper_sz.xml"/>
+        <mapper resource="repository/mapperxml/TeacherMapper_sz.xml"/>
+        <mapper resource="repository/mapperxml/StudentClassMapper_sz.xml"/>
+            
+            
+            <!-- ys -->
+        <mapper resource="repository/mapperxml/StudentMapper_ys.xml" />
+        <mapper resource="repository/mapperxml/TeacherMapper_ys.xml" />
+            
+            <!-- he -->
+        <mapper resource="repository/mapperxml/ReviewMapper_he.xml"/>
+        <mapper resource="repository/mapperxml/QuestionMapper_he.xml"/>
+
+
+    </mappers>
+</configuration>

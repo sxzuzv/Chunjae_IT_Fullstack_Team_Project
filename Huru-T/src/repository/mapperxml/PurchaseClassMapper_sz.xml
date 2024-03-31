@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="repository.mapper.PurchaseClassMapper_sz">
+    <insert id="purchaseClass" parameterType="dao.StudentClassDAO">
+        INSERT INTO student_class(student_id, class_id)
+        VALUES (
+        #{student_id},
+        #{class_id}
+        )
+    </insert>
+
+    <select id="getRatingByClassIdx" parameterType="int">
+        select avg(rating)
+        from reviews
+        where class_id = #{classIdx}
+        group by class_id = #{classIdx}
+    </select>
+
+    <select id="showAllReviewsByClassIdx">
+        select contents
+        from reviews
+        where class_id = #{classIdx}
+    </select>
+</mapper>
