@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.chunjae.classarchive.mapper.board.NoticeMapper">
+
+    <!-- 전체 리스트 출력 -->
+    <select id="listAll" resultType="NoticeDTO">
+        select id, title, fix_flag, writer_id, modifier_id, reg_date, modify_date, delete_flag
+        from tb_notice
+        where delete_flag = 0
+        order by id desc
+    </select>
+
+    <!-- 페이징 리스트 출력 -->
+    <select id="paging" resultType="NoticeDTO">
+        select id, title, fix_flag, writer_id, modifier_id, reg_date, modify_date, content, s3_file
+        from tb_notice
+        where delete_flag = 0
+        order by id desc
+        limit #{pagingStart}, #{pageLimit}
+    </select>
+
+    <!-- 글의 총 개수 -->
+    <select id="noticeCount" resultType="int">
+        select count(*) from tb_notice
+        where delete_flag = 0
+    </select>
+
+    <!-- 상세 리스트 출력 -->
+    <select id="detail" resultType="NoticeDTO">
+        select * from tb_notice where id=#{id} and delete_flag = 0
+    </select>
+
+    <!-- 검색 필터 : 등록일 -->
+    <select id="searchAndPaging" resultType="NoticeDTO">
+        select id,
+        title,
+        fix_flag,
+        writer_id,
+        modifier_id,
+        reg_date,
+        modify_date,
+        content,
+        s3_file
+        from tb_notice
+        where delete_flag = 0
+        and reg_date between #{startDate} and DATE_ADD(#{endDate}, INTERVAL 1 DAY)
+        and
+        <choose>
+            <when test="searchWord != null and searchOption == 'byTitle'">
+                title like CONCAT('%', #{searchWord}, '%')
+            </when>
+            <when test="searchWord != null and searchOption == 'byWriterId'">
+                writer_id like CONCAT('%', #{searchWord}, '%')
+            </when>
+        </choose>
+        order by id desc
+        limit #{pagingParams.pagingStart}, #{pagingParams.pageLimit}
+    </select>
+    <select id="searchNoticeCount" resultType="int">
+        select count(*)
+        from tb_notice
+        where delete_flag = 0
+        and reg_date between #{startDate} and DATE_ADD(#{endDate}, INTERVAL 1 DAY)
+        and
+        <choose>
+            <when test="searchWord != null and searchOption == 'byTitle'">
+                title like CONCAT('%', #{searchWord}, '%')
+            </when>
+            <when test="searchWord != null and searchOption == 'byWriterId'">
+                writer_id like CONCAT('%', #{searchWord}, '%')
+            </when>
+        </choose>
+    </select>
+
+
+    <!-- 게시글 작성 -->
+    <insert id="noticeWrite" parameterType="NoticeDTO">
+        insert into tb_notice (writer_id, title, content, fix_flag, original_file, s3_file)
+        values (#{writerId}, #{title}, #{content}, #{fixFlag}, #{originalFile}, #{s3File})
+    </insert>
+
+    <!-- 게시글 수정 -->
+    <update id="updateNotice" parameterType="NoticeDTO">
+        update tb_notice
+        set title       = #{title},
+            fix_flag    = #{fixFlag},
+            content     = #{content},
+            modifier_id = #{modifierId}
+        where id = #{id}
+    </update>
+
+    <!-- 논리적 삭제 -->
+    <update id="delete" parameterType="Long">
+        update tb_notice set delete_flag = 1
+        where id = #{id}
+    </update>
+</mapper>

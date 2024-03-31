@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.chunjae.classarchive.mapper.icon.IconMapper">
+
+<!--    <insert id="saveIcon" parameterType="IconPackageDTO">-->
+<!--        insert into tb_icon_package (writer_id, title, show_flag, modifier_id, delete_flag)-->
+<!--        values(#{writerId}, #{title}, #{showFlag}, #{modifierId}, 0)-->
+<!--    </insert>-->
+
+        <insert id="saveIcon" parameterType="IconPackageDTO">
+            insert into tb_icon_package (writer_id, title, show_flag) values(#{writerId}, #{title}, #{showFlag})
+            <selectKey keyProperty="id" order="AFTER" resultType="Long">
+                SELECT LAST_INSERT_ID()
+            </selectKey>
+        </insert>
+
+        <insert id="saveIconsDetail" parameterType="IconPackageDTO">
+            INSERT INTO tb_icon_package_detail (pack_id, con_id)
+            VALUES
+            <foreach collection="iconId" item="cid" separator=",">
+                (#{id}, #{cid})
+            </foreach>
+        </insert>
+
+<!--    <select id="listAll" resultType="IconPackageDTO">-->
+<!--        select id, writer_id, title, show_flag, reg_date-->
+<!--        from tb_icon_package-->
+<!--        where delete_flag = 0-->
+<!--    </select>-->
+
+<!--    <select id="listAll" resultType="IconPackageDTO">-->
+<!--        select a.id, a.title, a.show_flag, a.reg_date, b.member_id-->
+<!--        from tb_icon_package a join tb_member b-->
+<!--            on a.writer_id = b.id-->
+<!--        where a.delete_flag = 0-->
+<!--        order by a.id desc-->
+<!--    </select>-->
+
+    <select id="listAll" resultType="IconPackageDTO">
+        select a.id, a.title, a.show_flag, a.reg_date, b.member_id
+        from tb_icon_package a join tb_member b
+            on a.writer_id = b.id
+        where a.delete_flag = 0
+        order by a.id desc
+        limit #{pagingStart}, #{pagingLimit}
+    </select>
+
+    <!-- 검색 필터 : 등록일 -->
+<!--    <select id="searchAndPaging" resultType="NoticeDTO">-->
+<!--        select id,-->
+<!--        title,-->
+<!--        fix_flag,-->
+<!--        writer_id,-->
+<!--        modifier_id,-->
+<!--        reg_date,-->
+<!--        modify_date,-->
+<!--        content,-->
+<!--        s3_file-->
+<!--        from tb_notice-->
+<!--        where delete_flag = 0-->
+<!--        and reg_date between #{startDate} and #{endDate}-->
+<!--        and-->
+<!--        <choose>-->
+<!--            <when test="searchWord != null and searchOption == 'byTitle'">-->
+<!--                title like CONCAT('%', #{searchWord}, '%')-->
+<!--            </when>-->
+<!--            <when test="searchWord != null and searchOption == 'byWriterId'">-->
+<!--                writer_id like CONCAT('%', #{searchWord}, '%')-->
+<!--            </when>-->
+<!--        </choose>-->
+<!--        order by id desc-->
+<!--        limit #{pagingParams.pagingStart}, #{pagingParams.pageLimit}-->
+<!--    </select>-->
+
+    <!-- 검색어와 페이징을 반영한 리스트 출력 -->
+    <select id="searchAndPaging" resultType="IconPackageDTO">
+        select a.id, a.title, a.show_flag, a.reg_date, b.member_id
+        from tb_icon_package a join tb_member b
+        on a.writer_id = b.id
+        where a.delete_flag = 0 and reg_date between #{startDate} and DATE_ADD(#{endDate}, INTERVAL 1 DAY)
+        and
+        <choose>
+            <when test="searchWord != null and searchOption == 'byTitle'">
+                a.title like CONCAT('%', #{searchWord}, '%')
+            </when>
+            <when test="searchWord != null and searchOption == 'byWriterId'">
+                a.writer_id like CONCAT('%', #{searchWord}, '%')
+            </when>
+        </choose>
+        order by a.id desc
+        limit #{pagingParams.pagingStart}, #{pagingParams.pageLimit}
+    </select>
+
+    <!-- 검색어와 리스트를 반영한 리스트 출력 시, 해당하는 게시글 수 계산 -->
+    <select id="searchIconCount" resultType="int">
+        select count(*)
+        from tb_icon_package
+        where delete_flag = 0
+        and reg_date between #{startDate} and DATE_ADD(#{endDate}, INTERVAL 1 DAY)
+        and
+        <choose>
+            <when test="searchWord != null and searchOption == 'byTitle'">
+                title like CONCAT('%', #{searchWord}, '%')
+            </when>
+            <when test="searchWord != null and searchOption == 'byWriterId'">
+                writer_id like CONCAT('%', #{searchWord}, '%')
+            </when>
+        </choose>
+    </select>
+
+    <select id="countIconList" resultType="Integer">
+        select count(*)
+        from tb_icon_package
+        where delete_flag = 0
+    </select>
+
+    <select id="listWriter" resultType="String">
+        select name
+        from tb_icon_package a right join tb_member b on a.id = b.id;
+    </select>
+
+    <select id="searchIcon" resultType="ContentsDTO">
+        select id, title
+        from tb_contents
+        where type_id = 2 and keyword LIKE CONCAT('%', #{keyword}, '%')
+        order by id desc
+    </select>
+
+    <select id="searchIconAll" resultType="ContentsDTO">
+        select id, title
+        from tb_contents
+        where type_id = 2
+        order by id desc
+    </select>
+
+<!--    <select id="detailIcon" parameterType="Long" resultType="IconPackageDTO">-->
+<!--        select id, writer_id, title, show_flag, reg_date, modifier_id, modify_date-->
+<!--        from tb_icon_package-->
+<!--        where id = #{id}-->
+<!--    </select>-->
+
+<!--    <select id="detailIcon" parameterType="Long" resultType="IconPackageDTO">-->
+<!--        select a.id, a.title, a.show_flag, a.reg_date, b.member_id, a.modify_date-->
+<!--        from tb_icon_package a join tb_member b-->
+<!--            on a.writer_id = b.id-->
+<!--        where a.id = #{id}-->
+<!--    </select>-->
+
+    <update id="updateIcon" parameterType="IconPackageDTO">
+        update tb_icon_package
+        set title = #{title}, show_flag = #{showFlag}, modifier_id = #{modifierId}
+        where id = #{id}
+    </update>
+
+    <select id="getIconPackThumbKeyName" resultType="String">
+        select concat(file_path, s3_file) as keyName
+        from tb_pack_thumbnail
+        where pack_id = #{id}
+    </select>
+
+<!--    <insert id="saveIcon" parameterType="IconPackageDTO">-->
+<!--        insert into tb_icon_package (writer_id, title, show_flag) values(#{writerId}, #{title}, #{showFlag})-->
+<!--        <selectKey keyProperty="id" order="AFTER" resultType="Long">-->
+<!--            SELECT LAST_INSERT_ID()-->
+<!--        </selectKey>-->
+<!--    </insert>-->
+
+<!--    <select id="conIdList" parameterType="Long" resultType="ContentsDTO">-->
+<!--        select tb_contents.id, tb_contents.title, tb_contents.file_path, tb_contents.s3_file-->
+<!--        from-->
+<!--            tb_icon_package_detail join tb_contents-->
+<!--                on tb_icon_package_detail.con_id = tb_contents.id-->
+<!--        where-->
+<!--            tb_icon_package_detail.pack_id = #{packId};-->
+<!--    </select>-->
+
+    <select id="detailIcon" parameterType="Long" resultType="IconPackageDTO">
+        select a.id, a.title, a.writer_id, a.show_flag, GROUP_CONCAT(b.con_id) as iconIds, c.member_id as memberId,
+               d.original_file as originalFile
+        from tb_icon_package a
+            join tb_icon_package_detail b on a.id = b.pack_id
+            join tb_member c on a.writer_id = c.id
+            join tb_pack_thumbnail d on a.id = d.pack_id
+        where b.pack_id = #{packId};
+    </select>
+
+    <update id="deleteIcon" parameterType="Long">
+        update tb_icon_package
+        set delete_flag = 1
+        where id = #{id}
+    </update>
+
+    <delete id="deleteIconsDetail" parameterType="Long">
+        delete from tb_icon_package_detail where pack_id = #{id}
+    </delete>
+
+    <select id="detailIconIds" parameterType="Long" resultType="String">
+        select GROUP_CONCAT(b.con_id) as iconIds
+        from tb_icon_package a
+                 join tb_icon_package_detail b on a.id = b.pack_id
+        where b.pack_id = #{packId}
+    </select>
+
+</mapper>
