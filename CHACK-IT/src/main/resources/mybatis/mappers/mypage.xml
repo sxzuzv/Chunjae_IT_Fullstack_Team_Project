@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.mypage">
+<!-- 리절트 맵 정의 -->
+<!--	<resultMap id="orderGoodsResult" type="orderVO">-->
+<!--		<result property="order_id" column="order_id" />-->
+<!--		<result property="member_id" column="member_id" />-->
+<!--		<result property="goods_id" column="goods_id" />-->
+<!--		<result property="goods_title" column="goods_title" />-->
+<!--		<result property="goods_sales_price" column="goods_sales_price" />-->
+<!--		<result property="order_total_price" column="order_total_price" />-->
+<!--		<result property="order_goods_qty" column="order_goods_qty" />-->
+<!--		-->
+<!--		<result property="orderer_name" column="orderer_name" />-->
+<!--		<result property="receiver_name" column="receiver_name" />-->
+<!--		<result property="receiver_hp1" column="receiver_hp1" />-->
+<!--		<result property="receiver_hp2" column="receiver_hp2" />-->
+<!--		<result property="receiver_hp3" column="receiver_hp3" />-->
+<!--		-->
+<!--		<result property="receiver_tel1" column="receiver_tel1" />-->
+<!--		<result property="receiver_tel2" column="receiver_tel2" />-->
+<!--		<result property="receiver_tel3" column="receiver_tel3" />-->
+<!--		<result property="delivery_address" column="delivery_address" />-->
+<!--		<result property="delivery_message" column="delivery_message" />-->
+<!--		-->
+<!--		<result property="delivery_method" column="delivery_method" />-->
+<!--		<result property="gift_wrapping" column="gift_wrapping" />-->
+<!--		<result property="pay_method" column="pay_method" />-->
+<!--		<result property="card_com_name" column="card_com_name" />-->
+<!--		<result property="card_pay_month" column="card_pay_month" />-->
+<!--		-->
+<!--		<result property="pay_orderer_hp_num" column="pay_orderer_hp_num" />-->
+<!--		<result property="pay_order_time" column="pay_order_time" />-->
+<!--		<result property="delivery_state" column="delivery_state" />-->
+<!--		<result property="final_total_price" column="final_total_price" />-->
+<!--		<result property="goods_qty" column="goods_qty" />-->
+<!--		-->
+<!--		<result property="goods_fileName" column="goods_fileName" />-->
+<!--	</resultMap> -->
+
+	
+	 <select id="selectMyOrderGoodsList" resultType="orderVO"  parameterType="String"  >
+	    <![CDATA[
+			select * from t_shopping_order
+            where member_id=#{memberId}
+            order by pay_order_time desc
+		]]>
+	</select>
+	
+
+	<select id="selectMyOrderInfo" resultType="orderVO"   parameterType="String"  >
+	    <![CDATA[
+		    select * from t_shopping_order
+            where order_id=#{orderId}
+    	]]>
+	</select>
+		<select id="selectMyOrderHistoryList" resultType="orderVO"   parameterType="java.util.Map"  >
+	    <![CDATA[
+		  select * from t_shopping_order
+          where member_id=#{memberId}
+          and  date_format(pay_order_time,'%Y-%m-%d')  between #{beginDate} and #{endDate}
+          order by pay_order_time desc
+    	]]>
+	</select>
+
+	<update id="updateMyInfo" parameterType="memberVO">
+	   update t_shopping_member
+			   set
+<!--			      <if test=" memberPw!='' and memberPw!=null">-->
+<!--			        member_pw=#{memberPw},-->
+<!--			      </if>-->
+<!--			      <if test=" memberGender!='' and memberGender!=null">-->
+<!--			         member_gender=#{memberGender},-->
+<!--			      </if>-->
+<!--			       <if test=" memberBirthY!='' and memberBirthY!=null">-->
+<!--			         member_birth_y=#{memberBirthY},-->
+<!--			      </if>-->
+<!--			      <if test=" memberBirthM!='' and memberBirthM!=null">-->
+<!--			         member_birth_m=#{memberBirthM},-->
+<!--			      </if>-->
+<!--			      <if test=" memberBirthD!='' and memberBirthD!=null">-->
+<!--			         member_birth_d=#{memberBirthD},-->
+<!--			      </if>-->
+<!--			      <if test=" memberHp1!='' and memberHp1!=null">-->
+<!--			         member_hp1=#{memberHp1},-->
+<!--			      </if>-->
+<!--			      <if test=" memberHp2!='' and memberHp2!=null">-->
+<!--			         member_hp2=#{memberHp2},-->
+<!--			      </if>-->
+<!--			      <if test=" memberHp3!='' and memberHp3!=null">-->
+<!--			         member_hp3=#{memberHp3},-->
+<!--			      </if>-->
+<!--			      <if test=" smsstsYn!='' and smsstsYn!=null">-->
+<!--			         smssts_yn=#{smsstsYn},-->
+<!--			      </if>-->
+<!--			      <if test=" memberEmail1!='' and memberEmail1!=null">-->
+<!--			         member_email1=#{memberEmail1},-->
+<!--			      </if>-->
+<!--			      <if test=" memberEmail2!='' and memberEmail2!=null">-->
+<!--			         member_email2=#{memberEmail2},-->
+<!--			      </if>-->
+<!--			      <if test=" emailstsYn!='' and emailstsYn!=null">-->
+<!--			         emailsts_yn=#{emailstsYn},-->
+<!--			      </if>-->
+<!--			      <if test=" zipcode!='' and zipcode!=null">-->
+<!--			         zipcode=#{zipcode},-->
+<!--			      </if>-->
+<!--			      <if test=" roadAddress!='' and roadAddress!=null">-->
+<!--			         road_address=#{roadAddress},-->
+<!--			      </if>-->
+<!--			      <if test=" jibunAddress!='' and jibunAddress!=null">-->
+<!--			         jibun_address=#{jibunAddress},-->
+<!--			      </if>-->
+<!--			      <if test=" namujiAddress!='' and namujiAddress!=null">-->
+<!--			         namuji_address=#{namujiAddress}-->
+<!--			      </if>-->
+				  member_gender=#{memberGender},member_birth_y=#{memberBirthY},member_birth_m=#{memberBirthM},member_birth_d=#{memberBirthD},member_birth_d=#{memberBirthD},member_birth_gn=#{memberBirthGn},
+				   member_hp1=#{memberHp1},member_hp2=#{memberHp2}, member_hp3=#{memberHp3},smssts_yn=#{smsstsYn}, member_email1=#{memberEmail1},member_email2=#{memberEmail2}, emailsts_yn=#{emailstsYn},
+				   zipcode=#{zipcode},road_address=#{roadAddress},jibun_address=#{jibunAddress}, namuji_address=#{namujiAddress}
+		where
+		member_id=#{memberId}
+	</update>
+	
+	<select id="selectMyDetailInfo" resultType="memberVO"   parameterType="String"  >
+	    <![CDATA[
+			select * from t_shopping_member 
+			where member_id=#{member_id}
+    	]]>
+	</select>	
+	
+	<update id="updateMyOrderCancel" parameterType="String">
+	   update t_shopping_order
+	 	  set delivery_state='cancel_order'
+	   where order_id=#{orderId}
+	</update>
+
+	<select id="cancelOrderHistory" resultType="orderVO"   parameterType="java.util.Map">
+		<![CDATA[
+		select * from t_shopping_order
+		where member_id=#{memberId} and delivery_state= "cancel_order"
+		  and  date_format(pay_order_time,'%Y-%m-%d')  between #{beginDate} and #{endDate}
+		order by pay_order_time desc
+		]]>
+	</select>
+		
+		
+</mapper>

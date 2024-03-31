@@ -1,0 +1,62 @@
+.wrapper {
+    display: grid;
+    width: 80%;
+    margin: 0 auto;
+    padding: 1em 0 3em;
+    background-color: #f6f6f6;
+    grid-template-columns: 220px auto;
+}
+
+.logo-container {
+    grid-column: 1/2;
+    text-align: center;
+    vertical-align: middle;
+    padding: 4px 35px;
+}
+
+.logo-container img {
+    margin: 0 auto;
+    height: 150px;
+}
+
+.text_container {
+    grid-column: 2/3;
+    height: 198px;
+}
+
+.inner {
+    padding: 20px;
+    height: 150px;
+}
+
+.content-detail {
+    float: left;
+    margin: auto 0;
+    vertical-align: middle;
+}
+
+.content-link a {
+    color: #666666;
+}
+
+.content-link a:hover {
+    color: #797979;
+}
+
+.content-workspace {
+    float: right;
+}
+
+.workspace {
+    width: 158px;
+    height: 158px;
+    display: inline;
+    padding: 4px;
+}
+
+.workspace a img {
+    width: 70px;
+    height: 70px;
+    margin-left: 1em;
+}
+
