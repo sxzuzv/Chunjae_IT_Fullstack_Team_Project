@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mybatis.mapper.ReportMapper">
+
+    <!--신수진-->
+
+
+
+    <!--최경락-->
+
+    <select id="reportListPageWithPaging" parameterType="map" resultType="dto.ReportDTO">
+        <![CDATA[
+    SELECT *, (
+        CASE
+            WHEN com_id is not null THEN 'true'
+            ELSE 'false'
+    	END
+	) AS answer
+    FROM report r LEFT OUTER JOIN report_comment rc ON r.brd_id = rc.parent_id
+    WHERE r.user_id = #{userId}
+    ]]>
+        <if test="searchWord != null and !searchWord.equals('')">
+            AND
+            <choose>
+                <when test="searchField == 'title'">
+                    report_title LIKE CONCAT('%', #{searchWord}, '%')
+                </when>
+                <otherwise>
+                    report_content LIKE CONCAT('%', #{searchWord}, '%')
+                </otherwise>
+            </choose>
+        </if>
+        ORDER BY report_id DESC
+        LIMIT #{start}, 10
+    </select>
+
+
+    <!--최영주-->
+    <insert id="reportInsertWrite" parameterType="dto.ReportDTO">
+        INSERT
+        INTO report(user_id, brd_id, report_title, report_content)
+        VALUES(#{userId}, #{brdId}, #{reportTitle}, #{reportContent})
+    </insert>
+
+    <select id="reportSelectCount" parameterType="map" resultType="int">
+        SELECT count(*)
+        FROM report
+        WHERE user_id = #{userId}
+        <if test="searchWord != null and !searchWord.equals('')">
+            AND
+            <choose>
+                <when test="searchField == 'report_title'">
+                    report_title LIKE CONCAT('%', #{searchWord}, '%')
+                </when>
+                <otherwise>
+                    report_content LIKE CONCAT('%', #{searchWord}, '%')
+                </otherwise>
+            </choose>
+        </if>
+
+    </select>
+
+    <select id="reportSelectListPage" parameterType="map" resultType="dto.ReportDTO">
+        SELECT *
+        FROM report
+        WHERE userId = #{userId}
+        <if test="searchWord != null and !searchWord.equals('')">
+            AND
+            <choose>
+                <when test="searchField == 'title'">
+                    title LIKE CONCAT('%', #{searchWord}, '%')
+                </when>
+                <otherwise>
+                    content LIKE CONCAT('%', #{searchWord}, '%')
+                </otherwise>
+            </choose>
+        </if>
+        order by report_id desc
+        LIMIT #{start}, 10
+    </select>
+
+    <select id="reportSelectView" parameterType="String" resultType="dto.ReportDTO">
+        SELECT *
+        FROM report
+        WHERE report_id = #{reportId}
+    </select>
+
+    <delete id="reportDelete">
+        delete
+        from report
+        where report_id = #{reportId}
+    </delete>
+
+    <!--최재혁-->
+
+    <select id="adreportSelectCount" parameterType="map" resultType="int">
+        <![CDATA[
+        SELECT count(*)
+        FROM report
+        ]]>
+        <if test="searchWord != null and !searchWord.equals('')">
+            AND
+            <choose>
+                <when test="searchField == 'title'">
+                    report_title LIKE CONCAT('%', #{searchWord}, '%')
+                </when>
+                <otherwise>
+                    report_content LIKE CONCAT('%', #{searchWord}, '%')
+                </otherwise>
+            </choose>
+        </if>
+    </select>
+
+
+
+
+
+    <select id="adreportListPageWithPaging" parameterType="map" resultType="dto.ReportDTO">
+        <![CDATA[
+    SELECT *, (
+        CASE
+            WHEN com_id is not null THEN 'true'
+            ELSE 'false'
+    	END
+	) AS answer
+    FROM report r LEFT OUTER JOIN report_comment rc ON r.brd_id = rc.parent_id
+    ]]>
+        <if test="searchWord != null and !searchWord.equals('')">
+            AND
+            <choose>
+                <when test="searchField == 'title'">
+                    report_title LIKE CONCAT('%', #{searchWord}, '%')
+                </when>
+                <otherwise>
+                    report_content LIKE CONCAT('%', #{searchWord}, '%')
+                </otherwise>
+            </choose>
+        </if>
+        ORDER BY report_id DESC
+        LIMIT #{start}, 10
+    </select>
+</mapper>

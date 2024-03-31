@@ -1,0 +1,114 @@
+*{padding:0; margin:0; border:0}
+li{list-style:none}
+
+
+.menu {
+  width: 800px;
+  overflow: hidden;
+}
+
+.menu > li {
+  width: 25%; /*20*5=100%*/
+  float: left;
+  text-align: center;
+  line-height: 40px;
+  background-color: transparent;
+}
+
+.submenu > li {
+  background-color: #fff;
+  width: 158px;
+  font-size: 16px;
+  height: 50px;
+  display: block;
+  line-height: 50px;
+}
+
+.submenu > li > .sub{
+  height: 50px;
+  line-height: 50px;
+}
+
+.submenu {
+  height: 0; /*ul의 높이를 안보이게 처리*/
+  overflow: hidden;
+}
+/* dropdown 할 메뉴목록에 높이를 0처리하고, overflow:hidden을 적용해 안보이게 처리해준다. */
+
+/* ▪️ :hover 했을 때 */
+.menu > li:hover {
+  background-color: #fff;
+  transition-duration: 0.5s;
+}
+
+.menu > li:hover .submenu {
+  transition-duration: 1s;
+  position: fixed;
+  z-index: 1;
+}
+
+.menu > li:hover #submenu01{
+  height: 150px;
+}
+
+.menu > li:hover #submenu02{
+  height: 150px;
+}
+
+.menu > li:hover #submenu03{
+  height: 100px;
+}
+
+
+.menu2 {
+  width: 300px;
+  overflow: hidden;
+}
+
+.menu2 > li {
+  width: 50%; /*20*5=100%*/
+  float: left;
+  text-align: center;
+  line-height: 40px;
+  background-color: transparent;
+}
+
+.submenu2 > li {
+  background-color: #fff;
+  width: 150px;
+  font-size: 16px;
+  height: 50px;
+  display: block;
+  line-height: 50px;
+}
+
+.submenu2 > li > .sub2{
+  height: 50px;
+  line-height: 50px;
+}
+
+.submenu2 {
+  height: 0; /*ul의 높이를 안보이게 처리*/
+  overflow: hidden;
+}
+/* dropdown 할 메뉴목록에 높이를 0처리하고, overflow:hidden을 적용해 안보이게 처리해준다. */
+
+/* ▪️ :hover 했을 때 */
+.menu2 > li:hover {
+  background-color: #fff;
+  transition-duration: 0.5s;
+}
+
+.menu2 > li:hover .submenu2 {
+  transition-duration: 1s;
+  position: fixed;
+  z-index: 1;
+}
+
+.menu2 > li:hover #submenu04{
+  height: 150px;
+}
+
+.menu2 > li > #etcfont{
+  font-weight: 400;
+}

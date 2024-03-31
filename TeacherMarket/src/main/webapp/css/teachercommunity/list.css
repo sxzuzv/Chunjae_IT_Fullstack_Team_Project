@@ -1,0 +1,125 @@
+body {
+    @import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&family=Song+Myung&display=swap');
+    margin: 0;
+
+    padding: 0;
+    background-color: white;
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+    margin : 0 0 50px 0;
+}
+
+.button{
+    float: right;
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #35497a;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: large;
+}
+
+.button:hover {
+    background-color: #1a2a48;
+}
+
+.boardSort {
+    margin-top: 20px;
+}
+
+.ec-base-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.ec-base-table th, .ec-base-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+    font-size: 16px;
+}
+
+.ec-base-table th {
+    background-color: #35497a;
+    color: white;
+}
+
+.ec-base-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.ec-base-paginate {
+    margin-top: 20px;
+}
+
+.layout {
+    margin-top: 20px;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+a:hover {
+    text-decoration: underline;
+    color: #1a2a48;
+}
+
+
+/* 검색폼 디자인 */
+.boardSearch {
+    margin-top: 20px;
+    /*border: 1px solid #ddd;*/
+    padding: 15px;
+    /*border-radius: 5px;*/
+    background-color: #fff;
+}
+
+.boardSearch legend {
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.boardSearch select,
+.boardSearch input[type="text"],
+.boardSearch input[type="submit"] {
+    padding: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    font-size: large;
+}
+
+.boardSearch select {
+    width: auto;
+    height: 48px;
+    font-size: large;
+}
+
+.boardSearch input[type="text"] {
+    width: auto;
+    height: 48px;
+    font-size: large;
+}
+
+.boardSearch input[type="submit"] {
+    background-color: #35497a;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-size: large;
+    height: 48px;
+}
+
+.boardSearch input[type="submit"]:hover {
+    background-color: #1a2a48;
+}
